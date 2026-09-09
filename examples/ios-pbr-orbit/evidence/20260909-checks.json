@@ -1,0 +1,45 @@
+{
+  "engineRevision": "cc1e607edc8c86baf47642eb7034a38b0d3eee06",
+  "engineSourceChanges": false,
+  "engineFocused": {
+    "typecheck": "passed",
+    "build": "passed",
+    "tests": 616
+  },
+  "engineRepository": {
+    "typecheck": "passed",
+    "tests": 1246,
+    "testsByWorkspace": [
+      112,
+      616,
+      139,
+      372,
+      7
+    ],
+    "build": "passed with EXAMPLE_BUILD_TIMEOUT_MS=180000",
+    "exampleTargetsVerified": 95,
+    "exampleSourceFingerprint": "5317cb59e428c9a1f95ec44bf65bf01687929ede419f9fb17d9a27e09cbea142"
+  },
+  "native": {
+    "typecheck": "passed",
+    "tests": 5,
+    "buildDevice": "passed",
+    "codesignVerifyDeepStrict": "passed",
+    "deviceInstall": "passed"
+  },
+  "additionalEngineChecks": {
+    "modules": "passed: 446",
+    "rendererPrepare": "passed: 21 BaseRenderer and 10 postprocess",
+    "responsibilities": "not runnable to completion: sibling Editor repository absent",
+    "api": "not runnable to completion: sibling UI/package.json absent",
+    "applicability": "Engine source and public API unchanged; cross-repository absence is documented, not counted as a passing check"
+  },
+  "privateRawLogSha256": {
+    "m16-g02-engine-full-test.log": "30c99b9d8f7f7df64cda86ae6e9fce34026f20a590195d9fa0b232cb45dda387",
+    "m16-g02-engine-full-typecheck.log": "d4fc29ae43b8326331d454ddef897e2099c04e26b6de14d9dc40da1543126eb6",
+    "m16-g02-engine-full-build-final.log": "8f710de38e6d988a522fad728bc3531df8d13961921935ea1c4cf1bbde3d9f06",
+    "m16-g02-lifecycle-build.log": "67d3a0e3c9422d0008860e0433bcd554047fe06f7e3d7cb4ff307e5396097303",
+    "m16-g02-lifecycle-sign.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "m16-g02-lifecycle-install.log": "a9496279834f8aaff3e2d195a68c003dd90cce030b238e78facb850004503fd8"
+  }
+}

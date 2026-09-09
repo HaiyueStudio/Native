@@ -1,0 +1,7 @@
+{
+  "instruction": "While final Display/Thermal State recording is already running, maintain foreground, screen recording and Low Power Mode off; continuously drag with one finger for approximately 60 seconds then release.",
+  "response": "流畅，无发热",
+  "scope": "Final interaction performance run",
+  "gestureInJournalSeconds": 67.646,
+  "earlierSoakResponse": "一切正常，无明显发热。手机温的。"
+}

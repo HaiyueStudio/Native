@@ -13,4 +13,4 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 
 方案与执行计划见 [Native 文档入口](../milestones/native/README.md)；跨仓依赖规则见 [repository-version-policy.json](../milestones/milestones/repository-version-policy.json)。
 
-当前已建立目录与说明，App 实现尚未开始。
+G02 已完成 [原生宿主](./bridge/README.md) 与 private App，真机清屏、暂停恢复、独立冷启动和逐像素校验通过。G03 已完成真机静态 PBR 立方体和粗糙度对照，Orbit 由 G04 接续。

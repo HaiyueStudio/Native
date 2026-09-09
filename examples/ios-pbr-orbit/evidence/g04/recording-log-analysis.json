@@ -1,0 +1,93 @@
+{
+  "status": "pending",
+  "violations": [],
+  "pending": [
+    "five background intervals of at least five seconds with resumed presentation"
+  ],
+  "touchSamples": 440,
+  "moveSamples": 370,
+  "observedMultitouch": true,
+  "observedPrimaryReleaseWithOtherHeld": true,
+  "observedNativeCancel": true,
+  "backgroundCycles": [
+    {
+      "backgroundMs": 4911,
+      "resumeCount": 9,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 4992,
+      "resumeCount": 10,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 7014,
+      "resumeCount": 11,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 6747,
+      "resumeCount": 12,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 6838,
+      "resumeCount": 13,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 7962,
+      "resumeCount": 14,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    }
+  ],
+  "heldSecondaryMoveSamples": 17,
+  "sampledPhiRange": [
+    0.43116815869696296,
+    2.922474771655889
+  ],
+  "successfulFiveSecondResumes": 4,
+  "scope": "Real event and invariant audit; does not certify gestures from simulated unit tests or replace visual recording review."
+}

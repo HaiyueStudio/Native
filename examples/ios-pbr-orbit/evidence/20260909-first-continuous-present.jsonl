@@ -1,0 +1,27 @@
+{"time":1788941903469,"event":"host-created","detail":{"engine":"0.1.0","canvas":"2.1.18","runtime":"9.0.3","backendRoute":"Canvas/wgpu/Metal","dpr":2}}
+{"time":1788941903471,"event":"adapter","detail":{"vendor":"","architecture":"","device":"Apple A16 GPU","description":"","features":["clip-distances","float32-blendable","subgroups","texture-compression-astc-sliced-3d","depth-clip-control","timestamp-query","indirect-first-instance","shader-f16","depth32float-stencil8","texture-compression-etc2","texture-compression-astc","rg11b10ufloat-renderable","bgra8unorm-storage","dual-source-blending","texture-format-16-bit-norm","texture-compression-astc-hdr","texture-adapter-specific-format-features","mappable-primary-buffers","texture-binding-array","storage-resource-binding-array","sampled-texture-and-storage-buffer-array-non-uniform-indexing","storage-texture-array-non-uniform-indexing","partially-bound-binding-array","address-mode-clamp-to-zero","polygon-mode-line","vertex-writable-storage","clear-texture","spirv-shader-passthrough","multiview","primitive-index","core-features-and-limits"]}}
+{"time":1788941903479,"event":"surface-configure","detail":{"format":"bgra8unorm","capabilities":{"format":["bgra8unorm-srgb","bgra8unorm","rgba16float","rgb10a2unorm"],"presentModes":["fifo"],"alphaModes":["opaque","postmultiplied"],"usages":27}}}
+{"time":1788941903484,"event":"engine-ready","detail":{"width":860,"height":1678,"format":"bgra8unorm","profile":"simple"}}
+{"time":1788941903495,"event":"present","detail":{"frames":1,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941905473,"event":"present","detail":{"frames":120,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941907471,"event":"present","detail":{"frames":240,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941909469,"event":"present","detail":{"frames":360,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941911466,"event":"present","detail":{"frames":480,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941913466,"event":"present","detail":{"frames":600,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941915462,"event":"present","detail":{"frames":720,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941917459,"event":"present","detail":{"frames":840,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941919457,"event":"present","detail":{"frames":960,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941921456,"event":"present","detail":{"frames":1080,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941923452,"event":"present","detail":{"frames":1200,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941925450,"event":"present","detail":{"frames":1320,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941927448,"event":"present","detail":{"frames":1440,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941929446,"event":"present","detail":{"frames":1560,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941931444,"event":"present","detail":{"frames":1680,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941933441,"event":"present","detail":{"frames":1800,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941935440,"event":"present","detail":{"frames":1920,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941937437,"event":"present","detail":{"frames":2040,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941939435,"event":"present","detail":{"frames":2160,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941941434,"event":"present","detail":{"frames":2280,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941943431,"event":"present","detail":{"frames":2400,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941945428,"event":"present","detail":{"frames":2520,"width":860,"height":1678,"scheduledCallbacks":0}}
+{"time":1788941947426,"event":"present","detail":{"frames":2640,"width":860,"height":1678,"scheduledCallbacks":0}}

@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "launches": [
+    {
+      "session": "1788952346774",
+      "presentedFrames": 1200,
+      "engineReady": true,
+      "errors": []
+    },
+    {
+      "session": "1788952384484",
+      "presentedFrames": 360,
+      "engineReady": true,
+      "errors": []
+    },
+    {
+      "session": "1788952397902",
+      "presentedFrames": 240,
+      "engineReady": true,
+      "errors": []
+    }
+  ],
+  "ownerConfirmation": "3次都正常；Wi-Fi and cellular data disabled per requested procedure",
+  "source": "Device-owner reply to the offline cold-launch checklist",
+  "recordingPending": false,
+  "recording": {
+    "path": "artifacts/g05/cold-launches.mp4",
+    "sha256": "a213eb5a68db46488840799ed5157a8030c06dc489860601fb658bb41e6149f8",
+    "bytes": 56674068,
+    "durationSeconds": 64.27167800453515
+  },
+  "visualReview": {
+    "method": "65 frames sampled every 1 second; three contact sheets inspected alongside original journal and owner confirmation. Sampling does not establish frame-level timing.",
+    "launchCubeVisibleAtVideoSeconds": [
+      3,
+      40,
+      54
+    ],
+    "observations": "Three presentations reset counter to frame 1, show shaded cube and subsequent real orbit movement; second/third launches follow visible app-switcher swipe-away. First force-quit precedes recording or is owner-confirmed. No persistent black screen visible.",
+    "networkEvidence": "Owner confirmation; network settings are not shown in recording."
+  }
+}

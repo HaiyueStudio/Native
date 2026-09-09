@@ -1,0 +1,84 @@
+{
+  "images": [
+    {
+      "path": "Native/examples/ios-pbr-orbit/artifacts/g05/g04-accepted.app/iospbrorbit",
+      "uuid": "503409e927443555942bb834ed5370ba",
+      "codeSignature": [
+        15941680,
+        143760
+      ],
+      "beforeSignatureSha256": "2a2ebfcea34da08cb33a6bfac01c8fe1559497a46b25e6a2fba551181765531e",
+      "segments": {
+        "__PAGEZERO": {
+          "fileOffset": 0,
+          "fileSize": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "__TEXT": {
+          "fileOffset": 0,
+          "fileSize": 1490944,
+          "sha256": "8d54f3325da2eb28cfdb6d6032e7a9631bd1b0a46c9db4e3b0ccfd81c81e7cdd"
+        },
+        "__DATA_CONST": {
+          "fileOffset": 1490944,
+          "fileSize": 32768,
+          "sha256": "9a1ad70332c9ed2c61aaef0bf5be15eaad05d633b537dd2a37e9728cd595a2be"
+        },
+        "__DATA": {
+          "fileOffset": 1523712,
+          "fileSize": 12369920,
+          "sha256": "0a120f09751fcc34ee8be8d3e43b0ef2cddaf9ed7a837d7fa1e938076bf6b63b"
+        },
+        "__LINKEDIT": {
+          "fileOffset": 13893632,
+          "fileSize": 2191808,
+          "sha256": "827e1646869151f1ddb54dfb041af3278c07c5798a276a4f99f76e6ede1f7ac2"
+        }
+      }
+    },
+    {
+      "path": "Native/examples/ios-pbr-orbit/artifacts/g05/rebuilt.app/iospbrorbit",
+      "uuid": "0642b3a3121931eea5fb84168606874a",
+      "codeSignature": [
+        15941680,
+        143760
+      ],
+      "beforeSignatureSha256": "b544577cd23d405f8b7eec269cb772e542f1e0bf3c70927e90171090f8d86ec0",
+      "segments": {
+        "__PAGEZERO": {
+          "fileOffset": 0,
+          "fileSize": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "__TEXT": {
+          "fileOffset": 0,
+          "fileSize": 1490944,
+          "sha256": "3d02532ef461d13dfedb56745aec164d232fe70eb80b335edaa64cd0493fb06e"
+        },
+        "__DATA_CONST": {
+          "fileOffset": 1490944,
+          "fileSize": 32768,
+          "sha256": "9a1ad70332c9ed2c61aaef0bf5be15eaad05d633b537dd2a37e9728cd595a2be"
+        },
+        "__DATA": {
+          "fileOffset": 1523712,
+          "fileSize": 12369920,
+          "sha256": "0a120f09751fcc34ee8be8d3e43b0ef2cddaf9ed7a837d7fa1e938076bf6b63b"
+        },
+        "__LINKEDIT": {
+          "fileOffset": 13893632,
+          "fileSize": 2191808,
+          "sha256": "cfd122999849e71893fc966996de74cb8313edd6f20a3c8c1c8ec015d7ec8a0c"
+        }
+      },
+      "capturedFrom": "Native/examples/ios-pbr-orbit/platforms/ios/build/Debug-iphoneos/iospbrorbit.app/iospbrorbit"
+    }
+  ],
+  "beforeSignatureIdentical": false,
+  "uuidAndSignatureExcludedSha256": [
+    "bfab64a4d015eafb6c7365b149b8bf35963e62fa9247f54cf25ec60147ecc913",
+    "173e59bc97e40fbad35b36f6fa0c77f1d22265f2405293bc1201b5f22dba9bbf"
+  ],
+  "uuidAndSignatureOnlyDifference": false,
+  "note": "Rebuilt executable preserved at this artifact path before the platforms build directory was restored to the original accepted candidate."
+}

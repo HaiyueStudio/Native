@@ -1,0 +1,16 @@
+{
+  "hostSession": 1788952576580,
+  "sourceSnapshots": [
+    {
+      "path": "artifacts/g05/soak-logs/session-1788952576580.jsonl",
+      "sha256": "5fdf2b6f11cb80fb38420099ae840debbfbd8dc055a6cc469f554e82bdad2884"
+    },
+    {
+      "path": "artifacts/g05/soak-tail-logs/session-1788952576580.jsonl",
+      "sha256": "eed62c129f9e17159cde0019c65a013f98edc2aa6fc118b4ea517e7523fa8a54"
+    }
+  ],
+  "outputSha256": "eed62c129f9e17159cde0019c65a013f98edc2aa6fc118b4ea517e7523fa8a54",
+  "method": "Exact record deduplication and chronological sort, same host-created session only; both collectors stopped before these hashes.",
+  "collectionLimit": "Tail collector ended on a CoreDevice copy timeout; already persisted records retained."
+}

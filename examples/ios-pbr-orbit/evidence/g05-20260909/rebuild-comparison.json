@@ -1,0 +1,41 @@
+{
+  "baseline": "vendor/g04-native-candidate.json",
+  "files": {
+    "iospbrorbit": {
+      "expected": "3847b8e535441ee945717e5f28d4ca9721ac69582cac4e74b653244aa827a1b5",
+      "actual": "12cbdfd19f8dfae6f96f3d51963803d76e52bf4d44692fe1540b92efd212c894",
+      "identical": false
+    },
+    "app/bundle.mjs": {
+      "expected": "03756bafa2bd64ce1c40245c6718da6de35f62d83e2a8e410ba1385c37952535",
+      "actual": "03756bafa2bd64ce1c40245c6718da6de35f62d83e2a8e410ba1385c37952535",
+      "identical": true
+    },
+    "app/vendor.mjs": {
+      "expected": "779a98dabb7ec874a2bc3ea8e61ae4e7bfeff954228ccafd5a80cb094f5900c4",
+      "actual": "779a98dabb7ec874a2bc3ea8e61ae4e7bfeff954228ccafd5a80cb094f5900c4",
+      "identical": true
+    },
+    "app/runtime.mjs": {
+      "expected": "7b3d564d426548fd13c04d6d6cd4a259d373370d46723588a8b4820942fba244",
+      "actual": "7b3d564d426548fd13c04d6d6cd4a259d373370d46723588a8b4820942fba244",
+      "identical": true
+    },
+    "app/package.json": {
+      "expected": "f1f7fe2f387f701e38cf5307342953ffb07b914e682c8b35bd2884fdd0047a9e",
+      "actual": "f1f7fe2f387f701e38cf5307342953ffb07b914e682c8b35bd2884fdd0047a9e",
+      "identical": true
+    },
+    "Frameworks/CanvasNative.framework/CanvasNative": {
+      "expected": "347006ffba3312ec318aa67040d346b9fe41855a2f51f31336cda438df174c34",
+      "actual": "347006ffba3312ec318aa67040d346b9fe41855a2f51f31336cda438df174c34",
+      "identical": true
+    },
+    "Frameworks/NativeScript.framework/NativeScript": {
+      "expected": "ae3a664846796c4ba125920558b6feb3221bbfe544bcd1e9d391d70d322ccb45",
+      "actual": "ae3a664846796c4ba125920558b6feb3221bbfe544bcd1e9d391d70d322ccb45",
+      "identical": true
+    }
+  },
+  "allIdentical": false
+}

@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "captures": {
+    "default": {
+      "sha256": "6b71712882ce32aa1248cc6aa2f57ba8abbc4e0184ab83e471d7e74b198b0247",
+      "width": 860,
+      "height": 1678,
+      "opaquePixels": 1443080,
+      "cubePixels": 408732,
+      "bounds": [
+        56,
+        499,
+        803,
+        1271
+      ],
+      "luminance8bit": {
+        "0": 62.489,
+        "0.5": 67.928,
+        "0.95": 156.853,
+        "0.99": 177.002,
+        "1": 181.143
+      },
+      "whitePixels": 0
+    },
+    "roughness-0.15": {
+      "sha256": "ffb36e5a95e4f8a1d61c522a758867045beca6f0b36237cc946fc5032ba8e449",
+      "width": 860,
+      "height": 1678,
+      "opaquePixels": 1443080,
+      "cubePixels": 408732,
+      "bounds": [
+        56,
+        499,
+        803,
+        1271
+      ],
+      "luminance8bit": {
+        "0": 62.561,
+        "0.5": 69.715,
+        "0.95": 156.572,
+        "0.99": 186.717,
+        "1": 194.011
+      },
+      "whitePixels": 0
+    },
+    "roughness-0.75": {
+      "sha256": "4412c48cfd17366c43ffe6cbdf81cf0fd94bc7a1f78336bd85408acfbf4650b5",
+      "width": 860,
+      "height": 1678,
+      "opaquePixels": 1443080,
+      "cubePixels": 408732,
+      "bounds": [
+        56,
+        499,
+        803,
+        1271
+      ],
+      "luminance8bit": {
+        "0": 61.702,
+        "0.5": 63.561,
+        "0.95": 74.493,
+        "0.99": 76.281,
+        "1": 77.928
+      },
+      "whitePixels": 0
+    }
+  },
+  "comparison": {
+    "identicalSilhouette": true,
+    "changedPixelsAtLeast8Levels": 284783,
+    "changedFraction": 0.69675,
+    "meanMaxChannelDifference": 17.576,
+    "maxChannelDifference": 121
+  },
+  "scope": "PNG integrity, framing, opacity and material response; combine with visual review and native logs."
+}

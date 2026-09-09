@@ -1,0 +1,55 @@
+{
+  "config": {
+    "box": {
+      "width": 2,
+      "height": 2,
+      "depth": 2
+    },
+    "baseColor": [
+      0.82,
+      0.4,
+      0.18,
+      1
+    ],
+    "metallic": 0.35,
+    "roughness": 0.28,
+    "camera": {
+      "camera3D": {
+        "type": "perspective",
+        "fov": 1.0471975511965976,
+        "near": 0.1,
+        "far": 100
+      },
+      "orbit": {
+        "radius": 6,
+        "theta": 0.7853981633974483,
+        "phi": 1.0471975511965976,
+        "target": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "sun": {
+      "direction": [
+        0.7,
+        -0.4,
+        0.7
+      ],
+      "color": [
+        1,
+        0.94,
+        0.82
+      ],
+      "intensity": 0.25,
+      "castShadow": false
+    },
+    "environment": {
+      "intensity": 0.65
+    }
+  },
+  "materialType": "pbr-metallic-roughness",
+  "depthFormat": "depth24plus",
+  "alphaMode": "opaque"
+}

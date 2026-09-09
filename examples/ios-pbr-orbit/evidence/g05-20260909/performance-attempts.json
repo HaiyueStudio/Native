@@ -1,0 +1,75 @@
+{
+  "status": "completed",
+  "attempts": [
+    {
+      "trace": "artifacts/g05/performance-complete.trace",
+      "durationSeconds": 91.066253,
+      "mode": "Windowed 90 seconds",
+      "actualTargetSurfaceSeconds": [
+        67.041709416,
+        91.046239791
+      ],
+      "qualification": "pending; requested 10..70 second window not covered",
+      "fps": null,
+      "ownerGestureResult": "Normal, warm but no obvious heating"
+    },
+    {
+      "trace": "artifacts/g05/deferred-probe.trace",
+      "requestedDurationSeconds": 75,
+      "template": "Pristine Xcode Game Performance template copied locally, windowLimit=0",
+      "qualification": "static tool probe, no gesture acceptance",
+      "state": "Stopped after recording ended and approximately 10 minutes of high-CPU postprocessing without a saved template; incomplete diagnostic trace retained"
+    },
+    {
+      "trace": "artifacts/g05/metal-immediate-probe.trace",
+      "requestedDurationSeconds": 75,
+      "template": "Pristine Metal System Trace copied locally, recordingMode=1, windowLimit=0 (supportsImmediateMode=true)",
+      "qualification": "static tool probe, no gesture acceptance",
+      "state": "Stopped after recording ended and approximately 3 minutes of high-CPU postprocessing without a saved template; incomplete diagnostic trace retained"
+    },
+    {
+      "trace": "artifacts/g05/metal-normal-probe.trace",
+      "requestedDurationSeconds": 75,
+      "template": "Same immediate Metal System Trace template",
+      "recordEnvironment": "Normal process environment; export-specific compatibility variables removed",
+      "qualification": "Static acquisition probe only; not acceptance performance",
+      "state": "Not started: process unavailable in xctrace; CoreDevice launch and process query time out even after owner confirmed unlocked/auto-lock Never. USB reconnection requested."
+    },
+    {
+      "trace": "artifacts/g05/display-minimal-probe",
+      "qualification": "Static tool probe",
+      "state": "Did not record: Blank is not registered by name; wrapper corrected to use installed template path"
+    },
+    {
+      "trace": "artifacts/g05/display-minimal-probe-2/display.trace",
+      "requestedDurationSeconds": 75,
+      "qualification": "Static tool probe; acceptance remains unproven",
+      "state": "Completed, full actual target coverage verified; see acquisition-probe-summary.json"
+    },
+    {
+      "trace": "artifacts/g05/display-final-2/display.trace",
+      "requestedDurationSeconds": 95,
+      "state": "Complete and exported, required 10..70 second window passed",
+      "qualification": "Final acceptance measurement; 54.29 seconds held gesture overlap and 51.942 seconds moving single-finger sample span"
+    }
+  ],
+  "exportEnvironment": {
+    "MallocNanoZone": "0",
+    "LIBDISPATCH_COOPERATIVE_POOL_STRICT": "1"
+  },
+  "measurementRules": "Never interpret truncated trace frame counts as low full-window FPS. Do not relax resolution or performance thresholds.",
+  "currentAction": "Final actual interaction measurement passed; final-performance/performance-summary.json",
+  "nextCandidateMethod": {
+    "script": "scripts/record-display-trace.py",
+    "instruments": [
+      "Display",
+      "Thermal State"
+    ],
+    "availability": "Both names present in xctrace list instruments on this Xcode",
+    "status": "Full 75-second acquisition verified on device",
+    "recording": "Normal environment; Blank template plus only these instruments",
+    "export": "Sequential after record exit zero, with export-specific compatibility environment",
+    "acceptance": "Not inferred from command availability or export success; raw coverage and gesture checks remain required"
+  },
+  "connectionRecovery": "Current-user CoreDeviceService restarted after recurring command timeouts. Subsequent process query and journal copy succeeded; App PID and host session unchanged, so missing process in earlier xctrace lookup was a connection symptom."
+}

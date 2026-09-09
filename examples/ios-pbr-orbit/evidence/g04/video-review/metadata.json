@@ -1,0 +1,13 @@
+{
+  "durationSeconds" : 72.443333333333328,
+  "end" : 72.443333333333328,
+  "intervalSeconds" : 0.5,
+  "start" : 0,
+  "tracks" : [
+    {
+      "height" : 1920,
+      "nominalFrameRate" : 60.060722351074219,
+      "width" : 886
+    }
+  ]
+}

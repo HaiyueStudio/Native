@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><link rel="icon" href="data:,">
+<title>G02 Engine browser initialization regression</title>
+<script type="importmap">{"imports":{"@haiyue/engine":"/node_modules/@haiyue/engine/dist/index.js","wgpu-matrix":"/node_modules/wgpu-matrix/dist/3.x/wgpu-matrix.module.js"}}</script>
+<canvas id="view" style="width:160px;height:120px"></canvas><pre id="result"></pre>
+<script type="module">
+import { HaiyueEngine } from '@haiyue/engine';
+const result = document.querySelector('#result');
+let engine;
+const errors = [];
+function finish(status, detail) {
+  result.textContent = JSON.stringify({ status, ...detail });
+  result.dataset.status = status;
+}
+try {
+  // Exercise the unmodified browser path: DOM selector, navigator.gpu,
+  // performance/RAF and automatic browser presentation, with no Native bridge.
+  engine = new HaiyueEngine({ canvas: '#view', renderProfile: 'simple', timestampQuery: false, clearColor: { r: .025, g: .055, b: .095, a: 1 } });
+  await engine.init();
+  engine.device.addEventListener('uncapturederror', e => errors.push(e.error.message));
+  engine.switchScene(engine.createScene({ render3D: true, view: { clearColor: engine.clearColor } }));
+  let frames = 0;
+  engine.on('after-update', () => {
+    if (++frames !== 6) return;
+    engine.stop();
+    void verify().catch(error => { engine.destroy(); finish('failed', { message: String(error), errors }); });
+  });
+  async function verify() {
+    const device = engine.device;
+    const buffer = device.createBuffer({ size: 256, usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST });
+    const encoder = device.createCommandEncoder();
+    encoder.copyTextureToBuffer({ texture: document.querySelector('#view').getContext('webgpu').getCurrentTexture() }, { buffer, bytesPerRow: 256 }, [1, 1, 1]);
+    device.queue.submit([encoder.finish()]);
+    await buffer.mapAsync(GPUMapMode.READ);
+    const pixel = [...new Uint8Array(buffer.getMappedRange()).slice(0, 4)];
+    buffer.unmap(); buffer.destroy();
+    const expected = engine.format.startsWith('bgra') ? [24, 14, 6, 255] : [6, 14, 24, 255];
+    if (pixel.some((v, i) => v !== expected[i]) || errors.length) throw new Error(`Unexpected clear pixel ${pixel}; errors ${errors}`);
+    const detail = { frames, pixel, expected, width: engine.width, height: engine.height, format: engine.format, errors };
+    engine.destroy();
+    finish('passed', { ...detail, finalState: engine.state });
+  }
+  engine.run();
+} catch (error) { engine?.destroy(); finish('failed', { message: String(error), errors }); }
+</script></html>

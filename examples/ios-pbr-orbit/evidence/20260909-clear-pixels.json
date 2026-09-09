@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "file": "20260909-clear-frame.png",
+  "sha256": "40a9c9c562b484eedd9279edb17e220a680507dfda81a1ed697cb5ed1f384311",
+  "width": 860,
+  "height": 1678,
+  "rgba": [
+    6,
+    14,
+    24,
+    255
+  ],
+  "checkedPixels": 1443080
+}

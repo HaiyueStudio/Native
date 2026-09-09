@@ -1,0 +1,15 @@
+{
+  "session": 1788954749929,
+  "source": "artifacts/g05/final-performance-journal-2/session-1788954749929.jsonl",
+  "sha256": "dd04c08ac36d59d529714995d491c9ec1b3e4743436e98d529f1b898a4b0071c",
+  "output": "evidence/g05-20260909/performance-session.jsonl",
+  "collectionCompleted": {
+    "baselineSession": "1788954749929",
+    "sessions": [
+      "1788954749929"
+    ],
+    "elapsedSeconds": 150.48893273599998,
+    "requestedNewLaunches": 0
+  },
+  "method": "Immutable copy after collector exited successfully; per-session exact-record deduplication preserved by collector."
+}

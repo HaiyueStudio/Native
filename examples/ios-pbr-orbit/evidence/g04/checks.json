@@ -1,0 +1,49 @@
+{
+  "engineSourceChanged": false,
+  "engineRevision": "cc1e607edc8c86baf47642eb7034a38b0d3eee06",
+  "checks": [
+    {
+      "name": "Native typecheck",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g04-typecheck.log",
+      "logSha256": "fb4e487940cfa93c42593c710d21f3d8e45bf54f86d9d463c9215e4c04fc2fdb"
+    },
+    {
+      "name": "Native tests",
+      "status": "passed",
+      "count": 22,
+      "fullLogLocal": "/private/tmp/m16-g04-native-tests.log",
+      "logSha256": "db3098cd2551868785a3b5eb091dc145656e8a96a65a78cf8a3145d6a8b73b74"
+    },
+    {
+      "name": "Engine Orbit regression tests",
+      "status": "passed",
+      "count": 5,
+      "fullLogLocal": "/private/tmp/m16-g04-engine-orbit-tests.log",
+      "logSha256": "bf1fc76028f1b281ea350938236841749d7751c39ecce7b999cbedb3c83d8745"
+    },
+    {
+      "name": "Signed device build",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g04-reentry-build.log",
+      "logSha256": "85b2b6c9c9c339d65dae253dc7ab4ad3f4121ae69103798351068a7885277f59"
+    },
+    {
+      "name": "codesign --verify --deep --strict",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g04-reentry-sign.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "devicectl install",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g04-reentry-install.log",
+      "logSha256": "18fdfbadf3cbc2b383e28be17a49e1cd15d5d39d77d4e4ecc16edacbe52ab7ed"
+    }
+  ],
+  "scope": "Native tests use the actual packed Engine OrbitControl. Lifecycle/page tests are logic verification, separate from physical-device evidence. Private build/sign/install logs remain local; identities and provisioning excluded."
+}

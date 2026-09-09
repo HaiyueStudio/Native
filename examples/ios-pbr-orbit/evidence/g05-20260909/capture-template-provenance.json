@@ -1,0 +1,22 @@
+{
+  "templates": [
+    {
+      "source": "/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/Packages/GPU.instrdst/Contents/Templates/Game Performance.tracetemplate",
+      "localProbe": "/private/tmp/m16-game-deferred.tracetemplate",
+      "sha256": "c445a9057d896b0650f34fab1a856dc7903ef691ebfd1d00a7f47a59cee6f9f7",
+      "changes": {
+        "windowLimit": 0
+      }
+    },
+    {
+      "source": "/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/Packages/GPU.instrdst/Contents/Templates/Metal System Trace.tracetemplate",
+      "localProbe": "/private/tmp/m16-metal-immediate.tracetemplate",
+      "sha256": "45bcee38c4ed1d651e6ba6a6cd4e044b354f7a356ee258629161c035534f104a",
+      "changes": {
+        "recordingMode": 1,
+        "windowLimit": 0
+      }
+    }
+  ],
+  "method": "plistlib NSKeyedArchive copy of pristine installed Xcode template; only the recording-options dictionary changed; Xcode installation remains untouched. Mode names require confirmation from completed trace TOC."
+}

@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "scope": "Final G05 delivery: unchanged runtime checks, new acquisition analysis, signed App/archive integrity and required evidence",
+  "localLinksChecked": 27,
+  "errors": [],
+  "candidateVerification": {
+    "status": "passed",
+    "files": 81,
+    "command": "node scripts/verify-candidate.mjs"
+  },
+  "analysisRegression": {
+    "status": "passed",
+    "tests": 3,
+    "command": "python3 test/displayed_frames_test.py"
+  },
+  "pythonSyntax": {
+    "status": "passed",
+    "command": "PYTHONPYCACHEPREFIX=/private/tmp/m16-python-cache python3 -m py_compile scripts/collect-device-journal.py scripts/analyze-displayed-frames.py"
+  },
+  "milestonesCheck": {
+    "status": "passed",
+    "command": "npm run check"
+  },
+  "runtimeTests": "Previously passed G04 Native 22 tests and Engine Orbit 5 tests apply to unchanged runtime source; logs remain in evidence/g04.",
+  "signature": {
+    "status": "passed",
+    "command": "codesign --verify --deep --strict --verbose=2 artifacts/g05/g04-accepted.app",
+    "result": "valid on disk; satisfies its Designated Requirement",
+    "context": "Run with normal host certificate trust access; sandbox-only attempt returned CSSMERR_TP_NOT_TRUSTED."
+  },
+  "archives": {
+    "status": "passed",
+    "method": "SHA-256 and ZIP CRC validation; source archive entries compared with current fixed source hashes"
+  },
+  "independentPerformanceAudit": {
+    "status": "passed",
+    "actualFrames": 3556,
+    "checks": [
+      "Target process only, one display, unique swaps, fixed 10..70 second window",
+      "Independent CSV count and nearest-rank p95 agree with summary and fixed thresholds",
+      "Journal has no interruption/error and preserves drawing size, camera radius/target and listener counts"
+    ]
+  },
+  "finalCandidateVerification": {
+    "command": "node scripts/verify-candidate.mjs vendor/g05-native-candidate.json",
+    "resultLog": "artifacts/g05/final-candidate-verification.log",
+    "note": "Executed after freezing this evidence record, avoiding a self-referential manifest hash."
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "status": "passed",
+  "reviewedAt": "2026-09-09",
+  "recording": {
+    "originalFileName": "ScreenRecording_09-09-2026 18-30-40_1.MP4",
+    "archivePath": "artifacts/g04/recording.mp4",
+    "sha256": "81ee5396a518e857942ac72d57f2c146a6d9c51cfdb2c79544032ad7898cf37d",
+    "bytes": 69282915,
+    "durationSeconds": 72.44333333333333,
+    "end": 72.44333333333333,
+    "intervalSeconds": 0.5,
+    "start": 0,
+    "tracks": [
+      {
+        "height": 1920,
+        "nominalFrameRate": 60.06072235107422,
+        "width": 886
+      }
+    ]
+  },
+  "method": "Visual inspection of 145 timestamped frames at 0.5-second intervals spanning the entire 72.443-second original recording, plus physical touch/lifecycle logs and device-owner confirmation. Contact sheets are review derivatives; original MP4 remains unchanged. This is not every-frame or performance certification.",
+  "observations": [
+    {
+      "seconds": [
+        7,
+        9.5
+      ],
+      "result": "App reappears with intact PBR cube; horizontal and vertical perspective changes follow."
+    },
+    {
+      "seconds": [
+        16,
+        19.5
+      ],
+      "result": "New rotation and system home gesture; full canvas remains correctly proportioned."
+    },
+    {
+      "seconds": [
+        27.5,
+        31
+      ],
+      "result": "Recovery followed by camera movement through side/top/bottom perspectives and another home gesture."
+    },
+    {
+      "seconds": [
+        38.5,
+        44.5
+      ],
+      "result": "Recovery, rotation, then stable pose at approximately 42.5-44 seconds before leaving; consistent with up at 18:31:22.292 and unchanged camera through 18:31:24.426 cancel."
+    },
+    {
+      "seconds": [
+        52,
+        59.5
+      ],
+      "result": "Recovery followed by repeated camera changes with visible PBR highlight; poses remain stable between motions."
+    },
+    {
+      "seconds": [
+        69,
+        72
+      ],
+      "result": "Final visible recovery and renewed rotation; no persistent black screen or stuck input observed."
+    }
+  ],
+  "logCorrelation": {
+    "file": "recording-session.jsonl",
+    "sameHostCreatedEpochMs": 1788949461554,
+    "visiblePresentedFrameLabels": [
+      19080,
+      19200,
+      19440,
+      19560,
+      19680,
+      19800,
+      20040,
+      20160,
+      20280,
+      20400,
+      20520,
+      20640,
+      20880,
+      21000
+    ],
+    "resumeCounts": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "note": "Screen clock, ordered frame labels and camera states agree with the same host session. No exact per-frame wall-clock synchronization is claimed.",
+    "fiveSecondResumesInThisExport": 4,
+    "backgroundMs": [
+      4911,
+      4992,
+      7014,
+      6747,
+      6838,
+      7962
+    ],
+    "earlierFiveSecondResumes": 6,
+    "totalDistinctFiveSecondResumes": 10
+  },
+  "acceptance": {
+    "A05": "pass: continuous recording plus physical camera/transform samples and owner confirmation",
+    "A06": "pass: primary-release/held-secondary log samples plus owner confirmation; finger count is not directly visible in screen recording",
+    "A07": "pass: system home gestures, native cancellation samples and subsequent drags",
+    "A08": "pass: earlier six qualifying cycles plus four further qualifying cycles; loops/input clean and presentation/drag resume"
+  },
+  "limitations": [
+    "Screen recording contains no visible finger markers; native event records establish touch identity.",
+    "Two recording-phase background intervals are below 5000 ms and are excluded.",
+    "This recording is functional evidence, not G05 performance or long-term memory evidence."
+  ]
+}

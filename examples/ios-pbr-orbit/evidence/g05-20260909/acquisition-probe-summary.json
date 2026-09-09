@@ -1,0 +1,17 @@
+{
+  "status": "acquisition-coverage-verified",
+  "acceptance": "Not an interaction performance verdict; static probe did not request dragging",
+  "targetFrames": 4448,
+  "targetCoverageSeconds": [
+    0.392033333,
+    75.442739541
+  ],
+  "recordingMode": "Deferred",
+  "durationSeconds": 75.461539,
+  "coversRequired10To70Seconds": true,
+  "thermalState": "Nominal",
+  "recordingEnvironment": "Normal; export-only workaround retained",
+  "template": "Installed Blank template plus Display and Thermal State",
+  "sourceXml": "artifacts/g05/display-minimal-probe-2/surfaces.xml",
+  "sourceXmlSha256": "bcefb0f7ea4fa8f9cabd58018457ac08d0775db5bee54e10555a11bc10da41a2"
+}

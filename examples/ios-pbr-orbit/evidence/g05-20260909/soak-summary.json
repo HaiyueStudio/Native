@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "hostSession": 1788952576580,
+  "firstPresentEpochMs": 1788952576690,
+  "lastPresentEpochMs": 1788952886317,
+  "continuousForegroundSeconds": 309.627,
+  "lastPresentedFrameCounter": 18600,
+  "counterMeaning": "App-submitted present counter; not measured display FPS",
+  "presentSnapshots": 156,
+  "errorsOrInterruptions": [],
+  "listenerCounts": [
+    6
+  ],
+  "nativeObserverCounts": [
+    1
+  ],
+  "nativeRecognizerCounts": [
+    2
+  ],
+  "radiusValues": [
+    6
+  ],
+  "maxScheduledCallbacksAtPresent": 0,
+  "drawableSizes": [
+    [
+      860,
+      1678
+    ]
+  ],
+  "ownerConfirmation": "一切正常，无明显发热。手机温的。",
+  "limit": "Five-minute observation does not establish absence of long-term memory leaks. Tail collector timed out after the accepted interval."
+}

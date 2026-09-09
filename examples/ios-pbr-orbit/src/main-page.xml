@@ -1,0 +1,6 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gpu="@nativescript/canvas" actionBarHidden="true" loaded="onLoaded" unloaded="onUnloaded" backgroundColor="#091322">
+  <GridLayout>
+    <gpu:Canvas id="surface" ready="onCanvasReady" ignoreTouchEvents="true" />
+    <Label id="status" text="正在准备原生画布…" color="#ffffff" fontSize="14" textWrap="true" margin="18" verticalAlignment="top" isUserInteractionEnabled="false" />
+  </GridLayout>
+</Page>

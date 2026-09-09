@@ -1,0 +1,46 @@
+{
+  "trace": "artifacts/g05/performance-complete.trace",
+  "thermal": {
+    "state": "Nominal",
+    "intervalSeconds": [
+      0,
+      91.066253185
+    ],
+    "induced": false
+  },
+  "metalAllocatedSize": {
+    "metric": "Instruments metal-current-allocated-size for iospbrorbit (3242), not total process physical memory",
+    "samples": 2892,
+    "intervalSeconds": [
+      66.99732475,
+      91.066253185
+    ],
+    "minBytes": 50839552,
+    "maxBytes": 50839552,
+    "firstBytes": 50839552,
+    "lastBytes": 50839552,
+    "limitation": "Only last approximately 24 seconds retained by windowed trace."
+  },
+  "display": {
+    "label": "Built-In Display",
+    "physicalPixels": [
+      1290,
+      2796
+    ],
+    "refreshHzReported": 60,
+    "drawingPixels": [
+      860,
+      1678
+    ],
+    "logicalDrawingPoints": [
+      430,
+      839
+    ],
+    "effectiveDpr": 2
+  },
+  "processPhysicalFootprint": {
+    "status": "unavailable",
+    "reason": "virtual-memory table contains VM operations, not aggregate process physical footprint."
+  },
+  "nativeStackEvidence": "VM-operation backtrace contains CanvasNative -> wgpu_core -> wgpu_hal -> IOGPU/AGX Metal command buffers. Raw XML retained locally."
+}

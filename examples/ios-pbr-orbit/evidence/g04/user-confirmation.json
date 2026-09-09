@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-09",
+  "source": "Device owner reply in Codex conversation",
+  "questionScope": [
+    "Screen recording of horizontal/vertical/diagonal single-finger drags and polar limits",
+    "Second finger, primary lift, held secondary, and new gesture",
+    "Boundary/system interruption and new drag",
+    "Five background intervals >= 5 seconds and drag after each; one while dragging"
+  ],
+  "answer": "已完成，全部正常",
+  "recordingStatus": "Original received from Desktop, archived unchanged, visually reviewed with matching later device log; passed",
+  "recordingReview": "recording-review.json"
+}

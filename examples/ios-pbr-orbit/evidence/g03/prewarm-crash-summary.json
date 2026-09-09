@@ -1,0 +1,25 @@
+{
+  "status": "failed-diagnostic-prewarm",
+  "signal": "SIGTRAP",
+  "frames": [
+    {
+      "symbol": "v8::base::OS::Abort()",
+      "symbolLocation": 24
+    },
+    {
+      "symbol": "v8::api_internal::ToLocalEmpty()",
+      "symbolLocation": 132
+    },
+    {
+      "symbol": "v8::MaybeLocal<v8::Value>::ToLocalChecked()",
+      "symbolLocation": 40
+    },
+    {
+      "symbol": "GPUDeviceImpl::CreateRenderPipelineAsync(v8::FunctionCallbackInfo<v8::Value> const&)",
+      "symbolLocation": 8764
+    }
+  ],
+  "symbolication": "GPUDeviceImpl.cpp:2517 reads format on a null color target",
+  "sourceEvidence": "Canvas 2.1.18 GPUDeviceImpl.cpp async parser; Engine NormalRenderer.ts targets include null for unused depth output",
+  "resolution": "Use normal demand-driven Engine pipeline creation; do not warm unrelated renderer variants. Nullable target compatibility is not claimed."
+}

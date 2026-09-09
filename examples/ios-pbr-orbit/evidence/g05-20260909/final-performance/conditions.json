@@ -1,0 +1,35 @@
+{
+  "trace": "artifacts/g05/display-final-2/display.trace",
+  "recordingMode": "Deferred",
+  "traceStart": "2026-09-09T20:02:42.339+08:00",
+  "traceDurationSeconds": 95.377575,
+  "thermalState": "Nominal",
+  "thermalIntervalSeconds": [
+    0,
+    95.377575159
+  ],
+  "thermalInduced": false,
+  "sampleWindowSeconds": [
+    10,
+    70
+  ],
+  "screenRecording": false,
+  "gpuFrameCapture": false,
+  "debugger": "None; Instruments Display and Thermal State only",
+  "lowPowerMode": "off per owner procedure",
+  "drawingPixels": [
+    860,
+    1678
+  ],
+  "dpr": 2,
+  "defaultRoughness": 0.28,
+  "autoLock": "Never during capture; owner told it may be restored after completion",
+  "ownerResponse": "流畅，无发热",
+  "sourceFiles": {
+    "artifacts/g05/display-final-2/toc.xml": "3e3aeda422de1226d6a2651c1160db28fedf5c1ef91aabb0aceda3c1d3dac8e6",
+    "artifacts/g05/display-final-2/surfaces.xml": "c2dd44c5e0f7fc050eac3ba00b609d8862c8429b2b5e0eeecdc6e9155df21028",
+    "artifacts/g05/display-final-2/thermal.xml": "45b3f195f697ab780d5eef318c0113fc8a25e7a60d5a07c15913075bc9880c0c",
+    "artifacts/g05/display-final-2/acquisition.json": "f5f5e904c487b138f94e9f639a860416f4f1c0ffaa95833d6aaa4f145804d06a",
+    "artifacts/g05/display-final-2/record.log": "c974718a1af029f795449475b3053866a20c72b24dfe8a00dd0cb26683e030a3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "method": "Exact record deduplication of overlapping exports from the same host-created session; sorted by timestamp. Original exports retained. Host keeps first event plus latest 199 records.",
+  "sources": {
+    "user-run.jsonl": {
+      "sha256": "2bfafdbe8132dbc99bca749296ec8da13c7897b03c317469fe51497a7c4d2a23",
+      "records": 134
+    },
+    "user-latest.jsonl": {
+      "sha256": "024b12965b3f8653ad1ac3059841cc49309d9cc654deac4f3db68a994fddf036",
+      "records": 200
+    }
+  },
+  "mergedRecords": 284
+}

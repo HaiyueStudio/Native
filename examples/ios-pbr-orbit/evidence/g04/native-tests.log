@@ -1,0 +1,34 @@
+
+> @haiyue/native-ios-pbr-orbit@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Engine typed-array offsets reach native without losing count or copying the view (2.76631ms)
+✔ ordinary offset arrays and bindings without offsets retain Canvas behavior (0.468124ms)
+✔ Canvas can extend a frozen Engine request without mutating Engine feature policy (2.08206ms)
+✔ default device requests get independent mutable feature arrays (0.302496ms)
+✔ native handle zero cancels and a stale callback cannot fire (2.35848ms)
+✔ callbacks use the engine clock and can schedule exactly one following frame (0.337183ms)
+✔ native callbacks report errors to the host and release their handle (0.321267ms)
+✔ five resume cycles clear input before stopping, refresh layout, and keep one callback (4.511524ms)
+✔ background during asynchronous init prevents run until foreground (2.189328ms)
+✔ dispose during init cannot bind input or start a late frame loop (0.636027ms)
+✔ dispose removes listeners and input before GPU teardown; stale lifecycle events do nothing (0.694412ms)
+✔ GPU failure cancels input and refuses the remainder of the failed frame (1.355717ms)
+✔ packed production OrbitControl gives identical logical drag at different DPR and safe-area origins (3.916632ms)
+✔ up, cancel and suspend stop Orbit; stale moves cannot resume the drag (1.017368ms)
+✔ second finger never reaches pinch, and lifting primary does not adopt the held finger (0.432057ms)
+✔ batch downs select one primary and duplicate downs cannot reset its last position (0.479778ms)
+✔ captured drag continues outside the view, clamps both poles, and never pans or zooms (0.395889ms)
+✔ dispose ends active gesture and removes listeners; rebuilding does not double rotation (0.516149ms)
+✔ native identity compares underlying touch across new wrappers and never reuses IDs (0.421594ms)
+✔ Page loaded before Canvas ready waits, and duplicate ready/loaded do not add hosts (1.731471ms)
+✔ returning to the same ready Canvas recreates exactly one host after permanent unload (0.578379ms)
+✔ background Page unload retains the paused host, while exit disposes it (0.291129ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 677.784613

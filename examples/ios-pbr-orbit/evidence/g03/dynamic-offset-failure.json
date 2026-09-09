@@ -1,0 +1,20 @@
+{
+  "status": "failed-before-binding-fix",
+  "error": {
+    "time": 1788946476494,
+    "event": "error",
+    "detail": {
+      "message": "In a set_bind_group command"
+    }
+  },
+  "nativeValidation": "SceneFrameGpuArena.bindGroup expects 1 dynamic offset; 0 supplied",
+  "failureCleanup": {
+    "time": 1788946476500,
+    "event": "failure-cleanup",
+    "detail": {
+      "state": "destroyed",
+      "scheduledCallbacks": 0
+    }
+  },
+  "resolution": "scripts/patch-canvas.mjs defaults missing Uint32Array range to start 0 and remaining length. Tests execute patched Canvas setBindGroup against recording native stub."
+}

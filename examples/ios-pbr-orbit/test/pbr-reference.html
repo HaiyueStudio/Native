@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><link rel="icon" href="data:,">
+<title>G03 packaged Engine PBR reference</title>
+<script type="importmap">{"imports":{"@haiyue/engine":"/node_modules/@haiyue/engine/dist/index.js","wgpu-matrix":"/node_modules/wgpu-matrix/dist/3.x/wgpu-matrix.module.js"}}</script>
+<canvas id="view" style="width:430px;height:839px"></canvas><pre id="result"></pre>
+<script type="module">
+import { HaiyueEngine } from '@haiyue/engine';
+import { preparePbrScene } from '/artifacts/g03/pbr-scene.js';
+const result = document.querySelector('#result');
+const errors = [];
+let engine;
+function finish(status, detail) {
+  result.textContent = JSON.stringify({ status, ...detail });
+  result.dataset.status = status;
+}
+try {
+  engine = new HaiyueEngine({ canvas: '#view', devicePixelRatio: 2, renderProfile: 'simple', msaaSamples: 1, timestampQuery: false, clearColor: { r: .025, g: .055, b: .095, a: 1 } });
+  await engine.init();
+  engine.device.addEventListener('uncapturederror', event => errors.push(event.error.message));
+  const scene = await preparePbrScene(engine);
+  let frames = 0;
+  engine.on('after-update', () => {
+    if (++frames !== 120) return;
+    engine.stop();
+    const png = document.querySelector('#view').toDataURL('image/png');
+    const detail = { frames, scene, width: engine.width, height: engine.height, format: engine.format, png, errors };
+    engine.destroy();
+    finish(errors.length ? 'failed' : 'passed', detail);
+  });
+  engine.run();
+} catch (error) { engine?.destroy(); finish('failed', { message: String(error), errors }); }
+</script></html>

@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "candidateMachOUuid": "503409E9-2744-3555-942B-B834ED5370BA",
+  "method": "New PNG readback from real WebGPU current texture at frame 120 for three diagnostic launches of same signed App; raw images inspected and verify-pbr.py passed.",
+  "captures": [
+    {
+      "roughness": 0.28,
+      "hostCreatedEpochMs": 1788954095863,
+      "captureEpochMs": 1788954098965,
+      "captureFrame": 120,
+      "image": "0.28.png",
+      "sha256": "6b71712882ce32aa1248cc6aa2f57ba8abbc4e0184ab83e471d7e74b198b0247",
+      "log": "0.28.jsonl",
+      "logSha256": "03c4bbf17fb916003b1f91e7fdb82a631199e4b1f0cb98b17990db8f5eed128c"
+    },
+    {
+      "roughness": 0.15,
+      "hostCreatedEpochMs": 1788954101663,
+      "captureEpochMs": 1788954104757,
+      "captureFrame": 120,
+      "image": "0.15.png",
+      "sha256": "ffb36e5a95e4f8a1d61c522a758867045beca6f0b36237cc946fc5032ba8e449",
+      "log": "0.15.jsonl",
+      "logSha256": "e330792a50a606323e7951f6d79b05a9e61d3c91b8206bc42fbf14f2e2255b88"
+    },
+    {
+      "roughness": 0.75,
+      "hostCreatedEpochMs": 1788954106366,
+      "captureEpochMs": 1788954109459,
+      "captureFrame": 120,
+      "image": "0.75.png",
+      "sha256": "4412c48cfd17366c43ffe6cbdf81cf0fd94bc7a1f78336bd85408acfbf4650b5",
+      "log": "0.75.jsonl",
+      "logSha256": "2ee84efb484d7d567ec5aed9347af8c9dca8de64a105667df3478db32bfd016f"
+    }
+  ],
+  "observations": "Centered three-face copper cube with consistent silhouette and margins, no broken geometry or overexposure. Roughness 0.15 gives concentrated specular highlight; 0.75 broadens/dims it. Temporal flicker assessed separately by cold-launch/G04 recording and owner confirmation.",
+  "afterCapture": "App restored with no environment variables; default roughness 0.28 and capture disabled."
+}

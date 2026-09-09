@@ -1,0 +1,115 @@
+{
+  "status": "needs-visual-review",
+  "violations": [],
+  "pending": [],
+  "touchSamples": 524,
+  "moveSamples": 398,
+  "observedMultitouch": true,
+  "observedPrimaryReleaseWithOtherHeld": true,
+  "observedNativeCancel": true,
+  "backgroundCycles": [
+    {
+      "backgroundMs": 1790,
+      "resumeCount": 1,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 16043,
+      "resumeCount": 2,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 5837,
+      "resumeCount": 3,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 5769,
+      "resumeCount": 4,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 7216,
+      "resumeCount": 5,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 7554,
+      "resumeCount": 6,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 3987,
+      "resumeCount": 7,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    },
+    {
+      "backgroundMs": 6953,
+      "resumeCount": 8,
+      "clearInput": true,
+      "listeners": 6,
+      "nativeObservers": 1,
+      "nativeRecognizers": 1,
+      "scheduledCallbacks": 1,
+      "framesUnchangedWhileSuspended": true,
+      "presentedAgain": true,
+      "draggedAgain": true
+    }
+  ],
+  "heldSecondaryMoveSamples": 8,
+  "sampledPhiRange": [
+    0.44044883388088085,
+    3.041592653589793
+  ],
+  "successfulFiveSecondResumes": 6,
+  "scope": "Real event and invariant audit; does not certify gestures from simulated unit tests or replace visual recording review."
+}

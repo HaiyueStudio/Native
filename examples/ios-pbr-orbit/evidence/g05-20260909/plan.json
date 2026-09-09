@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "candidateBaseline": "vendor/g04-native-candidate.json",
+  "requirements": {
+    "A01": "Rebuild/install fixed dependencies; preserve and compare accepted runtime identity",
+    "A02": "Three physical cold launches with screen recording; at least one offline",
+    "A03": "Native Canvas/wgpu/Metal dependency/binary/runtime proof",
+    "A04": "Final-build initial image and roughness comparisons",
+    "A05-A08": "Reuse G04 only if runtime/bundle identity remains unchanged, otherwise reverify changed paths",
+    "A09": "Five uninterrupted foreground minutes with intermittent real drags and counters",
+    "A10": "10-second warmup then 60-second measurement with >=20 seconds real continuous dragging; screen recording/capture/debugger off, device conditions recorded; prefer actual present intervals"
+  },
+  "remainingDeviceActions": [],
+  "rules": [
+    "No G04 accepted evidence rewrite",
+    "No threshold reduction",
+    "No source/scene/resolution changes to hide performance failures",
+    "No commit/push/release"
+  ],
+  "completedOwnerActions": [
+    "Three offline cold launches, recording archived and reviewed",
+    "Five-minute foreground run with continuous and intermittent dragging; normal, warm without obvious heating"
+  ]
+}

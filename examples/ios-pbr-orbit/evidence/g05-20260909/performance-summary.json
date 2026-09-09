@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "metric": "Actual Instruments displayed surface swap timestamps for target process, not JS callbacks or GPU execution duration",
+  "process": "iospbrorbit",
+  "windowStartSeconds": 10,
+  "windowDurationSeconds": 60,
+  "wallStartEpochMs": 1788955372339.0,
+  "wallEndEpochMs": 1788955432339.0,
+  "warmupSeconds": 10,
+  "completeWindow": true,
+  "availableTargetFramesSeconds": [
+    0.314944208,
+    95.359141416
+  ],
+  "displayedFrames": 3556,
+  "intervalSamples": 3555,
+  "effectiveDisplayedFps": 59.266666666666666,
+  "intervalMs": {
+    "mean": 16.87277846919833,
+    "p50": 16.648,
+    "p95": 16.657625,
+    "max": 66.606125
+  },
+  "percentileMethod": "nearest rank",
+  "longestHeldGestureSecondsInWindow": 54.29,
+  "movingSingleFingerSamplePairs": 26,
+  "movingSingleFingerSampleSpanSeconds": 51.94200000000001,
+  "gestureEvidenceLimit": "Camera snapshots are periodic, not a full-rate finger trajectory; device-owner procedure confirmation is retained separately.",
+  "pending": [],
+  "failures": []
+}

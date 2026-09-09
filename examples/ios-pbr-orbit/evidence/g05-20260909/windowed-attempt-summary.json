@@ -1,0 +1,33 @@
+{
+  "status": "pending",
+  "metric": "Actual Instruments displayed surface swap timestamps for target process, not JS callbacks or GPU execution duration",
+  "process": "iospbrorbit",
+  "windowStartSeconds": 10,
+  "windowDurationSeconds": 60,
+  "wallStartEpochMs": 1788952777034.0,
+  "wallEndEpochMs": 1788952837034.0,
+  "warmupSeconds": 10,
+  "completeWindow": false,
+  "availableTargetFramesSeconds": [
+    67.041709416,
+    91.046239791
+  ],
+  "displayedFrames": 178,
+  "intervalSamples": 177,
+  "effectiveDisplayedFps": null,
+  "intervalMs": {
+    "mean": 16.647115819209045,
+    "p50": 16.646916,
+    "p95": 16.656292,
+    "max": 16.661667
+  },
+  "percentileMethod": "nearest rank",
+  "longestHeldGestureSecondsInWindow": 47.605,
+  "movingSingleFingerSamplePairs": 23,
+  "movingSingleFingerSampleSpanSeconds": 45.949,
+  "gestureEvidenceLimit": "Camera snapshots are periodic, not a full-rate finger trajectory; device-owner procedure confirmation is retained separately.",
+  "pending": [
+    "Trace does not cover the full requested window"
+  ],
+  "failures": []
+}

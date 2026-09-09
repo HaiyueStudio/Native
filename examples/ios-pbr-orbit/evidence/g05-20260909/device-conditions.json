@@ -1,0 +1,15 @@
+{
+  "source": "Device-owner response before G05 tests",
+  "model": "iPhone 15 Plus",
+  "ios": "18.7.3 (22H217)",
+  "connection": "USB",
+  "lowPowerMode": "off-user-confirmed",
+  "screenRecording": "off-before-performance-user-instructed; cold-launch recording separate",
+  "temperature": "cool-user-confirmed",
+  "thermalStateAPI": "Nominal throughout final 95.377575-second trace; see final-performance/conditions.json",
+  "displayRefresh": "Built-In Display reports 60 Hz in Instruments device-display-info; physical pixels 1290x2796",
+  "debugger": "no Xcode/LLDB attached; Instruments profiler used separately",
+  "gpuFrameCapture": false,
+  "temperatureEnd": "Final run: owner reports no heating; earlier soak warm without obvious heating",
+  "autoLockForFurtherProbes": "Never, owner confirmed after earlier locked-device launch timeouts"
+}

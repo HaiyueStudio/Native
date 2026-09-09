@@ -1,0 +1,13 @@
+✔ OrbitControl pan uses validated camera basis and remains finite (4.747501ms)
+✔ OrbitControl ignores rotate and pan input from a zero-sized canvas (0.647112ms)
+✔ OrbitControl scopes pointer and wheel input to a normalized canvas region (1.044501ms)
+✔ OrbitControl rejects invalid normalized input regions (0.600525ms)
+✔ OrbitControl input changes reach the next FrameData camera snapshot (5.815775ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 293.343526

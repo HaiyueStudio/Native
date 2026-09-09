@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "recordingCandidate": "G04 accepted original reinstalled after independent rebuild",
+  "records": [
+    {
+      "path": "artifacts/g05/m16-g05-rebuild-sign.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/g05/m16-g05-rebuild-install.json",
+      "sha256": "cf106ff41045d916d47adcd2bf78f78adeef4b3f0dec9fed5c91ad91e69f2c20"
+    },
+    {
+      "path": "artifacts/g05/m16-g05-rebuild-build.log",
+      "sha256": "08bd3d802e6f27969268201711a729406050f2c9e54f3feb6f1e87428e8578d1"
+    },
+    {
+      "path": "artifacts/g05/m16-g05-rebuild-install.log",
+      "sha256": "53f39548bc91e1a059e98adfa415e5b4ca90ad17bd7df145fa531d54b28b82e1"
+    },
+    {
+      "path": "artifacts/g05/m16-g05-fixed-install.log",
+      "sha256": "b45f4c1dd409737a3535f57f4906965b14707ecd28ca4be0face426c0177925f"
+    },
+    {
+      "path": "artifacts/g05/m16-g05-fixed-install.json",
+      "sha256": "e56d11fe6fbb2f03a9f5638ed79fc2604a17989e87fd93aa41ae156c0b540bf9"
+    }
+  ],
+  "privacy": "Raw build/install records remain local ignored artifacts because they may contain signing and device identifiers."
+}

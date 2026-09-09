@@ -1,0 +1,56 @@
+{
+  "engineSourceChanged": false,
+  "engineRevision": "cc1e607edc8c86baf47642eb7034a38b0d3eee06",
+  "checks": [
+    {
+      "name": "Native typecheck",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g03-typecheck.log",
+      "logSha256": "fb4e487940cfa93c42593c710d21f3d8e45bf54f86d9d463c9215e4c04fc2fdb"
+    },
+    {
+      "name": "Native tests",
+      "status": "passed",
+      "count": 7,
+      "fullLogLocal": "/private/tmp/m16-g03-native-tests.log",
+      "logSha256": "1338cdd21900d58d42b9bcc0da6f00e58dedaffcc28676c237bc5dd845130d16"
+    },
+    {
+      "name": "Engine affected PBR/shader/warmup/frame-resource tests",
+      "status": "passed",
+      "count": 24,
+      "fullLogLocal": "/private/tmp/m16-g03-engine-tests.log",
+      "logSha256": "3f39e734a658f0d6e016089806a881fb3616b3e90348564e6b44e408f91750bd"
+    },
+    {
+      "name": "Signed device build",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g03-highlight-build.log",
+      "logSha256": "e020c4bd56287237ddb1e4fc93f1f55a0fa2f486d5ceb8bc43b12d303de915d4"
+    },
+    {
+      "name": "codesign --verify --deep --strict",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g03-highlight-sign.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "devicectl install",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g03-highlight-install.log",
+      "logSha256": "33a5bd0d6198b4d1cf313432f67508529636fbd04e3a09b921a560621b117e50"
+    },
+    {
+      "name": "Chrome same-scene reference",
+      "status": "passed",
+      "count": null,
+      "fullLogLocal": "/private/tmp/m16-g03-browser.log",
+      "logSha256": "c44f6d2a6f9eeb304b9b44ddc063535f556c97be45094d3fece20b5cec17409f"
+    }
+  ],
+  "scope": "Engine source and packed dependency unchanged. G02 full repository results remain historical; G03 reruns affected Engine tests plus Native type/build/run checks. Cross-repository responsibilities/api checks unavailable without Editor/UI are not claimed as passing."
+}
