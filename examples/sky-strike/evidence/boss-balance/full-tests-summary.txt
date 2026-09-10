@@ -1,0 +1,26 @@
+✖ G08-E owns two distinct licensed character packages and one deterministic stage fixture (357.676957ms)
+✖ G04 official executable oracle pass is content-addressed and machine-observed (5.260078ms)
+✖ G03 ledger closes 25 core controllers and script runtime has no direct core field writes (8.088965ms)
+✖ G08-D formal fixture imports package, CMD/CNS and all browser fight actions (253.575488ms)
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (28.609411ms)
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (13096.456189ms)
+✖ G07-A official time=0 and AI command evidence is content-addressed (12.595857ms)
+✖ G02 official executable oracle evidence is content-addressed to the committed fixture (5.69002ms)
+✖ committed G05 browser fixture matches its byte-exact golden manifest (14.285403ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (10.509757ms)
+ℹ tests 459
+ℹ pass 429
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 20
+✖ failing tests:
+✖ G08-E owns two distinct licensed character packages and one deterministic stage fixture (357.676957ms)
+✖ G04 official executable oracle pass is content-addressed and machine-observed (5.260078ms)
+✖ G03 ledger closes 25 core controllers and script runtime has no direct core field writes (8.088965ms)
+✖ G08-D formal fixture imports package, CMD/CNS and all browser fight actions (253.575488ms)
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (28.609411ms)
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (13096.456189ms)
+✖ G07-A official time=0 and AI command evidence is content-addressed (12.595857ms)
+✖ G02 official executable oracle evidence is content-addressed to the committed fixture (5.69002ms)
+✖ committed G05 browser fixture matches its byte-exact golden manifest (14.285403ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (10.509757ms)

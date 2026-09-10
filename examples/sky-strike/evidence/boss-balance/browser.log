@@ -1,0 +1,6 @@
+{"name":"balance","status":"passed","checks":["boss-bomb-resistance","proxy-bomb-resistance","serpent-shared-damage","serpent-bomb-deduplication","laser-relocation-after-attack","carrier-cadence-elite-cap"]}
+{"name":"hud-low","status":"passed","checks":["compact-vitals","lives-icons","conditional-boss","centered-score"]}
+{"name":"hud-ja","status":"passed","checks":["compact-vitals","lives-icons","conditional-boss","centered-score"]}
+{"name":"star-carrier","status":"passed","checks":["combat-render","boss:star-carrier","static-atlas"]}
+{"name":"helios-prism","status":"passed","checks":["combat-render","boss:helios-prism","static-atlas"]}
+{"name":"iron-serpent","status":"passed","checks":["combat-render","boss:iron-serpent","static-atlas"]}

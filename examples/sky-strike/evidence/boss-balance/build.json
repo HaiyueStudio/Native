@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-10",
+  "nativeBuildExit": 0,
+  "codesignExit": 0,
+  "installExit": 0,
+  "gamesFullBuildExit": 0,
+  "sourceSha256": {
+    "Games/games/sky-strike/SkyStrikeGame.ts": "76e6b74eb9fde57a72dfad9d45be81b594d5c572df61bd1a1202ba78a238b76d",
+    "Games/games/sky-strike/rules.ts": "854891c6bca39f01683408509d0373a61633f1e10f13ea0ac164a8a631bb9873",
+    "Games/games/sky-strike/shipDetails.ts": "f2796c618866ebfc636fec151076cc95e833d83a3fe79b3e14b786f9ad6fcf1f",
+    "Games/games/sky-strike/hudVitals.ts": "9213707f284a8c45b2a51a5e3fdb0bcc84861594cb98d658146bff79e9e9dd27"
+  },
+  "packageSha256": {
+    "skystrike": "fee71a671e30e2b94164c1039b037712a5f2f27ce4cd9f6ffa46a2f4ff0c2b1f",
+    "app/bundle.mjs": "b6f4548a15c13030f02edabb205a3befadfd6bff516ef422f573529ef567bcea"
+  },
+  "fullBuildGames": [
+    "2048",
+    "billiards-3d",
+    "billiards",
+    "calendar-puzzle",
+    "triangle-calendar-puzzle",
+    "entanglement-path",
+    "icosahedron-minesweeper",
+    "gravity-maze",
+    "match-3",
+    "neon-circuit",
+    "minesweeper",
+    "minecraft-lite",
+    "mugen",
+    "pad-simulator",
+    "pacman",
+    "piano",
+    "pong",
+    "sokoban-3d",
+    "sky-strike",
+    "spider-solitaire",
+    "sudoku",
+    "tetris",
+    "wfc-map"
+  ],
+  "deviceVerification": {
+    "capturedFrame": 120,
+    "observedFrames": 155,
+    "journalErrors": 0,
+    "scope": "launch/render/resume; combat rules covered in real browser fixtures"
+  }
+}

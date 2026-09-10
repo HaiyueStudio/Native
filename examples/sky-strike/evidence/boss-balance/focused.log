@@ -1,0 +1,39 @@
+✔ runtime image pack stays under 16 MiB with complete, contiguous RGBA slices (1.464856ms)
+✔ small HUD art uses small alpha textures while Boss art retains preview resolution (3.392407ms)
+(node:94771) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Chinese defaults and language survives restart independently of career save (1.978762ms)
+✔ all level/boss names and GUI strings exist in each locale and font atlas (2.713385ms)
+✔ unavailable preference storage stays playable, reports failure, and listeners detach (0.610002ms)
+✔ muzzle bursts and detonations are bounded, expire, and clear on restart (1.077047ms)
+✔ boss shake is deterministic, strongest at impact, bounded and fully settles (0.337647ms)
+✔ elite/Boss attachment animation follows hull translation and changes over time (0.862787ms)
+✔ Sky Strike defines ten regular enemies, three elites, six bosses, and segmented devices (5.30412ms)
+✔ space train cars and mechanical serpent segments follow the requested combat rules (0.96824ms)
+✔ enemy selection is deterministic for a seeded sortie (0.576857ms)
+✔ enemy health bands and projectile damage match the combat roles (0.487825ms)
+✔ three-color weapons upgrade independently and stop at level three (0.875291ms)
+✔ Helios deploys more laser emitters as its health falls (0.285434ms)
+✔ player firing cooldown never accumulates a pointer-down catch-up burst (0.359207ms)
+✔ boss warning starts three seconds before its scheduled appearance (0.368457ms)
+✔ boss damage effects only intensify inside the critical health band (0.355261ms)
+✔ purple laser attracts a nearby forward target and boss beam geometry is stable (0.765616ms)
+✔ bullet aiming and circular hit tests remain stable (0.411033ms)
+✔ saucer death burst is radial and kamikaze steering accelerates toward the player (0.615729ms)
+✔ bomb area is forward-facing and includes nearby enemies and projectiles (0.344745ms)
+✔ level timelines expand grouped spawns and resolve deterministic positions (16.077194ms)
+✔ manifest assets, one-slot save, and keyboard/pointer controls are wired (12.118111ms)
+✔ serpent shares conserve damage across living parts and redistribute overkill (0.632214ms)
+(node:94773) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wide and 1:2 screens preserve the full field without stretching (2.014561ms)
+✔ narrow viewport follows the fighter proportionally and reaches both field edges (0.303659ms)
+✔ pointer inverse remains aligned across screen sizes, camera positions and resizing (0.597824ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 263.572991

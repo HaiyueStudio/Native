@@ -26,6 +26,26 @@ its pinned local Extensions and animation-spec tarballs are bundled in `vendor/`
 No new Engine API or shader is introduced. The bridge supplies the standard
 `GPUColorWrite` mask when Canvas 2.1.x does not expose it.
 
+## Boss balance
+
+Boss bomb damage is reduced by 70%, including damage relayed by Helios emitters;
+ordinary enemy bomb damage stays unchanged. Iron Serpent shares each hit across
+its living body sections, redistributing damage when a section runs out of HP.
+Its boss health pool receives the total once, and one bomb cannot multiply that
+hit by the number of covered body sections. After all sections die, the head
+continues receiving damage.
+
+Helios emitters relocate to a different unoccupied location after each laser's
+active phase ends, with arrival/departure flashes and a fresh firing cooldown.
+They do not move during the warning or active beam, or land on the player.
+Carrier deployments run every 3 seconds (previously 4.6); each third successful
+small-plane wave summons a random elite if fewer than two elites are alive.
+A full elite roster skips that summon without accumulating deferred spawns.
+The bay-door animation uses the same deployment interval.
+
+The top HUD background uses 40% opacity. Verification for this revision is in
+`evidence/boss-balance/`.
+
 ## Screen adaptation
 
 The logical battlefield remains 480×960 (1:2), measured against the full portrait drawing surface; HUD controls separately
