@@ -1,0 +1,36 @@
+✖ G08-E owns two distinct licensed character packages and one deterministic stage fixture (359.512091ms)
+✖ G04 official executable oracle pass is content-addressed and machine-observed (4.194114ms)
+✖ G03 ledger closes 25 core controllers and script runtime has no direct core field writes (6.312132ms)
+✖ G08-D formal fixture imports package, CMD/CNS and all browser fight actions (277.467389ms)
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (27.076874ms)
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (13256.923423ms)
+✖ Petra multipart gauge keeps both player groups intact in the lower screen area (38156.522175ms)
+✖ G08 Petra native human path enters movement and attack states deterministically (42866.350532ms)
+✖ Petra human back input walks away without activating a projectile attack (38994.184464ms)
+✖ G08 Petra native jump applies vertical velocity instead of only changing animation (41207.47671ms)
+✖ G08 Petra EmanonAI activates from AILevel and produces a deterministic autonomous trace (69946.951006ms)
+✖ G07-A official time=0 and AI command evidence is content-addressed (22.643639ms)
+✖ G02 official executable oracle evidence is content-addressed to the committed fixture (7.332347ms)
+✖ committed G05 browser fixture matches its byte-exact golden manifest (7.920622ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (7.365047ms)
+ℹ tests 456
+ℹ pass 421
+ℹ fail 10
+ℹ cancelled 5
+ℹ skipped 20
+✖ failing tests:
+✖ G08-E owns two distinct licensed character packages and one deterministic stage fixture (359.512091ms)
+✖ G04 official executable oracle pass is content-addressed and machine-observed (4.194114ms)
+✖ G03 ledger closes 25 core controllers and script runtime has no direct core field writes (6.312132ms)
+✖ G08-D formal fixture imports package, CMD/CNS and all browser fight actions (277.467389ms)
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (27.076874ms)
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (13256.923423ms)
+✖ Petra multipart gauge keeps both player groups intact in the lower screen area (38156.522175ms)
+✖ G08 Petra native human path enters movement and attack states deterministically (42866.350532ms)
+✖ Petra human back input walks away without activating a projectile attack (38994.184464ms)
+✖ G08 Petra native jump applies vertical velocity instead of only changing animation (41207.47671ms)
+✖ G08 Petra EmanonAI activates from AILevel and produces a deterministic autonomous trace (69946.951006ms)
+✖ G07-A official time=0 and AI command evidence is content-addressed (22.643639ms)
+✖ G02 official executable oracle evidence is content-addressed to the committed fixture (7.332347ms)
+✖ committed G05 browser fixture matches its byte-exact golden manifest (7.920622ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (7.365047ms)

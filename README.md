@@ -7,6 +7,7 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 | 路径 | 用途 |
 | --- | --- |
 | [examples/](./examples/README.md) | 原生 App 示例 |
+| [examples/sky-strike/](./examples/sky-strike/README.md) | 共享 Games Sky Strike 源码的竖屏 iPhone 游戏 |
 | [examples/spider-solitaire/](./examples/spider-solitaire/README.md) | 共享 Games 蜘蛛纸牌源码的横屏 iPhone 游戏 |
 | [examples/ios-pbr-orbit/](./examples/ios-pbr-orbit/README.md) | 首个 iPhone PBR 立方体与 Orbit 交互 Demo |
 

@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-10",
+  "build": "passed",
+  "codesign": "verified",
+  "install": "passed",
+  "bundleId": "org.haiyue.native.skystrike",
+  "packagedSha256": {
+    "skystrike": "8d41d0cd24e6db5496f0498300d8dde2553a638ecd5f0c4a0b8d2b2e0fc6c88a",
+    "app/bundle.mjs": "6d936a598825219f245be7eda134ea4583d03abc29af7298e4fe48f34aa672d7",
+    "app/vendor.mjs": "0147e7587b8342ab2c2084aade90a814fd6cbd0c88fde9f01b0568d11c7f4e45",
+    "app/game-assets/assets/sprites.json": "a1b609722c8a549f111ac33340bd18341fb51950ff3ebafa5de5f5a140b1b657",
+    "app/game-assets/assets/sprites.rgba": "bc43c3c7604fe8e866f67851db940a30057e0f9485b877ad90aa8b1ec6e7de3d"
+  },
+  "sourceSha256": {
+    "Games/games/sky-strike/SkyStrikeGame.ts": "44c42c2b11d6923307fecd2febeb3619e3d49dd323e34d3fd7c42c86732c0eb5",
+    "Games/games/sky-strike/i18n.ts": "e2b5f100de8c9f711c7831abdb0042db3140f6125ae9d03d073e618c91d51d66",
+    "Games/games/sky-strike/options.ts": "8b2f04434bc5547c6ec6bc06a2ff5b1cb2c44c92e4701d9155d74cdc2f2fe974",
+    "Games/games/sky-strike/guiSkins.ts": "9625ff8250227775d976621f96a037152d3b3dac6bd12c8dd8230884f1e26106",
+    "Games/games/sky-strike/guiHud.ts": "b3c014af018eb87d5bec7120db4025c03333c40d900de3672ff3ae07479c5834",
+    "Games/games/sky-strike/levelCarousel.ts": "5293f510c39e3c5478ec06cdd3266ce8e13b68b9bd016657dc32ecc75bf80e4d",
+    "Games/games/sky-strike/combatEffects.ts": "62976aa47a8251226628c646d6748b8f1336dfb98aec9394b0fa6337a375d5f8",
+    "Games/games/sky-strike/shipDetails.ts": "cf8c4676202095aa1b3dc5a9cca12279b462d20cfe1e5e0666c7789b6e51f8f5",
+    "Games/games/sky-strike/main.ts": "dce3d990035de471049478202c307f170fe25c44a590014a4508ee0153bd2705",
+    "Native/examples/sky-strike/src/main-page.ts": "86ab43fd64017219003fce21405379934d2b6b05e5bda9cfb9c950f69a1ece24"
+  },
+  "assets": {
+    "fx-turret.png": "1584326aab19fb747f64b0187058bf0d1d0dfc556ab2a8c49f0f71172bc74488",
+    "fx-hatch.png": "621e217f34dafd1d3edcc71c9f436b75ce0e99b670607fc1cddbcfaf2d634ad9",
+    "gui-pause.png": "b3b78d5a020c3e82c6ab6c64dc6775ef709b09a1b5e475ed45a5540f98990909",
+    "fx-rotor.png": "8d95ef11ea5ea3b8170c4a995a4b07815ff8084ce141c751bba976062b62502b",
+    "gui-bomb.png": "6126d6ecbc928085559e66e0a693a94891b8ef71348da77926e090837a55f816",
+    "gui-gear.png": "0c47fac51add91ce93b45acde2442c62134fa8b6bcdea5d13609ac443551495c",
+    "fx-flame.png": "9e57cfbe4edd8dad965d2d4481d24860b018630df19a84dee77511a868f147d1"
+  }
+}

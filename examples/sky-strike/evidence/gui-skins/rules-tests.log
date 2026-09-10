@@ -1,0 +1,28 @@
+✔ Sky Strike defines ten regular enemies, three elites, six bosses, and segmented devices (4.156937ms)
+✔ space train cars and mechanical serpent segments follow the requested combat rules (2.069206ms)
+✔ enemy selection is deterministic for a seeded sortie (0.490326ms)
+✔ enemy health bands and projectile damage match the combat roles (0.453134ms)
+✔ three-color weapons upgrade independently and stop at level three (0.916294ms)
+✔ Helios deploys more laser emitters as its health falls (0.264649ms)
+✔ player firing cooldown never accumulates a pointer-down catch-up burst (0.466163ms)
+✔ boss warning starts three seconds before its scheduled appearance (0.298325ms)
+✔ boss damage effects only intensify inside the critical health band (0.381581ms)
+✔ purple laser attracts a nearby forward target and boss beam geometry is stable (0.437234ms)
+✔ bullet aiming and circular hit tests remain stable (0.251668ms)
+✔ saucer death burst is radial and kamikaze steering accelerates toward the player (0.486125ms)
+✔ bomb area is forward-facing and includes nearby enemies and projectiles (0.208399ms)
+✔ level timelines expand grouped spawns and resolve deterministic positions (13.749268ms)
+✔ manifest assets, one-slot save, and keyboard/pointer controls are wired (8.750472ms)
+(node:86918) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wide and 1:2 screens preserve the full field without stretching (1.449598ms)
+✔ narrow viewport follows the fighter proportionally and reaches both field edges (0.214549ms)
+✔ pointer inverse remains aligned across screen sizes, camera positions and resizing (0.524254ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 244.912367

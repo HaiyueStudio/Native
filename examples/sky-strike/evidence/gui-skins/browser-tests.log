@@ -1,0 +1,5 @@
+{"name":"wide","status":"passed","checks":["gui-start","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"standard","status":"passed","checks":["gui-start","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"narrow","status":"passed","checks":["gui-start","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"menu","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"pause","status":"passed","checks":["pause-dialog"]}

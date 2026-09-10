@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-10",
+  "build": "passed",
+  "codesign": "verified",
+  "install": "passed",
+  "bundleId": "org.haiyue.native.skystrike",
+  "packagedSha256": {
+    "skystrike": "ff8b926b26765d59eb140f313276f827889939eeac1e0046dc7c0b78ae8bce77",
+    "app/bundle.mjs": "a9a0c38da4ef7ce19419455e1e32ba7dc899ccc7ff1330eac8d3d94922f0f611",
+    "app/vendor.mjs": "0147e7587b8342ab2c2084aade90a814fd6cbd0c88fde9f01b0568d11c7f4e45",
+    "app/game-assets/assets/sprites.rgba": "cfb6250b5a827b6083984b2bb088e6eb34bc39d4d87fe3eec00386f530541ef9",
+    "app/game-assets/assets/sprites.json": "119e07eac10ea434507f4e70b0088ba7bedeea4ad6bb52b47e2a142ed250dabe"
+  },
+  "sourceSha256": {
+    "Games/games/sky-strike/guiSkins.ts": "12c9a05aab1ef352e61db9ccb8a295577a69e0ce0354a49fd97a4567fc84953d",
+    "Games/games/sky-strike/guiHud.ts": "fb7b016142174082b74d9faa240ff3305af5b1383b163998b35546feb260a737",
+    "Games/games/sky-strike/levelCarousel.ts": "c768dbfee0a72b65ba24fecd225abbcbd4582163f2eef23a8ab020168c4b4015",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "48384f31666ef0834cdc1ea0271aa811db46e6cf7332e94d2848082c6a2413cc"
+  },
+  "assets": {
+    "gui-launch.png": "38421cb6613db9217899f851193fef052ff220ca327504542b8c77166d986868",
+    "gui-arrow.png": "4736c6c06b21ba4dc9c40649323e97c56cb24707c4f45d83467459d619c10638",
+    "gui-pause-panel.png": "dcbe682662783f217f6c547cb6f0ff1ef531f03c78750d03f33edac6f612c0e1"
+  }
+}

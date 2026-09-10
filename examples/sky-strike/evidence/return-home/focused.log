@@ -1,0 +1,36 @@
+(node:91086) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Chinese defaults and language survives restart independently of career save (1.728543ms)
+✔ all level/boss names and GUI strings exist in each locale and font atlas (3.171497ms)
+✔ unavailable preference storage stays playable, reports failure, and listeners detach (0.514583ms)
+✔ muzzle bursts and detonations are bounded, expire, and clear on restart (1.01139ms)
+✔ boss shake is deterministic, strongest at impact, bounded and fully settles (0.324812ms)
+✔ elite/Boss attachment animation follows hull translation and changes over time (0.749748ms)
+✔ Sky Strike defines ten regular enemies, three elites, six bosses, and segmented devices (2.778384ms)
+✔ space train cars and mechanical serpent segments follow the requested combat rules (1.736194ms)
+✔ enemy selection is deterministic for a seeded sortie (0.503234ms)
+✔ enemy health bands and projectile damage match the combat roles (0.754508ms)
+✔ three-color weapons upgrade independently and stop at level three (0.803814ms)
+✔ Helios deploys more laser emitters as its health falls (0.281193ms)
+✔ player firing cooldown never accumulates a pointer-down catch-up burst (0.229644ms)
+✔ boss warning starts three seconds before its scheduled appearance (0.224295ms)
+✔ boss damage effects only intensify inside the critical health band (0.280905ms)
+✔ purple laser attracts a nearby forward target and boss beam geometry is stable (0.380214ms)
+✔ bullet aiming and circular hit tests remain stable (0.236373ms)
+✔ saucer death burst is radial and kamikaze steering accelerates toward the player (0.430161ms)
+✔ bomb area is forward-facing and includes nearby enemies and projectiles (0.241378ms)
+✔ level timelines expand grouped spawns and resolve deterministic positions (15.387494ms)
+✔ manifest assets, one-slot save, and keyboard/pointer controls are wired (7.536583ms)
+(node:91088) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wide and 1:2 screens preserve the full field without stretching (1.072885ms)
+✔ narrow viewport follows the fighter proportionally and reaches both field edges (0.195707ms)
+✔ pointer inverse remains aligned across screen sizes, camera positions and resizing (0.469665ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 214.409456

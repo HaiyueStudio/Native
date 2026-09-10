@@ -3,6 +3,7 @@ import { Canvas, GPU, GPUAdapter, GPUCanvasContext } from '@nativescript/canvas'
 import type { HaiyueEngine } from '@haiyue/engine';
 import { nativeViewRect } from './view-rect.ios';
 import { copyDeviceDescriptor } from './device-descriptor';
+import { installNativeWebGpuConstants } from './webgpu-constants';
 
 type EngineOptions = ConstructorParameters<typeof HaiyueEngine>[0];
 export type NativeCanvasInput = Pick<HTMLCanvasElement, 'addEventListener' | 'removeEventListener' | 'setPointerCapture' | 'releasePointerCapture'>;
@@ -18,6 +19,7 @@ export class NativeSurface {
   constructor(readonly view: Canvas, private readonly report: (event: string, detail: unknown) => void, private readonly input?: NativeCanvasInput) {
     // Canvas.getContext('webgpu') uses this entry point internally, even when
     // Engine receives its own injected provider. Use the same native GPU.
+    installNativeWebGpuConstants();
     const navigatorObject = globalThis.navigator ?? {};
     if (!globalThis.navigator) Object.defineProperty(globalThis, 'navigator', { value: navigatorObject, configurable: true });
     Object.defineProperty(navigatorObject, 'gpu', { value: this.gpu, configurable: true });

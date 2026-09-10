@@ -1,0 +1,20 @@
+{
+  "before": {
+    "packBytes": 20281344,
+    "nativeGameAssetsBytes": 80389529,
+    "nativeGameAssetFiles": 41,
+    "atlasGpuBytes": 32087784
+  },
+  "after": {
+    "packBytes": 15263232,
+    "nativeGameAssetsBytes": 15275004,
+    "nativeGameAssetFiles": 8,
+    "atlasGpuBytes": 17365456
+  },
+  "reductionPercent": {
+    "packBytes": 24.74,
+    "nativeGameAssetsBytes": 81.0,
+    "atlasGpuBytes": 45.88
+  },
+  "scope": "Game asset bytes and battle atlas allocation; excludes frameworks, GUI texture cache, font atlas, render targets and device-wide GPU memory."
+}

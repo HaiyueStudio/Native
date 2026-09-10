@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-10",
+  "build": "passed",
+  "codesign": "verified",
+  "install": "passed",
+  "bundleId": "org.haiyue.native.skystrike",
+  "packagedSha256": {
+    "skystrike": "14a2e0775b78af2f09edb69242890c00689375b0c44dea2e09aff01505dd28d3",
+    "app/bundle.mjs": "4978a2923b7516fbf4ff557a4b8f6b258dce56bccf8372957e031de30f544184",
+    "app/game-assets/assets/sprites.json": "c2324415549bf373f01be14bf34ae505ac08c04ff6d612088163344a90d1ee9b",
+    "app/game-assets/assets/sprites.rgba": "d158747eed837084acd0285267da344938913c9ebcd113c2adff9f636c975421"
+  },
+  "sourceSha256": {
+    "Games/games/sky-strike/hudVitals.ts": "6bd992763eb7da5dc3ab3d100011db3685ee306e43983601fce9c9e9cc88c9b1",
+    "Games/games/sky-strike/guiHud.ts": "6b83294a92404f8885c9f238de6951ebee7707a50ef9cb0e537fae7e21f48075",
+    "Games/games/sky-strike/battleLayer.ts": "f4ff97db41ecc1a22358928f3a46e21a4194e8844c3a1f7789ddeecc7192d179",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "18ed91b50cf9c2906a30e0d3c627606b8138cedf5179d78bfa7ba59f48701c13",
+    "Games/games/sky-strike/i18n.ts": "bb5c5943700bfd6fd63e365933d82c817df8ddafc58f010a8db234fecf2258f7",
+    "Games/games/sky-strike/presentation.ts": "c2db6522c8ad7cb93a163d3dc1657636117aff307bb9f92b2c9bec556560e3fd",
+    "Games/games/sky-strike/main.ts": "3bcea20d937b43284736aeb8318ed3c575eafdc4cd5c61f52bfc55ff714d1440",
+    "Games/scripts/pack-sky-sprites.py": "56c12864039f94c0d3368a16a3064ae3a0ca31df514e75c7a15da4c9db24e1df",
+    "Native/examples/sky-strike/scripts/sync-game-assets.mjs": "48e1407b164d66889dcab49a5f2fdbc44315a74c9063d8b66e20b1db89e87071",
+    "Native/examples/sky-strike/src/main-page.ts": "36798091c84a2ee86f13112a0520fda11f4d1982f4c8466fa60a4a542258e9c1"
+  },
+  "nativeFrames": 7680,
+  "nativeErrors": []
+}

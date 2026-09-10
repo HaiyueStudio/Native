@@ -1,0 +1,17 @@
+
+> @haiyue/native-sky-strike@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (3.11364ms)
+✔ real Engine save survives a new service when native structuredClone is absent (50.124087ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (2.076908ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.561099ms)
+✔ Sky Strike has a distinct app identity and portrait-only packaged orientations (21.027328ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 580.023895

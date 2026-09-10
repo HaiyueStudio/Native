@@ -4,6 +4,7 @@
 
 | 示例 | 平台 | 目标 | 状态 |
 | --- | --- | --- | --- |
+| [sky-strike](./sky-strike/README.md) | iPhone / iOS | 竖屏射击，1:2 战场、宽屏留边和窄屏视野跟随 | 已安装；真机运行及三种比例自动验证通过 |
 | [spider-solitaire](./spider-solitaire/README.md) | iPhone / iOS | 蜘蛛纸牌，横屏、原生存档、4× MSAA | 已安装；GUI、双指缩放与拖拽真机通过 |
 | [ios-pbr-orbit](./ios-pbr-orbit/README.md) | iPhone / iOS | 原生 WebGPU PBR 立方体，单指 Orbit 相机控制 | G03 已验收：真机静态 PBR、固定相机及粗糙度对照通过；Orbit 待 G04 |
 

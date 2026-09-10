@@ -1,0 +1,39 @@
+
+> @haiyue/games-repository@0.1.0 build
+> node scripts/build-games.mjs
+
+
+> rollup game pong
+
+games/pong/main.ts → games/pong/bundle.js...
+created games/pong/bundle.js in 40.6s
+
+> rollup game sokoban-3d
+
+games/sokoban-3d/main.ts → games/sokoban-3d/bundle.js...
+created games/sokoban-3d/bundle.js in 31.5s
+
+> rollup game sky-strike
+
+games/sky-strike/main.ts → games/sky-strike/bundle.js...
+created games/sky-strike/bundle.js in 30s
+
+> rollup game spider-solitaire
+
+games/spider-solitaire/main.ts → games/spider-solitaire/bundle.js...
+created games/spider-solitaire/bundle.js in 30.2s
+
+> rollup game sudoku
+
+games/sudoku/main.ts → games/sudoku/bundle.js...
+created games/sudoku/bundle.js in 28s
+
+> rollup game tetris
+
+games/tetris/main.ts → games/tetris/bundle.js...
+created games/tetris/bundle.js in 26.7s
+
+> rollup game wfc-map
+
+games/wfc-map/main.ts → games/wfc-map/bundle.js...
+created games/wfc-map/bundle.js in 26.9s

@@ -1,0 +1,9 @@
+{
+  "engineRepositoryRevision": "c8554c313b4ffcf43756db0cc0a8b1c526b72dc7",
+  "publicSubpath": "@haiyue/extensions/experimental/indexed-sprite",
+  "engineSourceChanges": false,
+  "packages": {
+    "haiyue-extensions-0.1.0.tgz": "99c8e61bf9647f48686aa63a5ad449f7f01fb03e6fdda56bfcf1bbddbef2ac9b",
+    "haiyue-animation-spec-0.1.0.tgz": "435d2a29fc4983e2ead1f0a828cd0a323bcc6e800b5ed30eb086d482db350f5c"
+  }
+}

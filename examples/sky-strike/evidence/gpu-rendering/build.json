@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-10",
+  "bundleId": "org.haiyue.native.skystrike",
+  "build": "passed",
+  "codesign": "verified",
+  "install": "succeeded",
+  "portraitOnly": true,
+  "msaaSamples": 4,
+  "singleVisibleCanvas": true,
+  "renderer": "@haiyue/extensions/experimental/indexed-sprite",
+  "packagedSha256": {
+    "skystrike": "49d2d72efc2ec3630884d8ea789b68c697c6bd1872b4bbb118cb442874d58020",
+    "app/bundle.mjs": "c8dfbbccfe14880f63ea9e4bb54d2dea5d57bb23cead56c39c3d5e9f973c87b3",
+    "app/vendor.mjs": "0147e7587b8342ab2c2084aade90a814fd6cbd0c88fde9f01b0568d11c7f4e45",
+    "app/runtime.mjs": "c88decf76b39ec6b154cc2f32b2ec2215fca0c666070436f824d77b502591c09",
+    "app/game-assets/assets/sprites.json": "2f35db494dd37d53dbafe92cf56670f8f7c9062c8ae553ace0f70a38b79cf7fe",
+    "app/game-assets/assets/sprites.rgba": "bcf9be81a84b4033f63d2700cf2864d246ab8175c2d712dec1303ac869476f5d"
+  },
+  "sourceSha256": {
+    "Games/games/sky-strike/main.ts": "8cac55527a007e8ea7d4f0539062557bd0e9a40f36c4e300a7910746f55b1f2f",
+    "Games/games/sky-strike/viewport.ts": "e4a6b97e2d675dc2cc23678bfe90699fd8cf072839ccb0d878f798fbe671b985",
+    "Games/games/sky-strike/presentation.ts": "09d09ae872091e334038f7ec421caeb5e786300e2c5b7ce23d2d2e156c5f3207",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "ce129b69d9016cecf02332510303f98b6117d7fb9d2928e10ba98789e6e5a33f",
+    "Games/games/sky-strike/rules.ts": "bb3f2d6bc7473eeef49c08d5edc08e057d859111997acfd94510a15b76e9b22f",
+    "Games/games/sky-strike/battleLayer.ts": "4eb01e04baf8062bb660d5efb09aa2bb237d561c73d6e95607930b54390b2356",
+    "Games/games/sky-strike/guiHud.ts": "5de90c5c626e02a15dade0946d636aee3da3cd951a419e109ae6c93b06d88210",
+    "Games/games/sky-strike/levelCarousel.ts": "6d42696eb1bdc251de5dc2e04108537dacdf01c043ab0523c3dcf358ee3954e7",
+    "Native/examples/sky-strike/src/main-page.ts": "5d872dfe8d7c1d360c2a4937f2bab566eadf66b26d47ee00ddf3736064429f90",
+    "Native/examples/sky-strike/src/app.ts": "9d3d5f735e94a8e68f4962c51651cc697ef850ede06b4406e36c74d0b3427a33",
+    "Native/examples/sky-strike/src/core-js-pure.d.ts": "16db50eb7ff68d2a6a049c9d72775bc8b5130b717b4089ab6649cf90425c43ca",
+    "Native/bridge/render/surface.ts": "6235114464ff1ddec70c067b898cebf62131a66d9607b83e478730c39092b7c9",
+    "Native/bridge/render/webgpu-constants.ts": "279bafa27ac5c7ddb320c2e14440e6db25f9cb6ca79ea3cf21fd2a49f5266426"
+  },
+  "vendorSha256": {
+    "haiyue-extensions-0.1.0.tgz": "99c8e61bf9647f48686aa63a5ad449f7f01fb03e6fdda56bfcf1bbddbef2ac9b",
+    "haiyue-engine-0.1.0.tgz": "f936a1037df13793cbd7634f327adac4e899811902f8af0eb9a36083dbf02063",
+    "haiyue-animation-spec-0.1.0.tgz": "435d2a29fc4983e2ead1f0a828cd0a323bcc6e800b5ed30eb086d482db350f5c"
+  },
+  "sourceNote": "Source hashes recorded after verification. The only product-source edit after the installed build was removal of trailing whitespace in levelCarousel.ts."
+}

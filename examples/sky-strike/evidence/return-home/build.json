@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-10",
+  "build": "passed",
+  "codesign": "verified",
+  "install": "passed",
+  "bundleId": "org.haiyue.native.skystrike",
+  "packagedSha256": {
+    "skystrike": "280d13d2263d6b80fd9a4887a867a136b502964cf10db80415473a30bfb55055",
+    "app/bundle.mjs": "5af73efe7f3dd29133c0d8915b478acb78582327bc5fec7a9a2133047d46b1bb",
+    "app/game-assets/assets/sprites.rgba": "bc43c3c7604fe8e866f67851db940a30057e0f9485b877ad90aa8b1ec6e7de3d"
+  },
+  "sourceSha256": {
+    "Games/games/sky-strike/SkyStrikeGame.ts": "18ed91b50cf9c2906a30e0d3c627606b8138cedf5179d78bfa7ba59f48701c13",
+    "Games/games/sky-strike/presentation.ts": "c2db6522c8ad7cb93a163d3dc1657636117aff307bb9f92b2c9bec556560e3fd",
+    "Games/games/sky-strike/guiHud.ts": "75cffc25ec1c492068822349e3fb6da656e8de8d20be86ede29b3fc70610b1f2",
+    "Games/games/sky-strike/i18n.ts": "bb5c5943700bfd6fd63e365933d82c817df8ddafc58f010a8db234fecf2258f7"
+  }
+}

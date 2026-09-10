@@ -1,0 +1,92 @@
+{
+  "ready": {
+    "phase": "ready",
+    "player": {
+      "x": 240,
+      "y": 842,
+      "health": 100
+    },
+    "score": 0,
+    "highScore": 0,
+    "wave": 1,
+    "bombs": 3,
+    "enemies": 0,
+    "bullets": 0,
+    "selectedLevel": 0,
+    "viewport": {
+      "scale": 1,
+      "left": 6,
+      "width": 480,
+      "visibleWidth": 480,
+      "cameraX": 0
+    },
+    "firing": false,
+    "bundledImages": 21,
+    "levels": 6,
+    "textures": {
+      "textures": 2,
+      "bytes": 8180736
+    }
+  },
+  "lastPresentation": {
+    "frames": 1080,
+    "width": 860,
+    "height": 1678,
+    "scheduledCallbacks": 1,
+    "input": {
+      "pinching": false,
+      "rect": {
+        "x": 0,
+        "y": 59,
+        "width": 430,
+        "height": 839,
+        "left": 0,
+        "top": 59,
+        "right": 430,
+        "bottom": 898
+      },
+      "measured": {
+        "width": 430,
+        "height": 839
+      },
+      "primary": 6,
+      "captured": 6,
+      "trackedTouches": 1,
+      "listenerCount": 19,
+      "paused": false,
+      "disposed": false,
+      "nativeIdentities": 1,
+      "nativeObserverCount": 1,
+      "nativeRecognizerCount": 2,
+      "game": {
+        "phase": "playing",
+        "player": {
+          "x": 246.10249715993737,
+          "y": 537.7830750893921,
+          "health": 100
+        },
+        "score": 1380,
+        "highScore": 1380,
+        "wave": 1,
+        "bombs": 2,
+        "enemies": 2,
+        "bullets": 19,
+        "selectedLevel": 0,
+        "viewport": {
+          "scale": 1,
+          "left": 6,
+          "width": 480,
+          "visibleWidth": 480,
+          "cameraX": 0
+        },
+        "firing": true
+      },
+      "textures": {
+        "textures": 2,
+        "bytes": 8180736
+      }
+    }
+  },
+  "sampleAveragePresentedFps": 56.5,
+  "errors": []
+}

@@ -1,0 +1,116 @@
+
+> @haiyue/games-repository@0.1.0 build
+> node scripts/build-games.mjs
+
+
+> rollup game 2048
+
+games/2048/main.ts → games/2048/bundle.js...
+created games/2048/bundle.js in 23s
+
+> rollup game billiards-3d
+
+games/billiards-3d/main.ts → games/billiards-3d/bundle.js...
+created games/billiards-3d/bundle.js in 16.9s
+
+> rollup game billiards
+
+games/billiards/main.ts → games/billiards/bundle.js...
+created games/billiards/bundle.js in 27s
+
+> rollup game calendar-puzzle
+
+games/calendar-puzzle/main.ts → games/calendar-puzzle/bundle.js...
+created games/calendar-puzzle/bundle.js in 33.1s
+
+> rollup game triangle-calendar-puzzle
+
+games/triangle-calendar-puzzle/main.ts → games/triangle-calendar-puzzle/bundle.js...
+created games/triangle-calendar-puzzle/bundle.js in 57.9s
+[rollup-runner] game triangle-calendar-puzzle produced games/triangle-calendar-puzzle/bundle.js but retained process handles for 1500ms; sending SIGTERM to process group 91869.
+
+> rollup game entanglement-path
+
+games/entanglement-path/main.ts → games/entanglement-path/bundle.js...
+created games/entanglement-path/bundle.js in 38.5s
+
+> rollup game icosahedron-minesweeper
+
+games/icosahedron-minesweeper/main.ts → games/icosahedron-minesweeper/bundle.js...
+created games/icosahedron-minesweeper/bundle.js in 35.5s
+
+> rollup game gravity-maze
+
+games/gravity-maze/main.ts → games/gravity-maze/dist...
+created games/gravity-maze/dist in 17s
+
+> rollup game match-3
+
+games/match-3/main.ts → games/match-3/bundle.js...
+created games/match-3/bundle.js in 38.8s
+
+> rollup game neon-circuit
+
+games/neon-circuit/main.ts → games/neon-circuit/bundle.js...
+created games/neon-circuit/bundle.js in 44.1s
+
+> rollup game minesweeper
+
+games/minesweeper/main.ts → games/minesweeper/bundle.js...
+created games/minesweeper/bundle.js in 45.9s
+
+> rollup game minecraft-lite
+
+games/minecraft-lite/main.ts → games/minecraft-lite/bundle.js...
+created games/minecraft-lite/bundle.js in 38.3s
+
+> rollup game mugen
+
+games/mugen/main.ts, games/mugen/charactorPreview.ts, games/mugen/import/worker/mugenImport.worker.ts → games/mugen/dist...
+created games/mugen/dist in 39s
+
+> rollup game pad-simulator
+
+games/pad-simulator/main.ts → games/pad-simulator/bundle.js...
+created games/pad-simulator/bundle.js in 56.2s
+
+> rollup game pacman
+
+games/pacman/main.ts → games/pacman/bundle.js...
+created games/pacman/bundle.js in 48s
+
+> rollup game piano
+
+games/piano/main.ts → games/piano/bundle.js...
+created games/piano/bundle.js in 50.4s
+
+> rollup game pong
+
+games/pong/main.ts → games/pong/bundle.js...
+[rollup-runner] Timed out after 60000ms before game pong produced games/pong/bundle.js; sending SIGTERM.
+Rollup game pong timed out before producing games/pong/bundle.js.
+file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/shared-rollup-runner.mjs:160
+    throw new RollupRunnerError(
+          ^
+
+RollupRunnerError: Rollup game pong timed out before producing games/pong/bundle.js.
+    at runRollupOnce (file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/shared-rollup-runner.mjs:160:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async buildGame (file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/build-games.mjs:31:5)
+    at async file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/build-games.mjs:21:27 {
+  kind: 'marker-timeout',
+  result: {
+    label: 'game pong',
+    expectedOutputs: [ 'games/pong/bundle.js' ],
+    observedOutputs: [],
+    markersComplete: false,
+    lingeringHandles: false,
+    termination: 'sigterm',
+    exitCode: null,
+    exitSignal: 'SIGTERM',
+    pid: 92061,
+    elapsedMs: 60219
+  }
+}
+
+Node.js v24.19.0

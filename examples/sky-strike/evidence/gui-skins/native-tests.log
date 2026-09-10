@@ -1,0 +1,20 @@
+
+> @haiyue/native-sky-strike@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (5.29624ms)
+✔ real Engine save survives a new service when native structuredClone is absent (98.936923ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (2.15104ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.397031ms)
+✔ Sky Strike has a distinct app identity and portrait-only packaged orientations (22.488791ms)
+(node:87543) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ bridge supplies missing color mask while retaining a provider-owned implementation (1.116653ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 692.645516

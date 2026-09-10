@@ -1,0 +1,3 @@
+{"name":"wide","status":"passed","checks":["gui-start","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"standard","status":"passed","checks":["gui-start","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"narrow","status":"passed","checks":["gui-start","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}

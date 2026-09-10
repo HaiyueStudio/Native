@@ -1,0 +1,29 @@
+{
+  "completedGames": [
+    "2048",
+    "billiards-3d",
+    "billiards",
+    "calendar-puzzle",
+    "triangle-calendar-puzzle",
+    "entanglement-path",
+    "icosahedron-minesweeper",
+    "gravity-maze",
+    "match-3",
+    "neon-circuit",
+    "minesweeper",
+    "minecraft-lite",
+    "mugen",
+    "pad-simulator",
+    "pacman",
+    "piano",
+    "pong",
+    "sokoban-3d",
+    "sky-strike",
+    "spider-solitaire",
+    "sudoku",
+    "tetris",
+    "wfc-map"
+  ],
+  "missing": [],
+  "note": "First full pass timed out at unchanged Pong. Remaining seven games, including the final Sky Strike, passed with a 180-second marker timeout."
+}

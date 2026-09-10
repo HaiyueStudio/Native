@@ -1,0 +1,11 @@
+{"name":"hud-full","status":"passed","checks":["compact-vitals","lives-icons","conditional-boss","centered-score"]}
+{"name":"hud-low","status":"passed","checks":["compact-vitals","lives-icons","conditional-boss","centered-score"]}
+{"name":"hud-zero","status":"passed","checks":["compact-vitals","lives-icons","conditional-boss","centered-score"]}
+{"name":"hud-ja","status":"passed","checks":["compact-vitals","lives-icons","conditional-boss","centered-score"]}
+{"name":"home-zh","status":"passed","checks":["home-clears-battle","home-relaunch-twice","pause-dialog"]}
+{"name":"menu-ja","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"boss-explosion","status":"passed","checks":["combat-render","boss-explosion","static-atlas"]}
+{"name":"red-fire","status":"passed","checks":["combat-render","red-fire","static-atlas"]}
+{"name":"wide","status":"passed","checks":["gui-start","skinned-bomb","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"narrow","status":"passed","checks":["gui-start","skinned-bomb","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"star-carrier","status":"passed","checks":["combat-render","boss:star-carrier","static-atlas"]}

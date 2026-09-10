@@ -1,0 +1,178 @@
+{
+  "date": "2026-09-10",
+  "errors": [],
+  "presentedFrames": 2640,
+  "playingSampleCount": 12,
+  "playingWindowSeconds": 21.978,
+  "presentedFpsMedian": 60.06006006006006,
+  "presentedFpsMin": 60.0,
+  "presentedFpsMax": 60.120240480961925,
+  "limitation": "Short observed gameplay sample, not a sustained thermal benchmark.",
+  "firstPlaying": {
+    "time": 1789012024380,
+    "event": "present",
+    "detail": {
+      "frames": 1320,
+      "width": 860,
+      "height": 1864,
+      "scheduledCallbacks": 0,
+      "input": {
+        "pinching": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "left": 0,
+          "top": 0,
+          "right": 430,
+          "bottom": 932
+        },
+        "measured": {
+          "width": 430,
+          "height": 839
+        },
+        "primary": null,
+        "captured": null,
+        "trackedTouches": 0,
+        "listenerCount": 19,
+        "paused": false,
+        "disposed": false,
+        "nativeIdentities": 0,
+        "nativeObserverCount": 1,
+        "nativeRecognizerCount": 2,
+        "game": {
+          "phase": "playing",
+          "player": {
+            "x": 240,
+            "y": 842,
+            "health": 100
+          },
+          "score": 0,
+          "highScore": 171340,
+          "wave": 5,
+          "bombs": 3,
+          "enemies": 0,
+          "bullets": 0,
+          "selectedLevel": 4,
+          "viewport": {
+            "scale": 0.9708333333333333,
+            "left": 0,
+            "width": 430,
+            "visibleWidth": 442.9184549356223,
+            "cameraX": 18.54077253218884
+          },
+          "firing": false,
+          "rendering": {
+            "pageCount": 1,
+            "indexedPageCount": 0,
+            "colorPageCount": 1,
+            "paletteCount": 0,
+            "cpuBytes": 26288704,
+            "gpuBytes": 26288704,
+            "uploadedBytes": 26288704,
+            "pendingUploadBytes": 0,
+            "textureCount": 4,
+            "drawCommands": 209,
+            "drawCalls": 5,
+            "batches": 5,
+            "generation": 0,
+            "ready": true,
+            "disposed": false,
+            "renderer": "haiyue-gpu-sprites",
+            "frameTextureUploads": 0
+          }
+        },
+        "textures": {
+          "textures": 0,
+          "bytes": 0
+        }
+      }
+    }
+  },
+  "lastPlaying": {
+    "time": 1789012046358,
+    "event": "present",
+    "detail": {
+      "frames": 2640,
+      "width": 860,
+      "height": 1864,
+      "scheduledCallbacks": 1,
+      "input": {
+        "pinching": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "left": 0,
+          "top": 0,
+          "right": 430,
+          "bottom": 932
+        },
+        "measured": {
+          "width": 430,
+          "height": 839
+        },
+        "primary": 4,
+        "captured": 4,
+        "trackedTouches": 1,
+        "listenerCount": 19,
+        "paused": false,
+        "disposed": false,
+        "nativeIdentities": 1,
+        "nativeObserverCount": 1,
+        "nativeRecognizerCount": 2,
+        "game": {
+          "phase": "playing",
+          "player": {
+            "x": 366.8475210477081,
+            "y": 717.2532136450509,
+            "health": 100
+          },
+          "score": 2840,
+          "highScore": 171340,
+          "wave": 5,
+          "bombs": 3,
+          "enemies": 11,
+          "bullets": 24,
+          "selectedLevel": 4,
+          "viewport": {
+            "scale": 0.9708333333333333,
+            "left": 0,
+            "width": 430,
+            "visibleWidth": 442.9184549356223,
+            "cameraX": 28.99344379448925
+          },
+          "firing": true,
+          "rendering": {
+            "pageCount": 1,
+            "indexedPageCount": 0,
+            "colorPageCount": 1,
+            "paletteCount": 0,
+            "cpuBytes": 26288704,
+            "gpuBytes": 26288704,
+            "uploadedBytes": 26288704,
+            "pendingUploadBytes": 0,
+            "textureCount": 4,
+            "drawCommands": 391,
+            "drawCalls": 57,
+            "batches": 57,
+            "generation": 0,
+            "ready": true,
+            "disposed": false,
+            "renderer": "haiyue-gpu-sprites",
+            "frameTextureUploads": 0
+          }
+        },
+        "textures": {
+          "textures": 0,
+          "bytes": 0
+        }
+      }
+    }
+  },
+  "atlasUploadBytesObserved": [
+    26288704
+  ]
+}

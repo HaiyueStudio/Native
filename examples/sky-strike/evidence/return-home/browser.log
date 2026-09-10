@@ -1,0 +1,5 @@
+{"name":"home-zh","status":"passed","checks":["home-clears-battle","home-relaunch-twice","pause-dialog"]}
+{"name":"home-en","status":"passed","checks":["home-clears-battle","home-relaunch-twice","pause-dialog"]}
+{"name":"home-ja","status":"passed","checks":["home-clears-battle","home-relaunch-twice","pause-dialog"]}
+{"name":"wide","status":"passed","checks":["gui-start","skinned-bomb","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"narrow","status":"passed","checks":["gui-start","skinned-bomb","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
