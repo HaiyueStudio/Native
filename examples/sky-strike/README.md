@@ -1,7 +1,7 @@
 # Sky Strike — native iOS
 
 A separate portrait-only app (`org.haiyue.native.skystrike`, display name Sky Strike)
-using the shared Games Sky Strike rules, all six levels and a predecoded RGBA sprite pack.
+using the shared Games Sky Strike rules, all seven levels and a predecoded RGBA sprite pack.
 It does not replace Spider Solitaire or the native PBR milestone app.
 
 The browser and iOS app share one visible WebGPU canvas. Haiyue Extensions'
@@ -25,6 +25,32 @@ The renderer intentionally consumes the public experimental indexed-sprite subpa
 its pinned local Extensions and animation-spec tarballs are bundled in `vendor/`.
 No new Engine API or shader is introduced. The bridge supplies the standard
 `GPUColorWrite` mask when Canvas 2.1.x does not expose it.
+
+## Seventh mission: Binary Nova
+
+The level-07 timeline introduces the Fission Cruiser, then spawns Chromatic Twins
+as one encounter with two independently damageable red/blue hulls. Each hull has
+1,800 HP. When one reaches zero it stops firing and leaves a visible wreck; the
+player has 5 seconds of active gameplay to defeat its partner. Otherwise only the
+downed twin revives at 20% HP. Pause/background freeze the timer. Both down ends
+the encounter once, including simultaneous bomb kills. The HUD shows two colored
+portrait rings and a localized revival countdown; the carousel previews both hulls.
+
+Each twin fires matching ordinary bullets and 24-HP bubble projectiles. Player
+bullets and the purple laser can safely pop bubbles; bombs clear them. Same-color
+bubbles pass through one another. Opposite-color bubbles consume each other and
+explode with a 150-logical-pixel damage radius (55 armor damage), GPU shockwaves,
+sparks and camera shake. Bubbles are capped at 24 and recycle outside the field.
+
+Fission Cruisers split into exactly two ordinary scouts when destroyed. Scouts
+cannot split again; the elite remains eligible for the carrier's random elite pool.
+All new text supports Chinese, English and Japanese. Three generated transparent
+masters and their built-in imagegen prompts live in `Games/games/sky-strike/assets/twins-art.md`.
+The runtime pack keeps twins at 384px and the elite at 256px; 37 sprites total
+16,705,024 bytes, still below the 16 MiB pack budget. No frame texture uploads.
+
+Verification: `evidence/twin-boss/` contains real browser checks, screenshots,
+source/package hashes and native install/launch evidence for this revision.
 
 ## Boss balance
 

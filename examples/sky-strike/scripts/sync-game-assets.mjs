@@ -1,5 +1,5 @@
 import { copyFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
-export const runtimeAssets = ['assets/sprites.json', 'assets/sprites.rgba', ...Array.from({length:6},(_,i)=>`levels/level-0${i+1}.json`)];
+export const runtimeAssets = ['assets/sprites.json', 'assets/sprites.rgba', ...Array.from({length:7},(_,i)=>`levels/level-0${i+1}.json`)];
 /** This directory is generated: original art stays in Games, never in the app bundle. */
 export function syncGameAssets({
   source = new URL('../../../../Games/games/sky-strike/', import.meta.url),

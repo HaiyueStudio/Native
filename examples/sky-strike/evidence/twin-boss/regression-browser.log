@@ -1,0 +1,7 @@
+{"name":"twins-menu-zh","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"twins-menu-en","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"twins-menu-ja","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"balance","status":"passed","checks":["boss-bomb-resistance","proxy-bomb-resistance","serpent-shared-damage","serpent-bomb-deduplication","laser-relocation-after-attack","carrier-cadence-elite-cap"]}
+{"name":"hud-low","status":"passed","checks":["compact-vitals","lives-icons","conditional-boss","centered-score"]}
+{"name":"menu-zh","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"narrow","status":"passed","checks":["gui-start","skinned-bomb","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}

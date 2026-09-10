@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-10",
+  "nativeBuildExit": 0,
+  "codesignExit": 0,
+  "installExit": 0,
+  "runtimeSprites": 37,
+  "packBytes": 16705024,
+  "sourceSha256": {
+    "Games/games/sky-strike/SkyStrikeGame.ts": "6f3a015bd5df0540d2c50a84f3b64de851c539b631b1348b03a061f382ca1ba6",
+    "Games/games/sky-strike/rules.ts": "91b08452befc0ee1f990acc42b0322180f2858a818b38541b7ee16075962fa16",
+    "Games/games/sky-strike/hudVitals.ts": "47b2c33d756ca393fccf45a5c3dfc26cde43e2ccbc336d75307a18911d5dc48a",
+    "Games/games/sky-strike/presentation.ts": "6e7b8693f466376d402a8719c54222e79d4c0d08aa6f222c46337e3b61ce48c3",
+    "Games/games/sky-strike/levelCarousel.ts": "66fea6b0d8611719615d5f9b10be7542f4d68d3b6ffd53898bafa3aa5b882262",
+    "Games/games/sky-strike/i18n.ts": "f1dcf6812d054656aaecab61923e636a5b8e0f7d11bf4d152b87b367f8a5049b",
+    "Games/games/sky-strike/shipDetails.ts": "15236a21830aca08961e0ff0e38e5cbe91d26f85c114f6752b05bb12902969cc",
+    "Games/games/sky-strike/levels/loader.ts": "ec1e1f39211b08bbf1ab480a7d9734e49151e97589335087043fb9acbf011e17",
+    "Games/games/sky-strike/levels/level-07.json": "1efa9682927730c64ce200f3d784103345fb97e2f28637fa6934d7a116bc25d8",
+    "Games/games/sky-strike/assets/sprites.json": "78928690218b2dbc7278ec7dcd499e55b299e370c1932f72ae3b6e53a79dcbe4",
+    "Games/games/sky-strike/assets/sprites.rgba": "921216754a129439ae5c4f3da7e528b1d0dd7d7d4bf57ea2cd681cb618ea9a34"
+  },
+  "packageSha256": {
+    "skystrike": "fae273b2f519bebd7a3176e8e36158c78a868b13ad9809e85212239ad934e25f",
+    "app/bundle.mjs": "c2966b42e1664e4223613a9449ea04498d673323239d04eb7e0e9f9681f824f5",
+    "app/game-assets/levels/level-07.json": "1efa9682927730c64ce200f3d784103345fb97e2f28637fa6934d7a116bc25d8"
+  },
+  "gamesFullBuildExit": 0,
+  "builtGames": [
+    "2048",
+    "billiards-3d",
+    "billiards",
+    "calendar-puzzle",
+    "triangle-calendar-puzzle",
+    "entanglement-path",
+    "icosahedron-minesweeper",
+    "gravity-maze",
+    "match-3",
+    "neon-circuit",
+    "minesweeper",
+    "minecraft-lite",
+    "mugen",
+    "pad-simulator",
+    "pacman",
+    "piano",
+    "pong",
+    "sokoban-3d",
+    "sky-strike",
+    "spider-solitaire",
+    "sudoku",
+    "tetris",
+    "wfc-map"
+  ],
+  "deviceVerification": {
+    "capturedFrame": 120,
+    "observedFrames": 133,
+    "errors": 0,
+    "scope": "launch/render/resume; battle rules verified with real browser production game instance"
+  }
+}
