@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-10",
+  "bundleId": "org.haiyue.native.spidersolitaire",
+  "displayName": "蜘蛛纸牌",
+  "orientations": [
+    "UIInterfaceOrientationLandscapeLeft",
+    "UIInterfaceOrientationLandscapeRight"
+  ],
+  "configuredMsaaSamples": 4,
+  "codesignVerified": true,
+  "installSucceeded": true,
+  "executableSha256": "361a384be40cb476e0cd188ae11c9bf32ae23a9d30a2508b044f530f5992eab4",
+  "bundleSha256": "207302ef17e4599517a4ddd1f2df5ed5ccdab2029c82dd9c9cd5983b23819b24",
+  "vendorSha256": "f936a1037df13793cbd7634f327adac4e899811902f8af0eb9a36083dbf02063",
+  "iconSha256": "42640292c9d4acd609e1d128d96e76223843a9f281749df3918e4e8c5cb93151",
+  "sourceSha256": {
+    "Native/examples/spider-solitaire/src/main-page.ts": "1a0e10ae24c5abbfdc09cb2df21535a62ae3874515d649bbcb96cc43ce6d046d",
+    "Native/examples/spider-solitaire/src/app.ts": "9d3d5f735e94a8e68f4962c51651cc697ef850ede06b4406e36c74d0b3427a33",
+    "Native/examples/spider-solitaire/src/main-page.xml": "b4b9bf0679bd89dcdec01119cc5a4eb718a44c42d8368d868f8fce434588e921",
+    "Native/examples/spider-solitaire/src/app.css": "716d58c2797dbb1a7258ee43ab71c3ac0ce2850585622e91c5f5f04cceea29e2",
+    "Native/examples/spider-solitaire/orientation.json": "14e82624cc0d30eea88a5c9a1787fca5529c8fafbfbb51b6ec028fa7e6571685",
+    "Native/examples/spider-solitaire/package-lock.json": "ea7747761ebe69f1304aa6d71cfae4fc280b0916610e537e0e8daeec6af9bafb",
+    "Games/games/spider-solitaire/SpiderSolitaireGame.ts": "17e5f3980c393d60148a80dd5c1495a809c6d061ecc29f9e600839d520752365",
+    "Games/games/save/SingleSlotGameSave.ts": "c137aa86b2de9cc563593b549e84eba8e587edda1614c25297681852e7ed9d45",
+    "Native/bridge/display/orientation.ios.ts": "f5f77f34b22f15f59f877eb5e958a416e4b5619242ecbc085ede2f03518b3f92",
+    "Native/bridge/display/orientation-policy.ts": "6e876797b48e186bcab6b2b62d20ad015974c1af1ef982bfd8beaf8db5bad46e",
+    "Native/bridge/render/surface.ts": "f8c28f63b99c0ffa95a781cf78c5ac91f1716036292f8cf6dbfba90035cc3f5a",
+    "Native/bridge/render/view-rect.ios.ts": "7c7ff3ee86cdcc003aa41dcee078f2de66e984dc25d3fe13d7c5372830da46bc",
+    "Native/bridge/render/canvas-textures.ios.ts": "5d154bbde16a4ae6a039cf8189a6df076270a363b79e8410f6d8913de38ee155",
+    "Native/bridge/lifecycle/host.ts": "3241a5e8fd1476e7e29a558e37a012354a872c863fc6b57ae47c59fc63328494",
+    "Native/bridge/input/native-touch.ios.ts": "b9f4642773627e8b7a0a6fd53c69c10c016623f6497a2deba1a5e360d17f461a",
+    "Native/bridge/input/pointer-target.ts": "a0372f870e60bbf4167c37bbfe301407544cd62c699ec725f38af450c7d8aafa",
+    "Native/bridge/storage/settings-storage.ts": "cdf89d04154304911553c3e0b21591a95d551b2f92a9926cb0ffba057e9b975a",
+    "Native/examples/spider-solitaire/scripts/patch-canvas.mjs": "0e6239115a3422cdfd1de11c4bc860e3513a2aa8b4bc6f83e5fcfebc9b0bb6a8",
+    "Native/examples/spider-solitaire/src/startup-trace.ts": "784b211b7ad17d9b07be006213601a3464d5dfc9d15219d0f0e702376f022edb",
+    "Native/bridge/storage/clone-runtime.ts": "9bbd3693444c26473dac2b8060d107bd2bd54a455a91c163c391bfdc4dd66abb",
+    "Native/examples/spider-solitaire/src/core-js-pure.d.ts": "16db50eb7ff68d2a6a049c9d72775bc8b5130b717b4089ab6649cf90425c43ca",
+    "Native/examples/spider-solitaire/package.json": "bc62aa7f5a7cc763a8e7c49fe5d19fedfcdf5e4d254262129698b5c101c882c1"
+  },
+  "packagedJavaScriptSha256": {
+    "app/runtime.mjs": "c88decf76b39ec6b154cc2f32b2ec2215fca0c666070436f824d77b502591c09",
+    "app/vendor.mjs": "5a21144c40eb52c0df86e643787d8543fbd3a02f7721e86a2ab0218297074980",
+    "app/bundle.mjs": "207302ef17e4599517a4ddd1f2df5ed5ccdab2029c82dd9c9cd5983b23819b24",
+    "app/tns_modules/inspector_modules.mjs": "b6154ce0e7d628dfef40d6e340dd842fd2c744617eaa459581265243d1316aff"
+  },
+  "iteration": "Autosave status and native structuredClone compatibility",
+  "userValidation": {
+    "interaction": "操作正常",
+    "subsequentChange": "More saturated green felt; device capture verified, no interaction changes.",
+    "autosave": "自动保存功能已经正确了"
+  },
+  "autoSaveCompatibility": {
+    "package": "core-js-pure",
+    "version": "3.50.0",
+    "missingOperation": "structuredClone"
+  }
+}

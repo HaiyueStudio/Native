@@ -1,0 +1,35 @@
+
+> @haiyue/native-ios-pbr-orbit@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Engine typed-array offsets reach native without losing count or copying the view (3.011ms)
+✔ ordinary offset arrays and bindings without offsets retain Canvas behavior (0.693009ms)
+✔ Canvas can extend a frozen Engine request without mutating Engine feature policy (1.619042ms)
+✔ default device requests get independent mutable feature arrays (0.191759ms)
+✔ native handle zero cancels and a stale callback cannot fire (1.76137ms)
+✔ callbacks use the engine clock and can schedule exactly one following frame (0.232571ms)
+✔ native callbacks report errors to the host and release their handle (0.216906ms)
+✔ five resume cycles clear input before stopping, refresh layout, and keep one callback (3.43168ms)
+✔ background during asynchronous init prevents run until foreground (1.247608ms)
+✔ dispose during init cannot bind input or start a late frame loop (0.606149ms)
+✔ dispose removes listeners and input before GPU teardown; stale lifecycle events do nothing (0.570036ms)
+✔ GPU failure cancels input and refuses the remainder of the failed frame (1.179576ms)
+✔ failed scene initialization releases scene resources once before GPU teardown (0.94806ms)
+✔ packed production OrbitControl gives identical logical drag at different DPR and safe-area origins (4.421387ms)
+✔ up, cancel and suspend stop Orbit; stale moves cannot resume the drag (1.398783ms)
+✔ second finger never reaches pinch, and lifting primary does not adopt the held finger (0.479261ms)
+✔ batch downs select one primary and duplicate downs cannot reset its last position (0.434945ms)
+✔ captured drag continues outside the view, clamps both poles, and never pans or zooms (0.378365ms)
+✔ dispose ends active gesture and removes listeners; rebuilding does not double rotation (0.406131ms)
+✔ native identity compares underlying touch across new wrappers and never reuses IDs (0.373056ms)
+✔ Page loaded before Canvas ready waits, and duplicate ready/loaded do not add hosts (1.78957ms)
+✔ returning to the same ready Canvas recreates exactly one host after permanent unload (0.725837ms)
+✔ background Page unload retains the paused host, while exit disposes it (0.244668ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 698.96025

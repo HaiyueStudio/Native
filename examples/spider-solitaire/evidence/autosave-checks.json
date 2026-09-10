@@ -1,0 +1,21 @@
+{
+  "focusedSpiderAndSave": {
+    "tests": 15,
+    "passed": 15
+  },
+  "native": {
+    "tests": 7,
+    "passed": 7
+  },
+  "gamesTypecheck": "passed",
+  "nativeTypecheck": "passed",
+  "browser": "passed: GUI operations and autosave restart preserve all card order and counters",
+  "fullGamesBuild": "passed",
+  "fullGamesTests": {
+    "tests": 447,
+    "passed": 417,
+    "failed": 10,
+    "skipped": 20,
+    "failures": "Existing MUGEN fixture/oracle and UI virtual-list checks; no Spider or save failures."
+  }
+}

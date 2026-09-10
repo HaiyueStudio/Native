@@ -1,0 +1,17 @@
+✔ Spider Solitaire clones nested card state without sharing references (1.219417ms)
+✔ Spider Solitaire shuffle supports deterministic random sources (0.917068ms)
+✔ Spider Solitaire save validation rejects malformed columns and cards (0.386601ms)
+✔ Spider Solitaire builds 104-card decks for all three suit difficulties (0.769865ms)
+✔ Spider Solitaire only moves and completes descending runs of one suit (0.390979ms)
+✔ Spider Solitaire draws canvas card textures after opaque card bodies (2.769083ms)
+✔ Spider Solitaire exposes one, two, and four-suit difficulty controls (0.660598ms)
+✔ Spider Solitaire reuses scene entities and geometry during drag and deal animation (0.686ms)
+✔ Spider Solitaire delegates pointer and keyboard input to engine components (1.231833ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 180.393957

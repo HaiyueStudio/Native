@@ -1,9 +1,11 @@
 import { Screen } from '@nativescript/core';
 import { Canvas, GPU, GPUAdapter, GPUCanvasContext } from '@nativescript/canvas';
 import type { HaiyueEngine } from '@haiyue/engine';
+import { nativeViewRect } from './view-rect.ios';
 import { copyDeviceDescriptor } from './device-descriptor';
 
 type EngineOptions = ConstructorParameters<typeof HaiyueEngine>[0];
+export type NativeCanvasInput = Pick<HTMLCanvasElement, 'addEventListener' | 'removeEventListener' | 'setPointerCapture' | 'releasePointerCapture'>;
 
 export class NativeSurface {
   readonly pixelRatio = Math.min(Screen.mainScreen.scale, 2);
@@ -13,7 +15,7 @@ export class NativeSurface {
   private acquired = false;
   presentedFrames = 0;
 
-  constructor(readonly view: Canvas, private readonly report: (event: string, detail: unknown) => void) {
+  constructor(readonly view: Canvas, private readonly report: (event: string, detail: unknown) => void, private readonly input?: NativeCanvasInput) {
     // Canvas.getContext('webgpu') uses this entry point internally, even when
     // Engine receives its own injected provider. Use the same native GPU.
     const navigatorObject = globalThis.navigator ?? {};
@@ -44,7 +46,7 @@ export class NativeSurface {
     getPreferredCanvasFormat: () => this.gpu.getPreferredCanvasFormat(),
   };
 
-  get hasLayout(): boolean { return this.view.clientWidth > 0 && this.view.clientHeight > 0; }
+  get hasLayout(): boolean { return nativeViewRect(this.view).width > 0 && nativeViewRect(this.view).height > 0; }
 
   engineOptions(): Pick<EngineOptions, 'canvas' | 'gpu' | 'devicePixelRatio'> {
     const self = this;
@@ -66,18 +68,18 @@ export class NativeSurface {
       },
     };
     const canvas = {
+      focus: () => (self.view.nativeViewProtected as UIView | undefined)?.becomeFirstResponder(),
+      addEventListener: (...args: Parameters<NativeCanvasInput['addEventListener']>) => self.input?.addEventListener(...args),
+      removeEventListener: (...args: Parameters<NativeCanvasInput['removeEventListener']>) => self.input?.removeEventListener(...args),
+      setPointerCapture: (id: number) => self.input?.setPointerCapture(id),
+      releasePointerCapture: (id: number) => self.input?.releasePointerCapture(id),
       get width() { return self.view.width; },
       set width(value: number) { self.view.width = value; },
       get height() { return self.view.height; },
       set height(value: number) { self.view.height = value; },
-      get clientWidth() { return self.view.clientWidth; },
-      get clientHeight() { return self.view.clientHeight; },
-      getBoundingClientRect() {
-        const location = self.view.getLocationInWindow();
-        const width = self.view.clientWidth, height = self.view.clientHeight;
-        const x = location?.x ?? 0, y = location?.y ?? 0;
-        return { x, y, width, height, left: x, top: y, right: x + width, bottom: y + height };
-      },
+      get clientWidth() { return nativeViewRect(self.view).width; },
+      get clientHeight() { return nativeViewRect(self.view).height; },
+      getBoundingClientRect() { return nativeViewRect(self.view); },
       getContext(type: string) { return type === 'webgpu' ? context : null; },
     };
     // These are the two audited structural boundaries. Engine has a browser

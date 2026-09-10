@@ -1,0 +1,26 @@
+✔ shared game persistence has one stable autosave slot (1.120842ms)
+✔ shared validation primitives reject incomplete values (0.265596ms)
+✔ shared persistence delegates storage and slot limits to the engine save facade (7.708107ms)
+✔ shared autosaves are serialized and the newest state is restored (5.956783ms)
+[autosave-status save] 自动保存失败。 Error: storage unavailable
+    at backend.write (file:///Users/qingque/Desktop/HaiyueStudio/Games/games/test/single-slot-save.test.mjs:96:51)
+    at file:///Users/qingque/Desktop/HaiyueStudio/Games/node_modules/@haiyue/engine/dist/save.js:312:41
+✔ every manifest game uses the engine save facade with no direct storage access (71.891716ms)
+✔ autosave status follows the newest queued write and recovers after a storage failure (4.599761ms)
+✔ Spider Solitaire clones nested card state without sharing references (2.077462ms)
+✔ Spider Solitaire shuffle supports deterministic random sources (1.476836ms)
+✔ Spider Solitaire save validation rejects malformed columns and cards (0.43043ms)
+✔ Spider Solitaire builds 104-card decks for all three suit difficulties (1.012308ms)
+✔ Spider Solitaire only moves and completes descending runs of one suit (0.43185ms)
+✔ Spider Solitaire draws canvas card textures after opaque card bodies (4.97954ms)
+✔ Spider Solitaire exposes one, two, and four-suit difficulty controls (0.942131ms)
+✔ Spider Solitaire reuses scene entities and geometry during drag and deal animation (0.77263ms)
+✔ Spider Solitaire delegates pointer and keyboard input to engine components (1.797563ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 274.059969

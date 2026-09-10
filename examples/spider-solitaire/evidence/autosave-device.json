@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "userConfirmation": "自动保存功能已经正确了",
+  "savedRevision": 6,
+  "savedMoves": 5,
+  "savedStock": 50,
+  "checks": {
+    "columnsAndFaceUp": true,
+    "stockCount": true,
+    "difficulty": true,
+    "moves": true,
+    "completedRuns": true,
+    "savedStatus": true
+  },
+  "sampleFrames": 1320,
+  "errors": []
+}

@@ -8,7 +8,7 @@ const source = readFileSync(new URL('../../../bridge/lifecycle/host.ts', import.
 const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
 const settle = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
 
-function setup({ delayed = false } = {}) {
+function setup({ delayed = false, sceneFailure = false } = {}) {
   const application = new EventEmitter();
   Object.assign(application, { suspendEvent: 'suspend', resumeEvent: 'resume' });
   const view = new EventEmitter();
@@ -51,7 +51,10 @@ function setup({ delayed = false } = {}) {
   };
   const exports = {};
   Function('require', 'exports', 'console', compiled)(id => dependencies[id], exports, { log(line) { events.push(JSON.parse(line.slice(line.indexOf('{')))); }, error() {} });
-  const host = new exports.NativeRenderHost(view, () => {}, { bindInput: () => input });
+  const host = new exports.NativeRenderHost(view, () => {}, { bindInput: () => input,
+    prepareScene: sceneFailure ? () => { throw new Error('scene initialization failed'); } : undefined,
+    disposeScene: () => sequence.push('dispose-scene'),
+  });
   return { host, application, view, input, frames, sequence, events, engine: () => engine, releaseInit: () => releaseInit() };
 }
 
@@ -113,4 +116,13 @@ test('GPU failure cancels input and refuses the remainder of the failed frame', 
   assert.equal(s.input.disposed, true);
   assert.equal(s.frames.pendingCount, 0);
   assert.equal(s.engine().state, 'destroyed');
+});
+
+ test('failed scene initialization releases scene resources once before GPU teardown', async () => {
+  const s = setup({ sceneFailure: true }); await settle();
+  assert.equal(s.events.some(e => e.event === 'input-ready'), false);
+  assert.equal(s.sequence.filter(call => call === 'dispose-scene').length, 1);
+  assert.ok(s.sequence.indexOf('dispose-scene') < s.sequence.indexOf('destroy-engine'));
+  s.host.dispose();
+  assert.equal(s.sequence.filter(call => call === 'dispose-scene').length, 1);
 });

@@ -1,0 +1,25 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import ts from 'typescript';
+import { OrbitControl, SphericalTransform3D } from '@haiyue/engine';
+const source = readFileSync(new URL('../../../bridge/input/pointer-target.ts', import.meta.url), 'utf8');
+const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2020 } }).outputText;
+const { OrbitPointerTarget } = await import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`);
+test('multi-pointer target drives real Engine OrbitControl pinch and cancels both pointers', () => {
+  const target = new OrbitPointerTarget(() => ({ x: 59, y: 0, width: 814, height: 409 }), 'all');
+  const camera = new SphericalTransform3D({ radius: 720, theta: 0, phi: Math.PI * 0.15 });
+  const orbit = new OrbitControl(target, camera, { minRadius: 540, maxRadius: 1080 });
+  target.handle('down', [{ id: 1, x: 300, y: 200 }, { id: 2, x: 500, y: 200 }]);
+  target.handle('move', [{ id: 1, x: 295, y: 200 }]);
+  target.handle('move', [{ id: 2, x: 510, y: 200 }]);
+  assert.ok(camera.radius < 720);
+  assert.equal(camera.theta, 0);
+  assert.equal(camera.phi, Math.PI * 0.15);
+  target.suspend(); target.resume();
+  const radius = camera.radius;
+  target.handle('move', [{ id: 2, x: 700, y: 200 }]);
+  assert.equal(camera.radius, radius);
+  orbit.dispose();
+  assert.equal(target.snapshot().listenerCount, 0);
+});

@@ -1,0 +1,15 @@
+{
+  "engineRevision": "cc1e607edc8c86baf47642eb7034a38b0d3eee06",
+  "engineWorktree": "modified local development candidate; not published",
+  "package": "@haiyue/engine",
+  "version": "0.1.0",
+  "tarball": "haiyue-engine-0.1.0.tgz",
+  "sha256": "f936a1037df13793cbd7634f327adac4e899811902f8af0eb9a36083dbf02063",
+  "changes": "Add injectable GUI font canvas factory and RGBA atlas readback; preserve browser defaults and root exports. ADR 0100.",
+  "sourceSha256": {
+    "engine/src/font/BitmapFontBuilder.ts": "e943af2435f7686134b14e82635c4765c60db542fabd9dcd4183d820502fd3de",
+    "engine/src/gui/systems/GuiSystem.ts": "9f520ffb66265eccbbe42a6222fdf9ecbb97e9f43d3748f4f4531998867e8bfb",
+    "engine/src/gui/rendering/GuiRenderer.ts": "73a3e33accac194bc99e270d88ce837313c1d833d919ac9abf023e60b71eb2e1",
+    "engine/src/gui/rendering/GuiTextRenderer.ts": "be301427d7523f28b86a96019bd025ac01e8a73f3105b33af8b777f6d8eb1bc9"
+  }
+}

@@ -1,7 +1,7 @@
 import { Application, File, knownFolders, path } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { HaiyueEngine } from '@haiyue/engine';
-import { NativeSurface } from '../render/surface';
+import { NativeSurface, type NativeCanvasInput } from '../render/surface';
 import { captureSurfaceFrame, isFrameCaptureRequested } from '../render/frame-capture.ios';
 import { nativeFrames, installNativeFrameRuntime } from './runtime';
 
@@ -13,8 +13,11 @@ export interface NativeHostInput {
 }
 
 export interface NativeRenderHostOptions {
+  canvasInput?: NativeCanvasInput;
+  engineOptions?: Pick<ConstructorParameters<typeof HaiyueEngine>[0], 'clearColor' | 'renderProfile' | 'msaaSamples'>;
   bindInput?: (engine: HaiyueEngine, report: (event: string, detail: unknown) => void) => NativeHostInput;
   prepareScene?: (engine: HaiyueEngine) => unknown | Promise<unknown>;
+  disposeScene?: () => void;
   diagnosticName?: string;
   capture?: { requested: boolean; file: string };
 }
@@ -28,6 +31,7 @@ export class NativeRenderHost {
   private failed = false;
   private generation = 0;
   private input: NativeHostInput | null = null;
+  private sceneDisposed = false;
   private resumeCount = 0;
   private observedDevice: GPUDevice | null = null;
   private captureRequested: boolean;
@@ -37,7 +41,7 @@ export class NativeRenderHost {
   constructor(private readonly view: Canvas, private readonly status: (text: string) => void, private readonly options: NativeRenderHostOptions = {}) {
     this.captureRequested = options.capture?.requested ?? isFrameCaptureRequested();
     this.logFile = File.fromPath(path.join(knownFolders.documents().path, `${options.diagnosticName ?? 'g02'}-host.jsonl`));
-    this.surface = new NativeSurface(view, this.report);
+    this.surface = new NativeSurface(view, this.report, options.canvasInput);
     installNativeFrameRuntime(error => this.fail(error));
     Application.on(Application.suspendEvent, this.suspend);
     Application.on(Application.resumeEvent, this.resume);
@@ -69,7 +73,7 @@ export class NativeRenderHost {
     const generation = ++this.generation;
     this.status('正在初始化原生 WebGPU…');
     try {
-      const engine = new HaiyueEngine({ ...this.surface.engineOptions(), renderProfile: 'simple', msaaSamples: 1, timestampQuery: false, recoverDeviceLost: false, clearColor: { r: 0.025, g: 0.055, b: 0.095, a: 1 } });
+      const engine = new HaiyueEngine({ ...this.surface.engineOptions(), renderProfile: 'simple', msaaSamples: 1, timestampQuery: false, recoverDeviceLost: false, clearColor: { r: 0.025, g: 0.055, b: 0.095, a: 1 }, ...this.options.engineOptions });
       this.engine = engine;
       await engine.init();
       if (this.disposed || this.failed || generation !== this.generation) { engine.destroy(); return; }
@@ -154,6 +158,7 @@ export class NativeRenderHost {
     catch (error) { this.report('recovery-cleanup-error', { message: String(error) }); }
     try {
       this.disposeInput();
+      this.disposeScene();
       this.removeDeviceListener();
       engine.destroy();
       if (this.engine === engine) this.engine = null;
@@ -173,11 +178,18 @@ export class NativeRenderHost {
     this.input = null;
   }
 
+  private disposeScene(): void {
+    if (this.sceneDisposed) return;
+    this.sceneDisposed = true;
+    this.options.disposeScene?.();
+  }
+
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
     ++this.generation;
     this.disposeInput();
+    this.disposeScene();
     Application.off(Application.suspendEvent, this.suspend);
     Application.off(Application.resumeEvent, this.resume);
     this.view.off('layoutChanged', this.layout);

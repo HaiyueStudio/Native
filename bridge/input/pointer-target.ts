@@ -17,7 +17,7 @@ export class OrbitPointerTarget {
   private paused = false;
   private disposed = false;
 
-  constructor(private readonly rect: () => LogicalRect) {}
+  constructor(private readonly rect: () => LogicalRect, private readonly mode: 'primary' | 'all' = 'primary') {}
 
   getBoundingClientRect() {
     const r = this.rect();
@@ -36,9 +36,13 @@ export class OrbitPointerTarget {
   }
 
   setPointerCapture(id: number): void {
-    if (id !== this.primary || !this.touches.has(id)) throw new Error('Cannot capture an inactive native touch.');
+    if ((this.mode === 'primary' && id !== this.primary) || !this.touches.has(id)) throw new Error('Cannot capture an inactive native touch.');
     // UIKit's recognizer owns this UITouch through end/cancel even outside its view.
     this.captured = id;
+  }
+
+  releasePointerCapture(id: number): void {
+    if (this.captured === id) this.captured = null;
   }
 
   handle(action: TouchAction, points: readonly TouchPoint[]): void {
@@ -48,13 +52,13 @@ export class OrbitPointerTarget {
       if (action === 'down') {
         if (this.touches.has(point.id)) continue;
         this.touches.set(point.id, point);
-        if (this.primary !== null) continue;
-        this.primary = point.id;
+        if (this.primary !== null && this.mode === 'primary') continue;
+        if (this.primary === null) this.primary = point.id;
         this.emit('pointerdown', point);
       } else {
         if (!this.touches.has(point.id)) continue;
         this.touches.set(point.id, point);
-        if (point.id === this.primary) this.emit(`pointer${action}`, point);
+        if (this.mode === 'all' || point.id === this.primary) this.emit(`pointer${action}`, point);
         if (action === 'up' || action === 'cancel') {
           this.touches.delete(point.id);
           if (point.id === this.primary) { this.primary = null; this.captured = null; }
@@ -65,7 +69,8 @@ export class OrbitPointerTarget {
 
   cancel(): void {
     const point = this.primary === null ? undefined : this.touches.get(this.primary);
-    if (point) this.emit('pointercancel', point);
+    if (this.mode === 'all') { for (const touch of this.touches.values()) this.emit('pointercancel', touch); }
+    else if (point) this.emit('pointercancel', point);
     this.touches.clear();
     this.primary = null;
     this.captured = null;
