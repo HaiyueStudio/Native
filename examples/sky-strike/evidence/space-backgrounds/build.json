@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-10",
+  "nativeBuildExit": 0,
+  "codesignExit": 0,
+  "installExit": 0,
+  "runtimeSprites": 46,
+  "packBytes": 25224704,
+  "battleAtlasGpuBytes": 31129152,
+  "sourceSha256": {
+    "Games/games/sky-strike/SkyStrikeGame.ts": "584eb509fdef2070cebb426a84f0200548ffe0dc9fb6118c646eb7b407b1656f",
+    "Games/games/sky-strike/spaceBackdrop.ts": "04ece43fd3b4e4c369c7f957e48c3d9df510fc5060536434ac5f1edadd3c81c4",
+    "Games/games/sky-strike/battleLayer.ts": "d3e65f707340bb856443902ea31270ce264745708efaa1db8f72a9df1b47a1a5",
+    "Games/games/sky-strike/assets/sprites.json": "5a867eb2f25b2767345c2a1cff636cb727707fb30d0fecd83f740d51a5142ead",
+    "Games/games/sky-strike/assets/sprites.rgba": "c613f3f1da1ca242c2ddb3a181a634eca19779bbc6c623feca28f2c14e093a13",
+    "Games/scripts/pack-sky-sprites.py": "ca25bbfde2a7972a6a8e2d5ea667ed50ed235f1611165484c05fad915bb811bd"
+  },
+  "packageSha256": {
+    "skystrike": "1258ebef0c08cdd81b2309be9354a7800da7952b4759d819c5684a33649845b2",
+    "app/bundle.mjs": "26afe583e69fc5fd8a644c506a3bd350049a2db1c8d7aba2bc71a2199941ec01"
+  },
+  "fullRepositoryTests": {
+    "total": 476,
+    "pass": 437,
+    "fail": 12,
+    "cancelled": 7,
+    "skipped": 20
+  },
+  "fullBuild": {
+    "exit": 1,
+    "reason": "Unrelated minecraft-lite marker timeout (180 seconds)."
+  },
+  "deviceVerification": {
+    "capturedFrame": 120,
+    "observedFrames": 9600,
+    "errors": 0,
+    "scope": "launch/render/atlas readiness; background combat rendering verified in real browser fixtures"
+  },
+  "skyStrikeBrowserBuildExit": 0
+}

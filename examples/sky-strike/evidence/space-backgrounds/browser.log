@@ -1,0 +1,13 @@
+{"name":"space-1","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-2","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-3","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-4","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-5","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-6","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-7","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-transition","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-transition-end","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-wrap-before","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-wrap-after","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-wide","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}
+{"name":"space-narrow","status":"passed","checks":["theme-background","continuous-level-fade","paused-background","static-gpu-textures","single-canvas"]}

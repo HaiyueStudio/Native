@@ -1,0 +1,37 @@
+(node:4826) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ 2: all layers have order four and exact inverses (6.542495ms)
+✔ 2: mixed scramble and player turns reverse exactly without coordinate drift (8.720857ms)
+✔ 3: all layers have order four and exact inverses (27.57473ms)
+✔ 3: mixed scramble and player turns reverse exactly without coordinate drift (9.580407ms)
+✔ 4: all layers have order four and exact inverses (7.707506ms)
+✔ 4: mixed scramble and player turns reverse exactly without coordinate drift (18.279505ms)
+✔ mirror: all layers have order four and exact inverses (2.935227ms)
+✔ mirror: mixed scramble and player turns reverse exactly without coordinate drift (11.810819ms)
+✔ mirror is offset-cut geometry that actually changes shape (2.295255ms)
+✔ scramble is deterministic, valid, and avoids trivial cancellations (0.642864ms)
+✔ invalid move leaves state and history untouched (0.525389ms)
+✔ portrait and landscape keep controls and interaction stage disjoint (0.307314ms)
+✔ animation commits once, rejects overlapping input, and stop completes the current transaction (0.628938ms)
+✔ 2: animated shuffle, stop, user turn, undo and history restore stay consistent (0.931517ms)
+✔ 3: animated shuffle, stop, user turn, undo and history restore stay consistent (0.811559ms)
+✔ 4: animated shuffle, stop, user turn, undo and history restore stay consistent (3.234008ms)
+✔ mirror: animated shuffle, stop, user turn, undo and history restore stay consistent (1.813734ms)
+✔ mirror maintains compatible cut planes after arbitrary mixed-axis turns (12.338861ms)
+✔ shared game persistence has one stable autosave slot (1.385601ms)
+✔ shared validation primitives reject incomplete values (0.347781ms)
+✔ shared persistence delegates storage and slot limits to the engine save facade (9.299011ms)
+✔ shared autosaves are serialized and the newest state is restored (8.186727ms)
+[autosave-status save] 自动保存失败。 Error: storage unavailable
+    at backend.write (file:///Users/qingque/Desktop/HaiyueStudio/Games/games/test/single-slot-save.test.mjs:96:51)
+    at file:///Users/qingque/Desktop/HaiyueStudio/Games/node_modules/@haiyue/engine/dist/save.js:312:41
+✔ every manifest game uses the engine save facade with no direct storage access (84.252704ms)
+✔ autosave status follows the newest queued write and recovers after a storage failure (4.610362ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346.094817

@@ -1,0 +1,14 @@
+(node:99079) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all seven missions own a distinct background; some include independently moving planets (6.494658ms)
+✔ scroll tiles cover the full field without gaps or unmatched seams across many wrap boundaries (1.726427ms)
+✔ crossfade preserves total weight, supports interruptions, settles and resets cleanly (1.162899ms)
+✔ space layers keep independent scroll speeds and depth, with bounded immutable sprite commands (0.831115ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 263.964239

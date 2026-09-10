@@ -1,0 +1,89 @@
+
+> @haiyue/games-repository@0.1.0 build
+> node scripts/build-games.mjs
+
+
+> rollup game 2048
+
+games/2048/main.ts → games/2048/bundle.js...
+created games/2048/bundle.js in 52.4s
+
+> rollup game billiards-3d
+
+games/billiards-3d/main.ts → games/billiards-3d/bundle.js...
+created games/billiards-3d/bundle.js in 48.7s
+
+> rollup game billiards
+
+games/billiards/main.ts → games/billiards/bundle.js...
+created games/billiards/bundle.js in 45.3s
+
+> rollup game calendar-puzzle
+
+games/calendar-puzzle/main.ts → games/calendar-puzzle/bundle.js...
+created games/calendar-puzzle/bundle.js in 35.9s
+
+> rollup game triangle-calendar-puzzle
+
+games/triangle-calendar-puzzle/main.ts → games/triangle-calendar-puzzle/bundle.js...
+created games/triangle-calendar-puzzle/bundle.js in 25.4s
+
+> rollup game entanglement-path
+
+games/entanglement-path/main.ts → games/entanglement-path/bundle.js...
+created games/entanglement-path/bundle.js in 44.8s
+
+> rollup game icosahedron-minesweeper
+
+games/icosahedron-minesweeper/main.ts → games/icosahedron-minesweeper/bundle.js...
+created games/icosahedron-minesweeper/bundle.js in 42.5s
+
+> rollup game gravity-maze
+
+games/gravity-maze/main.ts → games/gravity-maze/dist...
+created games/gravity-maze/dist in 21.6s
+
+> rollup game match-3
+
+games/match-3/main.ts → games/match-3/bundle.js...
+created games/match-3/bundle.js in 1m 37s
+
+> rollup game neon-circuit
+
+games/neon-circuit/main.ts → games/neon-circuit/bundle.js...
+created games/neon-circuit/bundle.js in 28.9s
+
+> rollup game minesweeper
+
+games/minesweeper/main.ts → games/minesweeper/bundle.js...
+created games/minesweeper/bundle.js in 18.1s
+
+> rollup game minecraft-lite
+
+games/minecraft-lite/main.ts → games/minecraft-lite/bundle.js...
+[rollup-runner] Timed out after 180000ms before game minecraft-lite produced games/minecraft-lite/bundle.js; sending SIGTERM.
+Rollup game minecraft-lite timed out before producing games/minecraft-lite/bundle.js.
+file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/shared-rollup-runner.mjs:160
+    throw new RollupRunnerError(
+          ^
+
+RollupRunnerError: Rollup game minecraft-lite timed out before producing games/minecraft-lite/bundle.js.
+    at runRollupOnce (file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/shared-rollup-runner.mjs:160:11)
+    at async buildGame (file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/build-games.mjs:31:5)
+    at async file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/build-games.mjs:21:27 {
+  kind: 'marker-timeout',
+  result: {
+    label: 'game minecraft-lite',
+    expectedOutputs: [ 'games/minecraft-lite/bundle.js' ],
+    observedOutputs: [],
+    markersComplete: false,
+    lingeringHandles: false,
+    termination: 'sigterm',
+    exitCode: null,
+    exitSignal: 'SIGTERM',
+    pid: 3231,
+    elapsedMs: 220519
+  }
+}
+
+Node.js v24.19.0

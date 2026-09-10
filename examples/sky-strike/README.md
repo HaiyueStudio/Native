@@ -26,6 +26,32 @@ its pinned local Extensions and animation-spec tarballs are bundled in `vendor/`
 No new Engine API or shader is introduced. The bridge supplies the standard
 `GPUColorWrite` mask when Canvas 2.1.x does not expose it.
 
+## Layered scrolling space
+
+Each of the seven missions has its own generated 512px starfield/nebula texture:
+navy, crimson, violet, amber, teal, emerald and red/blue. Independent 384px ice-planet
+and ringed-planet layers decorate selected missions. Exact built-in imagegen prompts
+and master PNG names are recorded in `Games/games/sky-strike/assets/space-art.md`.
+
+`spaceBackdrop.ts` composes far stars at 7 logical pixels/second, diffuse dust at
+19 px/s, planets at 11 px/s, and the existing faster foreground particles. Layers
+respond differently to the horizontal camera and player movement, while the
+portrait viewport and wider-screen margins retain their existing rules. Mirrored
+vertical repeat guarantees shared edge texels; planet recycling occurs fully
+outside the viewport. Pause freezes the new layers and transition clock.
+
+Completing a mission starts a 9-second smooth alpha crossfade to the next theme.
+Travel continues during the fade; normalized weights preserve exposure and remain
+continuous if another transition interrupts. A fresh sortie starts directly in its
+selected theme. All textures upload once at startup; animation changes only draw
+transforms and opacity, with no raster canvas work or per-frame texture uploads.
+
+The pack contains 46 sprites / 25,224,704 bytes (26 MiB budget), an 8,519,680-byte
+increase for nine new layers. Measured battlefield atlas allocation is 31,129,152
+bytes across three 2048-limited pages, excluding GUI/fonts and render targets.
+See `evidence/space-backgrounds/` for screenshots, continuity checks and build/device
+verification. Raw PNG masters are not duplicated in the native app bundle.
+
 ## Seventh mission: Binary Nova
 
 The level-07 timeline introduces the Fission Cruiser, then spawns Chromatic Twins
@@ -46,8 +72,9 @@ Fission Cruisers split into exactly two ordinary scouts when destroyed. Scouts
 cannot split again; the elite remains eligible for the carrier's random elite pool.
 All new text supports Chinese, English and Japanese. Three generated transparent
 masters and their built-in imagegen prompts live in `Games/games/sky-strike/assets/twins-art.md`.
-The runtime pack keeps twins at 384px and the elite at 256px; 37 sprites total
-16,705,024 bytes, still below the 16 MiB pack budget. No frame texture uploads.
+The runtime pack keeps twins at 384px and the elite at 256px. Before the scrolling
+background expansion, these 37 sprites occupied 16,705,024 bytes; current totals
+are documented below. No frame texture uploads.
 
 Verification: `evidence/twin-boss/` contains real browser checks, screenshots,
 source/package hashes and native install/launch evidence for this revision.
@@ -136,7 +163,7 @@ npm test
 IOS_DEVICE_UDID=<connected-device> npm run build:device
 ```
 
-The prepare script stages only the RGBA pack, its index and six level JSON files
+The prepare script stages only the RGBA pack, its index and seven level JSON files
 into ignored `src/game-assets`, which webpack bundles as `app/game-assets`. It
 removes stale generated art from staging/output directories. Original PNG masters
 remain in Games for editing; they are not duplicated in the app bundle. Runtime

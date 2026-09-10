@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-09-10T10:24:27.885210+00:00",
+  "bundleId": "org.haiyue.native.rubikscube",
+  "oldDemoRemovedWithUserApproval": true,
+  "installed": true,
+  "launched": true,
+  "backend": "Canvas/wgpu/Metal",
+  "gpu": "Apple A16 GPU",
+  "presentedFrames": 4920,
+  "observedPixelSizes": [
+    [
+      860,
+      1678
+    ]
+  ],
+  "observedKinds": [
+    "2",
+    "3",
+    "mirror"
+  ],
+  "observedHistoryRestoreToSolved": true,
+  "errors": [],
+  "frameCapture": "not collected; app was already running before diagnostic launch",
+  "landscapeDeviceTest": "not yet observed"
+}

@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-09-10T10:17:40.797219+00:00",
+  "kind": "local-development-validation",
+  "deviceBuild": true,
+  "installation": "installed and launched on iPhone; old ios-pbr-orbit Demo removed with explicit user approval",
+  "sha256": {
+    "Games/games/rubiks-cube/main.ts": "142595966376cd032d01cfecbb4f3aa7f89f343528fc04d1e8263989c78b889c",
+    "Games/games/rubiks-cube/hud.ts": "1c06710f6d3528c4c4a0c2252c5d8c51fbe2f598382f69d5cec4e65717333637",
+    "Games/games/rubiks-cube/model.ts": "12e713b14e6a2edd977103e9bc3585da7014d04dccce91453da7cbae36caae52",
+    "Games/games/rubiks-cube/CubeGame.ts": "732a550d2554e830aaae000633e61af0e659f358f1ee7c35a6ff537829a3ec71",
+    "Games/games/rubiks-cube/session.ts": "ef6195720e6ca89f8fa9af834943376e6581c8db2e2399f4bd3d0570cf011ecd",
+    "Games/games/rubiks-cube/layout.ts": "0d4cac52b00cad4549c606e9117c2641a6c53ac6366096a3e9b96437e05045b3",
+    "Games/games/rubiks-cube/verification.ts": "bc88730567369c4985a9eaab58167bf176ca5cef044eca25d87f279996499b32",
+    "Native/examples/rubiks-cube/src/main-page.ts": "e26562849abe53fa5c7989364f71b165819d9c290a5df64b9812751adfa928a9",
+    "Native/examples/rubiks-cube/src/app.ts": "9d3d5f735e94a8e68f4962c51651cc697ef850ede06b4406e36c74d0b3427a33",
+    "Native/examples/rubiks-cube/src/core-js-pure.d.ts": "16db50eb7ff68d2a6a049c9d72775bc8b5130b717b4089ab6649cf90425c43ca",
+    "Native/examples/rubiks-cube/orientation.json": "b44904489c912b7475219bc62939ef531a58d9ac64fa51597c3ced1f7901cb62",
+    "Native/examples/rubiks-cube/package-lock.json": "d9348dbd51e7762371107e45a3516816d33c915a3d6418b60cdc5532eef96733",
+    "Games/games/rubiks-cube/bundle.js": "80eaddc11542955086b6f1e71a983902f9ac34c4fba1bce6c205ea2b42fa37c2"
+  },
+  "deviceVerification": "iphone-verification.json"
+}

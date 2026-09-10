@@ -1,0 +1,5 @@
+{
+  "meanAbsoluteChannelDifference": 0.0852081046012576,
+  "scale": 255,
+  "note": "Two real GPU renders 2 ms apart across a mirrored texture-cycle boundary; HUD/stars remain live in the fixture."
+}

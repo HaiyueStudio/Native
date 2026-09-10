@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-09-10T10:39:30.557815+00:00",
+  "kind": "rounded-perspective-half-gap-update",
+  "bodyGap": 0.0275,
+  "faceGap": 0.06,
+  "deviceBuild": "BUILD SUCCEEDED",
+  "installed": true,
+  "sha256": {
+    "Games/games/rubiks-cube/main.ts": "142595966376cd032d01cfecbb4f3aa7f89f343528fc04d1e8263989c78b889c",
+    "Games/games/rubiks-cube/hud.ts": "1c06710f6d3528c4c4a0c2252c5d8c51fbe2f598382f69d5cec4e65717333637",
+    "Games/games/rubiks-cube/model.ts": "12e713b14e6a2edd977103e9bc3585da7014d04dccce91453da7cbae36caae52",
+    "Games/games/rubiks-cube/CubeGame.ts": "be85fc00579a19f3cb300f5bfbcd729b9e6965f7c5ca9ee5e460290de831656e",
+    "Games/games/rubiks-cube/session.ts": "ef6195720e6ca89f8fa9af834943376e6581c8db2e2399f4bd3d0570cf011ecd",
+    "Games/games/rubiks-cube/layout.ts": "0d4cac52b00cad4549c606e9117c2641a6c53ac6366096a3e9b96437e05045b3",
+    "Games/games/rubiks-cube/verification.ts": "9c6a79007c9e8ccb378af7b4a03721ada35d80aadee62898acc65f0708e3421e",
+    "Games/games/rubiks-cube/bundle.js": "9b903ed5156c5cbc76df589f5dc020506adf327f7ad355fd4ea5d9bdf7c11714",
+    "Native/examples/rubiks-cube/platforms/ios/build/Debug-iphoneos/rubikscube.app/app/runtime.mjs": "c88decf76b39ec6b154cc2f32b2ec2215fca0c666070436f824d77b502591c09",
+    "Native/examples/rubiks-cube/platforms/ios/build/Debug-iphoneos/rubikscube.app/app/vendor.mjs": "38f4df6dce523ea2274916887db161b8184ef73a3365826133be8126b698e38f",
+    "Native/examples/rubiks-cube/platforms/ios/build/Debug-iphoneos/rubikscube.app/app/bundle.mjs": "4f0d847b465393621c3761fad41c1b6d7b2b0a54aa3f255c1352fd10662fd29f"
+  }
+}

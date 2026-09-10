@@ -1,0 +1,46 @@
+✔ runtime image pack stays under 26 MiB with complete, contiguous RGBA slices (1.492943ms)
+✔ small HUD art uses small alpha textures while Boss art retains preview resolution (2.973365ms)
+✔ seven themed background tiles and two planet layers have bounded runtime sizes (6.142753ms)
+(node:99358) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Chinese defaults and language survives restart independently of career save (2.454831ms)
+✔ all level/boss names and GUI strings exist in each locale and font atlas (3.102848ms)
+✔ unavailable preference storage stays playable, reports failure, and listeners detach (0.586397ms)
+✔ muzzle bursts and detonations are bounded, expire, and clear on restart (0.926922ms)
+✔ boss shake is deterministic, strongest at impact, bounded and fully settles (0.338392ms)
+✔ elite/Boss attachment animation follows hull translation and changes over time (0.850012ms)
+✔ Sky Strike defines ten regular enemies, four elites, eight boss hulls, and segmented devices (4.255656ms)
+✔ space train cars and mechanical serpent segments follow the requested combat rules (1.613553ms)
+✔ enemy selection is deterministic for a seeded sortie (0.750612ms)
+✔ enemy health bands and projectile damage match the combat roles (0.549543ms)
+✔ three-color weapons upgrade independently and stop at level three (0.805959ms)
+✔ Helios deploys more laser emitters as its health falls (0.359959ms)
+✔ player firing cooldown never accumulates a pointer-down catch-up burst (0.328921ms)
+✔ boss warning starts three seconds before its scheduled appearance (0.294773ms)
+✔ boss damage effects only intensify inside the critical health band (0.250523ms)
+✔ purple laser attracts a nearby forward target and boss beam geometry is stable (0.562466ms)
+✔ bullet aiming and circular hit tests remain stable (0.620273ms)
+✔ saucer death burst is radial and kamikaze steering accelerates toward the player (0.94555ms)
+✔ bomb area is forward-facing and includes nearby enemies and projectiles (0.387211ms)
+✔ level timelines expand grouped spawns and resolve deterministic positions (19.257291ms)
+✔ manifest assets, one-slot save, and keyboard/pointer controls are wired (14.316084ms)
+✔ serpent shares conserve damage across living parts and redistribute overkill (0.60066ms)
+(node:99360) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all seven missions own a distinct background; some include independently moving planets (6.761537ms)
+✔ scroll tiles cover the full field without gaps or unmatched seams across many wrap boundaries (2.923411ms)
+✔ crossfade preserves total weight, supports interruptions, settles and resets cleanly (2.062821ms)
+✔ space layers keep independent scroll speeds and depth, with bounded immutable sprite commands (1.176212ms)
+(node:99361) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wide and 1:2 screens preserve the full field without stretching (1.185931ms)
+✔ narrow viewport follows the fighter proportionally and reaches both field edges (0.240979ms)
+✔ pointer inverse remains aligned across screen sizes, camera positions and resizing (0.62646ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 327.799963

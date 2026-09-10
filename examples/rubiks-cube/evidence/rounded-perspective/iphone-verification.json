@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-09-10T10:39:30.557815+00:00",
+  "installed": true,
+  "launched": true,
+  "latestPresent": {
+    "time": 1789036722894,
+    "event": "present",
+    "detail": {
+      "frames": 1080,
+      "width": 860,
+      "height": 1678,
+      "scheduledCallbacks": 0,
+      "input": {
+        "pinching": false,
+        "rect": {
+          "x": 0,
+          "y": 59,
+          "width": 430,
+          "height": 839,
+          "left": 0,
+          "top": 59,
+          "right": 430,
+          "bottom": 898
+        },
+        "measured": {
+          "width": 430,
+          "height": 839
+        },
+        "primary": 4,
+        "captured": 4,
+        "trackedTouches": 1,
+        "listenerCount": 15,
+        "paused": false,
+        "disposed": false,
+        "nativeIdentities": 1,
+        "nativeObserverCount": 1,
+        "nativeRecognizerCount": 2,
+        "game": {
+          "kind": "4",
+          "home": true,
+          "order": 4,
+          "moves": 0,
+          "recentMoves": [],
+          "solved": true,
+          "busy": false,
+          "restoring": false,
+          "axis": 0,
+          "layer": 3,
+          "cubies": 56,
+          "projection": "perspective",
+          "roundedGeometryCount": 8,
+          "width": 430,
+          "height": 839
+        }
+      }
+    }
+  },
+  "errorCount": 0,
+  "screenshot": "iphone.png",
+  "scope": "Native portrait home rendered; all four types at portrait and landscape verified by browser automation."
+}
