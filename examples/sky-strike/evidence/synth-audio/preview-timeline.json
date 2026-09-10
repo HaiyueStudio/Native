@@ -1,0 +1,54 @@
+[
+  {
+    "id": "shot-basic",
+    "startSeconds": 0
+  },
+  {
+    "id": "shot-red",
+    "startSeconds": 0.6050113378684807
+  },
+  {
+    "id": "shot-blue",
+    "startSeconds": 1.2550113378684806
+  },
+  {
+    "id": "shot-enemy",
+    "startSeconds": 1.8350113378684807
+  },
+  {
+    "id": "explosion-small",
+    "startSeconds": 2.4300226757369616
+  },
+  {
+    "id": "explosion-large",
+    "startSeconds": 3.2700226757369615
+  },
+  {
+    "id": "explosion-boss",
+    "startSeconds": 4.570022675736961
+  },
+  {
+    "id": "bomb",
+    "startSeconds": 6.570022675736961
+  },
+  {
+    "id": "hit",
+    "startSeconds": 8.170022675736961
+  },
+  {
+    "id": "laser-start",
+    "startSeconds": 8.785034013605442
+  },
+  {
+    "id": "laser-loop",
+    "startSeconds": 9.425034013605442
+  },
+  {
+    "id": "laser-end",
+    "startSeconds": 10.725034013605443
+  },
+  {
+    "id": "laser-enemy",
+    "startSeconds": 11.375034013605442
+  }
+]

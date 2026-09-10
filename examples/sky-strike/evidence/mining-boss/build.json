@@ -1,0 +1,92 @@
+{
+  "build": "passed",
+  "codesign": "passed",
+  "install": "passed",
+  "browserCases": [
+    "mining-live",
+    "mining-windup",
+    "mining-rules",
+    "mining-narrow",
+    "mining-wide",
+    "asteroid-belt",
+    "mining-menu-zh",
+    "mining-menu-en",
+    "mining-menu-ja",
+    "space-8",
+    "twins-rules",
+    "twins-menu-zh",
+    "twins-menu-en",
+    "twins-menu-ja",
+    "balance",
+    "wide",
+    "narrow",
+    "purple"
+  ],
+  "files": [
+    {
+      "path": "Games/games/sky-strike/SkyStrikeGame.ts",
+      "bytes": 89816,
+      "sha256": "f96d7ddeb10a8343c3c71f9a2a85e9495ada281ae84bc12d9c7aa70672aa5a87"
+    },
+    {
+      "path": "Games/games/sky-strike/asteroids.ts",
+      "bytes": 7763,
+      "sha256": "10314a142d619016e704a9584ebff5ffb64c1a3044e96db375deebc9c84e424d"
+    },
+    {
+      "path": "Games/games/sky-strike/asteroidVisuals.ts",
+      "bytes": 2518,
+      "sha256": "be71a48cd336a9642e3a1fb1661c60e0fa186d5fe1b83770e4dedf154aa5438f"
+    },
+    {
+      "path": "Games/games/sky-strike/rules.ts",
+      "bytes": 23159,
+      "sha256": "6213dec3d505273bb254c2cf969fd9841fc11341a915a13d796e581a330ffaa5"
+    },
+    {
+      "path": "Games/games/sky-strike/levels/loader.ts",
+      "bytes": 6977,
+      "sha256": "dbabcf31ffedaa0409f5f76ead88d79f862ba700ae07ba470a9f2cf89373a0a3"
+    },
+    {
+      "path": "Games/games/sky-strike/levels/level-08.json",
+      "bytes": 1671,
+      "sha256": "6146664605428c18c49782b10ca538c8f8519f625fa7734b35947e125275192c"
+    },
+    {
+      "path": "Games/games/sky-strike/assets/sprites.rgba",
+      "bytes": 27764224,
+      "sha256": "79a36e9b7a183ebebd554bfa5fbc3b7d79d12913985473d1563777eabe1786ad"
+    },
+    {
+      "path": "Games/games/sky-strike/assets/sprites.json",
+      "bytes": 6518,
+      "sha256": "46fa833c4729a3bc9d7432845fc17a3ae75647c418687914ec302a3c93ffb297"
+    },
+    {
+      "path": "Native/bridge/feedback/haptics.ios.ts",
+      "bytes": 1502,
+      "sha256": "40d3c7f5d21f1e71e6acf95e1f478a1d56ba0b08f258149ed3d766c17ec7ed4a"
+    },
+    {
+      "path": "Native/examples/sky-strike/src/main-page.ts",
+      "bytes": 6399,
+      "sha256": "f1bcdfdee8bce178657f683a17ff7b9284ffe745fd142d15506c0b565615f218"
+    },
+    {
+      "path": "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/bundle.mjs",
+      "bytes": 289621,
+      "sha256": "05cad57242da0d230d5f5b1703ac9553e5dea93f89caa5621bf206e162b9930a"
+    },
+    {
+      "path": "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/game-assets/assets/sprites.rgba",
+      "bytes": 27764224,
+      "sha256": "79a36e9b7a183ebebd554bfa5fbc3b7d79d12913985473d1563777eabe1786ad"
+    },
+    {
+      "path": "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/game-assets/levels/level-08.json",
+      "bytes": 1671,
+      "sha256": "6146664605428c18c49782b10ca538c8f8519f625fa7734b35947e125275192c"
+    }
+  ]
+}

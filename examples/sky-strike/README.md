@@ -1,7 +1,7 @@
 # Sky Strike — native iOS
 
 A separate portrait-only app (`org.haiyue.native.skystrike`, display name Sky Strike)
-using the shared Games Sky Strike rules, all seven levels and a predecoded RGBA sprite pack.
+using the shared Games Sky Strike rules, all eight levels and a predecoded RGBA sprite pack.
 It does not replace Spider Solitaire or the native PBR milestone app.
 
 The browser and iOS app share one visible WebGPU canvas. Haiyue Extensions'
@@ -28,8 +28,8 @@ No new Engine API or shader is introduced. The bridge supplies the standard
 
 ## Layered scrolling space
 
-Each of the seven missions has its own generated 512px starfield/nebula texture:
-navy, crimson, violet, amber, teal, emerald and red/blue. Independent 384px ice-planet
+Each of the eight missions has its own generated 512px starfield/nebula texture:
+navy, crimson, violet, amber, teal, emerald, red/blue and copper mineral dust. Independent 384px ice-planet
 and ringed-planet layers decorate selected missions. Exact built-in imagegen prompts
 and master PNG names are recorded in `Games/games/sky-strike/assets/space-art.md`.
 
@@ -46,11 +46,51 @@ continuous if another transition interrupts. A fresh sortie starts directly in i
 selected theme. All textures upload once at startup; animation changes only draw
 transforms and opacity, with no raster canvas work or per-frame texture uploads.
 
-The pack contains 46 sprites / 25,224,704 bytes (26 MiB budget), an 8,519,680-byte
-increase for nine new layers. Measured battlefield atlas allocation is 31,129,152
-bytes across three 2048-limited pages, excluding GUI/fonts and render targets.
+The current pack contains 51 sprites / 27,764,224 bytes (28 MiB budget).
+Mining hull art uses 512px, rocks 192px and the new background 512px runtime limits.
+Atlas allocation and current checks are recorded in `evidence/mining-boss/`.
 See `evidence/space-backgrounds/` for screenshots, continuity checks and build/device
 verification. Raw PNG masters are not duplicated in the native app bundle.
+
+## Eighth mission: Asteroid Forge
+
+The level-08 timeline introduces an asteroid belt from 9.5–33 seconds (one rock every
+520 ms), then Ore Reaper at 38 seconds. During the mining boss encounter rocks keep
+arriving every 420 ms. Three generated silhouettes vary in size from 32–108 logical
+pixels and rotate/drift independently. HP = round(size² × 0.018), approximately
+18–210 HP. Both friendly and hostile projectiles hit neutral rocks; the closest
+swept contact wins, including fast throws. Player lasers and bombs can destroy them.
+Contact deals 100 player HP, with the existing respawn invulnerability preserved.
+
+Ore Reaper has 3,400 HP, a normal spread cannon, and four animated hydraulic arms.
+An idle arm randomly selects an available nearby scene rock, reaches for 260 ms,
+pulls back and telegraphs its locked aim for 520 ms, then throws at 490–680 px/s.
+Thrown/held rocks remain destructible. The shared grab interval scales continuously
+from 2,500 ms at full HP toward 650 ms near zero; multiple arms can work at once.
+No phantom projectile substitutes the held rock. The field is capped at 28 rocks;
+exit, retry, boss victory and level changes clear hazards, and pause freezes them.
+New art/prompts: `Games/games/sky-strike/assets/mining-art.md` (studio-relative).
+
+## Ordinary fighter pre-fire aiming
+
+Seven ordinary aimed/spread/burst fighters start turning toward the player 420 ms
+before their next shot. Shortest-arc turning is limited to 4.8 rad/s. A fighter
+waits until aligned if necessary, fires from its rotated nose, holds its pose for
+160 ms while the muzzle flash plays, then turns smoothly back to cruise heading.
+Movement paths remain unchanged; there is no catch-up burst after delayed aiming.
+Pause freezes the animation. Bosses, segmented turrets and non-firing ships retain
+their existing behavior.
+
+## Native kill haptics
+
+`bridge/feedback/haptics.ios.ts` provides reusable UIKit impact feedback without a
+new plugin. Sky Strike injects the platform callback: accepted player damage / elite victory → light impact, successful bomb release →
+medium impact, player life loss / Boss encounter victory → heavy impact.
+Invulnerable hits, zero damage and unsuccessful bomb actions do not trigger feedback. A downed twin does not count as a victory.
+A 250 ms limiter combines clustered impacts; a stronger impact may supersede a lighter
+one. Suspend/dispose prevents background feedback and there are no delayed timers.
+Browser gameplay omits the hardware callback. The native journal records requests;
+physical feel still requires human device verification.
 
 ## Seventh mission: Binary Nova
 

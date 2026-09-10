@@ -1,3 +1,7 @@
+import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank.ios';
+import { SkyStrikeAudio } from '../../../../Games/games/sky-strike/audio/SkyStrikeAudio';
+import { SKY_SOUND_IDS, SKY_SOUNDS, soundPath } from '../../../../Games/games/sky-strike/audio/synthesis';
+import { NativeHaptics } from '../../../bridge/feedback/haptics.ios';
 import { SkyStrikeLocale } from '../../../../Games/games/sky-strike/i18n';
 import { Application, File, knownFolders, path, type EventData, type Page, type Label } from '@nativescript/core';
 import { type Canvas } from '@nativescript/canvas';
@@ -27,7 +31,9 @@ function ensureHost(canvas: Canvas): void {
   const locale = new SkyStrikeLocale(new NativeSettingsStorage());
   const status = (canvas.page as Page).getViewById<Label>('status');
   const input = new NativeTouchInput(canvas, () => {});
+  const haptics = new NativeHaptics();
   let game: SkyStrikeGame | null = null;
+  let audio: SkyStrikeAudio | null = null;
   let world: World | null = null;
   let textures: NativeCanvasTextures | null = null;
   let detachUpdate = () => {};
@@ -45,9 +51,12 @@ function ensureHost(canvas: Canvas): void {
     } as unknown as NativeCanvasInput,
     capture: { requested: String(NSProcessInfo.processInfo.environment.objectForKey('SKY_CAPTURE_FRAME')) === '1', file: 'sky-strike-frame.png' },
     async prepareScene(engine) {
+      haptics.resume();
       const surface = engine.canvas!;
       textures = new NativeCanvasTextures(engine.device); // GUI font atlas only, built once.
       const assetsRoot = path.join(knownFolders.currentApp().path, 'game-assets');
+      const audioBackend = new NativePcmAudioBank(SKY_SOUND_IDS.map(id => ({id,path:path.join(assetsRoot,soundPath(id)),seconds:SKY_SOUNDS[id].seconds})), () => game?.suspend());
+      audio = new SkyStrikeAudio(audioBackend, new NativeSettingsStorage());
       const entries = JSON.parse(File.fromPath(path.join(assetsRoot, 'assets/sprites.json')).readTextSync());
       const data = NSData.dataWithContentsOfFile(path.join(assetsRoot, 'assets/sprites.rgba'));
       if (!data) throw new Error('Bundled sprite pack is missing.');
@@ -59,7 +68,8 @@ function ensureHost(canvas: Canvas): void {
       const ui = new SkyStrikeGuiHud(world, id => battle.guiImage(id), insets, locale);
       const levels = await loadSkyStrikeLevels(async source => JSON.parse(File.fromPath(path.join(assetsRoot, source)).readTextSync()));
       game = new SkyStrikeGame(surface, battle, engine, world, {
-        ui, locale, levels, keyboard: false, guiLoadOp: 'load',
+        ui, locale, levels, audio, keyboard: false, guiLoadOp: 'load',
+        haptic: event => haptics.impact(event === 'boss-defeated' || event === 'player-destroyed' ? 'heavy' : event === 'bomb' ? 'medium' : 'light'),
         acceptsGameplayInput: (_x, y) => y >= insets.top + 94 && y <= surface.getBoundingClientRect().height - insets.bottom - 94,
         saveBackend: new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
         guiFont: { canvasFactory: textures.createCanvas2D, readAtlasPixels: textures.readAtlasPixels },
@@ -68,18 +78,40 @@ function ensureHost(canvas: Canvas): void {
       await game.init();
       const integration = new RenderIntegration(engine, { label: 'SkyStrike.native' });
       world.addRuntimeIntegration(integration); integration.registerAll(world);
+      // Explicit launch-only diagnostic, inactive during normal play. Exercises native scheduling on-device.
+      const probe = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_AUDIO_PROBE')) === '1';
+      let probeElapsed = 0, probeIndex = 0;
+      const probeResults: unknown[] = [];
+      if (probe) audio.resume();
       const update = ({ detail: { time, delta } }: { detail: { time: number; delta: number } }) => {
         game!.update(delta);
         world!.update(time, delta);
+        if (probe && probeIndex <= SKY_SOUND_IDS.length && audio!.snapshot().active) {
+          probeElapsed += delta;
+          if (probeElapsed >= 1800) {
+            probeElapsed = 0; audio!.stop();
+            if (probeIndex < SKY_SOUND_IDS.length) {
+              const id = SKY_SOUND_IDS[probeIndex]!;
+              if (id === 'laser-loop') audio!.lasers(true, false);
+              else if (id === 'laser-enemy') audio!.lasers(false, true);
+              else audio!.play(id);
+              probeResults.push({id, audio: audio!.snapshot()});
+            } else {
+              audio!.pause();
+              File.fromPath(path.join(knownFolders.documents().path, 'sky-strike-audio-probe.json')).writeTextSync(JSON.stringify({effects: probeResults, final: audio!.snapshot()}));
+            }
+            probeIndex++;
+          }
+        }
       };
       engine.on('update', update); detachUpdate = () => engine.off('update', update);
       return { ...game.snapshot(), bundledImages: entries.length, levels: levels.length, textures: textures.snapshot() };
     },
     bindInput() { return {
-      suspend() { input.suspend(); game?.suspend(); }, resume() { input.resume(); },
-      dispose() { input.dispose(); }, snapshot() { return { ...input.snapshot(), game: game?.snapshot(), textures: textures?.snapshot() }; },
+      suspend() { haptics.suspend(); input.suspend(); game?.suspend(); }, resume() { haptics.resume(); input.resume(); },
+      dispose() { input.dispose(); }, snapshot() { return { ...input.snapshot(), game: game?.snapshot(), haptics: haptics.snapshot(), textures: textures?.snapshot() }; },
     }; },
-    disposeScene() { detachUpdate(); input.dispose(); game?.dispose(); world?.destroy(); textures?.dispose();  },
+    disposeScene() { haptics.dispose(); audio?.dispose(); detachUpdate(); input.dispose(); game?.dispose(); world?.destroy(); textures?.dispose();  },
   });
   Application.on(Application.uncaughtErrorEvent, unhandled); Application.on(Application.exitEvent, disposeHost);
 }

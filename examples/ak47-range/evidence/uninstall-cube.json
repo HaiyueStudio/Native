@@ -1,0 +1,30 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "uninstall",
+      "app",
+      "--device",
+      "8D9238D1-024A-538B-A175-B9E71AA32202",
+      "org.haiyue.native.rubikscube",
+      "--json-output",
+      "/tmp/ak47-uninstall-cube.json"
+    ],
+    "commandType" : "devicectl.device.uninstall.app",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "506.7"
+  },
+  "result" : {
+    "deviceIdentifier" : "8D9238D1-024A-538B-A175-B9E71AA32202",
+    "uninstalledApplications" : [
+      {
+        "bundleID" : "org.haiyue.native.rubikscube"
+      }
+    ]
+  }
+}

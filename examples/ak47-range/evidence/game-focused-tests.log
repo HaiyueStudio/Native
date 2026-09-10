@@ -1,0 +1,26 @@
+✔ held trigger fires at 600 rpm; releasing immediately stops (5.92766ms)
+✔ cadence is stable at 30, 60 and 120 FPS (12.392241ms)
+✔ empty magazine never fires; reload blocks firing and completes exactly once (2.812863ms)
+✔ bullets originate at muzzle and preserve the facing at emission (0.991195ms)
+✔ swept hits score once and expired bullets stay bounded (9.046254ms)
+✔ suspension cannot discharge a backlog on resume; invalid time rejected (4.71549ms)
+✔ source GLBs match provenance; rifle runtime excludes first-person arms (34.878307ms)
+✔ Pages lobby is driven by the game manifest (6.904334ms)
+✔ Pages deployment validates games and uploads the generated site (1.88191ms)
+✔ shared game persistence has one stable autosave slot (2.74965ms)
+✔ shared validation primitives reject incomplete values (0.641476ms)
+✔ shared persistence delegates storage and slot limits to the engine save facade (19.930674ms)
+✔ shared autosaves are serialized and the newest state is restored (14.216766ms)
+[autosave-status save] 自动保存失败。 Error: storage unavailable
+    at backend.write (file:///Users/qingque/Desktop/HaiyueStudio/Games/games/test/single-slot-save.test.mjs:96:51)
+    at file:///Users/qingque/Desktop/HaiyueStudio/Games/node_modules/@haiyue/engine/dist/save.js:312:41
+✔ every manifest game uses the engine save facade with no direct storage access (178.416088ms)
+✔ autosave status follows the newest queued write and recovers after a storage failure (11.013352ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 630.981877

@@ -1,0 +1,33 @@
+✔ held trigger fires at 600 rpm; releasing immediately stops (69.790788ms)
+✔ cadence is stable at 30, 60 and 120 FPS (113.248052ms)
+✔ empty magazine never fires; reload blocks firing and completes exactly once (65.725219ms)
+✔ bullets originate at muzzle and preserve the facing at emission (38.779774ms)
+✔ swept enemy hits score once; cover absorbs bullets before a body (60.303071ms)
+✔ suspension cannot discharge a backlog on resume; invalid time rejected (32.241807ms)
+✔ source GLBs match provenance; rifle runtime excludes first-person arms (26.975314ms)
+✔ one seeded enemy appears at an arena edge every three simulation seconds (82.060762ms)
+✔ both teams have exactly a forward 90-degree cone with solid cover occlusion (32.473107ms)
+✔ actors slide along cover and cannot tunnel through it or leave the arena (34.465742ms)
+✔ Engine navigation routes around cover with body clearance (30.196725ms)
+✔ an unaware enemy cannot track a player behind its back or through cover (55.124287ms)
+✔ acquired targets are shot after a reaction delay; death stops simulation; restart clears combat (29.830806ms)
+✔ a hand socket extending through cover cannot shoot from its far side (28.956703ms)
+✔ Pages lobby is driven by the game manifest (6.173401ms)
+✔ Pages deployment validates games and uploads the generated site (2.150868ms)
+✔ shared game persistence has one stable autosave slot (1.737475ms)
+✔ shared validation primitives reject incomplete values (0.490257ms)
+✔ shared persistence delegates storage and slot limits to the engine save facade (15.033753ms)
+✔ shared autosaves are serialized and the newest state is restored (10.949955ms)
+[autosave-status save] 自动保存失败。 Error: storage unavailable
+    at backend.write (file:///Users/qingque/Desktop/HaiyueStudio/Games/games/test/single-slot-save.test.mjs:96:51)
+    at file:///Users/qingque/Desktop/HaiyueStudio/Games/node_modules/@haiyue/engine/dist/save.js:312:41
+✔ every manifest game uses the engine save facade with no direct storage access (140.449121ms)
+✔ autosave status follows the newest queued write and recovers after a storage failure (8.761433ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1030.558242

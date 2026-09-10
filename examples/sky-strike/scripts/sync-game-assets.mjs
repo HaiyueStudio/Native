@@ -1,5 +1,7 @@
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { copyFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
-export const runtimeAssets = ['assets/sprites.json', 'assets/sprites.rgba', ...Array.from({length:7},(_,i)=>`levels/level-0${i+1}.json`)];
+export const runtimeAssets = ['assets/sprites.json', 'assets/sprites.rgba', ...['shot-basic','shot-red','shot-blue','shot-enemy','explosion-small','explosion-large','explosion-boss','bomb','hit','laser-start','laser-loop','laser-end','laser-enemy'].map(id=>`assets/audio/${id}.wav`), ...Array.from({length:8},(_,i)=>`levels/level-0${i+1}.json`)];
 /** This directory is generated: original art stays in Games, never in the app bundle. */
 export function syncGameAssets({
   source = new URL('../../../../Games/games/sky-strike/', import.meta.url),
@@ -10,7 +12,7 @@ export function syncGameAssets({
   for (const relative of runtimeAssets) if (!existsSync(new URL(relative, source))) throw new Error(`Missing Sky Strike runtime resource: ${relative}`);
   for (const directory of [target, ...staleTargets]) rmSync(directory, { recursive: true, force: true });
   for (const relative of runtimeAssets) {
-    mkdirSync(new URL(relative.startsWith('assets/') ? 'assets/' : 'levels/', target), { recursive: true });
+    mkdirSync(dirname(fileURLToPath(new URL(relative, target))), { recursive: true });
     copyFileSync(new URL(relative, source), new URL(relative, target));
   }
 }

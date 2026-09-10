@@ -1,0 +1,3 @@
+{"name":"fighter-turn","status":"passed","checks":["prefire-turn","bounded-shortest-arc","rotated-muzzle","aligned-shot","pause-aim","firing-pose-hold","return-to-cruise","delayed-alignment-no-catch-up"]}
+{"name":"fighter-shot","status":"passed","checks":["prefire-turn","bounded-shortest-arc","rotated-muzzle","aligned-shot","pause-aim","firing-pose-hold","return-to-cruise","delayed-alignment-no-catch-up"]}
+{"name":"fighter-narrow","status":"passed","checks":["prefire-turn","bounded-shortest-arc","rotated-muzzle","aligned-shot","pause-aim","firing-pose-hold","return-to-cruise","delayed-alignment-no-catch-up"]}

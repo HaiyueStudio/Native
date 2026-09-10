@@ -1,0 +1,9 @@
+
+> @haiyue/games-repository@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+games/sky-strike/levelCarousel.ts(180,91): error TS2554: Expected 3 arguments, but got 4.
+games/sky-strike/SkyStrikeGame.ts(471,53): error TS2379: Argument of type '{ guiImage: (id: string) => GPUTexture; resolveBoss: (level: SkyStrikeLevel) => { label: string; aspect: number; companion?: { source: GPUTexture; sourceKey: string; }; source: GPUTexture; sourceKey: string; }; ... 10 more ...; loadOp: "load"; }' is not assignable to parameter of type 'SkyStrikeLevelCarouselOptions' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'audio' are incompatible.
+    Type 'SkyStrikeAudio | undefined' is not assignable to type 'SkyStrikeAudio'.
+      Type 'undefined' is not assignable to type 'SkyStrikeAudio'.

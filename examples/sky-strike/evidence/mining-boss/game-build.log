@@ -1,0 +1,9 @@
+
+> @haiyue/games-repository@0.1.0 build
+> node scripts/build-games.mjs
+
+
+> rollup game sky-strike
+
+games/sky-strike/main.ts → games/sky-strike/bundle.js...
+created games/sky-strike/bundle.js in 29s

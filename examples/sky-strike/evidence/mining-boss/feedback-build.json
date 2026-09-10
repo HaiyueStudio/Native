@@ -1,0 +1,73 @@
+{
+  "includes": [
+    "mining-level",
+    "damage-death-bomb-haptics",
+    "fighter-prefire-turn"
+  ],
+  "build": "passed",
+  "codesign": "passed",
+  "install": "passed",
+  "launch": "passed",
+  "files": [
+    {
+      "path": "Games/games/sky-strike/SkyStrikeGame.ts",
+      "bytes": 91234,
+      "sha256": "941f06f93e9af45570e1c230b3007e174182010b05acbd547eda45814ca6ffbc"
+    },
+    {
+      "path": "Games/games/sky-strike/fighterAim.ts",
+      "bytes": 1211,
+      "sha256": "23d248a84521018c012dfff83bc2d509e0c0e68f17ff28fc650c9c3b8f17294e"
+    },
+    {
+      "path": "Games/games/sky-strike/asteroids.ts",
+      "bytes": 7763,
+      "sha256": "10314a142d619016e704a9584ebff5ffb64c1a3044e96db375deebc9c84e424d"
+    },
+    {
+      "path": "Games/games/sky-strike/asteroidVisuals.ts",
+      "bytes": 2518,
+      "sha256": "be71a48cd336a9642e3a1fb1661c60e0fa186d5fe1b83770e4dedf154aa5438f"
+    },
+    {
+      "path": "Games/games/sky-strike/rules.ts",
+      "bytes": 23159,
+      "sha256": "6213dec3d505273bb254c2cf969fd9841fc11341a915a13d796e581a330ffaa5"
+    },
+    {
+      "path": "Games/games/sky-strike/assets/sprites.rgba",
+      "bytes": 27764224,
+      "sha256": "79a36e9b7a183ebebd554bfa5fbc3b7d79d12913985473d1563777eabe1786ad"
+    },
+    {
+      "path": "Games/games/sky-strike/levels/level-08.json",
+      "bytes": 1671,
+      "sha256": "6146664605428c18c49782b10ca538c8f8519f625fa7734b35947e125275192c"
+    },
+    {
+      "path": "Native/bridge/feedback/haptics.ios.ts",
+      "bytes": 1795,
+      "sha256": "4751b4861a1ad5f899711a8a414ea8d222efb8da61b5e807fa159070b92970ed"
+    },
+    {
+      "path": "Native/examples/sky-strike/src/main-page.ts",
+      "bytes": 6461,
+      "sha256": "083fce5d59cc2b6a40065450f4653327201141a8649afd6856d125ff2049e8ea"
+    },
+    {
+      "path": "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/bundle.mjs",
+      "bytes": 293697,
+      "sha256": "0a88501df29300c2cc21b6346713226937bcf7df9b9701456985189376a76a38"
+    },
+    {
+      "path": "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/game-assets/assets/sprites.rgba",
+      "bytes": 27764224,
+      "sha256": "79a36e9b7a183ebebd554bfa5fbc3b7d79d12913985473d1563777eabe1786ad"
+    },
+    {
+      "path": "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/game-assets/levels/level-08.json",
+      "bytes": 1671,
+      "sha256": "6146664605428c18c49782b10ca538c8f8519f625fa7734b35947e125275192c"
+    }
+  ]
+}

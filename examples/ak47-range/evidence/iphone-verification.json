@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "checks": [
+    "native glTF character and right-hand AK47 loaded",
+    "native joystick moves character",
+    "native camera follows",
+    "native second pointer fires while running",
+    "native release stops fire",
+    "native Engine GUI starts reload",
+    "native reload completes",
+    "native cancellation clears both actions"
+  ],
+  "capture": {
+    "file": "ak47-range-verified.png",
+    "bytes": 151802
+  },
+  "ready": true,
+  "ammo": 29,
+  "shots": 9,
+  "hits": 0,
+  "reloading": 0,
+  "firing": false,
+  "bullets": 1,
+  "player": [
+    0,
+    0,
+    1
+  ],
+  "heading": 2.450442314147949,
+  "cameraTarget": [
+    0.023483995348215103,
+    0.800000011920929,
+    0.9691824316978455
+  ],
+  "cameraEye": [
+    0.023483995348215103,
+    7.464021682739258,
+    9.720800399780273
+  ],
+  "hand": "1seal_skeleton_Bip01 R Hand",
+  "weaponAttached": true,
+  "muzzle": {
+    "x": -0.6845883131027222,
+    "y": 1.3522121906280518,
+    "z": 1.5880471467971802
+  },
+  "joystick": {
+    "active": false,
+    "pointerId": null,
+    "center": {
+      "x": 104,
+      "y": 735
+    },
+    "direction": {
+      "x": 0,
+      "y": 0
+    },
+    "offset": {
+      "x": 0,
+      "y": 0
+    },
+    "rawDistance": 0,
+    "distance": 0,
+    "strength": 0,
+    "angle": 0
+  },
+  "animation": "idle_bottom"
+}

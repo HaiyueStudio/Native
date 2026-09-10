@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import ts from 'typescript';
+import { captureNativePointer } from '../src/pointer-capture.ts';
+const source = readFileSync(new URL('../../../bridge/input/pointer-target.ts', import.meta.url), 'utf8');
+const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2020 } }).outputText;
+const { OrbitPointerTarget } = await import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`);
+test('native all-pointer routing keeps movement and fire independent until lifecycle cancellation', () => {
+  const target = new OrbitPointerTarget(() => ({ x: 0, y: 59, width: 430, height: 800 }), 'all');
+  const active = new Set(), events = [];
+  target.addEventListener('pointerdown', e => { active.add(e.pointerId); target.setPointerCapture(e.pointerId); events.push(['down', e.pointerId, e.clientY]); });
+  for (const name of ['pointerup', 'pointercancel']) target.addEventListener(name, e => active.delete(e.pointerId));
+  target.handle('down', [{ id: 1, x: 104, y: 696 }]);
+  target.handle('down', [{ id: 2, x: 362, y: 718 }]);
+  assert.deepEqual([...active], [1, 2]);
+  assert.deepEqual(events, [['down', 1, 755], ['down', 2, 777]]);
+  target.handle('up', [{ id: 2, x: 362, y: 718 }]); assert.deepEqual([...active], [1]);
+  target.handle('down', [{ id: 3, x: 362, y: 718 }]);
+  target.cancel(); assert.equal(active.size, 0); assert.equal(target.snapshot().trackedTouches, 0);
+  target.dispose(); assert.equal(target.snapshot().listenerCount, 0);
+});
+test('queued GUI capture after same-frame release is safe; other failures are not swallowed', () => {
+  const target = new OrbitPointerTarget(() => ({ x: 0, y: 0, width: 430, height: 800 }), 'all');
+  target.handle('down', [{ id: 1, x: 350, y: 650 }]);
+  captureNativePointer(target, 1); assert.equal(target.snapshot().captured, 1);
+  target.handle('up', [{ id: 1, x: 350, y: 650 }]);
+  assert.doesNotThrow(() => captureNativePointer(target, 1));
+  assert.throws(() => captureNativePointer({ setPointerCapture() { throw new Error('unexpected'); } }, 1), /unexpected/);
+  target.dispose();
+});

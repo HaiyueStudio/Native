@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "esnext",
+    "target": "ES2020",
+    "moduleResolution": "bundler",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "types": [
+      "@nativescript/types",
+      "@webgpu/types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "src/*"
+      ],
+      "@nativescript/*": [
+        "node_modules/@nativescript/*"
+      ],
+      "@haiyue/engine": [
+        "node_modules/@haiyue/engine"
+      ],
+      "@haiyue/engine/*": [
+        "node_modules/@haiyue/engine/dist/*"
+      ],
+      "wgpu-matrix": [
+        "node_modules/wgpu-matrix"
+      ],
+      "@haiyue/extensions/*": [
+        "node_modules/@haiyue/extensions/dist/*"
+      ]
+    },
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "../../bridge/**/*.ts",
+    "nativescript.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "platforms"
+  ]
+}

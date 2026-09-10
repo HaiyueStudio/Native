@@ -1,0 +1,17 @@
+{
+  "source": "devicectl device info apps",
+  "applications": [
+    {
+      "bundleIdentifier": "org.haiyue.native.skystrike",
+      "name": "Sky Strike"
+    },
+    {
+      "bundleIdentifier": "org.haiyue.native.ak47range",
+      "name": "前线训练场"
+    },
+    {
+      "bundleIdentifier": "org.haiyue.native.spidersolitaire",
+      "name": "蜘蛛纸牌"
+    }
+  ]
+}

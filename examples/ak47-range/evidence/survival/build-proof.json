@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-10T14:07:05.656803+00:00",
+  "scope": "AK47 survival update; local WebGPU and iPhone 15 Plus native Metal",
+  "nativeAppBundleId": "org.haiyue.native.ak47range",
+  "sourceSha256": {
+    "Games/games/ak47-range/main.ts": "6ac50654efa2dfaabf2622b7a706b1a033ad55888934cac9195ce31422df03de",
+    "Games/games/ak47-range/rules.ts": "c67c5a16aa61260d38d7f092396530cf6e1dd103e2237b659645e031aa317314",
+    "Games/games/ak47-range/RangeGame.ts": "692e5b3cb5b8bdc808eed8c2bbf5c38b1ae6654a7e73d9421b30f358da7a47bf",
+    "Games/games/ak47-range/verification.ts": "9c39cf8eed3bf9e1bf6390a6bd505f7d629f9b3d2d537cbecd0e9e0ee6a4955a",
+    "Games/games/ak47-range/index.html": "7f77d8b61a491a57cf02cbffd74ca45dd9b23a2dabe27c0c387f13efdd394757",
+    "Games/games/ak47-range/bundle.js": "3198fd1eb0812ac6b0b4cf21f8efbba8f45f100baff6798582aca0fba9b7dacc",
+    "Games/games/test/ak47-range.test.mjs": "eaa58d1a81597f119e385e3f33f84b5182abcc4d28444c3167a476220960fb5b",
+    "Native/examples/ak47-range/src/haptics.ios.ts": "d2354d0ed71b689afdd01faa7ad1796d0e9d809488798492c5062829b5b977c6",
+    "Native/examples/ak47-range/src/main-page.ts": "69d64d3f1cf6482b475b64190b71e01724fc493ca6a67aa961c4180648c86e09",
+    "Native/examples/ak47-range/src/app.ts": "ccfaebcbbc577215ea783ce17b15fe76afa6ce36d21b49f14416421f1b80d5fd",
+    "Native/examples/ak47-range/src/core-js-pure.d.ts": "2a3152b848ac336029493e579bc7a370b584171adb31f07c53238fe5214e8269",
+    "Native/examples/ak47-range/src/app.css": "1204af81a7791782d491c43be79846ec600a1f7a71ebff9b91f92c8ed506728a",
+    "Native/examples/ak47-range/src/pointer-capture.ts": "025435895f543b1fb8dbb562330776c24ac2da7382c5c91fdb6cc9e3e0fcdfa6",
+    "Native/examples/ak47-range/src/main-page.xml": "bd6344f54fb32f809b11c17029afbb7b4bdb09c9dc0d71fac98f21231488d61d",
+    "Native/examples/ak47-range/src/models.ts": "8845a5b9569b14d78c7b94cf64b425cb8f3d20c04f1bbebd0a68f1cb909ea52b",
+    "Native/examples/ak47-range/src/verification.ts": "a06272c013ca42b7b8062b1c28cc2db2c68479f18afb8a2848a61e0bf166b223",
+    "Native/examples/ak47-range/orientation.json": "14e82624cc0d30eea88a5c9a1787fca5529c8fafbfbb51b6ec028fa7e6571685",
+    "Native/examples/ak47-range/App_Resources/iOS/Info.plist": "01b27741bf5f9c4b68d789abd57cce193e8b7bef597464d56291c3feda8b516d",
+    "Native/bridge/audio/pcm-bank.ios.ts": "a11a43a21b460fd02c1c3933b202714098f6ad6ddbe369e259f1201680a0221a",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/bundle.mjs": "4167981fe18909fb5d80e5908c6049fb03d962247a6ba283c4af8d99811c7026",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/vendor.mjs": "7b68fb6ac83061481e1e5ed8dede33ef8f1169c9430699a5d4ec6138772ac63c",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range": "ca032fb5b593bf6e4e7d660c7e34ffa394fb1263c27f17c90dc65e8454bbdf8f",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Info.plist": "63e44a815b31ad955ee14a6013c17e9449b66687d5bf9c16b9bde292ae36b783"
+  },
+  "dirty": true,
+  "validation": {
+    "gamesFocused": 22,
+    "nativeUnit": 8,
+    "browserLandscape": 15,
+    "browserPortrait": 3,
+    "iphone": 18,
+    "gamesBuilt": 25,
+    "fullTests": {
+      "total": 505,
+      "pass": 483,
+      "fail": 2,
+      "skip": 20
+    },
+    "gamesFullTypecheck": "two existing Sky Strike errors",
+    "nativeTypecheck": "passed"
+  }
+}

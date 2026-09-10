@@ -1,0 +1,4 @@
+{"name":"mining-rules","status":"passed","checks":["both-sides-hit-rocks","size-health","100-contact-damage","swept-nearest-hit","laser-and-bomb","pause-and-home-cleanup","haptics-once","damage-death-bomb-haptics","mining-render"]}
+{"name":"twins-rules","status":"passed","checks":["twins-revive-boundary","pause-clock","pair-victory-once","simultaneous-bomb-win","bubble-hitpoints","bubble-collision-explosion","bubble-laser-target","matched-shot-colors","bounded-bubbles","elite-split","home-clears-twins"]}
+{"name":"wide","status":"passed","checks":["gui-start","skinned-bomb","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}
+{"name":"narrow","status":"passed","checks":["gui-start","skinned-bomb","fighter-input","viewport-tracking","pointer-cancel","pause-resume"]}

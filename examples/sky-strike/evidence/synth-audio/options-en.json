@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "checks": [
+    "settings-modal",
+    "language-persistence",
+    "input-isolation"
+  ]
+}

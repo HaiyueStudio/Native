@@ -1,0 +1,52 @@
+✔ runtime image pack stays under 28 MiB with complete, contiguous RGBA slices (2.075976ms)
+✔ small HUD art uses small alpha textures while Boss art retains preview resolution (5.465397ms)
+✔ eight themed background tiles and two planet layers have bounded runtime sizes (18.756654ms)
+✔ asteroid variants preserve alpha and use only 192px runtime textures (4.583898ms)
+✔ rocks have deterministic varied silhouettes, size-scaled HP and bounded population (24.2796ms)
+✔ swept collisions catch tunneling, moving targets, misses and first contact order (0.74618ms)
+✔ four arms acquire real rocks, telegraph then throw toward locked aim; held rocks remain destructible (6.819695ms)
+✔ health-dependent cadence accelerates grabs and continuous belt remains bounded (33.088853ms)
+✔ eighth mission loads hazard timing and rejects malformed belt configuration (12.856837ms)
+(node:9568) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Chinese defaults and language survives restart independently of career save (7.707964ms)
+✔ all level/boss names and GUI strings exist in each locale and font atlas (9.249863ms)
+✔ unavailable preference storage stays playable, reports failure, and listeners detach (1.028573ms)
+✔ muzzle bursts and detonations are bounded, expire, and clear on restart (1.691065ms)
+✔ boss shake is deterministic, strongest at impact, bounded and fully settles (0.916093ms)
+✔ elite/Boss attachment animation follows hull translation and changes over time (1.461995ms)
+✔ Sky Strike defines ten regular enemies, four elites, nine boss hulls, and segmented devices (8.661678ms)
+✔ space train cars and mechanical serpent segments follow the requested combat rules (1.506695ms)
+✔ enemy selection is deterministic for a seeded sortie (0.823823ms)
+✔ enemy health bands and projectile damage match the combat roles (0.862281ms)
+✔ three-color weapons upgrade independently and stop at level three (1.337435ms)
+✔ Helios deploys more laser emitters as its health falls (0.399799ms)
+✔ player firing cooldown never accumulates a pointer-down catch-up burst (0.501191ms)
+✔ boss warning starts three seconds before its scheduled appearance (0.319102ms)
+✔ boss damage effects only intensify inside the critical health band (0.523522ms)
+✔ purple laser attracts a nearby forward target and boss beam geometry is stable (0.979326ms)
+✔ bullet aiming and circular hit tests remain stable (0.652449ms)
+✔ saucer death burst is radial and kamikaze steering accelerates toward the player (1.017995ms)
+✔ bomb area is forward-facing and includes nearby enemies and projectiles (0.472489ms)
+✔ level timelines expand grouped spawns and resolve deterministic positions (34.638446ms)
+✔ manifest assets, one-slot save, and keyboard/pointer controls are wired (30.798972ms)
+✔ serpent shares conserve damage across living parts and redistribute overkill (1.1347ms)
+(node:9570) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all eight missions own a distinct background; some include independently moving planets (18.75335ms)
+✔ scroll tiles cover the full field without gaps or unmatched seams across many wrap boundaries (3.726959ms)
+✔ crossfade preserves total weight, supports interruptions, settles and resets cleanly (2.142089ms)
+✔ space layers keep independent scroll speeds and depth, with bounded immutable sprite commands (3.237978ms)
+(node:9571) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wide and 1:2 screens preserve the full field without stretching (2.62266ms)
+✔ narrow viewport follows the fighter proportionally and reaches both field edges (0.527469ms)
+✔ pointer inverse remains aligned across screen sizes, camera positions and resizing (1.369157ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 455.105128

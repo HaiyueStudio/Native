@@ -1,0 +1,37 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "install",
+      "app",
+      "--device",
+      "8D9238D1-024A-538B-A175-B9E71AA32202",
+      "platforms/ios/build/Debug-iphoneos/ak47range.app",
+      "--json-output",
+      "/tmp/ak47-install-final.json"
+    ],
+    "commandType" : "devicectl.device.install.app",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "506.7"
+  },
+  "result" : {
+    "deviceIdentifier" : "8D9238D1-024A-538B-A175-B9E71AA32202",
+    "installedApplications" : [
+      {
+        "bundleID" : "org.haiyue.native.ak47range",
+        "databaseSequenceNumber" : 13472,
+        "databaseUUID" : "7DF205F0-5D5A-4FFC-B953-EB5A671DD06F",
+        "installationURL" : "file:///private/var/containers/Bundle/Application/E36AC83E-E254-40B2-B7C4-FAA24500A127/ak47range.app/",
+        "launchServicesIdentifier" : "unknown",
+        "options" : {
+
+        }
+      }
+    ]
+  }
+}
