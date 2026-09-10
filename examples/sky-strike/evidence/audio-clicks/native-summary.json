@@ -1,0 +1,46 @@
+{
+  "previousInstalledBuildHadAudio": false,
+  "startup": {
+    "uiClicks": 0,
+    "enabled": true,
+    "volume": 0.65,
+    "active": true,
+    "loops": 0,
+    "saveFailed": false,
+    "backend": {
+      "kind": "av-audio-engine",
+      "error": null,
+      "running": true,
+      "buffers": 14,
+      "pcmBytes": 890828,
+      "voices": 0,
+      "nodeCount": 12,
+      "played": 0,
+      "volume": 0.65,
+      "disposed": false
+    }
+  },
+  "afterUserInteraction": {
+    "uiClicks": 44,
+    "enabled": true,
+    "volume": 0.6,
+    "active": true,
+    "loops": 0,
+    "saveFailed": false,
+    "backend": {
+      "kind": "av-audio-engine",
+      "error": null,
+      "running": true,
+      "buffers": 14,
+      "pcmBytes": 890828,
+      "voices": 1,
+      "nodeCount": 12,
+      "played": 170,
+      "volume": 0.6,
+      "disposed": false
+    }
+  },
+  "probeComplete": true,
+  "install": "passed",
+  "signature": "passed"
+}

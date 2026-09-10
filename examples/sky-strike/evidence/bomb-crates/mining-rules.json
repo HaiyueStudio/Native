@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "checks": [
+    "both-sides-hit-rocks",
+    "size-health",
+    "100-contact-damage",
+    "swept-nearest-hit",
+    "laser-and-bomb",
+    "pause-and-home-cleanup",
+    "haptics-once",
+    "damage-death-bomb-haptics",
+    "mining-render"
+  ]
+}

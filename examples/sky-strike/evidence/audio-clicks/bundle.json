@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "name": "bomb.wav",
+      "bytes": 97064,
+      "sha256": "f4f623a91ebc8228ef3ac578e69b395950fa298a4d537fc7e9f42e554ed040fb"
+    },
+    {
+      "name": "explosion-boss.wav",
+      "bytes": 132344,
+      "sha256": "9011d1bc1a4f2a5042fce0c6891af049a95911fc46d4477e4a0305c2fef96370"
+    },
+    {
+      "name": "explosion-large.wav",
+      "bytes": 70604,
+      "sha256": "d3e586fc68558834bad39c824db542382e0fb0fc5fef7103f83c51ebda799ade"
+    },
+    {
+      "name": "explosion-small.wav",
+      "bytes": 30032,
+      "sha256": "c766d934e3ae142f9631892e54d46b633ad3d3b1c3c5c0275093eda9f9f961e0"
+    },
+    {
+      "name": "hit.wav",
+      "bytes": 10188,
+      "sha256": "3e8fe1ba3499a5c7d1225512daba039364558807a93195802608ccc2cfed58fc"
+    },
+    {
+      "name": "laser-end.wav",
+      "bytes": 13274,
+      "sha256": "ce49f595f2a79ebcaa149854fc7b8cfc7211214bea68b0749154d1f06e3b38c7"
+    },
+    {
+      "name": "laser-enemy.wav",
+      "bytes": 17684,
+      "sha256": "7924a747f3192fde26827bd00bcf6b0d6bcf421413ff099cb0aaf242ae7910a5"
+    },
+    {
+      "name": "laser-loop.wav",
+      "bytes": 17684,
+      "sha256": "72ed86eed5ba70702c0fbb2991c40f962d988ecb3ee006422386dce4189879ad"
+    },
+    {
+      "name": "laser-start.wav",
+      "bytes": 12392,
+      "sha256": "d5b0da30b3897425e6ccdb851afab8d86703c37e4f16f5dce8b9bce1871af837"
+    },
+    {
+      "name": "shot-basic.wav",
+      "bytes": 9306,
+      "sha256": "7106aa9026d1a714de6d5cb301bf288a69a96e691cbf3a84fe7709752fdfef01"
+    },
+    {
+      "name": "shot-blue.wav",
+      "bytes": 7100,
+      "sha256": "adf5e36260a144c51ce9793df89fd93e73942214338dbb909198d690b1467fe2"
+    },
+    {
+      "name": "shot-enemy.wav",
+      "bytes": 8424,
+      "sha256": "e1c177a7c9835e6693f4c68107a04e0c1095526b82ebdfb7583cfc02b56b807d"
+    },
+    {
+      "name": "shot-red.wav",
+      "bytes": 13274,
+      "sha256": "cc259c10a50596513253e68bc3fa26f68a597c34b0b37fc616fbd59dc34ec94f"
+    },
+    {
+      "name": "ui-click.wav",
+      "bytes": 6660,
+      "sha256": "c78d2c24af76da05be2a9f18e7dc108253b0e873fb778aadb42e6e5036dd043d"
+    }
+  ],
+  "bytes": 446030,
+  "bundleSha256": "b74d039945cde5d8ce49eb64b5415d5ef985246838023ccba2060ff1fd74d4fe"
+}

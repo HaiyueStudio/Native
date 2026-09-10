@@ -1,0 +1,24 @@
+✔ held trigger fires at 600 rpm; releasing immediately stops (36.159826ms)
+✔ cadence is stable at 30, 60 and 120 FPS (74.971075ms)
+✔ empty magazine never fires; reload blocks firing and completes exactly once (40.726257ms)
+✔ bullets originate at muzzle and preserve the facing at emission (27.953299ms)
+✔ swept enemy hits score once; cover absorbs bullets before a body (54.019505ms)
+✔ suspension cannot discharge a backlog on resume; invalid time rejected (28.877761ms)
+✔ source GLBs match provenance; rifle runtime excludes first-person arms (32.379679ms)
+✔ one seeded enemy appears at an arena edge every three simulation seconds (79.080234ms)
+✔ both teams have exactly a forward 90-degree cone with solid cover occlusion (28.916658ms)
+✔ actors slide along cover and cannot tunnel through it or leave the arena (24.617115ms)
+✔ Engine navigation routes around cover with body clearance (21.077232ms)
+✔ an unaware enemy cannot track a player behind its back or through cover (45.373758ms)
+✔ acquired targets are shot after a reaction delay; death stops simulation; restart clears combat (22.679133ms)
+✔ a hand socket extending through cover cannot shoot from its far side (21.532066ms)
+✔ right aim owns facing independently of movement, including center hold and return to center (0.27314ms)
+✔ screen aim cardinal directions map to world bullet directions, regardless of movement (94.50802ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 844.278117

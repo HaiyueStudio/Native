@@ -1,0 +1,29 @@
+{
+  "audio": {
+    "uiClicks": 0,
+    "enabled": true,
+    "volume": 0.4,
+    "active": true,
+    "loops": 0,
+    "saveFailed": false,
+    "backend": {
+      "kind": "av-audio-engine",
+      "error": null,
+      "running": true,
+      "buffers": 18,
+      "pcmBytes": 1139552,
+      "voices": 0,
+      "nodeCount": 12,
+      "played": 0,
+      "volume": 0.4,
+      "disposed": false
+    }
+  },
+  "bombCrates": {
+    "count": 0,
+    "nextMs": 6000,
+    "items": []
+  },
+  "lastEvent": "present",
+  "errors": []
+}

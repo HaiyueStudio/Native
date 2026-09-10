@@ -1,0 +1,129 @@
+
+> @haiyue/games-repository@0.1.0 build
+> node scripts/build-games.mjs
+
+
+> rollup game 2048
+
+games/2048/main.ts → games/2048/bundle.js...
+created games/2048/bundle.js in 31.2s
+
+> rollup game billiards-3d
+
+games/billiards-3d/main.ts → games/billiards-3d/bundle.js...
+created games/billiards-3d/bundle.js in 26.6s
+
+> rollup game billiards
+
+games/billiards/main.ts → games/billiards/bundle.js...
+created games/billiards/bundle.js in 16.8s
+
+> rollup game calendar-puzzle
+
+games/calendar-puzzle/main.ts → games/calendar-puzzle/bundle.js...
+created games/calendar-puzzle/bundle.js in 13.8s
+
+> rollup game triangle-calendar-puzzle
+
+games/triangle-calendar-puzzle/main.ts → games/triangle-calendar-puzzle/bundle.js...
+created games/triangle-calendar-puzzle/bundle.js in 12.7s
+
+> rollup game entanglement-path
+
+games/entanglement-path/main.ts → games/entanglement-path/bundle.js...
+created games/entanglement-path/bundle.js in 13.8s
+
+> rollup game icosahedron-minesweeper
+
+games/icosahedron-minesweeper/main.ts → games/icosahedron-minesweeper/bundle.js...
+created games/icosahedron-minesweeper/bundle.js in 12.7s
+
+> rollup game gravity-maze
+
+games/gravity-maze/main.ts → games/gravity-maze/dist...
+created games/gravity-maze/dist in 5.8s
+
+> rollup game match-3
+
+games/match-3/main.ts → games/match-3/bundle.js...
+created games/match-3/bundle.js in 13.2s
+
+> rollup game neon-circuit
+
+games/neon-circuit/main.ts → games/neon-circuit/bundle.js...
+created games/neon-circuit/bundle.js in 13.3s
+
+> rollup game minesweeper
+
+games/minesweeper/main.ts → games/minesweeper/bundle.js...
+created games/minesweeper/bundle.js in 12.9s
+
+> rollup game minecraft-lite
+
+games/minecraft-lite/main.ts → games/minecraft-lite/bundle.js...
+created games/minecraft-lite/bundle.js in 12.7s
+
+> rollup game mugen
+
+games/mugen/main.ts, games/mugen/charactorPreview.ts, games/mugen/import/worker/mugenImport.worker.ts → games/mugen/dist...
+created games/mugen/dist in 10.6s
+
+> rollup game pad-simulator
+
+games/pad-simulator/main.ts → games/pad-simulator/bundle.js...
+created games/pad-simulator/bundle.js in 14.4s
+
+> rollup game pacman
+
+games/pacman/main.ts → games/pacman/bundle.js...
+created games/pacman/bundle.js in 12.4s
+
+> rollup game piano
+
+games/piano/main.ts → games/piano/bundle.js...
+created games/piano/bundle.js in 12.8s
+
+> rollup game pong
+
+games/pong/main.ts → games/pong/bundle.js...
+created games/pong/bundle.js in 11.9s
+
+> rollup game sokoban-3d
+
+games/sokoban-3d/main.ts → games/sokoban-3d/bundle.js...
+created games/sokoban-3d/bundle.js in 12.3s
+
+> rollup game sky-strike
+
+games/sky-strike/main.ts → games/sky-strike/bundle.js...
+created games/sky-strike/bundle.js in 12.2s
+
+> rollup game spider-solitaire
+
+games/spider-solitaire/main.ts → games/spider-solitaire/bundle.js...
+created games/spider-solitaire/bundle.js in 12.4s
+
+> rollup game sudoku
+
+games/sudoku/main.ts → games/sudoku/bundle.js...
+created games/sudoku/bundle.js in 11.9s
+
+> rollup game tetris
+
+games/tetris/main.ts → games/tetris/bundle.js...
+created games/tetris/bundle.js in 11.9s
+
+> rollup game wfc-map
+
+games/wfc-map/main.ts → games/wfc-map/bundle.js...
+created games/wfc-map/bundle.js in 12.9s
+
+> rollup game rubiks-cube
+
+games/rubiks-cube/main.ts → games/rubiks-cube/bundle.js...
+created games/rubiks-cube/bundle.js in 14s
+
+> rollup game ak47-range
+
+games/ak47-range/main.ts → games/ak47-range/bundle.js...
+created games/ak47-range/bundle.js in 13.3s

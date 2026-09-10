@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-10T15:13:31.868955+00:00",
+  "scope": "two-stick aiming; browser WebGPU and iPhone 15 Plus Metal",
+  "sourceSha256": {
+    "Games/games/ak47-range/main.ts": "6ac50654efa2dfaabf2622b7a706b1a033ad55888934cac9195ce31422df03de",
+    "Games/games/ak47-range/rules.ts": "cd7a5af6dbba358a29ace0e97982cfcd9759e9a80a929fd167397cbb2f5e175f",
+    "Games/games/ak47-range/twin-stick-verification.ts": "c21cb6e1f66cc2c9d80ea76c3d8fb5b6aa5751819cb21cbfb478717d9217c39d",
+    "Games/games/ak47-range/RangeGame.ts": "e783c08c51420e2c551538716ee18d2826e1f3153d41a728ac53af8acdc6016f",
+    "Games/games/ak47-range/verification.ts": "446bc290fb4f91ea797551db1a4d10075ea4c0cde4a25c3d95424b652ae09435",
+    "Games/games/ak47-range/bundle.js": "69870cd4a03607386d6ee993dd77c37c33feb25afcf7035b49ec6b13bba5284c",
+    "Games/games/test/ak47-range.test.mjs": "ab3536ebc6fcd590f9f2702a0c666ffa28c65702735bf8db6d35634fe62087ec",
+    "Native/examples/ak47-range/src/haptics.ios.ts": "d2354d0ed71b689afdd01faa7ad1796d0e9d809488798492c5062829b5b977c6",
+    "Native/examples/ak47-range/src/main-page.ts": "69d64d3f1cf6482b475b64190b71e01724fc493ca6a67aa961c4180648c86e09",
+    "Native/examples/ak47-range/src/app.ts": "ccfaebcbbc577215ea783ce17b15fe76afa6ce36d21b49f14416421f1b80d5fd",
+    "Native/examples/ak47-range/src/core-js-pure.d.ts": "2a3152b848ac336029493e579bc7a370b584171adb31f07c53238fe5214e8269",
+    "Native/examples/ak47-range/src/pointer-capture.ts": "025435895f543b1fb8dbb562330776c24ac2da7382c5c91fdb6cc9e3e0fcdfa6",
+    "Native/examples/ak47-range/src/models.ts": "8845a5b9569b14d78c7b94cf64b425cb8f3d20c04f1bbebd0a68f1cb909ea52b",
+    "Native/examples/ak47-range/src/verification.ts": "3e37e6d5e0dd57eb6e9c7516839c44eae713bf096f2d7d983733164547f57ed2",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/bundle.mjs": "c614c6096c3f42c5898d9e8b062db23b1afbb663c31bf390ad2b54b4754c50d0",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/vendor.mjs": "7b68fb6ac83061481e1e5ed8dede33ef8f1169c9430699a5d4ec6138772ac63c",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range": "759fc0a08369cdc611a6f33fafa11b5bb81ed5803492a396a56806d01cc80f27"
+  },
+  "validation": {
+    "gameRules": 16,
+    "nativeUnit": 8,
+    "browserLandscape": 26,
+    "browserPortrait": 3,
+    "iphone": 29,
+    "gamesBuilt": 25,
+    "typechecks": "Games and Native passed",
+    "fullTests": {
+      "total": 515,
+      "passed": 493,
+      "failed": 2,
+      "skipped": 20
+    }
+  },
+  "dirty": true
+}

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checks": [
+    "14-decoded-effects",
+    "game-weapon-audio",
+    "laser-lifecycle",
+    "12-voice-budget",
+    "background-resume",
+    "rapid-resume",
+    "mute-dispose"
+  ]
+}

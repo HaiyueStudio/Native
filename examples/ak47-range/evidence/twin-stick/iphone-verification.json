@@ -1,0 +1,138 @@
+{
+  "status": "passed",
+  "checks": [
+    "native glTF character and right-hand AK47 loaded",
+    "native app is landscape",
+    "native canvas fills the entire window",
+    "controls stay inside the native safe area",
+    "native joystick moves character",
+    "native camera follows",
+    "native second pointer fires while running",
+    "native release stops fire",
+    "native Engine GUI starts reload",
+    "native reload completes",
+    "native cancellation clears both actions",
+    "idle shooting control displays only the fire button",
+    "holding fire immediately shoots and expands the aiming joystick",
+    "center hold preserves facing while the movement stick remains active",
+    "moving right and shooting left are independent",
+    "weapon muzzle and visibility cone follow right-stick aiming",
+    "returning aim to center retains the last shooting direction",
+    "dragging the right stick updates aiming direction",
+    "releasing movement keeps stationary aimed fire active",
+    "releasing aim stops fire and restores the button",
+    "aim cancellation stops fire and restores the button",
+    "suspension cancels both sticks without retaining a trigger",
+    "front enemy visible inside 90-degree cone",
+    "rear enemy hidden",
+    "cover blocks enemy visibility",
+    "hidden enemies excluded from rendering",
+    "enemy acquires player and bullets inflict damage",
+    "continuous shots request light recoil feedback",
+    "enemy hits request medium feedback"
+  ],
+  "capture": {
+    "file": "ak47-range-verified.png",
+    "bytes": 162451
+  },
+  "haptics": {
+    "active": true,
+    "recoilPulses": 18,
+    "hitPulses": 5
+  },
+  "ready": true,
+  "ammo": 29,
+  "shots": 18,
+  "hits": 0,
+  "health": 100,
+  "kills": 0,
+  "survival": 0.14879099999961912,
+  "spawned": 1,
+  "enemies": [
+    {
+      "id": 1,
+      "x": 1,
+      "z": -2,
+      "heading": 3.0165220331600766,
+      "alert": true,
+      "visible": true
+    }
+  ],
+  "renderedEnemies": 1,
+  "portraitPaused": false,
+  "safeInsets": {
+    "top": 0,
+    "right": 59,
+    "bottom": 21,
+    "left": 59
+  },
+  "damageEvents": 8,
+  "reloading": 0,
+  "firing": true,
+  "bullets": 1,
+  "player": [
+    0.37136563658714294,
+    0,
+    3
+  ],
+  "heading": 0.5070984959602356,
+  "cameraTarget": [
+    0.15212194621562958,
+    0.800000011920929,
+    3
+  ],
+  "cameraEye": [
+    0.15212194621562958,
+    8.069842338562012,
+    12.547219276428223
+  ],
+  "hand": "1seal_skeleton_Bip01 R Hand",
+  "weaponAttached": true,
+  "aimJoystick": {
+    "active": true,
+    "pointerId": 9202,
+    "center": {
+      "x": 805,
+      "y": 337
+    },
+    "direction": {
+      "x": -0.48564293117863205,
+      "y": -0.8741572761215377
+    },
+    "offset": {
+      "x": -19.425717247145283,
+      "y": -34.96629104486151
+    },
+    "rawDistance": 41.182520563948,
+    "distance": 40,
+    "strength": 1,
+    "angle": -2.0778948311872334
+  },
+  "fireButtonVisible": false,
+  "muzzle": {
+    "x": -0.08640161156654358,
+    "y": 1.2916698455810547,
+    "z": 2.1995606422424316
+  },
+  "joystick": {
+    "active": true,
+    "pointerId": 9201,
+    "center": {
+      "x": 163,
+      "y": 309
+    },
+    "direction": {
+      "x": 1,
+      "y": 0
+    },
+    "offset": {
+      "x": 42,
+      "y": 0
+    },
+    "rawDistance": 42,
+    "distance": 42,
+    "strength": 0.8579545454545454,
+    "angle": 0
+  },
+  "animation": "run_bottom"
+}

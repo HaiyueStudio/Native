@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "checks": [
+    "boss-only-supply-timing",
+    "pause-freeze",
+    "swept-hit",
+    "single-drop",
+    "pickup-bomb",
+    "laser-crate",
+    "occlusion",
+    "boss-cleanup",
+    "four-pickup-sounds",
+    "zero-texture-upload"
+  ]
+}

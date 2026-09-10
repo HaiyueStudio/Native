@@ -1,0 +1,438 @@
+{
+  "effects": [
+    {
+      "id": "pickup-red",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 1,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "pickup-blue",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 2,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "pickup-purple",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 3,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "pickup-bomb",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 4,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "ui-click",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 5,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "shot-basic",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 6,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "shot-red",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 7,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "shot-blue",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 8,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "shot-enemy",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 9,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "explosion-small",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 10,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "explosion-large",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 11,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "explosion-boss",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 12,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "bomb",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 13,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "hit",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 14,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "laser-start",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 15,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "laser-loop",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 1,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 2,
+          "nodeCount": 12,
+          "played": 17,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "laser-end",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 0,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 18,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    },
+    {
+      "id": "laser-enemy",
+      "audio": {
+        "uiClicks": 0,
+        "enabled": true,
+        "volume": 0.4,
+        "active": true,
+        "loops": 1,
+        "saveFailed": false,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 18,
+          "pcmBytes": 1139552,
+          "voices": 1,
+          "nodeCount": 12,
+          "played": 19,
+          "volume": 0.4,
+          "disposed": false
+        }
+      }
+    }
+  ],
+  "final": {
+    "uiClicks": 0,
+    "enabled": true,
+    "volume": 0.4,
+    "active": false,
+    "loops": 0,
+    "saveFailed": false,
+    "backend": {
+      "kind": "av-audio-engine",
+      "error": null,
+      "running": false,
+      "buffers": 18,
+      "pcmBytes": 1139552,
+      "voices": 0,
+      "nodeCount": 12,
+      "played": 19,
+      "volume": 0.4,
+      "disposed": false
+    }
+  }
+}

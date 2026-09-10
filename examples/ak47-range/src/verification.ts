@@ -1,3 +1,4 @@
+import { verifyTwinStick } from '../../../../Games/games/ak47-range/twin-stick-verification';
 import { File, knownFolders, path } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { captureSurfaceFrame } from '../../../bridge/render/frame-capture.ios';
@@ -53,6 +54,7 @@ export async function verifyNativeRange(game: RangeGame, target: OrbitPointerTar
     check(game.rules.ammo === 30 && game.rules.reloadRemaining === 0, 'native reload completes');
     target.handle('down', [{ id: 9202, x: fire.x + 48, y: fire.y + 48 }]); target.cancel();
     check(!game.rules.firing && !game.controls.state.active, 'native cancellation clears both actions');
+    checks.push(...await verifyTwinStick(game, (type, id, x, y) => target.handle(type.slice(7) as 'down' | 'move' | 'up' | 'cancel', [{ id, x, y }]), frames, [9201, 9202]));
     game.restart();
     game.rules.spawnEnemy({ x: 1, z: -2 });
     game.rules.spawnEnemy({ x: 0, z: 7 });
@@ -67,6 +69,14 @@ export async function verifyNativeRange(game: RangeGame, target: OrbitPointerTar
     await frames(35);
     check(feedback().recoilPulses >= 3, 'continuous shots request light recoil feedback');
     check(feedback().hitPulses > 0, 'enemy hits request medium feedback');
+    // Let the restarted scene re-enable controls before sending the preview gesture.
+    game.restart(); game.rules.spawnEnemy({ x: 1, z: -2 }); await frames(2);
+    const move = game.controls.state.center, aim = game.aimControls.state.center;
+    target.handle('down', [{ id: 9201, x: move.x, y: move.y }]);
+    target.handle('move', [{ id: 9201, x: move.x + 42, y: move.y }]);
+    target.handle('down', [{ id: 9202, x: aim.x, y: aim.y }]);
+    target.handle('move', [{ id: 9202, x: aim.x - 20, y: aim.y - 36 }]);
+    await frames(3);
     // Capture synchronously inside after-update before the host presents the acquired texture.
     const capture = await new Promise((resolve, reject) => { captureResolve = resolve; captureReject = reject; });
     output.writeTextSync(JSON.stringify({ status: 'passed', checks, capture, haptics: feedback(), ...game.snapshot() }, null, 2));
