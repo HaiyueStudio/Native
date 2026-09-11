@@ -1,0 +1,26 @@
+{
+  "nativeBuild": "passed",
+  "signature": "passed",
+  "installed": true,
+  "browserBuild": "passed",
+  "gamesTypecheck": "passed",
+  "nativeTypecheck": "passed",
+  "focusedTests": 61,
+  "nativeTests": 9,
+  "bundleSha256": "1aba0949f0df5f851d4fef5e23eb40c968aaaa206b6e26de7edfbb3ab4933604",
+  "revisions": {
+    "Games": "363c57cafa7d48dfc59b33682efeb43228f3c7ac",
+    "Native": "b42bbe19c82c4685bdf3373cffed6198b04b5a85"
+  },
+  "sourceState": "working tree with uncommitted changes; diagnostic evidence, not formal performance certification",
+  "sourceHashes": {
+    "Games/games/sky-strike/mirrorPrism.ts": "9f708996856e96971d22ab17ab6247f45c729d6b9f9d488c25478b058ee01c71",
+    "Games/games/sky-strike/mirrorSprites.ts": "60b14d621dcfd1302f475f2ef09629f871daecb1c1e7d8f43357a004c65c7c97",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "27600762fda45f5fbecc93537343ad180dbdbf599dac8b7ff5e803187fbd4483",
+    "Games/games/sky-strike/rules.ts": "53ca27dcf9f56e257ebe5143a854987e8fcdf0e0083922a0e4773032782f5a15",
+    "Games/games/sky-strike/levels/level-10.json": "072df3bdd1021814803b6f845865cfd0e7e4b0ce3c699fd5bdcb55cb8d6b9845",
+    "Games/games/test/fixtures/sky-native/main.ts": "713121b4caffbfcdbf7ee40220252d92efcd3fb6f1f431917d76f80f68ccea33",
+    "Native/examples/sky-strike/src/main-page.ts": "371a59cf2dcaf631f644a0ba78e932578571d53912720029468c62addbabd86b"
+  },
+  "nativeProbe": "passed: real reflected bullets, laser, 30 shards, then stage 1; no host errors"
+}

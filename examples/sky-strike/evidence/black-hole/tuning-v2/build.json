@@ -1,0 +1,10 @@
+{
+  "nativeBuild": "passed",
+  "signatureVerification": "passed",
+  "bundleSha256": "9a560e77b4fea6fe2d8ce131a931e96153dbd538054fd171dd85f9a54e3cc419",
+  "browserBuild": "passed",
+  "focusedTests": 57,
+  "nativeHostTests": 9,
+  "deviceLaunch": "pending: iPhone was locked",
+  "deviceInstall": "passed"
+}

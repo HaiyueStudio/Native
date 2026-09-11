@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-09-10T15:35:03.767156+00:00",
+  "description": "Local working-tree radar/auto-reload/120-60 FOV candidate; installed on iPhone 15 Plus. Browser bundle hash matches verified build.",
+  "sha256": {
+    "Games/games/ak47-range/main.ts": "6ac50654efa2dfaabf2622b7a706b1a033ad55888934cac9195ce31422df03de",
+    "Games/games/ak47-range/radar-verification.ts": "30afc04806238461807a49b933fd73853dc040095afecc8a602af3e33d4c0dda",
+    "Games/games/ak47-range/rules.ts": "b9cec43e908b7d77f08e991197126b25113bbe29bc188ff22aeb5da92d95bb4c",
+    "Games/games/ak47-range/twin-stick-verification.ts": "c21cb6e1f66cc2c9d80ea76c3d8fb5b6aa5751819cb21cbfb478717d9217c39d",
+    "Games/games/ak47-range/RangeGame.ts": "93af2da0a1693cccb346119e161a5ee42aac02a351f676b49bc55d8b0a0228b9",
+    "Games/games/ak47-range/radar.ts": "cc250c489f01014c3aad9b33e0bbb044287db487dfa4bdbc27d30a39fef6100d",
+    "Games/games/ak47-range/RadarHud.ts": "1556faf8d725034ca2cfdca12af56d858d4745d3f99d0cc46d041889969cbc78",
+    "Games/games/ak47-range/verification.ts": "b59f3af2dcb6eaab40c2cf4d874914baf49e20c9e38863fe570cd287bf96adeb",
+    "Games/games/test/ak47-range.test.mjs": "0ff8bc4b54e658b28a73e34ccc52db63857079d254ff81108d8cf57ea2ea350d",
+    "Games/scripts/verify-ak47-range.mjs": "3124c349c41d7770320ba56c4dbbe0bf28de99d13c223d0665d069d7ee137c42",
+    "Native/examples/ak47-range/src/verification.ts": "bf7abeb2ac329a45563cc2a0c8d5e13a73fc4906d678720f5899bcc4a1442db7",
+    "Games/games/ak47-range/bundle.js": "71d9be02bf7adcbb897b360c42201227db04717108e04949837f84aca76730e1",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/bundle.mjs": "f7a3eb75b08bc022056d31e71502ce9570239b752970091eb052a5fc4c384246",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/vendor.mjs": "7b68fb6ac83061481e1e5ed8dede33ef8f1169c9430699a5d4ec6138772ac63c",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range": "0ccb600a4f2975b72ac744be3f95961f8d945fd91e1f1386fb11acd3ca2977fc"
+  }
+}

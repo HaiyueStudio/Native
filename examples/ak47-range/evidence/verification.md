@@ -1,6 +1,6 @@
 # 前线训练场初始版本验证记录 — 2026-09-10
 
-双摇杆最新证据见 [twin-stick/verification.md](twin-stick/verification.md)。生存玩法更新证据见 [survival/verification.md](survival/verification.md)。以下记录保留初次移植时的验证范围，不代表当前版本支持竖屏游玩。
+玩家偏蓝材质最新证据见 [player-tint/verification.md](player-tint/verification.md)。敌人模型、death 动画和射程证据见 [enemy-models/verification.md](enemy-models/verification.md)。自动装填、120°/60° 视野与雷达证据见 [radar/verification.md](radar/verification.md)。双摇杆证据见 [twin-stick/verification.md](twin-stick/verification.md)。生存玩法更新证据见 [survival/verification.md](survival/verification.md)。以下记录保留初次移植时的验证范围，不代表当前版本支持竖屏游玩。
 
 ## 已完成
 

@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "checks": [
+    "start-boss",
+    "damage-immunity",
+    "absorption-growth",
+    "side-enemies",
+    "elite-bomb-half",
+    "pause",
+    "two-second-warning",
+    "blast-region",
+    "actual-lens-shader"
+  ]
+}

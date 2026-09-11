@@ -1,0 +1,10 @@
+{
+  "bundleSHA256": "b956d2f339e85cff90428002ca07578f58d06b1cdf1987080d6da133a9514cb6",
+  "damage": 7,
+  "signatureVerified": true,
+  "installed": true,
+  "sceneReady": true,
+  "lastPresentFrames": 720,
+  "phase": "ready",
+  "errors": []
+}

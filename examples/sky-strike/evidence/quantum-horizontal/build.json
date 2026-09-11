@@ -1,0 +1,13 @@
+{
+  "bundleSHA256": "6302c4301cde8567f0aa8c1c0de33b1cfc85fc74e25bd0121b23f38ab8ec28aa",
+  "sourceSHA256": {
+    "Games/games/sky-strike/quantum.ts": "0d7527831e4f9628492adae57599029e59d7cbdaf1ab4fe61f095077b68eda8b",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "9f2635b9c79982357c6e28ae40d11da43290de1ea27fa4f2e4d94df9a68421d6",
+    "Games/games/sky-strike/rules.ts": "fedb9ab3c73934f3401fb3e1be710245d1c1dcf027180c0bc1d8d9dfb0ec8e71",
+    "Games/games/test/fixtures/sky-native/main.ts": "607743aba27b5a0414033e7ad5a7820498998bad05f6ef7d3a14f8b143917ee4"
+  },
+  "diagnosticOnly": true,
+  "dirtyWorkspace": true,
+  "signed": true,
+  "installed": true
+}

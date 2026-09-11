@@ -1,0 +1,61 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "process",
+      "launch",
+      "--device",
+      "8D9238D1-024A-538B-A175-B9E71AA32202",
+      "--terminate-existing",
+      "--environment-variables",
+      "{\"RANGE_VERIFY\":\"1\",\"RANGE_CAPTURE_FRAME\":\"1\"}",
+      "org.haiyue.native.ak47range",
+      "--json-output",
+      "/tmp/blue-verify-launch.json"
+    ],
+    "commandType" : "devicectl.device.process.launch",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "506.7"
+  },
+  "result" : {
+    "deviceIdentifier" : "8D9238D1-024A-538B-A175-B9E71AA32202",
+    "launchOptions" : {
+      "activatedWhenStarted" : true,
+      "arguments" : [
+
+      ],
+      "environmentVariables" : {
+        "RANGE_CAPTURE_FRAME" : "1",
+        "RANGE_VERIFY" : "1",
+        "TERM" : "dumb"
+      },
+      "platformSpecificOptions" : {
+
+      },
+      "startStopped" : false,
+      "terminateExistingInstances" : true,
+      "user" : {
+        "active" : true
+      }
+    },
+    "process" : {
+      "auditToken" : [
+        4294967295,
+        501,
+        501,
+        501,
+        501,
+        9420,
+        0,
+        24486
+      ],
+      "executable" : "file:///private/var/containers/Bundle/Application/23EF08FA-0989-41C6-93D5-9414B1F99DDA/ak47range.app/ak47range",
+      "processIdentifier" : 9420
+    }
+  }
+}

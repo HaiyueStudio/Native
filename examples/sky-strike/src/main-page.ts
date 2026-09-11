@@ -1,3 +1,4 @@
+import {ENEMY_DEFINITIONS} from '../../../../Games/games/sky-strike/rules';
 import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank.ios';
 import { SkyStrikeAudio } from '../../../../Games/games/sky-strike/audio/SkyStrikeAudio';
 import { SKY_SOUND_IDS, SKY_SOUNDS, soundPath } from '../../../../Games/games/sky-strike/audio/synthesis';
@@ -7,7 +8,7 @@ import { Application, File, knownFolders, path, type EventData, type Page, type 
 import { type Canvas } from '@nativescript/canvas';
 import { World } from '@haiyue/engine';
 import { RenderIntegration } from '@haiyue/engine/experimental';
-import { LocalStorageSaveBackend } from '@haiyue/engine/save';
+import { LocalStorageSaveBackend, MemorySaveBackend } from '@haiyue/engine/save';
 import type { NativeCanvasInput } from '../../../bridge/render/surface';
 import { NativeRenderHost } from '../../../bridge/lifecycle/host';
 import { NativeTouchInput } from '../../../bridge/input/native-touch.ios';
@@ -32,6 +33,9 @@ function ensureHost(canvas: Canvas): void {
   const status = (canvas.page as Page).getViewById<Label>('status');
   const input = new NativeTouchInput(canvas, () => {});
   const haptics = new NativeHaptics();
+  const holeProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_HOLE_PROBE')) === '1';
+  const quantumProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_QUANTUM_PROBE')) === '1';
+  const prismProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PRISM_PROBE')) === '1';
   let game: SkyStrikeGame | null = null;
   let audio: SkyStrikeAudio | null = null;
   let world: World | null = null;
@@ -71,7 +75,7 @@ function ensureHost(canvas: Canvas): void {
         ui, locale, levels, audio, keyboard: false, guiLoadOp: 'load',
         haptic: event => haptics.impact(event === 'boss-defeated' || event === 'player-destroyed' ? 'heavy' : event === 'bomb' ? 'medium' : 'light'),
         acceptsGameplayInput: (_x, y) => y >= insets.top + 94 && y <= surface.getBoundingClientRect().height - insets.bottom - 94,
-        saveBackend: new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
+        saveBackend: (holeProbeMode||prismProbeMode||quantumProbeMode) ? new MemorySaveBackend() : new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
         guiFont: { canvasFactory: textures.createCanvas2D, readAtlasPixels: textures.readAtlasPixels },
 
       });
@@ -79,6 +83,15 @@ function ensureHost(canvas: Canvas): void {
       const integration = new RenderIntegration(engine, { label: 'SkyStrike.native' });
       world.addRuntimeIntegration(integration); integration.registerAll(world);
       // Explicit launch-only diagnostic, inactive during normal play. Exercises native scheduling on-device.
+      let holeProbeMs=0,holeProbeSampleMs=0,holeProbeForced=false,holeProbeDone=false;
+      const holeProbeSamples:unknown[]=[];
+      if(holeProbeMode){const diagnostic=game as any;diagnostic.selectedLevelIndex=8;diagnostic.startSortie();diagnostic.player.invulnerableMs=999999;diagnostic.pointerFiring=true;}
+      let prismProbeMs=0,prismSampleMs=0,prismLaser=false,prismBroken=false,prismDone=false;
+      const prismSamples:unknown[]=[];
+      if(prismProbeMode){const d=game as any;d.selectedLevelIndex=9;d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.pointerFiring=true;const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='crystal-prism'),240,160);boss.entered=true;d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='mirror-triangle'),240,340);}
+      let quantumProbeMs=0,quantumSampleMs=0,quantumDone=false,quantumDefeated=false,quantumCritical=false;
+      const quantumSamples:unknown[]=[];
+      if(quantumProbeMode){const d=game as any;d.selectedLevelIndex=levels.findIndex(l=>l.id==='quantum-armada');d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.player.x=90;d.player.y=560;d.pointerFiring=true;const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='quantum-dreadnought'),240,180);boss.entered=true;d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='bomber'),100,300,true);}
       const probe = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_AUDIO_PROBE')) === '1';
       let probeElapsed = 0, probeIndex = 0;
       const probeResults: unknown[] = [];
@@ -86,6 +99,27 @@ function ensureHost(canvas: Canvas): void {
       const update = ({ detail: { time, delta } }: { detail: { time: number; delta: number } }) => {
         game!.update(delta);
         world!.update(time, delta);
+        if(holeProbeMode&&!holeProbeDone){
+          holeProbeMs+=Math.min(34,delta);holeProbeSampleMs+=Math.min(34,delta);
+          if(holeProbeSampleMs>=1000){holeProbeSamples.push(game!.snapshot());holeProbeSampleMs=0;}
+          if(holeProbeMs>=8000&&!holeProbeForced){(game as any).blackHole.absorb(1200);holeProbeForced=true;}
+          if(holeProbeMs>=38000){game!.suspend();holeProbeDone=true;File.fromPath(path.join(knownFolders.documents().path,'sky-hole-probe.json')).writeTextSync(JSON.stringify({samples:holeProbeSamples,final:game!.snapshot(),forcedThreshold:true,memorySave:true}));}
+        }
+        if(quantumProbeMode&&!quantumDone){
+          const d=game as any;quantumProbeMs+=Math.min(34,delta);quantumSampleMs+=Math.min(34,delta);
+          if(quantumSampleMs>=250){quantumSamples.push(game!.snapshot());quantumSampleMs=0;}
+          if(quantumProbeMs>=6000&&!quantumCritical){if(d.boss)d.boss.hitPoints=d.boss.definition.hitPoints*.34;quantumCritical=true;d.player.x=390;}
+          if(quantumProbeMs>=12000&&!quantumDefeated){if(d.boss)d.damageEnemy(d.enemies.indexOf(d.boss),d.boss,999999);quantumDefeated=true;}
+          if(quantumProbeMs>=16000){game!.suspend();quantumDone=true;File.fromPath(path.join(knownFolders.documents().path,'sky-quantum-probe.json')).writeTextSync(JSON.stringify({samples:quantumSamples,final:game!.snapshot(),forcedBossDeath:true,memorySave:true}));}
+        }
+        if(prismProbeMode&&!prismDone){
+          prismProbeMs+=Math.min(34,delta);prismSampleMs+=Math.min(34,delta);
+          const d=game as any;
+          if(prismProbeMs>=5000&&!prismLaser){d.weaponForm='purple';d.weaponLevel=1;prismLaser=true;}
+          if(prismProbeMs>=11000&&!prismBroken){if(d.boss)d.spendMirrorBudget(d.boss,99999);prismBroken=true;}
+          if(prismSampleMs>=1000){prismSamples.push(game!.snapshot());prismSampleMs=0;}
+          if(prismProbeMs>=19000){game!.suspend();prismDone=true;File.fromPath(path.join(knownFolders.documents().path,'sky-prism-probe.json')).writeTextSync(JSON.stringify({samples:prismSamples,final:game!.snapshot(),forcedOverload:true,memorySave:true}));}
+        }
         if (probe && probeIndex <= SKY_SOUND_IDS.length && audio!.snapshot().active) {
           probeElapsed += delta;
           if (probeElapsed >= 1800) {

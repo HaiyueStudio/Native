@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "checks": [
+    "gui-start",
+    "skinned-bomb",
+    "fighter-input",
+    "viewport-tracking",
+    "pointer-cancel",
+    "pause-resume"
+  ]
+}

@@ -1,0 +1,12 @@
+# Slower continuous growth and circular blast — 2026-09-11
+
+- Absorbed matter contributes 30% of its previous mass. Matter is queued, then integrated at no more than 18 mass/s, rather than resizing the hole directly on collision. Radius is linear in integrated mass (22 to 98 logical pixels), so early growth is not amplified by a square-root curve. Growth, gravity and HUD progress update continuously, and warning starts only after integrated mass reaches 360.
+- Near-core bullet velocity retains an inward component so small holes cannot store permanent circular orbits. A regression covers both friendly and hostile bullet directions before the hole has grown; passive time alone still adds no mass.
+- Explosion and warning use the same 480 logical pixel radius (half of the 960 logical screen height), centered on the frozen hole position. Circular boundary tests include diagonally safe points at the same height as central damaging points, actual bullets surviving outside the radius, and player damage inside it.
+- The hole center is explicitly limited to y ≤ 384 (top 40%); its normal slow drift is y 132–228.
+- 57 focused Sky Strike tests pass, including 7 black-hole/control/balance tests. Games TypeScript passes; the initial Native TypeScript and 9 host tests pass. Full repository run reported 493 pass, 2 unrelated MUGEN failures, 9 cancelled/timed-out Petra tests, and 20 skipped. It is not an all-green full repository run.
+- Browser fixture verification now waits for completed frames instead of a fixed 160 ms delay; long natural-game simulation yields periodically so browser diagnostics remain responsive. The diagnostic run allows 180 seconds wall time for the long fixture without changing production timing.
+
+Final browser scenarios all passed: natural progression, circular warning, wave and narrow-screen rendering. The continuously firing invulnerable fixture completed naturally in 54,432 simulated milliseconds (previous version: 23,184 ms). Duration is an emergent result of enemy trajectories and absorption, rather than a fixed timer; each body/projectile contributes exactly 30% of its former mass. The production browser build passed.
+
+Final native build, strict signature verification and in-place iPhone installation passed. Device runtime verification is pending: CoreDevice explicitly reported Locked when the diagnostic launch was attempted. No diagnostic career progress was written; normal icon launch uses the existing saved career.

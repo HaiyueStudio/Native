@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-09-11T04:44:09.313208+00:00",
+  "dirty": true,
+  "files": {
+    "Games/games/sky-strike/quantum.ts": "75242219e560cb860b2fafd6d002688720c427ccb844e65498a63b7aa3a67504",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "92288dfad88161d8d7fc0c57f34b6d1402cbbc2b4603878f0e7420cc308de02e",
+    "Games/games/sky-strike/shipDetails.ts": "dbebe9e06b6079f777371e0fa56981873518ca8b2dca6c606c6a4b6a4f408c61",
+    "Games/games/sky-strike/assets/sprites.rgba": "d24c00ee6d91648f16ddd826f5a7113d08e243fd651b24e80bc4b9677d0a5b7f",
+    "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/bundle.mjs": "e0c40988fb0c29c51f0fa20110304b3d4929065c22fd13696532e608d1d64378"
+  }
+}

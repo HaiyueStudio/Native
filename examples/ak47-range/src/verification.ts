@@ -1,3 +1,5 @@
+import { verifyEnemies, stageEnemyPreview } from '../../../../Games/games/ak47-range/enemy-verification';
+import { verifyRadar } from '../../../../Games/games/ak47-range/radar-verification';
 import { verifyTwinStick } from '../../../../Games/games/ak47-range/twin-stick-verification';
 import { File, knownFolders, path } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
@@ -55,12 +57,14 @@ export async function verifyNativeRange(game: RangeGame, target: OrbitPointerTar
     target.handle('down', [{ id: 9202, x: fire.x + 48, y: fire.y + 48 }]); target.cancel();
     check(!game.rules.firing && !game.controls.state.active, 'native cancellation clears both actions');
     checks.push(...await verifyTwinStick(game, (type, id, x, y) => target.handle(type.slice(7) as 'down' | 'move' | 'up' | 'cancel', [{ id, x, y }]), frames, [9201, 9202]));
+    checks.push(...await verifyRadar(game, frames));
+    checks.push(...await verifyEnemies(game, frames));
     game.restart();
     game.rules.spawnEnemy({ x: 1, z: -2 });
     game.rules.spawnEnemy({ x: 0, z: 7 });
     game.rules.spawnEnemy({ x: 5, z: -6 });
     await frames(2);
-    check(game.snapshot().enemies[0]!.visible, 'front enemy visible inside 90-degree cone');
+    check(game.snapshot().enemies[0]!.visible, 'front enemy visible inside 120-degree cone');
     check(!game.snapshot().enemies[1]!.visible, 'rear enemy hidden');
     check(!game.snapshot().enemies[2]!.visible, 'cover blocks enemy visibility');
     check(game.snapshot().renderedEnemies === game.snapshot().enemies.filter(e => e.visible).length, 'hidden enemies excluded from rendering');
@@ -70,7 +74,7 @@ export async function verifyNativeRange(game: RangeGame, target: OrbitPointerTar
     check(feedback().recoilPulses >= 3, 'continuous shots request light recoil feedback');
     check(feedback().hitPulses > 0, 'enemy hits request medium feedback');
     // Let the restarted scene re-enable controls before sending the preview gesture.
-    game.restart(); game.rules.spawnEnemy({ x: 1, z: -2 }); await frames(2);
+    stageEnemyPreview(game); await frames(2);
     const move = game.controls.state.center, aim = game.aimControls.state.center;
     target.handle('down', [{ id: 9201, x: move.x, y: move.y }]);
     target.handle('move', [{ id: 9201, x: move.x + 42, y: move.y }]);

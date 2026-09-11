@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-09-11T00:49:58.635293+00:00",
+  "sha256": {
+    "Games/games/ak47-range/RangeGame.ts": "cd6c963a7f34485e785a24a39c51dc9eb814122bb5eef55781891c7019060b4c",
+    "Games/games/ak47-range/bundle.js": "8d364b6f6c1e21303d75356a5004882dca066e03779f120985cb4d505a072c8a",
+    "Games/scripts/verify-ak47-range.mjs": "376e5125430301889643e3ce6793d6fa63eab7dbf975638d3ce9fe70c352a1c3",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/bundle.mjs": "753732052ce8a93af5d6071fa85f580e1f60a7df75fb71b32a95ed9d338961d4",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/vendor.mjs": "7b68fb6ac83061481e1e5ed8dede33ef8f1169c9430699a5d4ec6138772ac63c",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range": "31e62baa664438360bb40a1a8f6d27598fe1979a4028571008656f0e08cd17fd"
+  }
+}

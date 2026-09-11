@@ -1,0 +1,9 @@
+
+> @haiyue/games-repository@0.1.0 build
+> node scripts/build-games.mjs
+
+
+> rollup game ak47-range
+
+games/ak47-range/main.ts → games/ak47-range/bundle.js...
+created games/ak47-range/bundle.js in 1m 46.2s

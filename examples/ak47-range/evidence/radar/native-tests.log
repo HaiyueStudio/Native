@@ -1,0 +1,24 @@
+
+> @haiyue/native-ak47-range@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (7.744576ms)
+✔ recoil follows 10 Hz shots; hits override recoil; suspension cancels feedback (3.714683ms)
+(node:16191) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/src/pointer-capture.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ native all-pointer routing keeps movement and fire independent until lifecycle cancellation (24.558747ms)
+✔ queued GUI capture after same-frame release is safe; other failures are not swallowed (2.00978ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (4.834663ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.750559ms)
+✔ AK47 app packages and initially requests landscape only (4.001409ms)
+✔ landscape picking uses UIKit drawing bounds rather than safe-area measurement (5.639018ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3012.011805

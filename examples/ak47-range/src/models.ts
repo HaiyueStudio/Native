@@ -28,8 +28,11 @@ class BundledTextures extends AssetManager {
 }
 export class NativeModels {
   private managers: AssetManager[] = [];
+  private sources = new Map<string, { manager: AssetManager; assetWorker: GltfAssetWorker }>();
   constructor(private readonly gpu: GPUDevice) {}
   readonly load = async (name: 'ren42' | 'qiang_ak47'): Promise<LoadedGltfModel> => {
+    const cached = this.sources.get(name);
+    if (cached) return loadGltfModel(`https://bundled.haiyue.invalid/${name}/model.gltf`, { assetManager: cached.manager, assetWorker: cached.assetWorker });
     const directory = path.join(knownFolders.currentApp().path, 'game-assets', name);
     const gltf = JSON.parse(File.fromPath(path.join(directory, 'model.gltf')).readTextSync());
     const binary = bytes(path.join(directory, 'model.bin'));
@@ -38,7 +41,8 @@ export class NativeModels {
     const assetWorker: GltfAssetWorker = { async loadParsedAsset() {
       return { gltf, binaryChunk: binary, buffers: [binary], baseUrl: `https://bundled.haiyue.invalid/${name}/` };
     } };
+    this.sources.set(name, { manager, assetWorker });
     return loadGltfModel(`https://bundled.haiyue.invalid/${name}/model.gltf`, { assetWorker, assetManager: manager });
   };
-  dispose(): void { for (const manager of this.managers) manager.dispose(); this.managers = []; }
+  dispose(): void { for (const manager of this.managers) manager.dispose(); this.managers = []; this.sources.clear(); }
 }

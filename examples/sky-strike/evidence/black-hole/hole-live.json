@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "checks": [
+    "natural-level-progression",
+    "absorption-threshold",
+    "warning-wave-victory",
+    "target-release"
+  ],
+  "durationMs": 23184,
+  "browserEvidence": {
+    "product": "Chrome/153.0.8010.36",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "url": "http://127.0.0.1:55753/games/test/fixtures/sky-native/index.html?scene=hole-live",
+    "angleBackend": "metal",
+    "nativeBackend": true
+  },
+  "browserDiagnostics": {
+    "consoleErrorCount": 0,
+    "exceptionCount": 0,
+    "unclassifiedFailureCount": 0,
+    "profileCleanup": {
+      "status": "passed",
+      "attempts": 1,
+      "durationMs": 264
+    }
+  }
+}

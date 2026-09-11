@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-09-11T03:17:25.656843+00:00",
+  "diagnosticOnly": true,
+  "dirtyWorkspace": true,
+  "bundleSHA256": "2b49772410b06d2a69ea4653a4ed656854cbcb8bb9cba77397d0641855e832a2",
+  "sourceSHA256": {
+    "Games/games/sky-strike/SkyStrikeGame.ts": "8815d76abfdfdc559a4d602f0ffa81435194c888bbb339b117c3396ff651d603",
+    "Games/games/sky-strike/quantum.ts": "6f3ac9aa2259be7c392231d7fa98bb1b3ab2635c4cf14c07b0523d33a93b0670",
+    "Games/games/sky-strike/battleLayer.ts": "8957ff89620750d3224960b9c9fdf803aa96bb74d8a75d3870fba58c5bfcaf86",
+    "Games/games/sky-strike/levels/level-12.json": "6bf50751e72b8f008ca622db53b7da61fbf6bcb06dae134208af6777934e36df",
+    "Games/games/sky-strike/assets/sprites.rgba": "201aac56d6111eabef7e935dacb5d679d1763239c680ed36885802cc0b622f67",
+    "Games/games/test/fixtures/sky-native/main.ts": "4957608579ddbcf3f3abdcf6ec2941d6c0c95864a7baf3196d8ed04d3229ff81",
+    "Native/examples/sky-strike/src/main-page.ts": "810a7122935c46c335e2838c071cdfb31fcf190a8ef9cb3bd3c793471cfe3062"
+  },
+  "nativeMaxGpuBytes": 46417520,
+  "nativeMaxFrameTextureUploads": 0,
+  "runtimePackBytes": 28812800,
+  "revisions": {
+    "Games": "363c57cafa7d48dfc59b33682efeb43228f3c7ac",
+    "Native": "b42bbe19c82c4685bdf3373cffed6198b04b5a85",
+    "Engine": "e9767d32981e62e69ce8ea811438e2075fbd67ac"
+  }
+}

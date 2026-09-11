@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-09-11T00:31:25.522219+00:00",
+  "description": "Local working-tree enemy models/death/10-metre range candidate installed on iPhone 15 Plus; not published.",
+  "sha256": {
+    "Games/games/ak47-range/main.ts": "6ac50654efa2dfaabf2622b7a706b1a033ad55888934cac9195ce31422df03de",
+    "Games/games/ak47-range/radar-verification.ts": "30afc04806238461807a49b933fd73853dc040095afecc8a602af3e33d4c0dda",
+    "Games/games/ak47-range/rules.ts": "b947678b944893408b3dbb03d615ff70c46e55a7bcaef4e1e3f11905000a1806",
+    "Games/games/ak47-range/twin-stick-verification.ts": "c21cb6e1f66cc2c9d80ea76c3d8fb5b6aa5751819cb21cbfb478717d9217c39d",
+    "Games/games/ak47-range/RangeGame.ts": "9e8dae1ecd0ed520cb292fa0979acb5ae791a5ef86f708f37d55c31395a2e4d7",
+    "Games/games/ak47-range/radar.ts": "cc250c489f01014c3aad9b33e0bbb044287db487dfa4bdbc27d30a39fef6100d",
+    "Games/games/ak47-range/RadarHud.ts": "1556faf8d725034ca2cfdca12af56d858d4745d3f99d0cc46d041889969cbc78",
+    "Games/games/ak47-range/verification.ts": "b7b85fa8478ad816445ec6246306c0d08208b83ef9de915e65d6b4d9b1723b44",
+    "Games/games/ak47-range/enemy-verification.ts": "b971cf157612c614a4a6489ec40cb342626efeb2c4204ebc557ec068862c5c18",
+    "Games/games/ak47-range/SoldierModel.ts": "e0f96d0899bb9b4db3054482d5951b4dde1e64ef3f44635ecdbdcba8e103fe1f",
+    "Games/games/test/ak47-range.test.mjs": "845b56a30e526bebe40535e67b328b7ca505ee9692d451019590f2f9a1f24a0f",
+    "Games/scripts/verify-ak47-range.mjs": "1f1d281dca8772c4f1e212fadb906b44a545eaae1e3aa96f5c163e89aab953f3",
+    "Native/examples/ak47-range/src/verification.ts": "c911f6779866c13cb661a99ac98a472ca7d1187dd8b4ce3f963eb1afc5c29aec",
+    "Native/examples/ak47-range/src/models.ts": "a03f47e38e685c8de46b34d33a408ad2e1e0ec54ccee7ae45d2a28a334c6863c",
+    "Games/games/ak47-range/bundle.js": "45340aee006e49c870fef3d2dc97c70216bfa960e8e829672f3e6cab26be6101",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/bundle.mjs": "732983c61620b84cae35cad0ef646f7a323ed80cfc2dd40f878ae90c55b8da16",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/vendor.mjs": "7b68fb6ac83061481e1e5ed8dede33ef8f1169c9430699a5d4ec6138772ac63c",
+    "Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range": "78b0d2d68e6313d42f5f25224ed50d8950bf5986337364485c59f5eb8c9515de"
+  }
+}

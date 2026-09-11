@@ -1,0 +1,151 @@
+{
+  "status": "passed",
+  "checks": [
+    "start-boss",
+    "damage-immunity",
+    "absorption-growth",
+    "side-enemies",
+    "elite-bomb-half",
+    "pause",
+    "two-second-warning",
+    "blast-region",
+    "actual-lens-shader"
+  ],
+  "state": {
+    "blackHole": {
+      "phase": "warning",
+      "x": 276.07162640593697,
+      "y": 133.47150507631403,
+      "radius": 98,
+      "influence": 510,
+      "mass": 360,
+      "absorbedMass": 360,
+      "progress": 1,
+      "ageMs": 21568,
+      "phaseMs": 0
+    },
+    "bombCrates": {
+      "count": 0,
+      "nextMs": 6000,
+      "items": []
+    },
+    "audio": {
+      "uiClicks": 3,
+      "enabled": true,
+      "volume": 0.65,
+      "active": true,
+      "loops": 0,
+      "saveFailed": false,
+      "backend": {
+        "kind": "web-audio",
+        "error": null,
+        "state": "running",
+        "buffers": 19,
+        "voices": 0,
+        "owners": 0,
+        "audioNodes": 4,
+        "decodeJobs": 0,
+        "sampleRate": 48000,
+        "disposed": false
+      }
+    },
+    "asteroids": {
+      "count": 1,
+      "thrown": 0,
+      "arms": []
+    },
+    "phase": "paused",
+    "language": "zh",
+    "optionsOpen": false,
+    "effects": {
+      "muzzleFlashes": 0,
+      "detonations": 0,
+      "shake": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "background": {
+      "theme": "event-horizon",
+      "ageMs": 64,
+      "fadeMs": 0,
+      "weights": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "twins": [],
+    "twinReviveMs": 0,
+    "bubbles": 0,
+    "player": {
+      "x": 240,
+      "y": 840,
+      "health": 100
+    },
+    "score": 300000,
+    "highScore": 300000,
+    "wave": 9,
+    "bombs": 3,
+    "enemies": 3,
+    "bullets": 32,
+    "selectedLevel": 8,
+    "viewport": {
+      "scale": 0.9708333333333333,
+      "left": 0,
+      "width": 430,
+      "visibleWidth": 442.9184549356223,
+      "cameraX": 18.54077253218884
+    },
+    "firing": false,
+    "rendering": {
+      "lens": {
+        "passes": 3,
+        "targetBytes": 8015200,
+        "shader": "gravitational-lens-and-wave"
+      },
+      "pageCount": 3,
+      "indexedPageCount": 0,
+      "colorPageCount": 3,
+      "paletteCount": 0,
+      "cpuBytes": 35372096,
+      "gpuBytes": 35372096,
+      "uploadedBytes": 35372096,
+      "pendingUploadBytes": 0,
+      "textureCount": 6,
+      "drawCommands": 612,
+      "drawCalls": 79,
+      "batches": 79,
+      "generation": 0,
+      "ready": true,
+      "disposed": false,
+      "renderer": "haiyue-gpu-sprites",
+      "guiTextureBytes": 6471680,
+      "frameTextureUploads": 0
+    }
+  },
+  "browserEvidence": {
+    "product": "Chrome/153.0.8010.36",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "url": "http://127.0.0.1:57920/games/test/fixtures/sky-native/index.html?scene=black-hole&stage=warning",
+    "angleBackend": "metal",
+    "nativeBackend": true
+  },
+  "browserDiagnostics": {
+    "consoleErrorCount": 0,
+    "exceptionCount": 0,
+    "unclassifiedFailureCount": 0,
+    "profileCleanup": {
+      "status": "passed",
+      "attempts": 1,
+      "durationMs": 373
+    }
+  }
+}
