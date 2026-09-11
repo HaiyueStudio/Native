@@ -1,0 +1,27 @@
+{
+  "time": "2026-09-11T19:10:45.940000",
+  "event": "suspend",
+  "frames": 1,
+  "phase": "ready",
+  "rendering": {
+    "lens": null,
+    "pageCount": 3,
+    "indexedPageCount": 0,
+    "colorPageCount": 3,
+    "paletteCount": 0,
+    "cpuBytes": 47831968,
+    "gpuBytes": 47831968,
+    "uploadedBytes": 47831968,
+    "pendingUploadBytes": 0,
+    "textureCount": 6,
+    "drawCommands": 175,
+    "drawCalls": 5,
+    "batches": 5,
+    "generation": 0,
+    "ready": true,
+    "disposed": false,
+    "renderer": "haiyue-gpu-sprites",
+    "guiTextureBytes": 3744768,
+    "frameTextureUploads": 0
+  }
+}
