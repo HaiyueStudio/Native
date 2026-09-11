@@ -35,6 +35,8 @@ function ensureHost(canvas: Canvas): void {
   const haptics = new NativeHaptics();
   const holeProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_HOLE_PROBE')) === '1';
   const quantumProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_QUANTUM_PROBE')) === '1';
+  const partsProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PARTS_PROBE')) === '1';
+  const fireProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_FIRE_PROBE')) === '1';
   const prismProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PRISM_PROBE')) === '1';
   let game: SkyStrikeGame | null = null;
   let audio: SkyStrikeAudio | null = null;
@@ -75,7 +77,7 @@ function ensureHost(canvas: Canvas): void {
         ui, locale, levels, audio, keyboard: false, guiLoadOp: 'load',
         haptic: event => haptics.impact(event === 'boss-defeated' || event === 'player-destroyed' ? 'heavy' : event === 'bomb' ? 'medium' : 'light'),
         acceptsGameplayInput: (_x, y) => y >= insets.top + 94 && y <= surface.getBoundingClientRect().height - insets.bottom - 94,
-        saveBackend: (holeProbeMode||prismProbeMode||quantumProbeMode) ? new MemorySaveBackend() : new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
+        saveBackend: (holeProbeMode||prismProbeMode||quantumProbeMode||partsProbeMode||fireProbeMode) ? new MemorySaveBackend() : new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
         guiFont: { canvasFactory: textures.createCanvas2D, readAtlasPixels: textures.readAtlasPixels },
 
       });
@@ -91,14 +93,35 @@ function ensureHost(canvas: Canvas): void {
       if(prismProbeMode){const d=game as any;d.selectedLevelIndex=9;d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.pointerFiring=true;const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='crystal-prism'),240,160);boss.entered=true;d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='mirror-triangle'),240,340);}
       let quantumProbeMs=0,quantumSampleMs=0,quantumDone=false,quantumDefeated=false,quantumCritical=false;
       const quantumSamples:unknown[]=[];
+      let fireMs=0,fireSampleMs=0,fireDone=false;
+      const fireSamples:unknown[]=[];
+      if(fireProbeMode){const d=game as any;d.selectedLevelIndex=levels.findIndex(l=>l.number===11);d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.flameProtectionMs=999999;d.pointerFiring=false;const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='inferno-ark'),240,145);boss.entered=true;}
+      const partsIds=['iron-serpent','dreadnought','ion-seraph','void-mantis','star-carrier','helios-prism','ore-reaper','crimson-lance','violet-fortress','prism-lancer','fission-elite','twin-red','quantum-dreadnought'];
+      let partsMs=0,partsIndex=-1,partsDone=false,partsSampleMs=0;
+      const partsSamples:unknown[]=[];
+      if(partsProbeMode){const d=game as any;d.selectedLevelIndex=5;d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.pointerFiring=false;}
       if(quantumProbeMode){const d=game as any;d.selectedLevelIndex=levels.findIndex(l=>l.id==='quantum-armada');d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.player.x=90;d.player.y=560;d.pointerFiring=true;const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='quantum-dreadnought'),240,180);boss.entered=true;d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='bomber'),100,300,true);}
       const probe = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_AUDIO_PROBE')) === '1';
       let probeElapsed = 0, probeIndex = 0;
       const probeResults: unknown[] = [];
       if (probe) audio.resume();
       const update = ({ detail: { time, delta } }: { detail: { time: number; delta: number } }) => {
+        if(partsProbeMode&&!partsDone){
+          const d=game as any;partsMs+=Math.min(34,delta);partsSampleMs+=Math.min(34,delta);
+          const index=partsMs<5000?0:Math.min(partsIds.length-1,1+Math.floor((partsMs-5000)/1500));
+          if(index!==partsIndex){partsIndex=index;d.enemies=[];d.enemyBullets=[];d.hostileLasers=[];d.boss=null;d.twins=null;d.bossLaser=null;const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id===partsIds[index]),240,index===0?480:200);boss.entered=true;}
+        }
         game!.update(delta);
         world!.update(time, delta);
+        if(fireProbeMode&&!fireDone){
+          fireMs+=Math.min(34,delta);fireSampleMs+=Math.min(34,delta);
+          if(fireSampleMs>=1000){fireSamples.push(game!.snapshot());fireSampleMs=0;File.fromPath(path.join(knownFolders.documents().path,'sky-fire-probe.json')).writeTextSync(JSON.stringify({samples:fireSamples,elapsedMs:fireMs,complete:fireMs>=18000,memorySave:true}));}
+          if(fireMs>=18000){game!.suspend();fireDone=true;File.fromPath(path.join(knownFolders.documents().path,'sky-fire-probe.json')).writeTextSync(JSON.stringify({samples:fireSamples,elapsedMs:fireMs,complete:true,memorySave:true}));}
+        }
+        if(partsProbeMode&&!partsDone){
+          if(partsSampleMs>=500){partsSamples.push({id:partsIds[partsIndex],state:game!.snapshot()});partsSampleMs=0;}
+          if(partsMs>=23000){game!.suspend();partsDone=true;File.fromPath(path.join(knownFolders.documents().path,'sky-parts-probe.json')).writeTextSync(JSON.stringify({samples:partsSamples,final:game!.snapshot(),memorySave:true}));}
+        }
         if(holeProbeMode&&!holeProbeDone){
           holeProbeMs+=Math.min(34,delta);holeProbeSampleMs+=Math.min(34,delta);
           if(holeProbeSampleMs>=1000){holeProbeSamples.push(game!.snapshot());holeProbeSampleMs=0;}

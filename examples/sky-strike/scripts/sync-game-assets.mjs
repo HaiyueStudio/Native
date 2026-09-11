@@ -1,7 +1,7 @@
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { copyFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
-export const runtimeAssets = ['assets/sprites.json', 'assets/sprites.rgba', ...['ui-back','pickup-red','pickup-blue','pickup-purple','pickup-bomb','ui-click','shot-basic','shot-red','shot-blue','shot-enemy','explosion-small','explosion-large','explosion-boss','bomb','hit','laser-start','laser-loop','laser-end','laser-enemy'].map(id=>`assets/audio/${id}.wav`), ...Array.from({length:10},(_,i)=>`levels/level-${String(i+1).padStart(2,'0')}.json`), 'levels/level-12.json'];
+export const runtimeAssets = ['assets/sprites.json', 'assets/sprites.rgba', ...['ui-back','pickup-red','pickup-blue','pickup-purple','pickup-bomb','ui-click','shot-basic','shot-red','shot-blue','shot-enemy','explosion-small','explosion-large','explosion-boss','bomb','hit','laser-start','laser-loop','laser-end','laser-enemy'].map(id=>`assets/audio/${id}.wav`), ...Array.from({length:12},(_,i)=>`levels/level-${String(i+1).padStart(2,'0')}.json`)];
 /** This directory is generated: original art stays in Games, never in the app bundle. */
 export function syncGameAssets({
   source = new URL('../../../../Games/games/sky-strike/', import.meta.url),
