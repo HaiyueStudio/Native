@@ -36,7 +36,8 @@ function ensureHost(canvas: Canvas): void {
   const holeProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_HOLE_PROBE')) === '1';
   const quantumProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_QUANTUM_PROBE')) === '1';
   const partsProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PARTS_PROBE')) === '1';
-  const fireProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_FIRE_PROBE')) === '1';
+  const cinderProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_CINDER_PROBE')) === '1';
+  const fireProbeMode = cinderProbeMode || String(NSProcessInfo.processInfo.environment.objectForKey('SKY_FIRE_PROBE')) === '1';
   const prismProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PRISM_PROBE')) === '1';
   let game: SkyStrikeGame | null = null;
   let audio: SkyStrikeAudio | null = null;
@@ -95,7 +96,7 @@ function ensureHost(canvas: Canvas): void {
       const quantumSamples:unknown[]=[];
       let fireMs=0,fireSampleMs=0,fireDone=false;
       const fireSamples:unknown[]=[];
-      if(fireProbeMode){const d=game as any;d.selectedLevelIndex=levels.findIndex(l=>l.number===11);d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.flameProtectionMs=999999;d.pointerFiring=false;const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='inferno-ark'),240,145);boss.entered=true;}
+      if(fireProbeMode){const d=game as any;d.selectedLevelIndex=levels.findIndex(l=>l.number===11);d.startSortie();d.player.invulnerableMs=999999;d.flameProtectionMs=999999;d.pointerFiring=false;if(!cinderProbeMode){d.levelTimeline=[];const boss=d.spawnEnemy(ENEMY_DEFINITIONS.find(e=>e.id==='inferno-ark'),240,145);boss.entered=true;}}
       const partsIds=['iron-serpent','dreadnought','ion-seraph','void-mantis','star-carrier','helios-prism','ore-reaper','crimson-lance','violet-fortress','prism-lancer','fission-elite','twin-red','quantum-dreadnought'];
       let partsMs=0,partsIndex=-1,partsDone=false,partsSampleMs=0;
       const partsSamples:unknown[]=[];
@@ -115,8 +116,8 @@ function ensureHost(canvas: Canvas): void {
         world!.update(time, delta);
         if(fireProbeMode&&!fireDone){
           fireMs+=Math.min(34,delta);fireSampleMs+=Math.min(34,delta);
-          if(fireSampleMs>=1000){fireSamples.push(game!.snapshot());fireSampleMs=0;File.fromPath(path.join(knownFolders.documents().path,'sky-fire-probe.json')).writeTextSync(JSON.stringify({samples:fireSamples,elapsedMs:fireMs,complete:fireMs>=18000,memorySave:true}));}
-          if(fireMs>=18000){game!.suspend();fireDone=true;File.fromPath(path.join(knownFolders.documents().path,'sky-fire-probe.json')).writeTextSync(JSON.stringify({samples:fireSamples,elapsedMs:fireMs,complete:true,memorySave:true}));}
+          if(fireSampleMs>=1000){fireSamples.push(game!.snapshot());fireSampleMs=0;File.fromPath(path.join(knownFolders.documents().path,cinderProbeMode?'sky-cinder-probe.json':'sky-fire-probe.json')).writeTextSync(JSON.stringify({samples:fireSamples,elapsedMs:fireMs,complete:fireMs>=18000,memorySave:true,naturalTimeline:cinderProbeMode}));}
+          if(fireMs>=18000){game!.suspend();fireDone=true;File.fromPath(path.join(knownFolders.documents().path,cinderProbeMode?'sky-cinder-probe.json':'sky-fire-probe.json')).writeTextSync(JSON.stringify({samples:fireSamples,elapsedMs:fireMs,complete:true,memorySave:true,naturalTimeline:cinderProbeMode}));}
         }
         if(partsProbeMode&&!partsDone){
           if(partsSampleMs>=500){partsSamples.push({id:partsIds[partsIndex],state:game!.snapshot()});partsSampleMs=0;}

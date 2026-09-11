@@ -1,0 +1,9 @@
+{
+  "Games/games/sky-strike/shipDetails.ts": "3f00cbf1632d86c8c9511662441a93688e1a1e96043e2a26c4f4c7cb1b8284fb",
+  "Games/games/sky-strike/assets/part-dread-gun.png": "f4a766dc6bba26e7707f7f96f32bac6a1743a841f1db082085f56d5a969f8314",
+  "Games/games/sky-strike/assets/part-dread-rotor.png": "2f1db48636849d6262ea7c60f282166ded78e66a6fa9be9a1479c51cb088e564",
+  "Games/games/sky-strike/assets/sprites.json": "e4acd994cf8813bbe0ebb4a6f869aa4848d5afe3155806f2025997a7b99b5d7d",
+  "Games/games/sky-strike/assets/sprites.rgba": "198f308999385004fb7cd7e5811dd6dd27521ee487a11d8fb40d04d2b69c8e0b",
+  "Games/games/manifest.json": "d1a318ab67225c6c2c67b580d1c9e11601dcce5c6ebb9ed0769d3823c58a2761",
+  "Games/scripts/pack-sky-sprites.py": "1cd072a6f1f721654cb285ecff7dedf08c69c0cd6c62cf2d4b92140fb962dbfb"
+}
