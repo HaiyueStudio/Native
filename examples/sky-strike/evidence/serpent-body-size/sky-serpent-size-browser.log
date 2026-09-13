@@ -1,0 +1,3 @@
+{"name":"preview-6","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"serpent-rage","status":"passed","checks":["real-body-destruction","above-35-percent-charge","immediate-first-charge","three-charges-in-nine-seconds","pause-freeze"]}
+{"name":"parts-serpent","status":"passed","checks":["hull-specific-parts","serpent","static-atlas","zero-frame-uploads"]}

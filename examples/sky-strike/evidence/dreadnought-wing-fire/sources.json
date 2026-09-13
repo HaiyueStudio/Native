@@ -1,0 +1,12 @@
+{
+  "time": "2026-09-13T09:33:05.359709+08:00",
+  "sha256": {
+    "Games/games/sky-strike/rules.ts": "672173b9451dea0c9d6a384fbe99fef8d405dbddaab75ece6ec5802f27c32dba",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "fc75fb23835ead9b6437d345550f95749a5ebac65f51da962fa1b7be90f3c94b",
+    "Games/games/sky-strike/shipDetails.ts": "9e5a1cd30a1b35a8de37c6d884f43a5fd0bdfe0e47ed53a0586e66df3e6f1724",
+    "Games/games/sky-strike/combatEffects.ts": "5f484421ec69e58322bb7db9b24a26cc273e42fc996c38121b37b6985fdc7c5b",
+    "Games/games/test/fixtures/sky-native/main.ts": "fbf26072be74dc1a2cad6bd7c3d264750e408007721a7c52d68f841696c60680",
+    "Games/scripts/verify-sky-native.mjs": "47671f85d8a52866fb0e94f3793eb2fedec822057f5da6c7ffe136c55b245e46"
+  },
+  "nativeBundleSha256": "e04d26bdc8f846891ad69c3e94da5309b362a6c6a98f5c1e3baa1a3a7e025ed9"
+}

@@ -1,0 +1,29 @@
+file:///Users/qingque/Desktop/HaiyueStudio/Engine/scripts/webgpu-gate/chrome-runner.mjs:238
+        throw new Error(`Chrome/WebGPU fixture failed: ${fixtureResult.text}\n${stderr}`);
+              ^
+
+Error: Chrome/WebGPU fixture failed: {"status":"failed","message":"Error: preview switch corrupts pending background frame: level 2, 97210 bytes"}
+
+DevTools listening on ws://127.0.0.1:64648/devtools/browser/1a0f2422-85c8-4c45-954c-23ba78e78fd2
+Trying to load the allocator multiple times. This is *not* supported.
+[90170:1198464:0913/101705.033099:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198549:0913/101705.054633:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198464:0913/101705.062990:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198549:0913/101705.063200:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198464:0913/101705.074653:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198549:0913/101705.074937:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198464:0913/101705.075661:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198549:0913/101705.075857:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198464:0913/101705.079086:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198549:0913/101705.079283:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198464:0913/101705.122562:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198549:0913/101705.122785:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90190:1198752:0913/101707.279809:ERROR:sandbox/mac/system_services.cc:31] SetApplicationIsDaemon: Error Domain=NSOSStatusErrorDomain Code=-50 "paramErr: error in user parameter list" (-50)
+[90170:1198464:0913/101708.227639:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[90170:1198549:0913/101708.227862:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+
+    at runChrome (file:///Users/qingque/Desktop/HaiyueStudio/Engine/scripts/webgpu-gate/chrome-runner.mjs:238:15)
+    at async runChromeWebGpuFixture (file:///Users/qingque/Desktop/HaiyueStudio/Engine/scripts/webgpu-gate/chrome-runner.mjs:38:20)
+    at async file:///Users/qingque/Desktop/HaiyueStudio/Games/scripts/verify-sky-native.mjs:14:18
+
+Node.js v24.19.0

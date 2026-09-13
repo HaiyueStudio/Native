@@ -1,0 +1,17 @@
+{"name":"preview-1","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-2","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-3","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-4","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-5","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-6","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-7","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-8","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-9","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-10","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-11","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-12","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-narrow-ja","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-wide-en","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"inferno-menu-zh","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"inferno-menu-en","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"inferno-menu-ja","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}

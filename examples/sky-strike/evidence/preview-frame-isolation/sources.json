@@ -1,0 +1,9 @@
+{
+  "time": "2026-09-13T10:20:05.461589+08:00",
+  "sha256": {
+    "Games/games/sky-strike/battleLayer.ts": "da1d2eb6597a74a888c94fe1de933c01c7dc61dad9e59b698cf571c4a45601c5",
+    "Games/games/test/fixtures/sky-native/main.ts": "7305bca1e7c1b3164298d414aa73f1d380ca4f96f764904baf5cab52e32965f9",
+    "Games/scripts/verify-sky-native.mjs": "91048ab041549c1e0cabf8d01963f908ced1ef260c5ba0d4777f8c6134b925e6"
+  },
+  "nativeBundleSha256": "62f485e45e2b6998e396dcbc822273f0bc3f762e9ca7d717156c4da56886622d"
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "time": 1789263274017,
+    "event": "present",
+    "frames": 3120,
+    "phase": "ready",
+    "renderReady": true
+  },
+  {
+    "time": 1789263276015,
+    "event": "present",
+    "frames": 3240,
+    "phase": "ready",
+    "renderReady": true
+  },
+  {
+    "time": 1789263278013,
+    "event": "present",
+    "frames": 3360,
+    "phase": "ready",
+    "renderReady": true
+  },
+  {
+    "time": 1789263280010,
+    "event": "present",
+    "frames": 3480,
+    "phase": "ready",
+    "renderReady": true
+  }
+]

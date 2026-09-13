@@ -1,0 +1,708 @@
+[
+  {
+    "time": 1789261125756,
+    "event": "present",
+    "detail": {
+      "frames": 1,
+      "width": 860,
+      "height": 1864,
+      "scheduledCallbacks": 0,
+      "input": {
+        "pinching": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "left": 0,
+          "top": 0,
+          "right": 430,
+          "bottom": 932
+        },
+        "measured": {
+          "width": 430,
+          "height": 839
+        },
+        "primary": null,
+        "captured": null,
+        "trackedTouches": 0,
+        "listenerCount": 20,
+        "paused": false,
+        "disposed": false,
+        "nativeIdentities": 0,
+        "nativeObserverCount": 1,
+        "nativeRecognizerCount": 2,
+        "game": {
+          "fire": {
+            "burnMs": 0,
+            "burnDamage": 0,
+            "cones": [],
+            "charges": []
+          },
+          "quantum": [],
+          "quantumLasers": [],
+          "mirrors": {
+            "hulls": [],
+            "reflected": 0,
+            "shards": 0,
+            "laser": null
+          },
+          "blackHole": {
+            "phase": "inactive",
+            "x": 240,
+            "y": 180,
+            "radius": 22,
+            "influence": 160,
+            "mass": 0,
+            "absorbedMass": 0,
+            "progress": 0,
+            "ageMs": 0,
+            "phaseMs": 0
+          },
+          "bombCrates": {
+            "count": 0,
+            "nextMs": 6000,
+            "items": []
+          },
+          "audio": {
+            "uiClicks": 0,
+            "enabled": true,
+            "volume": 0.8,
+            "active": false,
+            "loops": 0,
+            "saveFailed": false,
+            "backend": {
+              "kind": "av-audio-engine",
+              "error": null,
+              "running": false,
+              "buffers": 19,
+              "pcmBytes": 1164248,
+              "voices": 0,
+              "nodeCount": 12,
+              "played": 0,
+              "volume": 0.8,
+              "disposed": false
+            }
+          },
+          "asteroids": {
+            "count": 0,
+            "thrown": 0,
+            "arms": []
+          },
+          "phase": "ready",
+          "language": "zh",
+          "optionsOpen": false,
+          "effects": {
+            "muzzleFlashes": 0,
+            "detonations": 0,
+            "shake": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "background": {
+            "theme": "orbital-gate",
+            "ageMs": 0,
+            "fadeMs": 9000,
+            "weights": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "twins": [],
+          "twinReviveMs": 0,
+          "bubbles": 0,
+          "player": {
+            "x": 240,
+            "y": 842,
+            "health": 100
+          },
+          "score": 0,
+          "highScore": 433800,
+          "wave": 1,
+          "bombs": 3,
+          "enemies": 0,
+          "bullets": 0,
+          "selectedLevel": 11,
+          "viewport": {
+            "scale": 0.9708333333333333,
+            "left": 0,
+            "width": 430,
+            "visibleWidth": 442.9184549356223,
+            "cameraX": 18.54077253218884
+          },
+          "firing": false,
+          "rendering": {
+            "fire": null,
+            "lens": null,
+            "pageCount": 4,
+            "indexedPageCount": 0,
+            "colorPageCount": 4,
+            "paletteCount": 0,
+            "cpuBytes": 47914992,
+            "gpuBytes": 47914992,
+            "uploadedBytes": 47914992,
+            "pendingUploadBytes": 0,
+            "textureCount": 7,
+            "drawCommands": 175,
+            "drawCalls": 5,
+            "batches": 5,
+            "generation": 0,
+            "ready": true,
+            "disposed": false,
+            "renderer": "haiyue-gpu-sprites",
+            "guiTextureBytes": 3744768,
+            "frameTextureUploads": 0
+          }
+        },
+        "haptics": {
+          "active": true,
+          "impactsRequested": 0
+        },
+        "textures": {
+          "textures": 0,
+          "bytes": 0
+        }
+      }
+    }
+  },
+  {
+    "time": 1789261127828,
+    "event": "present",
+    "detail": {
+      "frames": 120,
+      "width": 860,
+      "height": 1864,
+      "scheduledCallbacks": 0,
+      "input": {
+        "pinching": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "left": 0,
+          "top": 0,
+          "right": 430,
+          "bottom": 932
+        },
+        "measured": {
+          "width": 430,
+          "height": 839
+        },
+        "primary": null,
+        "captured": null,
+        "trackedTouches": 0,
+        "listenerCount": 20,
+        "paused": false,
+        "disposed": false,
+        "nativeIdentities": 0,
+        "nativeObserverCount": 1,
+        "nativeRecognizerCount": 2,
+        "game": {
+          "fire": {
+            "burnMs": 0,
+            "burnDamage": 0,
+            "cones": [],
+            "charges": []
+          },
+          "quantum": [],
+          "quantumLasers": [],
+          "mirrors": {
+            "hulls": [],
+            "reflected": 0,
+            "shards": 0,
+            "laser": null
+          },
+          "blackHole": {
+            "phase": "inactive",
+            "x": 240,
+            "y": 180,
+            "radius": 22,
+            "influence": 160,
+            "mass": 0,
+            "absorbedMass": 0,
+            "progress": 0,
+            "ageMs": 0,
+            "phaseMs": 0
+          },
+          "bombCrates": {
+            "count": 0,
+            "nextMs": 6000,
+            "items": []
+          },
+          "audio": {
+            "uiClicks": 1,
+            "enabled": true,
+            "volume": 0.8,
+            "active": false,
+            "loops": 0,
+            "saveFailed": false,
+            "backend": {
+              "kind": "av-audio-engine",
+              "error": null,
+              "running": true,
+              "buffers": 19,
+              "pcmBytes": 1164248,
+              "voices": 0,
+              "nodeCount": 12,
+              "played": 1,
+              "volume": 0.8,
+              "disposed": false
+            }
+          },
+          "asteroids": {
+            "count": 0,
+            "thrown": 0,
+            "arms": []
+          },
+          "phase": "ready",
+          "language": "zh",
+          "optionsOpen": false,
+          "effects": {
+            "muzzleFlashes": 0,
+            "detonations": 0,
+            "shake": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "background": {
+            "theme": "orbital-gate",
+            "ageMs": 0,
+            "fadeMs": 9000,
+            "weights": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "twins": [],
+          "twinReviveMs": 0,
+          "bubbles": 0,
+          "player": {
+            "x": 240,
+            "y": 842,
+            "health": 100
+          },
+          "score": 0,
+          "highScore": 433800,
+          "wave": 1,
+          "bombs": 3,
+          "enemies": 0,
+          "bullets": 0,
+          "selectedLevel": 10,
+          "viewport": {
+            "scale": 0.9708333333333333,
+            "left": 0,
+            "width": 430,
+            "visibleWidth": 442.9184549356223,
+            "cameraX": 18.54077253218884
+          },
+          "firing": false,
+          "rendering": {
+            "fire": null,
+            "lens": null,
+            "pageCount": 4,
+            "indexedPageCount": 0,
+            "colorPageCount": 4,
+            "paletteCount": 0,
+            "cpuBytes": 47914992,
+            "gpuBytes": 47914992,
+            "uploadedBytes": 47914992,
+            "pendingUploadBytes": 0,
+            "textureCount": 7,
+            "drawCommands": 175,
+            "drawCalls": 5,
+            "batches": 5,
+            "generation": 0,
+            "ready": true,
+            "disposed": false,
+            "renderer": "haiyue-gpu-sprites",
+            "guiTextureBytes": 4482048,
+            "frameTextureUploads": 0
+          }
+        },
+        "haptics": {
+          "active": true,
+          "impactsRequested": 0
+        },
+        "textures": {
+          "textures": 0,
+          "bytes": 0
+        }
+      }
+    }
+  },
+  {
+    "time": 1789261129843,
+    "event": "present",
+    "detail": {
+      "frames": 240,
+      "width": 860,
+      "height": 1864,
+      "scheduledCallbacks": 0,
+      "input": {
+        "pinching": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "left": 0,
+          "top": 0,
+          "right": 430,
+          "bottom": 932
+        },
+        "measured": {
+          "width": 430,
+          "height": 839
+        },
+        "primary": null,
+        "captured": null,
+        "trackedTouches": 0,
+        "listenerCount": 20,
+        "paused": false,
+        "disposed": false,
+        "nativeIdentities": 0,
+        "nativeObserverCount": 1,
+        "nativeRecognizerCount": 2,
+        "game": {
+          "fire": {
+            "burnMs": 0,
+            "burnDamage": 0,
+            "cones": [],
+            "charges": []
+          },
+          "quantum": [],
+          "quantumLasers": [],
+          "mirrors": {
+            "hulls": [],
+            "reflected": 0,
+            "shards": 0,
+            "laser": null
+          },
+          "blackHole": {
+            "phase": "inactive",
+            "x": 240,
+            "y": 180,
+            "radius": 22,
+            "influence": 160,
+            "mass": 0,
+            "absorbedMass": 0,
+            "progress": 0,
+            "ageMs": 0,
+            "phaseMs": 0
+          },
+          "bombCrates": {
+            "count": 0,
+            "nextMs": 6000,
+            "items": []
+          },
+          "audio": {
+            "uiClicks": 1,
+            "enabled": true,
+            "volume": 0.8,
+            "active": false,
+            "loops": 0,
+            "saveFailed": false,
+            "backend": {
+              "kind": "av-audio-engine",
+              "error": null,
+              "running": true,
+              "buffers": 19,
+              "pcmBytes": 1164248,
+              "voices": 0,
+              "nodeCount": 12,
+              "played": 1,
+              "volume": 0.8,
+              "disposed": false
+            }
+          },
+          "asteroids": {
+            "count": 0,
+            "thrown": 0,
+            "arms": []
+          },
+          "phase": "ready",
+          "language": "zh",
+          "optionsOpen": false,
+          "effects": {
+            "muzzleFlashes": 0,
+            "detonations": 0,
+            "shake": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "background": {
+            "theme": "orbital-gate",
+            "ageMs": 0,
+            "fadeMs": 9000,
+            "weights": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "twins": [],
+          "twinReviveMs": 0,
+          "bubbles": 0,
+          "player": {
+            "x": 240,
+            "y": 842,
+            "health": 100
+          },
+          "score": 0,
+          "highScore": 433800,
+          "wave": 1,
+          "bombs": 3,
+          "enemies": 0,
+          "bullets": 0,
+          "selectedLevel": 10,
+          "viewport": {
+            "scale": 0.9708333333333333,
+            "left": 0,
+            "width": 430,
+            "visibleWidth": 442.9184549356223,
+            "cameraX": 18.54077253218884
+          },
+          "firing": false,
+          "rendering": {
+            "fire": null,
+            "lens": null,
+            "pageCount": 4,
+            "indexedPageCount": 0,
+            "colorPageCount": 4,
+            "paletteCount": 0,
+            "cpuBytes": 47914992,
+            "gpuBytes": 47914992,
+            "uploadedBytes": 47914992,
+            "pendingUploadBytes": 0,
+            "textureCount": 7,
+            "drawCommands": 175,
+            "drawCalls": 5,
+            "batches": 5,
+            "generation": 0,
+            "ready": true,
+            "disposed": false,
+            "renderer": "haiyue-gpu-sprites",
+            "guiTextureBytes": 4482048,
+            "frameTextureUploads": 0
+          }
+        },
+        "haptics": {
+          "active": true,
+          "impactsRequested": 0
+        },
+        "textures": {
+          "textures": 0,
+          "bytes": 0
+        }
+      }
+    }
+  },
+  {
+    "time": 1789261130724,
+    "event": "suspend",
+    "detail": {
+      "frames": 291,
+      "scheduledCallbacks": 0,
+      "input": {
+        "pinching": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "left": 0,
+          "top": 0,
+          "right": 430,
+          "bottom": 932
+        },
+        "measured": {
+          "width": 430,
+          "height": 839
+        },
+        "primary": null,
+        "captured": null,
+        "trackedTouches": 0,
+        "listenerCount": 20,
+        "paused": true,
+        "disposed": false,
+        "nativeIdentities": 0,
+        "nativeObserverCount": 1,
+        "nativeRecognizerCount": 2,
+        "game": {
+          "fire": {
+            "burnMs": 0,
+            "burnDamage": 0,
+            "cones": [],
+            "charges": []
+          },
+          "quantum": [],
+          "quantumLasers": [],
+          "mirrors": {
+            "hulls": [],
+            "reflected": 0,
+            "shards": 0,
+            "laser": null
+          },
+          "blackHole": {
+            "phase": "inactive",
+            "x": 240,
+            "y": 180,
+            "radius": 22,
+            "influence": 160,
+            "mass": 0,
+            "absorbedMass": 0,
+            "progress": 0,
+            "ageMs": 0,
+            "phaseMs": 0
+          },
+          "bombCrates": {
+            "count": 0,
+            "nextMs": 6000,
+            "items": []
+          },
+          "audio": {
+            "uiClicks": 1,
+            "enabled": true,
+            "volume": 0.8,
+            "active": false,
+            "loops": 0,
+            "saveFailed": false,
+            "backend": {
+              "kind": "av-audio-engine",
+              "error": null,
+              "running": false,
+              "buffers": 19,
+              "pcmBytes": 1164248,
+              "voices": 0,
+              "nodeCount": 12,
+              "played": 1,
+              "volume": 0.8,
+              "disposed": false
+            }
+          },
+          "asteroids": {
+            "count": 0,
+            "thrown": 0,
+            "arms": []
+          },
+          "phase": "ready",
+          "language": "zh",
+          "optionsOpen": false,
+          "effects": {
+            "muzzleFlashes": 0,
+            "detonations": 0,
+            "shake": {
+              "x": 0,
+              "y": 0
+            }
+          },
+          "background": {
+            "theme": "orbital-gate",
+            "ageMs": 0,
+            "fadeMs": 9000,
+            "weights": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "twins": [],
+          "twinReviveMs": 0,
+          "bubbles": 0,
+          "player": {
+            "x": 240,
+            "y": 842,
+            "health": 100
+          },
+          "score": 0,
+          "highScore": 433800,
+          "wave": 1,
+          "bombs": 3,
+          "enemies": 0,
+          "bullets": 0,
+          "selectedLevel": 10,
+          "viewport": {
+            "scale": 0.9708333333333333,
+            "left": 0,
+            "width": 430,
+            "visibleWidth": 442.9184549356223,
+            "cameraX": 18.54077253218884
+          },
+          "firing": false,
+          "rendering": {
+            "fire": null,
+            "lens": null,
+            "pageCount": 4,
+            "indexedPageCount": 0,
+            "colorPageCount": 4,
+            "paletteCount": 0,
+            "cpuBytes": 47914992,
+            "gpuBytes": 47914992,
+            "uploadedBytes": 47914992,
+            "pendingUploadBytes": 0,
+            "textureCount": 7,
+            "drawCommands": 175,
+            "drawCalls": 5,
+            "batches": 5,
+            "generation": 0,
+            "ready": true,
+            "disposed": false,
+            "renderer": "haiyue-gpu-sprites",
+            "guiTextureBytes": 4482048,
+            "frameTextureUploads": 0
+          }
+        },
+        "haptics": {
+          "active": false,
+          "impactsRequested": 0
+        },
+        "textures": {
+          "textures": 0,
+          "bytes": 0
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-09-12T23:12:49.304982+00:00",
+  "sha256": {
+    "bridge/motion/motion-sample.ts": "ce509b1813bb705afd0955d20c4fedce09dd9e65e8bace7094c68a9300efe258",
+    "bridge/motion/device-motion.ios.ts": "ff16f0e6d23a05e36d0a909d990d7507c0c0c6fadcf17df23d35d6ef44332d00",
+    "examples/ak47-range/src/motion-verification.ts": "fefac2c75bc49045af8f53a897b532dd67b67be0b3e6b53312ce78bef2ffcd2c",
+    "examples/ak47-range/src/main-page.ts": "50e4f4118d19a7e4ab7577a8f1c21483b51251f0d492762bfcf266e6ec8cea93",
+    "examples/ak47-range/test/device-motion.test.mjs": "f87aea6e6c5ad3837723bdc8dd3d6771156a4e13a71197ee871c812eb40ef9fd",
+    "examples/ak47-range/App_Resources/iOS/Info.plist": "ffe771746f233a57408cca5b3038d22480dc4f837fbc07c6a9b36146e5658e79",
+    "examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/bundle.mjs": "c2700fc07e1e96d08b04106e337546856fe41f12ceff65cb3326931af75d9ad9",
+    "examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app/vendor.mjs": "7b68fb6ac83061481e1e5ed8dede33ef8f1169c9430699a5d4ec6138772ac63c",
+    "examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range": "d4864a44a8778ffe43f8503165d297aecc0afa6205fc667bdb0a8df79ff248c8"
+  }
+}

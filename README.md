@@ -7,6 +7,7 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 | 路径 | 用途 |
 | --- | --- |
 | [examples/](./examples/README.md) | 原生 App 示例 |
+| [bridge/motion/](./bridge/motion/README.md) | iOS 陀螺仪、设备姿态和屏幕方向倾斜角 |
 | [examples/ak47-range/](./examples/ak47-range/README.md) | 横屏第三人称 AK47 生存射击、掩体寻路、视野迷雾和震动 |
 | [examples/rubiks-cube/](./examples/rubiks-cube/README.md) | 共享 Games 源码的二阶/三阶/四阶/镜面魔方，横竖屏与历史还原 |
 | [examples/sky-strike/](./examples/sky-strike/README.md) | 共享 Games Sky Strike 源码的竖屏 iPhone 游戏 |

@@ -1,0 +1,9 @@
+{
+  "time": "2026-09-13T09:16:35.242017+08:00",
+  "bundleSha256": "91a3d8e5f3cb68c995d5f53f5247ca644b81e89f0445d7d6bd2a0102196ed62d",
+  "features": {
+    "guiComposition": true,
+    "scanBands": true,
+    "bossPreview": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Games/games/sky-strike/flames.ts": "41598ae6a5a8c75f55618b2d1ec6383d8739f601b1bd5eb47a224932c5e68d76",
+  "Games/games/sky-strike/flamePass.ts": "9ce85125e6ac2eb29a44469d4f1c4c7e987bc60aa5ab62413c1346a29916fb0f",
+  "Games/games/sky-strike/flameVisuals.ts": "a2d5c6f32bb209c4d57d65ddc2406b8401b95f06af40dbb83cef07d140dcdae6",
+  "Games/games/sky-strike/battleLayer.ts": "055a6fb9f0bddfb67a553fab8125fd891180f0901455419168ff37b73044b27b",
+  "Games/games/sky-strike/SkyStrikeGame.ts": "b247b25858485a934aab8bdf0f177e93ad349822ac7cdfb5b378c2f2257cbef4",
+  "Games/games/sky-strike/assets/sprites.json": "3d45afbe213e6cce95b1bcbfb9e6716f64083fa9e06f97667c020522ba7b34f6",
+  "Games/games/sky-strike/assets/sprites.rgba": "6e828cb08f1f99f52c20db6435719680ec2f8aeff0a7e4c067f099553a1baa35",
+  "Games/games/test/fixtures/sky-native/main.ts": "5e01d6e849dd3908d94291bd9a1b2e2aaa27a7d6612bf4c91a1f68a485a232df",
+  "Games/games/test/sky-strike-flames.test.mjs": "4f4d97622b8289620b24fbc31c3d7d51365655229e8f02dcd18c41bcbf5af9aa"
+}

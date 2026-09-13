@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "generatedAt": "2026-09-12T23:11:14.320Z",
+  "checks": [
+    "physical gyroscope and fused device-motion data are available",
+    "Core Motion reports an active physical device-motion service",
+    "first sensor delta starts at zero",
+    "suspend stops hardware and clears stale data",
+    "resume does not replay cached sensor data",
+    "resume starts a new sensor timing interval",
+    "physical gravity samples have unit-g magnitude",
+    "physical attitude quaternions are normalized",
+    "sensor timestamps increase without duplicate emissions",
+    "degree conversion and screen-axis configuration reach native consumers",
+    "explicit stop remains stopped on resume"
+  ],
+  "sampleCount": 120,
+  "first": {
+    "timestampMs": 256144536.495375,
+    "deltaMs": 0.4589999734889716,
+    "sensorDeltaMs": 0,
+    "angles": {
+      "pitch": 35.4046932452439,
+      "roll": -18.312273772899754,
+      "yaw": 16.026106701336875
+    },
+    "radians": {
+      "pitch": 0.6179284677881023,
+      "roll": -0.31960947086370506,
+      "yaw": 0.279708328214256
+    },
+    "quaternion": {
+      "x": 0.31839823620022606,
+      "y": -0.1082634382081297,
+      "z": 0.08319279579258197,
+      "w": 0.9380727465138324
+    },
+    "rotationRate": {
+      "x": 0.1375804841518402,
+      "y": 0.5052511096000671,
+      "z": 1.9216421842575073
+    },
+    "gravity": {
+      "x": -0.2560948431491852,
+      "y": -0.5793479681015015,
+      "z": -0.773803174495697
+    },
+    "userAcceleration": {
+      "x": 0.15190786123275757,
+      "y": 0.019457221031188965,
+      "z": -0.003418445587158203
+    },
+    "screenRotation": 90,
+    "tilt": {
+      "right": 35.40469545714694,
+      "forward": -14.838469508617617,
+      "total": 39.30334973504857
+    }
+  },
+  "last": {
+    "timestampMs": 256146570.33654168,
+    "deltaMs": 16.62500001839362,
+    "sensorDeltaMs": 14.954999991459772,
+    "angles": {
+      "pitch": 13.732773777938823,
+      "roll": -33.975721560455916,
+      "yaw": 6.068713983500282
+    },
+    "radians": {
+      "pitch": 0.2396821178565731,
+      "roll": -0.5929882069707814,
+      "yaw": 0.10591904037390075
+    },
+    "quaternion": {
+      "x": 0.12953251732321136,
+      "y": -0.2836143999653369,
+      "z": 0.015380820589945176,
+      "w": 0.9500251092015358
+    },
+    "rotationRate": {
+      "x": -0.5032946467399597,
+      "y": -0.8751073479652405,
+      "z": 0.5480417013168335
+    },
+    "gravity": {
+      "x": -0.5428662300109863,
+      "y": -0.2373938411474228,
+      "z": -0.8055683970451355
+    },
+    "userAcceleration": {
+      "x": 0.014393329620361328,
+      "y": -0.06704951822757721,
+      "z": -0.0346720814704895
+    },
+    "screenRotation": 90,
+    "tilt": {
+      "right": 13.73277349084449,
+      "forward": -32.878969119665875,
+      "total": 36.334816594246035
+    }
+  }
+}

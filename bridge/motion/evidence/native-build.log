@@ -1,0 +1,286 @@
+
+> @haiyue/native-ak47-range@0.1.0 build:device
+> node scripts/build-device.mjs
+
+Canvas binding patch: {
+  version: '2.1.18',
+  queueSha256: 'a38a58942c488ccece244424b1c4e91c8f3e257dd201b85dd63871988ff30369',
+  file: 'WebGPU/GPURenderPassEncoder.js',
+  sha256: '7a14f279e042bb748781c10a6c56a6122931525f56943096815fb1143b583cf7'
+}
+Preparing project...
+assets by path [1m[32mgame-assets/[39m[22m 14.4 MiB
+  assets by path [1m[32mgame-assets/ren42/[39m[22m 5.03 MiB
+    assets by path [1m[32mgame-assets/ren42/*.rgba[39m[22m 4.29 MiB 10 assets
+    + 3 assets
+  assets by path [1m[32mgame-assets/qiang_ak47/[39m[22m 9.41 MiB
+    assets by path [1m[32mgame-assets/qiang_ak47/*.rgba[39m[22m 6.2 MiB 5 assets
+    asset [1m[32mgame-assets/qiang_ak47/model.bin[39m[22m 3.1 MiB [1m[33m[compared for emit][39m[22m [from: src/game-assets/qiang_ak47/model.bin] [1m[32m[copied][39m[22m
+    asset [1m[32mgame-assets/qiang_ak47/model.gltf[39m[22m 116 KiB [1m[33m[compared for emit][39m[22m [from: src/game-assets/qiang_ak47/model.gltf] [1m[32m[copied][39m[22m
+    asset [1m[32mgame-assets/qiang_ak47/textures.json[39m[22m 918 bytes [1m[33m[compared for emit][39m[22m [from: src/game-assets/qiang_ak47/textures.json] [1m[32m[copied][39m[22m
+assets by path [1m[32m*.mjs[39m[22m 7.54 MiB
+  asset [1m[32mvendor.mjs[39m[22m 7.37 MiB [1m[33m[compared for emit][39m[22m [javascript module] (name: vendor) (id hint: vendor) 1 related asset
+  asset [1m[32mbundle.mjs[39m[22m 165 KiB [1m[32m[emitted][39m[22m [javascript module] (name: bundle) 1 related asset
+  asset [1m[32mruntime.mjs[39m[22m 6.05 KiB [1m[33m[compared for emit][39m[22m [javascript module] (name: runtime) 1 related asset
+asset [1m[32mtns_modules/inspector_modules.mjs[39m[22m 778 bytes [1m[33m[compared for emit][39m[22m [javascript module] (name: tns_modules/inspector_modules) 1 related asset
+Entrypoint [1mbundle[39m[22m 7.54 MiB (8 MiB) = [1m[32mruntime.mjs[39m[22m 6.05 KiB [1m[32mvendor.mjs[39m[22m 7.37 MiB [1m[32mbundle.mjs[39m[22m 165 KiB 3 auxiliary assets
+Entrypoint [1mtns_modules/inspector_modules[39m[22m 7.38 MiB (7.74 MiB) = [1m[32mruntime.mjs[39m[22m 6.05 KiB [1m[32mvendor.mjs[39m[22m 7.37 MiB [1m[32mtns_modules/inspector_modules.mjs[39m[22m 778 bytes 3 auxiliary assets
+orphan modules 1.31 MiB [1m[33m[orphan][39m[22m 44 modules
+runtime modules 3.12 KiB 7 modules
+modules by path [1m./node_modules/[39m[22m 6.46 MiB 698 modules
+modules by path [1m../../[39m[22m 104 KiB
+  modules by path [1m../../bridge/[39m[22m 44.1 KiB 18 modules
+  modules by path [1m../../../Games/games/[39m[22m 59.8 KiB
+    [1m../../../Games/games/ak47-range/enemy-verification.ts[39m[22m 2.96 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+    + 8 modules
+modules by path [1m./src/[39m[22m 23.3 KiB
+  modules by path [1m./src/*.ts[39m[22m 21.4 KiB 7 modules
+  [1m./src/ sync \.(xml%7Cjs%7C(%3F<%21\.d\.)ts%7Cs%3Fcss)$[39m[22m 356 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  [1m./src/app.css[39m[22m 508 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  [1m./src/main-page.xml[39m[22m 1.07 KiB [1m[33m[optional][39m[22m [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+[1m./orientation.json[39m[22m 57 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+[1mexternal "~/package.json"[39m[22m 42 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+webpack 5.110.3 compiled [1m[32msuccessfully[39m[22m in 11768 ms
+Webpack compilation complete.
+Installing pods...
+/usr/local/lib/ruby/gems/4.0.0/gems/molinillo-0.8.0/lib/molinillo/dependency_graph.rb:3: warning: tsort was loaded from the standard library, but will no longer be part of the default gems starting from Ruby 4.1.0
+You can add tsort to your Gemfile or gemspec to silence this warning.
+Analyzing dependencies
+Downloading dependencies
+Generating Pods project
+Integrating client project
+Pod installation complete! There are 0 dependencies from the Podfile and 0 total pods installed.
+
+[!] The Podfile does not contain any dependencies.
+Swift Packages:
+  CanvasNative (local: node_modules/@nativescript/canvas/platforms/ios/NativeScriptV8)
+  FontManager (1.0.14 · https://github.com/NativeScript/font-manager.git)
+- Resolving Swift Package dependencies… (0m 0s)
+✔ Swift Package dependencies resolved (0m 14s)
+Updating runtime package.json with configuration values...
+Project successfully prepared (ios)
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -workspace platforms/ios/ak47range.xcworkspace -scheme ak47range -configuration Debug -sdk iphoneos -destination id=00008120-000948541182601E -allowProvisioningUpdates -allowProvisioningDeviceRegistration -disableAutomaticPackageResolution DEVELOPMENT_TEAM=D2B23S3U45 SWIFT_ENABLE_EXPLICIT_MODULES=NO IPHONEOS_DEPLOYMENT_TARGET=15.0 BUILD_DIR=/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build SHARED_PRECOMPS_DIR=/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build/sharedpch build
+
+Build settings from command line:
+    BUILD_DIR = /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build
+    DEVELOPMENT_TEAM = D2B23S3U45
+    IPHONEOS_DEPLOYMENT_TARGET = 15.0
+    SDKROOT = iphoneos26.2
+    SHARED_PRECOMPS_DIR = /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build/sharedpch
+    SWIFT_ENABLE_EXPLICIT_MODULES = NO
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  FontManager: https://github.com/NativeScript/font-manager.git @ 1.0.14
+  CanvasNative: /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/node_modules/@nativescript/canvas/platforms/ios/NativeScriptV8 @ local
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (5 targets)
+    Target 'ak47range' in project 'ak47range'
+        ➜ Implicit dependency on target 'Pods-ak47range' in project 'Pods' via file 'Pods_ak47range.framework' in build phase 'Link Binary'
+        ➜ Explicit dependency on target 'NativeScriptV8' in project 'CanvasNative'
+        ➜ Explicit dependency on target 'FontManager' in project 'FontManager'
+    Target 'FontManager' in project 'FontManager' (no dependencies)
+    Target 'NativeScriptV8' in project 'CanvasNative'
+        ➜ Explicit dependency on target 'NativeScriptV8' in project 'CanvasNative'
+    Target 'NativeScriptV8' in project 'CanvasNative' (no dependencies)
+    Target 'Pods-ak47range' in project 'Pods' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x objective-c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -V
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+Build description signature: 0df6a034241a0e817de1f5cb46850564
+Build description path: /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/XCBuildData/0df6a034241a0e817de1f5cb46850564.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk /Users/qingque/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.2-23C57-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -o /Users/qingque/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.2-23C57-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache
+
+note: Run script build phase 'NativeScript PreLink' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'ak47range' from project 'ak47range')
+note: Run script build phase 'NativeScript PreBuild' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'ak47range' from project 'ak47range')
+note: Run script build phase 'NativeScript PostBuild' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'ak47range' from project 'ak47range')
+ProcessProductPackaging /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/ak47range.entitlements /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.app.xcent (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "D2B23S3U45.org.haiyue.native.ak47range";
+    "com.apple.developer.team-identifier" = D2B23S3U45;
+    "get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/ak47range.entitlements -entitlements -format xml -o /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.app.xcent
+
+ProcessProductPackagingDER /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.app.xcent /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.app.xcent.der (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /usr/bin/derq query -f xml -i /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.app.xcent -o /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.app.xcent.der --raw
+
+ProcessInfoPlistFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/Pods_ak47range.framework/Info.plist /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/Pods/Target\ Support\ Files/Pods-ak47range/Pods-ak47range-Info.plist (in target 'Pods-ak47range' from project 'Pods')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/Pods
+    builtin-infoPlistUtility /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/Pods/Target\ Support\ Files/Pods-ak47range/Pods-ak47range-Info.plist -producttype com.apple.product-type.framework -expandbuildsettings -format binary -platform iphoneos -requiredArchitecture arm64 -o /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/Pods_ak47range.framework/Info.plist
+
+Ld /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScriptV8.o normal (in target 'NativeScriptV8' from project 'CanvasNative')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/node_modules/@nativescript/canvas/platforms/ios/NativeScriptV8
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios15.0 -r -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -O0 -w -L/Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -L/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib -F/Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Developer/Library/Frameworks -filelist /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/CanvasNative.build/Debug-iphoneos/NativeScriptV8.build/Objects-normal/arm64/NativeScriptV8.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/CanvasNative.build/Debug-iphoneos/NativeScriptV8.build/Objects-normal/arm64/NativeScriptV8_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/CanvasNative.build/Debug-iphoneos/NativeScriptV8.build/Objects-normal/arm64/NativeScriptV8_dependency_info.dat -o /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScriptV8.o
+
+RegisterExecutionPolicyException /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScriptV8.o (in target 'NativeScriptV8' from project 'CanvasNative')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/node_modules/@nativescript/canvas/platforms/ios/NativeScriptV8
+    builtin-RegisterExecutionPolicyException /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScriptV8.o
+
+PhaseScriptExecution [CP]\ Check\ Pods\ Manifest.lock /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-3738055367FB773770B2578C.sh (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /bin/sh -c /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-3738055367FB773770B2578C.sh
+
+PhaseScriptExecution NativeScript\ PreBuild /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-C97FD7AC1ADE5369004DB2A4.sh (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /bin/sh -c /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-C97FD7AC1ADE5369004DB2A4.sh
+
+Ld /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range normal (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal/nsld.sh -Xlinker -reproducible -target arm64-apple-ios15.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -O0 -L/Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -L/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos -F/Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/PackageFrameworks -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos -F../../node_modules/@nativescript/canvas/platforms/ios -F../../node_modules/@nativescript/core/platforms/ios -filelist /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ak47range.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ak47range_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ak47range_dependency_info.dat -stdlib\=libc++ -fobjc-arc -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ak47range.swiftmodule -Wl,-no_warn_duplicate_libraries -ObjC -sectcreate __DATA __TNSMetadata /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/metadata-arm64.bin -framework NativeScript -framework TKLiveSync -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal -licucore -lz -lc++ -framework Foundation -framework UIKit -framework CoreGraphics -framework CoreServices -framework Security -framework Foundation -framework CanvasNative -framework OpenGLES -framework GLKit -framework CanvasNative -framework NSCWinterTC -framework TNSWidgets -framework Pods_ak47range -lFontManager -Xlinker -no_adhoc_codesign -o /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range
+./.build_env_vars.sh: line 620: declare: UID: readonly variable
+Generating metadata...~/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal/metadata-generator-x86_64/bin ~/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+Python version: 3.9.6 (default, Jan  9 2026, 11:03:41) 
+[Clang 17.0.0 (clang-1700.6.4.2)]
+Generating metadata for arm64
+Metadata Generator Arguments: 
+./objc-metadata-generator -verbose -output-bin /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/metadata-arm64.bin -output-umbrella /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/umbrella-arm64.h -docset-path /Users/qingque/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset Xclang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -std=gnu99 -target arm64-apple-ios26.2 -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/node_modules/@nativescript/canvas/platforms/ios/NativeScriptV8/Headers -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/include -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal/Swift-Modules -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/../../App_Resources/iOS/src -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/../../node_modules/@nativescript/canvas/platforms/ios/src -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/../../node_modules/@nativescript/core/platforms/ios/src -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers/include -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/PackageFrameworks -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal/ -F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos -F../../node_modules/@nativescript/canvas/platforms/ios -F../../node_modules/@nativescript/core/platforms/ios -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/SubFrameworks -fmodule-map-file=/Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/GeneratedModuleMaps-iphoneos/NativeScriptV8.modulemap -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers -I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers/include -DCOCOAPODS=1 -DDEBUG=1 -DNS_SWIFTUI_BOOT=0 
+Clang Arguments: 
+"-v", "-x", "objective-c", "-fno-objc-arc", "-fmodule-maps", "-ferror-limit=0", "-Wno-unknown-pragmas", "-Wno-ignored-attributes", "-Wno-nullability-completeness", "-Wno-expansion-to-defined", "-D__NATIVESCRIPT_METADATA_GENERATOR=1", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk", "-std=gnu99", "-target", "arm64-apple-ios26.2", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/node_modules/@nativescript/canvas/platforms/ios/NativeScriptV8/Headers", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/include", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal/Swift-Modules", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/../../App_Resources/iOS/src", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/../../node_modules/@nativescript/canvas/platforms/ios/src", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/../../node_modules/@nativescript/core/platforms/ios/src", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range//platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers/include", "-F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/PackageFrameworks", "-F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos", "-F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal/", "-F/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos", "-F../../node_modules/@nativescript/canvas/platforms/ios", "-F../../node_modules/@nativescript/core/platforms/ios", "-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/SubFrameworks", "-fmodule-map-file=/Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/GeneratedModuleMaps-iphoneos/NativeScriptV8.modulemap", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers", "-I/Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/NativeScript.framework/Headers/include", "-DCOCOAPODS=1", "-DDEBUG=1", "-DNS_SWIFTUI_BOOT=0", 
+Merged 1464 categories.
+Result: 65783 declarations from 212 top level modules
+Done! Running time: 26.5992 sec 
+Saving metadata generation's stderr stream to: /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/metadata-generation-stderr-arm64.txt
+~/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+clang: warning: argument unused during compilation: '-stdlib=libc++' [-Wunused-command-line-argument]
+
+PhaseScriptExecution NativeScript\ PreLink /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-CD62955B1BB2651D00AE3A93.sh (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /bin/sh -c /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-CD62955B1BB2651D00AE3A93.sh
+
+CopyPNGFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon1024.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon1024.png (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon1024.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon1024.png
+
+CopyPNGFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon60x60@3x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon60x60@3x.png (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon60x60@3x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon60x60@3x.png
+
+CopyPNGFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon40x40@3x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon40x40@3x.png (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon40x40@3x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon40x40@3x.png
+
+CopyPNGFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon60x60@2x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon60x60@2x.png (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon60x60@2x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon60x60@2x.png
+
+CopyPNGFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon29x29@3x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon29x29@3x.png (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon29x29@3x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon29x29@3x.png
+
+CopyPNGFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon40x40@2x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon40x40@2x.png (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon40x40@2x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon40x40@2x.png
+
+CopyPNGFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon29x29@2x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon29x29@2x.png (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/AppIcon29x29@2x.png /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/AppIcon29x29@2x.png
+
+CpResource /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/build.xcconfig /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/build.xcconfig (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/build.xcconfig /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app
+
+CpResource /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/signing.local.xcconfig /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/signing.local.xcconfig (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/Resources/signing.local.xcconfig /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app
+
+CpResource /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/app /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/app (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/app /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app
+
+PhaseScriptExecution NativeScript\ PostBuild /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-CD3EAD351B05FF060042DBFC.sh (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /bin/sh -c /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Script-CD3EAD351B05FF060042DBFC.sh
+~/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/internal ~/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+Stripping frameworks
+~/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+
+ProcessInfoPlistFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Info.plist /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/ak47range-Info.plist (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    builtin-infoPlistUtility /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/ak47range/ak47range-Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -scanforprivacyfile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Frameworks/CanvasNative.framework -scanforprivacyfile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Frameworks/NSCWinterTC.framework -scanforprivacyfile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Frameworks/NativeScript.framework -scanforprivacyfile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Frameworks/TKLiveSync.framework -scanforprivacyfile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Frameworks/TNSWidgets.framework -requiredArchitecture arm64 -o /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Info.plist
+
+ExtractAppIntentsMetadata (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name ak47range --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 15.0 --bundle-identifier org.haiyue.native.ak47range --output /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app --target-triple arm64-apple-ios15.0 --binary-file /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range --dependency-file /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ak47range_dependency_info.dat --stringsdata-file /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ak47range.SwiftFileList --metadata-file-list /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.DependencyMetadataFileList --static-metadata-file-list /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.DependencyStaticMetadataFileList --swift-const-vals-list /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/Objects-normal/arm64/ak47range.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-09-13 06:50:15.479 appintentsmetadataprocessor[60772:895220] Starting appintentsmetadataprocessor export
+2026-09-13 06:50:15.486 appintentsmetadataprocessor[60772:895220] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    builtin-swiftStdLibTool --copy --verbose --sign F3C124A6A53FD97EB266F60E3E0ABCCE03628979 --scan-executable /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range --scan-folder /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Frameworks --scan-folder /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/PlugIns --scan-folder /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/SystemExtensions --scan-folder /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Extensions --scan-folder /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/Pods_ak47range.framework --platform iphoneos --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+AppIntentsSSUTraining (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Info.plist --temp-dir-path /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ssu --bundle-id org.haiyue.native.ak47range --product-path /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app --extracted-metadata-path /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/Metadata.appintents --metadata-file-list /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.DependencyMetadataFileList --archive-ssu-assets
+2026-09-13 06:50:15.559 appintentsnltrainingprocessor[60773:895221] Parsing options for appintentsnltrainingprocessor
+2026-09-13 06:50:15.560 appintentsnltrainingprocessor[60773:895221] No AppShortcuts found - Skipping.
+
+GenerateDSYMFile /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app.dSYM /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app/ak47range -o /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app.dSYM
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontDescriptors.o unable to open object file: No such file or directory
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontFace.o unable to open object file: No such file or directory
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontFaceSet.o unable to open object file: No such file or directory
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontParser.o unable to open object file: No such file or directory
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontResolver.o unable to open object file: No such file or directory
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontStyle.o unable to open object file: No such file or directory
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontTypes.o unable to open object file: No such file or directory
+warning: (arm64) /Users/runner/work/font-manager/font-manager/dist/spm/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/FontManager/IntermediateBuildFilesPath/FontManager.build/Release-iphoneos/FontManager.build/Objects-normal/arm64/NSCFontRegex.o unable to open object file: No such file or directory
+
+CodeSign /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    
+    Signing Identity:     "Apple Development: qingque60@gmail.com (83884YQRQR)"
+    Provisioning Profile: "iOS Team Provisioning Profile: org.haiyue.native.ak47range"
+                          (15654cff-3793-4f58-99b6-e33ae4c1164e)
+    
+    /usr/bin/codesign --force --sign F3C124A6A53FD97EB266F60E3E0ABCCE03628979 --entitlements /Users/qingque/Library/Developer/Xcode/DerivedData/ak47range-gyietdzjkbicqiewceigvdosltwn/Build/Intermediates.noindex/ak47range.build/Debug-iphoneos/ak47range.build/ak47range.app.xcent --timestamp\=none --generate-entitlement-der /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app
+
+Validate /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app (in target 'ak47range' from project 'ak47range')
+    cd /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios
+    builtin-validationUtility /Users/qingque/Desktop/HaiyueStudio/Native/examples/ak47-range/platforms/ios/build/Debug-iphoneos/ak47range.app -shallow-bundle -infoplist-subpath Info.plist
+
+** BUILD SUCCEEDED **
+
+Verified 21 bundled model/texture files byte-for-byte.

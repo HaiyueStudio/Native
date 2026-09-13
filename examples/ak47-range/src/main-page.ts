@@ -3,6 +3,7 @@ import { LocalStorageSaveBackend, MemorySaveBackend } from '@haiyue/engine/save'
 import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage';
 import { captureNativePointer } from './pointer-capture';
 import { verifyNativeRange } from './verification';
+import { verifyNativeMotion } from './motion-verification';
 import { Application, EventData, Label, Page } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { NativeRenderHost } from '../../../bridge/lifecycle/host';
@@ -37,6 +38,7 @@ function ensureHost(canvas: Canvas): void {
   let verifying = String(NSProcessInfo.processInfo.environment.objectForKey('RANGE_VERIFY')) === '1';
   let textures: NativeCanvasTextures | null = null;
   let models: NativeModels | null = null;
+  let disposeMotionProbe: (() => void) | null = null;
   const target = new OrbitPointerTarget(() => nativeViewRect(canvas), 'all');
   const input = new NativeTouchInput(canvas, (sample) => {
     if (verifying) return; // Keep scripted verification deterministic; real UITouch resumes immediately afterward.
@@ -81,10 +83,12 @@ function ensureHost(canvas: Canvas): void {
           guiFont: { canvasFactory: textures.createCanvas2D, readAtlasPixels: textures.readAtlasPixels },
         });
         await game.init();
+        if (String(NSProcessInfo.processInfo.environment.objectForKey('MOTION_VERIFY')) === '1') disposeMotionProbe = verifyNativeMotion(engine);
         if (verifying) void verifyNativeRange(game, target, canvas, () => haptics.snapshot()).finally(() => { verifying = false; game?.restart(); });
         return game.snapshot();
       },
       disposeScene() {
+        disposeMotionProbe?.();
         haptics.dispose();
         game?.dispose();
         game = null;

@@ -1,0 +1,3 @@
+{"name":"serpent-segments","status":"passed","checks":["real-bullet-independent-hp","middle-node-overkill-isolation","neighbor-health-preserved","single-score","owned-laser-cleanup","smooth-reconnection","pause-rejoin","first-middle-last-removal"]}
+{"name":"serpent-rage","status":"passed","checks":["real-body-destruction","above-35-percent-charge","immediate-first-charge","three-charges-in-nine-seconds","pause-freeze"]}
+{"name":"balance","status":"passed","checks":["boss-bomb-resistance","proxy-bomb-resistance","serpent-independent-health","serpent-bomb-area-per-segment","laser-relocation-after-attack","carrier-cadence-elite-cap"]}

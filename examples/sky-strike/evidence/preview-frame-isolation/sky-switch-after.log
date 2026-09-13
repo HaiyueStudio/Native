@@ -1,0 +1,4 @@
+{"name":"preview-switch-frames","status":"passed","checks":["pending-frame-pixel-isolation","12-first-visit-transitions","12-cached-transitions","immediate-bounded-layout"]}
+{"name":"preview-6","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"preview-8","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}
+{"name":"inferno-menu-zh","status":"passed","checks":["engine-gui-menu","skinned-next","skinned-previous"]}

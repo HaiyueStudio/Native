@@ -1,0 +1,11 @@
+{
+  "time": "2026-09-13T10:49:43.587628+08:00",
+  "sha256": {
+    "Games/games/sky-strike/rules.ts": "fbbccc1954f58fc9d15453bbccdac83d979a52db58a9b34cf1fafa0e04aab351",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "85b5f383d61ba77c154cd325fd157268c094941a64b5c9b9c6dc5da01215bc88",
+    "Games/games/test/sky-strike-rules.test.mjs": "7ca0180de6877c9a9cb6275f3d74080026c72433898c1d7f0eb2b1633232749c",
+    "Games/games/test/fixtures/sky-native/main.ts": "a50ab2d71152479b74a170d2d6cae8afd6eaa0b300276add5906d600681c20b2",
+    "Games/scripts/verify-sky-native.mjs": "5bc6926f46063df6dbc71878213b1728388648f4b49908845fdd6773afea05a3"
+  },
+  "nativeBundleSha256": "45e9372b3c2e956216e49f1845e5d6f48c2ef09c3f98326adeb9308a5961870b"
+}
