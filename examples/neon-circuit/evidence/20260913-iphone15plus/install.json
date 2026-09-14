@@ -1,0 +1,37 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "install",
+      "app",
+      "--device",
+      "8D9238D1-024A-538B-A175-B9E71AA32202",
+      "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app",
+      "--json-output",
+      "/tmp/neon-native-install-fix2.json"
+    ],
+    "commandType" : "devicectl.device.install.app",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "506.7"
+  },
+  "result" : {
+    "deviceIdentifier" : "8D9238D1-024A-538B-A175-B9E71AA32202",
+    "installedApplications" : [
+      {
+        "bundleID" : "org.haiyue.native.neoncircuit",
+        "databaseSequenceNumber" : 13868,
+        "databaseUUID" : "7DF205F0-5D5A-4FFC-B953-EB5A671DD06F",
+        "installationURL" : "file:///private/var/containers/Bundle/Application/44F26560-CA53-42B3-8B8A-82CFA123E632/neoncircuit.app/",
+        "launchServicesIdentifier" : "unknown",
+        "options" : {
+
+        }
+      }
+    ]
+  }
+}

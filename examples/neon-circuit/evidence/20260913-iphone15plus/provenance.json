@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-13T11:09:32.404534+00:00",
+  "purpose": "Local iPhone native port acceptance; not a formal engine performance baseline",
+  "device": {
+    "model": "iPhone 15 Plus",
+    "gpu": "Apple A16",
+    "backend": "NativeScript Canvas / wgpu / Metal",
+    "surface": [
+      1864,
+      860
+    ],
+    "logicalViewport": [
+      932,
+      430
+    ]
+  },
+  "repositories": {
+    "Games": {
+      "revision": "c1cf0a485001c0dffb4034b3c4d81220325b47ef",
+      "dirty": true
+    },
+    "Native": {
+      "revision": "d15a9f499aedba93875c538809d5989f5b3c9504",
+      "dirty": true
+    }
+  },
+  "source": [
+    {
+      "file": "Native/examples/neon-circuit/src/app.ts",
+      "bytes": 888,
+      "sha256": "ccfaebcbbc577215ea783ce17b15fe76afa6ce36d21b49f14416421f1b80d5fd"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/core-js-pure.d.ts",
+      "bytes": 224,
+      "sha256": "2a3152b848ac336029493e579bc7a370b584171adb31f07c53238fe5214e8269"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/driving.ts",
+      "bytes": 4530,
+      "sha256": "1eddca485467300682df46ae718a8ef5a9ea841db006f22ae68dff83e8bc7ff6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/main-page.ts",
+      "bytes": 6490,
+      "sha256": "40846da78240e39c78b2ffca03a6f4634c0c0f5ec5cc7ee578cf3656c164cbcb"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/models.ts",
+      "bytes": 2929,
+      "sha256": "d34297cdfa8fc6b31f949a548fd1948b47a9068fef7eb1669849d88d2027e13c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/pointer-capture.ts",
+      "bytes": 463,
+      "sha256": "025435895f543b1fb8dbb562330776c24ac2da7382c5c91fdb6cc9e3e0fcdfa6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/raster.ts",
+      "bytes": 2085,
+      "sha256": "cd04fafeebfe3ab02d0619ceb282326634daa3122e99f1df7739c9085c77e28b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/steering.ts",
+      "bytes": 877,
+      "sha256": "ad13da3cde4a9bd36a4c3b5dee972610c08bfd5d87203c059c9592acd00ecce2"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/verification.ts",
+      "bytes": 8527,
+      "sha256": "4a32d9df5611cd72905e2615cbd7ffbf69c1779cedfb651e5502e94b67655b12"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/main-page.xml",
+      "bytes": 557,
+      "sha256": "98d0d606043270528c0e7e30130d2402df47ba99e245356f2e73c1c7dc1992ba"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/app.css",
+      "bytes": 36,
+      "sha256": "1204af81a7791782d491c43be79846ec600a1f7a71ebff9b91f92c8ed506728a"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/build-device.mjs",
+      "bytes": 2243,
+      "sha256": "f2d3ba8055b732612312459e41566ac27679a05df7f6b485b1dc47b58066a9cd"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/ios.mjs",
+      "bytes": 1990,
+      "sha256": "6529d0eddd158081ed33318362e9e56863744ad7ee5da3c21058d865db4e6712"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/patch-canvas.mjs",
+      "bytes": 2984,
+      "sha256": "0e6239115a3422cdfd1de11c4bc860e3513a2aa8b4bc6f83e5fcfebc9b0bb6a8"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/sync-game-assets.mjs",
+      "bytes": 1143,
+      "sha256": "07eae4a310146ef34e71aebbfa53c932ce8abce578caeba2b2ddac18eddd958a"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/sync-orientation.mjs",
+      "bytes": 803,
+      "sha256": "1e35434569b11df5d72f59925ecf4985f1eeb59b2977e1013c34c23a197f141e"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/prepare-assets.py",
+      "bytes": 2098,
+      "sha256": "06d864292819e98b1165639711f4bf010e8f00a3053725e97f93b01b14176491"
+    },
+    {
+      "file": "Games/games/neon-circuit/BoostStripTexture.ts",
+      "bytes": 3195,
+      "sha256": "18e7a155c61d5d2e0c6dd7f54f103d19c5acd877a5cbc80cf6d7a94e93567986"
+    },
+    {
+      "file": "Games/games/neon-circuit/CarouselMath.ts",
+      "bytes": 3469,
+      "sha256": "525177f73bc3a4acaee9e6875ea6bd917b8bcb1245daeceaa57dad529b72544a"
+    },
+    {
+      "file": "Games/games/neon-circuit/CircuitCarousel.ts",
+      "bytes": 7681,
+      "sha256": "f723cc713601ee06e189cdffc0c51e073a090c977779664ec166c223333b9307"
+    },
+    {
+      "file": "Games/games/neon-circuit/CircuitThemes.ts",
+      "bytes": 1677,
+      "sha256": "375e76b8cfded0f533df1efe40db327329847309b9e4e0c1345d04111e3a4213"
+    },
+    {
+      "file": "Games/games/neon-circuit/HudDialTexture.ts",
+      "bytes": 3102,
+      "sha256": "eec36a0e6dc5250058616cdad474aed95cd983b8fa4dbd0a441fda16f681b08c"
+    },
+    {
+      "file": "Games/games/neon-circuit/HullFireTexture.ts",
+      "bytes": 4493,
+      "sha256": "948f545d0a0ee1e243a60592a7cb3411f81702888b50cefc45ed44904423fa42"
+    },
+    {
+      "file": "Games/games/neon-circuit/NeonCircuitGui.ts",
+      "bytes": 31269,
+      "sha256": "71c1608d44ba456abed11faf6052ac0ea337b72e608ff1a258c7c6c1d87b17d3"
+    },
+    {
+      "file": "Games/games/neon-circuit/NeonRaster.ts",
+      "bytes": 2233,
+      "sha256": "4f5afb2933cfa5cbb1bb9785ee007aefe20ec46d67fc8b4ff642a262c1b0fda5"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceParticles.ts",
+      "bytes": 5018,
+      "sha256": "75add927342214a6d40960d7146c200fdb5f6f2e14ccb9eecc2aff4bb3fb296c"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceRules.ts",
+      "bytes": 17143,
+      "sha256": "2f4ad087c7249922579f7dc5db8418b270a7d64028c497dc0f7e5ae79bf95a1e"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceUnits.ts",
+      "bytes": 514,
+      "sha256": "611b1efbd302f98c14f193c7da3ad939e34d2fa68334c37e904127da172f5fa9"
+    },
+    {
+      "file": "Games/games/neon-circuit/RacerEffects.ts",
+      "bytes": 2441,
+      "sha256": "8fe203f4ea8267828c7b1c4b841537b2c4df74b6d861b152e7d0a56d585c46bf"
+    },
+    {
+      "file": "Games/games/neon-circuit/RainbowRoadTexture.ts",
+      "bytes": 5012,
+      "sha256": "bc17022f63c8742ea70f347a7454c94d636f2489d448d0af9e72cd9acc31987f"
+    },
+    {
+      "file": "Games/games/neon-circuit/RoadOverlay.ts",
+      "bytes": 3300,
+      "sha256": "a9379f3aaa364d2e78ae8aa6ad0ef760f103f4ed83e4f0bdbdd9d6623da06cae"
+    },
+    {
+      "file": "Games/games/neon-circuit/SpaceEnvironment.ts",
+      "bytes": 5063,
+      "sha256": "02adecbad672c0b0cb23ad963b21507554dd3e853403c05352a0c8c8ecbaf7c7"
+    },
+    {
+      "file": "Games/games/neon-circuit/ThrusterFlameTexture.ts",
+      "bytes": 4703,
+      "sha256": "cd3ffff17cd3ff14ccb17fec121919cea14540574fca32af560af7fa8205dacd"
+    },
+    {
+      "file": "Games/games/neon-circuit/main.ts",
+      "bytes": 63378,
+      "sha256": "54f8427dc42eaebcdde5e854839f0adfcfe2973124fabb033c444e6a7ef779e3"
+    },
+    {
+      "file": "Native/bridge/lifecycle/host.ts",
+      "bytes": 9145,
+      "sha256": "43e8c7fb371c430531b6616bdaf06db0d00aeda9a33ea44c69812c670bfb3e1b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/package-lock.json",
+      "bytes": 351245,
+      "sha256": "bd4eae8936d0da515f08a43ee7e3f60ed6d3b7ef15b611b1031eaf31ada8fd2b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/webpack.config.js",
+      "bytes": 414,
+      "sha256": "b339cada9cf75d1afe0cbf481caba6116e174bc31406925295d9a39ed759339d"
+    },
+    {
+      "file": "Native/examples/neon-circuit/orientation.json",
+      "bytes": 53,
+      "sha256": "14e82624cc0d30eea88a5c9a1787fca5529c8fafbfbb51b6ec028fa7e6571685"
+    },
+    {
+      "file": "Native/examples/neon-circuit/vendor/candidates.json",
+      "bytes": 447,
+      "sha256": "d404a36c9309f26a5186997abce4056edf16a5475d41cec34aa10eff361a559e"
+    },
+    {
+      "file": "Native/examples/neon-circuit/App_Resources/iOS/Info.plist",
+      "bytes": 1676,
+      "sha256": "f090775262328365adf2e2525806f3c1d116a2a985785fc66ae47a9a21007362"
+    }
+  ],
+  "installedBuild": [
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/neoncircuit",
+      "bytes": 16085344,
+      "sha256": "3c571c5540171239f1af1797b28e7325a784b6f4bb52bc50951f41f0f1f53a81"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/Info.plist",
+      "bytes": 1419,
+      "sha256": "04b9ee633f5dc307f647e8b68455043de5dec935cc4fbd59f3d51b665a03e3ca"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/bundle.mjs",
+      "bytes": 291561,
+      "sha256": "5de4a11da151568be19d981346a8cdd9a78466a4f25b6a3e7a5f62fa4bd0ad50"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/vendor.mjs",
+      "bytes": 7806389,
+      "sha256": "e67eef7ec621880e0f1ea9253d9b8cfe560e1e094f56daee1ba2bc143b495d7c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/runtime.mjs",
+      "bytes": 6199,
+      "sha256": "c88decf76b39ec6b154cc2f32b2ec2215fca0c666070436f824d77b502591c09"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/game-assets/source.json",
+      "bytes": 3454,
+      "sha256": "feff1aad98c9cd34421933b3b854fd5fddffbe66c87ce69f9a2fcb8ed5feffb3"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/cold-home.png",
+      "bytes": 516111,
+      "sha256": "3fec0afd469aef52fe89d117145ae76ad477f9954bf7c02cc4b8a5c9194ee7c5"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/cold-host.jsonl",
+      "bytes": 10842,
+      "sha256": "a6604cebbc1110eb20c8ba63d9a93f40f8a26dbac7d71c2844881cda031c4b35"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/cold-launch.json",
+      "bytes": 1363,
+      "sha256": "e283016d7e23b2dd9443bef7065e2f93965f25f67ce90f5a81ef0e99cdec0790"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/final-launch.json",
+      "bytes": 1255,
+      "sha256": "b59d5293908c58700a4c6d46a927d486c2e76da6e604e804264cce7badb2637c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/install.json",
+      "bytes": 1025,
+      "sha256": "02a85390331dfdf6d3e372768fdd74585f0d990481916f938648bd7c08444ed6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-circuit-host.jsonl",
+      "bytes": 32296,
+      "sha256": "e118ce214be7414bbbb61e03cb388d80a5958144db8d67261f9600766765e4c8"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-circuit-verification.json",
+      "bytes": 4884,
+      "sha256": "67fecfdd107e58989c06ca92742cf72b9d5fef6ae9f7237caeacc3d4ad94c452"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-driving.png",
+      "bytes": 699197,
+      "sha256": "bec62353c9afd0251ce4bf2328f0d02b102244fae8028589683cbac6707e5af8"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-home.png",
+      "bytes": 516160,
+      "sha256": "51a9c7caa1a4bea48dd7d33a8b375f035ec51fdc6c5d3166b0c95ebfd4a6ef51"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-neon-city.png",
+      "bytes": 635825,
+      "sha256": "5c2defdf50c7d74bc08d47da6294900a9bfd8e9130dd2365780edf87530afdb6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-paused.png",
+      "bytes": 708816,
+      "sha256": "832b2674ddc8c4cb363fda71bd1ea72639333a6506537d1751a5e5adc4fa4ee6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-rainbow-road.png",
+      "bytes": 1034163,
+      "sha256": "f2a615c7a0f9f90e9b568e6aad998147d7f8671d0c1bd4bdbe795cda07500142"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/verification/neon-reactor-run.png",
+      "bytes": 687678,
+      "sha256": "369f9ea4d3c53610ff5fcb4e94daefe0b4880adb48f39aa54934aba32c987f7d"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-iphone15plus/final-host.jsonl",
+      "bytes": 47568,
+      "sha256": "f5417dfc6e587a97de4da722d528605ba438a888e4f3384ffaeebea0f3b5ff08"
+    }
+  ],
+  "checks": {
+    "native": {
+      "passed": 28,
+      "status": "passed"
+    },
+    "nativeUnit": {
+      "passed": 4
+    },
+    "racingUnit": {
+      "passed": 36
+    },
+    "typecheck": {
+      "Games": "passed",
+      "Native": "passed"
+    },
+    "webScenarios": {
+      "passed": 188,
+      "names": [
+        "rainbow-high-speed",
+        "high-speed-mobile",
+        "home-desktop",
+        "home-landscape"
+      ]
+    },
+    "fullGamesSuite": {
+      "total": 590,
+      "passed": 558,
+      "failed": 2,
+      "cancelled": 10,
+      "skipped": 20,
+      "remainingFailures": "Unrelated HYMUGEN binary / viewer contracts and Petra timeouts"
+    },
+    "normalColdLaunch": {
+      "captureRequested": false,
+      "presentedFrames": 3720,
+      "phase": "racing",
+      "errors": 0
+    }
+  },
+  "limitations": [
+    "Automated native pointer and actual sensor sampling checks do not replace manual tilt steering feel acceptance."
+  ],
+  "replacementBackup": {
+    "app": "前线训练场",
+    "bundleId": "org.haiyue.native.ak47range",
+    "authorizedByUser": true,
+    "manifest": {
+      "file": "Native/examples/ak47-range/artifacts/neon-migration-20260913/manifest.json",
+      "bytes": 15078,
+      "sha256": "4384c9f1d2a412c3355a66fc4609d2cb1701b2cdd14c95a94ba93f0fc37f179b"
+    }
+  }
+}

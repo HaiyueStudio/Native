@@ -31,5 +31,5 @@ export class NativeHaptics {
   }
   suspend(): void { this.active = false; }
   dispose(): void { this.suspend(); this.disposed = true; this.light = null; this.medium = null; this.heavy = null; }
-  snapshot() { return { active: this.active, impactsRequested: this.count }; }
+  snapshot() { return { active: this.active, impactsRequested: this.count, lastKind: this.lastKind }; }
 }

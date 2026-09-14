@@ -1,0 +1,47 @@
+✔ carousel wraps three or four courses without losing the unwrapped rotation (21.119085ms)
+✔ perspective projection and pointer inverse agree across responsive layouts and transitions (10.715932ms)
+✔ front card wins, side cards remain clickable and the hidden fourth card never intercepts input (1811.948746ms)
+✔ swipes ignore tap jitter and vertical movement but accept short horizontal drags (0.488357ms)
+✔ every recognised short horizontal drag advances even with zero release velocity (1.085414ms)
+✔ fast throws cross multiple cards in their original direction, including full wraps (0.482081ms)
+✔ coaster frames remain orthonormal and continuous through vertical poles, rolls and the lap seam (34.469939ms)
+✔ inverted hovercraft offsets and steering remain on its road plane (14.956752ms)
+✔ decals on inverted and vertical road faces lift toward the drivable side (2.066813ms)
+✔ idle and coasting jets stay short even at boost speed; throttle controls sustained thrust (2.688612ms)
+✔ half hull emits light smoke and critical hull adds restrained fire and denser smoke (0.582521ms)
+✔ exhaust sockets follow bank and pitch, preserve separation, and rotate with the ship (2.56396ms)
+✔ FOV narrows gradually with speed and stays bounded at extreme inputs (0.382246ms)
+✔ health dial changes colour strictly below two-thirds and one-third health (0.73096ms)
+✔ speedometer units match distance travelled and course distance units (2.725529ms)
+✔ narrower high-speed lens gains a forward sightline and follows the road slope (0.750269ms)
+✔ native raster upload preserves the exact straight-alpha pixel view and array layer (6.651215ms)
+✔ failed upload releases a newly allocated texture but leaves borrowed atlas ownership intact (1.898434ms)
+✔ neon circuit generates a long, wide, elevated, and banked closed course (16.258196ms)
+✔ hover racer accelerates, steers laterally, brakes, and respects cruise speed (7.70038ms)
+✔ cyan pads grant boost and allow the racer to exceed cruise speed (3.59537ms)
+✔ rails cause a deterministic impact penalty (2.875507ms)
+✔ the race advances through three laps and then finishes (1.739526ms)
+✔ manifest and page expose the racer, controls, timing, boost, and debug hooks (106.341661ms)
+✔ all five routes are distinct closed circuits with accurate, bounded thumbnails (49.223489ms)
+✔ holding throttle without turning hits walls on every course (82.533932ms)
+✔ deliberate steering and braking can complete all five courses without damage (4008.410074ms)
+✔ faster and more direct wall strikes increase damage, cancel boost, and shake the camera (1.669332ms)
+✔ critical damage destroys the ship, freezes the race, and reset restores full hull (0.754133ms)
+✔ zero-time steps are inert and fixed subdivisions agree at 20, 60 and 120 Hz (8.550652ms)
+✔ boost expiration preserves momentum and smoothly returns to cruise even with throttle held (5.095068ms)
+✔ steering scrubs a small symmetric amount of speed without a discontinuous speed cap (0.651005ms)
+✔ beginner course comes first and Rainbow Road has a separated elevated crossing (64.086231ms)
+✔ expanded courses preserve proportions and widths while easing curvature per metre (35.389192ms)
+✔ higher racing speeds remain reachable and brakes can settle boost speed promptly (2.743892ms)
+✔ lane and boost overlays stay above both triangles of a twisted road, including their interiors (7.077722ms)
+✔ start-line overlay wraps the closed track while keeping a continuous texture range (1.521553ms)
+✔ neon browser verifier defaults to the full unique scenario matrix (5.774825ms)
+✔ targeted neon verification preserves named scenarios and rejects typos (3.489773ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4987.528338

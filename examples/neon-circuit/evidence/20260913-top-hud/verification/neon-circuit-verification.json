@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T11:46:14.215Z",
+  "updatedAt": "2026-09-13T11:46:24.328Z",
+  "status": "failed",
+  "checks": [
+    "bundled PBR hovercraft loaded",
+    "landscape native Metal surface",
+    "reverse Z and float depth enabled",
+    "four shared courses in native carousel",
+    "native carousel swipe commits selection",
+    "home selects joystick steering",
+    "countdown starts race",
+    "course title, two-row timing and pause dock to the safe top edge",
+    "dial is twenty percent smaller and closer to the left edge",
+    "compact top HUD does not overlap and pause has a square circular-skin target",
+    "brake left and throttle right at bottom-right",
+    "pedals avoid native safe-area edges",
+    "floating joystick appears centered at the new touch without steering jump",
+    "joystick and throttle work with separate simultaneous touches",
+    "releasing joystick returns steering to neutral",
+    "brake slows the car even with throttle held",
+    "cancellation releases native driving pointers",
+    "next joystick touch establishes a different center",
+    "releasing throttle outside button starts gradual coasting and preserves joystick finger"
+  ],
+  "captures": [
+    {
+      "file": "neon-home.png",
+      "bytes": 515887
+    },
+    {
+      "file": "neon-floating-joystick.png",
+      "bytes": 553444
+    }
+  ],
+  "states": [],
+  "game": {
+    "phase": "racing",
+    "lap": 1,
+    "speed": 1012.6666666666686,
+    "elapsed": 1.4749999999999972,
+    "progress": 0.07594722373667047,
+    "lateral": 15.28103431929153,
+    "boostRemaining": 1.7250000000000003,
+    "wallHits": 0,
+    "health": 100,
+    "headingOffset": 0.0725705373448422,
+    "impact": 0,
+    "trackId": "sky-harbor",
+    "buildingCount": 194,
+    "exhaustLength": 1.3509654370636857,
+    "fov": 0.7389847511454114,
+    "reverseZ": true,
+    "depthFormat": "depth32float",
+    "cameraPhi": 1.3609115326107375,
+    "theme": "harbor",
+    "space": null,
+    "rainbowTime": null,
+    "particles": {
+      "smoke": 0,
+      "sparks": 0
+    }
+  },
+  "driving": {
+    "mode": "joystick",
+    "axis": 0,
+    "joystick": {
+      "active": true,
+      "pointerId": 9011,
+      "center": {
+        "x": 255,
+        "y": 283
+      },
+      "direction": {
+        "x": 0,
+        "y": 0
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "rawDistance": 0,
+      "distance": 0,
+      "strength": 0,
+      "angle": 0
+    },
+    "gyroAvailable": true,
+    "gyroActive": false,
+    "sensorSamples": 0,
+    "rotation": 0
+  },
+  "error": "Error: released throttle keeps decelerating without wall impact"
+}

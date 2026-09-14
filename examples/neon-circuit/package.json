@@ -1,0 +1,39 @@
+{
+  "name": "@haiyue/native-neon-circuit",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/app.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "doctor": "node scripts/ios.mjs doctor ios",
+    "build:ios": "node scripts/ios.mjs build ios --for-device",
+    "run:ios": "node scripts/ios.mjs run ios",
+    "bundle:ios": "node scripts/ios.mjs prepare ios",
+    "test": "node --test test/*.test.mjs",
+    "build:device": "node scripts/build-device.mjs"
+  },
+  "dependencies": {
+    "@haiyue/engine": "file:vendor/haiyue-engine-0.1.0.tgz",
+    "@nativescript/canvas": "2.1.18",
+    "@nativescript/core": "9.1.1",
+    "@nativescript/font-manager": "1.0.14",
+    "core-js-pure": "3.50.0",
+    "wgpu-matrix": "3.4.2",
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.1.0.tgz"
+  },
+  "devDependencies": {
+    "@nativescript/ios": "9.0.3",
+    "@nativescript/types": "9.0.0",
+    "@nativescript/webpack": "5.0.38",
+    "@webgpu/types": "0.1.64",
+    "nativescript": "9.1.1",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "allowScripts": {
+    "@nativescript/core@9.1.1": true,
+    "nativescript@9.1.1": true
+  }
+}

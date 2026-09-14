@@ -1,7 +1,7 @@
 import {ENEMY_DEFINITIONS} from '../../../../Games/games/sky-strike/rules';
 import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank.ios';
 import { SkyStrikeAudio } from '../../../../Games/games/sky-strike/audio/SkyStrikeAudio';
-import { SKY_SOUND_IDS, SKY_SOUNDS, soundPath } from '../../../../Games/games/sky-strike/audio/synthesis';
+import { SKY_SOUND_IDS, SKY_SOUNDS, SKY_AUDIO_ASSETS, soundPath } from '../../../../Games/games/sky-strike/audio/synthesis';
 import { NativeHaptics } from '../../../bridge/feedback/haptics.ios';
 import { SkyStrikeLocale } from '../../../../Games/games/sky-strike/i18n';
 import { Application, File, knownFolders, path, type EventData, type Page, type Label } from '@nativescript/core';
@@ -33,6 +33,7 @@ function ensureHost(canvas: Canvas): void {
   const status = (canvas.page as Page).getViewById<Label>('status');
   const input = new NativeTouchInput(canvas, () => {});
   const haptics = new NativeHaptics();
+  const musicProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_MUSIC_PROBE')) === '1';
   const holeProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_HOLE_PROBE')) === '1';
   const quantumProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_QUANTUM_PROBE')) === '1';
   const partsProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PARTS_PROBE')) === '1';
@@ -62,7 +63,7 @@ function ensureHost(canvas: Canvas): void {
       const surface = engine.canvas!;
       textures = new NativeCanvasTextures(engine.device); // GUI font atlas only, built once.
       const assetsRoot = path.join(knownFolders.currentApp().path, 'game-assets');
-      const audioBackend = new NativePcmAudioBank(SKY_SOUND_IDS.map(id => ({id,path:path.join(assetsRoot,soundPath(id)),seconds:SKY_SOUNDS[id].seconds})), () => game?.suspend());
+      const audioBackend = new NativePcmAudioBank(SKY_AUDIO_ASSETS.map(({id,seconds}) => ({id,path:path.join(assetsRoot,soundPath(id)),seconds})), () => game?.suspend());
       audio = new SkyStrikeAudio(audioBackend, new NativeSettingsStorage());
       const entries = JSON.parse(File.fromPath(path.join(assetsRoot, 'assets/sprites.json')).readTextSync());
       const data = NSData.dataWithContentsOfFile(path.join(assetsRoot, 'assets/sprites.rgba'));
@@ -78,7 +79,7 @@ function ensureHost(canvas: Canvas): void {
         ui, locale, levels, audio, keyboard: false, guiLoadOp: 'load',
         haptic: event => haptics.impact(event === 'boss-defeated' || event === 'player-destroyed' ? 'heavy' : event === 'bomb' ? 'medium' : 'light'),
         acceptsGameplayInput: (_x, y) => y >= insets.top + 94 && y <= surface.getBoundingClientRect().height - insets.bottom - 94,
-        saveBackend: (holeProbeMode||prismProbeMode||quantumProbeMode||partsProbeMode||fireProbeMode) ? new MemorySaveBackend() : new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
+        saveBackend: (musicProbeMode||holeProbeMode||prismProbeMode||quantumProbeMode||partsProbeMode||fireProbeMode) ? new MemorySaveBackend() : new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
         guiFont: { canvasFactory: textures.createCanvas2D, readAtlasPixels: textures.readAtlasPixels },
 
       });
@@ -106,6 +107,11 @@ function ensureHost(canvas: Canvas): void {
       let probeElapsed = 0, probeIndex = 0;
       const probeResults: unknown[] = [];
       if (probe) audio.resume();
+      const musicStarted=NSProcessInfo.processInfo.systemUptime;
+      let musicSample=0,musicDone=false;
+      const musicSamples:unknown[]=[];
+      if(musicProbeMode){const d=game as any;d.selectedLevelIndex=0;d.startSortie();d.levelTimeline=[];d.player.invulnerableMs=999999;d.pointerFiring=false;}
+
       const update = ({ detail: { time, delta } }: { detail: { time: number; delta: number } }) => {
         if(partsProbeMode&&!partsDone){
           const d=game as any;partsMs+=Math.min(34,delta);partsSampleMs+=Math.min(34,delta);
@@ -114,6 +120,14 @@ function ensureHost(canvas: Canvas): void {
         }
         game!.update(delta);
         world!.update(time, delta);
+        if(musicProbeMode&&!musicDone){
+          const seconds=NSProcessInfo.processInfo.systemUptime-musicStarted;
+          if(seconds>=musicSample){musicSamples.push({seconds,audio:audio!.snapshot()});musicSample+=5;}
+          if(seconds>=42){
+            game!.suspend();musicDone=true;
+            File.fromPath(path.join(knownFolders.documents().path,'sky-music-probe.json')).writeTextSync(JSON.stringify({samples:musicSamples,final:audio!.snapshot(),complete:true,memorySave:true}));
+          }
+        }
         if(fireProbeMode&&!fireDone){
           fireMs+=Math.min(34,delta);fireSampleMs+=Math.min(34,delta);
           if(fireSampleMs>=1000){fireSamples.push(game!.snapshot());fireSampleMs=0;File.fromPath(path.join(knownFolders.documents().path,cinderProbeMode?'sky-cinder-probe.json':'sky-fire-probe.json')).writeTextSync(JSON.stringify({samples:fireSamples,elapsedMs:fireMs,complete:fireMs>=18000,memorySave:true,naturalTimeline:cinderProbeMode}));}

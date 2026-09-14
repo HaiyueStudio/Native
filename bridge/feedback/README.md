@@ -7,3 +7,5 @@
 Sky Strike 用轻反馈表示玩家实际受伤或精英被击败、中反馈表示成功释放炸弹、重反馈表示玩家被击毁或整场 Boss 被击败；双子暂时倒地不触发 Boss 反馈。浏览器不注入该回调，游戏规则不依赖 UIKit。
 
 官方 API：[UIImpactFeedbackGenerator](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator)。`impactsRequested` 仅记录原生 API 调用，实际触感受硬件及系统设置影响，需要真机手感验收。
+
+极速新星复用该接口处理真实护栏碰撞：由包含车速和碰撞入射角的物理冲击强度选择轻 / 中 / 重档。`snapshot().lastKind` 记录最后实际调用的档位，用于真机验收。

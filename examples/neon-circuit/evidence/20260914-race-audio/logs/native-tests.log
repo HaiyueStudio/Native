@@ -1,0 +1,17 @@
+
+> @haiyue/native-neon-circuit@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ both UIKit landscape orientations map a lowered right edge to right steering (8.809201ms)
+✔ handheld position calibrates to neutral and hand tremor does not steer (0.963046ms)
+✔ screen-right tilt turns right, screen-left turns left, and output is bounded (6.914135ms)
+✔ smoothing agrees at 30/60/120 Hz and resume recalibrates without a steering jump (1.154074ms)
+✔ invalid sensor data never propagates a NaN into racing physics (0.534554ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1845.767659

@@ -14,7 +14,7 @@ export interface NativeHostInput {
 
 export interface NativeRenderHostOptions {
   canvasInput?: NativeCanvasInput;
-  engineOptions?: Pick<ConstructorParameters<typeof HaiyueEngine>[0], 'clearColor' | 'renderProfile' | 'msaaSamples'>;
+  engineOptions?: Pick<ConstructorParameters<typeof HaiyueEngine>[0], 'clearColor' | 'renderProfile' | 'msaaSamples' | 'reverseZ'>;
   bindInput?: (engine: HaiyueEngine, report: (event: string, detail: unknown) => void) => NativeHostInput;
   prepareScene?: (engine: HaiyueEngine) => unknown | Promise<unknown>;
   disposeScene?: () => void;

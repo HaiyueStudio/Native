@@ -1,0 +1,461 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-13T23:34:25.309335+00:00",
+  "purpose": "MIDI-derived record stamp, lap, countdown and brake effects; original 30-second 128 BPM racing loop",
+  "source": [
+    {
+      "file": "Games/games/neon-circuit/BoostStripTexture.ts",
+      "bytes": 3195,
+      "sha256": "18e7a155c61d5d2e0c6dd7f54f103d19c5acd877a5cbc80cf6d7a94e93567986"
+    },
+    {
+      "file": "Games/games/neon-circuit/CarouselMath.ts",
+      "bytes": 3469,
+      "sha256": "525177f73bc3a4acaee9e6875ea6bd917b8bcb1245daeceaa57dad529b72544a"
+    },
+    {
+      "file": "Games/games/neon-circuit/CircuitCarousel.ts",
+      "bytes": 8178,
+      "sha256": "3b950d0347653d63708ca0c79e8874f815295d1cc62ff3eb15503ae0facf79c2"
+    },
+    {
+      "file": "Games/games/neon-circuit/CircuitThemes.ts",
+      "bytes": 1930,
+      "sha256": "a2ebf3b869ad7ef20366280fca6624eb462262ff0de51297cdbf14b94009af03"
+    },
+    {
+      "file": "Games/games/neon-circuit/HudDialTexture.ts",
+      "bytes": 3102,
+      "sha256": "eec36a0e6dc5250058616cdad474aed95cd983b8fa4dbd0a441fda16f681b08c"
+    },
+    {
+      "file": "Games/games/neon-circuit/HudSpriteTexture.ts",
+      "bytes": 3527,
+      "sha256": "4fb7e4a478292ead286cf24c32acc51cf8f14d3b691101e7a8aeaff1711fd4cc"
+    },
+    {
+      "file": "Games/games/neon-circuit/HullFireTexture.ts",
+      "bytes": 4493,
+      "sha256": "948f545d0a0ee1e243a60592a7cb3411f81702888b50cefc45ed44904423fa42"
+    },
+    {
+      "file": "Games/games/neon-circuit/NeonCircuitGui.ts",
+      "bytes": 41462,
+      "sha256": "875fd2db98ab21581ab649fe140eb2c84583eaf2a8c57f68341701ae6f24ed6f"
+    },
+    {
+      "file": "Games/games/neon-circuit/NeonLocale.ts",
+      "bytes": 7588,
+      "sha256": "6d704fbda381d51ebd033c6fe6ae6ffad4a9ecc0ed4b0bfe1170ad587f6edf23"
+    },
+    {
+      "file": "Games/games/neon-circuit/NeonRaster.ts",
+      "bytes": 2233,
+      "sha256": "4f5afb2933cfa5cbb1bb9785ee007aefe20ec46d67fc8b4ff642a262c1b0fda5"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceParticles.ts",
+      "bytes": 5018,
+      "sha256": "75add927342214a6d40960d7146c200fdb5f6f2e14ccb9eecc2aff4bb3fb296c"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceRules.ts",
+      "bytes": 22280,
+      "sha256": "f2929b6f2a0a9835035306466c971b179ccee95026070b2ea44c3ecde466fe0c"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceUnits.ts",
+      "bytes": 514,
+      "sha256": "611b1efbd302f98c14f193c7da3ad939e34d2fa68334c37e904127da172f5fa9"
+    },
+    {
+      "file": "Games/games/neon-circuit/RacerEffects.ts",
+      "bytes": 2749,
+      "sha256": "474d303f1ca8fc2a367ab80d5e45cc13b011233d85b0a55a852ee72184c36dd0"
+    },
+    {
+      "file": "Games/games/neon-circuit/RainbowRoadTexture.ts",
+      "bytes": 5012,
+      "sha256": "bc17022f63c8742ea70f347a7454c94d636f2489d448d0af9e72cd9acc31987f"
+    },
+    {
+      "file": "Games/games/neon-circuit/RoadOverlay.ts",
+      "bytes": 3364,
+      "sha256": "78b738965726ad08411d8e25ccca208d7c3d875fb3a8a3dd53f8e5c683ea128b"
+    },
+    {
+      "file": "Games/games/neon-circuit/SpaceEnvironment.ts",
+      "bytes": 5063,
+      "sha256": "02adecbad672c0b0cb23ad963b21507554dd3e853403c05352a0c8c8ecbaf7c7"
+    },
+    {
+      "file": "Games/games/neon-circuit/SunnyEnvironment.ts",
+      "bytes": 1186,
+      "sha256": "b5a129cc70131a4c52feffab5790342fc1edd3879c387defeb288bbec06a4318"
+    },
+    {
+      "file": "Games/games/neon-circuit/ThrusterFlameTexture.ts",
+      "bytes": 4703,
+      "sha256": "cd3ffff17cd3ff14ccb17fec121919cea14540574fca32af560af7fa8205dacd"
+    },
+    {
+      "file": "Games/games/neon-circuit/audio/BrowserAudio.ts",
+      "bytes": 2445,
+      "sha256": "fd19a0f8e5c3ef047b6b4aa266334aca09b31087f9f1f8392380115a3dac1a5c"
+    },
+    {
+      "file": "Games/games/neon-circuit/audio/NeonAudio.ts",
+      "bytes": 4187,
+      "sha256": "0e89e9bd6fb5883596ce949798bb61541427022bfa0bde4b8f4df6694bccc495"
+    },
+    {
+      "file": "Games/games/neon-circuit/audio/Sounds.ts",
+      "bytes": 881,
+      "sha256": "43e68b3943c3d9e138ac8e1c98da7f3b71cb2242068db717493263f8d6f12585"
+    },
+    {
+      "file": "Games/games/neon-circuit/main.ts",
+      "bytes": 74533,
+      "sha256": "099f451bf12130aa87a14c4a54101333ca74444034dfe117f56375c0c2dd8f1d"
+    },
+    {
+      "file": "Games/scripts/generate-neon-audio.mjs",
+      "bytes": 5359,
+      "sha256": "cf5de1ba71337a34e0f035ec4fb10c9e978ac0a2d8340ae207d2359fea44f555"
+    },
+    {
+      "file": "Games/scripts/neon-circuit-scenes.mjs",
+      "bytes": 2727,
+      "sha256": "352159c0e697193c5860b42ea65b4c01eea5e191f1971d37a487ec39313b8c9d"
+    },
+    {
+      "file": "Games/scripts/neon-music-score.mjs",
+      "bytes": 2966,
+      "sha256": "9234da826f00337d71c0e9f20286d2441232c537bdcd9a951736fc1eb340dfe5"
+    },
+    {
+      "file": "Games/scripts/verify-neon-circuit.mjs",
+      "bytes": 3873,
+      "sha256": "84e2980368e6db8e7db3955055bb7eae1935c160283d3738ded4128060de73a4"
+    },
+    {
+      "file": "Native/bridge/audio/pcm-bank.ios.ts",
+      "bytes": 6104,
+      "sha256": "2ae142ffd16877b14cace5a852c471ed57f14f90c199786d3a1f37fe5a1260a1"
+    },
+    {
+      "file": "Native/bridge/feedback/haptics.ios.ts",
+      "bytes": 1820,
+      "sha256": "90da0bb50ecae2f5827acf558fab182cec9a23026aabe707bbda29990ad6402a"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/app.ts",
+      "bytes": 888,
+      "sha256": "ccfaebcbbc577215ea783ce17b15fe76afa6ce36d21b49f14416421f1b80d5fd"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/core-js-pure.d.ts",
+      "bytes": 224,
+      "sha256": "2a3152b848ac336029493e579bc7a370b584171adb31f07c53238fe5214e8269"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/driving.ts",
+      "bytes": 4881,
+      "sha256": "bdeca45aaf1b87756028bff9995052ec3341132fbec716c55c94cda1c0e7d531"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/main-page.ts",
+      "bytes": 8162,
+      "sha256": "2dbdae0f172fb2ad8c668cf4e8ddb4610642a08748e630819d0145711a8dd0ed"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/models.ts",
+      "bytes": 2929,
+      "sha256": "d34297cdfa8fc6b31f949a548fd1948b47a9068fef7eb1669849d88d2027e13c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/pointer-capture.ts",
+      "bytes": 463,
+      "sha256": "025435895f543b1fb8dbb562330776c24ac2da7382c5c91fdb6cc9e3e0fcdfa6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/raster.ts",
+      "bytes": 2085,
+      "sha256": "cd04fafeebfe3ab02d0619ceb282326634daa3122e99f1df7739c9085c77e28b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/steering.ts",
+      "bytes": 1077,
+      "sha256": "63c8ee377298cc80a13129e3d216ed5a4982c9fd79713f4dca5fa0bd2b613223"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/verification.ts",
+      "bytes": 19267,
+      "sha256": "96248fa723a12153619ce7908d68d87939843218743fd2b611a69b2d80539ac9"
+    }
+  ],
+  "repositories": {
+    "Games": {
+      "revision": "c1cf0a485001c0dffb4034b3c4d81220325b47ef",
+      "dirty": true
+    },
+    "Native": {
+      "revision": "d15a9f499aedba93875c538809d5989f5b3c9504",
+      "dirty": true
+    },
+    "Engine": {
+      "revision": "7dd7bf687b6b9c319f6cdb2c20a6e95a8d78153d",
+      "dirty": false
+    }
+  },
+  "bundled": [
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/bundle.mjs",
+      "bytes": 374726,
+      "sha256": "4874e2a6da89543731ef7eda195aecee7b94a5f940fc06a09d32c2a9e6ac32b7"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/Info.plist",
+      "bytes": 1419,
+      "sha256": "ee3c945f27a10b50731776a2d5028a553387da29f40b728dfb93748be1b8794c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/game-assets/textures.json",
+      "bytes": 5005,
+      "sha256": "aedbd50e2c2e60859ccb7b92fb3d88198c1d87c862f8acb0e8fc7620049f48fd"
+    }
+  ],
+  "audioAssets": [
+    {
+      "file": "Games/games/neon-circuit/assets/audio/boost.mid",
+      "bytes": 77,
+      "sha256": "27e40482cef6cca5a3cb04a232fd905342aded72f392a645aae7c5cd22fa5923"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/boost.wav",
+      "bytes": 97064,
+      "sha256": "c614e16147e2b1631ebed6af777bc9ca13af2625ab3c963e138f688bd374ee8b"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/brake.mid",
+      "bytes": 53,
+      "sha256": "b580890d0d9654fe3b11448ce3f51b4596e7b7209c9d8ac4e470525e14f0af26"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/brake.wav",
+      "bytes": 54728,
+      "sha256": "41e41e2e52f3ec4f6dc95a35c7e9c7c8fc2200fff95b4f9a96c6323c0dd18a80"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/click.mid",
+      "bytes": 52,
+      "sha256": "24a7221c6f1108986871de8d38cb320cb362e840b2f6bafc9df375eef6cf406a"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/click.wav",
+      "bytes": 21212,
+      "sha256": "b6fc84bdaddf52712f2750be454ed6b8bdd5dd3c6cf0942c8b49c27407f09149"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/count-1.mid",
+      "bytes": 44,
+      "sha256": "f8cb7379732f1294d1117e4a0922d4c9bcb4c1f01809f1959e163b2c393240b8"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/count-1.wav",
+      "bytes": 22094,
+      "sha256": "1d47f8b9b43ad55bcdb3e16614f3b200b98a6238d1bf71f64e600c031b5d9bd0"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/count-2.mid",
+      "bytes": 44,
+      "sha256": "12304d8b8624e51847a7b63babf1d6e1f15e073b475e375849d98f93d394d3a0"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/count-2.wav",
+      "bytes": 22094,
+      "sha256": "4c86925f12fea79b5f6230e9d4f86ec441e81bd282c80f63f10f1b608c20a262"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/count-3.mid",
+      "bytes": 44,
+      "sha256": "75907af157bde9f3f65225ef328241c977317eebc0d8695791a00c68b917aa5e"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/count-3.wav",
+      "bytes": 22094,
+      "sha256": "e8f8550561dbd7fc58b478c08d3493acb96d80e34a976784f69e3ea6257f2c42"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/course.mid",
+      "bytes": 61,
+      "sha256": "9155981091aa59947be04d0926420d079d53d8f53e4e5dd17f3e5cbddc235b2b"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/course.wav",
+      "bytes": 45908,
+      "sha256": "814b7d8751d6dc0ebed683b7f78c97306ea1c56757fb1259e371340b6a983495"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/engine-high.mid",
+      "bytes": 45,
+      "sha256": "6320a69780f6dbb06af5d242e4feb31abcaeda205bc0408075a1e86295c50b3d"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/engine-high.wav",
+      "bytes": 88244,
+      "sha256": "7b4fd8ca2ea6889ff0eb0755809b55649772fc7d94ec9df3c958f3ed87ddd655"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/engine-low.mid",
+      "bytes": 45,
+      "sha256": "7df5f908adcb37b6c629b78a067198728db5aab3afcc18f4672bda5d0e41396a"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/engine-low.wav",
+      "bytes": 88244,
+      "sha256": "adf75d90aebb4869f040b2befdeab1ddc289ef8b15fb1ebb6e1c3ec63ce62ed7"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/generation.json",
+      "bytes": 4610,
+      "sha256": "3ba0f33dae3bbb54341ac9bebebf25a0e88540d8f6257d4cfe8d316885a3f995"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/go.mid",
+      "bytes": 53,
+      "sha256": "ce89a9e6e4b40bec954a8b34b689c41f5a19590c4c7b6c31be745c25fac9b1d6"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/go.wav",
+      "bytes": 48554,
+      "sha256": "e89d3677a79b717feb706753996ff9bcd3e848e22773216421ff58d7372f4e13"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/lap.mid",
+      "bytes": 61,
+      "sha256": "4eec2a12e56baa32e0d37b0c78f623a809da3b41cf7d11d3b3784eeb8b983967"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/lap.wav",
+      "bytes": 75014,
+      "sha256": "3fa4719f93cfb54cb500dad0565705dba5ce2b956b76f66b3b67346b9f8753b8"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/music.mid",
+      "bytes": 5492,
+      "sha256": "360287d366f43dbd9fe260373445c24c3029118cd171d77e373bfb4d1f00b1ac"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/music.wav",
+      "bytes": 2646044,
+      "sha256": "00dd46dcaf4d03f48bbc36a2db93e1996658d24e6d92f7d993a769b262858793"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/rail.mid",
+      "bytes": 68,
+      "sha256": "90c6a10d64040ecb418fdfe78ff95bfc8f7fa160a12981779443481d2d1675ad"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/rail.wav",
+      "bytes": 54728,
+      "sha256": "b46b519d3a21831dbbf0e43105a33afbd47cc3c3eab78d6bd095e6c9e39cb63c"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/record.mid",
+      "bytes": 69,
+      "sha256": "80c01e22bbd3ac005a047654624bc7d87bb3b5d7b23877bac1b3d8f75fd5cc17"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/audio/record.wav",
+      "bytes": 75014,
+      "sha256": "f70e3fcc19a6ff09c34b043bc48474193ca2641ad515363dde41bdf5c7885612"
+    }
+  ],
+  "validation": {
+    "native": {
+      "status": "passed",
+      "startedAt": "2026-09-13T23:31:53.699Z",
+      "checks": 79,
+      "captures": 23,
+      "audio": {
+        "played": {
+          "click": 26,
+          "course": 6,
+          "count-3": 9,
+          "count-2": 9,
+          "count-1": 9,
+          "go": 9,
+          "music": 10,
+          "engine-low": 1,
+          "engine-high": 1,
+          "brake": 1,
+          "lap": 1,
+          "rail": 5,
+          "boost": 1,
+          "record": 1
+        },
+        "musicPlaying": false,
+        "engineLevel": 0,
+        "loops": 0,
+        "pending": 0,
+        "backend": {
+          "kind": "av-audio-engine",
+          "error": null,
+          "running": true,
+          "buffers": 14,
+          "pcmBytes": 6720840,
+          "voices": 0,
+          "nodeCount": 12,
+          "played": 89,
+          "volume": 0.68,
+          "disposed": false
+        }
+      },
+      "device": "iPhone 15 Plus / Apple A16",
+      "bundledResources": 47
+    },
+    "browser": {
+      "music-loop": {
+        "checks": 66,
+        "status": "passed",
+        "bundleSha256": "416e764fd8a184263263828bb7afcc46f1105b49ca9a0179c438e789b9b22c3f"
+      },
+      "countdown": {
+        "checks": 65,
+        "status": "passed",
+        "bundleSha256": "416e764fd8a184263263828bb7afcc46f1105b49ca9a0179c438e789b9b22c3f"
+      },
+      "finished": {
+        "checks": 65,
+        "status": "passed",
+        "bundleSha256": "416e764fd8a184263263828bb7afcc46f1105b49ca9a0179c438e789b9b22c3f"
+      },
+      "lap-banner": {
+        "checks": 65,
+        "status": "passed",
+        "bundleSha256": "416e764fd8a184263263828bb7afcc46f1105b49ca9a0179c438e789b9b22c3f"
+      }
+    },
+    "focusedTests": 48,
+    "nativeControlsTests": 5,
+    "nativeBridgeTests": 2,
+    "gamesTypes": "passed",
+    "nativeTypes": "passed",
+    "webBuild": "passed",
+    "iosBuild": "passed",
+    "limits": [
+      "No subjective speaker/headphone listening assessment claimed.",
+      "Full Games suite not rerun: prior unrelated MUGEN/Petra failures and timeouts are recorded in 20260913-sound-haptics."
+    ]
+  },
+  "normalLaunch": {
+    "status": "launched",
+    "hostLog": "normal-launch-host.jsonl",
+    "observedPhases": [
+      "home",
+      "countdown",
+      "racing"
+    ]
+  }
+}

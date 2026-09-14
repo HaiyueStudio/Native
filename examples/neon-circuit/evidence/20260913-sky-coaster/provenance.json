@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-13T13:20:33.753488+00:00",
+  "purpose": "F1 yoke and fifth sunny coaster course; local diagnostic",
+  "device": {
+    "model": "iPhone 15 Plus",
+    "gpu": "Apple A16",
+    "backend": "NativeScript Canvas / wgpu / Metal",
+    "surface": [
+      1864,
+      860
+    ],
+    "logicalViewport": [
+      932,
+      430
+    ]
+  },
+  "source": [
+    {
+      "file": "Native/examples/neon-circuit/src/app.ts",
+      "bytes": 888,
+      "sha256": "ccfaebcbbc577215ea783ce17b15fe76afa6ce36d21b49f14416421f1b80d5fd"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/core-js-pure.d.ts",
+      "bytes": 224,
+      "sha256": "2a3152b848ac336029493e579bc7a370b584171adb31f07c53238fe5214e8269"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/driving.ts",
+      "bytes": 4822,
+      "sha256": "899ff147c90de069c4a218d2484f0b1b6de00125b88b0982c25e6b46c685c0c0"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/main-page.ts",
+      "bytes": 6742,
+      "sha256": "9db3e2cdf70b5754fb3e24ad756443a3aa2506a9ad920b30d32f9769265b2fc0"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/models.ts",
+      "bytes": 2929,
+      "sha256": "d34297cdfa8fc6b31f949a548fd1948b47a9068fef7eb1669849d88d2027e13c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/pointer-capture.ts",
+      "bytes": 463,
+      "sha256": "025435895f543b1fb8dbb562330776c24ac2da7382c5c91fdb6cc9e3e0fcdfa6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/raster.ts",
+      "bytes": 2085,
+      "sha256": "cd04fafeebfe3ab02d0619ceb282326634daa3122e99f1df7739c9085c77e28b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/steering.ts",
+      "bytes": 1077,
+      "sha256": "63c8ee377298cc80a13129e3d216ed5a4982c9fd79713f4dca5fa0bd2b613223"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/verification.ts",
+      "bytes": 14223,
+      "sha256": "b02826a818c720136592a3c8af6dbae902c9c295bf3ee9d6e3603ab0dc1298aa"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/main-page.xml",
+      "bytes": 557,
+      "sha256": "98d0d606043270528c0e7e30130d2402df47ba99e245356f2e73c1c7dc1992ba"
+    },
+    {
+      "file": "Native/examples/neon-circuit/src/app.css",
+      "bytes": 36,
+      "sha256": "1204af81a7791782d491c43be79846ec600a1f7a71ebff9b91f92c8ed506728a"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/build-device.mjs",
+      "bytes": 2243,
+      "sha256": "f2d3ba8055b732612312459e41566ac27679a05df7f6b485b1dc47b58066a9cd"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/ios.mjs",
+      "bytes": 1990,
+      "sha256": "6529d0eddd158081ed33318362e9e56863744ad7ee5da3c21058d865db4e6712"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/patch-canvas.mjs",
+      "bytes": 2984,
+      "sha256": "0e6239115a3422cdfd1de11c4bc860e3513a2aa8b4bc6f83e5fcfebc9b0bb6a8"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/sync-game-assets.mjs",
+      "bytes": 1143,
+      "sha256": "07eae4a310146ef34e71aebbfa53c932ce8abce578caeba2b2ddac18eddd958a"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/sync-orientation.mjs",
+      "bytes": 803,
+      "sha256": "1e35434569b11df5d72f59925ecf4985f1eeb59b2977e1013c34c23a197f141e"
+    },
+    {
+      "file": "Native/examples/neon-circuit/scripts/prepare-assets.py",
+      "bytes": 2115,
+      "sha256": "70210b289e26d027d7acb9065da0cb426ca3c59d300574eb0ea6e3374aa657f1"
+    },
+    {
+      "file": "Games/games/neon-circuit/BoostStripTexture.ts",
+      "bytes": 3195,
+      "sha256": "18e7a155c61d5d2e0c6dd7f54f103d19c5acd877a5cbc80cf6d7a94e93567986"
+    },
+    {
+      "file": "Games/games/neon-circuit/CarouselMath.ts",
+      "bytes": 3469,
+      "sha256": "525177f73bc3a4acaee9e6875ea6bd917b8bcb1245daeceaa57dad529b72544a"
+    },
+    {
+      "file": "Games/games/neon-circuit/CircuitCarousel.ts",
+      "bytes": 7681,
+      "sha256": "f723cc713601ee06e189cdffc0c51e073a090c977779664ec166c223333b9307"
+    },
+    {
+      "file": "Games/games/neon-circuit/CircuitThemes.ts",
+      "bytes": 1930,
+      "sha256": "a2ebf3b869ad7ef20366280fca6624eb462262ff0de51297cdbf14b94009af03"
+    },
+    {
+      "file": "Games/games/neon-circuit/HudDialTexture.ts",
+      "bytes": 3102,
+      "sha256": "eec36a0e6dc5250058616cdad474aed95cd983b8fa4dbd0a441fda16f681b08c"
+    },
+    {
+      "file": "Games/games/neon-circuit/HullFireTexture.ts",
+      "bytes": 4493,
+      "sha256": "948f545d0a0ee1e243a60592a7cb3411f81702888b50cefc45ed44904423fa42"
+    },
+    {
+      "file": "Games/games/neon-circuit/NeonCircuitGui.ts",
+      "bytes": 35775,
+      "sha256": "3d397a438fa589fd866be6738d89dbb86dcdc9386e3fa3aa8f9fd7960ea690ec"
+    },
+    {
+      "file": "Games/games/neon-circuit/NeonRaster.ts",
+      "bytes": 2233,
+      "sha256": "4f5afb2933cfa5cbb1bb9785ee007aefe20ec46d67fc8b4ff642a262c1b0fda5"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceParticles.ts",
+      "bytes": 5018,
+      "sha256": "75add927342214a6d40960d7146c200fdb5f6f2e14ccb9eecc2aff4bb3fb296c"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceRules.ts",
+      "bytes": 22280,
+      "sha256": "f2929b6f2a0a9835035306466c971b179ccee95026070b2ea44c3ecde466fe0c"
+    },
+    {
+      "file": "Games/games/neon-circuit/RaceUnits.ts",
+      "bytes": 514,
+      "sha256": "611b1efbd302f98c14f193c7da3ad939e34d2fa68334c37e904127da172f5fa9"
+    },
+    {
+      "file": "Games/games/neon-circuit/RacerEffects.ts",
+      "bytes": 2441,
+      "sha256": "8fe203f4ea8267828c7b1c4b841537b2c4df74b6d861b152e7d0a56d585c46bf"
+    },
+    {
+      "file": "Games/games/neon-circuit/RainbowRoadTexture.ts",
+      "bytes": 5012,
+      "sha256": "bc17022f63c8742ea70f347a7454c94d636f2489d448d0af9e72cd9acc31987f"
+    },
+    {
+      "file": "Games/games/neon-circuit/RoadOverlay.ts",
+      "bytes": 3364,
+      "sha256": "78b738965726ad08411d8e25ccca208d7c3d875fb3a8a3dd53f8e5c683ea128b"
+    },
+    {
+      "file": "Games/games/neon-circuit/SpaceEnvironment.ts",
+      "bytes": 5063,
+      "sha256": "02adecbad672c0b0cb23ad963b21507554dd3e853403c05352a0c8c8ecbaf7c7"
+    },
+    {
+      "file": "Games/games/neon-circuit/ThrusterFlameTexture.ts",
+      "bytes": 4703,
+      "sha256": "cd3ffff17cd3ff14ccb17fec121919cea14540574fca32af560af7fa8205dacd"
+    },
+    {
+      "file": "Games/games/neon-circuit/main.ts",
+      "bytes": 67987,
+      "sha256": "8fca7d2acd9ba5e4c66804826012cb16bf6e2b7ac109004535b87d5bf5cba52e"
+    },
+    {
+      "file": "Native/bridge/lifecycle/host.ts",
+      "bytes": 9145,
+      "sha256": "43e8c7fb371c430531b6616bdaf06db0d00aeda9a33ea44c69812c670bfb3e1b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/package-lock.json",
+      "bytes": 351245,
+      "sha256": "bd4eae8936d0da515f08a43ee7e3f60ed6d3b7ef15b611b1031eaf31ada8fd2b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/webpack.config.js",
+      "bytes": 414,
+      "sha256": "b339cada9cf75d1afe0cbf481caba6116e174bc31406925295d9a39ed759339d"
+    },
+    {
+      "file": "Native/examples/neon-circuit/orientation.json",
+      "bytes": 53,
+      "sha256": "14e82624cc0d30eea88a5c9a1787fca5529c8fafbfbb51b6ec028fa7e6571685"
+    },
+    {
+      "file": "Native/examples/neon-circuit/vendor/candidates.json",
+      "bytes": 447,
+      "sha256": "d404a36c9309f26a5186997abce4056edf16a5475d41cec34aa10eff361a559e"
+    },
+    {
+      "file": "Native/examples/neon-circuit/App_Resources/iOS/Info.plist",
+      "bytes": 1676,
+      "sha256": "f090775262328365adf2e2525806f3c1d116a2a985785fc66ae47a9a21007362"
+    },
+    {
+      "file": "Games/games/neon-circuit/HudSpriteTexture.ts",
+      "bytes": 3527,
+      "sha256": "4fb7e4a478292ead286cf24c32acc51cf8f14d3b691101e7a8aeaff1711fd4cc"
+    },
+    {
+      "file": "Games/games/neon-circuit/SunnyEnvironment.ts",
+      "bytes": 1186,
+      "sha256": "b5a129cc70131a4c52feffab5790342fc1edd3879c387defeb288bbec06a4318"
+    }
+  ],
+  "installedBuild": [
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/neoncircuit",
+      "bytes": 16085344,
+      "sha256": "d8ddcc7b43a563acf09633190bc2dcbb11ac3089fa10431167862e49b0217a05"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/Info.plist",
+      "bytes": 1419,
+      "sha256": "04b9ee633f5dc307f647e8b68455043de5dec935cc4fbd59f3d51b665a03e3ca"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/bundle.mjs",
+      "bytes": 321824,
+      "sha256": "c631378468965a59307aa70605ac7a86cc6aaf417626b9b2abf173126fca530a"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/vendor.mjs",
+      "bytes": 7806389,
+      "sha256": "e67eef7ec621880e0f1ea9253d9b8cfe560e1e094f56daee1ba2bc143b495d7c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/runtime.mjs",
+      "bytes": 6199,
+      "sha256": "c88decf76b39ec6b154cc2f32b2ec2215fca0c666070436f824d77b502591c09"
+    },
+    {
+      "file": "Native/examples/neon-circuit/platforms/ios/build/Debug-iphoneos/neoncircuit.app/app/game-assets/source.json",
+      "bytes": 4555,
+      "sha256": "a9776ee9057479c9a421ec255e37d61563c494ee78b75bb7fc416d294b2f143b"
+    }
+  ],
+  "artwork": [
+    {
+      "file": "Games/games/neon-circuit/assets/gui-wheel.png",
+      "bytes": 1079927,
+      "sha256": "ad3933bb0fb73f3d97d213b4a446b762d65a97398643c23ce197d67de4ac5330"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/sunny-panorama.png",
+      "bytes": 1996900,
+      "sha256": "a0bab6002ce39919092edc5b659da1f30b696414e5bf322f549a815b1fa5512d"
+    },
+    {
+      "file": "Games/games/neon-circuit/assets/coaster-generation.json",
+      "bytes": 2154,
+      "sha256": "6f99eb9f330f4a602b20352bb9fe2339d618e97c81fa7a1e1f6b5caa9149f1e7"
+    }
+  ],
+  "finalEvidence": [
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-circuit-host.jsonl",
+      "bytes": 86932,
+      "sha256": "df8d78acd2801bd4de860d2a52ed120652a4768bbf82f35120a75970e52e2f1a"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-circuit-verification.json",
+      "bytes": 8510,
+      "sha256": "e0677f5ec294b3e7de694f437c7abad3afad0fc087bf9db7eeaac95aaab74aad"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-coaster-helix.png",
+      "bytes": 569117,
+      "sha256": "91deef4f3283726243b8feb2b35bce5d482c1afc76d1b2bba0ab6a8cb7f15508"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-coaster-loop.png",
+      "bytes": 491220,
+      "sha256": "74fe5fdd5dddcde87b1bc17c61f7bffb0d992ff5922651eb828d5cf927e1d6e4"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-coaster-roll.png",
+      "bytes": 488264,
+      "sha256": "9723e67b3aaa675ea27936e5806c7baa99e8441cfe1aabdcc4218b6cf2d5d255"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-destroyed.png",
+      "bytes": 732962,
+      "sha256": "667fe36a640e65b9b3df3d25a7a914dbf9688d5ca48e4fb55489d796c693ec7e"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-driving.png",
+      "bytes": 571216,
+      "sha256": "15f17ef15e77582af6437a39001706a0adad1f3fb36a228f20f3a4162cbf629e"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-finished.png",
+      "bytes": 724669,
+      "sha256": "806f50ec7a2b49c506be6cb95abc2af0dc969efd8526b4d96f53d10adb0bec15"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-floating-joystick.png",
+      "bytes": 596062,
+      "sha256": "4e80f9dda90e67cb9e8594331173de3ed6cc0f11befc8852ff024437f76ed23d"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-home.png",
+      "bytes": 516345,
+      "sha256": "5375c090c79ab0217e2412a8924cd5c7dd9e29cfc0648e8eb636464022ad48c1"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-neon-city.png",
+      "bytes": 515529,
+      "sha256": "188190f4276cf9f6e28631ed09f679838cc897acb1efb1b23472f518136c8ef6"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-paused.png",
+      "bytes": 725480,
+      "sha256": "b8daadc2367017fb2ca8f6d72906f02e5a8606f7afaa16a38618be9c1d184a90"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-pedals-down.png",
+      "bytes": 574252,
+      "sha256": "73dde2aa0a6e1daf912a92994b8f2439bef514b7f2061a7e66deb7894bc2736b"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-rainbow-road.png",
+      "bytes": 959321,
+      "sha256": "93bd467b74e9fdc21e3de69d1ff539a51d7b18c255a1408b704b6bcea5727384"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-reactor-run.png",
+      "bytes": 561854,
+      "sha256": "3979a10559c0c1a242223b4c5c524206ae9b04da672f91269dc6b7081d54f293"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-record-approach.png",
+      "bytes": 800572,
+      "sha256": "198fccceff2633b66d1fd4e762d12f117062762f388019707240355b6516dbeb"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-record.png",
+      "bytes": 785279,
+      "sha256": "3b78d695a3e0c25e7191e1ad1d5011046305189d11f78604f6437d5ad08795dc"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-sky-coaster.png",
+      "bytes": 568934,
+      "sha256": "6bc8ce8be4d93f0655af3a50263309d1e81ad15f5a5f037b5455af2576b9566c"
+    },
+    {
+      "file": "Native/examples/neon-circuit/evidence/20260913-sky-coaster/verification/neon-wheel-left.png",
+      "bytes": 640161,
+      "sha256": "2cde0faca0be3b73d3b2f662d343a85a4965081edd9d08ad9658c8ff6ae5b033"
+    }
+  ],
+  "webEvidence": [
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-overlook.png",
+      "bytes": 699561,
+      "sha256": "07607c9a3839a16b33d00438fac9399cf9a330d766b7d6908d196d92fe850783"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-overlook.json",
+      "bytes": 37835,
+      "sha256": "22e7b1b23d6e33ea7db060407fe05931a47c37324f10ac916b0f03da4f3baff5"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-loop.png",
+      "bytes": 247219,
+      "sha256": "0523e53f03b325d7f818ec0da2991155fa44b9d4c3ac1bb2c9a5c5cb7f03bf3d"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-loop.json",
+      "bytes": 36256,
+      "sha256": "74dcf63c74358c40268e2bdeb56e67832a4d7208408a3aed41f6d3e766cc3397"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-roll.png",
+      "bytes": 263887,
+      "sha256": "c9dc21df46e9983312656d26875e25628e4d7cdfa9676990938ae26a34e07c9d"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-roll.json",
+      "bytes": 36327,
+      "sha256": "5ecd1d1dc677b3c5cae23b8987e6147e7d828597c4f65df302359b2b8b1716ad"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-helix.png",
+      "bytes": 327972,
+      "sha256": "b07335e305adbeedf29a11d6f9e23faf35e18ec9b78d4b002943bfe04f734021"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/coaster-helix.json",
+      "bytes": 37437,
+      "sha256": "7903ad777b3db415782f0892215528421780648e917dff5fc2ab83824698494b"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/home-coaster.png",
+      "bytes": 419012,
+      "sha256": "c5e120c856a419fd217e9124dd3b01ee49f3f48b7ab610714bc52f60afebd019"
+    },
+    {
+      "file": "Games/.artifacts/neon-circuit-native-v14/home-coaster.json",
+      "bytes": 35298,
+      "sha256": "0148d5988274279a71c468d194d77fde172841f25375d56531ea68d3a75c96b9"
+    }
+  ],
+  "checks": {
+    "native": 53,
+    "web": 235,
+    "racingUnit": 39,
+    "typecheck": {
+      "Games": "passed",
+      "Native": "passed"
+    },
+    "build": {
+      "Games": "passed",
+      "Native": "passed"
+    },
+    "bundledResourcesVerified": 30
+  },
+  "installation": "success",
+  "visualReview": [
+    "Native F1 shaped transparent yoke rotates with touch input",
+    "Native vertical loop and barrel roll invert the camera and car with the road",
+    "Native helix climb has a continuous drivable road and visible distant spans",
+    "Browser overview and elevation-aware fifth thumbnail show the loop, roll and helix",
+    "Sunny generated panorama replaces city geometry and stays behind the course"
+  ],
+  "fullSuite": {
+    "tests": 595,
+    "passCount": 572,
+    "failCount": 3,
+    "skipped": 20,
+    "cancelled": 0,
+    "unrelatedFailures": [
+      "HYMUGEN v1 byte-exact round trip",
+      "viewer product manifest contract"
+    ],
+    "resolvedFailure": "Neon scenario-count assertion updated from 29 to 34 after adding five fixtures; focused 39/39 rerun passed"
+  },
+  "geometry": {
+    "samples": 1780,
+    "lengthWorldUnits": 81787.49198112903,
+    "minimumNonlocalCenterlineSeparation": 783.1562431160409,
+    "roadWidth": 184
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "implementation": "complete",
+  "native": "72 checks passed, installed on iPhone 15 Plus",
+  "sharedTests": 45,
+  "nativeControlTests": 5,
+  "bridgeTests": 2,
+  "fullSuite": "Stopped after repeated unrelated MUGEN/Petra failures and timeouts; full log retained."
+}

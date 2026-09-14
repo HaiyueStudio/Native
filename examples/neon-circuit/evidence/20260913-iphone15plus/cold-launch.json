@@ -1,0 +1,60 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "process",
+      "launch",
+      "--device",
+      "8D9238D1-024A-538B-A175-B9E71AA32202",
+      "--terminate-existing",
+      "--environment-variables",
+      "{\"NEON_CAPTURE_FRAME\":\"1\"}",
+      "org.haiyue.native.neoncircuit",
+      "--json-output",
+      "/tmp/neon-native-cold-launch.json"
+    ],
+    "commandType" : "devicectl.device.process.launch",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "506.7"
+  },
+  "result" : {
+    "deviceIdentifier" : "8D9238D1-024A-538B-A175-B9E71AA32202",
+    "launchOptions" : {
+      "activatedWhenStarted" : true,
+      "arguments" : [
+
+      ],
+      "environmentVariables" : {
+        "NEON_CAPTURE_FRAME" : "1",
+        "TERM" : "dumb"
+      },
+      "platformSpecificOptions" : {
+
+      },
+      "startStopped" : false,
+      "terminateExistingInstances" : true,
+      "user" : {
+        "active" : true
+      }
+    },
+    "process" : {
+      "auditToken" : [
+        4294967295,
+        501,
+        501,
+        501,
+        501,
+        20416,
+        0,
+        52268
+      ],
+      "executable" : "file:///private/var/containers/Bundle/Application/44F26560-CA53-42B3-8B8A-82CFA123E632/neoncircuit.app/neoncircuit",
+      "processIdentifier" : 20416
+    }
+  }
+}

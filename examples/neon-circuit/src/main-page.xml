@@ -1,0 +1,6 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gpu="@nativescript/canvas" actionBarHidden="true" loaded="onLoaded" unloaded="onUnloaded" backgroundColor="#091321">
+  <GridLayout iosOverflowSafeArea="true">
+    <gpu:Canvas id="surface" ready="onCanvasReady" ignoreTouchEvents="true" iosOverflowSafeArea="true" />
+    <Label id="status" text="正在准备极速新星…" color="#ffffff" fontSize="16" textWrap="true" margin="18" verticalAlignment="center" horizontalAlignment="center" isUserInteractionEnabled="false" />
+  </GridLayout>
+</Page>

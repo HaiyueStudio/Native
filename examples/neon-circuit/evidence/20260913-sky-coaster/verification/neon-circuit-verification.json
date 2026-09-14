@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T13:14:55.278Z",
+  "updatedAt": "2026-09-13T13:15:51.184Z",
+  "status": "passed",
+  "checks": [
+    "bundled PBR hovercraft loaded",
+    "landscape native Metal surface",
+    "reverse Z and float depth enabled",
+    "five shared courses in native carousel",
+    "native carousel swipe commits selection",
+    "home selects joystick steering",
+    "countdown starts race",
+    "course title, two-row timing and pause dock to the safe top edge",
+    "dial is twenty percent smaller and closer to the left edge",
+    "compact top HUD does not overlap and pause has a square circular-skin target",
+    "brake left and throttle right at bottom-right",
+    "pedals avoid native safe-area edges",
+    "floating joystick appears centered at the new touch without steering jump",
+    "joystick and throttle work with separate simultaneous touches",
+    "steering wheel rotates right and throttle depresses under the held finger",
+    "leftward joystick motion rotates the wheel counterclockwise",
+    "releasing joystick returns steering to neutral",
+    "brake slows the car even with throttle held",
+    "brake has its own depressed pedal state",
+    "cancellation releases native driving pointers",
+    "next joystick touch establishes a different center",
+    "releasing throttle outside button starts gradual coasting and preserves joystick finger",
+    "released throttle keeps decelerating without wall impact or boost assistance",
+    "pause freezes race time",
+    "transparent modal blocks input without an outer colored scrim or active wheel",
+    "pause panel resumes race",
+    "host suspension enters pause safely",
+    "home selects gyroscope steering",
+    "gyro mode starts race",
+    "real Core Motion samples reach racing controls",
+    "boost expiry decelerates continuously",
+    "wall impact damages hull and sharply slows car",
+    "crossing final finish line opens record result",
+    "a personal best earns the new-record seal",
+    "stamp approaches the result corner",
+    "stamp lands and settles without restarting each frame",
+    "slower race completes normally",
+    "slower result does not receive or retain the record stamp",
+    "destroyed hull opens its transparent result panel",
+    "switch to neon-city without browser navigation",
+    "neon-city countdown completes",
+    "switch to reactor-run without browser navigation",
+    "reactor-run countdown completes",
+    "switch to rainbow-road without browser navigation",
+    "rainbow-road countdown completes",
+    "native rainbow course contains planets and meteors",
+    "switch to sky-coaster without browser navigation",
+    "sky-coaster countdown completes",
+    "native loop camera follows the road up vector",
+    "native loop reaches an inverted road",
+    "native roll camera follows the road up vector",
+    "native roll reaches an inverted road",
+    "native helix camera follows the road up vector"
+  ],
+  "captures": [
+    {
+      "file": "neon-home.png",
+      "bytes": 516345
+    },
+    {
+      "file": "neon-floating-joystick.png",
+      "bytes": 596062
+    },
+    {
+      "file": "neon-wheel-left.png",
+      "bytes": 640161
+    },
+    {
+      "file": "neon-pedals-down.png",
+      "bytes": 574252
+    },
+    {
+      "file": "neon-paused.png",
+      "bytes": 725480
+    },
+    {
+      "file": "neon-driving.png",
+      "bytes": 571216
+    },
+    {
+      "file": "neon-record-approach.png",
+      "bytes": 800572
+    },
+    {
+      "file": "neon-record.png",
+      "bytes": 785279
+    },
+    {
+      "file": "neon-finished.png",
+      "bytes": 724669
+    },
+    {
+      "file": "neon-destroyed.png",
+      "bytes": 732962
+    },
+    {
+      "file": "neon-neon-city.png",
+      "bytes": 515529
+    },
+    {
+      "file": "neon-reactor-run.png",
+      "bytes": 561854
+    },
+    {
+      "file": "neon-rainbow-road.png",
+      "bytes": 959321
+    },
+    {
+      "file": "neon-coaster-loop.png",
+      "bytes": 491220
+    },
+    {
+      "file": "neon-coaster-roll.png",
+      "bytes": 488264
+    },
+    {
+      "file": "neon-coaster-helix.png",
+      "bytes": 569117
+    },
+    {
+      "file": "neon-sky-coaster.png",
+      "bytes": 568934
+    }
+  ],
+  "states": [
+    {
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.08333333333333333,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "neon-city",
+      "buildingCount": 195,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.0335111907058199,
+      "theme": "neon",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.09166666666666666,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "reactor-run",
+      "buildingCount": 200,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.1985981383687183,
+      "theme": "reactor",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.049999999999999996,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "rainbow-road",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.2338061039862518,
+      "theme": "cosmic",
+      "space": {
+        "planets": 3,
+        "meteors": 36
+      },
+      "rainbowTime": 3.467542000033427,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.21666666666666665,
+      "progress": 0.4277901919451706,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": -1.8041124150158794e-16,
+      "impact": 0,
+      "trackId": "sky-coaster",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": {
+        "section": "helix",
+        "roadUp": [
+          0.48203396384331804,
+          0.8691351998126863,
+          0.11066734906041875
+        ],
+        "cameraUp": [
+          0.4456914961338043,
+          0.8517224788665771,
+          -0.2755502164363861
+        ]
+      },
+      "cameraPhi": 1.2832653528483255,
+      "theme": "daylight",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    }
+  ],
+  "game": {
+    "phase": "home",
+    "lap": 1,
+    "speed": 0,
+    "elapsed": 0.26666666666666666,
+    "progress": 0.4277901919451706,
+    "lateral": 0,
+    "boostRemaining": 0,
+    "wallHits": 0,
+    "health": 100,
+    "headingOffset": -2.220446049250313e-16,
+    "impact": 0,
+    "trackId": "sky-coaster",
+    "buildingCount": 0,
+    "exhaustLength": 1.35,
+    "fov": 0.96,
+    "reverseZ": true,
+    "depthFormat": "depth32float",
+    "coaster": {
+      "section": "helix",
+      "roadUp": [
+        0.48203396384331804,
+        0.8691351998126863,
+        0.11066734906041875
+      ],
+      "cameraUp": [
+        0.4456914961338043,
+        0.8517224788665771,
+        -0.2755502164363861
+      ]
+    },
+    "cameraPhi": 1.2927616633039534,
+    "theme": "daylight",
+    "space": null,
+    "rainbowTime": null,
+    "particles": {
+      "smoke": 0,
+      "sparks": 0
+    }
+  },
+  "driving": {
+    "mode": "joystick",
+    "axis": 0,
+    "joystick": {
+      "active": false,
+      "pointerId": null,
+      "center": {
+        "x": 157,
+        "y": 317
+      },
+      "direction": {
+        "x": 0,
+        "y": 0
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "rawDistance": 0,
+      "distance": 0,
+      "strength": 0,
+      "angle": 0
+    },
+    "gyroAvailable": true,
+    "gyroActive": false,
+    "sensorSamples": 514,
+    "rotation": 90
+  }
+}

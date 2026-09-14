@@ -19,7 +19,7 @@ export class NativePcmAudioBank {
       if(!AVAudioSession.sharedInstance().setCategoryError(AVAudioSessionCategoryAmbient))throw new Error('Unable to configure ambient audio session');
       for(const sound of sounds){
         const file=AVAudioFile.alloc().initForReadingError(NSURL.fileURLWithPath(sound.path));
-        if(!file||file.length<1||file.length>44100*4||file.processingFormat.channelCount!==1)throw new Error(`Invalid PCM effect ${sound.id}`);
+        if(!file||!Number.isFinite(sound.seconds)||sound.seconds<=0||sound.seconds>60||file.processingFormat.sampleRate!==44100||file.length<1||file.length>44100*Math.min(60,sound.seconds+.1)||file.processingFormat.channelCount!==1)throw new Error(`Invalid PCM audio ${sound.id}`);
         const buffer=AVAudioPCMBuffer.alloc().initWithPCMFormatFrameCapacity(file.processingFormat,Number(file.length));
         if(!file.readIntoBufferError(buffer))throw new Error(`Unable to decode ${sound.id}`);
         this.buffers.set(sound.id,{buffer,seconds:buffer.frameLength/buffer.format.sampleRate});this.bytes+=buffer.frameLength*4;
@@ -63,6 +63,11 @@ export class NativePcmAudioBank {
   stop(channel?:string):void {
     for(const voice of this.voices)if(channel===undefined||voice.channel===channel){voice.node.stop();voice.channel=null;voice.until=0;}
   }
+  setChannelGain(channel:string,gain:number):void {
+    if(this.disposed)return;
+    const volume=Number.isFinite(gain)?Math.max(0,Math.min(1,gain)):0;
+    for(const voice of this.voices)if(voice.channel===channel)voice.node.volume=volume;
+  }
   setVolume(volume:number):void {this.volume=Math.max(0,Math.min(1,volume));this.engine.mainMixerNode.outputVolume=this.volume*0.6;}
   suspend():void {if(this.disposed)return;this.stop();this.engine.pause();this.running=false;}
   dispose():void {
@@ -71,5 +76,5 @@ export class NativePcmAudioBank {
     this.engine.stop();for(const voice of this.voices)this.engine.detachNode(voice.node);this.voices.length=0;this.buffers.clear();this.bytes=0;
   }
   snapshot(){return {kind:'av-audio-engine',error:this.error,running:this.running,buffers:this.buffers.size,pcmBytes:this.bytes,
-    voices:this.voices.filter(v=>v.until>this.now()).length,nodeCount:this.voices.length,played:this.played,volume:this.volume,disposed:this.disposed};}
+    voices:this.voices.filter(v=>v.until>this.now()).length,nodeCount:this.voices.length,loopChannels:this.voices.filter(v=>v.until===Infinity).map(v=>v.channel),played:this.played,volume:this.volume,disposed:this.disposed};}
 }

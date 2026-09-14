@@ -1,0 +1,8 @@
+{
+  "tool": "built-in image_gen",
+  "purpose": "Neon Circuit iOS app icon",
+  "prompt": "Generate one square iPhone game app icon, 1024x1024. Full bleed opaque artwork with no rounded mask (iOS applies corners). A sleek orange-gold antigravity racing hovercraft with split rear wings and black glass cockpit speeding toward the upper right on a sweeping rainbow neon racetrack in dark outer space. Bright cyan and magenta motion trails, dark navy background, strong bold silhouette readable at small size, polished stylized 3D game illustration. Close composition, vehicle fills central 65% with safe margins. No words, no letters, no numbers, no logos, no watermark, no UI, no border. Original futuristic arcade racing design.",
+  "source": "/Users/qingque/.codex/generated_images/01a09618-f5b8-7f32-96c2-de96bd695bee/exec-00e704fc-8cd6-445f-875f-7b1bd01ff03b.png",
+  "output": "app-icon-generated.png",
+  "processing": "RGB conversion and downsampling for required iOS icon sizes; artwork unchanged"
+}

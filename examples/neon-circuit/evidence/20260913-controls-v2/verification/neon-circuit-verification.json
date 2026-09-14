@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T11:20:41.517Z",
+  "updatedAt": "2026-09-13T11:21:17.878Z",
+  "status": "passed",
+  "checks": [
+    "bundled PBR hovercraft loaded",
+    "landscape native Metal surface",
+    "reverse Z and float depth enabled",
+    "four shared courses in native carousel",
+    "native carousel swipe commits selection",
+    "home selects joystick steering",
+    "countdown starts race",
+    "brake left and throttle right at bottom-right",
+    "pedals avoid native safe-area edges",
+    "floating joystick appears centered at the new touch without steering jump",
+    "joystick and throttle work with separate simultaneous touches",
+    "releasing joystick returns steering to neutral",
+    "brake slows the car even with throttle held",
+    "cancellation releases native driving pointers",
+    "next joystick touch establishes a different center",
+    "releasing throttle outside button starts gradual coasting and preserves joystick finger",
+    "released throttle keeps decelerating without wall impact",
+    "pause freezes race time",
+    "pause panel resumes race",
+    "host suspension enters pause safely",
+    "home selects gyroscope steering",
+    "gyro mode starts race",
+    "real Core Motion samples reach racing controls",
+    "boost expiry decelerates continuously",
+    "wall impact damages hull and sharply slows car",
+    "switch to neon-city without browser navigation",
+    "neon-city countdown completes",
+    "switch to reactor-run without browser navigation",
+    "reactor-run countdown completes",
+    "switch to rainbow-road without browser navigation",
+    "rainbow-road countdown completes",
+    "native rainbow course contains planets and meteors"
+  ],
+  "captures": [
+    {
+      "file": "neon-home.png",
+      "bytes": 516241
+    },
+    {
+      "file": "neon-floating-joystick.png",
+      "bytes": 664409
+    },
+    {
+      "file": "neon-paused.png",
+      "bytes": 748364
+    },
+    {
+      "file": "neon-driving.png",
+      "bytes": 698616
+    },
+    {
+      "file": "neon-neon-city.png",
+      "bytes": 628522
+    },
+    {
+      "file": "neon-reactor-run.png",
+      "bytes": 683233
+    },
+    {
+      "file": "neon-rainbow-road.png",
+      "bytes": 1027740
+    }
+  ],
+  "states": [
+    {
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.08333333333333333,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "neon-city",
+      "buildingCount": 195,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "cameraPhi": 1.0335111957475147,
+      "theme": "neon",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.09166666666666666,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "reactor-run",
+      "buildingCount": 200,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "cameraPhi": 1.1985981336317983,
+      "theme": "reactor",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.049999999999999996,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "rainbow-road",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "cameraPhi": 1.2338061075380415,
+      "theme": "cosmic",
+      "space": {
+        "planets": 3,
+        "meteors": 36
+      },
+      "rainbowTime": 3.4710819999687375,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    }
+  ],
+  "game": {
+    "phase": "home",
+    "lap": 1,
+    "speed": 0,
+    "elapsed": 0.06666666666666667,
+    "progress": 0,
+    "lateral": 0,
+    "boostRemaining": 0,
+    "wallHits": 0,
+    "health": 100,
+    "headingOffset": 0,
+    "impact": 0,
+    "trackId": "rainbow-road",
+    "buildingCount": 0,
+    "exhaustLength": 1.35,
+    "fov": 0.96,
+    "reverseZ": true,
+    "depthFormat": "depth32float",
+    "cameraPhi": 1.2338061998995693,
+    "theme": "cosmic",
+    "space": {
+      "planets": 3,
+      "meteors": 36
+    },
+    "rainbowTime": 3.583039999974426,
+    "particles": {
+      "smoke": 0,
+      "sparks": 0
+    }
+  },
+  "driving": {
+    "mode": "joystick",
+    "axis": 0,
+    "joystick": {
+      "active": false,
+      "pointerId": null,
+      "center": {
+        "x": 157,
+        "y": 317
+      },
+      "direction": {
+        "x": 0,
+        "y": 0
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "rawDistance": 0,
+      "distance": 0,
+      "strength": 0,
+      "angle": 0
+    },
+    "gyroAvailable": true,
+    "gyroActive": false,
+    "sensorSamples": 151,
+    "rotation": 270
+  }
+}

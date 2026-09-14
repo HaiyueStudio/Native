@@ -1,0 +1,10 @@
+✔ native PCM bank preloads once, bounds voices, protects loops, uses no audio thread JS callbacks and handles interruptions (19.445601ms)
+✔ native feedback selects impact style, limits clustered kills and suppresses background/disposed events (13.871098ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2621.764817

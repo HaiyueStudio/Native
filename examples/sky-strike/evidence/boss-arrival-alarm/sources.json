@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-09-14T00:18:26.387068+00:00",
+  "sha256": {
+    "Games/games/sky-strike/audio/synthesis.ts": "a3832320ce0f9f1de814e58472d4b0142a5574923ea36bf955f2a6123428ddcb",
+    "Games/games/sky-strike/audio/SkyStrikeAudio.ts": "aa72c081ad63b190146d1bb86caca92823b9919d96c762320dfa2d6dc0f0d873",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "acf13aa554a1b2408f9aae8e90f8fb465ef36e76339b8ad596c8805ab7471b15",
+    "Games/games/test/sky-strike-audio.test.mjs": "be6dacceba3becf356ac649f6e342a731857418f0edbc2c6293d1829c17eeea3",
+    "Games/games/test/fixtures/sky-native/main.ts": "268f479d15770a7ab64f942adb920dbf975854e7fbf000b2ae4d82a87884618f",
+    "Games/scripts/verify-sky-native.mjs": "fe9776733b2a8cd8ebda3ec2c7a7711766a44b0d376e9e10c1a422399ed0499c",
+    "Native/examples/sky-strike/scripts/sync-game-assets.mjs": "9db344fc9aadf06cfd349432a7b565e44c96bf250c19dc9299944724d5655b4a",
+    "Games/games/sky-strike/assets/audio/boss-warning.wav": "80fb34cc96912584440e7575328543cdaea3591b075d5534797055e67db6123a",
+    "Games/games/sky-strike/rules.ts": "b34783eade365c3890d71d1878d2a774d62fff427fb11db4ccdf126cd641d2eb"
+  }
+}
