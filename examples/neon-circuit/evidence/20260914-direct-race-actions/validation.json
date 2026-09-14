@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-09-14T10:16:08.648863+00:00",
+  "status": "passed",
+  "device": "iPhone 15 Plus / Apple A16",
+  "bundleId": "org.haiyue.native.neoncircuit",
+  "frames": 1200,
+  "lastPhase": "home",
+  "errors": [],
+  "installedBundleSha256": "6a46fcf6ece274d1cfeeffd48847b45704b9247996e4afce39a23015afdb43c6",
+  "sources": {
+    "main.ts": "83bece64400bec60ec6f6429cb5160bfb4079e6a1beaa6dbd3386f156d3369b0",
+    "NeonCircuitGui.ts": "791fa46a225f31b2cf2482b83fdd1a7c197098eea268c0313c2134de4689da06",
+    "NeonLocale.ts": "bd11e37cccd3aef008e6b83d49e2faec14fd08aa0bfc10b3b344e0c07f4a2b82",
+    "HudMapTexture.ts": "3e16f7508a8de47bc6cd1be4dbdebf657c19ff30d7e713194ddcc6f3d87ac48e",
+    "CarouselArrow.ts": "ab11e7c167f7eb252be022adb47c043d5483d811f70fce5431a49dbf043a77a8"
+  },
+  "bundledResourcesVerified": 53,
+  "screenshot": "home.png",
+  "browserChecks": 90
+}

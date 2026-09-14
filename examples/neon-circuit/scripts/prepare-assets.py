@@ -7,7 +7,7 @@ source=root/'Games/games/neon-circuit/assets'; out=root/'Native/examples/neon-ci
 manifest={}
 for src in source.glob('*.png'):
  image=Image.open(src).convert('RGBA')
- if src.stem not in ['sunny-panorama','space-panorama','planet-azure','planet-amber','planet-violet','meteor-streak']:image=image.resize((512,512),Image.Resampling.LANCZOS)
+ if src.stem not in ['volcano-panorama','sunny-panorama','space-panorama','planet-azure','planet-amber','planet-violet','meteor-streak']:image=image.resize((512,512),Image.Resampling.LANCZOS)
  # Bundle tightly packed, straight-alpha pixels; no runtime browser decoder.
  data=image.tobytes();(out/(src.stem+'.rgba')).write_bytes(data)
  manifest[src.stem]={'width':image.width,'height':image.height,'file':src.stem+'.rgba','sourceSha256':hashlib.sha256(src.read_bytes()).hexdigest(),'sha256':hashlib.sha256(data).hexdigest()}

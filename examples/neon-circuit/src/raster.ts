@@ -1,9 +1,12 @@
 import { File, knownFolders, path } from '@nativescript/core';
 import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures.ios';
 import type { NeonRaster } from '../../../../Games/games/neon-circuit/NeonRaster';
+import type { Canvas } from '@nativescript/canvas';
 
 /** Predecoded, straight-alpha RGBA is bundled with the app and uploaded directly to Metal. */
 export class NativeNeonRaster implements NeonRaster {
+  private readonly transient = new Set<Canvas>();
+  private readonly fontSurfaces = new Set<Canvas>();
   readonly canvas: NeonRaster['canvas'];
   readonly pixels: NeonRaster['pixels'];
   readonly font: { canvasFactory: NativeCanvasTextures['createCanvas2D']; readAtlasPixels: NativeCanvasTextures['readAtlasPixels'] };
@@ -11,11 +14,29 @@ export class NativeNeonRaster implements NeonRaster {
   private readonly entries: Record<string, { width: number; height: number; file: string }>;
   constructor(device: GPUDevice) {
     const canvas = new NativeCanvasTextures(device);
-    this.canvas = canvas.createCanvas2D;
+    this.canvas = (width,height) => {
+      const surface=canvas.createCanvas2D(width,height);
+      this.transient.add(surface as unknown as Canvas);return surface;
+    };
     this.pixels = source => canvas.readAtlasPixels(source as HTMLCanvasElement);
-    this.font = { canvasFactory: canvas.createCanvas2D, readAtlasPixels: canvas.readAtlasPixels };
+    this.font = { canvasFactory: (width,height) => {
+      const surface=canvas.createCanvas2D(width,height);
+      this.fontSurfaces.add(surface as unknown as Canvas);return surface;
+    }, readAtlasPixels: canvas.readAtlasPixels };
     this.entries = JSON.parse(File.fromPath(path.join(this.directory, 'textures.json')).readTextSync());
   }
+  /** Raster uploads copy pixels immediately. After the frame, only the GPU copies are needed. */
+  flushTransient(): number { return this.release(this.transient); }
+  releaseScene(): void { this.release(this.transient);this.release(this.fontSurfaces); }
+  private release(surfaces:Set<Canvas>):number {
+    const count=surfaces.size;
+    for(const surface of surfaces) {
+      // Resize first to release Skia's backing store even before the JS wrapper is collected.
+      surface.width=1;surface.height=1;surface.disposeNativeView();
+    }
+    surfaces.clear();return count;
+  }
+  get surfaceCount():number {return this.transient.size+this.fontSurfaces.size;}
   async loadTexture(device: GPUDevice, name: string): Promise<GPUTexture> {
     const entry = this.entries[name];
     if (!entry) throw new Error(`Missing native texture ${name}`);

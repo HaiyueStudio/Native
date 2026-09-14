@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-09-14T09:24:53.983943+00:00",
+  "device": "iPhone 15 Plus / Apple A16",
+  "bundleId": "org.haiyue.native.neoncircuit",
+  "frames": 6360,
+  "modes": [
+    "duel"
+  ],
+  "tracks": [
+    "rainbow-road",
+    "sky-harbor"
+  ],
+  "finishes": [
+    {
+      "track": "sky-harbor",
+      "winner": "opponent",
+      "opponentTime": 84.52500000001334
+    }
+  ],
+  "maxOpponentSpeed": 1449.8792780150627,
+  "nonDamagingPlayerImpacts": true,
+  "errors": [],
+  "sources": {
+    "RaceOpponent.ts": "cc0f0b4d8d6fee77151fcbe967d863a1c537cf0f3a6e9341c1624128dd870f7a",
+    "RaceRules.ts": "f6908754dff381ecfdee777dcdf03e07f8699bdd081013f0105017ce8d93916d",
+    "main.ts": "d8a30c2ef2f09c585e861c126110388f6dc8c1b4ca55ef1ce165f3718080213e",
+    "NeonCircuitGui.ts": "7541f45c173c9450216b91385862b3a906ded6318581868dacb7bf9c389fa6c8",
+    "NeonLocale.ts": "80c4ff3d614bd9810a3e83fc8522c6a7c31fc3459f6e3f3766c141e51e7056aa",
+    "HudMapTexture.ts": "768aae4c1345a27b71ab5b642ee0de0b4fa8324c94276a07104a9f4af21385c2",
+    "VolcanicHazards.ts": "d96f9e280181d3e78dafe8ec715c216866a04d13538e36cbcce8c9ea54ac7f53"
+  },
+  "installedBundleSha256": "01fa187b037c055e09fbc986c5a488b630b3f06ff011afaf3d4fd9961f229e3b"
+}

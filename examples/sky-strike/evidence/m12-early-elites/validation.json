@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-09-14T00:28:26.956042+00:00",
+  "levelSha256": "e94f500cde92ac46fc4967d84b9a42b89e49832c3e50478276d77a298838ad07",
+  "eliteTimesMs": [
+    8000,
+    17000
+  ],
+  "elitesKeepQuantumPair": true,
+  "earlyScoutCount": 3,
+  "middleStealthCount": 2,
+  "ordinaryEnemiesRemoved": 4,
+  "bossTimeMs": 31000,
+  "compiledTimelineChecked": true
+}

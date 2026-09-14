@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-09-14T10:40:34.178429+00:00",
+  "status": "passed",
+  "device": "iPhone 15 Plus / Apple A16",
+  "bundleId": "org.haiyue.native.neoncircuit",
+  "track": "sky-harbor",
+  "difficulty": "normal",
+  "frames": 3480,
+  "opponentFinished": true,
+  "opponentTime": 81.55833333334431,
+  "opponentWallHits": 1,
+  "maxOpponentSpeed": 1448.592028812611,
+  "sideBoostObserved": true,
+  "lastPhase": "home",
+  "errors": [],
+  "driverSha256": "32b47a4bbca911e5d266896eb856b9fc59955339f4bd2bc18d2a4ac33721a56f",
+  "installedBundleSha256": "94cce32daec022c8d0aef8e8eaf1e31fe6b5d5fa46f566a56105613e10b93e94"
+}

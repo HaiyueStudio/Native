@@ -25,12 +25,12 @@ export class NativeDriving {
     if (this.mode === 'gyro' && !this.motion.available) this.mode = 'joystick';
     game.guiView.configureMobileControls(this.mode, this.choose, this.motion.available);
     this.joystick = new VirtualJoystickControls(this.engine.canvas!, {
-      mode: 'floating', maxDistance: 46, knobRadius: 23, deadZone: 0.10,
+      mode: 'floating', maxDistance: 57.5, knobRadius: 23, deadZone: 0.10,
       center: ({ height }) => ({ x: this.insets().left + 98, y: height - this.insets().bottom - 92 }),
       region: ({ width, height }) => ({ x: this.insets().left, y: height * 0.5, width: width * 0.45, height: height * 0.5 - this.insets().bottom }),
       shouldActivate: () => this.running && this.mode === 'joystick' && this.canDrive(),
-      baseStyle: { backgroundColor: '#0c314866', borderColor: '#55eaffaa' },
-      knobStyle: { backgroundColor: '#51d8eb99', borderColor: '#c6faffdd' },
+      baseStyle: { backgroundColor: '#00000000', borderColor: '#00000000' },
+      knobStyle: { backgroundColor: '#00000000', borderColor: '#00000000' },
     });
     this.joystick.disabled = true;
   }

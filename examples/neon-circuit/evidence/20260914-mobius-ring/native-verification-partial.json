@@ -1,0 +1,900 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-14T05:24:07.151Z",
+  "updatedAt": "2026-09-14T05:25:33.510Z",
+  "status": "running",
+  "checks": [
+    "bundled PBR hovercraft loaded",
+    "native audio preloads fourteen MIDI-derived effects including 30-second music into a bounded pool",
+    "landscape native Metal surface",
+    "reverse Z and float depth enabled",
+    "seven shared courses in native carousel",
+    "fresh settings default to Chinese and the new title",
+    "gear opens the settings panel",
+    "settings show a translucent backdrop and gear click plays sound",
+    "settings consume carousel keyboard navigation",
+    "English applies immediately to the GUI",
+    "Japanese applies to circuit labels",
+    "settings close and language returns to Chinese",
+    "native carousel swipe commits selection",
+    "carousel selection plays its distinct cue",
+    "settings select joystick steering",
+    "countdown starts race",
+    "3 2 1 and GO each sound once in the first countdown",
+    "race starts the looping music",
+    "title and upper-right compass/pause dock to the safe top edge",
+    "phone dial moves exactly twenty-five points left and five down",
+    "left instrument/timing, central title and right compass/pause do not overlap",
+    "native compass rotates with actual racer steering",
+    "native minimap follows the current position on the selected route",
+    "native upcoming road side agrees between the rendered chase camera and minimap",
+    "two left timing rows and live lap label on the compass",
+    "idle F1 wheel stays visible and translucent",
+    "brake left and throttle right at bottom-right",
+    "pedals avoid native safe-area edges",
+    "floating joystick appears centered at the new touch without steering jump",
+    "held throttle starts both bounded engine registers",
+    "joystick and throttle work with separate simultaneous touches",
+    "steering wheel rotates right and throttle depresses under the held finger",
+    "leftward joystick motion rotates the wheel counterclockwise",
+    "releasing joystick returns steering to neutral",
+    "released wheel fades back to its translucent idle state",
+    "moving brake press plays the braking sound",
+    "brake slows the car even with throttle held",
+    "brake has its own depressed pedal state",
+    "cancellation releases native driving pointers",
+    "crossing a lap shows the generated banner without a solid rectangle",
+    "crossing a lap plays the lap-complete chime",
+    "next joystick touch establishes a different center",
+    "steering wheel stays fixed while invisible touch origin changes",
+    "expanded joystick radius gives half steering at 28.75 points",
+    "releasing throttle outside button starts gradual coasting and preserves joystick finger",
+    "released throttle keeps decelerating without wall impact or boost assistance",
+    "pause freezes race time",
+    "transparent modal blocks input without an outer colored scrim or active wheel",
+    "pause stops the music loop",
+    "pause stops the engine audio immediately",
+    "pause panel resumes race",
+    "host suspension enters pause safely",
+    "settings select gyroscope steering",
+    "gyro mode starts race",
+    "real Core Motion samples reach racing controls",
+    "boost expiry decelerates continuously",
+    "wall impact damages hull and sharply slows car",
+    "real wall impact triggers collision audio",
+    "crossing a boost strip triggers the rising boost cue",
+    "actual light wall impact invokes the matching native haptic",
+    "actual medium wall impact invokes the matching native haptic",
+    "actual heavy wall impact invokes the matching native haptic",
+    "crossing final finish line opens record result",
+    "a personal best earns the new-record seal",
+    "stamp approaches the result corner",
+    "stamp lands and settles without restarting each frame",
+    "new-record stamp sounds once on landing after music stops",
+    "slower race completes normally",
+    "slower result does not receive or retain the record stamp",
+    "ordinary completion never repeats the record stamp sound",
+    "destroyed hull opens its transparent result panel",
+    "switch to neon-city without browser navigation",
+    "neon-city countdown completes",
+    "switch to reactor-run without browser navigation",
+    "reactor-run countdown completes",
+    "switch to rainbow-road without browser navigation",
+    "rainbow-road countdown completes",
+    "native rainbow course contains planets and meteors",
+    "switch to sky-coaster without browser navigation",
+    "sky-coaster countdown completes",
+    "native loop camera follows the road up vector",
+    "native loop reaches an inverted road",
+    "native roll camera follows the road up vector",
+    "native roll reaches an inverted road",
+    "native helix camera follows the road up vector",
+    "switch to ashfall without browser navigation",
+    "ashfall countdown completes",
+    "switch to mobius-ring without browser navigation",
+    "mobius-ring countdown completes",
+    "native Mobius front camera follows its driving face",
+    "native Mobius back camera follows its driving face"
+  ],
+  "captures": [
+    {
+      "file": "neon-home.png",
+      "bytes": 467337
+    },
+    {
+      "file": "neon-settings-en.png",
+      "bytes": 821782
+    },
+    {
+      "file": "neon-home-en.png",
+      "bytes": 478817
+    },
+    {
+      "file": "neon-settings-ja.png",
+      "bytes": 815087
+    },
+    {
+      "file": "neon-home-ja.png",
+      "bytes": 467065
+    },
+    {
+      "file": "neon-compass-turn.png",
+      "bytes": 635916
+    },
+    {
+      "file": "neon-compass-progress.png",
+      "bytes": 666919
+    },
+    {
+      "file": "neon-wheel-idle.png",
+      "bytes": 677714
+    },
+    {
+      "file": "neon-floating-joystick.png",
+      "bytes": 680142
+    },
+    {
+      "file": "neon-wheel-left.png",
+      "bytes": 699733
+    },
+    {
+      "file": "neon-pedals-down.png",
+      "bytes": 654358
+    },
+    {
+      "file": "neon-lap-banner.png",
+      "bytes": 801664
+    },
+    {
+      "file": "neon-paused.png",
+      "bytes": 719834
+    },
+    {
+      "file": "neon-driving.png",
+      "bytes": 654208
+    },
+    {
+      "file": "neon-record-approach.png",
+      "bytes": 795539
+    },
+    {
+      "file": "neon-record.png",
+      "bytes": 782934
+    },
+    {
+      "file": "neon-finished.png",
+      "bytes": 723604
+    },
+    {
+      "file": "neon-destroyed.png",
+      "bytes": 732055
+    },
+    {
+      "file": "neon-neon-city.png",
+      "bytes": 645471
+    },
+    {
+      "file": "neon-reactor-run.png",
+      "bytes": 670426
+    },
+    {
+      "file": "neon-rainbow-road.png",
+      "bytes": 1024079
+    },
+    {
+      "file": "neon-coaster-loop.png",
+      "bytes": 577059
+    },
+    {
+      "file": "neon-coaster-roll.png",
+      "bytes": 588909
+    },
+    {
+      "file": "neon-coaster-helix.png",
+      "bytes": 649326
+    },
+    {
+      "file": "neon-sky-coaster.png",
+      "bytes": 649542
+    },
+    {
+      "file": "neon-ashfall.png",
+      "bytes": 1106756
+    },
+    {
+      "file": "neon-mobius-front.png",
+      "bytes": 1138718
+    },
+    {
+      "file": "neon-mobius-back.png",
+      "bytes": 1203683
+    },
+    {
+      "file": "neon-mobius-ring.png",
+      "bytes": 1201155
+    }
+  ],
+  "states": [
+    {
+      "cameraMode": "chase",
+      "fireballs": [],
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.10833333333333332,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "neon-city",
+      "buildingCount": 195,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.0335111447525627,
+      "theme": "neon",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "cameraMode": "chase",
+      "fireballs": [],
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.10833333333333332,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "reactor-run",
+      "buildingCount": 200,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.1985981397888619,
+      "theme": "reactor",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "cameraMode": "chase",
+      "fireballs": [],
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.06666666666666667,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "rainbow-road",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.233806116856931,
+      "theme": "cosmic",
+      "space": {
+        "planets": 3,
+        "meteors": 36
+      },
+      "rainbowTime": 3.480583999969531,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "cameraMode": "chase",
+      "fireballs": [],
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.2333333333333333,
+      "progress": 0.4277901919451706,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": -1.942890293094024e-16,
+      "impact": 0,
+      "trackId": "sky-coaster",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": {
+        "section": "helix",
+        "roadUp": [
+          0.48203396384331804,
+          0.8691351998126863,
+          0.11066734906041875
+        ],
+        "cameraUp": [
+          0.4456914961338043,
+          0.8517224788665771,
+          -0.2755502164363861
+        ]
+      },
+      "cameraPhi": 1.2867050954068282,
+      "theme": "daylight",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "cameraMode": "chase",
+      "fireballs": [],
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.06666666666666667,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "ashfall",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.1409653863533642,
+      "theme": "volcanic",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "cameraMode": "chase",
+      "fireballs": [],
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.175,
+      "progress": 0.4994415629188747,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "mobius-ring",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 0.96,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": {
+        "section": "front",
+        "roadUp": [
+          -6.539948233206375e-16,
+          -0.9999999999999998,
+          1.069479529943219e-19
+        ],
+        "cameraUp": [
+          0.0003341349074617028,
+          -0.9246060252189636,
+          0.38092467188835144
+        ]
+      },
+      "cameraPhi": 1.18,
+      "theme": "mobius",
+      "space": {
+        "planets": 3,
+        "meteors": 36
+      },
+      "rainbowTime": 3.8183339999988672,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    }
+  ],
+  "game": {
+    "cameraMode": "chase",
+    "fireballs": [],
+    "phase": "racing",
+    "lap": 1,
+    "speed": 0,
+    "elapsed": 0.22499999999999998,
+    "progress": 0.4994415629188747,
+    "lateral": 0,
+    "boostRemaining": 0,
+    "wallHits": 0,
+    "health": 100,
+    "headingOffset": 0,
+    "impact": 0,
+    "trackId": "mobius-ring",
+    "buildingCount": 0,
+    "exhaustLength": 1.35,
+    "fov": 0.96,
+    "reverseZ": true,
+    "depthFormat": "depth32float",
+    "coaster": {
+      "section": "front",
+      "roadUp": [
+        -6.539948233206375e-16,
+        -0.9999999999999998,
+        1.069479529943219e-19
+      ],
+      "cameraUp": [
+        0.0003341349074617028,
+        -0.9246060252189636,
+        0.38092467188835144
+      ]
+    },
+    "cameraPhi": 1.18,
+    "theme": "mobius",
+    "space": {
+      "planets": 3,
+      "meteors": 36
+    },
+    "rainbowTime": 3.868333999998867,
+    "particles": {
+      "smoke": 0,
+      "sparks": 0
+    }
+  },
+  "gui": {
+    "language": "zh",
+    "title": "极速新星",
+    "courseName": "莫比乌斯星环",
+    "settingsVisible": false,
+    "settingsBackdrop": "#020617a6",
+    "settingsBounds": {
+      "x": 156,
+      "y": 14.5,
+      "width": 620,
+      "height": 380
+    },
+    "renderer": "engine-gui",
+    "homeVisible": false,
+    "selected": "mobius-ring",
+    "routeCount": 7,
+    "carouselPosition": 6,
+    "carouselTarget": 6,
+    "carouselBounds": {
+      "x": 75,
+      "y": 124.85185185185186,
+      "width": 782,
+      "height": 181.01851851851853
+    },
+    "recordStamp": {
+      "visible": false,
+      "age": 0
+    },
+    "cameraMode": "chase",
+    "windshield": {
+      "stage": 0,
+      "visible": false
+    },
+    "wheel": {
+      "bounds": {
+        "x": 83,
+        "y": 243,
+        "width": 148,
+        "height": 148
+      },
+      "active": false,
+      "x": 157,
+      "y": 317,
+      "angle": 0,
+      "opacity": 0.36,
+      "visible": true
+    },
+    "pedalPress": {
+      "s": 0,
+      "w": 0
+    },
+    "modalBackdrop": "#00000000",
+    "announcementSkin": {
+      "text": "",
+      "visible": false,
+      "background": "#00000000"
+    },
+    "skinnedButtonsTransparent": true,
+    "modalVisible": false,
+    "activeButtons": [
+      "pause"
+    ],
+    "courseBounds": {
+      "x": 359,
+      "y": 0,
+      "width": 214,
+      "height": 30
+    },
+    "timingBounds": {
+      "x": 175.984,
+      "y": 31.448000000000004,
+      "width": 139.20000000000002,
+      "height": 55.68000000000001
+    },
+    "dialBounds": {
+      "x": 34,
+      "y": 5,
+      "width": 139.20000000000002,
+      "height": 139.20000000000002
+    },
+    "minimap": {
+      "bearing": 0.0008771677066792687,
+      "parity": -1,
+      "marker": {
+        "x": 0.8298552315218052,
+        "y": 0.4997106615688224
+      },
+      "projection": {
+        "x": -3,
+        "z": 0,
+        "scale": 0.00009636440503096039
+      },
+      "visible": true,
+      "bounds": {
+        "x": 704.2896,
+        "y": 11.971200000000003,
+        "width": 112.47360000000002,
+        "height": 112.47360000000002
+      },
+      "frameBounds": {
+        "x": 687.4,
+        "y": 0,
+        "width": 185.60000000000002,
+        "height": 139.20000000000002
+      },
+      "trackId": "mobius-ring"
+    },
+    "instrumentsBounds": {
+      "x": 34,
+      "y": 5,
+      "width": 296.71152502910365,
+      "height": 148.35576251455183
+    },
+    "timingRows": 2,
+    "lapReadout": {
+      "text": "圈数 1 / 3",
+      "bounds": {
+        "x": 732.5008,
+        "y": 119.71200000000002,
+        "width": 56.05120000000001,
+        "height": 13.920000000000002
+      }
+    },
+    "instrumentsVisible": true,
+    "displaySpeed": "000",
+    "health": 100,
+    "healthColor": [
+      0.32,
+      0.95,
+      0.6,
+      1
+    ],
+    "countdownVisible": false,
+    "announcement": "",
+    "touchVisible": true,
+    "bounds": [
+      {
+        "x": 534.9106663494333,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      },
+      {
+        "x": 648.628321353719,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      {
+        "x": 677.0505101628497,
+        "y": 174.66927487804372,
+        "width": 71.94795421929791,
+        "height": 114.18007778830858
+      },
+      {
+        "x": 183.00153561785237,
+        "y": 174.66927487804372,
+        "width": 71.94795421929791,
+        "height": 114.18007778830858
+      },
+      {
+        "x": 273.7635438121698,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      {
+        "x": 320.7948885195017,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      },
+      {
+        "x": 396.23546296296297,
+        "y": 130.28240740740742,
+        "width": 139.52907407407406,
+        "height": 170.15740740740745
+      }
+    ],
+    "start": {
+      "x": 603.5740740740741,
+      "y": 329.0407407407408,
+      "width": 253.42592592592592,
+      "height": 43.44444444444444
+    },
+    "buttons": {
+      "track-sky-harbor": {
+        "x": 534.9106663494333,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      },
+      "track-neon-city": {
+        "x": 648.628321353719,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      "track-reactor-run": {
+        "x": 677.0505101628497,
+        "y": 174.66927487804372,
+        "width": 71.94795421929791,
+        "height": 114.18007778830858
+      },
+      "track-rainbow-road": {
+        "x": 183.00153561785237,
+        "y": 174.66927487804372,
+        "width": 71.94795421929791,
+        "height": 114.18007778830858
+      },
+      "track-sky-coaster": {
+        "x": 273.7635438121698,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      "track-ashfall": {
+        "x": 320.7948885195017,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      },
+      "track-mobius-ring": {
+        "x": 396.23546296296297,
+        "y": 130.28240740740742,
+        "width": 139.52907407407406,
+        "height": 170.15740740740745
+      },
+      "previous-course": {
+        "x": 215.3651111111111,
+        "y": 193.36111111111114,
+        "width": 52,
+        "height": 44
+      },
+      "next-course": {
+        "x": 664.6348888888889,
+        "y": 193.36111111111114,
+        "width": 52,
+        "height": 44
+      },
+      "start-race": {
+        "x": 603.5740740740741,
+        "y": 329.0407407407408,
+        "width": 253.42592592592592,
+        "height": 43.44444444444444
+      },
+      "pause": {
+        "x": 822.232,
+        "y": 2.777600000000003,
+        "width": 44,
+        "height": 44
+      },
+      "control-a": {
+        "x": 75,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-d": {
+        "x": 157,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-s": {
+        "x": 703,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-w": {
+        "x": 785,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "resume": {
+        "x": 278.8,
+        "y": 190.1,
+        "width": 374.4,
+        "height": 50
+      },
+      "restart": {
+        "x": 278.8,
+        "y": 190.1,
+        "width": 374.4,
+        "height": 50
+      },
+      "home-button": {
+        "x": 278.8,
+        "y": 265.70000000000005,
+        "width": 374.4,
+        "height": 50
+      },
+      "settings": {
+        "x": 821,
+        "y": 6,
+        "width": 46,
+        "height": 46
+      },
+      "language-zh": {
+        "x": 211.8,
+        "y": 117.10000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "language-en": {
+        "x": 385.4,
+        "y": 117.10000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "language-ja": {
+        "x": 559,
+        "y": 117.10000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "camera-chase": {
+        "x": 211.8,
+        "y": 253.9,
+        "width": 248,
+        "height": 36
+      },
+      "camera-first-person": {
+        "x": 472.2,
+        "y": 253.9,
+        "width": 248,
+        "height": 36
+      },
+      "settings-done": {
+        "x": 329.6,
+        "y": 322.3,
+        "width": 272.8,
+        "height": 36
+      },
+      "steering-joystick": {
+        "x": 211.8,
+        "y": 185.5,
+        "width": 248,
+        "height": 36
+      },
+      "steering-gyro": {
+        "x": 472.2,
+        "y": 185.5,
+        "width": 248,
+        "height": 36
+      }
+    },
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "width": 932,
+      "height": 430
+    }
+  },
+  "audio": {
+    "played": {
+      "click": 28,
+      "course": 8,
+      "count-3": 11,
+      "count-2": 11,
+      "count-1": 11,
+      "go": 11,
+      "music": 12,
+      "engine-low": 1,
+      "engine-high": 1,
+      "brake": 1,
+      "lap": 1,
+      "rail": 4,
+      "boost": 1,
+      "record": 1
+    },
+    "musicPlaying": true,
+    "engineLevel": 0,
+    "loops": 0,
+    "pending": 0,
+    "backend": {
+      "kind": "av-audio-engine",
+      "error": null,
+      "running": true,
+      "buffers": 14,
+      "pcmBytes": 6720840,
+      "voices": 1,
+      "nodeCount": 12,
+      "loopChannels": [
+        "music"
+      ],
+      "played": 102,
+      "volume": 0.68,
+      "disposed": false
+    }
+  },
+  "haptics": {
+    "active": true,
+    "impactsRequested": 4,
+    "lastKind": "heavy"
+  },
+  "driving": {
+    "mode": "joystick",
+    "axis": 0,
+    "joystick": {
+      "active": false,
+      "pointerId": null,
+      "center": {
+        "x": 157,
+        "y": 317
+      },
+      "direction": {
+        "x": 0,
+        "y": 0
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "rawDistance": 0,
+      "distance": 0,
+      "strength": 0,
+      "angle": 0
+    },
+    "gyroAvailable": true,
+    "gyroActive": false,
+    "sensorSamples": 149,
+    "rotation": 90
+  }
+}

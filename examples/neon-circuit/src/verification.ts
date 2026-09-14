@@ -11,10 +11,13 @@ import type { NativeDriving } from './driving';
 /** Opt-in fixture through the actual native pointer target and Metal surface. */
 export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => NeonCircuitGame, driving: NativeDriving, target: OrbitPointerTarget, canvas: Canvas,
   safeInsets: () => { top: number; left: number; right: number; bottom: number }, haptics:NativeHaptics): Promise<void> {
+  // Synthetic test touches do not reset iOS's idle timer. Keep this bounded fixture awake.
+  const previousIdleTimer=UIApplication.sharedApplication.idleTimerDisabled;
+  UIApplication.sharedApplication.idleTimerDisabled=true;
   const checks: string[] = [], captures: unknown[] = [], states: unknown[] = [];
   const output = File.fromPath(path.join(knownFolders.documents().path, 'neon-circuit-verification.json'));
   const startedAt = new Date().toISOString();
-  const record = (status: string, extra = {}) => output.writeTextSync(JSON.stringify({ schemaVersion: 1, startedAt, updatedAt: new Date().toISOString(), status, checks, captures, states, game: getGame()?.snapshot(), audio:getGame()?.audioState,haptics:haptics.snapshot(), driving: driving.snapshot(), ...extra }, null, 2));
+  const record = (status: string, extra = {}) => output.writeTextSync(JSON.stringify({ schemaVersion: 1, startedAt, updatedAt: new Date().toISOString(), status, checks, captures, states, game: getGame()?.snapshot(), gui:getGame()?.guiView.snapshot,audio:getGame()?.audioState,haptics:haptics.snapshot(), driving: driving.snapshot(), ...extra }, null, 2));
   const check = (value: unknown, name: string) => { if (!value) throw new Error(name); checks.push(name); console.log(`[neon-verify] ${name}`); record('running'); };
   const frame = () => new Promise<void>((resolve, reject) => {
     const callback = () => { clearTimeout(timeout); resolve(); };
@@ -43,7 +46,7 @@ export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => Neon
     check(audioBank.error===null && audioBank.buffers===14 && audioBank.nodeCount===12,'native audio preloads fourteen MIDI-derived effects including 30-second music into a bounded pool');
     check(rect.width > rect.height, 'landscape native Metal surface');
     check(getGame().snapshot().reverseZ && getGame().snapshot().depthFormat === 'depth32float', 'reverse Z and float depth enabled');
-    check(getGame().guiView.snapshot.routeCount === 5, 'five shared courses in native carousel');
+    check(getGame().guiView.snapshot.routeCount === 7, 'seven shared courses in native carousel');
     check(getGame().guiView.snapshot.language === 'zh' && getGame().guiView.snapshot.title === '极速新星', 'fresh settings default to Chinese and the new title');
     await screenshot('neon-home.png');
     await click('settings');
@@ -72,15 +75,34 @@ export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => Neon
     check(['count-3','count-2','count-1','go'].every(id=>(getGame().audioState.played as Record<string,number>)[id]===1),'3 2 1 and GO each sound once in the first countdown');
     check(getGame().audioState.musicPlaying,'race starts the looping music');
     const hud = getGame().guiView.snapshot, pauseBounds = getGame().guiView.buttonRect('pause');
-    check(hud.courseBounds.y === i.top && hud.courseBounds.height === 30 && hud.timingBounds.y === i.top
-      && pauseBounds.y === i.top, 'course title, two-row timing and pause dock to the safe top edge');
+    check(hud.courseBounds.y === i.top && hud.courseBounds.height === 30
+      && hud.minimap.frameBounds.y === i.top && pauseBounds.y<i.top+8, 'title and upper-right compass/pause dock to the safe top edge');
     const safeWidth = rect.width - i.left - i.right, safeHeight = rect.height - i.top - i.bottom;
     const expectedDial = (safeWidth < 760 ? 144 : safeHeight < 550 ? 174 : 232) * 0.8;
-    check(Math.abs(hud.dialBounds.width - expectedDial) < 0.01 && hud.dialBounds.x === i.left, 'dial is twenty percent smaller and closer to the left edge');
-    check(hud.courseBounds.x > hud.dialBounds.x + hud.dialBounds.width
-      && hud.courseBounds.x + hud.courseBounds.width < hud.timingBounds.x
-      && hud.timingBounds.x + hud.timingBounds.width < pauseBounds.x && pauseBounds.width === pauseBounds.height,
-      'compact top HUD does not overlap and pause has a square circular-skin target');
+    check(Math.abs(hud.dialBounds.width - expectedDial) < .01 && hud.dialBounds.x === i.left - 25
+      && hud.dialBounds.y === i.top + 5, 'phone dial moves exactly twenty-five points left and five down');
+    check(hud.timingBounds.x >= hud.dialBounds.x + hud.dialBounds.width - .01
+      && hud.timingBounds.x + hud.timingBounds.width < hud.instrumentsBounds.x + hud.instrumentsBounds.width
+      && hud.instrumentsBounds.x + hud.instrumentsBounds.width < hud.courseBounds.x
+      && hud.courseBounds.x + hud.courseBounds.width < hud.minimap.frameBounds.x
+      && pauseBounds.x >= hud.minimap.frameBounds.x && pauseBounds.width === 44
+      && pauseBounds.x + pauseBounds.width <= rect.width-i.right,
+      'left instrument/timing, central title and right compass/pause do not overlap');
+    getGame().setState({headingOffset:.55}); await frames(3);
+    check(Math.hypot(...getGame().guiView.snapshot.minimap.basis.right.map((v,i)=>v-hud.minimap.basis.right[i]!))>.2,
+      'native compass rotates with actual racer steering');
+    await screenshot('neon-compass-turn.png');
+    getGame().setState({distance:circuitTrack(CIRCUITS[0]!).length*.27,headingOffset:0}); await frames(3);
+    const movedMap=getGame().guiView.snapshot.minimap;
+    check(movedMap.trackId===CIRCUITS[0]!.id && movedMap.visible
+      && Math.hypot(movedMap.marker.x-hud.minimap.marker.x,movedMap.marker.y-hud.minimap.marker.y)>.03,
+      'native minimap follows the current position on the selected route');
+    await frames(40); const alignment=getGame().mapRoadAlignment;
+    check(alignment.viewSide*alignment.mapSide>0,'native upcoming road side agrees between the rendered chase camera and minimap');
+    check(getGame().guiView.snapshot.timingRows===2 && getGame().guiView.snapshot.lapReadout.bounds.x>rect.width/2
+      && getGame().guiView.snapshot.lapReadout.text==='圈数 1 / 3','two left timing rows and live lap label on the compass');
+    await screenshot('neon-compass-progress.png');
+    getGame().setState(createInitialRaceState()); await frames(3);
     await frames(12);
     check(getGame().guiView.snapshot.wheel.visible && !getGame().guiView.snapshot.wheel.active && getGame().guiView.snapshot.wheel.opacity<.45,'idle F1 wheel stays visible and translucent');
     await screenshot('neon-wheel-idle.png');
@@ -119,9 +141,14 @@ export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => Neon
     await screenshot('neon-lap-banner.png');
     getGame().setState({ speed: 1000, distance: 500, headingOffset: 0, lateral: 0, lateralSpeed: 0, boostRemaining: 0 });
     touch('down', 9010, throttle); await frames(2);
+    const fixedWheel={...getGame().guiView.snapshot.wheel.bounds};
     const secondCenter = { x: center.x + 38, y: center.y - 18 };
     touch('down', 9011, secondCenter); await frames(2);
     check(driving.snapshot().joystick!.center.x === secondCenter.x && driving.snapshot().joystick!.center.y === secondCenter.y, 'next joystick touch establishes a different center');
+    check(getGame().guiView.snapshot.wheel.bounds.x===fixedWheel.x && getGame().guiView.snapshot.wheel.bounds.y===fixedWheel.y,'steering wheel stays fixed while invisible touch origin changes');
+    touch('move',9011,{x:secondCenter.x+28.75,y:secondCenter.y});await frames(3);
+    check(Math.abs(driving.axis)>.35 && Math.abs(driving.axis)<.6,'expanded joystick radius gives half steering at 28.75 points');
+    touch('move',9011,secondCenter);await frames(2);
     const releasedSpeed = getGame().snapshot().speed;
     const outside = { x: rect.width / 2, y: rect.height * 0.55 };
     touch('move', 9010, outside); touch('up', 9010, outside); await frames(2);
@@ -148,7 +175,10 @@ export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => Neon
     await screenshot('neon-driving.png');
     getGame().setState({...createInitialRaceState(),distance:circuitTrack(CIRCUITS[0]!).length*BOOST_ZONES[0],speed:500});await frames(3);
     check((getGame().audioState.played.boost??0)>0 && getGame().snapshot().boostRemaining>0,'crossing a boost strip triggers the rising boost cue');
+    driving.choose('joystick'); driving.cancel(); getGame().cancelInteraction();
     for(const [kind,speed,lateralSpeed,headingOffset] of [['light',180,40,.12],['medium',650,450,.55],['heavy',1350,1100,1]] as const) {
+      // Wait out the haptic cooldown at rest, not while a previous boost can cause another impact.
+      getGame().setState({...createInitialRaceState(),distance:300});
       await frames(40);const count=haptics.snapshot().impactsRequested;
       getGame().setState({...createInitialRaceState(),distance:300,speed,lateral:RAIL_LIMIT,lateralSpeed,headingOffset});await frames(3);
       check(haptics.snapshot().impactsRequested>count && haptics.snapshot().lastKind===kind,`actual ${kind} wall impact invokes the matching native haptic`);
@@ -186,9 +216,48 @@ export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => Neon
           await screenshot(`neon-coaster-${section}.png`);
         }
       }
+      if(course.id==='mobius-ring') {
+        const track=circuitTrack(course);
+        for(const index of [0,track.samples.length/2]) {
+          getGame().setState({...createInitialRaceState(),distance:track.samples[index]!.distance});await frames(5);
+          const c=getGame().snapshot().coaster!;
+          check(c.roadUp.reduce((sum,v,i)=>sum+v*c.cameraUp[i]!,0)>.8 && Math.sign(c.roadUp[1]!)===(index===0?1:-1),`native Mobius ${index===0?'front':'back'} camera follows its driving face`);
+          await screenshot(`neon-mobius-${index===0?'front':'back'}.png`);
+        }
+      }
       states.push(getGame().snapshot()); await screenshot(`neon-${course.id}.png`); getGame().showHome(); await frames(2);
     }
+    getGame().guiView.select('ashfall'); await frames(70);
+    await click('settings');await click('camera-first-person');await click('settings-done');
+    await click('start-race');
+    await until(()=>getGame().snapshot().cameraMode==='first-person' && getGame().modelStatus==='skipped','first-person scene skips the native ship loader');
+    await until(()=>getGame().snapshot().phase==='racing','first person starts without loading the ship');
+    check(!getGame().guiView.snapshot.windshield.visible,'first-person glass starts clear');
+    await screenshot('neon-first-person.png');
+    getGame().setState({...createInitialRaceState(),speed:400});
+    await until(()=>getGame().snapshot().fireballs.length>0,'volcano launches a warning ahead of the car');
+    let ball=getGame().snapshot().fireballs[0]!;
+    getGame().setState({...createInitialRaceState(),distance:ball.distance,lateral:ball.lateral<0?65:-65});
+    await until(()=>!getGame().snapshot().fireballs.some(b=>b.id===ball.id),'fireball lands and expires');
+    check(getGame().snapshot().health===100,'moving to the free lane avoids actual native fireball damage');
+    getGame().setState({...createInitialRaceState(),speed:400});
+    await until(()=>getGame().snapshot().fireballs.length>0,'a later random fireball warns of another impact');
+    ball=getGame().snapshot().fireballs[0]!;
+    getGame().setState({...createInitialRaceState(),distance:ball.distance,lateral:ball.lateral});
+    getGame().togglePause();const frozen=getGame().snapshot().fireballs[0]!.age;await frames(6);
+    check(getGame().snapshot().fireballs[0]!.age===frozen,'pause freezes native fireball descent');getGame().togglePause();
+    await until(()=>getGame().snapshot().health<100,'landing inside the marked circle causes fireball damage');
+    check(getGame().guiView.snapshot.windshield.visible,'fireball damage fractures native windshield');
+    await screenshot('neon-fireball-impact.png');
+    for(const [health,stage] of [[60,2],[30,3],[10,4]] as const) {
+      getGame().setState({health});await frames(3);
+      check(getGame().guiView.snapshot.windshield.stage===stage,`native glass fracture stage ${stage}`);
+      await screenshot(`neon-glass-${stage}.png`);
+    }
+    getGame().restart();await frames(3);check(!getGame().guiView.snapshot.windshield.visible && getGame().snapshot().fireballs.length===0,'restart clears native fractures and falling hazards');
+    getGame().showHome();await click('settings');await click('camera-chase');await click('settings-done');await click('start-race');
+    await until(()=>getGame().snapshot().cameraMode==='chase' && getGame().modelStatus==='loaded','switching back restores the normal native ship');
     await engine.device.queue.onSubmittedWorkDone(); record('passed');
   } catch (error) { console.error('[neon-verify]', error); record('failed', { error: String(error) }); }
-  finally { engine.off('after-update', onCapture); target.cancel(); driving.cancel(); getGame()?.cancelInteraction(); }
+  finally { UIApplication.sharedApplication.idleTimerDisabled=previousIdleTimer; engine.off('after-update', onCapture); target.cancel(); driving.cancel(); getGame()?.cancelInteraction(); }
 }

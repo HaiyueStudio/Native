@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-14T00:59:20.002Z",
+  "updatedAt": "2026-09-14T00:59:41.645Z",
+  "status": "failed",
+  "checks": [
+    "bundled PBR hovercraft loaded",
+    "native audio preloads fourteen MIDI-derived effects including 30-second music into a bounded pool",
+    "landscape native Metal surface",
+    "reverse Z and float depth enabled",
+    "five shared courses in native carousel",
+    "fresh settings default to Chinese and the new title",
+    "gear opens the settings panel",
+    "settings show a translucent backdrop and gear click plays sound",
+    "settings consume carousel keyboard navigation",
+    "English applies immediately to the GUI",
+    "Japanese applies to circuit labels",
+    "settings close and language returns to Chinese",
+    "native carousel swipe commits selection",
+    "carousel selection plays its distinct cue",
+    "settings select joystick steering",
+    "countdown starts race",
+    "3 2 1 and GO each sound once in the first countdown",
+    "race starts the looping music",
+    "title stays at top and compass joins the adjusted instrument line",
+    "phone dial moves exactly twenty-five points left and five down",
+    "left instrument/timing, central title and right compass/pause do not overlap",
+    "native compass rotates with actual racer steering",
+    "native minimap follows the current position on the selected route",
+    "idle F1 wheel stays visible and translucent",
+    "brake left and throttle right at bottom-right",
+    "pedals avoid native safe-area edges",
+    "floating joystick appears centered at the new touch without steering jump",
+    "held throttle starts both bounded engine registers",
+    "joystick and throttle work with separate simultaneous touches",
+    "steering wheel rotates right and throttle depresses under the held finger",
+    "leftward joystick motion rotates the wheel counterclockwise",
+    "releasing joystick returns steering to neutral",
+    "released wheel fades back to its translucent idle state",
+    "moving brake press plays the braking sound",
+    "brake slows the car even with throttle held",
+    "brake has its own depressed pedal state",
+    "cancellation releases native driving pointers",
+    "crossing a lap shows the generated banner without a solid rectangle",
+    "crossing a lap plays the lap-complete chime",
+    "next joystick touch establishes a different center",
+    "releasing throttle outside button starts gradual coasting and preserves joystick finger",
+    "released throttle keeps decelerating without wall impact or boost assistance",
+    "pause freezes race time",
+    "transparent modal blocks input without an outer colored scrim or active wheel",
+    "pause stops the music loop",
+    "pause stops the engine audio immediately",
+    "pause panel resumes race",
+    "host suspension enters pause safely",
+    "settings select gyroscope steering",
+    "gyro mode starts race",
+    "real Core Motion samples reach racing controls",
+    "boost expiry decelerates continuously",
+    "wall impact damages hull and sharply slows car",
+    "real wall impact triggers collision audio",
+    "crossing a boost strip triggers the rising boost cue"
+  ],
+  "captures": [
+    {
+      "file": "neon-home.png",
+      "bytes": 466842
+    },
+    {
+      "file": "neon-settings-en.png",
+      "bytes": 785816
+    },
+    {
+      "file": "neon-home-en.png",
+      "bytes": 477935
+    },
+    {
+      "file": "neon-settings-ja.png",
+      "bytes": 780979
+    },
+    {
+      "file": "neon-home-ja.png",
+      "bytes": 466550
+    },
+    {
+      "file": "neon-compass-turn.png",
+      "bytes": 664689
+    },
+    {
+      "file": "neon-compass-progress.png",
+      "bytes": 1038797
+    },
+    {
+      "file": "neon-wheel-idle.png",
+      "bytes": 694820
+    },
+    {
+      "file": "neon-floating-joystick.png",
+      "bytes": 686675
+    },
+    {
+      "file": "neon-wheel-left.png",
+      "bytes": 729761
+    },
+    {
+      "file": "neon-pedals-down.png",
+      "bytes": 680350
+    },
+    {
+      "file": "neon-lap-banner.png",
+      "bytes": 833574
+    },
+    {
+      "file": "neon-paused.png",
+      "bytes": 728056
+    },
+    {
+      "file": "neon-driving.png",
+      "bytes": 677942
+    }
+  ],
+  "states": [],
+  "game": {
+    "phase": "racing",
+    "lap": 1,
+    "speed": 66.87237123117951,
+    "elapsed": 0.09166666666666666,
+    "progress": 0.009213016809377576,
+    "lateral": 81.2658167800964,
+    "boostRemaining": 0,
+    "wallHits": 1,
+    "health": 97.5448251480621,
+    "headingOffset": -0.09492581856564943,
+    "impact": 0.13100082455498316,
+    "trackId": "sky-harbor",
+    "buildingCount": 194,
+    "exhaustLength": 1.35,
+    "fov": 0.773146050820495,
+    "reverseZ": true,
+    "depthFormat": "depth32float",
+    "coaster": null,
+    "cameraPhi": 1.3455848960596404,
+    "theme": "harbor",
+    "space": null,
+    "rainbowTime": null,
+    "particles": {
+      "smoke": 10,
+      "sparks": 80
+    }
+  },
+  "gui": {
+    "language": "zh",
+    "title": "极速新星",
+    "courseName": "云端港湾",
+    "settingsVisible": false,
+    "settingsBackdrop": "#020617a6",
+    "settingsBounds": {
+      "x": 156,
+      "y": 14.5,
+      "width": 620,
+      "height": 380
+    },
+    "renderer": "engine-gui",
+    "homeVisible": false,
+    "selected": "sky-harbor",
+    "routeCount": 5,
+    "carouselPosition": 0,
+    "carouselTarget": 0,
+    "carouselBounds": {
+      "x": 75,
+      "y": 124.85185185185186,
+      "width": 782,
+      "height": 181.01851851851853
+    },
+    "recordStamp": {
+      "visible": false,
+      "age": 0
+    },
+    "wheel": {
+      "active": false,
+      "x": 157,
+      "y": 317,
+      "angle": 0.13586269924558478,
+      "opacity": 0.36,
+      "visible": false
+    },
+    "pedalPress": {
+      "s": 2.931683550740998e-74,
+      "w": 1.4755533552931893e-71
+    },
+    "modalBackdrop": "#00000000",
+    "announcementSkin": {
+      "text": "",
+      "visible": false,
+      "background": "#00000000"
+    },
+    "skinnedButtonsTransparent": true,
+    "modalVisible": false,
+    "activeButtons": [
+      "pause"
+    ],
+    "courseBounds": {
+      "x": 359,
+      "y": 0,
+      "width": 214,
+      "height": 30
+    },
+    "timingBounds": {
+      "x": 173.20000000000002,
+      "y": 45.368,
+      "width": 144.072,
+      "height": 57.628800000000005
+    },
+    "dialBounds": {
+      "x": 34,
+      "y": 5,
+      "width": 139.20000000000002,
+      "height": 139.20000000000002
+    },
+    "minimap": {
+      "bearing": 1.5045982978921482,
+      "marker": {
+        "x": 0.795561320701103,
+        "y": 0.5015756903163183
+      },
+      "projection": {
+        "x": 0.7912082408779497,
+        "z": -135.02837157795693,
+        "scale": 0.00005910346218519365
+      },
+      "visible": true,
+      "bounds": {
+        "x": 703.0831999999999,
+        "y": 20.8688,
+        "width": 100.78080000000001,
+        "height": 100.78080000000001
+      },
+      "frameBounds": {
+        "x": 687.4,
+        "y": 5,
+        "width": 185.60000000000002,
+        "height": 139.20000000000002
+      },
+      "trackId": "sky-harbor"
+    },
+    "instrumentsBounds": {
+      "x": 34,
+      "y": 5,
+      "width": 296.71152502910365,
+      "height": 139.20000000000002
+    },
+    "instrumentsVisible": true,
+    "displaySpeed": "024",
+    "health": 97.5448251480621,
+    "healthColor": [
+      0.32,
+      0.95,
+      0.6,
+      1
+    ],
+    "countdownVisible": false,
+    "announcement": "",
+    "touchVisible": true,
+    "bounds": [
+      {
+        "x": 396.23546296296297,
+        "y": 130.28240740740742,
+        "width": 139.52907407407406,
+        "height": 170.15740740740745
+      },
+      {
+        "x": 534.9106663494333,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      },
+      {
+        "x": 648.628321353719,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      {
+        "x": 273.7635438121698,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      {
+        "x": 320.7948885195017,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      }
+    ],
+    "start": {
+      "x": 603.5740740740741,
+      "y": 329.0407407407408,
+      "width": 253.42592592592592,
+      "height": 43.44444444444444
+    },
+    "buttons": {
+      "track-sky-harbor": {
+        "x": 396.23546296296297,
+        "y": 130.28240740740742,
+        "width": 139.52907407407406,
+        "height": 170.15740740740745
+      },
+      "track-neon-city": {
+        "x": 534.9106663494333,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      },
+      "track-reactor-run": {
+        "x": 648.628321353719,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      "track-rainbow-road": {
+        "x": 273.7635438121698,
+        "y": 161.44021023863237,
+        "width": 9.608134834111183,
+        "height": 133.38328110560536
+      },
+      "track-sky-coaster": {
+        "x": 320.7948885195017,
+        "y": 146.66046551298126,
+        "width": 76.294445131065,
+        "height": 151.9496632052755
+      },
+      "previous-course": {
+        "x": 215.3651111111111,
+        "y": 193.36111111111114,
+        "width": 52,
+        "height": 44
+      },
+      "next-course": {
+        "x": 664.6348888888889,
+        "y": 193.36111111111114,
+        "width": 52,
+        "height": 44
+      },
+      "start-race": {
+        "x": 603.5740740740741,
+        "y": 329.0407407407408,
+        "width": 253.42592592592592,
+        "height": 43.44444444444444
+      },
+      "pause": {
+        "x": 823.16,
+        "y": 73.20160000000001,
+        "width": 44,
+        "height": 44
+      },
+      "control-a": {
+        "x": 75,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-d": {
+        "x": 157,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-s": {
+        "x": 703,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-w": {
+        "x": 785,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "resume": {
+        "x": 278.8,
+        "y": 190.1,
+        "width": 374.4,
+        "height": 50
+      },
+      "restart": {
+        "x": 278.8,
+        "y": 190.1,
+        "width": 374.4,
+        "height": 50
+      },
+      "home-button": {
+        "x": 278.8,
+        "y": 265.70000000000005,
+        "width": 374.4,
+        "height": 50
+      },
+      "settings": {
+        "x": 821,
+        "y": 6,
+        "width": 46,
+        "height": 46
+      },
+      "language-zh": {
+        "x": 211.8,
+        "y": 147.5,
+        "width": 161.20000000000002,
+        "height": 42
+      },
+      "language-en": {
+        "x": 385.4,
+        "y": 147.5,
+        "width": 161.20000000000002,
+        "height": 42
+      },
+      "language-ja": {
+        "x": 559,
+        "y": 147.5,
+        "width": 161.20000000000002,
+        "height": 42
+      },
+      "settings-done": {
+        "x": 329.6,
+        "y": 291.9,
+        "width": 272.8,
+        "height": 42
+      },
+      "steering-joystick": {
+        "x": 211.8,
+        "y": 238.7,
+        "width": 248,
+        "height": 42
+      },
+      "steering-gyro": {
+        "x": 472.2,
+        "y": 238.7,
+        "width": 248,
+        "height": 42
+      }
+    },
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "width": 932,
+      "height": 430
+    }
+  },
+  "audio": {
+    "played": {
+      "click": 20,
+      "course": 2,
+      "count-3": 2,
+      "count-2": 2,
+      "count-1": 2,
+      "go": 2,
+      "music": 3,
+      "boost": 2,
+      "engine-low": 1,
+      "engine-high": 1,
+      "brake": 1,
+      "lap": 1,
+      "rail": 2
+    },
+    "musicPlaying": true,
+    "engineLevel": 0,
+    "loops": 0,
+    "pending": 0,
+    "backend": {
+      "kind": "av-audio-engine",
+      "error": null,
+      "running": true,
+      "buffers": 14,
+      "pcmBytes": 6720840,
+      "voices": 2,
+      "nodeCount": 12,
+      "loopChannels": [
+        "music"
+      ],
+      "played": 41,
+      "volume": 0.68,
+      "disposed": false
+    }
+  },
+  "haptics": {
+    "active": true,
+    "impactsRequested": 2,
+    "lastKind": "medium"
+  },
+  "driving": {
+    "mode": "gyro",
+    "axis": -0.12971259495019868,
+    "joystick": {
+      "active": false,
+      "pointerId": null,
+      "center": {
+        "x": 157,
+        "y": 317
+      },
+      "direction": {
+        "x": 0,
+        "y": 0
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "rawDistance": 0,
+      "distance": 0,
+      "strength": 0,
+      "angle": 0
+    },
+    "gyroAvailable": true,
+    "gyroActive": true,
+    "sensorSamples": 198,
+    "rotation": 90
+  },
+  "error": "Error: actual light wall impact invokes the matching native haptic"
+}

@@ -1,0 +1,24 @@
+{
+  "status": "awaiting-uninterrupted-native-verification",
+  "installed": true,
+  "nativeBundleSha256": "86d49cefce70437eed0b29edde5e42654245793604ad163657aef725457bd8de",
+  "bundledResourcesVerified": 53,
+  "browserChecksPassed": 266,
+  "gameTestsPassed": 61,
+  "nativeTestsPassed": 8,
+  "priorMemoryFailure": {
+    "reason": "highwater",
+    "residentPages": 259895,
+    "pageBytes": 16384
+  },
+  "fix": "Release temporary raster surfaces after upload and font surfaces after scene destruction; collect native wrappers at raster/scene boundaries.",
+  "nativePause": "Final verification received the real application background event during language tests. No new termination was observed.",
+  "sourceHashes": {
+    "Native/examples/neon-circuit/src/raster.ts": "81b8ad642562743f6fad3405812cd620c610b98510c3de6ed8215ec5f9d0af58",
+    "Native/examples/neon-circuit/src/main-page.ts": "0a959bc74a4523ebf6045a8109e6df03a9e059a776d611fb9aaee602821911ee",
+    "Native/examples/neon-circuit/src/driving.ts": "ecce1b43b5031d8626f696addcb6f2db6b8a21987b3341d5d957ec7584ab2dc9",
+    "Native/examples/neon-circuit/src/verification.ts": "8fb09e8bd2e652215bdddb0d185d5dcf693eb03d0cf68572e3c5f1b212cd536a",
+    "Games/games/neon-circuit/main.ts": "de861797f4bd828c59c3fd4ff077b5e2d442d8547dde3c7f1e73f2509a8cd969",
+    "Games/games/neon-circuit/VolcanicHazards.ts": "27af750545af93c5012e4009e960e4f8eb0a7059a9572c9271842df942bc0019"
+  }
+}

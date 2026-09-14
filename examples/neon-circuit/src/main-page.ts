@@ -4,7 +4,7 @@ import {NativePcmAudioBank} from '../../../bridge/audio/pcm-bank.ios';
 import {NeonAudio} from '../../../../Games/games/neon-circuit/audio/NeonAudio';
 import {NEON_SOUND_IDS,NEON_SOUNDS} from '../../../../Games/games/neon-circuit/audio/Sounds';
 import { TEXT, readLanguage } from '../../../../Games/games/neon-circuit/NeonLocale';
-import { Application, EventData, Label, Page, knownFolders, path } from '@nativescript/core';
+import { Application, EventData, Label, Page, knownFolders, path, Utils } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { LocalStorageSaveBackend, MemorySaveBackend } from '@haiyue/engine/save';
 import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage';
@@ -37,6 +37,10 @@ function ensureHost(canvas: Canvas): void {
   const haptics=new NativeHaptics();
   let audio: NeonAudio | null = null;
   let models: NativeModels | null = null, driving: NativeDriving | null = null;
+  let raster: NativeNeonRaster | null = null;
+  let releaseRasterFrame: (()=>void) | null = null;
+  let rasterEngine: import('@haiyue/engine').HaiyueEngine | null = null;
+  let collectScene = false;
   const target = new OrbitPointerTarget(() => nativeViewRect(canvas), 'all');
   // GUI hover/press ownership can change during a drag or another finger's press.
   // Always release the pedal by identity, even when the finger ends outside it.
@@ -57,7 +61,13 @@ function ensureHost(canvas: Canvas): void {
     capture: { requested: environment('NEON_CAPTURE_FRAME') === '1', file: 'neon-circuit-frame.png' },
     prepareScene: async engine => {
       haptics.resume();
-      const raster = new NativeNeonRaster(engine.device);
+      raster = new NativeNeonRaster(engine.device);rasterEngine=engine;
+      releaseRasterFrame=()=>{
+        // Native allocations are large while their JS wrappers are small. Collect only at
+        // raster/scene boundaries, after the previous scene's async call stack has unwound.
+        if((raster?.flushTransient()??0)>0 || collectScene){collectScene=false;Utils.GC();}
+      };
+      engine.on('after-update',releaseRasterFrame);
       const bank=new NativePcmAudioBank(NEON_SOUND_IDS.map(id=>({id,seconds:NEON_SOUNDS[id].seconds,path:path.join(knownFolders.currentApp().path,'game-assets','audio',`${id}.wav`)})),()=>game?.suspend());
       audio=new NeonAudio(bank);
       models = new NativeModels(engine.device); driving = new NativeDriving(engine, canvas, safeInsets);
@@ -68,7 +78,7 @@ function ensureHost(canvas: Canvas): void {
       const loadCircuit = async (id: string, race: boolean): Promise<void> => {
         if (disposed) return;
         const next = new NeonCircuitGame(id); game = next;
-        await next.initNative(engine, { haptic:impact=>haptics.impact(wallHaptic(impact)), audio:audio!, languageStorage, raster, guiFont: raster.font, modelOptions: models!.options, saveBackend, safeInsets,
+        await next.initNative(engine, { ...(environment('NEON_MODE')==='duel'?{raceMode:'duel' as const,difficulty:'hard' as const}:{}), haptic:impact=>haptics.impact(wallHaptic(impact)), audio:audio!, languageStorage, raster:raster!, guiFont: raster!.font, modelOptions: models!.options, saveBackend, safeInsets,
           steering: () => driving?.axis ?? 0,
           changeCircuit: id => {
             if (switching || disposed) return;
@@ -79,12 +89,12 @@ function ensureHost(canvas: Canvas): void {
               // Native queue completion is dispatched while the surface is pumped.
               // Keep presenting the paused scene until the fence resolves.
               await next.flushSave(); await engine.device.queue.onSubmittedWorkDone(); engine.stop();
-              next.dispose(); if (disposed) return;
+              next.dispose();raster?.releaseScene(); if (disposed) return;
               await loadCircuit(id, true); if (!disposed && !Application.inBackground && !Application.suspended) engine.run();
             }).catch(error => host?.fail(error)).finally(() => { switching = false; });
           } }, race);
         if (disposed) { next.dispose(); return; }
-        driving!.bind(next); driving!.resume();
+        driving!.bind(next); driving!.resume();collectScene=true;
       };
       await loadCircuit(environment('NEON_TRACK') || 'sky-harbor', environment('NEON_RACE') === '1');
       if (verifying) void verifyNativeNeon(engine, () => game!, driving!, target, canvas, safeInsets, haptics).finally(() => { verifying = false; target.cancel(); driving?.cancel(); game?.showHome(); });
@@ -94,9 +104,9 @@ function ensureHost(canvas: Canvas): void {
       suspend() { haptics.suspend(); input.suspend(); driving?.suspend(); game?.suspend(); void game?.flushSave(); },
       resume() { haptics.resume(); input.resume(); driving?.resume(); },
       dispose() { input.dispose(); },
-      snapshot() { return { ...input.snapshot(), touches: target.snapshot(), controls: driving?.snapshot(), game: game?.snapshot(),audio:audio?.snapshot(),haptics:haptics.snapshot() }; },
+      snapshot() { return { ...input.snapshot(), touches: target.snapshot(), controls: driving?.snapshot(), game: game?.snapshot(),audio:audio?.snapshot(),haptics:haptics.snapshot(),rasterSurfaces:raster?.surfaceCount }; },
     }),
-    disposeScene() { disposed = true; driving?.dispose(); input.dispose(); target.dispose(); game?.dispose(); game = null; models?.dispose(); audio?.dispose(); haptics.dispose(); },
+    disposeScene() { disposed = true; if(releaseRasterFrame)rasterEngine?.off('after-update',releaseRasterFrame);driving?.dispose(); input.dispose(); target.dispose(); game?.dispose(); game = null; raster?.releaseScene();models?.dispose(); audio?.dispose(); haptics.dispose(); },
   });
   Application.on(Application.uncaughtErrorEvent, unhandled); Application.on(Application.exitEvent, disposeHost);
 }

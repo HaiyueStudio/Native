@@ -31,11 +31,13 @@ export class NativeModels {
   readonly options: import('@haiyue/extensions/gltf').GltfModelSystemOptions;
   constructor(gpu: GPUDevice) {
     const directory = path.join(knownFolders.currentApp().path, 'game-assets', 'wraith-raider');
-    const gltf = JSON.parse(File.fromPath(path.join(directory, 'model.gltf')).readTextSync());
-    const binary = bytes(path.join(directory, 'model.bin'));
     const entries: TextureEntry[] = JSON.parse(File.fromPath(path.join(directory, 'textures.json')).readTextSync());
     this.manager = new BundledTextures(gpu, directory, entries);
+    let parsed: { gltf: any; binary: ArrayBuffer } | undefined;
     this.options = { assetManager: this.manager, assetWorker: { async loadParsedAsset() {
+      // Solo first-person scenes skip geometry; duels still load the visible rival.
+      parsed ??= { gltf: JSON.parse(File.fromPath(path.join(directory, 'model.gltf')).readTextSync()), binary: bytes(path.join(directory, 'model.bin')) };
+      const {gltf,binary}=parsed;
       return { gltf, binaryChunk: binary, buffers: [binary], baseUrl: 'https://bundled.haiyue.invalid/wraith-raider/' };
     } } };
   }

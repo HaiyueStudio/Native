@@ -1,0 +1,13 @@
+✔ all five actual routes remain inside a rotating circular overview, including loops and helixes (56.816234ms)
+✔ heading-up map puts forward travel above the car at every cardinal bearing and wraps without a jump (0.611337ms)
+✔ marker follows progress and lateral position using the same projection as the course ink (3.972278ms)
+✔ vertical coaster pose retains its last bearing and uses the actual projected nose after inversion (0.653265ms)
+✔ iPhone moves its existing dial exactly left 25 and down 5, joins timing, and keeps a 44-point pause target inside screen (1.227763ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 615.919599
