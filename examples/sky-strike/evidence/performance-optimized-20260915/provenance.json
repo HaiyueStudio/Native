@@ -1,0 +1,24 @@
+{
+  "device": "iPhone 15 Plus",
+  "bundleId": "org.haiyue.native.skystrike",
+  "renderTarget": [
+    860,
+    1864
+  ],
+  "msaaSamples": 4,
+  "baseline": "../performance-20260915",
+  "sha256": {
+    "Engine/extensions/src/indexed-sprite/IndexedSpriteRenderer.ts": "f7b370f7216759574ef61d299baa04a00ea417852d14984f285e0da43f4174a3",
+    "Engine/extensions/test/indexed-sprite-scratch.test.mjs": "fc843aa460ae12e2c10877472b1a80d334c37b10e8963150c0d0e7c5edbe8904",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "a9867d213b3209288f093925f2f69c5624436d481f3e3aa93f739e229768755b",
+    "Games/games/sky-strike/battleLayer.ts": "20b9c4c7ab8417b000cc0a99320e9058349a6bdcf4580a2efefe04b7a3916e29",
+    "Games/games/test/fixtures/sky-native/main.ts": "728de3086b5f2a22f878b09485b193881444109a063da824117deddc304f0c4b",
+    "Native/examples/sky-strike/vendor/haiyue-extensions-0.1.0.tgz": "8973350df4375a75c874d59f2294e309f9961a09edbad2ca9d77ab107ffab0c9",
+    "Native/examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/bundle.mjs": "427980931b960c6f681ed3c4c987d1516713bdaf6c83bf998a406dad84823ec2"
+  },
+  "gitHeads": {
+    "Engine": "3498696e51e6108add86474adecaae9cbf0f5234",
+    "Games": "bf70b09ea438c6f97a23f2e715467ae5d9db2d36",
+    "Native": "68c36039821c17c34f13c4d0d92ffa834f1e8aa2"
+  }
+}

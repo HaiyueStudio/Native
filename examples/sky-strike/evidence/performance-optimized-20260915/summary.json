@@ -1,0 +1,127 @@
+[
+  {
+    "scene": "quantum",
+    "playingSamples": 720,
+    "cpuMeanMs": 17.52851111151459,
+    "worstWindowCpuP95Ms": 36.5419999579899,
+    "intervalMeanMs": 19.952140277827212,
+    "worstWindowIntervalP95Ms": 36.70799999963492,
+    "callbackHz": 50.11993631135898,
+    "firstFrameCpuMs": 187.5,
+    "thermalStates": [
+      0
+    ],
+    "maxSpriteCommands": 563,
+    "maxSpriteDrawCalls": 78,
+    "atlasBytes": [
+      47914992
+    ],
+    "maxGuiTextureBytes": 5033472,
+    "maxLensTargetBytes": 0,
+    "maxFlameInstances": 0,
+    "maxAudioVoices": 3,
+    "gpuTraceEnabled": false,
+    "endPhase": "paused",
+    "gpuTimeMs": null
+  },
+  {
+    "scene": "fire",
+    "playingSamples": 840,
+    "cpuMeanMs": 13.66200118978408,
+    "worstWindowCpuP95Ms": 22.624999983236194,
+    "intervalMeanMs": 17.215129761912284,
+    "worstWindowIntervalP95Ms": 23.74999999301508,
+    "callbackHz": 58.08843812565711,
+    "firstFrameCpuMs": 107.04199998872355,
+    "thermalStates": [
+      0
+    ],
+    "maxSpriteCommands": 350,
+    "maxSpriteDrawCalls": 37,
+    "atlasBytes": [
+      47914992
+    ],
+    "maxGuiTextureBytes": 4574720,
+    "maxLensTargetBytes": 0,
+    "maxFlameInstances": 49,
+    "maxAudioVoices": 4,
+    "gpuTraceEnabled": false,
+    "endPhase": "paused",
+    "gpuTimeMs": null
+  },
+  {
+    "scene": "black-hole",
+    "playingSamples": 1920,
+    "cpuMeanMs": 17.56443437479902,
+    "worstWindowCpuP95Ms": 51.500000001396984,
+    "intervalMeanMs": 19.586783854174428,
+    "worstWindowIntervalP95Ms": 51.66599998483434,
+    "callbackHz": 51.0548340883884,
+    "firstFrameCpuMs": 119.75000001257285,
+    "thermalStates": [
+      0
+    ],
+    "maxSpriteCommands": 404,
+    "maxSpriteDrawCalls": 110,
+    "atlasBytes": [
+      47914992
+    ],
+    "maxGuiTextureBytes": 4247040,
+    "maxLensTargetBytes": 32060800,
+    "maxFlameInstances": 0,
+    "maxAudioVoices": 3,
+    "gpuTraceEnabled": false,
+    "endPhase": "paused",
+    "gpuTimeMs": null
+  },
+  {
+    "scene": "prism",
+    "playingSamples": 960,
+    "cpuMeanMs": 15.212931249031195,
+    "worstWindowCpuP95Ms": 36.16700001293793,
+    "intervalMeanMs": 17.546701041646884,
+    "worstWindowIntervalP95Ms": 36.334000003989786,
+    "callbackHz": 56.99076981060497,
+    "firstFrameCpuMs": 172.16700001154095,
+    "thermalStates": [
+      0
+    ],
+    "maxSpriteCommands": 528,
+    "maxSpriteDrawCalls": 87,
+    "atlasBytes": [
+      47914992
+    ],
+    "maxGuiTextureBytes": 4247040,
+    "maxLensTargetBytes": 0,
+    "maxFlameInstances": 0,
+    "maxAudioVoices": 3,
+    "gpuTraceEnabled": false,
+    "endPhase": "paused",
+    "gpuTimeMs": null
+  },
+  {
+    "scene": "parts",
+    "playingSamples": 1200,
+    "cpuMeanMs": 12.974943332568122,
+    "worstWindowCpuP95Ms": 18.042000010609627,
+    "intervalMeanMs": 16.85927083332596,
+    "worstWindowIntervalP95Ms": 18.290999985765666,
+    "callbackHz": 59.31454627463993,
+    "firstFrameCpuMs": 104.41699996590614,
+    "thermalStates": [
+      0
+    ],
+    "maxSpriteCommands": 314,
+    "maxSpriteDrawCalls": 43,
+    "atlasBytes": [
+      47914992
+    ],
+    "maxGuiTextureBytes": 12640768,
+    "maxLensTargetBytes": 0,
+    "maxFlameInstances": 0,
+    "maxAudioVoices": 2,
+    "gpuTraceEnabled": false,
+    "endPhase": "paused",
+    "gpuTimeMs": null
+  }
+]

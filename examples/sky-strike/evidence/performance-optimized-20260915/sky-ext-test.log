@@ -1,0 +1,14 @@
+✔ indexed sprite capability is focused and does not widen the extensions root (3.019507ms)
+✔ atlas layout is deterministic, preserves indexed planes, converts RGB, and replicates gutters (7.150123ms)
+✔ atlas layout rejects duplicate ids, malformed planes, and bounded resource overruns (1.518112ms)
+✔ renderer batches commands, performs bounded uploads, recovers, and disposes once (5.067288ms)
+✔ renderer validates draw references and indexed palette selection (1.225427ms)
+✔ staging reuse preserves stable priority, active upload range, defaults, errors and recovery (16.304846ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 539.467923

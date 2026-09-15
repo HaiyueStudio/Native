@@ -1,0 +1,22 @@
+[
+  {
+    "check": "extensions-test",
+    "exit": 0
+  },
+  {
+    "check": "engine-typecheck",
+    "exit": 0
+  },
+  {
+    "check": "engine-test",
+    "exit": "timeout"
+  },
+  {
+    "check": "engine-build",
+    "exit": "timeout"
+  },
+  {
+    "check": "games-test",
+    "exit": "timeout"
+  }
+]

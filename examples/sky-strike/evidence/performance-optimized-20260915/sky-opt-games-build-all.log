@@ -1,0 +1,43 @@
+
+> @haiyue/games-repository@0.1.0 build
+> node scripts/build-games.mjs
+
+
+> rollup game 2048
+
+games/2048/main.ts → games/2048/bundle.js...
+created games/2048/bundle.js in 25.3s
+
+> rollup game billiards-3d
+
+games/billiards-3d/main.ts → games/billiards-3d/bundle.js...
+created games/billiards-3d/bundle.js in 28s
+
+> rollup game billiards
+
+games/billiards/main.ts → games/billiards/bundle.js...
+created games/billiards/bundle.js in 36.8s
+
+> rollup game calendar-puzzle
+
+games/calendar-puzzle/main.ts → games/calendar-puzzle/bundle.js...
+created games/calendar-puzzle/bundle.js in 33.8s
+
+> rollup game triangle-calendar-puzzle
+
+games/triangle-calendar-puzzle/main.ts → games/triangle-calendar-puzzle/bundle.js...
+created games/triangle-calendar-puzzle/bundle.js in 13.6s
+
+> rollup game entanglement-path
+
+games/entanglement-path/main.ts → games/entanglement-path/bundle.js...
+created games/entanglement-path/bundle.js in 15s
+
+> rollup game icosahedron-minesweeper
+
+games/icosahedron-minesweeper/main.ts → games/icosahedron-minesweeper/bundle.js...
+created games/icosahedron-minesweeper/bundle.js in 15.7s
+
+> rollup game gravity-maze
+
+games/gravity-maze/main.ts → games/gravity-maze/dist...

@@ -1,0 +1,51 @@
+
+> @haiyue/engine-repository@0.1.0 check:boundaries
+> node scripts/check-workspace-boundaries.mjs && npm run modules:check && node scripts/run-studio-npm.mjs Editor run check:boundaries
+
+[workspace-boundary] shader-language -> (none)
+[workspace-boundary] animation-spec -> (none)
+[workspace-boundary] engine -> (none)
+[workspace-boundary] extensions -> animation-spec, engine
+[workspace-boundary] examples -> animation-spec, engine, extensions
+[workspace-boundary] All workspace dependency rules passed.
+
+> @haiyue/engine-repository@0.1.0 modules:check
+> node scripts/check-engine-module-boundaries.mjs
+
+[engine-modules] 447 modules checked: no cycles or reverse facade dependencies.
+[studio:Editor] npm run check:boundaries
+
+> @haiyue/editor-repository@0.1.0 check:boundaries
+> node scripts/check-repository-boundaries.mjs && npm run check:boundaries -w ./editor
+
+[editor-repository-boundary] 7 workspaces satisfy package, source, and AI-neutral boundaries.
+
+> @haiyue/editor@0.1.0 check:boundaries
+> node scripts/check-boundaries.mjs
+
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'typescript' imported from /Users/qingque/Desktop/HaiyueStudio/Editor/editor/scripts/check-boundaries.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.19.0
+npm error Lifecycle script `check:boundaries` failed with error:
+npm error code 1
+npm error path /Users/qingque/Desktop/HaiyueStudio/Editor/editor
+npm error workspace @haiyue/editor@0.1.0
+npm error location /Users/qingque/Desktop/HaiyueStudio/Editor/editor
+npm error command failed
+npm error command sh -c node scripts/check-boundaries.mjs

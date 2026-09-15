@@ -50,7 +50,8 @@ function ensureHost(canvas: Canvas): void {
     status.text = locale.text(text.startsWith('正在初始化') ? 'preparing' : 'startupFailed');
   }, {
     diagnosticName: 'sky-strike',
-    engineOptions: { msaaSamples: 4, clearColor: { r: 0.004, g: 0.008, b: 0.03, a: 1 } },
+    performance: ['1','detailed'].includes(String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PERF'))),
+    engineOptions: { diagnostics: { enabled: String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PERF')) === 'detailed' }, msaaSamples: 4, clearColor: { r: 0.004, g: 0.008, b: 0.03, a: 1 } },
     canvasInput: {
       addEventListener: input.target.addEventListener.bind(input.target),
       removeEventListener: input.target.removeEventListener.bind(input.target),

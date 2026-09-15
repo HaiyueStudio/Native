@@ -1,0 +1,27 @@
+[
+  {
+    "scene": "quantum",
+    "playingSamples": 720,
+    "cpuMeanMs": 17.023915276675122,
+    "worstWindowCpuP95Ms": 30.124999990221113,
+    "intervalMeanMs": 19.17338055556886,
+    "worstWindowIntervalP95Ms": 30.25000001071021,
+    "callbackHz": 52.15564345065652,
+    "firstFrameCpuMs": 200.8750000386499,
+    "thermalStates": [
+      0
+    ],
+    "maxSpriteCommands": 561,
+    "maxSpriteDrawCalls": 150,
+    "atlasBytes": [
+      47914992
+    ],
+    "maxGuiTextureBytes": 5033472,
+    "maxLensTargetBytes": 0,
+    "maxFlameInstances": 0,
+    "maxAudioVoices": 3,
+    "gpuTraceEnabled": false,
+    "endPhase": "paused",
+    "gpuTimeMs": null
+  }
+]

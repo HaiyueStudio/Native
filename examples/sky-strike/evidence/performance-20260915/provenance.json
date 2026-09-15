@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-09-15T00:49:46.429827+00:00",
+  "device": "iPhone 15 Plus",
+  "renderWidth": 860,
+  "renderHeight": 1864,
+  "msaaSamples": 4,
+  "pixelRatioCap": 2,
+  "mode": "SKY_PERF=1 lightweight frame timing; Engine GPU diagnostics disabled",
+  "baselineMode": "initial quantum SKY_PERF=1 before lightweight mode: detailed tracing enabled",
+  "sources": {
+    "Native/examples/sky-strike/src/main-page.ts": "d83c0543cb0f9e1d5530521ccada43f2939d7a8c09adfc1af209d9470cbed85c",
+    "Native/bridge/lifecycle/host.ts": "4d5ff905cd63ee929d2ebe57efde049ed88b55c3cd65b285fdc10410db5d303f",
+    "Native/bridge/lifecycle/frame-performance.ts": "6051bd3ad1ea25accfcfc7ac740f0b56dab60557191e95c7f7e7d03fc7d4bcf1",
+    "Games/games/sky-strike/SkyStrikeGame.ts": "acf13aa554a1b2408f9aae8e90f8fb465ef36e76339b8ad596c8805ab7471b15",
+    "Games/games/sky-strike/battleLayer.ts": "da1d2eb6597a74a888c94fe1de933c01c7dc61dad9e59b698cf571c4a45601c5",
+    "Engine/extensions/src/indexed-sprite/IndexedSpriteRenderer.ts": "607c1c8f4f6c1e86c515474b7af787eefcf323f2c7d4cc48b68533106973ca35"
+  },
+  "bundleSha256": "2b5b543f3e4a248440d59a6d349e5956b4540ecf28c6e276ba737efa7b0f84ae",
+  "limitations": [
+    "short scripted diagnostic scenes with invulnerability and forced boss events, memory-only progress",
+    "first frame and first 120-frame window excluded from steady-state statistics; paused windows excluded",
+    "elapsed frame-handler time includes command recording and present and may include blocking; not CPU utilization",
+    "callback cadence, not compositor display-frame trace",
+    "worst window p95, not a whole-run p95",
+    "no isolated GPU timestamp, process RSS, battery drain or long-session leak measurement"
+  ]
+}
