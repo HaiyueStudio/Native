@@ -68,6 +68,8 @@ xcrun devicectl device process launch --device <device-id> --terminate-existing 
 
 `NEON_CAPTURE_FRAME=1` 在第 120 帧生成截图；`NEON_TRACK=rainbow-road` 指定启动赛道，`NEON_RACE=1` 直接进入倒计时。日常冷启动不启用这些诊断选项。
 
+`NEON_PERF=1` 启用每 120 帧的性能采样，写入同一宿主日志：帧间隔、包含 present 等待的 CPU 回调耗时、引擎绘制/上传计数、GPU 资源存量，以及 iOS thermalState（0 正常、1 轻度、2 严重、3 临界）。CPU 回调耗时不等于 GPU 执行时间，也不等于纯 CPU 忙碌时间；资源估算不等于进程总内存。每批样本最多 600 个，进入后台时清空帧间隔，避免把锁屏时间计入卡顿。普通游玩关闭性能诊断，并把常规完整日志间隔从 120 帧延长到 600 帧。
+
 App 图标由内置 ImageGen 生成，原图和来源记录在 `assets/`；iOS 图标仅做格式转换与缩放。
 
 本次安装因免费签名的三 App 上限，经用户选择替换“前线训练场”。其完整数据容器已备份到 `../ak47-range/artifacts/neon-migration-20260913/`，包含文件校验清单，原项目源码保留。

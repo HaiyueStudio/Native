@@ -1,0 +1,41 @@
+{
+  "engine": {
+    "tests": 627,
+    "passed": 627,
+    "typecheck": "passed",
+    "repositoryTypecheck": "passed",
+    "boundaries": [
+      "modules",
+      "responsibilities",
+      "renderer-prepare"
+    ],
+    "apiCheck": "blocked by existing @haiyue/ui capability entrypoint/export mismatch"
+  },
+  "game": {
+    "focusedTests": 78,
+    "passed": 78,
+    "typecheck": "passed",
+    "build": "neon-circuit passed",
+    "browserChecks": {
+      "duelMobius": 22,
+      "highSpeedMobile": 74,
+      "damagedHull": 71
+    },
+    "fullSuite": {
+      "tests": 637,
+      "passed": 611,
+      "failed": 2,
+      "cancelled": 4,
+      "skipped": 20,
+      "note": "Failures are existing MUGEN HYMUGEN byte-exact serialization and viewer UI slot assertions; cancellations are Petra 30-second timeouts."
+    }
+  },
+  "native": {
+    "tests": 10,
+    "passed": 10,
+    "typecheck": "passed",
+    "deviceBuild": "passed",
+    "resourceHashChecks": 53
+  },
+  "fullEngineBuild": "Attempted; examples shared bundle exceeded 60-second build timeout. GUI example subsequently rebuilt with the configurable 180-second timeout."
+}

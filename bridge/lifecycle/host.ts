@@ -1,6 +1,8 @@
 import { Application, File, knownFolders, path } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { HaiyueEngine } from '@haiyue/engine';
+import { getEngineDiagnosticsSnapshot } from '@haiyue/engine/diagnostics';
+import { FramePerformance } from './frame-performance';
 import { NativeSurface, type NativeCanvasInput } from '../render/surface';
 import { captureSurfaceFrame, isFrameCaptureRequested } from '../render/frame-capture.ios';
 import { nativeFrames, installNativeFrameRuntime } from './runtime';
@@ -13,6 +15,8 @@ export interface NativeHostInput {
 }
 
 export interface NativeRenderHostOptions {
+  performance?: boolean;
+  diagnosticIntervalFrames?: number;
   canvasInput?: NativeCanvasInput;
   engineOptions?: Pick<ConstructorParameters<typeof HaiyueEngine>[0], 'clearColor' | 'renderProfile' | 'msaaSamples' | 'reverseZ'>;
   bindInput?: (engine: HaiyueEngine, report: (event: string, detail: unknown) => void) => NativeHostInput;
@@ -37,6 +41,7 @@ export class NativeRenderHost {
   private captureRequested: boolean;
   private readonly journal: string[] = [];
   private readonly logFile: File;
+  private readonly performance = new FramePerformance();
 
   constructor(private readonly view: Canvas, private readonly status: (text: string) => void, private readonly options: NativeRenderHostOptions = {}) {
     this.captureRequested = options.capture?.requested ?? isFrameCaptureRequested();
@@ -73,12 +78,13 @@ export class NativeRenderHost {
     const generation = ++this.generation;
     this.status('正在初始化原生 WebGPU…');
     try {
-      const engine = new HaiyueEngine({ ...this.surface.engineOptions(), renderProfile: 'simple', msaaSamples: 1, timestampQuery: false, recoverDeviceLost: false, clearColor: { r: 0.025, g: 0.055, b: 0.095, a: 1 }, ...this.options.engineOptions });
+      const engine = new HaiyueEngine({ ...this.surface.engineOptions(), renderProfile: 'simple', msaaSamples: 1, timestampQuery: false, diagnostics:{enabled:this.options.performance===true}, recoverDeviceLost: false, clearColor: { r: 0.025, g: 0.055, b: 0.095, a: 1 }, ...this.options.engineOptions });
       this.engine = engine;
       await engine.init();
       if (this.disposed || this.failed || generation !== this.generation) { engine.destroy(); return; }
       this.observedDevice = engine.device;
       this.observedDevice.addEventListener('uncapturederror', this.onGpuError);
+      if(this.options.performance)engine.on('update',this.beforeFrame);
       engine.on('device-lost', event => this.fail(new Error(`WebGPU device lost: ${event.detail?.message}`)));
       if (this.options.prepareScene) this.report('scene-ready', await this.options.prepareScene(engine));
       else engine.switchScene(engine.createScene({ render3D: true, view: { clearColor: engine.clearColor } }));
@@ -104,14 +110,19 @@ export class NativeRenderHost {
       catch (error) { this.report('capture-error', { message: String(error) }); }
     }
     if (!this.surface.present()) return;
+    if(this.options.performance)this.performance.end(performance.now());
     const frames = this.surface.presentedFrames;
-    if (frames === 1 || frames % 120 === 0) {
+    if (frames === 1 || frames % (this.options.diagnosticIntervalFrames??120) === 0) {
       this.status(`原生 WebGPU 已呈现 ${frames} 帧`);
       this.report('present', { frames, width: this.engine?.width, height: this.engine?.height, scheduledCallbacks: nativeFrames.pendingCount, input: this.input?.snapshot() ?? null });
+      if(this.options.performance && this.engine)this.report('performance',{frames,...this.performance.take(),thermalState:NSProcessInfo.processInfo.thermalState,engine:getEngineDiagnosticsSnapshot(this.engine)});
     }
   };
 
+  private readonly beforeFrame = ():void => {this.performance.begin(performance.now());};
+
   private readonly suspend = (): void => {
+    this.performance.reset();
     this.suspended = true;
     this.input?.suspend();
     this.engine?.stop();
@@ -146,6 +157,7 @@ export class NativeRenderHost {
   private readonly onGpuError = (event: GPUUncapturedErrorEvent): void => this.fail(event.error);
 
   private removeDeviceListener(): void {
+    this.engine?.off('update',this.beforeFrame);
     this.observedDevice?.removeEventListener('uncapturederror', this.onGpuError);
     this.observedDevice = null;
   }

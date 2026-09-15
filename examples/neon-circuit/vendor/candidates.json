@@ -1,14 +1,15 @@
 {
   "scope": "local development candidates; not published",
-  "engineRevision": "c8554c313b4ffcf43756db0cc0a8b1c526b72dc7",
+  "engineRevision": "7dd7bf687b6b9c319f6cdb2c20a6e95a8d78153d",
   "packages": {
     "engine": {
       "file": "haiyue-engine-0.1.0.tgz",
-      "sha256": "f936a1037df13793cbd7634f327adac4e899811902f8af0eb9a36083dbf02063"
+      "sha256": "b8de32185dc3a2995d18a4575efc488cb54118399fc0820fb1d4c1fcafddbdcd"
     },
     "extensions": {
       "file": "haiyue-extensions-0.1.0.tgz",
       "sha256": "62fb49e1a0ffe0dbaed447d5c8b1d47fa723fb624371d6096b0d6720cb343f97"
     }
-  }
+  },
+  "engineWorkingTreeDirty": true
 }

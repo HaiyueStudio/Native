@@ -1,0 +1,45 @@
+{
+  "frames": 120,
+  "active": {
+    "passes": 241,
+    "submits": 241,
+    "uploads": {
+      "calls": 241,
+      "bytes": 3856,
+      "unknownByteCalls": 0,
+      "byLabel": [
+        {
+          "label": "NeonCircuit.hullFire.uniforms",
+          "calls": 1,
+          "bytes": 16,
+          "unknownByteCalls": 0
+        },
+        {
+          "label": "NeonCircuit.thrusterFlame.uniforms",
+          "calls": 120,
+          "bytes": 1920,
+          "unknownByteCalls": 0
+        },
+        {
+          "label": "",
+          "calls": 120,
+          "bytes": 1920,
+          "unknownByteCalls": 0
+        }
+      ]
+    }
+  },
+  "paused": {
+    "submits": 0,
+    "uploads": {
+      "calls": 0,
+      "bytes": 0,
+      "unknownByteCalls": 0,
+      "byLabel": []
+    }
+  },
+  "residue": {
+    "buffers": 0,
+    "textures": 0
+  }
+}

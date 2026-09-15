@@ -58,6 +58,9 @@ function ensureHost(canvas: Canvas): void {
     canvasInput: { addEventListener: target.addEventListener.bind(target), removeEventListener: target.removeEventListener.bind(target),
       setPointerCapture: (id: number) => captureNativePointer(target, id), releasePointerCapture: target.releasePointerCapture.bind(target) } as unknown as NativeCanvasInput,
     engineOptions: { msaaSamples: 4, reverseZ: true }, diagnosticName: 'neon-circuit',
+    performance: environment('NEON_PERF') === '1',
+    // Persist the full diagnostic snapshot less often during ordinary play.
+    diagnosticIntervalFrames: environment('NEON_PERF') === '1' ? 120 : 600,
     capture: { requested: environment('NEON_CAPTURE_FRAME') === '1', file: 'neon-circuit-frame.png' },
     prepareScene: async engine => {
       haptics.resume();

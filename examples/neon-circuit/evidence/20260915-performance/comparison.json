@@ -1,0 +1,144 @@
+{
+  "device": "iPhone 15 Plus / A16",
+  "scenario": "mobius-ring, hard AI duel, stationary player, 1864x860, 4x MSAA, reverse Z, diagnostics enabled in both runs",
+  "limitations": [
+    "CPU callback timing includes present and waiting; it is not pure CPU busy time or GPU execution time.",
+    "GPU resource estimates are not process RSS.",
+    "thermalState is an iOS pressure category, not temperature or power measurement.",
+    "Frame counter cohort preserves similar fixed-camera workload; absolute elapsed time differs with frame rate."
+  ],
+  "before": {
+    "cohort": "report windows ending at frames 240 through 4800, excluding startup/capture",
+    "sampledIntervals": 4680,
+    "meanFrameIntervalMs": 21.801994230762883,
+    "equivalentFps": 45.86736375652222,
+    "meanCpuCallbackIncludingPresentMs": 21.344717948697006,
+    "meanSampledDraws": 514,
+    "meanSampledPipelineSwitches": 507,
+    "meanSampledUploadCalls": 45.333333333333336,
+    "meanSampledUploadBytes": 30800,
+    "checkpoints": [
+      {
+        "frames": 120,
+        "intervalMs": 23.7923697480431,
+        "buffers": 2001,
+        "frameCreatedBuffers": 9,
+        "thermalState": 0
+      },
+      {
+        "frames": 1200,
+        "intervalMs": 20.410416666709352,
+        "buffers": 10718,
+        "frameCreatedBuffers": 8,
+        "thermalState": 0
+      },
+      {
+        "frames": 2400,
+        "intervalMs": 22.190966666676104,
+        "buffers": 20318,
+        "frameCreatedBuffers": 8,
+        "thermalState": 0
+      },
+      {
+        "frames": 3600,
+        "intervalMs": 23.11389166667747,
+        "buffers": 29918,
+        "frameCreatedBuffers": 8,
+        "thermalState": 1
+      },
+      {
+        "frames": 4800,
+        "intervalMs": 24.453474999851704,
+        "buffers": 39518,
+        "frameCreatedBuffers": 8,
+        "thermalState": 1
+      },
+      {
+        "frames": 6000,
+        "intervalMs": 25.27673333340014,
+        "buffers": 41960,
+        "frameCreatedBuffers": 2,
+        "thermalState": 2
+      },
+      {
+        "frames": 7200,
+        "intervalMs": 24.95034166689341,
+        "buffers": 44360,
+        "frameCreatedBuffers": 2,
+        "thermalState": 2
+      }
+    ],
+    "last": {
+      "frames": 7200,
+      "buffers": 44360,
+      "thermalState": 2
+    }
+  },
+  "after": {
+    "cohort": "report windows ending at frames 240 through 4800, excluding startup/capture",
+    "sampledIntervals": 4680,
+    "meanFrameIntervalMs": 19.852760042729052,
+    "equivalentFps": 50.37082994242122,
+    "meanCpuCallbackIncludingPresentMs": 19.389941880484933,
+    "meanSampledDraws": 513,
+    "meanSampledPipelineSwitches": 49.333333333333336,
+    "meanSampledUploadCalls": 36.48717948717949,
+    "meanSampledUploadBytes": 28487.384615384617,
+    "checkpoints": [
+      {
+        "frames": 120,
+        "intervalMs": 23.86834453781597,
+        "buffers": 930,
+        "frameCreatedBuffers": 0,
+        "thermalState": 0
+      },
+      {
+        "frames": 1200,
+        "intervalMs": 18.329166666565772,
+        "buffers": 929,
+        "frameCreatedBuffers": 0,
+        "thermalState": 0
+      },
+      {
+        "frames": 2400,
+        "intervalMs": 20.22152499994263,
+        "buffers": 929,
+        "frameCreatedBuffers": 0,
+        "thermalState": 1
+      },
+      {
+        "frames": 3600,
+        "intervalMs": 21.372916666344583,
+        "buffers": 929,
+        "frameCreatedBuffers": 0,
+        "thermalState": 1
+      },
+      {
+        "frames": 4800,
+        "intervalMs": 21.351391666394193,
+        "buffers": 929,
+        "frameCreatedBuffers": 0,
+        "thermalState": 2
+      },
+      {
+        "frames": 6000,
+        "intervalMs": 20.948958333368257,
+        "buffers": 923,
+        "frameCreatedBuffers": 0,
+        "thermalState": 2
+      },
+      {
+        "frames": 7200,
+        "intervalMs": 21.36110833331865,
+        "buffers": 923,
+        "frameCreatedBuffers": 0,
+        "thermalState": 2
+      }
+    ],
+    "last": {
+      "frames": 7920,
+      "buffers": 923,
+      "thermalState": 2
+    }
+  }
+}
