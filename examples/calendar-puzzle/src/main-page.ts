@@ -85,7 +85,7 @@ function ensureHost(canvas: Canvas): void {
         textures?.dispose();
       },
       bindInput: (engine, report) => {
-        if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas);
+        if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, nativeLaunchFlag('CALENDAR_SMOKE_CLEAN'));
         return ({
         suspend() {
           game?.suspendAudio();

@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gpu="@nativescript/canvas" actionBarHidden="true" loaded="onLoaded" unloaded="onUnloaded" backgroundColor="#eef6f1">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gpu="@nativescript/canvas" actionBarHidden="true" androidOverflowEdge="ignore" loaded="onLoaded" unloaded="onUnloaded" backgroundColor="#eef6f1">
   <GridLayout iosOverflowSafeArea="true">
     <gpu:Canvas id="surface" ready="onCanvasReady" ignoreTouchEvents="true" iosOverflowSafeArea="true" />
     <Label id="status" text="正在准备拼图…" color="#22313a" fontSize="16" textWrap="true" margin="18" verticalAlignment="center" horizontalAlignment="center" isUserInteractionEnabled="false" />

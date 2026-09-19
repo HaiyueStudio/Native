@@ -19,6 +19,12 @@ export class NativeOrientationController {
     const window=activity.getWindow();
     window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     window.getDecorView().setSystemUiVisibility(5894); // immersive sticky, fullscreen, hidden navigation, stable layout
+    if (android.os.Build.VERSION.SDK_INT >= 30) {
+      window.setDecorFitsSystemWindows(false);
+      const insets = window.getInsetsController();
+      insets?.hide(android.view.WindowInsets.Type.systemBars());
+      insets?.setSystemBarsBehavior(android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+    }
     if (android.os.Build.VERSION.SDK_INT>=28) { const attributes=window.getAttributes(); attributes.layoutInDisplayCutoutMode=android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES; window.setAttributes(attributes); }
   };
   dispose(): void {if(this.disposed)return;this.disposed=true;Application.android.off(AndroidApplication.activityCreatedEvent,this.apply);Application.off(Application.resumeEvent,this.apply);Application.off(Application.displayedEvent,this.apply);}

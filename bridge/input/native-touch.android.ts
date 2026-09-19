@@ -1,5 +1,5 @@
-import { Screen } from '@nativescript/core';
-import { GesturesObserver, GestureTypes, type TouchGestureEventData } from '@nativescript/core/ui/gestures';
+import { Screen, View, Application, type EventData } from '@nativescript/core';
+import { type TouchGestureEventData } from '@nativescript/core/ui/gestures';
 import type { Canvas } from '@nativescript/canvas';
 import { nativeViewRect } from '../render/view-rect.android';
 import { OrbitPointerTarget, type TouchAction } from './pointer-target';
@@ -11,7 +11,6 @@ export interface NativeTouchSample {
 export class NativeTouchInput {
   readonly target: OrbitPointerTarget;
   readonly orbitTarget: OrbitPointerTarget | null;
-  private readonly observer: GesturesObserver;
   private readonly ids = new Set<number>();
   private pinching = false;
   private disposed = false;
@@ -21,8 +20,12 @@ export class NativeTouchInput {
     if (!view.ignoreTouchEvents) throw new Error('Disable Canvas pointer synthesis before attaching Core touch.');
     this.target = new OrbitPointerTarget(() => nativeViewRect(view));
     this.orbitTarget = options.pinchZoom ? new OrbitPointerTarget(() => nativeViewRect(view), 'all') : null;
-    this.observer = new GesturesObserver(view, event => this.touch(event as TouchGestureEventData), this);
-    this.observer.observe(GestureTypes.touch); view.on('unloaded', this.unloaded);
+    // Android dispatches only observers registered on Core's View. A standalone
+    // GesturesObserver is never included in that dispatch list. Bypass Canvas's
+    // DOM addEventListener override while keeping its synthetic touch disabled.
+    View.prototype.addEventListener.call(view, 'touch', this.onTouch);
+    view.on('unloaded', this.unloaded);
+    view.on('loaded', this.loaded);
   }
   snapshot() { return { pinching: this.pinching, rect: nativeViewRect(this.view), measured: { width: this.view.clientWidth, height: this.view.clientHeight }, ...this.target.snapshot(), nativeIdentities: this.ids.size, nativeObserverCount: this.disposed ? 0 : 1, nativeRecognizerCount: this.disposed ? 0 : 1 }; }
   private touch(event: TouchGestureEventData): void {
@@ -39,6 +42,8 @@ export class NativeTouchInput {
     if (this.pinching && this.ids.size !== 2) this.orbitTarget?.suspend();
     if (this.pinching && !this.ids.size) { this.pinching = false; this.target.resume(); this.orbitTarget?.resume(); }
   }
+  private readonly onTouch = (event: EventData): void => this.touch(event as TouchGestureEventData);
+  private readonly loaded = (): void => { if (!Application.inBackground && !Application.suspended) this.resume(); };
   private cancel(action: 'suspend' | 'unloaded' | 'dispose'): void {
     this.target.suspend(); this.orbitTarget?.suspend(); this.ids.clear(); this.pinching = false; this.paused = true;
     this.sample({ action, points: [], input: this.target.snapshot() });
@@ -46,5 +51,5 @@ export class NativeTouchInput {
   private readonly unloaded = (): void => this.cancel('unloaded');
   suspend(): void { if (!this.disposed) this.cancel('suspend'); }
   resume(): void { if (!this.disposed) { this.paused = false; this.target.resume(); this.orbitTarget?.resume(); } }
-  dispose(): void { if (this.disposed) return; this.cancel('dispose'); this.observer.disconnect(); this.view.off('unloaded',this.unloaded); this.target.dispose(); this.orbitTarget?.dispose(); this.disposed=true; }
+  dispose(): void { if (this.disposed) return; this.cancel('dispose'); View.prototype.removeEventListener.call(this.view,'touch',this.onTouch); this.view.off('unloaded',this.unloaded); this.view.off('loaded',this.loaded); this.target.dispose(); this.orbitTarget?.dispose(); this.disposed=true; }
 }

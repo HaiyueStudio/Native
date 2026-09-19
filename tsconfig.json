@@ -1,0 +1,8 @@
+{
+  "extends": "./examples/calendar-puzzle/tsconfig.json",
+  "compilerOptions": {
+    "typeRoots": ["./examples/calendar-puzzle/node_modules"]
+  },
+  "include": ["bridge/**/*.ts"],
+  "exclude": ["**/node_modules", "**/platforms"]
+}

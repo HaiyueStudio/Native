@@ -10,7 +10,10 @@
     "run:ios": "node scripts/ios.mjs run ios",
     "bundle:ios": "node scripts/ios.mjs prepare ios",
     "test": "node --test test/*.test.mjs",
-    "build:device": "node scripts/build-device.mjs"
+    "build:device": "node scripts/build-device.mjs",
+    "doctor:android": "node scripts/android.mjs doctor android",
+    "build:android": "node scripts/android.mjs build android",
+    "run:android": "node scripts/android.mjs run android"
   },
   "dependencies": {
     "@haiyue/engine": "file:vendor/haiyue-engine-0.1.0.tgz",

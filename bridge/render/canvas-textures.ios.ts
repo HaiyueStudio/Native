@@ -1,4 +1,5 @@
 import { Canvas } from '@nativescript/canvas';
+import { isAndroid } from '@nativescript/core';
 /** Canvas 2D rasterization with explicit RGBA upload; game rendering remains WebGPU. */
 export class NativeCanvasTextures {
   private readonly textures = new Map<string, { texture: GPUTexture; width: number; height: number }>();
@@ -7,6 +8,9 @@ export class NativeCanvasTextures {
     const canvas = new Canvas();
     canvas.width = width;
     canvas.height = height;
+    // These offscreen canvases are always read back immediately for a WebGPU
+    // upload. CPU rasterization avoids Android GL readback artifacts on icons.
+    if (isAndroid) canvas.getContext('2d', { willReadFrequently: true })?.clearRect(0, 0, width, height);
     return canvas as unknown as HTMLCanvasElement;
   };
   readonly readAtlasPixels = (canvas: HTMLCanvasElement): Uint8Array => {

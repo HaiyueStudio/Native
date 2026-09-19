@@ -1,0 +1,19 @@
+
+> @haiyue/native-calendar-puzzle@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Android fence waits for GPU mapping, coalesces a turn, and reuses completed buffers (2.674638ms)
+✔ Later submissions get a separate fence and failed readbacks are retired (0.926545ms)
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (5.344954ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (5.256511ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.90667ms)
+✔ victory fixture is an exact legal tiling of February 28, 2024 (3.196024ms)
+✔ landscape picking uses UIKit drawing bounds rather than safe-area measurement (2.571723ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 771.354602

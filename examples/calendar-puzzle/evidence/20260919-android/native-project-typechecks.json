@@ -1,0 +1,37 @@
+[
+  {
+    "app": "ak47-range",
+    "exit": 0,
+    "diagnostics": ""
+  },
+  {
+    "app": "calendar-puzzle",
+    "exit": 0,
+    "diagnostics": ""
+  },
+  {
+    "app": "ios-pbr-orbit",
+    "exit": 0,
+    "diagnostics": ""
+  },
+  {
+    "app": "neon-circuit",
+    "exit": 0,
+    "diagnostics": ""
+  },
+  {
+    "app": "rubiks-cube",
+    "exit": 0,
+    "diagnostics": ""
+  },
+  {
+    "app": "sky-strike",
+    "exit": 0,
+    "diagnostics": ""
+  },
+  {
+    "app": "spider-solitaire",
+    "exit": 0,
+    "diagnostics": ""
+  }
+]

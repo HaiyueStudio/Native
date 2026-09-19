@@ -27,6 +27,9 @@
       ],
       "@haiyue/engine": [
         "node_modules/@haiyue/engine"
+      ],
+      "@haiyue/engine/*": [
+        "node_modules/@haiyue/engine/dist/*"
       ]
     }
   },
