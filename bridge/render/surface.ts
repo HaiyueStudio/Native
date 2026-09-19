@@ -1,7 +1,7 @@
-import { Screen } from '@nativescript/core';
+import { Screen, isAndroid } from '@nativescript/core';
 import { Canvas, GPU, GPUAdapter, GPUCanvasContext } from '@nativescript/canvas';
 import type { HaiyueEngine } from '@haiyue/engine';
-import { nativeViewRect } from './view-rect.ios';
+import { nativeViewRect } from './view-rect';
 import { copyDeviceDescriptor } from './device-descriptor';
 import { installNativeWebGpuConstants } from './webgpu-constants';
 
@@ -70,7 +70,7 @@ export class NativeSurface {
       },
     };
     const canvas = {
-      focus: () => (self.view.nativeViewProtected as UIView | undefined)?.becomeFirstResponder(),
+      focus: () => isAndroid ? (self.view.nativeViewProtected as android.view.View | undefined)?.requestFocus() : (self.view.nativeViewProtected as UIView | undefined)?.becomeFirstResponder(),
       addEventListener: (...args: Parameters<NativeCanvasInput['addEventListener']>) => self.input?.addEventListener(...args),
       removeEventListener: (...args: Parameters<NativeCanvasInput['removeEventListener']>) => self.input?.removeEventListener(...args),
       setPointerCapture: (id: number) => self.input?.setPointerCapture(id),

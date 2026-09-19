@@ -1,10 +1,10 @@
-import { Application, File, knownFolders, path } from '@nativescript/core';
+import { Application, File, knownFolders, path, isAndroid } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { HaiyueEngine } from '@haiyue/engine';
 import { getEngineDiagnosticsSnapshot } from '@haiyue/engine/diagnostics';
 import { FramePerformance } from './frame-performance';
 import { NativeSurface, type NativeCanvasInput } from '../render/surface';
-import { captureSurfaceFrame, isFrameCaptureRequested } from '../render/frame-capture.ios';
+import { captureSurfaceFrame, isFrameCaptureRequested } from '../render/frame-capture';
 import { nativeFrames, installNativeFrameRuntime } from './runtime';
 
 export interface NativeHostInput {
@@ -51,7 +51,7 @@ export class NativeRenderHost {
     Application.on(Application.suspendEvent, this.suspend);
     Application.on(Application.resumeEvent, this.resume);
     view.on('layoutChanged', this.layout);
-    this.report('host-created', { engine: '0.1.0', canvas: '2.1.18', runtime: '9.0.3', backendRoute: 'Canvas/wgpu/Metal', dpr: this.surface.pixelRatio, captureRequested: this.captureRequested });
+    this.report('host-created', { engine: '0.1.0', canvas: '2.1.18', runtime: '9.0.3', backendRoute: isAndroid ? 'Canvas/wgpu/Vulkan' : 'Canvas/wgpu/Metal', dpr: this.surface.pixelRatio, captureRequested: this.captureRequested });
     this.layout();
   }
 
@@ -115,7 +115,7 @@ export class NativeRenderHost {
     if (frames === 1 || frames % (this.options.diagnosticIntervalFrames??120) === 0) {
       this.status(`原生 WebGPU 已呈现 ${frames} 帧`);
       this.report('present', { frames, width: this.engine?.width, height: this.engine?.height, scheduledCallbacks: nativeFrames.pendingCount, input: this.input?.snapshot() ?? null });
-      if(this.options.performance && this.engine)this.report('performance',{frames,...this.performance.take(),thermalState:NSProcessInfo.processInfo.thermalState,engine:getEngineDiagnosticsSnapshot(this.engine)});
+      if(this.options.performance && this.engine)this.report('performance',{frames,...this.performance.take(),thermalState:isAndroid ? null : NSProcessInfo.processInfo.thermalState,engine:getEngineDiagnosticsSnapshot(this.engine)});
     }
   };
 

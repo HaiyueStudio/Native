@@ -1,5 +1,7 @@
 # Spider Solitaire — native iOS
 
+2026-09-19：经用户授权，手机上的 App 已卸载并换装日历拼图。卸载前完整备份了 44 个本地文件（含存档 Preferences），校验清单和数据保存在忽略目录 `artifacts/backups/20260919-before-calendar-puzzle/`，不纳入版本控制。
+
 The existing `Games/games/spider-solitaire/SpiderSolitaireGame.ts` runs on Haiyue
 Engine through NativeScript Canvas/wgpu/Metal. The app has its own bundle ID,
 `org.haiyue.native.spidersolitaire`, and home-screen name **蜘蛛纸牌**.
