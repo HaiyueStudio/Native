@@ -15,6 +15,11 @@ test('loading overlay waits for presentation and a failure during fade remains v
   let animations = 0, finish;
   class View {
     children = [];
+    listeners = new Map();
+    size = { width: 932, height: 430 };
+    getActualSize() { return this.size; }
+    on(event, handler) { this.listeners.set(event, handler); }
+    off(event) { this.listeners.delete(event); }
     addChild(child) { this.children.push(child); }
     removeChild(child) { this.children = this.children.filter(c => c !== child); }
     animate() { animations++; const p = new Promise(resolve => { finish = resolve; }); p.cancel = () => finish(); return p; }
@@ -31,10 +36,44 @@ test('loading overlay waits for presentation and a failure during fade remains v
   assert.equal(splash.view.visibility, 'visible');
   assert.equal(splash.view.opacity, 1);
   splash.dispose(); assert.equal(parent.children.length, 0);
+  assert.equal(parent.listeners.size, 0);
+  splash.dispose(); splash.presented(); splash.fail();
+  assert.equal(splash.status, 'disposed');
   const next = new NativeEngineSplash(parent);
   next.presented(); finish(); await new Promise(resolve => setImmediate(resolve));
   assert.equal(next.view.visibility, 'collapse');
   next.dispose();
+});
+test('shared splash scales for portrait, landscape and small windows, and relayouts on rotation', () => {
+  class View {
+    children=[]; listeners=new Map(); size={width:430,height:932};
+    addChild(child) { this.children.push(child); }
+    removeChild(child) { this.children=this.children.filter(c=>c!==child); }
+    getActualSize() { return this.size; }
+    on(event,handler) { this.listeners.set(event,handler); }
+    off(event) { this.listeners.delete(event); }
+  }
+  const core={GridLayout:View,StackLayout:View,Image:View,Label:View,Page:View,Color:class{},Device:{language:'zh-CN'}};
+  const branding=load('../../../bridge/branding/engine-splash.ts',{'@nativescript/core':core});
+  for(const [w,h] of [[430,932],[320,568],[932,430],[640,320],[240,240]]) {
+    const l=branding.engineSplashLayout(w,h);
+    assert(l.contentWidth<=w-40); assert(l.logo>=64);
+    assert(l.logo+l.gap+32+7+14+l.captionGap+32 < h-30);
+  }
+  assert(branding.engineSplashLayout(430,932).logo>branding.engineSplashLayout(932,430).logo);
+  const parent=new View(),splash=new branding.NativeEngineSplash(parent);
+  const content=splash.view.children[0],portraitLogo=content.children[0].width;
+  parent.size={width:932,height:430};parent.listeners.get('layoutChanged')();
+  assert(content.children[0].width<portraitLogo); assert.equal(content.translateY,0);
+  splash.setMessage('正在恢复棋局');assert.equal(content.children[3].text,'正在恢复棋局');
+  const {NativeEngineLaunchPage}=load('../../../bridge/branding/launch-page.ts',{'@nativescript/core':core,'./engine-splash':branding});
+  const page=new NativeEngineLaunchPage({orientation:'portrait'});
+  assert.equal(page.content.children[0],page.gameRoot);
+  assert.equal(page.content.children[1],page.splash.view);
+  assert.equal(page.gameRoot.iosOverflowSafeArea,false);
+  assert.equal(page.content.iosOverflowSafeArea,true);
+  assert.equal(page.splash.status,'loading');
+  splash.dispose();page.splash.dispose();
 });
 test('normal play presents every frame without periodic snapshot serialization or disk writes', () => {
   for (const interval of [0, 120]) {

@@ -1,0 +1,139 @@
+{
+  "date": "2026-09-20",
+  "applicationId": "org.haiyue.games.ledsudoku",
+  "name": "流光数独",
+  "device": {
+    "model": "X4000",
+    "android": "14",
+    "resolution": [
+      1080,
+      2400
+    ],
+    "density": 480,
+    "gpu": "Adreno 710"
+  },
+  "build": {
+    "variant": "debug",
+    "minSdk": 26,
+    "targetSdk": 36,
+    "apk": "artifacts/android/led-sudoku-debug.apk",
+    "bytes": 201720663,
+    "sha256": "f1a0b82704d91aec601c9d13a6457d0f11e0815997f572e38f50d42403665af4"
+  },
+  "checks": {
+    "nativeUnitTests": 5,
+    "sharedLedSudokuTests": 86,
+    "nativeTypecheck": "passed",
+    "gamesTypecheck": "passed",
+    "androidBuild": "passed",
+    "webBuild": "passed",
+    "onDeviceSmoke": {
+      "passed": true,
+      "checks": 17,
+      "snapshot": {
+        "seed": 20260920,
+        "selected": 2,
+        "filled": 25,
+        "options": {
+          "difficulty": "normal",
+          "led": true,
+          "diagonal": false,
+          "missing": false,
+          "killer": false,
+          "renban": false,
+          "consecutive": false,
+          "inequality": true,
+          "multiDiagonal": true,
+          "exclusion": true,
+          "parity": true
+        },
+        "loading": false,
+        "complete": false,
+        "board": {
+          "width": 340,
+          "height": 340
+        },
+        "keypad": [
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          },
+          {
+            "width": 107.33333333333333,
+            "height": 60
+          }
+        ]
+      }
+    }
+  },
+  "manualChecks": [
+    "候选数字真实点击：进度从 25/81 更新到 26/81",
+    "真实棋盘触摸：选中 R1C4，候选区同步更新",
+    "后台恢复：同一 seed、进度26/81，后台无待渲染回调",
+    "强制关闭并冷启动：恢复同一棋局及26/81进度",
+    "新数独面板滚动、难度与规则切换",
+    "LED关闭＋数比/多对角线/排除点/奇偶：常规数字，入门35/81",
+    "LED开启＋四项附加规则：LED数字，标准25/81"
+  ],
+  "layout": {
+    "boardDip": [
+      340,
+      340
+    ],
+    "candidateGrid": [
+      3,
+      3
+    ],
+    "candidateTileDip": [
+      107.3333333333,
+      60
+    ]
+  },
+  "scope": "已安装至此 Android 测试机；未验证其他设备或 iOS。",
+  "installed": true,
+  "finalLaunch": {
+    "rules": {
+      "difficulty": "normal",
+      "led": true,
+      "diagonal": false,
+      "missing": false,
+      "killer": false,
+      "renban": false,
+      "consecutive": false,
+      "inequality": true,
+      "multiDiagonal": true,
+      "exclusion": true,
+      "parity": true
+    },
+    "seed": 3185626430
+  },
+  "finalScreenshot": "android-final.png"
+}

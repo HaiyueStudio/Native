@@ -4,6 +4,7 @@
 
 | 示例 | 平台 | 目标 | 状态 |
 | --- | --- | --- | --- |
+| [led-sudoku](./led-sudoku/README.md) | iPhone / Android | 流光数独，竖屏棋盘、九宫格 LED 输入、十四种规则 | NativeScript / Haiyue Metal、Vulkan，独立应用 |
 | [calendar-puzzle](./calendar-puzzle/README.md) | iPhone / iOS | 日历拼图，原生 GUI、触摸拖拽及自动存档 | 已安装；9 项真机交互检查及重启存档恢复通过 |
 | [neon-circuit](./neon-circuit/README.md) | iPhone / iOS | 四赛道竞速、原生 PBR 与 GUI、陀螺仪 / 虚拟摇杆驾驶 | 已安装；28 项真机检查及正常冷启动通过 |
 | [ak47-range](./ak47-range/README.md) | iPhone / iOS | 第三人称训练场、骨骼持枪、摇杆与双指射击 | 源码及本地数据备份保留；经用户授权换装霓虹竞速 |

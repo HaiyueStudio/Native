@@ -1,0 +1,11 @@
+Page, .sheet { background-color: #061015; color: #d6e9ea; }
+Button { color: #d6e9ea; background-color: #10262e; border-color: #29464e; border-width: 1; border-radius: 7; font-size: 12; padding: 0 6; margin: 2; text-transform: none; android-elevation: 0; }
+Button:disabled { opacity: 0.28; }
+.primary { background-color: #83ffc1; color: #0a2920; border-color: #83ffc1; font-weight: bold; }
+.active { color: #83ffc1; border-color: #83ffc1; background-color: #13332d; }
+.muted { color: #8ba6ae; }
+.key-hit { background-color: transparent; color: transparent; border-width: 0; margin: 0; padding: 0; font-size: 1; }
+.key-tile { background-color: #10242b; border-width: 1; border-color: #29464e; border-radius: 7; margin: 3; }
+.sheet { padding: 18; }
+.sheet Label { text-wrap: true; }
+.rule-row { border-bottom-width: 1; border-bottom-color: #20383f; padding: 11 0; }

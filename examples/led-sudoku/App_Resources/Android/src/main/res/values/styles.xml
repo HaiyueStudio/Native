@@ -1,0 +1,10 @@
+<resources>
+  <style name="AppThemeBase" parent="Theme.AppCompat.NoActionBar">
+    <item name="android:windowActionModeOverlay">true</item><item name="android:windowFullscreen">true</item>
+    <item name="android:windowBackground">#061015</item><item name="android:colorAccent">#83ffc1</item>
+    <item name="android:windowLightStatusBar">false</item><item name="android:windowLightNavigationBar">false</item>
+  </style>
+  <style name="AppTheme" parent="AppThemeBase" />
+  <style name="NativeScriptToolbarStyleBase" parent="Widget.AppCompat.Toolbar" />
+  <style name="NativeScriptToolbarStyle" parent="NativeScriptToolbarStyleBase" />
+</resources>

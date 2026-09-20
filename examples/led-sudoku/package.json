@@ -1,0 +1,38 @@
+{
+  "name": "@haiyue/native-led-sudoku",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/app.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test test/*.test.mjs",
+    "build:android": "node scripts/android.mjs build android",
+    "run:android": "node scripts/android.mjs run android",
+    "build:ios": "node scripts/ios.mjs build ios --for-device",
+    "run:ios": "node scripts/ios.mjs run ios"
+  },
+  "dependencies": {
+    "@haiyue/engine": "file:vendor/haiyue-engine-0.1.0.tgz",
+    "@nativescript/canvas": "2.1.18",
+    "@nativescript/core": "9.1.1",
+    "@nativescript/font-manager": "1.0.14",
+    "core-js-pure": "3.50.0",
+    "wgpu-matrix": "3.4.2"
+  },
+  "devDependencies": {
+    "@nativescript/android": "9.0.3",
+    "@nativescript/types": "9.0.0",
+    "@nativescript/webpack": "5.0.38",
+    "@webgpu/types": "0.1.64",
+    "nativescript": "9.1.1",
+    "typescript": "5.7.3",
+    "@nativescript/ios": "9.0.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "allowScripts": {
+    "@nativescript/core@9.1.1": true,
+    "nativescript@9.1.1": true
+  }
+}

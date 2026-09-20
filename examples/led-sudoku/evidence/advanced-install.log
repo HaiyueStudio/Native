@@ -1,0 +1,7 @@
+Performing Streamed Install
+Success
+Starting: Intent { cmp=org.haiyue.games.ledsudoku/com.tns.NativeScriptActivity (has extras) }
+Saved /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/evidence/advanced-smoke.jsonl
+Saved /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/evidence/advanced-android.png
+UI hierchary dumped to: /sdcard/led-sudoku-ui.xml
+Saved /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/evidence/advanced-android-ui.xml
