@@ -73,6 +73,7 @@ function ensureHost(canvas: Canvas): void {
       engineOptions: { msaaSamples: 4, clearColor: { r: 0.92, g: 0.96, b: 0.92, a: 1 } },
       diagnosticName: 'calendar-puzzle',
       performance,
+      needsAnimationFrame: () => game?.needsAnimationFrame() ?? false,
       diagnosticIntervalFrames: smoke || performance ? 120 : 0,
       capture: {
         requested: nativeLaunchFlag('CALENDAR_CAPTURE_FRAME'),
@@ -82,6 +83,7 @@ function ensureHost(canvas: Canvas): void {
         textures = new NativeCanvasTextures(engine.device, 'rgba8unorm-srgb');
         game = new CalendarPuzzleGame({
           engine, autoRun: false, keyboard: false, touchControls: true,
+          requestRender: () => host?.requestFrame(),
           createCanvas2D: textures.createCanvas2D, textureFromCanvas: textures.textureFromCanvas,
           saveBackend: backend,
           audioBackend: new NativePcmAudioBank(CALENDAR_SOUND_IDS.map(id => ({ id, seconds: CALENDAR_SOUNDS[id].seconds, path: path.join(knownFolders.currentApp().path, 'game-assets', 'audio', id + '.wav') })), () => game?.suspendAudio()),
@@ -101,7 +103,7 @@ function ensureHost(canvas: Canvas): void {
         textures?.dispose();
       },
       bindInput: (engine, report) => {
-        if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, nativeLaunchFlag('CALENDAR_SMOKE_CLEAN'));
+        if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, nativeLaunchFlag('CALENDAR_SMOKE_CLEAN'), () => host?.requestFrame(), () => host!.renderingSnapshot());
         return ({
         suspend() {
           game?.suspendAudio();

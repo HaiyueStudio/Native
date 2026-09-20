@@ -17,7 +17,8 @@ export async function seedCalendarSmoke(backend: GameSaveBackend): Promise<void>
   await save.saveNow({ year:2024, month:2, day:28, weekday:3, language:'zh', completedDates:[], starredDates:[], hintUsed:false, pieces:solution.map((p,i)=>({ ...p, x:0,y:0,layer:i,scale:1,placed:i!==9 })) });
 }
 export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleGame, input: NativeTouchInput,
-  backend: GameSaveBackend, report: (event: string, data: unknown) => void, canvas: Canvas, cleanWin = false): () => void {
+  backend: GameSaveBackend, report: (event: string, data: unknown) => void, canvas: Canvas, cleanWin = false, requestFrame?: () => void,
+  rendering?: () => { frames: number; scheduledCallbacks: number }): () => void {
   let frame=0, hintStarted=0;
   const checks:Array<{name:string;passed:boolean}>=[];
   const check=(name:string,passed:boolean)=>{checks.push({name,passed});report('smoke-check',{name,passed});};
@@ -26,6 +27,9 @@ export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleG
   const tap=(id:string)=>{const r=game.snapshot().ui[id]!;const p={id:9001,x:r.x+r.width/2,y:r.y+r.height/2};input.target.handle('down',[p]);input.target.handle('up',[p]);};
   const dayButton=(day:number)=>'calendarDay'+game.snapshot().history.cells.findIndex(c=>c?.day===day);
   const tick=()=>{
+    // Only the frame-scripted portion pumps frames; subsequent async stress
+    // requests rely on actual input/worker/animation demand to wake the engine.
+    requestFrame?.();
     if (frame===105 && game.snapshot().hintBusy && performance.now()-hintStarted<9000) return;
     frame++;
     const s=game.snapshot(),b=s.board;
@@ -127,6 +131,39 @@ export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleG
         try {const result=await client.solve({month:9,day:20,weekday:0,fixed:[]});check(`worker reload ${i+1}`,result?.status==='solved');}
         finally {client.dispose();}
         await delay(50);
+      }
+      if (rendering) {
+        const rests = async (name: string) => {
+          await delay(1500);
+          const before = rendering(); await delay(800); const after = rendering();
+          check(name, after.frames === before.frames && after.scheduledCallbacks === 0);
+          report('idle-measurement', { name, before, after, observedMs: 800 });
+        };
+        await rests('stationary selection and hint stop all frame callbacks');
+        let before = rendering().frames;
+        tap('settings'); await delay(120);
+        check('settings wakes from idle and opens', game.snapshot().settingsOpen && rendering().frames > before);
+        tap('ja'); await delay(100); check('language change renders after queued GUI input', game.snapshot().language === 'ja');
+        tap('zh'); tap('done'); await delay(120);
+        await rests('settings close returns to zero idle frames');
+        const pick = anchor();
+        pointer('down',pick.x,pick.y); pointer('up',pick.x,pick.y); await delay(1000);
+        before=rendering().frames; const rotation=game.snapshot().pieces[0]!.rotation;
+        tap('rotate'); await delay(400);
+        check('rotation wakes and finishes from idle', rendering().frames > before && game.snapshot().pieces[0]!.rotation === (rotation+1)%4 && game.snapshot().animating===0);
+        await rests('rotation completion stops rendering');
+        const held=anchor(); pointer('down',held.x,held.y); await delay(1200);
+        const heldFrames=rendering().frames; await delay(500);
+        check('holding a stationary finger does not keep rendering',rendering().frames===heldFrames);
+        pointer('move',held.x+32/scale,held.y+18/scale);await delay(60);pointer('up',held.x+32/scale,held.y+18/scale);await delay(120);
+        check('moving a held finger wakes the board and release completes',rendering().frames>heldFrames&&!game.snapshot().dragging);
+        before=rendering().frames;tap('hint');await idle();await delay(100);
+        check('async hint reply wakes rendering and becomes visible',!!game.snapshot().hint&&rendering().frames>before);
+        await rests('async hint animation settles without a polling render loop');
+        before=rendering().frames;
+        canvas.notify({eventName:'layoutChanged',object:canvas});await delay(120);
+        check('native layout event redraws a sleeping surface',rendering().frames>before);
+        await rests('layout refresh settles back to idle');
       }
       capture('hint-stress-final');
       report('smoke-complete',{passed:checks.every(c=>c.passed),checks});

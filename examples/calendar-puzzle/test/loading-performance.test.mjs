@@ -49,6 +49,7 @@ test('normal play presents every frame without periodic snapshot serialization o
       '@nativescript/core': { Application: { on() {} }, File: { fromPath: () => ({ writeTextSync() { writes++; } }) }, knownFolders: { documents: () => ({ path: '/test' }) }, path: { join: (...p) => p.join('/') }, isAndroid: true },
       '@haiyue/engine': {}, '@haiyue/engine/diagnostics': {},
       './frame-performance': { FramePerformance: class {} },
+      './demand-frames': {},
       '../render/surface': { NativeSurface: Surface },
       '../render/frame-capture': { isFrameCaptureRequested: () => false },
       './runtime': { installNativeFrameRuntime() {}, nativeFrames: { pendingCount: 1 } },

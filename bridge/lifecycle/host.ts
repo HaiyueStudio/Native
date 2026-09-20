@@ -3,6 +3,7 @@ import type { Canvas } from '@nativescript/canvas';
 import { HaiyueEngine } from '@haiyue/engine';
 import { getEngineDiagnosticsSnapshot } from '@haiyue/engine/diagnostics';
 import { FramePerformance } from './frame-performance';
+import { NativeDemandFrames } from './demand-frames';
 import { NativeSurface, type NativeCanvasInput } from '../render/surface';
 import { captureSurfaceFrame, isFrameCaptureRequested } from '../render/frame-capture';
 import { nativeFrames, installNativeFrameRuntime } from './runtime';
@@ -15,6 +16,8 @@ export interface NativeHostInput {
 }
 
 export interface NativeRenderHostOptions {
+  /** Opt-in demand rendering. Call requestFrame() for input/async changes. */
+  needsAnimationFrame?: () => boolean;
   performance?: boolean;
   /** Zero disables periodic snapshots/writes; lifecycle and errors remain logged. */
   diagnosticIntervalFrames?: number;
@@ -43,9 +46,15 @@ export class NativeRenderHost {
   private readonly journal: string[] = [];
   private readonly logFile: File;
   private readonly performance = new FramePerformance();
+  private readonly demand: NativeDemandFrames | null;
 
   constructor(private readonly view: Canvas, private readonly status: (text: string) => void, private readonly options: NativeRenderHostOptions = {}) {
     this.captureRequested = options.capture?.requested ?? isFrameCaptureRequested();
+    this.demand = options.needsAnimationFrame ? new NativeDemandFrames({
+      start: () => { try { this.engine?.run(); } catch (error) { this.fail(error); } },
+      stop: () => this.engine?.stop(),
+      defer: callback => { void Promise.resolve().then(callback); },
+    }) : null;
     this.logFile = File.fromPath(path.join(knownFolders.documents().path, `${options.diagnosticName ?? 'g02'}-host.jsonl`));
     this.surface = new NativeSurface(view, this.report, options.canvasInput);
     installNativeFrameRuntime(error => this.fail(error));
@@ -69,7 +78,7 @@ export class NativeRenderHost {
     if (this.disposed || this.failed || this.suspended || !this.surface.hasLayout) return;
     if (!this.engine) { void this.initialize(); return; }
     if (this.engine.state === 'ready') {
-      try { this.engine.resizeToDisplaySize(); } catch (error) { this.fail(error); }
+      try { this.engine.resizeToDisplaySize(); this.requestFrame(); } catch (error) { this.fail(error); }
     }
   };
 
@@ -95,7 +104,7 @@ export class NativeRenderHost {
       this.report('input-ready', this.input?.snapshot() ?? null);
       engine.on('after-update', this.afterFrame);
       this.report('engine-ready', { width: engine.width, height: engine.height, format: engine.format, profile: engine.renderProfile, clearColor: engine.clearColor });
-      if (!this.suspended) engine.run();
+      if (!this.suspended) { if (this.demand) this.demand.resume(); else engine.run(); }
     } catch (error) { if (!this.disposed) this.fail(error); }
     finally {
       this.initializing = false;
@@ -110,7 +119,7 @@ export class NativeRenderHost {
       try { this.report('frame-capture', { ...captureSurfaceFrame(this.view, this.options.capture?.file), frame: 120 }); }
       catch (error) { this.report('capture-error', { message: String(error) }); }
     }
-    if (!this.surface.present()) return;
+    if (!this.surface.present()) { this.finishDemandFrame(); return; }
     if(this.options.performance)this.performance.end(performance.now());
     const frames = this.surface.presentedFrames;
     const interval = this.options.diagnosticIntervalFrames ?? 120;
@@ -119,13 +128,23 @@ export class NativeRenderHost {
       this.report('present', { frames, width: this.engine?.width, height: this.engine?.height, scheduledCallbacks: nativeFrames.pendingCount, input: this.input?.snapshot() ?? null });
       if(this.options.performance && this.engine)this.report('performance',{frames,...this.performance.take(),thermalState:isAndroid ? null : NSProcessInfo.processInfo.thermalState,engine:getEngineDiagnosticsSnapshot(this.engine)});
     }
+    this.finishDemandFrame();
   };
+
+  requestFrame(): void { this.demand?.request(); }
+  renderingSnapshot() {
+    return { frames: this.surface.presentedFrames, scheduledCallbacks: nativeFrames.pendingCount, demand: this.demand?.snapshot() ?? null };
+  }
+  private finishDemandFrame(): void {
+    this.demand?.afterFrame(this.captureRequested || this.options.needsAnimationFrame?.() === true);
+  }
 
   private readonly beforeFrame = ():void => {this.performance.begin(performance.now());};
 
   private readonly suspend = (): void => {
     this.performance.reset();
     this.suspended = true;
+    this.demand?.suspend();
     this.input?.suspend();
     this.engine?.stop();
     nativeFrames.cancelAll();
@@ -136,10 +155,10 @@ export class NativeRenderHost {
     if (this.disposed || this.failed || !this.suspended) return;
     this.suspended = false;
     this.layout();
-    if (this.engine?.state === 'ready') {
+    if (this.engine?.state === 'ready' && !this.initializing) {
       this.engine.resizeToDisplaySize(true);
       this.input?.resume();
-      this.engine.run();
+      if (this.demand) this.demand.resume(); else this.engine.run();
     }
     this.report('resume', { count: ++this.resumeCount, frames: this.surface.presentedFrames, scheduledCallbacks: nativeFrames.pendingCount, input: this.input?.snapshot() ?? null });
   };
@@ -147,6 +166,7 @@ export class NativeRenderHost {
   fail(error: unknown): void {
     if (this.disposed || this.failed) return;
     this.failed = true;
+    this.demand?.suspend();
     this.input?.suspend();
     this.engine?.stop();
     nativeFrames.cancelAll();
@@ -201,6 +221,7 @@ export class NativeRenderHost {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.demand?.dispose();
     ++this.generation;
     this.disposeInput();
     this.disposeScene();

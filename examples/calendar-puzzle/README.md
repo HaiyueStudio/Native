@@ -37,3 +37,10 @@ IOS_DEVICE_UDID=<iPhone UDID> npm run build:device
 - 原生文字复用 CPU Canvas；重复同色提示复用贴图；选中呼吸不再重设拼块变换。
 - 正常运行关闭每 120 帧完整快照与同步写盘。`CALENDAR_PERFORMANCE=1` 开启性能采样，`CALENDAR_SMOKE=1` 保持完整回归诊断，`CALENDAR_SPLASH_CAPTURE=1` 在首帧截图原生载入页（Documents/calendar-engine-splash.png）。
 - [商业模式和商店准备清单](docs/STORE-RELEASE.zh-CN.md)、[性能改动与验证边界](docs/PERFORMANCE-20260920.md)。本轮未接入内购或锁定原有功能。
+
+## 2026-09-20 按需渲染
+
+- iOS / Android 棋盘静止时停止 Engine 帧循环，不保留轮询 RAF；触摸、异步提示、尺寸变化和恢复前台时重新绘制。
+- 旋转、翻转、打乱、通关粒子照常播放；选中与提示短暂闪动后保持常亮，静止按住手指不会持续刷新。
+- 公共 Native 宿主通过可选 `needsAnimationFrame` 和 `requestFrame()` 接入；其他游戏保持原有调度策略。
+- [实现与验证边界](docs/DEMAND-RENDERING.md)、[真机验证记录](evidence/20260920-demand-render/README.md)。
