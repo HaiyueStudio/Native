@@ -48,7 +48,7 @@
 ## 已执行验证（2026-09-20）
 
 - Android API 36 原生构建通过；X4000 Android 14 更新安装并正常启动。无商店连接情况下“提示→解锁面板”显示错误状态，购买禁用，局面保留；截图在 `evidence/20260920-iap`。
-- iOS StoreKit 2 Swift 和通用 iOS arm64 App 构建通过（不签名）。iPhone 未连接，未安装验证；没有把“能编译”当作沙盒交易通过。
+- iOS StoreKit 2 Swift、通用 iOS arm64 和连接设备签名构建均通过。已更新安装到 iPhone 15 Plus，解锁后 11/11 真机检查通过：真实 StoreKit 初次查询、当天免费、提示/其他日期限制、返回保留局面、免费历史浏览及中英日面板。当前商品返回 unavailable，价格为空，购买不可用。已恢复正常存档启动；真实购买仍未执行。
 - Native 32 项测试通过，其中 16 项覆盖购买状态/日期权限/本地权益缓存；服务端 5 项测试通过，覆盖签名、防篡改、幂等、pending/refund、错误商品、确认失败及重试。
 - Games/Native 类型检查、Games 全量构建及日历拼图目标构建通过。
 - Games 全量测试：672 项，650 通过、20 跳过、2 个既有 MUGEN 测试失败（HYMUGEN byte-exact / viewer manifest）。与本次内购无关，未修改这些模块。
@@ -56,3 +56,7 @@
 还缺：商店商品实际创建/激活、Android 验证服务部署和配置、沙盒购买/恢复/退款的端到端验收。**当前不是可以直接收费上架的完成状态。**
 
 官方依据：[Apple StoreKit](https://developer.apple.com/documentation/storekit)、[Play Billing 集成](https://developer.android.com/google/play/billing/integrate)、[Play 验证安全](https://developer.android.com/google/play/billing/security)。
+
+## iPhone 免费版界面诊断
+
+Debug 构建可使用 `CALENDAR_PURCHASE_SMOKE=1` 启动：保留真实 StoreKit 适配器，使用独立的 `calendar-purchase-smoke` 存档，检查当天免费、提示限制、任意日期限制、关闭后保留局面，以及三语言设置入口。此诊断不会调用购买或恢复认证。结果记录为 `purchase-smoke-check` / `purchase-smoke-complete`，截图 `iphone-iap-*.png` 写入应用 Documents。完成后不带环境变量重新启动应用即可恢复正常存档。Release 构建会忽略此标记。

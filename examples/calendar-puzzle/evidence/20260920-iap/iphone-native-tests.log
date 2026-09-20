@@ -1,0 +1,44 @@
+
+> @haiyue/native-calendar-puzzle@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Android fence waits for GPU mapping, coalesces a turn, and reuses completed buffers (2.578013ms)
+✔ Later submissions get a separate fence and failed readbacks are retired (1.274173ms)
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (8.640359ms)
+✔ native readback canvases request CPU rasterization before any drawing and reuse GPU uploads (160.712445ms)
+✔ cold start settles in two frames and idle performs no further callbacks (5.167189ms)
+✔ a burst of touch events coalesces, while late GUI invalidation cannot create duplicate loops (0.541979ms)
+✔ animations render to completion; async worker result wakes a sleeping engine (0.801761ms)
+✔ suspend blocks queued and async wakeups; resume redraws; disposal is terminal (0.349127ms)
+✔ native frame runtime replaces configurable getter-only globals and preserves cancellation (119.687439ms)
+✔ loading overlay waits for presentation and a failure during fade remains visible (158.472203ms)
+✔ normal play presents every frame without periodic snapshot serialization or disk writes (146.418589ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (2.998685ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.592162ms)
+✔ late unload/exit from the previous Android page cannot dispose the new host (191.756613ms)
+✔ locked date selection preserves date, puzzle and save; today remains free (3.27856ms)
+✔ full access selects any date, but revocation gates gestures and toolbar actions (0.369311ms)
+✔ locked hint never starts solver and never marks a clean completion as assisted (0.405169ms)
+✔ purchase panel blocks gameplay while visible, web embedding remains fully enabled (0.198846ms)
+✔ purchase view renders exact localized price, disables pending/owned checkout and keeps restore accessible (3.193096ms)
+✔ localized price, verified purchase and explicit restore (4.332117ms)
+✔ cancel/pending never unlock and duplicate taps launch checkout once (0.582442ms)
+✔ repeated store callbacks coalesce, pending completion is verified, refund removes access (11.966738ms)
+✔ store outage does not create entitlement or show a fabricated price (1.541939ms)
+✔ lease expiry locks without relying on a rendering or network loop (0.45557ms)
+✔ offline cache requires validated grant, unexpired lease and matching token (1.628362ms)
+✔ backend outage never grants a first purchase; pending never grants access (0.338734ms)
+✔ online refund persists locked state when later offline, restore can recover (0.759531ms)
+✔ empty online inventory does not inherit a different store account purchase (0.362934ms)
+✔ free date gate compares the complete local date, including year and midnight (1.31948ms)
+✔ release builds ignore debug bypass flags on both native platforms (21.69689ms)
+✔ victory fixture is an exact legal tiling of February 28, 2024 (2.845029ms)
+✔ landscape picking uses UIKit drawing bounds rather than safe-area measurement (2.5497ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1123.077028

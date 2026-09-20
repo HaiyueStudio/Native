@@ -48,6 +48,7 @@ test('normal play presents every frame without periodic snapshot serialization o
     const { NativeRenderHost } = load('../../../bridge/lifecycle/host.ts', {
       '@nativescript/core': { Application: { on() {} }, File: { fromPath: () => ({ writeTextSync() { writes++; } }) }, knownFolders: { documents: () => ({ path: '/test' }) }, path: { join: (...p) => p.join('/') }, isAndroid: true },
       '@haiyue/engine': {}, '@haiyue/engine/diagnostics': {},
+      './presentation-pause': load('../../../bridge/lifecycle/presentation-pause.ts', {}),
       './frame-performance': { FramePerformance: class {} },
       './demand-frames': {},
       '../render/surface': { NativeSurface: Surface },

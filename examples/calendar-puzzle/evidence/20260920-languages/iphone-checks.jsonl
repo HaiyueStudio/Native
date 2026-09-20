@@ -1,0 +1,28 @@
+{"time": 1789877874603, "event": "purchase-smoke-check", "detail": {"name": "native store completes its initial entitlement query", "passed": true}}
+{"time": 1789877874613, "event": "purchase-smoke-check", "detail": {"name": "free mode starts on today", "passed": true}}
+{"time": 1789877874877, "event": "purchase-smoke-check", "detail": {"name": "free hint opens unlock panel without solving", "passed": true}}
+{"time": 1789877875153, "event": "purchase-smoke-check", "detail": {"name": "closing paywall preserves every puzzle piece", "passed": true}}
+{"time": 1789877875342, "event": "purchase-smoke-check", "detail": {"name": "calendar history is free to browse", "passed": true}}
+{"time": 1789877875533, "event": "purchase-smoke-check", "detail": {"name": "another date opens unlock panel and preserves selected date", "passed": true}}
+{"time": 1789877875723, "event": "purchase-smoke-check", "detail": {"name": "play today returns to free puzzle without assistance", "passed": true}}
+{"time": 1789877876097, "event": "purchase-smoke-check", "detail": {"name": "en dropdown opens within the viewport", "passed": true}}
+{"time": 1789877876286, "event": "purchase-smoke-check", "detail": {"name": "en selection closes dropdown", "passed": true}}
+{"time": 1789877876563, "event": "purchase-smoke-check", "detail": {"name": "en settings opens unlock panel", "passed": true}}
+{"time": 1789877877191, "event": "purchase-smoke-check", "detail": {"name": "ja dropdown opens within the viewport", "passed": true}}
+{"time": 1789877877382, "event": "purchase-smoke-check", "detail": {"name": "ja selection closes dropdown", "passed": true}}
+{"time": 1789877877657, "event": "purchase-smoke-check", "detail": {"name": "ja settings opens unlock panel", "passed": true}}
+{"time": 1789877878292, "event": "purchase-smoke-check", "detail": {"name": "fr dropdown opens within the viewport", "passed": true}}
+{"time": 1789877878572, "event": "purchase-smoke-check", "detail": {"name": "fr selection closes dropdown", "passed": true}}
+{"time": 1789877878837, "event": "purchase-smoke-check", "detail": {"name": "fr settings opens unlock panel", "passed": true}}
+{"time": 1789877879475, "event": "purchase-smoke-check", "detail": {"name": "de dropdown opens within the viewport", "passed": true}}
+{"time": 1789877879664, "event": "purchase-smoke-check", "detail": {"name": "de selection closes dropdown", "passed": true}}
+{"time": 1789877879939, "event": "purchase-smoke-check", "detail": {"name": "de settings opens unlock panel", "passed": true}}
+{"time": 1789877880578, "event": "purchase-smoke-check", "detail": {"name": "es dropdown opens within the viewport", "passed": true}}
+{"time": 1789877880768, "event": "purchase-smoke-check", "detail": {"name": "es selection closes dropdown", "passed": true}}
+{"time": 1789877881044, "event": "purchase-smoke-check", "detail": {"name": "es settings opens unlock panel", "passed": true}}
+{"time": 1789877881676, "event": "purchase-smoke-check", "detail": {"name": "zh dropdown opens within the viewport", "passed": true}}
+{"time": 1789877881865, "event": "purchase-smoke-check", "detail": {"name": "zh selection closes dropdown", "passed": true}}
+{"time": 1789877882141, "event": "purchase-smoke-check", "detail": {"name": "zh settings opens unlock panel", "passed": true}}
+{"time": 1789877882410, "event": "purchase-smoke-check", "detail": {"name": "no checkout was launched during validation", "passed": true}}
+{"time": 1789877883051, "event": "purchase-smoke-check", "detail": {"name": "closing dropdown without a selection preserves language", "passed": true}}
+{"time": 1789877883239, "event": "purchase-smoke-complete", "detail": {"passed": true, "checks": [{"name": "native store completes its initial entitlement query", "passed": true}, {"name": "free mode starts on today", "passed": true}, {"name": "free hint opens unlock panel without solving", "passed": true}, {"name": "closing paywall preserves every puzzle piece", "passed": true}, {"name": "calendar history is free to browse", "passed": true}, {"name": "another date opens unlock panel and preserves selected date", "passed": true}, {"name": "play today returns to free puzzle without assistance", "passed": true}, {"name": "en dropdown opens within the viewport", "passed": true}, {"name": "en selection closes dropdown", "passed": true}, {"name": "en settings opens unlock panel", "passed": true}, {"name": "ja dropdown opens within the viewport", "passed": true}, {"name": "ja selection closes dropdown", "passed": true}, {"name": "ja settings opens unlock panel", "passed": true}, {"name": "fr dropdown opens within the viewport", "passed": true}, {"name": "fr selection closes dropdown", "passed": true}, {"name": "fr settings opens unlock panel", "passed": true}, {"name": "de dropdown opens within the viewport", "passed": true}, {"name": "de selection closes dropdown", "passed": true}, {"name": "de settings opens unlock panel", "passed": true}, {"name": "es dropdown opens within the viewport", "passed": true}, {"name": "es selection closes dropdown", "passed": true}, {"name": "es settings opens unlock panel", "passed": true}, {"name": "zh dropdown opens within the viewport", "passed": true}, {"name": "zh selection closes dropdown", "passed": true}, {"name": "zh settings opens unlock panel", "passed": true}, {"name": "no checkout was launched during validation", "passed": true}, {"name": "closing dropdown without a selection preserves language", "passed": true}], "store": {"entitled": false, "phase": "unavailable", "price": null, "canPurchase": false, "busy": false}}}

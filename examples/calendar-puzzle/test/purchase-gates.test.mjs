@@ -42,3 +42,51 @@ test('purchase panel blocks gameplay while visible, web embedding remains fully 
   const { game } = fixture(true); game.purchaseView.visible = true; assert.equal(game.allowPlay(), false);
   game.purchaseView.visible = false; delete game.platform.purchases; assert.equal(game.canPlayDate(2000, 1, 1), true);
 });
+
+function hintFixture({ solved = true, consume = () => true } = {}) {
+  const {game}=fixture();let solves=0,shows=0,paywalls=0,credits=0;
+  Object.defineProperty(game,'copy',{value:{hintNone:'none',hintUnavailable:'unavailable'}});
+  const piece={placed:false,def:{cells:[{x:0,y:0}]}};
+  Object.assign(game,{hintBusy:false,drag:null,motions:new Map(),pieces:[piece],selectedPiece:piece,hintRevision:0,disposed:false,
+    selectedWeekday:0,hintOverlay:{placement:null,show(target){this.placement=target;shows++;}},
+    cancelHint(){this.hintRevision++;this.hintBusy=false;},updateStatus(){},setSelectedPiece(){},
+    solver:{cached:()=>null,async solve(){solves++;return solved ? {status:'solved',compatible:true,solution:[{piece:0,row:1,col:2,rotation:0,flipped:false}]} : {status:'timeout'};}},
+    toggleRewards(){paywalls++;},
+  });
+  game.platform.rewards={snapshot:()=>({busy:false,unlimited:false,free:1,credits:0}),consume(key){credits++;return consume(key);}};
+  return {game,stats:()=>({solves,shows,paywalls,credits})};
+}
+test('free hint is charged only after a useful solve and redisplaying it is free',async()=>{
+  const {game,stats}=hintFixture();await game.requestHint();await game.requestHint();
+  assert.deepEqual(stats(),{solves:1,shows:1,paywalls:0,credits:1});assert.equal(game.hintUsed,true);
+});
+test('failed solver never consumes allowance or marks the puzzle assisted',async()=>{
+  const {game,stats}=hintFixture({solved:false});await game.requestHint();
+  assert.equal(stats().credits,0);assert.equal(game.hintUsed,false);
+});
+test('exhausted quota opens opt-in panel without exposing hint or changing star eligibility',async()=>{
+  const {game,stats}=hintFixture({consume:()=>false});await game.requestHint();
+  assert.equal(stats().paywalls,1);assert.equal(stats().shows,0);assert.equal(game.hintUsed,false);
+});
+test('stale solver results after input never consume or display',async()=>{
+  const {game,stats}=hintFixture();let solve;
+  game.solver.solve=()=>new Promise(resolve=>{solve=resolve;});const request=game.requestHint();game.hintRevision++;
+  solve({status:'solved',compatible:true,solution:[{piece:0,row:1,col:2,rotation:0,flipped:false}]});await request;
+  assert.equal(stats().credits,0);assert.equal(stats().shows,0);
+});
+
+test('no remaining hint allowance opens the reward panel synchronously without running the solver',async()=>{
+ const {game,stats}=hintFixture();game.platform.rewards.snapshot=()=>({busy:false,unlimited:false,free:0,credits:0});
+ const request=game.requestHint();assert.equal(stats().paywalls,1);assert.equal(stats().solves,0);assert.equal(game.hintBusy,false);await request;
+ assert.equal(game.hintUsed,false);assert.equal(stats().credits,0);
+});
+test('a cached already delivered hint can still be redisplayed with no allowance, without a search',async()=>{
+ const {game,stats}=hintFixture();game.platform.rewards.snapshot=()=>({busy:false,unlimited:false,free:0,credits:0});
+ game.solver.cached=()=>({status:'solved',compatible:true,solution:[{piece:0,row:1,col:2,rotation:0,flipped:false}],nodes:0});
+ await game.requestHint();assert.equal(stats().solves,0);assert.equal(stats().shows,1);assert.equal(stats().paywalls,0);
+});
+test('an unpaid next step from cache opens the reward panel without another solve',async()=>{
+ const {game,stats}=hintFixture({consume:()=>false});game.platform.rewards.snapshot=()=>({busy:false,unlimited:false,free:0,credits:0});
+ game.solver.cached=()=>({status:'solved',compatible:true,solution:[{piece:0,row:1,col:2,rotation:0,flipped:false}],nodes:0});
+ const pending=game.requestHint();assert.equal(stats().paywalls,1);assert.equal(stats().solves,0);assert.equal(stats().shows,0);await pending;
+});

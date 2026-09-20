@@ -1,0 +1,29 @@
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (130.040614ms)
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (64115.213278ms)
+✖ Petra executable audit has no remaining strict import gap in the legacy G08 profile (83697.868866ms)
+✖ G08 Petra native profile strictly imports the complete active CMD/CNS graph (49995.422397ms)
+✖ G08 Petra native program runs a deterministic neutral opening through combat authority (34840.977846ms)
+✖ Petra multipart gauge keeps both player groups intact in the lower screen area (34404.220327ms)
+✖ G08 Petra native human path enters movement and attack states deterministically (30286.696119ms)
+✖ Petra human back input walks away without activating a projectile attack (39150.213802ms)
+✖ G08 Petra native jump applies vertical velocity instead of only changing animation (44367.752757ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (23.809604ms)
+ℹ tests 716
+ℹ suites 0
+ℹ pass 686
+ℹ fail 2
+ℹ cancelled 8
+ℹ skipped 20
+ℹ todo 0
+ℹ duration_ms 480680.248823
+✖ failing tests:
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (130.040614ms)
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (64115.213278ms)
+✖ Petra executable audit has no remaining strict import gap in the legacy G08 profile (83697.868866ms)
+✖ G08 Petra native profile strictly imports the complete active CMD/CNS graph (49995.422397ms)
+✖ G08 Petra native program runs a deterministic neutral opening through combat authority (34840.977846ms)
+✖ Petra multipart gauge keeps both player groups intact in the lower screen area (34404.220327ms)
+✖ G08 Petra native human path enters movement and attack states deterministically (30286.696119ms)
+✖ Petra human back input walks away without activating a projectile attack (39150.213802ms)
+✖ G08 Petra native jump applies vertical velocity instead of only changing animation (44367.752757ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (23.809604ms)

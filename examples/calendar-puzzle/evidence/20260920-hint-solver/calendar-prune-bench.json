@@ -1,0 +1,4306 @@
+[
+  {
+    "input": {
+      "month": 1,
+      "weekday": 0,
+      "day": 8,
+      "fixed": []
+    },
+    "before": {
+      "ms": 41.16227699999999,
+      "nodes": 596,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 23.985783000000026,
+      "nodes": 560,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "weekday": 1,
+      "day": 11,
+      "fixed": []
+    },
+    "before": {
+      "ms": 16.915459999999996,
+      "nodes": 20,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 15.117894000000035,
+      "nodes": 20,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "weekday": 2,
+      "day": 14,
+      "fixed": []
+    },
+    "before": {
+      "ms": 15.494910000000004,
+      "nodes": 101,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.704947000000004,
+      "nodes": 101,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "weekday": 3,
+      "day": 17,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.21944099999996,
+      "nodes": 16,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.685674000000006,
+      "nodes": 16,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "weekday": 4,
+      "day": 20,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.490586000000008,
+      "nodes": 121,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.6487379999999803,
+      "nodes": 98,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "weekday": 5,
+      "day": 23,
+      "fixed": []
+    },
+    "before": {
+      "ms": 20.304515000000038,
+      "nodes": 80,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.427078999999992,
+      "nodes": 74,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "weekday": 6,
+      "day": 26,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.86191500000001,
+      "nodes": 32,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.362440000000049,
+      "nodes": 32,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 2,
+      "weekday": 0,
+      "day": 15,
+      "fixed": []
+    },
+    "before": {
+      "ms": 18.452067,
+      "nodes": 427,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 14.608818999999983,
+      "nodes": 387,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 2,
+      "weekday": 1,
+      "day": 18,
+      "fixed": []
+    },
+    "before": {
+      "ms": 13.082814000000042,
+      "nodes": 97,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.86114299999997,
+      "nodes": 89,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 2,
+      "weekday": 2,
+      "day": 21,
+      "fixed": []
+    },
+    "before": {
+      "ms": 12.184653999999966,
+      "nodes": 438,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.917778999999996,
+      "nodes": 416,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 2,
+      "weekday": 3,
+      "day": 24,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.018250000000023,
+      "nodes": 41,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.524483000000032,
+      "nodes": 41,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 2,
+      "weekday": 4,
+      "day": 27,
+      "fixed": []
+    },
+    "before": {
+      "ms": 15.355107999999973,
+      "nodes": 713,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.796535999999946,
+      "nodes": 668,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 2,
+      "weekday": 5,
+      "day": 2,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.027280000000019,
+      "nodes": 263,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.693962000000056,
+      "nodes": 257,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 2,
+      "weekday": 6,
+      "day": 5,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.822135000000003,
+      "nodes": 70,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.8342850000000226,
+      "nodes": 70,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 3,
+      "weekday": 0,
+      "day": 22,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.85585900000001,
+      "nodes": 119,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.105728999999997,
+      "nodes": 119,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 3,
+      "weekday": 1,
+      "day": 25,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.788362000000006,
+      "nodes": 526,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.815816000000041,
+      "nodes": 396,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 3,
+      "weekday": 2,
+      "day": 28,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.56147599999997,
+      "nodes": 291,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.801382999999987,
+      "nodes": 290,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 3,
+      "weekday": 3,
+      "day": 3,
+      "fixed": []
+    },
+    "before": {
+      "ms": 15.448170000000005,
+      "nodes": 509,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.550712999999973,
+      "nodes": 459,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 3,
+      "weekday": 4,
+      "day": 6,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.186385000000087,
+      "nodes": 60,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.164157000000046,
+      "nodes": 60,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 3,
+      "weekday": 5,
+      "day": 9,
+      "fixed": []
+    },
+    "before": {
+      "ms": 12.851639999999975,
+      "nodes": 388,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 5.1637719999999945,
+      "nodes": 374,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 3,
+      "weekday": 6,
+      "day": 12,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.255868999999961,
+      "nodes": 38,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.553074000000038,
+      "nodes": 38,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 4,
+      "weekday": 0,
+      "day": 1,
+      "fixed": []
+    },
+    "before": {
+      "ms": 15.105951000000005,
+      "nodes": 651,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 8.825736000000006,
+      "nodes": 635,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 4,
+      "weekday": 1,
+      "day": 4,
+      "fixed": []
+    },
+    "before": {
+      "ms": 13.24289900000008,
+      "nodes": 289,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.739951000000019,
+      "nodes": 260,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 4,
+      "weekday": 2,
+      "day": 7,
+      "fixed": []
+    },
+    "before": {
+      "ms": 12.216473000000065,
+      "nodes": 31,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.352143000000069,
+      "nodes": 31,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 4,
+      "weekday": 3,
+      "day": 10,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.96095600000001,
+      "nodes": 254,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.414397000000008,
+      "nodes": 234,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 4,
+      "weekday": 4,
+      "day": 13,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.64636900000005,
+      "nodes": 19,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.19361600000002,
+      "nodes": 19,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 4,
+      "weekday": 5,
+      "day": 16,
+      "fixed": []
+    },
+    "before": {
+      "ms": 12.625601000000074,
+      "nodes": 141,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.624013999999988,
+      "nodes": 141,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 4,
+      "weekday": 6,
+      "day": 19,
+      "fixed": []
+    },
+    "before": {
+      "ms": 12.153914999999984,
+      "nodes": 248,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.6687959999999293,
+      "nodes": 236,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 5,
+      "weekday": 0,
+      "day": 8,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.26376300000004,
+      "nodes": 47,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.592895999999996,
+      "nodes": 47,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 5,
+      "weekday": 1,
+      "day": 11,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.811198999999988,
+      "nodes": 158,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 5.015529000000015,
+      "nodes": 149,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 5,
+      "weekday": 2,
+      "day": 14,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.027638000000024,
+      "nodes": 379,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.630771000000095,
+      "nodes": 375,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 5,
+      "weekday": 3,
+      "day": 17,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.821102999999994,
+      "nodes": 146,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.1659989999999425,
+      "nodes": 124,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 5,
+      "weekday": 4,
+      "day": 20,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.118795999999975,
+      "nodes": 125,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.688476000000037,
+      "nodes": 117,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 5,
+      "weekday": 5,
+      "day": 23,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.370677999999998,
+      "nodes": 45,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.3798530000000255,
+      "nodes": 45,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 5,
+      "weekday": 6,
+      "day": 26,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.273297999999954,
+      "nodes": 149,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.101239000000078,
+      "nodes": 144,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 6,
+      "weekday": 0,
+      "day": 15,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.796382999999992,
+      "nodes": 225,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 5.685647000000017,
+      "nodes": 204,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 6,
+      "weekday": 1,
+      "day": 18,
+      "fixed": []
+    },
+    "before": {
+      "ms": 12.696425999999974,
+      "nodes": 54,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.8159610000000157,
+      "nodes": 52,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 6,
+      "weekday": 2,
+      "day": 21,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.780656000000022,
+      "nodes": 137,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.2561319999999796,
+      "nodes": 124,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 6,
+      "weekday": 3,
+      "day": 24,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.135642999999959,
+      "nodes": 180,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.5168299999999135,
+      "nodes": 174,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 6,
+      "weekday": 4,
+      "day": 27,
+      "fixed": []
+    },
+    "before": {
+      "ms": 15.995693000000074,
+      "nodes": 490,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.587110999999936,
+      "nodes": 470,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 6,
+      "weekday": 5,
+      "day": 2,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.110158999999953,
+      "nodes": 154,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.17532899999992,
+      "nodes": 154,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 6,
+      "weekday": 6,
+      "day": 5,
+      "fixed": []
+    },
+    "before": {
+      "ms": 19.850050999999894,
+      "nodes": 245,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.388200000000097,
+      "nodes": 232,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 7,
+      "weekday": 0,
+      "day": 22,
+      "fixed": []
+    },
+    "before": {
+      "ms": 17.712179000000106,
+      "nodes": 249,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 5.6109919999998965,
+      "nodes": 245,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 7,
+      "weekday": 1,
+      "day": 25,
+      "fixed": []
+    },
+    "before": {
+      "ms": 24.651001999999835,
+      "nodes": 1530,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 13.406797000000097,
+      "nodes": 1150,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 7,
+      "weekday": 2,
+      "day": 28,
+      "fixed": []
+    },
+    "before": {
+      "ms": 24.11445300000014,
+      "nodes": 727,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 10.780207000000019,
+      "nodes": 701,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 7,
+      "weekday": 3,
+      "day": 3,
+      "fixed": []
+    },
+    "before": {
+      "ms": 13.418156000000181,
+      "nodes": 129,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.6958150000000387,
+      "nodes": 123,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 7,
+      "weekday": 4,
+      "day": 6,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.806355000000167,
+      "nodes": 305,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.2223710000000665,
+      "nodes": 233,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 7,
+      "weekday": 5,
+      "day": 9,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.32361600000013,
+      "nodes": 101,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 5.621567000000141,
+      "nodes": 101,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 7,
+      "weekday": 6,
+      "day": 12,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.449624999999969,
+      "nodes": 23,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.4929239999999027,
+      "nodes": 23,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 8,
+      "weekday": 0,
+      "day": 1,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.275503999999955,
+      "nodes": 30,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.1823410000001786,
+      "nodes": 30,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 8,
+      "weekday": 1,
+      "day": 4,
+      "fixed": []
+    },
+    "before": {
+      "ms": 13.2526170000001,
+      "nodes": 719,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.319545000000062,
+      "nodes": 518,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 8,
+      "weekday": 2,
+      "day": 7,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.109270000000151,
+      "nodes": 355,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.764617999999928,
+      "nodes": 346,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 8,
+      "weekday": 3,
+      "day": 10,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.467306999999892,
+      "nodes": 337,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.350033999999823,
+      "nodes": 256,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 8,
+      "weekday": 4,
+      "day": 13,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.906831999999895,
+      "nodes": 74,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.537360000000035,
+      "nodes": 41,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 8,
+      "weekday": 5,
+      "day": 16,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.107997000000069,
+      "nodes": 315,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.802584999999908,
+      "nodes": 302,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 8,
+      "weekday": 6,
+      "day": 19,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.937055999999984,
+      "nodes": 54,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.1077909999999065,
+      "nodes": 50,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "weekday": 0,
+      "day": 8,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.987198000000035,
+      "nodes": 99,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.556872999999996,
+      "nodes": 89,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "weekday": 1,
+      "day": 11,
+      "fixed": []
+    },
+    "before": {
+      "ms": 7.666205999999875,
+      "nodes": 65,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.163449000000128,
+      "nodes": 65,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "weekday": 2,
+      "day": 14,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.143210000000181,
+      "nodes": 36,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.212730999999849,
+      "nodes": 36,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "weekday": 3,
+      "day": 17,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.501455000000078,
+      "nodes": 99,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.3885179999999764,
+      "nodes": 97,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "weekday": 4,
+      "day": 20,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.862450999999965,
+      "nodes": 207,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.5545240000001286,
+      "nodes": 202,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "weekday": 5,
+      "day": 23,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.547514000000092,
+      "nodes": 106,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.7240609999998924,
+      "nodes": 102,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "weekday": 6,
+      "day": 26,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.392188000000033,
+      "nodes": 80,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.024182999999994,
+      "nodes": 66,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 10,
+      "weekday": 0,
+      "day": 15,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.696385999999848,
+      "nodes": 322,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.900733000000173,
+      "nodes": 322,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 10,
+      "weekday": 1,
+      "day": 18,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.606917000000067,
+      "nodes": 359,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 8.64380099999994,
+      "nodes": 290,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 10,
+      "weekday": 2,
+      "day": 21,
+      "fixed": []
+    },
+    "before": {
+      "ms": 12.251735999999937,
+      "nodes": 787,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 13.152284999999893,
+      "nodes": 760,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 10,
+      "weekday": 3,
+      "day": 24,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.532865000000129,
+      "nodes": 35,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.041165000000092,
+      "nodes": 35,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 10,
+      "weekday": 4,
+      "day": 27,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.830913999999893,
+      "nodes": 120,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.239148000000114,
+      "nodes": 118,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 10,
+      "weekday": 5,
+      "day": 2,
+      "fixed": []
+    },
+    "before": {
+      "ms": 7.308896999999888,
+      "nodes": 87,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.7451529999998456,
+      "nodes": 69,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 10,
+      "weekday": 6,
+      "day": 5,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.461430000000064,
+      "nodes": 244,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.61887999999999,
+      "nodes": 231,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 11,
+      "weekday": 0,
+      "day": 22,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.823448000000099,
+      "nodes": 93,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.4274259999999686,
+      "nodes": 93,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 11,
+      "weekday": 1,
+      "day": 25,
+      "fixed": []
+    },
+    "before": {
+      "ms": 11.892066000000113,
+      "nodes": 604,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.0727620000000115,
+      "nodes": 337,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 11,
+      "weekday": 2,
+      "day": 28,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.002297999999882,
+      "nodes": 26,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.371020000000044,
+      "nodes": 26,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 11,
+      "weekday": 3,
+      "day": 3,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.680567999999994,
+      "nodes": 374,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.40243600000008,
+      "nodes": 303,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 11,
+      "weekday": 4,
+      "day": 6,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.130340999999817,
+      "nodes": 121,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.824839000000111,
+      "nodes": 116,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 11,
+      "weekday": 5,
+      "day": 9,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.596164999999928,
+      "nodes": 53,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.702054999999973,
+      "nodes": 53,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 11,
+      "weekday": 6,
+      "day": 12,
+      "fixed": []
+    },
+    "before": {
+      "ms": 7.660401999999976,
+      "nodes": 27,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.110779999999977,
+      "nodes": 27,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 12,
+      "weekday": 0,
+      "day": 1,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.113497999999936,
+      "nodes": 77,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.9734869999999773,
+      "nodes": 77,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 12,
+      "weekday": 1,
+      "day": 4,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.344786000000113,
+      "nodes": 24,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.1302190000001247,
+      "nodes": 24,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 12,
+      "weekday": 2,
+      "day": 7,
+      "fixed": []
+    },
+    "before": {
+      "ms": 10.018787999999859,
+      "nodes": 72,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.007712000000083,
+      "nodes": 72,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 12,
+      "weekday": 3,
+      "day": 10,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.537749000000076,
+      "nodes": 358,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.364882999999963,
+      "nodes": 325,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 12,
+      "weekday": 4,
+      "day": 13,
+      "fixed": []
+    },
+    "before": {
+      "ms": 7.797697000000198,
+      "nodes": 57,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.203025000000025,
+      "nodes": 52,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 12,
+      "weekday": 5,
+      "day": 16,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.500343999999814,
+      "nodes": 14,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 1.8288119999999708,
+      "nodes": 14,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 12,
+      "weekday": 6,
+      "day": 19,
+      "fixed": []
+    },
+    "before": {
+      "ms": 8.230173999999806,
+      "nodes": 33,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.819352000000208,
+      "nodes": 29,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 9,
+      "day": 20,
+      "weekday": 0,
+      "fixed": []
+    },
+    "before": {
+      "ms": 9.219949000000042,
+      "nodes": 248,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.29244000000017,
+      "nodes": 242,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 1,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 14.704271999999946,
+      "nodes": 321,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 10.968405999999959,
+      "nodes": 314,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 1,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 14.640261999999893,
+      "nodes": 167,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.065628000000061,
+      "nodes": 164,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 1,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.39037600000006,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.6902959999999894,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 2,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 15.303334999999834,
+      "nodes": 154,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 8.903974000000062,
+      "nodes": 154,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 2,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.026266999999962,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.374166999999943,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 2,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.187501999999995,
+      "nodes": 82,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.652046000000155,
+      "nodes": 81,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 3,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.819022000000132,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    },
+    "after": {
+      "ms": 1.41284399999995,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 3,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.097604000000047,
+      "nodes": 42,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.6159020000000055,
+      "nodes": 42,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 3,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.833890999999994,
+      "nodes": 11,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.8225800000000163,
+      "nodes": 11,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 4,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.578420000000051,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    },
+    "after": {
+      "ms": 1.762377000000015,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 4,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.148324000000002,
+      "nodes": 15,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.8242179999999735,
+      "nodes": 15,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 4,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.133420000000115,
+      "nodes": 19,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.886054999999942,
+      "nodes": 19,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 5,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 23.98203699999999,
+      "nodes": 310,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 8.741987000000108,
+      "nodes": 309,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 5,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 19.18670800000018,
+      "nodes": 110,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.817785999999842,
+      "nodes": 103,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 5,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 16.33100599999989,
+      "nodes": 166,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.760678000000098,
+      "nodes": 154,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 6,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 18.141222999999854,
+      "nodes": 309,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.554178999999976,
+      "nodes": 308,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 6,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 16.518268000000035,
+      "nodes": 599,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 8.223639000000048,
+      "nodes": 556,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 6,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 11.487765000000081,
+      "nodes": 210,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.17769700000008,
+      "nodes": 209,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 7,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 17.550662999999986,
+      "nodes": 606,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.456603999999743,
+      "nodes": 587,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 7,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.682072999999946,
+      "nodes": 220,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.4641710000000785,
+      "nodes": 211,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 7,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.303399000000354,
+      "nodes": 97,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.958212000000003,
+      "nodes": 97,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 8,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 15.976949000000332,
+      "nodes": 595,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.699843999999757,
+      "nodes": 559,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 8,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 13.605039999999917,
+      "nodes": 597,
+      "status": "solved",
+      "compatible": false
+    },
+    "after": {
+      "ms": 7.593519999999899,
+      "nodes": 561,
+      "status": "solved",
+      "compatible": false
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 8,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.539022000000386,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.032056999999895,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 9,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 13.606694000000061,
+      "nodes": 75,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.2454600000000937,
+      "nodes": 75,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 9,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.45057799999995,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    },
+    "after": {
+      "ms": 1.8178509999997914,
+      "nodes": 0,
+      "status": "invalid",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 9,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.871025999999802,
+      "nodes": 157,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 5.216248000000178,
+      "nodes": 152,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 10,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 13.318371000000297,
+      "nodes": 118,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.521839,
+      "nodes": 118,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 10,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.059903000000304,
+      "nodes": 45,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.230163000000175,
+      "nodes": 44,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 10,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.988689999999679,
+      "nodes": 236,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.8131670000002487,
+      "nodes": 225,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 11,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 15.669029000000137,
+      "nodes": 874,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 12.12949800000024,
+      "nodes": 830,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 11,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.277162000000317,
+      "nodes": 13,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.5088650000002417,
+      "nodes": 13,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 11,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.379476999999952,
+      "nodes": 373,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 5.173111999999946,
+      "nodes": 338,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 12,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.278863000000001,
+      "nodes": 15,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.680452999999943,
+      "nodes": 15,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 12,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.668457000000217,
+      "nodes": 38,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.0837619999997514,
+      "nodes": 38,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 12,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.9909630000001926,
+      "nodes": 108,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.68391100000008,
+      "nodes": 103,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 13,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.791581999999835,
+      "nodes": 22,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.4146429999996144,
+      "nodes": 22,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 13,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.979781000000003,
+      "nodes": 43,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.2581649999997353,
+      "nodes": 43,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 13,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.704090000000178,
+      "nodes": 42,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.2860679999998865,
+      "nodes": 42,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 14,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.836545000000115,
+      "nodes": 67,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.8040320000000065,
+      "nodes": 63,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 14,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.329503999999815,
+      "nodes": 109,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.880583999999999,
+      "nodes": 105,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 14,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.44573100000025,
+      "nodes": 190,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.378656000000319,
+      "nodes": 172,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 15,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 11.909732000000076,
+      "nodes": 433,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.1132769999999255,
+      "nodes": 412,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 15,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.76882999999998,
+      "nodes": 102,
+      "status": "solved",
+      "compatible": false
+    },
+    "after": {
+      "ms": 3.894948000000113,
+      "nodes": 96,
+      "status": "solved",
+      "compatible": false
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 15,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.417524999999841,
+      "nodes": 51,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.1585030000001098,
+      "nodes": 51,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 16,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.664839000000029,
+      "nodes": 133,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.371595999999954,
+      "nodes": 133,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 16,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.363290000000234,
+      "nodes": 78,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.027621000000181,
+      "nodes": 73,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 16,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.221678999999767,
+      "nodes": 67,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.282325000000128,
+      "nodes": 67,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 17,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.359915000000001,
+      "nodes": 12,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.4480909999997493,
+      "nodes": 12,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 17,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.100315000000137,
+      "nodes": 150,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.8682699999999386,
+      "nodes": 146,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 17,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.139915000000201,
+      "nodes": 46,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.9030619999998635,
+      "nodes": 46,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 18,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.811792999999852,
+      "nodes": 196,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.438873000000058,
+      "nodes": 194,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 18,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.46873000000005,
+      "nodes": 162,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.349865000000136,
+      "nodes": 160,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 18,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.516449000000193,
+      "nodes": 163,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.061211000000185,
+      "nodes": 153,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 19,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.849272999999812,
+      "nodes": 136,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.308828000000176,
+      "nodes": 136,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 19,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.755863000000318,
+      "nodes": 39,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.146664999999757,
+      "nodes": 39,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 19,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.463065999999799,
+      "nodes": 72,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.535918000000038,
+      "nodes": 66,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 20,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.404207999999926,
+      "nodes": 31,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.6107339999998658,
+      "nodes": 31,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 20,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.45112300000028,
+      "nodes": 19,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.7366080000001602,
+      "nodes": 19,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 20,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.508058999999776,
+      "nodes": 256,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.480225999999675,
+      "nodes": 235,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 21,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.091408000000229,
+      "nodes": 298,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.207979999999679,
+      "nodes": 281,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 21,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.290482999999767,
+      "nodes": 25,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.8957170000003316,
+      "nodes": 25,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 21,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 13.04006900000013,
+      "nodes": 99,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.9142690000003313,
+      "nodes": 99,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 22,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 11.045967000000019,
+      "nodes": 177,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.8836700000001656,
+      "nodes": 157,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 22,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 11.37159900000006,
+      "nodes": 223,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.7673610000001645,
+      "nodes": 218,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 22,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.861021000000164,
+      "nodes": 121,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.2712000000001353,
+      "nodes": 117,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 23,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 11.932960000000094,
+      "nodes": 290,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.6131860000000415,
+      "nodes": 290,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 23,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.223294000000351,
+      "nodes": 17,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.7825149999998757,
+      "nodes": 17,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 23,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.915257999999994,
+      "nodes": 13,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.400684000000183,
+      "nodes": 13,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 24,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.24824099999978,
+      "nodes": 269,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.9841989999999896,
+      "nodes": 261,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 24,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.094457000000148,
+      "nodes": 23,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.4095509999997375,
+      "nodes": 23,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 24,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 11.957863999999972,
+      "nodes": 40,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.4632040000001325,
+      "nodes": 40,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 25,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.585054000000127,
+      "nodes": 66,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.160685000000285,
+      "nodes": 63,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 25,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 6.78190799999993,
+      "nodes": 56,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.4394880000004378,
+      "nodes": 56,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 25,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 9.03099599999996,
+      "nodes": 162,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.3420729999998,
+      "nodes": 157,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 26,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.349772999999914,
+      "nodes": 116,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.4927779999998165,
+      "nodes": 106,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 26,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.68106200000011,
+      "nodes": 146,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.174372999999832,
+      "nodes": 135,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 26,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 12.794636999999966,
+      "nodes": 98,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.471442999999908,
+      "nodes": 98,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 27,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.425768000000062,
+      "nodes": 141,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.1931780000004437,
+      "nodes": 141,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 27,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.580568999999741,
+      "nodes": 60,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.9451759999997194,
+      "nodes": 60,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 27,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.245796999999584,
+      "nodes": 34,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.7818609999999353,
+      "nodes": 34,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 28,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 15.27343000000019,
+      "nodes": 192,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 9.082776000000194,
+      "nodes": 184,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 28,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 19.298187000000325,
+      "nodes": 270,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 7.295971000000009,
+      "nodes": 264,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 28,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 16.315240999999787,
+      "nodes": 173,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 6.545719999999619,
+      "nodes": 167,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 29,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 13.570464999999786,
+      "nodes": 22,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.3620860000000903,
+      "nodes": 22,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 29,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.98651099999961,
+      "nodes": 86,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.352359000000433,
+      "nodes": 86,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 29,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.52382499999976,
+      "nodes": 36,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 4.032834999999977,
+      "nodes": 36,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 30,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.811550000000352,
+      "nodes": 64,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.367447000000084,
+      "nodes": 54,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 30,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.019017000000076,
+      "nodes": 99,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.229696000000331,
+      "nodes": 95,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 30,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 10.341453000000001,
+      "nodes": 122,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.5850909999999203,
+      "nodes": 115,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 31,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 0,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 7.876130999999987,
+      "nodes": 66,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 3.4372010000001865,
+      "nodes": 60,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 31,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 3,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 6.998153999999886,
+      "nodes": 15,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.0829869999997754,
+      "nodes": 15,
+      "status": "solved",
+      "compatible": true
+    }
+  },
+  {
+    "input": {
+      "month": 1,
+      "day": 31,
+      "weekday": 0,
+      "fixed": [
+        {
+          "piece": 5,
+          "row": 1,
+          "col": 0,
+          "rotation": 0,
+          "flipped": false
+        }
+      ]
+    },
+    "before": {
+      "ms": 8.966939999999795,
+      "nodes": 34,
+      "status": "solved",
+      "compatible": true
+    },
+    "after": {
+      "ms": 2.43730800000003,
+      "nodes": 34,
+      "status": "solved",
+      "compatible": true
+    }
+  }
+]

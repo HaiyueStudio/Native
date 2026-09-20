@@ -1,3 +1,4 @@
+import { PresentationPause } from './presentation-pause';
 import { Application, File, knownFolders, path, isAndroid } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { HaiyueEngine } from '@haiyue/engine';
@@ -36,6 +37,26 @@ export class NativeRenderHost {
   private initializing = false;
   private disposed = false;
   private suspended = false;
+  private readonly presentationPause = new PresentationPause(() => this.suspend(), () => this.resume());
+  private readonly appSuspend = () => this.presentationPause.setBackground(true);
+  private readonly appResume = () => this.presentationPause.setBackground(false);
+  /** Stops frames, audio and input until BOTH the presentation and background suspension end. */
+  pausePresentation(): () => void { return this.disposed ? () => {} : this.presentationPause.acquire(); }
+  /** Present the disabled/loading UI once before stopping the demand renderer. */
+  preparePresentation(): Promise<() => void> {
+    const engine = this.engine;
+    if (!engine || engine.state !== 'ready' || this.suspended || this.disposed) return Promise.resolve(this.pausePresentation());
+    return new Promise(resolve => {
+      let complete = false;
+      const finish = () => {
+        if (complete) return;
+        complete = true; clearTimeout(timeout); engine.off('after-update', finish);
+        resolve(this.pausePresentation());
+      };
+      const timeout = setTimeout(finish, 150);
+      engine.on('after-update', finish); this.requestFrame();
+    });
+  }
   private failed = false;
   private generation = 0;
   private input: NativeHostInput | null = null;
@@ -58,8 +79,8 @@ export class NativeRenderHost {
     this.logFile = File.fromPath(path.join(knownFolders.documents().path, `${options.diagnosticName ?? 'g02'}-host.jsonl`));
     this.surface = new NativeSurface(view, this.report, options.canvasInput);
     installNativeFrameRuntime(error => this.fail(error));
-    Application.on(Application.suspendEvent, this.suspend);
-    Application.on(Application.resumeEvent, this.resume);
+    Application.on(Application.suspendEvent, this.appSuspend);
+    Application.on(Application.resumeEvent, this.appResume);
     view.on('layoutChanged', this.layout);
     this.report('host-created', { engine: '0.1.0', canvas: '2.1.18', runtime: '9.0.3', backendRoute: isAndroid ? 'Canvas/wgpu/Vulkan' : 'Canvas/wgpu/Metal', dpr: this.surface.pixelRatio, captureRequested: this.captureRequested });
     this.layout();
@@ -225,8 +246,8 @@ export class NativeRenderHost {
     ++this.generation;
     this.disposeInput();
     this.disposeScene();
-    Application.off(Application.suspendEvent, this.suspend);
-    Application.off(Application.resumeEvent, this.resume);
+    Application.off(Application.suspendEvent, this.appSuspend);
+    Application.off(Application.resumeEvent, this.appResume);
     this.view.off('layoutChanged', this.layout);
     nativeFrames.cancelAll();
     this.removeDeviceListener();

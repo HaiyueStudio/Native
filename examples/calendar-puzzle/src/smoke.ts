@@ -24,7 +24,15 @@ export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleG
   const check=(name:string,passed:boolean)=>{checks.push({name,passed});report('smoke-check',{name,passed});};
   const capture=(name:string)=>{try{report('ui-capture',captureSurfaceFrame(canvas,name+'.png'));}catch(e){report('capture-error',{message:String(e)});}};
   const pointer=(action:'down'|'move'|'up',x:number,y:number)=>{const r=input.target.getBoundingClientRect(),v=calendarViewport(r.width,r.height);input.target.handle(action,[{id:9001,x:x*v.scale,y:y*v.scale}]);};
-  const tap=(id:string)=>{const r=game.snapshot().ui[id]!;const p={id:9001,x:r.x+r.width/2,y:r.y+r.height/2};input.target.handle('down',[p]);input.target.handle('up',[p]);};
+  const tap=(id:string)=>{
+    const click=(x:number,y:number)=>{const p={id:9001,x,y};input.target.handle('down',[p]);input.target.handle('up',[p]);};
+    if (['zh','en','ja','fr','de','es'].includes(id)) {
+      const r=game.snapshot().ui.languageSelect!;click(r.x+r.width/2,r.y+r.height/2);
+      const menu=game.snapshot().languageMenu!;const index=menu.values.indexOf(id as typeof menu.values[number]);
+      click(menu.popup.x+menu.popup.width/2,menu.popup.y+(index+.5)*menu.optionHeight-menu.scrollY);return;
+    }
+    const r=game.snapshot().ui[id]!;click(r.x+r.width/2,r.y+r.height/2);
+  };
   const dayButton=(day:number)=>'calendarDay'+game.snapshot().history.cells.findIndex(c=>c?.day===day);
   const tick=()=>{
     // Only the frame-scripted portion pumps frames; subsequent async stress

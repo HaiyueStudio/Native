@@ -1,3 +1,9 @@
+import { installRewardsSmoke } from './rewards-smoke';
+import { RewardController } from '../../../bridge/rewards/controller';
+import { AdMobRewardGateway } from '../../../bridge/rewards/admob';
+import { ApplicationSettings } from '@nativescript/core';
+import { CALENDAR_REWARDS } from './rewards-config';
+import { installPurchaseSmoke } from './purchases/smoke';
 import { PurchaseController } from '../../../bridge/purchases/controller';
 import { CalendarStore } from './purchases/store';
 import { isDevelopmentBuild } from './development';
@@ -6,7 +12,7 @@ import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank';
 import { CALENDAR_SOUNDS, CALENDAR_SOUND_IDS } from '../../../../Games/games/calendar-puzzle/audio/Sounds';
 import type { CalendarSolverWorker } from '../../../../Games/games/calendar-puzzle/solver-client';
 import { installCalendarSmoke, seedCalendarSmoke } from './smoke';
-import { Application, EventData, GridLayout, Page, knownFolders, path, Connectivity } from '@nativescript/core';
+import { Application, EventData, GridLayout, Page, knownFolders, path, Connectivity, isAndroid } from '@nativescript/core';
 import { NativeEngineSplash } from '../../../bridge/branding/engine-splash';
 import { captureNativeView } from '../../../bridge/render/view-capture';
 import type { Canvas } from '@nativescript/canvas';
@@ -50,14 +56,27 @@ function ensureHost(canvas: Canvas): void {
     if (['cancel', 'suspend', 'unloaded', 'dispose'].includes(sample.action)) game?.cancelInteraction();
   });
   const smoke = launchFlag('CALENDAR_SMOKE');
+  const rewardsSmoke = !smoke && launchFlag('CALENDAR_REWARDS_SMOKE');
   const performance = launchFlag('CALENDAR_PERFORMANCE');
+  const purchaseSmoke = !smoke && launchFlag('CALENDAR_PURCHASE_SMOKE');
   const purchases = smoke ? undefined : new PurchaseController(new CalendarStore());
   if (purchases) {
     Connectivity.startMonitoring(type => { if (type !== Connectivity.connectionType.none) void purchases.refresh(); });
     void purchases.refresh();
   }
+  if (isAndroid && rewardsSmoke) canvas.nativeViewProtected?.setKeepScreenOn(true);
+  const rewardKey = rewardsSmoke ? 'calendar-rewards-smoke.wallet.v1' : purchaseSmoke ? 'calendar-purchase-smoke.reward-wallet.v1' : 'calendar-puzzle.reward-wallet.v1';
+  if (rewardsSmoke) ApplicationSettings.remove(rewardKey);
+  const rewards = purchases ? new RewardController({
+    dailyFree: CALENDAR_REWARDS.dailyFree, dailyAds: CALENDAR_REWARDS.dailyAds,
+    entitled: () => purchases.snapshot().entitled,
+    storage: { read: () => ApplicationSettings.hasKey(rewardKey) ? ApplicationSettings.getString(rewardKey) : null,
+      write: value => { ApplicationSettings.setString(rewardKey, value); if (!ApplicationSettings.flush()) throw Error('Reward wallet could not be saved'); } },
+    gateway: new AdMobRewardGateway({ ...CALENDAR_REWARDS, development: isDevelopmentBuild() }),
+    pause: () => host?.preparePresentation() ?? (() => {}),
+  }) : undefined;
   let captureSplash = launchFlag('CALENDAR_SPLASH_CAPTURE');
-  const backend = new LocalStorageSaveBackend({ namespace: smoke ? 'calendar-history-smoke' : 'haiyue-games', storage: new NativeSettingsStorage() });
+  const backend = new LocalStorageSaveBackend({ namespace: smoke ? 'calendar-history-smoke' : rewardsSmoke ? 'calendar-rewards-smoke' : purchaseSmoke ? 'calendar-purchase-smoke' : 'haiyue-games', storage: new NativeSettingsStorage() });
   let removeSmoke: (() => void) | undefined;
   activeCanvas = canvas;
   activePage = canvas.page as Page;
@@ -95,7 +114,7 @@ function ensureHost(canvas: Canvas): void {
       prepareScene: async (engine) => {
         textures = new NativeCanvasTextures(engine.device, 'rgba8unorm-srgb');
         game = new CalendarPuzzleGame({
-          purchases, engine, autoRun: false, keyboard: false, touchControls: true,
+          purchases, rewards, engine, autoRun: false, keyboard: false, touchControls: true,
           requestRender: () => host?.requestFrame(),
           createCanvas2D: textures.createCanvas2D, textureFromCanvas: textures.textureFromCanvas,
           saveBackend: backend,
@@ -110,6 +129,8 @@ function ensureHost(canvas: Canvas): void {
       },
       disposeScene() {
         removeSmoke?.();
+        rewards?.dispose();
+        if (isAndroid && rewardsSmoke) canvas.nativeViewProtected?.setKeepScreenOn(false);
         if (purchases) { Connectivity.stopMonitoring(); purchases.dispose(); }
         game?.dispose();
         game = null;
@@ -118,6 +139,8 @@ function ensureHost(canvas: Canvas): void {
       },
       bindInput: (engine, report) => {
         if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, launchFlag('CALENDAR_SMOKE_CLEAN'), () => host?.requestFrame(), () => host!.renderingSnapshot());
+        if (rewardsSmoke && game) removeSmoke = installRewardsSmoke(game, input, canvas, report, () => host?.requestFrame(), launchFlag('CALENDAR_REWARD_AD_SMOKE'));
+        if (purchaseSmoke && game) removeSmoke = installPurchaseSmoke(game, input, canvas, report, () => host?.requestFrame());
         return ({
         suspend() {
           game?.suspendAudio();
@@ -128,6 +151,7 @@ function ensureHost(canvas: Canvas): void {
         resume() {
           input.resume();
           void purchases?.refresh();
+          rewards?.refresh();
         },
         dispose() {
           input.dispose();

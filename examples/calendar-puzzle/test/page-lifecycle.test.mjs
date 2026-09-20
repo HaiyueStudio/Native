@@ -21,6 +21,9 @@ test('late unload/exit from the previous Android page cannot dispose the new hos
   }
   const modules = {
     '@nativescript/core': { Application, Connectivity: { startMonitoring() {}, stopMonitoring() {} } },
+    './rewards-config': {CALENDAR_REWARDS:{dailyFree:1,dailyAds:2}},
+    '../../../bridge/rewards/controller': {RewardController:class {}},
+    '../../../bridge/rewards/admob': {AdMobRewardGateway:class {}},
     './development': { isDevelopmentBuild: () => true },
     './purchases/store': { CalendarStore: class {} },
     '../../../bridge/purchases/controller': { PurchaseController: class { refresh() {} dispose() {} } },
