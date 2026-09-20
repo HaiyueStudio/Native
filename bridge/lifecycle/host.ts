@@ -16,6 +16,7 @@ export interface NativeHostInput {
 
 export interface NativeRenderHostOptions {
   performance?: boolean;
+  /** Zero disables periodic snapshots/writes; lifecycle and errors remain logged. */
   diagnosticIntervalFrames?: number;
   canvasInput?: NativeCanvasInput;
   engineOptions?: Pick<ConstructorParameters<typeof HaiyueEngine>[0], 'clearColor' | 'renderProfile' | 'msaaSamples' | 'reverseZ' | 'diagnostics'>;
@@ -112,7 +113,8 @@ export class NativeRenderHost {
     if (!this.surface.present()) return;
     if(this.options.performance)this.performance.end(performance.now());
     const frames = this.surface.presentedFrames;
-    if (frames === 1 || frames % (this.options.diagnosticIntervalFrames??120) === 0) {
+    const interval = this.options.diagnosticIntervalFrames ?? 120;
+    if (frames === 1 || (interval > 0 && frames % interval === 0)) {
       this.status(`原生 WebGPU 已呈现 ${frames} 帧`);
       this.report('present', { frames, width: this.engine?.width, height: this.engine?.height, scheduledCallbacks: nativeFrames.pendingCount, input: this.input?.snapshot() ?? null });
       if(this.options.performance && this.engine)this.report('performance',{frames,...this.performance.take(),thermalState:isAndroid ? null : NSProcessInfo.processInfo.thermalState,engine:getEngineDiagnosticsSnapshot(this.engine)});

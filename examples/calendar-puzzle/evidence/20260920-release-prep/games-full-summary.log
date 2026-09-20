@@ -1,0 +1,47 @@
+✖ games/test/calendar-puzzle-raster.test.mjs (709.686481ms)
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (47.89943ms)
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (35712.917703ms)
+✖ Petra executable audit has no remaining strict import gap in the legacy G08 profile (82380.45039ms)
+✖ G08 Petra native profile strictly imports the complete active CMD/CNS graph (44187.274633ms)
+✖ G08 Petra native program runs a deterministic neutral opening through combat authority (30008.709224ms)
+✖ Petra multipart gauge keeps both player groups intact in the lower screen area (43293.252176ms)
+✖ G08 Petra native human path enters movement and attack states deterministically (30442.70995ms)
+✖ Petra human back input walks away without activating a projectile attack (32441.720987ms)
+✖ G08 Petra native jump applies vertical velocity instead of only changing animation (38030.192315ms)
+✖ G08 Petra EmanonAI activates from AILevel and produces a deterministic autonomous trace (59825.558435ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (30.374449ms)
+ℹ tests 671
+ℹ suites 0
+ℹ pass 639
+ℹ fail 3
+ℹ cancelled 9
+ℹ skipped 20
+ℹ todo 0
+ℹ duration_ms 549068.506687
+✖ failing tests:
+test at games/test/calendar-puzzle-raster.test.mjs:1:1
+✖ games/test/calendar-puzzle-raster.test.mjs (709.686481ms)
+test at games/test/mugen-import-g02.test.mjs:248:1
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (47.89943ms)
+test at games/test/mugen-petra-local-compat.test.mjs:32:1
+✖ local Petra package completes the asset-viewer pipeline with official duplicate and legacy bounds semantics (35712.917703ms)
+test at games/test/mugen-petra-local-compat.test.mjs:86:1
+✖ Petra executable audit has no remaining strict import gap in the legacy G08 profile (82380.45039ms)
+test at games/test/mugen-petra-local-compat.test.mjs:106:1
+✖ G08 Petra native profile strictly imports the complete active CMD/CNS graph (44187.274633ms)
+test at games/test/mugen-petra-local-compat.test.mjs:127:1
+✖ G08 Petra native program runs a deterministic neutral opening through combat authority (30008.709224ms)
+test at games/test/mugen-petra-local-compat.test.mjs:139:1
+✖ Petra multipart gauge keeps both player groups intact in the lower screen area (43293.252176ms)
+test at games/test/mugen-petra-local-compat.test.mjs:146:1
+✖ G08 Petra native human path enters movement and attack states deterministically (30442.70995ms)
+test at games/test/mugen-petra-local-compat.test.mjs:162:1
+✖ Petra human back input walks away without activating a projectile attack (32441.720987ms)
+test at games/test/mugen-petra-local-compat.test.mjs:170:1
+✖ G08 Petra native jump applies vertical velocity instead of only changing animation (38030.192315ms)
+test at games/test/mugen-petra-local-compat.test.mjs:176:1
+✖ G08 Petra EmanonAI activates from AILevel and produces a deterministic autonomous trace (59825.558435ms)
+test at games/test/mugen-viewer-g05.test.mjs:183:1
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (30.374449ms)
+
+The raster test initially used a TS parameter property unsupported by Node strip-only mode. This was fixed and all 38 calendar-focused tests passed afterward. The two MUGEN assertion failures are unrelated existing failures; nine Petra tests also hit their deadlines in this full run.

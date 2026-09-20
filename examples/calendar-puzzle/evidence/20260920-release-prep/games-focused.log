@@ -1,0 +1,46 @@
+✔ calendar sound cues are bounded and repeated actions are rate limited (11.015566ms)
+✔ gesture unlock may defer briefly but stale cues never play after suspend or dispose (1.323712ms)
+✔ all eight shipped WAVs match native mono PCM constraints and avoid clipped or discontinuous edges (50.589855ms)
+✔ iOS and Android finger jitter and a shifted second tap still rotate exactly once (5.381568ms)
+✔ drag threshold uses logical screen pixels at every board scale (1.374274ms)
+✔ separate pieces, distant taps, slow taps, holds and cancellation do not rotate (1.470738ms)
+✔ release-only displacement is a drag, and mouse gestures retain precise thresholds (0.639741ms)
+✔ DOM pointer coordinates remain readable even when implemented as prototype getters (0.931423ms)
+✔ exact-cover solver covers all legal cells for every month and weekday (1128.83639ms)
+✔ hint preserves a compatible partial board and recognises symmetric orientations (39.43447ms)
+✔ invalid pinned pieces are rejected (44.680458ms)
+✔ incompatible legal position returns a complete alternative instead of a conflicting hint (38.19185ms)
+✔ partial-search time limit still permits a complete fallback solution (21.426733ms)
+✔ repeated hints reuse one worker; cancelling drops stale results and bounds the queue (14.704685ms)
+✔ worker error and timeout recover for the newest request without retaining old callbacks (15.703702ms)
+✔ rotation, flip and shuffle end exactly at logical tile positions (14.619928ms)
+✔ perpetual calendar handles Gregorian century leap years and years below 100 (4.189745ms)
+✔ month grid aligns dates to weekdays, including six-week months (10.925668ms)
+✔ month/year navigation rolls over December and clamps calendar endpoints (3.267849ms)
+✔ history is immutable, year-specific, deduplicated and rejects invalid dates (6.28226ms)
+✔ assisted wins have no star; a clean replay earns one without losing it on later assisted wins (4.597127ms)
+✔ save data preserves assistance and stars while accepting old history without inventing stars (1.590931ms)
+✔ Calendar puzzle model defines unique playable cells and pieces (8.117804ms)
+✔ Calendar puzzle normalizes transformed piece coordinates (3.634536ms)
+✔ Calendar puzzle save validation checks dates and piece state (1.379886ms)
+✔ 1000 copied text updates use one surface and reset transforms before each redraw (21.037026ms)
+✔ web materials retain independent canvas sources after another label is drawn (0.768972ms)
+✔ full surface and square cells at 1200×720 (5.455208ms)
+✔ shuffled pieces fit left tray at 1200×720 (80.726743ms)
+✔ full surface and square cells at 932×430 (0.474228ms)
+✔ shuffled pieces fit left tray at 932×430 (27.303807ms)
+✔ full surface and square cells at 814×409 (0.493679ms)
+✔ shuffled pieces fit left tray at 814×409 (30.971666ms)
+✔ full surface and square cells at 1100×720 (0.362111ms)
+✔ shuffled pieces fit left tray at 1100×720 (60.298813ms)
+✔ full surface and square cells at 393×814 (0.654308ms)
+✔ shuffled pieces fit left tray at 393×814 (14.425575ms)
+✔ language saves are backward compatible (1.412951ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2031.86959

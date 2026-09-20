@@ -24,6 +24,8 @@ export function installNativeFrameRuntime(onError: (error: unknown) => void): vo
   if (typeof globalThis.performance?.now !== 'function') {
     Object.defineProperty(globalThis, 'performance', { configurable: true, value: { now: clock } });
   }
-  globalThis.requestAnimationFrame = callback => nativeFrames.request(callback);
-  globalThis.cancelAnimationFrame = id => nativeFrames.cancel(id);
+  // Core's CommonJS globals are configurable lazy getters without setters.
+  // Define our scheduler explicitly instead of assigning to those getters.
+  Object.defineProperty(globalThis, 'requestAnimationFrame', { configurable: true, writable: true, value: (callback: FrameRequestCallback) => nativeFrames.request(callback) });
+  Object.defineProperty(globalThis, 'cancelAnimationFrame', { configurable: true, writable: true, value: (id: number) => nativeFrames.cancel(id) });
 }

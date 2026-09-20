@@ -1,0 +1,13 @@
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (24.208371ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (12.523314ms)
+ℹ tests 664
+ℹ suites 0
+ℹ pass 642
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 20
+ℹ todo 0
+ℹ duration_ms 230742.709829
+✖ failing tests:
+✖ HYMUGEN v1 is byte-exact, round-trips canonically, excludes raw source bytes, and rejects tampering or unknown fields (24.208371ms)
+✖ viewer product is manifest-backed and exposes required controls without private Engine imports (12.523314ms)

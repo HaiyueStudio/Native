@@ -1,3 +1,5 @@
+import { CalendarSolverClient } from '../../../../Games/games/calendar-puzzle/solver-client';
+import type { CalendarSolverWorker } from '../../../../Games/games/calendar-puzzle/solver-client';
 import type { HaiyueEngine } from '@haiyue/engine';
 import type { GameSaveBackend } from '@haiyue/engine/save';
 import type { CalendarPuzzleGame } from '../../../../Games/games/calendar-puzzle/CalendarPuzzleGame';
@@ -70,6 +72,63 @@ export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleG
       await game.flushSave();const save=new SingleSlotGameSave<CalendarPuzzleSaveData>({gameId:'calendar-puzzle',name:'smoke',backend,validateData:isCalendarPuzzleSaveData});const data=await save.load();
       check('native save retains year, leap date and completion history',data?.year===2024&&data.day===29&&data.completedDates?.[0]==='2024-02-28');
       check('native save retains clean-completion stars',data?.starredDates?.includes('2024-02-28')===cleanWin);
+      const delay=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
+      const idle=async()=>{await delay(50);const end=Date.now()+16000;while(game.snapshot().hintBusy||game.snapshot().animating){if(Date.now()>end)throw new Error('Hint stress timed out');await delay(40);}};
+      // Finger jitter is expressed in screen DIP, matching iOS points and Android DIP.
+      const scale=calendarViewport(input.target.getBoundingClientRect().width,input.target.getBoundingClientRect().height).scale;
+      const anchor=()=>{const p=game.snapshot().pieces[0]!,c=p.cells[0]!;return {p,x:p.x+(c.x*74+32)*p.scale,y:p.y+(c.y*74+32)*p.scale};};
+      await idle();
+      const first=anchor(),rotation=first.p.rotation,rotateCues=game.snapshot().audio.played.rotate??0;
+      pointer('down',first.x,first.y);
+      check('tap press keeps the tray piece at its original size',game.snapshot().pieces[0]!.scale===first.p.scale);
+      pointer('move',first.x+6/scale,first.y+4/scale);await delay(60);
+      pointer('up',first.x+6/scale,first.y+4/scale);
+      check('finger jitter stays a selection without moving the piece',game.snapshot().pieces[0]!.x===first.p.x&&game.snapshot().pieces[0]!.y===first.p.y&&game.snapshot().pieces[0]!.rotation===rotation);
+      await delay(180);
+      pointer('down',first.x+5/scale,first.y+2/scale);await delay(65);
+      pointer('move',first.x+10/scale,first.y+5/scale);
+      pointer('up',first.x+10/scale,first.y+5/scale);
+      check('jittery second tap rotates the same piece once',game.snapshot().pieces[0]!.rotation===(rotation+1)%4&&(game.snapshot().audio.played.rotate??0)===rotateCues+1);
+      check('double tap starts the rotation animation',game.snapshot().animating===1);
+      await idle();
+      check('double tap rotation animation settles',game.snapshot().animating===0);
+      await delay(450);
+      const held=anchor();pointer('down',held.x,held.y);await delay(560);pointer('up',held.x,held.y);
+      await delay(90);pointer('down',held.x,held.y);pointer('up',held.x,held.y);
+      check('long press followed by a tap does not rotate',game.snapshot().pieces[0]!.rotation===held.p.rotation);
+      const dragged=anchor(),places=game.snapshot().audio.played.place??0;
+      pointer('down',dragged.x,dragged.y);pointer('move',dragged.x+24/scale,dragged.y);
+      check('crossing drag slop enlarges the piece for placement',game.snapshot().pieces[0]!.scale===1);
+      pointer('move',dragged.x,dragged.y);pointer('up',dragged.x,dragged.y);
+      check('drag returning to its origin stays a drag without rotation',game.snapshot().pieces[0]!.rotation===dragged.p.rotation&&(game.snapshot().audio.played.place??0)===places+1);
+      tap('shuffle');await idle();
+      // Exercise the GUI and game revision/cancellation path as well as the solver.
+      for(let i=0;i<24;i++) {
+        await idle();
+        tap('hint');await idle();
+        check(`repeat hint ${i+1} stays available`,!!game.snapshot().hint&&game.snapshot().hintUsed);
+        if(i%3===0) { tap('rotate');await idle(); }
+        if(i%3===1) { tap('flip');await idle(); }
+        if(i%3===2) {
+          const state=game.snapshot(),index=((state.hint?.piece??0)+1)%state.pieces.length;
+          const p=state.pieces[index]!,c=p.cells[0]!;
+          const x=p.x+(c.x*74+32)*p.scale,y=p.y+(c.y*74+32)*p.scale;
+          pointer('down',x,y);pointer('move',x+8,y+8);pointer('up',x+8,y+8);
+        }
+        // Cancel while solving and request again; a stale reply must not win.
+        tap('hint');const p=game.snapshot().pieces[9]!,c=p.cells[0]!;
+        const x=p.x+(c.x*74+32)*p.scale,y=p.y+(c.y*74+32)*p.scale;
+        pointer('down',x,y);pointer('up',x,y);await idle();tap('hint');await idle();
+        check(`hint ${i+1} recovers after moving another piece`,!!game.snapshot().hint);
+      }
+      // Recreating a scene or recovering an error can still load a new worker.
+      for(let i=0;i<6;i++) {
+        const client=new CalendarSolverClient(()=>new Worker('./solver.worker') as unknown as CalendarSolverWorker);
+        try {const result=await client.solve({month:9,day:20,weekday:0,fixed:[]});check(`worker reload ${i+1}`,result?.status==='solved');}
+        finally {client.dispose();}
+        await delay(50);
+      }
+      capture('hint-stress-final');
       report('smoke-complete',{passed:checks.every(c=>c.passed),checks});
     })().catch(e=>report('smoke-error',{message:String(e)}));}
   };

@@ -1,16 +1,19 @@
 import { Canvas } from '@nativescript/canvas';
-import { isAndroid } from '@nativescript/core';
 /** Canvas 2D rasterization with explicit RGBA upload; game rendering remains WebGPU. */
 export class NativeCanvasTextures {
   private readonly textures = new Map<string, { texture: GPUTexture; width: number; height: number }>();
+  private canvasCreations = 0;
+  private uploads = 0;
   constructor(private readonly device: GPUDevice, private readonly format: 'rgba8unorm' | 'rgba8unorm-srgb' = 'rgba8unorm') {}
   readonly createCanvas2D = (width: number, height: number): HTMLCanvasElement => {
     const canvas = new Canvas();
+    this.canvasCreations++;
     canvas.width = width;
     canvas.height = height;
     // These offscreen canvases are always read back immediately for a WebGPU
-    // upload. CPU rasterization avoids Android GL readback artifacts on icons.
-    if (isAndroid) canvas.getContext('2d', { willReadFrequently: true })?.clearRect(0, 0, width, height);
+    // upload. CPU rasterization avoids Android GL readback artifacts and prevents
+    // transient iOS text/hint canvases from accumulating heavyweight Metal contexts.
+    canvas.getContext('2d', { willReadFrequently: true })?.clearRect(0, 0, width, height);
     return canvas as unknown as HTMLCanvasElement;
   };
   readonly readAtlasPixels = (canvas: HTMLCanvasElement): Uint8Array => {
@@ -34,8 +37,9 @@ export class NativeCanvasTextures {
       this.textures.set(key, entry);
     }
     this.device.queue.writeTexture({ texture: entry.texture }, new Uint8Array(pixels.buffer, pixels.byteOffset, pixels.byteLength), { bytesPerRow: width * 4 }, [width, height]);
+    this.uploads++;
     return entry.texture;
   };
-  snapshot() { return { textures: this.textures.size, bytes: [...this.textures.values()].reduce((sum, item) => sum + item.width * item.height * 4, 0) }; }
+  snapshot() { return { canvasesCreated: this.canvasCreations, uploads: this.uploads, textures: this.textures.size, bytes: [...this.textures.values()].reduce((sum, item) => sum + item.width * item.height * 4, 0) }; }
   dispose(): void { for (const item of this.textures.values()) item.texture.destroy(); this.textures.clear(); }
 }

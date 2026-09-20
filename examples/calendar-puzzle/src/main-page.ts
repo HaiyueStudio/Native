@@ -3,7 +3,9 @@ import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank';
 import { CALENDAR_SOUNDS, CALENDAR_SOUND_IDS } from '../../../../Games/games/calendar-puzzle/audio/Sounds';
 import type { CalendarSolverWorker } from '../../../../Games/games/calendar-puzzle/solver-client';
 import { installCalendarSmoke, seedCalendarSmoke } from './smoke';
-import { Application, EventData, Label, Page, knownFolders, path } from '@nativescript/core';
+import { Application, EventData, GridLayout, Page, knownFolders, path } from '@nativescript/core';
+import { NativeEngineSplash } from '../../../bridge/branding/engine-splash';
+import { captureNativeView } from '../../../bridge/render/view-capture';
 import type { Canvas } from '@nativescript/canvas';
 import { NativeRenderHost } from '../../../bridge/lifecycle/host';
 import { NativeTouchInput } from '../../../bridge/input/native-touch';
@@ -15,6 +17,7 @@ import { CalendarPuzzleGame } from '../../../../Games/games/calendar-puzzle/Cale
 let host: NativeRenderHost | null = null;
 let game: CalendarPuzzleGame | null = null;
 let activeCanvas: Canvas | null = null;
+let splash: NativeEngineSplash | null = null;
 const ready = new WeakSet<Canvas>();
 export function onCanvasReady(args: EventData): void {
   const canvas = args.object as Canvas;
@@ -22,8 +25,12 @@ export function onCanvasReady(args: EventData): void {
   ensureHost(canvas);
 }
 export function onLoaded(args: EventData): void {
+  ensureSplash(args.object as Page);
   const canvas = (args.object as Page).getViewById<Canvas>('surface');
   if (canvas && ready.has(canvas)) ensureHost(canvas);
+}
+function ensureSplash(page: Page): NativeEngineSplash {
+  return splash ??= new NativeEngineSplash(page.getViewById<GridLayout>('appRoot'));
 }
 function unhandled(args: { error?: unknown }): void {
   host?.fail(args.error);
@@ -31,12 +38,14 @@ function unhandled(args: { error?: unknown }): void {
 function ensureHost(canvas: Canvas): void {
   if (host && activeCanvas !== canvas) disposeHost();
   if (host) return;
-  const status = (canvas.page as Page).getViewById<Label>('status');
+  const loading = ensureSplash(canvas.page as Page);
   let textures: NativeCanvasTextures | null = null;
   const input = new NativeTouchInput(canvas, (sample) => {
     if (['cancel', 'suspend', 'unloaded', 'dispose'].includes(sample.action)) game?.cancelInteraction();
   });
   const smoke = nativeLaunchFlag('CALENDAR_SMOKE');
+  const performance = nativeLaunchFlag('CALENDAR_PERFORMANCE');
+  let captureSplash = nativeLaunchFlag('CALENDAR_SPLASH_CAPTURE');
   const backend = new LocalStorageSaveBackend({ namespace: smoke ? 'calendar-history-smoke' : 'haiyue-games', storage: new NativeSettingsStorage() });
   let removeSmoke: (() => void) | undefined;
   activeCanvas = canvas;
@@ -44,8 +53,13 @@ function ensureHost(canvas: Canvas): void {
     canvas,
     (text) => {
       const presented = text.startsWith('原生 WebGPU 已呈现');
-      status.visibility = presented ? 'collapse' : 'visible';
-      status.text = presented ? '' : text;
+      if (presented && captureSplash) {
+        captureSplash = false;
+        try { captureNativeView(loading.view, 'calendar-engine-splash.png'); }
+        catch (error) { console.error('Splash capture failed', error); }
+      }
+      if (presented) loading.presented();
+      else if (text.startsWith('初始化或渲染失败')) loading.fail();
     },
     {
       canvasInput: {
@@ -58,6 +72,8 @@ function ensureHost(canvas: Canvas): void {
       } as unknown as NativeCanvasInput,
       engineOptions: { msaaSamples: 4, clearColor: { r: 0.92, g: 0.96, b: 0.92, a: 1 } },
       diagnosticName: 'calendar-puzzle',
+      performance,
+      diagnosticIntervalFrames: smoke || performance ? 120 : 0,
       capture: {
         requested: nativeLaunchFlag('CALENDAR_CAPTURE_FRAME'),
         file: 'calendar-puzzle-frame.png',
@@ -117,4 +133,6 @@ function disposeHost(): void {
   host?.dispose();
   host = null;
   activeCanvas = null;
+  splash?.dispose();
+  splash = null;
 }

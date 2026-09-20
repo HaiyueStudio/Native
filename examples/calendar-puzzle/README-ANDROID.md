@@ -60,3 +60,23 @@ sdkmanager --licenses
 测试安装包位于 `artifacts/android/calendar-puzzle-debug.apk`，构建产物不进入版本控制。验证日志和星标对比截图位于 `evidence/20260919-android/`。
 
 Native 共享源码及 7 个示例的 TypeScript 检查通过，日历拼图 Native 测试 7/7 通过。Games 类型检查、全量游戏构建通过；Games 全量测试 641 项通过、20 项跳过，另有两项已有的 MUGEN 二进制格式/Viewer 断言失败，与本次日历修改无关。
+
+## 连续提示修复（2026-09-20）
+
+设备日志捕获到求解 Worker 的 `ModuleInternal::LoadESModule` / `GlobalHandles::Destroy` 原生 SIGBUS。Android 改用 NativeScript 支持的 CommonJS 构建路径；帧调度桥接同时兼容 Core 的只读 lazy getter。iOS 构建格式不变。
+
+求解客户端复用一个 Worker，只保留一条运行中请求和最新的待处理请求。移动、旋转或切换日期取消结果，不再频繁销毁线程；旧响应通过请求 ID 丢弃，异常和超时可重建线程，退出游戏时释放。当前摆法搜索超时后，完整日期求解有独立预算，可继续提供调整拼块的提示。
+
+X4000 真机回归通过 81 项检查，包括 24 轮连续提示/移动后提示、旋转翻转、6 次线程重建以及原有通关流程。另验证真实触摸和前后台恢复。日志与截图位于 `evidence/20260920-hint-fix/`；求解相关测试 8/8、Native 测试 8/8、Games/Native/bridge 类型检查通过。
+
+## 双击手势修复（2026-09-20）
+
+iOS/Android 共用手势状态机，按屏幕逻辑像素判断：触摸拖动阈值 12，双击间隔最多 420 ms、落点间距最多 32，并要求同一拼块。轻触不改变拼块尺寸和占位；拖动越过阈值才放大，移回原点也不会误判成双击。长按、取消、点击不同拼块或 GUI 都会打断双击序列，鼠标保留更小容差。
+
+Android X4000 回归通过 89 项检查，新增轻触不放大、带手指抖动的双击只旋转一次、旋转动画、长按与拖动误触检查；独立手势测试 5/5 通过。证据位于 `evidence/20260920-double-tap/`。
+
+同组 89 项检查也在 iPhone 15 Plus 完整通过并完成安装。iOS 压力测试另捕获一次离屏 Canvas 绘图触发的 `per-process-limit` 内存终止；共享离屏桥接现统一启用 `willReadFrequently` 的 CPU 栅格化，避免每次文字/提示更新建立 Metal 绘图上下文，最终游戏仍通过 Metal 渲染。修复后完整回归和持续呈现通过，截图已检查；Native 测试更新为 9/9。
+
+## 2026-09-20 载入页与发行准备
+
+加入共享的浅蓝琉璃月牙引擎载入页，首帧后淡出；文字和提示减少 CPU Canvas 分配，正常运行关闭周期性完整诊断写盘。最终调试 APK 已构建并复制到 `artifacts/android/calendar-puzzle-debug.apk`。本轮安卓设备未连接，未进行新版安卓真机安装；iPhone 的共用逻辑已通过回归。[发行准备清单](docs/STORE-RELEASE.zh-CN.md) 中列出正式 AAB、目标 API 升级和内购等后续工作。
