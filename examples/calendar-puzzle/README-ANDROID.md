@@ -5,7 +5,7 @@
 ## 构建环境
 
 - Node.js 22 或以上、JDK 21。
-- Android SDK Platform 35、Build Tools 35.0.0 和 35.0.1、Platform Tools（运行时与 Core 插件分别使用这两个 Build Tools 版本）。
+- Android SDK Platform 36、Build Tools 36.0.0、Platform Tools。编译和目标 API 均为 36，最低 API 仍为 26；版本固定在 `App_Resources/Android/gradle.properties`，重新生成平台目录后仍有效。
 - Android 运行时固定为 `@nativescript/android@9.0.3`，Canvas 为 2.1.18。
 - 构建脚本优先读取 `JAVA_HOME` / `ANDROID_HOME`，否则查找仓库本地的 `Native/.android-tools/jdk/` 和 `Native/.android-tools/sdk/`。本地工具、Gradle 缓存不进入版本控制。
 - 真机构建不需要模拟器。NativeScript 9.1 的 doctor 会同时检查模拟器，因此构建脚本在验证 Java、ADB、SDK 和 Build Tools 文件后，通过 `NS_SKIP_ENV_CHECK` 跳过这项额外检查；`doctor:android` 仍会显示完整环境报告。
@@ -24,7 +24,7 @@ npm run run:android
 已安装 Android command-line tools 的环境可用以下命令补齐 SDK：
 
 ```sh
-sdkmanager 'platform-tools' 'platforms;android-35' 'build-tools;35.0.0' 'build-tools;35.0.1'
+sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;36.0.0'
 sdkmanager --licenses
 ```
 
@@ -37,6 +37,12 @@ sdkmanager --licenses
 - `sensorLandscape` 与沉浸式全屏；暂停到后台会取消触摸、停止音效并保存进度。
 - 中文、英语、日语，日期历史、Worker 求解提示、拼块动画和 8 种音效均复用现有功能。
 - iOS 保留原有实现和构建命令。
+
+## API 36 升级（2026-09-20）
+
+编译 SDK、目标 SDK 与 Build Tools 已升级到 36 / 36 / 36.0.0，最终 APK 已核验；测试机已覆盖安装并保留存档。Android 14 真机完整回归 101 项通过，Android 16 模拟器完成原生渲染、部分游戏流程、实际设置交互与返回重进检查。验证中修复了旧页面销毁事件误关新渲染宿主的黑屏问题。
+
+完整覆盖范围、模拟器限制及尚需处理的 16 KB 原生库 RELRO 对齐风险见 [API 36 升级记录](docs/ANDROID-API36.md)。
 
 开发诊断可通过启动 Intent 的 `CALENDAR_SMOKE` / `CALENDAR_CAPTURE_FRAME` 布尔参数启用，正常启动不使用诊断存档。
 

@@ -1,0 +1,17 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ verified non-consumable acknowledged before signed ownership; duplicates coalesce (21.318821ms)
+✔ pending, cancelled and refunded tokens never acknowledge or unlock (2.877409ms)
+✔ mismatched products, consumed/rental products and malformed input fail closed (2.201348ms)
+✔ ack failure issues no grant, and retry can succeed (1.257854ms)
+✔ publisher uses Google verification and acknowledgement endpoints, never consumption (5.203308ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 209.60619

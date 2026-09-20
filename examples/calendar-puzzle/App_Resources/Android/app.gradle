@@ -1,6 +1,8 @@
 android {
     defaultConfig {
         minSdkVersion 26
-        targetSdkVersion 35
     }
+}
+dependencies {
+    implementation "com.android.billingclient:billing:8.3.0"
 }

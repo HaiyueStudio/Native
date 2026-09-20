@@ -1,9 +1,12 @@
+import { PurchaseController } from '../../../bridge/purchases/controller';
+import { CalendarStore } from './purchases/store';
+import { isDevelopmentBuild } from './development';
 import { nativeLaunchFlag } from '../../../bridge/lifecycle/launch-flags';
 import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank';
 import { CALENDAR_SOUNDS, CALENDAR_SOUND_IDS } from '../../../../Games/games/calendar-puzzle/audio/Sounds';
 import type { CalendarSolverWorker } from '../../../../Games/games/calendar-puzzle/solver-client';
 import { installCalendarSmoke, seedCalendarSmoke } from './smoke';
-import { Application, EventData, GridLayout, Page, knownFolders, path } from '@nativescript/core';
+import { Application, EventData, GridLayout, Page, knownFolders, path, Connectivity } from '@nativescript/core';
 import { NativeEngineSplash } from '../../../bridge/branding/engine-splash';
 import { captureNativeView } from '../../../bridge/render/view-capture';
 import type { Canvas } from '@nativescript/canvas';
@@ -15,8 +18,9 @@ import { LocalStorageSaveBackend } from '@haiyue/engine/save';
 import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage';
 import { CalendarPuzzleGame } from '../../../../Games/games/calendar-puzzle/CalendarPuzzleGame';
 let host: NativeRenderHost | null = null;
-let game: CalendarPuzzleGame | null = null;
 let activeCanvas: Canvas | null = null;
+let activePage: Page | null = null;
+let activeActivity: unknown = null;
 let splash: NativeEngineSplash | null = null;
 const ready = new WeakSet<Canvas>();
 export function onCanvasReady(args: EventData): void {
@@ -40,15 +44,24 @@ function ensureHost(canvas: Canvas): void {
   if (host) return;
   const loading = ensureSplash(canvas.page as Page);
   let textures: NativeCanvasTextures | null = null;
+  let game: CalendarPuzzleGame | null = null;
+  const launchFlag = (name: string) => isDevelopmentBuild() && nativeLaunchFlag(name);
   const input = new NativeTouchInput(canvas, (sample) => {
     if (['cancel', 'suspend', 'unloaded', 'dispose'].includes(sample.action)) game?.cancelInteraction();
   });
-  const smoke = nativeLaunchFlag('CALENDAR_SMOKE');
-  const performance = nativeLaunchFlag('CALENDAR_PERFORMANCE');
-  let captureSplash = nativeLaunchFlag('CALENDAR_SPLASH_CAPTURE');
+  const smoke = launchFlag('CALENDAR_SMOKE');
+  const performance = launchFlag('CALENDAR_PERFORMANCE');
+  const purchases = smoke ? undefined : new PurchaseController(new CalendarStore());
+  if (purchases) {
+    Connectivity.startMonitoring(type => { if (type !== Connectivity.connectionType.none) void purchases.refresh(); });
+    void purchases.refresh();
+  }
+  let captureSplash = launchFlag('CALENDAR_SPLASH_CAPTURE');
   const backend = new LocalStorageSaveBackend({ namespace: smoke ? 'calendar-history-smoke' : 'haiyue-games', storage: new NativeSettingsStorage() });
   let removeSmoke: (() => void) | undefined;
   activeCanvas = canvas;
+  activePage = canvas.page as Page;
+  activeActivity = canvas._context;
   host = new NativeRenderHost(
     canvas,
     (text) => {
@@ -76,13 +89,13 @@ function ensureHost(canvas: Canvas): void {
       needsAnimationFrame: () => game?.needsAnimationFrame() ?? false,
       diagnosticIntervalFrames: smoke || performance ? 120 : 0,
       capture: {
-        requested: nativeLaunchFlag('CALENDAR_CAPTURE_FRAME'),
+        requested: launchFlag('CALENDAR_CAPTURE_FRAME'),
         file: 'calendar-puzzle-frame.png',
       },
       prepareScene: async (engine) => {
         textures = new NativeCanvasTextures(engine.device, 'rgba8unorm-srgb');
         game = new CalendarPuzzleGame({
-          engine, autoRun: false, keyboard: false, touchControls: true,
+          purchases, engine, autoRun: false, keyboard: false, touchControls: true,
           requestRender: () => host?.requestFrame(),
           createCanvas2D: textures.createCanvas2D, textureFromCanvas: textures.textureFromCanvas,
           saveBackend: backend,
@@ -97,13 +110,14 @@ function ensureHost(canvas: Canvas): void {
       },
       disposeScene() {
         removeSmoke?.();
+        if (purchases) { Connectivity.stopMonitoring(); purchases.dispose(); }
         game?.dispose();
         game = null;
         input.dispose();
         textures?.dispose();
       },
       bindInput: (engine, report) => {
-        if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, nativeLaunchFlag('CALENDAR_SMOKE_CLEAN'), () => host?.requestFrame(), () => host!.renderingSnapshot());
+        if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, launchFlag('CALENDAR_SMOKE_CLEAN'), () => host?.requestFrame(), () => host!.renderingSnapshot());
         return ({
         suspend() {
           game?.suspendAudio();
@@ -113,6 +127,7 @@ function ensureHost(canvas: Canvas): void {
         },
         resume() {
           input.resume();
+          void purchases?.refresh();
         },
         dispose() {
           input.dispose();
@@ -124,17 +139,25 @@ function ensureHost(canvas: Canvas): void {
     },
   );
   Application.on(Application.uncaughtErrorEvent, unhandled);
-  Application.on(Application.exitEvent, disposeHost);
+  Application.on(Application.exitEvent, onExit);
 }
-export function onUnloaded(): void {
+export function onUnloaded(args: EventData): void {
+  // Android may finish the previous Activity after the new Page is ready.
+  if (args.object !== activePage) return;
   if (!Application.inBackground && !Application.suspended) disposeHost();
+}
+function onExit(args: EventData & { android?: unknown }): void {
+  if (args.android && args.android !== activeActivity) return;
+  disposeHost();
 }
 function disposeHost(): void {
   Application.off(Application.uncaughtErrorEvent, unhandled);
-  Application.off(Application.exitEvent, disposeHost);
+  Application.off(Application.exitEvent, onExit);
   host?.dispose();
   host = null;
   activeCanvas = null;
+  activePage = null;
+  activeActivity = null;
   splash?.dispose();
   splash = null;
 }

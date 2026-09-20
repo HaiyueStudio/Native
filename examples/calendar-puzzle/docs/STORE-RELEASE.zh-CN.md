@@ -65,7 +65,7 @@ Apple Small Business Program 为符合条件且加入计划的开发者提供 15
 ## 目前项目的发行缺口
 
 - iOS 已用 Xcode 26.3 构建，符合当前 Xcode 26+ / iOS 26 SDK 的最低上传工具版本方向；仍需正式账户、分发签名、Archive、隐私清单及实际上传验证。当前免费开发签名安装成功不等于可直接商店发行。[Apple 当前 SDK 要求](https://developer.apple.com/news/upcoming-requirements/)。
-- Android 当前 `App_Resources/Android/app.gradle` 为 targetSdkVersion 35。新提交现应针对 API 36，需升级编译 SDK/目标 SDK 并验证 Android 16 的横屏、大屏、边到边行为，不能只改一个数字。[目标 API 要求](https://support.google.com/googleplay/android-developer/answer/11926878?hl=en)。
+- Android 已升级为 compileSdk / targetSdk 36，配置保存在 `App_Resources/Android/gradle.properties`，最终 APK 元数据也已核验。Android 14 真机通过 101 项回归；Android 16 系统行为与独立的 16 KB 原生库验证状态见 [API 36 升级记录](ANDROID-API36.md)。[目标 API 要求](https://support.google.com/googleplay/android-developer/answer/11926878?hl=en)。
 - 当前安卓调试 APK 约 193.3 MiB，包含原生运行时；应构建 Release AAB，检查按设备拆分后的实际下载大小，剥离调试内容，不能把调试 APK 大小直接当成最终商店下载量。
 - 初查当前 APK 内 arm64 的 `libNativeScript.so`、`libcanvasnative.so`、`libcanvasnativev8.so` 的 ELF LOAD 对齐均为 16 KiB。这只是静态检查通过，仍需检查最终 AAB/APK ZIP 对齐并在 16 KiB 系统启动、提示求解和切后台实测。Google 官方文档历史公告和目前页面的期限表述不同，以上架后台提示为准；本项目直接将兼容性作为发布门槛。[16 KiB 官方指南](https://developer.android.com/guide/practices/page-sizes)。
 - 当前没有内购适配层、恢复购买、权限控制、正式商店隐私/支持页。现有游戏能力完整不等于商业发行准备完成。

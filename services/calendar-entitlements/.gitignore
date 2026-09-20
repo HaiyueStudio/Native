@@ -1,0 +1,5 @@
+.env
+secrets/
+*.pem
+*service-account*.json
+node_modules/

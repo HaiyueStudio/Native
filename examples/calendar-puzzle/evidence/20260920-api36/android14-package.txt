@@ -1,0 +1,166 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        c8e76e5 org.haiyue.games.calendarpuzzle/com.tns.NativeScriptActivity filter b0095ba
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        4ba9c6b org.haiyue.games.calendarpuzzle/androidx.profileinstaller.ProfileInstallReceiver filter a125386
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        4ba9c6b org.haiyue.games.calendarpuzzle/androidx.profileinstaller.ProfileInstallReceiver filter 4df63c8
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      androidx.profileinstaller.action.SKIP_FILE:
+        4ba9c6b org.haiyue.games.calendarpuzzle/androidx.profileinstaller.ProfileInstallReceiver filter 8349c61
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        4ba9c6b org.haiyue.games.calendarpuzzle/androidx.profileinstaller.ProfileInstallReceiver filter ee49447
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+
+Domain verification status:
+
+Permissions:
+  Permission [org.haiyue.games.calendarpuzzle.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (95767f5):
+    sourcePackage=org.haiyue.games.calendarpuzzle
+    uid=10136 gids=[] type=0 prot=signature
+    perm=PermissionInfo{862198a org.haiyue.games.calendarpuzzle.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    flags=0x0
+
+Registered ContentProviders:
+  org.haiyue.games.calendarpuzzle/androidx.startup.InitializationProvider:
+    Provider{491bfb org.haiyue.games.calendarpuzzle/androidx.startup.InitializationProvider}
+
+ContentProvider Authorities:
+  [org.haiyue.games.calendarpuzzle.androidx-startup]:
+    Provider{491bfb org.haiyue.games.calendarpuzzle/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{4c99418 org.haiyue.games.calendarpuzzle}
+
+Key Set Manager:
+  [org.haiyue.games.calendarpuzzle]
+      Signing KeySets: 30
+
+Packages:
+  Package [org.haiyue.games.calendarpuzzle] (7838e71):
+    appId=10136
+    pkg=Package{4d04456 org.haiyue.games.calendarpuzzle}
+    codePath=/data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==
+    resourcePath=/data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==
+    legacyNativeLibraryDir=/data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=1 minSdk=26 targetSdk=36
+    minExtensionVersions=[]
+    versionName=1.0
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    dataDir=/data/user/0/org.haiyue.games.calendarpuzzle
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-09-20 10:28:08
+    lastUpdateTime=2026-09-20 10:28:08
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    appMetadataFilePath=null
+    signatures=PackageSignatures{e7e6d4b version:2, signatures:[209909d], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    declared permissions:
+      org.haiyue.games.calendarpuzzle.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature
+    requested permissions:
+      android.permission.INTERNET
+      org.haiyue.games.calendarpuzzle.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      android.permission.READ_PHONE_STATE
+    install permissions:
+      org.haiyue.games.calendarpuzzle.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.INTERNET: granted=true
+    User 0: ceDataInode=57426 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false
+      installReason=0
+      firstInstallTime=2026-09-20 00:03:22
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/NavigationBarModeGesturalNarrowBack/NavigationBarModeGesturalOverlayNarrowBack.apk
+        /data/resource-cache/com.android.systemui-neutral-kT5g.frro
+        /data/resource-cache/com.android.systemui-accent-DlPs.frro
+        /data/resource-cache/com.android.systemui-dynamic-K6WN.frro
+      legacy overlay paths:
+        /product/overlay/NavigationBarModeGesturalNarrowBack/NavigationBarModeGesturalOverlayNarrowBack.apk
+      gids=[3003]
+      runtime permissions:
+        android.permission.READ_PHONE_STATE: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    [com.android.wallpaperbackup,com.longcheer.midtest,com.longcheer.sarauth,com.android.server.telecom,com.example.android.factoryreset,com.xreal.analytics,com.xreal.evapro.systemupdate,com.android.providers.settings,com.lct.infoupload,com.xreal.evapro.nebula,com.android.keychain,android,com.android.dynsystem,com.qti.snapdragon.qdcm_ff,com.android.settings,com.qti.diagservices,com.android.inputdevices,com.android.localtransport,com.qualcomm.qti.xrvd.service,com.android.location.fused,com.android.deskclock,vendor.qti.qesdk.sysservice]:
+      org.haiyue.games.calendarpuzzle
+    com.quark.browser:
+      org.haiyue.games.calendarpuzzle
+    com.xreal.evapro.store:
+      org.haiyue.games.calendarpuzzle
+    com.android.settings.intelligence:
+      org.haiyue.games.calendarpuzzle
+    com.tencent.android.qqdownloader:
+      org.haiyue.games.calendarpuzzle
+    com.qiyi.video:
+      org.haiyue.games.calendarpuzzle
+  queryable via interaction:
+    User 0:
+      [com.android.wallpaperbackup,com.longcheer.midtest,com.longcheer.sarauth,com.android.server.telecom,com.example.android.factoryreset,com.xreal.analytics,com.xreal.evapro.systemupdate,com.android.providers.settings,com.lct.infoupload,com.xreal.evapro.nebula,com.android.keychain,android,com.android.dynsystem,com.qti.snapdragon.qdcm_ff,com.android.settings,com.qti.diagservices,com.android.inputdevices,com.android.localtransport,com.qualcomm.qti.xrvd.service,com.android.location.fused,com.android.deskclock,vendor.qti.qesdk.sysservice]:
+        org.haiyue.games.calendarpuzzle
+      com.sogou.inputmethod.iot:
+        org.haiyue.games.calendarpuzzle
+  queryable via uses-library:
+
+Dexopt state:
+  [org.haiyue.games.calendarpuzzle]
+    path: /data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==/base.apk
+      arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+        [location is error]
+    known secondary dex files:
+      /data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/android.view.View_AccessibilityDelegate__86981_32_TNSAccessibilityDelegateImpl.jar (removed)
+        arm64: [status=error] [reason=error] [primary-abi]
+          [location is Failed to create OatFileAssistant: Failed to load class loader context files for '/data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/android.view.View_AccessibilityDelegate__86981_32_TNSAccessibilityDelegateImpl.jar' with context 'PCL[];PCL[/data/app/~~NPgBjHe-yC-UDN6SrV9v1A==/org.haiyue.games.calendarpuzzle-2Hu-6bHVXjCBfNij33xUfw==/base.apk]']
+        class loader context: PCL[];PCL[/data/app/~~NPgBjHe-yC-UDN6SrV9v1A==/org.haiyue.games.calendarpuzzle-2Hu-6bHVXjCBfNij33xUfw==/base.apk]
+      /data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/android.view.View_AccessibilityDelegate_vendor_87304_32_TNSAccessibilityDelegateImpl.jar
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: PCL[];PCL[/data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==/base.apk]
+      /data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/androidx.activity.OnBackPressedCallback__104845_69_.jar (removed)
+        arm64: [status=error] [reason=error] [primary-abi]
+          [location is Failed to create OatFileAssistant: Failed to load class loader context files for '/data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/androidx.activity.OnBackPressedCallback__104845_69_.jar' with context 'PCL[];PCL[/data/app/~~NPgBjHe-yC-UDN6SrV9v1A==/org.haiyue.games.calendarpuzzle-2Hu-6bHVXjCBfNij33xUfw==/base.apk]']
+        class loader context: PCL[];PCL[/data/app/~~NPgBjHe-yC-UDN6SrV9v1A==/org.haiyue.games.calendarpuzzle-2Hu-6bHVXjCBfNij33xUfw==/base.apk]
+      /data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/androidx.activity.OnBackPressedCallback_vendor_105242_69_.jar
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: PCL[];PCL[/data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==/base.apk]
+      /data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/java.lang.Object__104881_32_TouchListenerImpl.jar (removed)
+        arm64: [status=error] [reason=error] [primary-abi]
+          [location is Failed to create OatFileAssistant: Failed to load class loader context files for '/data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/java.lang.Object__104881_32_TouchListenerImpl.jar' with context 'PCL[];PCL[/data/app/~~NPgBjHe-yC-UDN6SrV9v1A==/org.haiyue.games.calendarpuzzle-2Hu-6bHVXjCBfNij33xUfw==/base.apk]']
+        class loader context: PCL[];PCL[/data/app/~~NPgBjHe-yC-UDN6SrV9v1A==/org.haiyue.games.calendarpuzzle-2Hu-6bHVXjCBfNij33xUfw==/base.apk]
+      /data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/java.lang.Object_vendor_105278_32_TouchListenerImpl.jar
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: PCL[];PCL[/data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==/base.apk]
+      /data/user/0/org.haiyue.games.calendarpuzzle/code_cache/secondary-dexes/java.lang.Object_vendor_114944_32_ImageLoadedListenerImpl.jar
+        arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+          [location is error]
+        class loader context: PCL[];PCL[/data/app/~~oxyXnpXaev2-K73O3HNKdw==/org.haiyue.games.calendarpuzzle-sRgxXNKG1oAxokRbAw60QA==/base.apk]
+
+Compiler stats:
+  [org.haiyue.games.calendarpuzzle]
+    (No recorded stats)

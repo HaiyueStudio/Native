@@ -13,7 +13,7 @@ const args=process.argv.slice(2);const profile=path.join(app,'.ns-profile');mkdi
 if(['build','prepare','run'].includes(args[0]))console.log('Canvas binding patch:',patchCanvas());
 const env={...process.env,JAVA_HOME:jdk,ANDROID_HOME:sdk,ANDROID_SDK_ROOT:sdk,ANDROID_USER_HOME:path.join(tools,'user'),GRADLE_USER_HOME:path.join(tools,'gradle'),PATH:[path.join(jdk,'bin'),path.join(sdk,'platform-tools'),path.join(sdk,'cmdline-tools/latest/bin'),process.env.PATH].join(path.delimiter)};
 if(['build','prepare','run'].includes(args[0])) {
-  for(const file of ['platforms/android-35/android.jar','build-tools/35.0.0/aapt2','build-tools/35.0.0/apksigner','build-tools/35.0.1/aapt2']) {
+  for(const file of ['platforms/android-36/android.jar','build-tools/36.0.0/aapt2','build-tools/36.0.0/apksigner']) {
     if(!existsSync(path.join(sdk,file)))throw new Error(`Missing Android build dependency: ${file}`);
   }
   // NativeScript's doctor also requires an emulator binary. Physical-device builds
