@@ -43,9 +43,12 @@ export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleG
     const s=game.snapshot(),b=s.board;
     if(frame===100&&!cleanWin){hintStarted=performance.now();tap('hint');}
     if(frame===106){check(cleanWin?'clean run has no hint assistance':'native worker finds a compatible final-piece hint',cleanWin?!s.hintUsed:s.hint?.piece===9&&s.hintCompatible&&!s.hintBusy&&s.hintUsed);capture('hint-target');}
-    if(frame===125){check('near-complete fixture has nine legal pieces',s.placed===9&&s.occupied===43);const p=s.pieces[9]!;pointer('down',p.x+32*p.scale,p.y+32*p.scale);}
-    if(frame===128)pointer('move',b.x+74+32,b.y+4*74+32);
-    if(frame===130)pointer('up',b.x+74+32,b.y+4*74+32);
+    // Start inside the 10px seam, not on either visible tile. Preserve that
+    // local grab offset as the tray piece grows to board scale during dragging.
+    if(frame===125){check('near-complete fixture has nine legal pieces',s.placed===9&&s.occupied===43);const p=s.pieces[9]!;pointer('down',p.x+69*p.scale,p.y+32*p.scale);}
+    if(frame===126)check('pressing a tray seam picks the piece',s.dragging);
+    if(frame===128)pointer('move',b.x+74+69,b.y+4*74+32);
+    if(frame===130)pointer('up',b.x+74+69,b.y+4*74+32);
     if(frame===160){check('last native drag triggers victory',s.celebrating&&s.placed===10&&s.occupied===47);check('victory records the full date',s.completedDates.length===1&&s.completedDates[0]==='2024-02-28');capture('victory-particles');}
     if(frame===165)check(cleanWin?'unassisted completion earns a star':'assisted completion does not earn a star',s.starredDates.includes('2024-02-28')===cleanWin);
     if(frame===220)tap('victoryHistory');

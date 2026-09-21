@@ -1,0 +1,617 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project /tmp/led-uitest-project/SudokuUITests.xcodeproj -scheme SudokuUITests -destination "platform=iOS Simulator,id=3238ADD3-B802-40B4-983F-AC068564FB5F" -derivedDataPath /tmp/led-uitest-clean -resultBundlePath /tmp/led-ui-touch.xcresult -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=-
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = -
+    CODE_SIGNING_ALLOWED = YES
+
+Writing result bundle at path:
+	/tmp/led-ui-touch.xcresult
+
+note: Using codesigning identity override: -
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'SudokuUITests' in project 'SudokuUITests' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: c901a82582e637b9adbec214d6fde282
+Build description path: /tmp/led-uitest-clean/Build/Intermediates.noindex/XCBuildData/c901a82582e637b9adbec214d6fde282.xcbuilddata
+CreateBuildDirectory /tmp/led-uitest-clean/Build/Products
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-uitest-clean/Build/Products
+
+CreateBuildDirectory /tmp/led-uitest-clean/Build/Intermediates.noindex
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-uitest-clean/Build/Intermediates.noindex
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk /tmp/led-uitest-clean/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -o /tmp/led-uitest-clean/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache
+
+CreateBuildDirectory /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator
+
+CreateBuildDirectory /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /tmp/led-uitest-clean/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-uitest-clean/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /tmp/led-uitest-clean/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-uitest-clean/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests-e8ba7208ba1835d9572cc4989f4fd9bb-VFS-iphonesimulator/all-product-headers.yaml
+    cd /tmp/led-uitest-project/SudokuUITests.xcodeproj
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests-e8ba7208ba1835d9572cc4989f4fd9bb-VFS-iphonesimulator/all-product-headers.yaml
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ProductTypeInfoPlistAdditions.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ProductTypeInfoPlistAdditions.plist
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyStaticMetadataFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.hmap
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-non-framework-target-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftConstValuesFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.LinkFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.LinkFileList
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json
+
+WriteAuxiliaryFile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/Entitlements-Simulated.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    write-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/Entitlements-Simulated.plist
+
+MkDir /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /bin/mkdir -p /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+ProcessProductPackaging "" /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "D2B23S3U45.org.haiyue.games.ledsudoku.uitests.xctrunner";
+    "keychain-access-groups" =     (
+        "D2B23S3U45.org.haiyue.games.ledsudoku.uitests.xctrunner"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent
+
+ProcessProductPackagingDER /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent.der (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /usr/bin/derq query -f xml -i /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent -o /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent.der --raw
+
+ProcessInfoPlistFile /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-infoPlistUtility /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ProductTypeInfoPlistAdditions.plist -o /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist
+
+SwiftDriver SudokuUITests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SudokuUITests -Onone -enforce-exclusivity\=checked @/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios15.0-simulator -g -module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/led-uitest-clean/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/led-uitest-clean/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -sdk-module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/led-uitest-clean/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap -Xcc -I/tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/x86_64 -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -working-directory /tmp/led-uitest-project -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_stdarg-9VSARWIO2IOOWWSBIB7JMX08V.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/ptrcheck-2U93W0KV8YWV0NO5ZLZYGMRV5.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_stddef-CFF4OQD63UYVO1KLYTHQRV2ZQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_stdbool-VRREUTWJGVI9KEZ35RJ1TGAD.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/ptrauth-4ID6OD5AHNUWQT6VHGZCKQAXK.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_AvailabilityInternal-E52O6YDK37MV0WHLJ42A8UAOY.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_float-161TXOPX4B7USEPJAP27SUTBF.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/DeveloperToolsSupport-X6NACH2GC6H292UTDXZWDQJN.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_SwiftConcurrencyShims-2A8XFZ8OTGU3FWPR76I1B3N7J.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/SwiftShims-4YMEK49PSLZAIAZCGPIBMEZVQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_DarwinFoundation1-BPMPU4OXCQHDB3DHHYZBWSV7.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_limits-BU0PMKOXA1RG81Q21DMURCRKS.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_DarwinFoundation2-E6X1QFBUDQ843T0IOPNIGX8CQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/sys_types-9JFAE6EQ8VHG28P4LGVJLZ561.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_stdint-81L4HPGPV0TQREQTNJ95WPFTJ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_DarwinFoundation3-6GGTL0REDUVYQISJF64952HCC.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_stdatomic-D4CRK63Z0T0CG1S86JKKBRE3I.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/_Builtin_inttypes-CR2BE0ILY94XRXSW44OIVUXVS.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/Darwin-5PHA0I76GHNVO4DBWFWK0A962.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/MachO-9BOAH2M2GRQRMTOFLFP3R3C0B.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/ObjectiveC-8KPZGHOSOI7SZIHENSFESTCSQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/os_object-6QDWYX8PEBZMYNR1JY9DVOW3C.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/os_workgroup-4BALTFX0NT5D9N42P1PSONKKT.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/Dispatch-7749FW8T9P41X1AS18YJWJJFP.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/CoreFoundation-CEHJ9YPE7OONDFDSSNLVOL8HR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/XPC-5MJYDMJ4Q4VBB7GOPXS70SMCX.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/os-2MXE303C7DL83DOL2CAY5OHNL.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/CFNetwork-7JHZ2L5EEI9R6BUR7XOZDYUBY.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/CoreGraphics-CF3HFYPBTUQOUOOCLTTAKL0ON.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/Security-76S033SYGZM6E2WBONJ9KQK0X.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/Foundation-CWAQKAF1MJ82RQWX0NUD08N5X.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/CoreText-2BVWYL2JL85YZL10Z0W6E93NR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/ImageIO-SSKBQVP8C2FV1G5WQS6U8D8Y.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/IOSurface-5CTM2OBLTCK9VC7XV2TWTW3C.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/UniformTypeIdentifiers-2OP38KMH1JXK55LVMU7ZMYHM9.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/Symbols-6LQ66IL1MX1HGH885ST934X2.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/OpenGLES-EDAI0EUWC7ZUCUHCKAXALP8AH.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/DataDetection-5XPSNUSRZUT3GD7YLM4LG9WGQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/UIUtilities-9VQY1ZXCPUK4IUQMSIX2G5GE.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/UserNotifications-8U5QR6DIGPQ2OC9ZDB4CLW06.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/CoreTransferable-9MGWMWJ41E3LTI9M9VOU02467.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/FileProvider-5XGYNYDSXUXCDZPUDJ11DB05K.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/OSLog-DN3GZ5NVGX0YJ28LWYYH03RMS.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/Accessibility-BGKWH2R0MKW7MGJ50PYJU9UID.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/Metal-7GHFVR9S21UPCPLZTA2FOBAS7.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/CoreVideo-4NY681SUVGUE5N9HZ2OKKPPAA.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/QuartzCore-EUQRTYAQYRE5HBE0RVQECFUZN.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/CoreImage-7CUNCH8S0MP190K6KR1M4751U.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/SwiftUICore-DM9ERKB5AAW7O3X3BPVJ0OK4B.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/ModuleCache.noindex/UIKit-9Z3L2DFLSQVQ04E0TK58X5FE3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-1UMOAICBOB045CEMI4ODE3SZH.pcm
+
+SwiftExplicitDependencyCompileModuleFromInterface x86_64 /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-28GJGZQJD15BQ.swiftmodule
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-76BBR6SRSQ706CI38TQN5RQ7T.pcm
+
+SwiftExplicitDependencyCompileModuleFromInterface x86_64 /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-33AEZ0Y1MY7RQ.swiftmodule
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ SudokuUITests (in target 'SudokuUITests' from project 'SudokuUITests')
+
+SwiftCompile normal x86_64 /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/test/ios/GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    
+
+SwiftCompile normal x86_64 Compiling\ GenerationUITests.swift /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/test/ios/GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+SwiftCompile normal x86_64 /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/test/ios/GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    
+
+SwiftDriverJobDiscovery normal x86_64 Emitting module for SudokuUITests (in target 'SudokuUITests' from project 'SudokuUITests')
+
+SwiftDriver\ Compilation\ Requirements SudokuUITests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SudokuUITests -Onone -enforce-exclusivity\=checked @/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios15.0-simulator -g -module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/led-uitest-clean/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/led-uitest-clean/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -sdk-module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/led-uitest-clean/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap -Xcc -I/tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/x86_64 -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -working-directory /tmp/led-uitest-project -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/SudokuUITests-Swift.h /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-swiftHeaderTool -arch x86_64 /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -o /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/SudokuUITests-Swift.h
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftdoc /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftdoc (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftdoc /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftdoc
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.abi.json /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.abi.json (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.abi.json /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.abi.json
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftsourceinfo (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftsourceinfo /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+
+SwiftDriver\ Compilation SudokuUITests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SudokuUITests -Onone -enforce-exclusivity\=checked @/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios15.0-simulator -g -module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/led-uitest-clean/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/led-uitest-clean/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -sdk-module-cache-path /tmp/led-uitest-clean/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/led-uitest-clean/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap -Xcc -I/tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/x86_64 -Xcc -I/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -working-directory /tmp/led-uitest-project -experimental-emit-module-separately -disable-cmo
+
+Ld /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests normal (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios15.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/tmp/led-uitest-clean/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/led-uitest-clean/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -filelist /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule @/tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-linker-args.resp -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent.der -framework Foundation -Xlinker -no_adhoc_codesign -o /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests
+
+ExtractAppIntentsMetadata (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name SudokuUITests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 15.0 --bundle-identifier org.haiyue.games.ledsudoku.uitests --output /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest --target-triple x86_64-apple-ios15.0-simulator --binary-file /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests --dependency-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_dependency_info.dat --stringsdata-file /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList --metadata-file-list /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList --static-metadata-file-list /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-09-20 20:49:20.472 appintentsmetadataprocessor[76906:7124694] Starting appintentsmetadataprocessor export
+2026-09-20 20:49:20.476 appintentsmetadataprocessor[76906:7124694] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests --scan-folder /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Frameworks --scan-folder /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/PlugIns --scan-folder /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SystemExtensions --scan-folder /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Extensions --scan-folder /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+AppIntentsSSUTraining (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist --temp-dir-path /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ssu --bundle-id org.haiyue.games.ledsudoku.uitests --product-path /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest --extracted-metadata-path /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Metadata.appintents --metadata-file-list /tmp/led-uitest-clean/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList --archive-ssu-assets
+2026-09-20 20:49:20.522 appintentsnltrainingprocessor[76907:7124695] Parsing options for appintentsnltrainingprocessor
+2026-09-20 20:49:20.523 appintentsnltrainingprocessor[76907:7124695] No AppShortcuts found - Skipping.
+
+CopyAndPreserveArchs /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/SudokuUITests-Runner (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/XCTRunner -output /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/SudokuUITests-Runner -extract x86_64
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PkgInfo /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/PkgInfo (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/PkgInfo /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app
+
+CopyPlistFile /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Info.plist /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/Info.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copyPlist --validate --convert xml1 --macro-expansion WRAPPEDPRODUCTNAME SudokuUITests-Runner --macro-expansion WRAPPEDPRODUCTBUNDLEIDENTIFIER org.haiyue.games.ledsudoku.uitests.xctrunner --macro-expansion TESTPRODUCTNAME SudokuUITests --macro-expansion TESTPRODUCTBUNDLEIDENTIFIER org.haiyue.games.ledsudoku.uitests --copy-value UIDeviceFamily /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist --outdir /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app -- /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/Info.plist
+
+MkDir /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /bin/mkdir -p /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTestCore.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTestSupport.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCUnit.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCUIAutomation.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTest.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTAutomationSupport.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/libXCTestSwiftSupport.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/Testing.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+CodeSign /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+CodeSign /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app
+/tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app: replacing existing signature
+
+RegisterExecutionPolicyException /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    builtin-RegisterExecutionPolicyException /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+Touch /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-uitest-project
+    /usr/bin/touch -c /tmp/led-uitest-clean/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+2026-09-20 20:49:23.887364+0800 SudokuUITests-Runner[76912:7124991] [Default] Running tests...
+2026-09-20 20:49:24.009302+0800 SudokuUITests-Runner[76912:7125092] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-09-20 20:49:25.666.
+Test Suite 'SudokuUITests.xctest' started at 2026-09-20 20:49:25.667.
+Test Suite 'GenerationTouchUITests' started at 2026-09-20 20:49:25.668.
+Test Case '-[SudokuUITests.GenerationTouchUITests testNewPuzzleUsesNativeEvents]' started.
+    t =     0.00s Start Test at 2026-09-20 20:49:25.671
+2026-09-20 20:49:25.710616+0800 SudokuUITests-Runner[76912:7125082] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+    t =     0.15s Set Up
+    t =     0.18s Open org.haiyue.games.ledsudoku
+    t =     0.18s     Launch org.haiyue.games.ledsudoku
+    t =     0.18s         Terminate org.haiyue.games.ledsudoku:76644
+    t =     1.44s         Setting up automation session
+    t =     3.99s         Wait for org.haiyue.games.ledsudoku to idle
+    t =     6.40s Waiting 15.0s for "new" Button to exist
+    t =     7.44s     Checking `Expect predicate `existsNoRetry == 1` for object "new" Button`
+    t =     7.44s         Checking existence of `"new" Button`
+    t =     7.60s Waiting 20.0s for "generation-status" StaticText to not exist
+    t =     8.63s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =     8.63s         Checking existence of `"generation-status" StaticText`
+    t =     8.71s Tap "new" Button
+    t =     8.71s     Wait for org.haiyue.games.ledsudoku to idle
+    t =     8.72s     Find the "new" Button
+    t =     8.81s     Check for interrupting elements affecting "new" Button
+    t =     8.90s     Synthesize event
+    t =     9.21s     Wait for org.haiyue.games.ledsudoku to idle
+    t =     9.30s Waiting 5.0s for "rules-cancel" Button to exist
+    t =    10.33s     Checking `Expect predicate `existsNoRetry == 1` for object "rules-cancel" Button`
+    t =    10.33s         Checking existence of `"rules-cancel" Button`
+    t =    10.40s Tap "挑战" Button
+    t =    10.40s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    10.40s     Find the "挑战" Button
+    t =    10.47s     Check for interrupting elements affecting "挑战" Button
+    t =    10.53s     Synthesize event
+    t =    10.83s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    11.11s Tap "rules-cancel" Button
+    t =    11.11s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    11.13s     Find the "rules-cancel" Button
+    t =    11.21s     Check for interrupting elements affecting "rules-cancel" Button
+    t =    11.27s     Synthesize event
+    t =    11.56s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    11.96s Waiting 5.0s for "rules-cancel" Button to not exist
+    t =    12.99s     Checking `Expect predicate `existsNoRetry == 0` for object "rules-cancel" Button`
+    t =    12.99s         Checking existence of `"rules-cancel" Button`
+    t =    13.08s Tap "new" Button
+    t =    13.08s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    13.09s     Find the "new" Button
+    t =    13.19s     Check for interrupting elements affecting "new" Button
+    t =    13.28s     Synthesize event
+    t =    13.58s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    13.63s Waiting 5.0s for "rules-start" Button to exist
+    t =    14.65s     Checking `Expect predicate `existsNoRetry == 1` for object "rules-start" Button`
+    t =    14.66s         Checking existence of `"rules-start" Button`
+    t =    14.73s Tap "挑战" Button
+    t =    14.73s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    14.73s     Find the "挑战" Button
+    t =    14.80s     Check for interrupting elements affecting "挑战" Button
+    t =    14.86s     Synthesize event
+    t =    15.17s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    15.46s Find the "温度计" Switch
+    t =    15.54s Swipe up ScrollView (First Match)
+    t =    15.54s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    15.55s     Find the ScrollView (First Match)
+    t =    15.56s     Check for interrupting elements affecting ScrollView
+    t =    15.62s     Synthesize event
+    t =    16.09s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    16.83s Find the "温度计" Switch
+    t =    16.90s Find the "温度计" Switch
+    t =    16.98s Find the "温度计" Switch
+    t =    17.03s Tap "温度计" Switch
+    t =    17.04s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    17.04s     Find the "温度计" Switch
+    t =    17.11s     Check for interrupting elements affecting "温度计" Switch
+    t =    17.17s     Synthesize event
+    t =    17.48s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    18.78s Find the "摩天大楼" Switch
+    t =    18.86s Find the "摩天大楼" Switch
+    t =    18.93s Find the "摩天大楼" Switch
+    t =    18.99s Tap "摩天大楼" Switch
+    t =    18.99s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    19.00s     Find the "摩天大楼" Switch
+    t =    19.05s     Check for interrupting elements affecting "摩天大楼" Switch
+    t =    19.11s     Synthesize event
+    t =    19.41s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    20.71s Find the "XV 数独" Switch
+    t =    20.79s Find the "XV 数独" Switch
+    t =    20.87s Find the "XV 数独" Switch
+    t =    20.93s Tap "XV 数独" Switch
+    t =    20.93s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    20.93s     Find the "XV 数独" Switch
+    t =    20.99s     Check for interrupting elements affecting "XV 数独" Switch
+    t =    21.05s     Synthesize event
+    t =    21.35s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    22.66s Find the "四数和" Switch
+    t =    22.74s Find the "四数和" Switch
+    t =    22.81s Find the "四数和" Switch
+    t =    22.87s Tap "四数和" Switch
+    t =    22.87s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    22.88s     Find the "四数和" Switch
+    t =    22.94s     Check for interrupting elements affecting "四数和" Switch
+    t =    22.99s     Synthesize event
+    t =    23.30s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    24.60s Tap "rules-start" Button
+    t =    24.60s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    24.61s     Find the "rules-start" Button
+    t =    24.67s     Check for interrupting elements affecting "rules-start" Button
+    t =    24.73s     Synthesize event
+    t =    25.03s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    25.46s Waiting 5.0s for "rules-start" Button to not exist
+    t =    26.49s     Checking `Expect predicate `existsNoRetry == 0` for object "rules-start" Button`
+    t =    26.49s         Checking existence of `"rules-start" Button`
+    t =    26.56s Waiting 2.0s for "generation-status" StaticText to exist
+    t =    27.59s     Checking `Expect predicate `existsNoRetry == 1` for object "generation-status" StaticText`
+    t =    27.59s         Checking existence of `"generation-status" StaticText`
+    t =    27.67s Find the "generation-status" StaticText
+    t =    27.74s Find the Application 'org.haiyue.games.ledsudoku'
+    t =    28.00s Added attachment named 'generating-on-board'
+    t =    28.01s Waiting 35.0s for "generation-status" StaticText to not exist
+    t =    29.04s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =    29.04s         Checking existence of `"generation-status" StaticText`
+    t =    29.11s         Capturing element debug description
+    t =    29.12s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    29.26s             Find: Descendants matching type StaticText
+    t =    29.26s             Find: Elements matching predicate '"generation-status" IN identifiers'
+    t =    29.27s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    29.39s             Find: Descendants matching type StaticText
+    t =    29.40s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    30.06s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =    30.06s         Checking existence of `"generation-status" StaticText`
+    t =    30.13s         Capturing element debug description
+    t =    30.14s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    30.26s             Find: Descendants matching type StaticText
+    t =    30.26s             Find: Elements matching predicate '"generation-status" IN identifiers'
+    t =    30.27s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    30.39s             Find: Descendants matching type StaticText
+    t =    30.40s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    31.06s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =    31.06s         Checking existence of `"generation-status" StaticText`
+    t =    31.14s         Capturing element debug description
+    t =    31.14s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    31.26s             Find: Descendants matching type StaticText
+    t =    31.26s             Find: Elements matching predicate '"generation-status" IN identifiers'
+    t =    31.27s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    31.39s             Find: Descendants matching type StaticText
+    t =    31.40s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    32.06s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =    32.06s         Checking existence of `"generation-status" StaticText`
+    t =    32.13s         Capturing element debug description
+    t =    32.13s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    32.28s             Find: Descendants matching type StaticText
+    t =    32.28s             Find: Elements matching predicate '"generation-status" IN identifiers'
+    t =    32.29s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    32.42s             Find: Descendants matching type StaticText
+    t =    32.43s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    33.09s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =    33.09s         Checking existence of `"generation-status" StaticText`
+    t =    33.17s         Capturing element debug description
+    t =    33.17s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    33.30s             Find: Descendants matching type StaticText
+    t =    33.30s             Find: Elements matching predicate '"generation-status" IN identifiers'
+    t =    33.31s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    37.06s             Find: Descendants matching type StaticText
+    t =    37.07s             Requesting snapshot of accessibility hierarchy for app with pid 76925
+    t =    38.08s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =    38.08s         Checking existence of `"generation-status" StaticText`
+    t =    38.16s Tap "new" Button
+    t =    38.17s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    38.17s     Find the "new" Button
+    t =    38.26s     Check for interrupting elements affecting "new" Button
+    t =    38.35s     Synthesize event
+    t =    38.65s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    38.73s Waiting 5.0s for "rules-start" Button to exist
+    t =    39.75s     Checking `Expect predicate `existsNoRetry == 1` for object "rules-start" Button`
+    t =    39.75s         Checking existence of `"rules-start" Button`
+    t =    39.82s Find the "摩天大楼" Switch
+    t =    39.90s Swipe up ScrollView (First Match)
+    t =    39.90s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    39.91s     Find the ScrollView (First Match)
+    t =    39.93s     Check for interrupting elements affecting ScrollView
+    t =    39.99s     Synthesize event
+    t =    40.45s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    41.18s Find the "摩天大楼" Switch
+    t =    41.25s Find the "摩天大楼" Switch
+    t =    41.32s Tap "rules-cancel" Button
+    t =    41.32s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    41.33s     Find the "rules-cancel" Button
+    t =    41.39s     Check for interrupting elements affecting "rules-cancel" Button
+    t =    41.46s     Synthesize event
+    t =    41.76s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    42.17s Waiting 5.0s for "rules-cancel" Button to not exist
+    t =    43.21s     Checking `Expect predicate `existsNoRetry == 0` for object "rules-cancel" Button`
+    t =    43.21s         Checking existence of `"rules-cancel" Button`
+    t =    43.30s Tear Down
+Test Case '-[SudokuUITests.GenerationTouchUITests testNewPuzzleUsesNativeEvents]' passed (43.638 seconds).
+Test Suite 'GenerationTouchUITests' passed at 2026-09-20 20:50:09.309.
+	 Executed 1 test, with 0 failures (0 unexpected) in 43.638 (43.641) seconds
+Test Suite 'SudokuUITests.xctest' passed at 2026-09-20 20:50:09.310.
+	 Executed 1 test, with 0 failures (0 unexpected) in 43.638 (43.643) seconds
+Test Suite 'All tests' passed at 2026-09-20 20:50:09.311.
+	 Executed 1 test, with 0 failures (0 unexpected) in 43.638 (43.645) seconds
+2026-09-20 20:50:09.639 xcodebuild[76824:7123971] [MT] IDETestOperationsObserverDebug: 48.942 elapsed -- Testing started completed.
+2026-09-20 20:50:09.639 xcodebuild[76824:7123971] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-09-20 20:50:09.639 xcodebuild[76824:7123971] [MT] IDETestOperationsObserverDebug: 48.942 sec, +48.942 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/led-ui-touch.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

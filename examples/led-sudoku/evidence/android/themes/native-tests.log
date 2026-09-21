@@ -1,0 +1,28 @@
+
+> @haiyue/native-led-sudoku@0.1.0 test
+> node --experimental-strip-types --test test/*.test.mjs
+
+(node:13749) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/src/layout.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ portrait sizing keeps square board and nine large targets within tall phones (2.125249ms)
+✔ native session uses the same rule filters and immutable notes/undo/erase (47.643643ms)
+✔ native restore preserves options, time, notes, and black-cell protection (109.598109ms)
+✔ persistent worker cancels old results, settles failures, and terminates on dispose (1.617135ms)
+✔ shared board painter draws seven dark tubes for every playable empty LED cell (7.643129ms)
+✔ iPhone safe-area content fits portrait layout without double-counting system insets (0.600736ms)
+✔ candidate hints apply progressively, survive restore and support exact undo (301.72488ms)
+✔ missing XV and implication chains use the native explanation/notes/undo flow (65.784241ms)
+✔ native pencil toggles crosses, erase and undo preserve them across reload (8.928503ms)
+✔ native explanation distinguishes recorded candidates from pending ones and follows undo (101.535272ms)
+✔ restored notebook filters marks using the current board, with erase and undo (4.624518ms)
+✔ answer is a no-op on an already completed puzzle, preserving unassisted completion and undo history (5.431951ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 932.528647

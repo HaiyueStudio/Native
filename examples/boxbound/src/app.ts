@@ -1,0 +1,11 @@
+import {installGameRuntime} from './runtime';
+import clone from 'core-js-pure/actual/structured-clone';
+import {Application} from '@nativescript/core';
+import {installNativeSaveRuntime} from '../../../bridge/storage/clone-runtime';
+import {NativeOrientationController} from '../../../bridge/display/orientation';
+import {NativeEngineLaunchPage} from '../../../bridge/branding/launch-page';
+import {onLoaded,onUnloaded} from './main-page';
+installNativeSaveRuntime(clone);
+installGameRuntime();
+export const orientation=new NativeOrientationController('landscape');
+Application.run({create:()=>{const page=new NativeEngineLaunchPage({orientation:'landscape',message:'正在打开箱庭迷境…'});page.androidOverflowEdge='ignore';page.on('loaded',onLoaded);page.on('unloaded',onUnloaded);return page;}});

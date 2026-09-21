@@ -6,5 +6,6 @@ module.exports = env => {
   webpack.init(env);
   webpack.chainWebpack(config => config.resolve.modules.prepend(path.resolve(__dirname, 'node_modules')));
   addEngineBrandingCopyRule(webpack);
+  webpack.Utils.addCopyRule({ from: path.join(__dirname, 'src/icons'), to: 'icons', noErrorOnMissing: false });
   return webpack.resolveConfig();
 };

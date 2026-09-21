@@ -6,6 +6,7 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 
 | 路径 | 用途 |
 | --- | --- |
+| [examples/boxbound/](./examples/boxbound/README.md) | 箱庭迷境，Android 横屏盒中世界、半透明摇杆与双指跳跃 |
 | [examples/](./examples/README.md) | 原生 App 示例 |
 | [examples/led-sudoku/](./examples/led-sudoku/README.md) | iPhone / Android 竖屏流光数独，LED 灯管、九宫格输入与十四种规则 |
 | [examples/neon-circuit/](./examples/neon-circuit/README.md) | 四赛道反重力竞速，陀螺仪 / 虚拟摇杆、独立刹车与油门 |

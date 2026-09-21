@@ -1,0 +1,59 @@
+
+> @haiyue/native-led-sudoku@0.1.0 build:android
+> node scripts/android.mjs build android
+
+Canvas binding patch: {
+  version: '2.1.18',
+  queueSha256: 'a38a58942c488ccece244424b1c4e91c8f3e257dd201b85dd63871988ff30369',
+  file: 'WebGPU/GPURenderPassEncoder.js',
+  sha256: '7a14f279e042bb748781c10a6c56a6122931525f56943096815fb1143b583cf7'
+}
+Preparing project...
+assets by path [1m[32micons/*.png[39m[22m 8 KiB
+  asset [1m[32micons/settings.png[39m[22m 1.82 KiB [1m[33m[compared for emit][39m[22m [from: src/icons/settings.png] [1m[32m[copied][39m[22m
+  asset [1m[32micons/help.png[39m[22m 1.39 KiB [1m[33m[compared for emit][39m[22m [from: src/icons/help.png] [1m[32m[copied][39m[22m
+  asset [1m[32micons/hint.png[39m[22m 1.21 KiB [1m[33m[compared for emit][39m[22m [from: src/icons/hint.png] [1m[32m[copied][39m[22m
+  asset [1m[32micons/explain.png[39m[22m 1.14 KiB [1m[33m[compared for emit][39m[22m [from: src/icons/explain.png] [1m[32m[copied][39m[22m
+  asset [1m[32micons/undo.png[39m[22m 1.08 KiB [1m[33m[compared for emit][39m[22m [from: src/icons/undo.png] [1m[32m[copied][39m[22m
+  asset [1m[32micons/erase.png[39m[22m 520 bytes [1m[33m[compared for emit][39m[22m [from: src/icons/erase.png] [1m[32m[copied][39m[22m
+  + 2 assets
+assets by path [1m[32m*.js[39m[22m 7.38 MiB
+  asset [1m[32mvendor.js[39m[22m 6.84 MiB [1m[33m[compared for emit][39m[22m (name: vendor) (id hint: defaultVendor) 1 related asset
+  asset [1m[32mbundle.js[39m[22m 430 KiB [1m[32m[emitted][39m[22m (name: bundle) 1 related asset
+  asset [1m[32msrc_generator_worker_ts.js[39m[22m 113 KiB [1m[33m[compared for emit][39m[22m 1 related asset
+  asset [1m[32mruntime.js[39m[22m 7.2 KiB [1m[33m[compared for emit][39m[22m (name: runtime) 1 related asset
+asset [1m[32mbranding/haiyue-moon.png[39m[22m 127 KiB [1m[33m[compared for emit][39m[22m [from: ../../bridge/branding/assets/haiyue-moon.png] [1m[32m[copied][39m[22m
+asset [1m[32mtns_modules/inspector_modules.js[39m[22m 859 bytes [1m[33m[compared for emit][39m[22m (name: tns_modules/inspector_modules) 1 related asset
+Entrypoint [1mbundle[39m[22m 7.27 MiB (7.81 MiB) = [1m[32mruntime.js[39m[22m 7.2 KiB [1m[32mvendor.js[39m[22m 6.84 MiB [1m[32mbundle.js[39m[22m 430 KiB 3 auxiliary assets
+Entrypoint [1mtns_modules/inspector_modules[39m[22m 6.85 MiB (7.13 MiB) = [1m[32mruntime.js[39m[22m 7.2 KiB [1m[32mvendor.js[39m[22m 6.84 MiB [1m[32mtns_modules/inspector_modules.js[39m[22m 859 bytes 3 auxiliary assets
+orphan modules 1.24 MiB [1m[33m[orphan][39m[22m 30 modules
+runtime modules 4.36 KiB 12 modules
+modules by path [1m./node_modules/[39m[22m 5.93 MiB 677 modules
+modules by path [1m../../[39m[22m 255 KiB
+  javascript modules 243 KiB 42 modules
+  json modules 12.3 KiB
+    [1m../../../Games/games/led-sudoku/evidence/hints/little-killer-45-stalled.json[39m[22m 2.58 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+    + 5 modules
+modules by path [1m./src/[39m[22m 95.4 KiB
+  modules by path [1m./src/*.ts[39m[22m 88.7 KiB
+    [1m./src/app.ts[39m[22m 988 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+    + 16 modules
+  [1m./src/ sync \.(xml%7Cjs%7C(%3F<%21\.d\.)ts%7Cs%3Fcss)$[39m[22m 547 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  [1m./src/app.css[39m[22m 6.15 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+[1mexternal "~/package.json"[39m[22m 42 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+webpack 5.110.3 compiled [1m[32msuccessfully[39m[22m in 6871 ms
+Webpack compilation complete.
+Updating runtime package.json with configuration values...
+Project successfully prepared (android)
+Building project...
+Gradle build...
+	 + setting applicationId
+	 + applying user-defined configuration from /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/App_Resources/Android/app.gradle
+	 + adding nativescript runtime package dependency: nativescript-optimized-with-inspector
+	 + adding aar plugin dependency: /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/node_modules/@nativescript/core/platforms/android/core.aar
+	 + adding aar plugin dependency: /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/node_modules/@nativescript/core/platforms/android/widgets-release.aar
+	 + adding aar plugin dependency: /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/node_modules/@nativescript/core/platforms/android/winter_tc-release.aar
+	 + adding aar plugin dependency: /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/node_modules/@nativescript/canvas/platforms/android/canvas-release.aar
+Project successfully built.
+Build time: 15.213 s.
+The build result is located at: /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/platforms/android/app/build/outputs/apk/debug/app-debug.apk

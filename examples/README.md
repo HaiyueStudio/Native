@@ -4,6 +4,7 @@
 
 | 示例 | 平台 | 目标 | 状态 |
 | --- | --- | --- | --- |
+| [boxbound](./boxbound/README.md) | Android | 箱庭迷境，原生横屏、半透明摇杆、跳跃与下钻 | 已安装；20 项真机检查通过，五存档与双指操作 |
 | [led-sudoku](./led-sudoku/README.md) | iPhone / Android | 流光数独，竖屏棋盘、九宫格 LED 输入、十四种规则 | NativeScript / Haiyue Metal、Vulkan，独立应用 |
 | [calendar-puzzle](./calendar-puzzle/README.md) | iPhone / iOS | 日历拼图，原生 GUI、触摸拖拽及自动存档 | 已安装；9 项真机交互检查及重启存档恢复通过 |
 | [neon-circuit](./neon-circuit/README.md) | iPhone / iOS | 四赛道竞速、原生 PBR 与 GUI、陀螺仪 / 虚拟摇杆驾驶 | 已安装；28 项真机检查及正常冷启动通过 |

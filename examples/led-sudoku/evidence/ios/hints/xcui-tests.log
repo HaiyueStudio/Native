@@ -1,0 +1,493 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project /tmp/led-hints-uitest/SudokuUITests.xcodeproj -scheme SudokuUITests -destination "platform=iOS Simulator,id=3238ADD3-B802-40B4-983F-AC068564FB5F" -derivedDataPath /tmp/led-hints-ui-derived -resultBundlePath /tmp/led-hints-ui.xcresult -parallel-testing-enabled NO "-only-testing:SudokuUITests/GenerationTouchUITests/testHintWalkthroughUsesNativeEvents" CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=-
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = -
+    CODE_SIGNING_ALLOWED = YES
+
+Writing result bundle at path:
+	/tmp/led-hints-ui.xcresult
+
+note: Using codesigning identity override: -
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'SudokuUITests' in project 'SudokuUITests' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: de2a69c96da00a59c5bf3ff096f96017
+Build description path: /tmp/led-hints-ui-derived/Build/Intermediates.noindex/XCBuildData/de2a69c96da00a59c5bf3ff096f96017.xcbuilddata
+CreateBuildDirectory /tmp/led-hints-ui-derived/Build/Products
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-hints-ui-derived/Build/Products
+
+CreateBuildDirectory /tmp/led-hints-ui-derived/Build/Intermediates.noindex
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-hints-ui-derived/Build/Intermediates.noindex
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk /tmp/led-hints-ui-derived/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -o /tmp/led-hints-ui-derived/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache
+
+CreateBuildDirectory /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /tmp/led-hints-ui-derived/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-hints-ui-derived/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator
+
+CreateBuildDirectory /tmp/led-hints-ui-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    builtin-create-build-directory /tmp/led-hints-ui-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests-e8ba7208ba1835d9572cc4989f4fd9bb-VFS-iphonesimulator/all-product-headers.yaml
+    cd /tmp/led-hints-uitest/SudokuUITests.xcodeproj
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests-e8ba7208ba1835d9572cc4989f4fd9bb-VFS-iphonesimulator/all-product-headers.yaml
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.hmap
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyStaticMetadataFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-non-framework-target-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ProductTypeInfoPlistAdditions.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ProductTypeInfoPlistAdditions.plist
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.LinkFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.LinkFileList
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftConstValuesFileList (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json
+
+WriteAuxiliaryFile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/Entitlements-Simulated.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    write-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/Entitlements-Simulated.plist
+
+MkDir /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /bin/mkdir -p /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+ProcessProductPackaging "" /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "D2B23S3U45.org.haiyue.games.ledsudoku.uitests.xctrunner";
+    "keychain-access-groups" =     (
+        "D2B23S3U45.org.haiyue.games.ledsudoku.uitests.xctrunner"
+    );
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent
+
+ProcessProductPackagingDER /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent.der (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /usr/bin/derq query -f xml -i /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent -o /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent.der --raw
+
+ProcessInfoPlistFile /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-infoPlistUtility /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/empty-SudokuUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ProductTypeInfoPlistAdditions.plist -o /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist
+
+SwiftDriver SudokuUITests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SudokuUITests -Onone -enforce-exclusivity\=checked @/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios15.0-simulator -g -module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/led-hints-ui-derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/led-hints-ui-derived/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -sdk-module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/led-hints-ui-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/x86_64 -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -working-directory /tmp/led-hints-uitest -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_AvailabilityInternal-16ZVCAFN77GNP0MD1NFYFES4N.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/SwiftShims-7RZI4OOAHV61GXRDDQ4LPV9WY.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/ptrauth-E7B683KV7WMTFE225949SJHHR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_SwiftConcurrencyShims-7OVL3JEOC6M9HMNE4UZ5P14L1.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_stddef-CQVXBZDX37YTKHD3EQ7YMZLCK.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/DeveloperToolsSupport-CMI5C5T4I6P02Y0BI91B579ST.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_stdarg-CAKN5OQ33MVI9388M1YMIFLP4.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_float-DIMIXUMQ8GC4NOTF2TB8U1XW7.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/ptrcheck-EP5AHPJECTQJBEK16GAP2PABA.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_stdbool-BRCNHTCPDQ96BA2KX0A99TRTN.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_DarwinFoundation1-9FRNKNT4WC49YM73L7XA6BF2X.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_DarwinFoundation2-4O6XV19FY946OTZFQKFBGC9NJ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_limits-3YFV1XU1OW9WM5VLXH8VAVU6B.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/sys_types-6Z9ZDWWISMBI3NTBZ30HGCJCY.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_stdint-3W1ACJ66TUL7EWFEHZ09RBCFR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_stdatomic-ACX5RFPWKLMNK9U5MQ0ZT3A0X.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_DarwinFoundation3-29LC44SUI1554P38OLSJE90KM.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/_Builtin_inttypes-HJJX4V6CSDLA7VCUS6KBBRGQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/Darwin-7AGQ2Y3M8OYIKMQR3BMD56YWJ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/ObjectiveC-BFLAR0MGNPD8KDCQBRVRXAX1T.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/MachO-CT537S3BOPSTM3PKD9HA1RJ6L.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/os_object-CQUK6W92GGUCVFDRHSZ1EJS4U.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/os_workgroup-CFBURX62YBJAEC8F37TWDM1WV.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/Dispatch-7ZBK7BSML6BG2MBDEURT883WQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/CoreFoundation-3GIJF94RBQCHDZ2OLIAVEECT3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/XPC-30P6RBPYF49YPNJXZIF2AEHKB.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/os-7RX6LB0TIZ6OENTOU917LUDWD.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/CoreGraphics-F2BZTNDOYRAKB6REJ6FPO14T3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/CFNetwork-2VM34XAUMSKSM1BW8OD6HP7A5.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/Security-8R0E4DF2HRL4AZIKA95QWZA2O.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/Foundation-ER2Q4UEI36X2ZTA55U0I3VQFX.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/ImageIO-E1IXLJP4DE1BQW4OBT4GG557W.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/CoreText-6GDOHL2BV0THGGKQL6ECYYCFM.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/FileProvider-3U0KV1T9AGJ8SHXNNR752X0NB.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/UIUtilities-C2QTP0MWG6MEU7HN1ZI43W45Z.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/IOSurface-E4CCOXUY06P1PAP8YX6XWWEU2.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/OpenGLES-68QGKC6CKBN7JZOC25WD8FXLL.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/CoreTransferable-9J4VD6PP4TXS8L6O1OARGZYTZ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/DataDetection-7I0299QKHS7N8PDQUSF1CR0PS.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/UserNotifications-E9OCJUQBW09TZDBANGB8OB8KL.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/Symbols-6EASE6DK1H1KM8UKGZCCB8MMH.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/OSLog-22QNVFCLASH9LQ6SBHR6839TX.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/UniformTypeIdentifiers-19MJA1XUINNPZDHFJ09CNYFCI.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/Accessibility-895P35M7K2SYL1T1VDN0QTYRW.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/Metal-EKNPVTWKVQHNR802SP8BO09E6.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/CoreVideo-8SQ7LOZBYS50LJUZNGFO3EGVJ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/QuartzCore-9LZ0F4JKINZUVNM6N9Q08150S.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/CoreImage-25C20IB98J2YNL3M1DAEAFUB7.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/SwiftUICore-1RLDJZNKPHD5A371Z13LH3JNU.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/ModuleCache.noindex/UIKit-DCLG1S8GNHXO6Y84IRQ9OZOJK.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-3TQSXG69YZ9N9VUXILTTN3IBG.pcm
+
+SwiftExplicitDependencyCompileModuleFromInterface x86_64 /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-1TX3NLS0ZM1LM.swiftmodule
+
+SwiftExplicitDependencyGeneratePcm x86_64 /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-739D07LF4JINT6EUCVE4USVDU.pcm
+
+SwiftExplicitDependencyCompileModuleFromInterface x86_64 /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-2IE4A7SYCJPAC.swiftmodule
+
+SwiftCompile normal x86_64 Compiling\ GenerationUITests.swift /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/test/ios/GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+
+SwiftCompile normal x86_64 /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/test/ios/GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ SudokuUITests (in target 'SudokuUITests' from project 'SudokuUITests')
+
+SwiftCompile normal x86_64 /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/test/ios/GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    
+
+SwiftDriverJobDiscovery normal x86_64 Emitting module for SudokuUITests (in target 'SudokuUITests' from project 'SudokuUITests')
+
+SwiftDriver\ Compilation\ Requirements SudokuUITests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SudokuUITests -Onone -enforce-exclusivity\=checked @/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios15.0-simulator -g -module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/led-hints-ui-derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/led-hints-ui-derived/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -sdk-module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/led-hints-ui-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/x86_64 -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -working-directory /tmp/led-hints-uitest -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/SudokuUITests-Swift.h /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-swiftHeaderTool -arch x86_64 /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -o /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/SudokuUITests-Swift.h
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.abi.json /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.abi.json (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.abi.json /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.abi.json
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftdoc /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftdoc (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftdoc /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/x86_64-apple-ios-simulator.swiftdoc
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftsourceinfo (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftsourceinfo /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling GenerationUITests.swift (in target 'SudokuUITests' from project 'SudokuUITests')
+
+SwiftDriver\ Compilation SudokuUITests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SudokuUITests -Onone -enforce-exclusivity\=checked @/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios15.0-simulator -g -module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/led-hints-ui-derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/led-hints-ui-derived/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -sdk-module-cache-path /tmp/led-hints-ui-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/led-hints-ui-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-generated-files.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-own-target-headers.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests-project-headers.hmap -Xcc -I/tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources/x86_64 -Xcc -I/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-Swift.h -working-directory /tmp/led-hints-uitest -experimental-emit-module-separately -disable-cmo
+
+Ld /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests normal (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios15.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/tmp/led-hints-ui-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/led-hints-ui-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -filelist /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.swiftmodule @/tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests-linker-args.resp -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.xctest-Simulated.xcent.der -framework Foundation -Xlinker -no_adhoc_codesign -o /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests
+
+CopySwiftLibs /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests --scan-folder /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Frameworks --scan-folder /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/PlugIns --scan-folder /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SystemExtensions --scan-folder /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Extensions --scan-folder /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+ExtractAppIntentsMetadata (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name SudokuUITests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 15.0 --bundle-identifier org.haiyue.games.ledsudoku.uitests --output /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest --target-triple x86_64-apple-ios15.0-simulator --binary-file /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/SudokuUITests --dependency-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests_dependency_info.dat --stringsdata-file /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftFileList --metadata-file-list /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList --static-metadata-file-list /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/Objects-normal/x86_64/SudokuUITests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-09-20 22:26:57.854 appintentsmetadataprocessor[83945:7256077] Starting appintentsmetadataprocessor export
+2026-09-20 22:26:57.862 appintentsmetadataprocessor[83945:7256077] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+AppIntentsSSUTraining (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist --temp-dir-path /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/ssu --bundle-id org.haiyue.games.ledsudoku.uitests --product-path /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest --extracted-metadata-path /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Metadata.appintents --metadata-file-list /tmp/led-hints-ui-derived/Build/Intermediates.noindex/SudokuUITests.build/Debug-iphonesimulator/SudokuUITests.build/SudokuUITests.DependencyMetadataFileList --archive-ssu-assets
+2026-09-20 22:26:57.958 appintentsnltrainingprocessor[83946:7256078] Parsing options for appintentsnltrainingprocessor
+2026-09-20 22:26:57.961 appintentsnltrainingprocessor[83946:7256078] No AppShortcuts found - Skipping.
+
+CopyAndPreserveArchs /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/SudokuUITests-Runner (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/XCTRunner -output /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/SudokuUITests-Runner -extract x86_64
+
+CopyPlistFile /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Info.plist /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/Info.plist (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copyPlist --validate --convert xml1 --macro-expansion WRAPPEDPRODUCTNAME SudokuUITests-Runner --macro-expansion WRAPPEDPRODUCTBUNDLEIDENTIFIER org.haiyue.games.ledsudoku.uitests.xctrunner --macro-expansion TESTPRODUCTNAME SudokuUITests --macro-expansion TESTPRODUCTBUNDLEIDENTIFIER org.haiyue.games.ledsudoku.uitests --copy-value UIDeviceFamily /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest/Info.plist --outdir /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app -- /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/Info.plist
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PkgInfo /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/PkgInfo (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/PkgInfo /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app
+
+MkDir /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /bin/mkdir -p /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTestSupport.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCUIAutomation.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/Testing.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCUnit.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTest.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/libXCTestSwiftSupport.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTestCore.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+Copy /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks/XCTAutomationSupport.framework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/Frameworks
+
+CodeSign /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+CodeSign /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app
+/tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app: replacing existing signature
+
+RegisterExecutionPolicyException /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    builtin-RegisterExecutionPolicyException /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+Touch /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest (in target 'SudokuUITests' from project 'SudokuUITests')
+    cd /tmp/led-hints-uitest
+    /usr/bin/touch -c /tmp/led-hints-ui-derived/Build/Products/Debug-iphonesimulator/SudokuUITests-Runner.app/PlugIns/SudokuUITests.xctest
+
+2026-09-20 22:27:08.852617+0800 SudokuUITests-Runner[83960:7256576] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-09-20 22:27:21.880.
+Test Suite 'SudokuUITests.xctest' started at 2026-09-20 22:27:21.883.
+Test Suite 'GenerationTouchUITests' started at 2026-09-20 22:27:21.884.
+Test Case '-[SudokuUITests.GenerationTouchUITests testHintWalkthroughUsesNativeEvents]' started.
+    t =     0.01s Start Test at 2026-09-20 22:27:21.890
+    t =     1.05s Set Up
+    t =     1.08s Open org.haiyue.games.ledsudoku
+    t =     1.08s     Launch org.haiyue.games.ledsudoku
+    t =     1.57s         Setting up automation session
+    t =     6.51s         Wait for org.haiyue.games.ledsudoku to idle
+    t =    10.77s Waiting 15.0s for "new" Button to exist
+    t =    11.81s     Checking `Expect predicate `existsNoRetry == 1` for object "new" Button`
+    t =    11.81s         Checking existence of `"new" Button`
+    t =    12.15s Waiting 20.0s for "generation-status" StaticText to not exist
+    t =    13.18s     Checking `Expect predicate `existsNoRetry == 0` for object "generation-status" StaticText`
+    t =    13.18s         Checking existence of `"generation-status" StaticText`
+    t =    13.37s Tap "解释" Button
+    t =    13.37s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    13.38s     Find the "解释" Button
+    t =    13.57s     Check for interrupting elements affecting "解释" Button
+    t =    13.79s     Synthesize event
+    t =    14.25s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    14.61s Waiting 5.0s for "lesson-body" StaticText to exist
+    t =    15.63s     Checking `Expect predicate `existsNoRetry == 1` for object "lesson-body" StaticText`
+    t =    15.63s         Checking existence of `"lesson-body" StaticText`
+    t =    15.72s Find the "lesson-body" StaticText
+    t =    15.81s Tap "lesson-next" Button
+    t =    15.81s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    15.82s     Find the "lesson-next" Button
+    t =    15.92s     Check for interrupting elements affecting "lesson-next" Button
+    t =    16.02s     Synthesize event
+    t =    16.35s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    16.50s Find the "lesson-body" StaticText
+    t =    16.59s Tap "lesson-previous" Button
+    t =    16.59s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    16.60s     Find the "lesson-previous" Button
+    t =    16.69s     Check for interrupting elements affecting "lesson-previous" Button
+    t =    16.80s     Synthesize event
+    t =    17.13s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    17.16s Find the "lesson-body" StaticText
+    t =    17.24s Find the Application 'org.haiyue.games.ledsudoku'
+    t =    17.85s Added attachment named 'hint-walkthrough'
+    t =    17.85s Tap "lesson-close" Button
+    t =    17.85s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    17.87s     Find the "lesson-close" Button
+    t =    17.96s     Check for interrupting elements affecting "lesson-close" Button
+    t =    18.07s     Synthesize event
+    t =    18.40s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    18.43s Waiting 5.0s for "lesson-body" StaticText to not exist
+    t =    19.46s     Checking `Expect predicate `existsNoRetry == 0` for object "lesson-body" StaticText`
+    t =    19.46s         Checking existence of `"lesson-body" StaticText`
+    t =    19.64s Tap "new" Button
+    t =    19.65s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    19.66s     Find the "new" Button
+    t =    19.85s     Check for interrupting elements affecting "new" Button
+    t =    20.03s     Synthesize event
+    t =    20.39s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    21.00s Waiting 5.0s for "rules-cancel" Button to exist
+    t =    22.03s     Checking `Expect predicate `existsNoRetry == 1` for object "rules-cancel" Button`
+    t =    22.03s         Checking existence of `"rules-cancel" Button`
+    t =    22.18s Tap "rules-cancel" Button
+    t =    22.18s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    22.20s     Find the "rules-cancel" Button
+    t =    22.34s     Check for interrupting elements affecting "rules-cancel" Button
+    t =    22.48s     Synthesize event
+    t =    22.83s     Wait for org.haiyue.games.ledsudoku to idle
+    t =    23.32s Tear Down
+Test Case '-[SudokuUITests.GenerationTouchUITests testHintWalkthroughUsesNativeEvents]' passed (23.659 seconds).
+Test Suite 'GenerationTouchUITests' passed at 2026-09-20 22:27:45.548.
+	 Executed 1 test, with 0 failures (0 unexpected) in 23.659 (23.664) seconds
+Test Suite 'SudokuUITests.xctest' passed at 2026-09-20 22:27:45.551.
+	 Executed 1 test, with 0 failures (0 unexpected) in 23.659 (23.668) seconds
+Test Suite 'Selected tests' passed at 2026-09-20 22:27:45.553.
+	 Executed 1 test, with 0 failures (0 unexpected) in 23.659 (23.673) seconds
+2026-09-20 22:27:46.036 xcodebuild[83812:7254227] [MT] IDETestOperationsObserverDebug: 47.706 elapsed -- Testing started completed.
+2026-09-20 22:27:46.036 xcodebuild[83812:7254227] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-09-20 22:27:46.036 xcodebuild[83812:7254227] [MT] IDETestOperationsObserverDebug: 47.706 sec, +47.706 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/led-hints-ui.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

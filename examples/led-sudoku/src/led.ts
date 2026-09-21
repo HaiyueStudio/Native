@@ -10,5 +10,5 @@ export class LedDigit {
       AbsoluteLayout.setLeft(segment, x * scale); AbsoluteLayout.setTop(segment, y * scale); this.view.addChild(segment); this.segments.push(segment);
     }
   }
-  set(mask: number, color = '#83ffc1', enabled = true): void { this.segments.forEach((s, i) => { s.backgroundColor = new Color(mask & (1 << i) ? color : '#162b33'); }); this.view.opacity = enabled ? 1 : .23; }
+  set(mask: number, color = '#83ffc1', enabled = true, muted = '#162b33'): void { this.segments.forEach((s, i) => { s.backgroundColor = new Color(mask & (1 << i) ? color : muted); }); this.view.opacity = enabled ? 1 : .23; }
 }

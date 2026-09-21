@@ -1,0 +1,25 @@
+
+> @haiyue/native-led-sudoku@0.1.0 test
+> node --experimental-strip-types --test test/*.test.mjs
+
+(node:6437) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/src/layout.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/qingque/Desktop/HaiyueStudio/Native/examples/led-sudoku/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ portrait sizing keeps square board and nine large targets within tall phones (2.222508ms)
+✔ native session uses the same rule filters and immutable notes/undo/erase (37.141736ms)
+✔ native restore preserves options, time, notes, and black-cell protection (72.784379ms)
+✔ persistent worker cancels old results, settles failures, and terminates on dispose (1.06211ms)
+✔ shared board painter draws seven dark tubes for every playable empty LED cell (4.900959ms)
+✔ iPhone safe-area content fits portrait layout without double-counting system insets (0.261613ms)
+✔ candidate hints apply progressively, survive restore and support exact undo (210.236218ms)
+✔ missing XV and implication chains use the native explanation/notes/undo flow (55.321724ms)
+✔ native pencil toggles crosses, erase and undo preserve them across reload (5.749655ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 624.300978

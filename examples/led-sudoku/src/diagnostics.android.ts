@@ -1,2 +1,2 @@
 import type { Page } from '@nativescript/core';
-export function captureDiagnostics(_page: Page): unknown { return { method:'adb screencap' }; }
+export function captureDiagnostics(_page: Page, filename = 'led-sudoku-screen.png'): unknown { return { method:'adb screencap' }; }

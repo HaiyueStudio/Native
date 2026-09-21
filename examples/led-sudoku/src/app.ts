@@ -1,3 +1,5 @@
+import { readPreferences } from './preferences';
+import { t } from '../../../../Games/games/led-sudoku/i18n';
 import clone from 'core-js-pure/actual/structured-clone';
 import { Application } from '@nativescript/core';
 import { installNativeSaveRuntime } from '../../../bridge/storage/clone-runtime';
@@ -7,7 +9,7 @@ import { onLoaded, onUnloaded } from './main-page';
 export const orientation = new NativeOrientationController('portrait', 'portrait');
 installNativeSaveRuntime(clone);
 Application.run({ create: () => {
-  const page = new NativeEngineLaunchPage({ orientation: 'portrait' });
+  const page = new NativeEngineLaunchPage({ orientation: 'portrait', message:t(readPreferences().language,'loading') });
   page.gameRoot.id = 'appRoot';
   page.on('loaded', onLoaded);
   page.on('unloaded', onUnloaded);
