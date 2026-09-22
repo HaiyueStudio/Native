@@ -3,9 +3,10 @@ import type { NativeTouchInput } from '../../../../bridge/input/native-touch';
 import type { Canvas } from '@nativescript/canvas';
 import { captureSurfaceFrame } from '../../../../bridge/render/frame-capture';
 
-/** Debug-only, isolated saves, real StoreKit/Billing reads. Never launches checkout or authentication. */
+/** Debug-only, isolated saves, real store reads. Never launches checkout.
+ * Restore authentication is allowed only with the explicit restore test flag. */
 export function installPurchaseSmoke(game: CalendarPuzzleGame, input: NativeTouchInput, canvas: Canvas,
-  report: (event: string, data: unknown) => void, requestFrame: () => void): () => void {
+  report: (event: string, data: unknown) => void, requestFrame: () => void, restorePurchased = false): () => void {
   let closed = false;
   const checks: Array<{ name: string; passed: boolean }> = [];
   const delay = async (ms = 180) => { await new Promise(resolve => setTimeout(resolve, ms)); if (closed) throw new Error('disposed'); };
@@ -24,7 +25,33 @@ export function installPurchaseSmoke(game: CalendarPuzzleGame, input: NativeTouc
     const initial = game.snapshot();
     check('native store completes its initial entitlement query', !!initial.purchases && !initial.purchases.busy);
     report('purchase-store-state', initial.purchases);
-    if (initial.purchases?.entitled) throw new Error('Use a sandbox account without existing full-game ownership for free-tier checks');
+    if (initial.purchases?.entitled) {
+      check('verified ownership enables unlimited hints after restart', initial.rewards?.unlimited === true);
+      tap('settings'); await delay(); tap('languageSelect'); await delay();
+      const menu = game.snapshot().languageMenu!;
+      const point = { id: 9101, x: menu.popup.x + menu.popup.width / 2, y: menu.popup.y + (menu.values.indexOf('en') + .5) * menu.optionHeight - menu.scrollY };
+      input.target.handle('down', [point]); input.target.handle('up', [point]); requestFrame(); await delay();
+      check('owned settings offers restore instead of an upgrade', game.snapshot().ui.settingsPurchases?.text === 'Restore purchases');
+      capture('iphone-iap-owned-settings');
+      tap('done'); await delay(); tap('calendar'); await delay();
+      const index = game.snapshot().history.cells.findIndex(cell => cell && cell.day !== initial.day);
+      const target = game.snapshot().history.cells[index]!;
+      tap('calendarDay' + index); await delay();
+      check('verified owner can select another date without a paywall', game.snapshot().day === target.day && !game.snapshot().purchaseOpen);
+      if (restorePurchased) {
+        tap('settings'); await delay(); tap('settingsPurchases'); await delay();
+        const restoreDeadline = Date.now() + 120000;
+        while (game.snapshot().purchases?.busy && Date.now() < restoreDeadline) await delay(200);
+        const restored = game.snapshot();
+        check('explicit restore returns verified full ownership', restored.purchases?.entitled === true && restored.purchases.phase === 'restored' && !restored.purchases.busy);
+        check('owned panel hides the purchase button and price', restored.ui.purchaseBuy?.visible === false && restored.ui.purchasePrice?.visible === false);
+        check('owned panel retains restore access', restored.ui.purchaseRestore?.visible === true);
+        capture('iphone-iap-owned-restored');
+        tap('purchaseClose'); await delay();
+      }
+      report('purchase-smoke-complete', { mode: 'owned', passed: checks.every(check => check.passed), checks, store: game.snapshot().purchases });
+      return;
+    }
     const today = new Date();
     check('free mode starts on today', initial.year === today.getFullYear() && initial.month === today.getMonth() + 1 && initial.day === today.getDate());
     const original = JSON.stringify(initial.pieces);

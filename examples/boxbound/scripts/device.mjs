@@ -19,7 +19,7 @@ function save(file, bytes) { const target=path.resolve(app,file); mkdirSync(path
 const actions = process.argv[2] === 'batch' ? JSON.parse(readFileSync(process.argv[3],'utf8')) : [{ action:process.argv[2], args:process.argv.slice(3) }];
 for (const {action,args=[]} of actions) {
   if(action==='install') run(['install','-r',path.resolve(app,'platforms/android/app/build/outputs/apk/debug/app-debug.apk')]);
-  else if(action==='launch') run(['shell','am','start','-n',`${pkg}/com.tns.NativeScriptActivity`,...(args.includes('smoke')?['--ez','BOXBOUND_SMOKE','true']:[])]);
+  else if(action==='launch') run(['shell','am','start','-n',`${pkg}/com.tns.NativeScriptActivity`,...(args.some(x=>x==='smoke'||x==='profile'||x==='stress')?['--ez','BOXBOUND_SMOKE','true',...(args.includes('profile')?['--ez','BOXBOUND_PROFILE','true']:[]),...(args.includes('stress')?['--ez','BOXBOUND_STRESS','true']:[])]:[])]);
   else if(action==='stop') run(['shell','am','force-stop',pkg]);
   else if(action==='home') run(['shell','input','keyevent','KEYCODE_HOME']);
   else if(action==='back') run(['shell','input','keyevent','KEYCODE_BACK']);

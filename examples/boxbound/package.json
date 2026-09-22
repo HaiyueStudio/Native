@@ -5,12 +5,14 @@
   "main": "src/app.ts",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test test/*.test.mjs",
+    "test": "node --experimental-transform-types --test test/*.test.mjs",
     "build:android": "node scripts/android.mjs build android",
     "run:android": "node scripts/android.mjs run android"
   },
   "dependencies": {
+    "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-0.1.0.tgz",
     "@haiyue/engine": "file:vendor/haiyue-engine-0.1.0.tgz",
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.1.0.tgz",
     "@nativescript/canvas": "2.1.18",
     "@nativescript/core": "9.1.1",
     "@nativescript/font-manager": "1.0.14",
@@ -19,12 +21,12 @@
   },
   "devDependencies": {
     "@nativescript/android": "9.0.3",
+    "@nativescript/ios": "9.0.3",
     "@nativescript/types": "9.0.0",
     "@nativescript/webpack": "5.0.38",
     "@webgpu/types": "0.1.64",
     "nativescript": "9.1.1",
-    "typescript": "5.7.3",
-    "@nativescript/ios": "9.0.3"
+    "typescript": "5.7.3"
   },
   "engines": {
     "node": ">=22"

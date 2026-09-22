@@ -1,0 +1,35 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "name": "jump",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated mobile puzzle game UI icon. Subject: An upward curving arrow lifting a small rounded cream cube, three tiny takeoff ticks. This is the JUMP action. Style: tasteful minimal softly beveled clay icon, broad clean silhouette, very subtle 3D depth, harmonious muted deep sage/teal (#34594f) with tiny warm ivory highlights. Cute refined Boxbound aesthetic. Center a single icon occupying 78% of a square image, equal clear margins. Real transparent alpha background. No square or rounded rectangle or circular background plate, no text, no letters, no border, no scenery, no watermark. High readability when reduced to 48 pixels. Deliver one icon only.",
+      "source": "/Users/qingque/.codex/generated_images/01a0bdbf-9927-7861-9e75-f321a296210c/exec-0eb4991f-bad4-4e48-9cfb-b981bab9c366.png"
+    },
+    {
+      "name": "dive",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated mobile puzzle game UI icon. Subject: A broad downward arrow entering the open top of a small teal outlined box. This is the DIVE / ENTER BOX action. Style: tasteful minimal softly beveled clay icon, broad clean silhouette, very subtle 3D depth, harmonious muted deep sage/teal (#34594f) with tiny warm ivory highlights. Cute refined Boxbound aesthetic. Center a single icon occupying 78% of a square image, equal clear margins. Real transparent alpha background. No square or rounded rectangle or circular background plate, no text, no letters, no border, no scenery, no watermark. High readability when reduced to 48 pixels. Deliver one icon only.",
+      "source": "/Users/qingque/.codex/generated_images/01a0bdbf-9927-7861-9e75-f321a296210c/exec-7cf56b52-fd6e-439e-9a34-3e7508056c56.png"
+    },
+    {
+      "name": "undo",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated mobile puzzle game UI icon. Subject: A single thick counterclockwise curved arrow pointing left. This is UNDO. Style: tasteful minimal softly beveled clay icon, broad clean silhouette, very subtle 3D depth, harmonious muted deep sage/teal (#34594f) with tiny warm ivory highlights. Cute refined Boxbound aesthetic. Center a single icon occupying 78% of a square image, equal clear margins. Real transparent alpha background. No square or rounded rectangle or circular background plate, no text, no letters, no border, no scenery, no watermark. High readability when reduced to 48 pixels. Deliver one icon only.",
+      "source": "/Users/qingque/.codex/generated_images/01a0bdbf-9927-7861-9e75-f321a296210c/exec-08052397-f495-440b-86d0-962fcc1610c4.png"
+    },
+    {
+      "name": "exit",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated mobile puzzle game UI icon. Subject: A thick arrow pointing outward to the upper right from a simple open doorway outline. This is RETURN TO PARENT WORLD. Style: tasteful minimal softly beveled clay icon, broad clean silhouette, very subtle 3D depth, harmonious muted deep sage/teal (#34594f) with tiny warm ivory highlights. Cute refined Boxbound aesthetic. Center a single icon occupying 78% of a square image, equal clear margins. Real transparent alpha background. No square or rounded rectangle or circular background plate, no text, no letters, no border, no scenery, no watermark. High readability when reduced to 48 pixels. Deliver one icon only.",
+      "source": "/Users/qingque/.codex/generated_images/01a0bdbf-9927-7861-9e75-f321a296210c/exec-0fcad227-9afb-4faa-baea-d2d48902a104.png"
+    },
+    {
+      "name": "menu",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated mobile puzzle game UI icon. Subject: Three neatly spaced short thick horizontal strokes with rounded ends. This is MENU. Style: tasteful minimal softly beveled clay icon, broad clean silhouette, very subtle 3D depth, harmonious muted deep sage/teal (#34594f) with tiny warm ivory highlights. Cute refined Boxbound aesthetic. Center a single icon occupying 78% of a square image, equal clear margins. Real transparent alpha background. No square or rounded rectangle or circular background plate, no text, no letters, no border, no scenery, no watermark. High readability when reduced to 48 pixels. Deliver one icon only.",
+      "source": "/Users/qingque/.codex/generated_images/01a0bdbf-9927-7861-9e75-f321a296210c/exec-40344ead-e7d1-4f4f-aa15-4fb099a4cc7f.png"
+    },
+    {
+      "name": "settings",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated mobile puzzle game UI icon. Subject: One simple eight-tooth gear with a clear circular hole, readable at small size. This is SETTINGS. Style: tasteful minimal softly beveled clay icon, broad clean silhouette, very subtle 3D depth, harmonious muted deep sage/teal (#34594f) with tiny warm ivory highlights. Cute refined Boxbound aesthetic. Center a single icon occupying 78% of a square image, equal clear margins. Real transparent alpha background. No square or rounded rectangle or circular background plate, no text, no letters, no border, no scenery, no watermark. High readability when reduced to 48 pixels. Deliver one icon only.",
+      "source": "/Users/qingque/.codex/generated_images/01a0bdbf-9927-7861-9e75-f321a296210c/exec-2ed1ab7e-e880-4ed0-9e48-29ccde25a66c.png"
+    }
+  ]
+}

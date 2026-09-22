@@ -1,6 +1,6 @@
 import { NativeScriptConfig } from '@nativescript/core';
 export default {
-  id: 'org.haiyue.native.calendarpuzzle',
+  id: 'org.haiyue.games.calendarpuzzle',
   appPath: 'src',
   hooks: [{ type: 'before-checkForChanges', script: './scripts/validate-rewards.cjs' }],
   appResourcesPath: 'App_Resources',

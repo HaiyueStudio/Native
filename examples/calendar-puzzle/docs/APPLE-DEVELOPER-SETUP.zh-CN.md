@@ -6,8 +6,8 @@
 
 1. 准备启用双重认证的 Apple 账户，使用法定姓名和真实联系方式。进入 [苹果官方注册入口](https://developer.apple.com/cn/programs/enroll/)，或在 Apple Developer App 的账户页面开始注册。
 2. 选择注册主体。个人/独资经营者使用 Individual，App Store 显示个人法定姓名。希望以公司名显示开发者，应选择 Organization，需符合资格的法人实体、D‑U‑N‑S 编号、组织域名邮箱、有效网站，以及代表公司签约的授权。工作室名称本身不等于法人实体。
-3. 按页面要求完成身份或组织核验，同意许可协议，支付会员费。目前为每年 99 美元；具体以注册地区显示的当地货币价格为准。正式会员可用于 App Store 上架和 TestFlight 分发。当前项目的免费开发签名不等同于正式会员。
-4. 开通后登录 [App Store Connect](https://appstoreconnect.apple.com/)，创建日历拼图应用记录，配置签名与 Bundle ID。当前 iOS Bundle ID 为 `org.haiyue.native.calendarpuzzle`。
+3. 按页面要求完成身份或组织核验，同意许可协议，支付会员费。目前为每年 99 美元；具体以注册地区显示的当地货币价格为准。正式会员可用于 App Store 上架和 TestFlight 分发。本项目已于 2026-09-22 切换至正式团队 `22T5YFVY2B` 的设备开发签名；商店发行仍需分发签名与审核。
+4. 开通后登录 [App Store Connect](https://appstoreconnect.apple.com/)，创建日历拼图应用记录，配置签名与 Bundle ID。当前 iOS Bundle ID 为 `org.haiyue.games.calendarpuzzle`。
 5. 为内购签署 Paid Apps Agreement，按后台要求填写税务和收款银行资料，再创建非消耗型商品 `calendar_puzzle_full_unlock`，配置价格、本地化说明和审核资料。会员缴费不会自动创建商品或开通收款资料。
 
 官方依据：[注册要求与费用](https://developer.apple.com/cn/programs/enroll/)、[协议管理](https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements/)。

@@ -19,13 +19,14 @@ function save(file, bytes) { const target=path.resolve(app,file); mkdirSync(path
 const actions = process.argv[2] === 'batch' ? JSON.parse(readFileSync(process.argv[3],'utf8')) : [{ action:process.argv[2], args:process.argv.slice(3) }];
 for (const {action,args=[]} of actions) {
   if(action==='install') run(['install','-r',path.resolve(app,'platforms/android/app/build/outputs/apk/debug/app-debug.apk')]);
-  else if(action==='launch') run(['shell','am','start','-n',`${pkg}/com.tns.NativeScriptActivity`,...(args.includes('smoke')?['--ez','LED_SMOKE','true']:[])]);
+  else if(action==='launch') run(['shell','am','start','-n',`${pkg}/com.tns.NativeScriptActivity`,...(args.includes('gui')?['--ez','LED_GUI_SMOKE','true']:[]),...(args.includes('smoke')?['--ez','LED_SMOKE','true']:[]),...(args.includes('staircase')?['--ez','LED_STAIRCASE_SMOKE','true']:[])]);
   else if(action==='stop') run(['shell','am','force-stop',pkg]);
   else if(action==='home') run(['shell','input','keyevent','KEYCODE_HOME']);
   else if(action==='back') run(['shell','input','keyevent','KEYCODE_BACK']);
-  else if(action==='tap') run(['shell','input','tap',...args.map(String)]);
+  else if(action==='tap') { const focus=run(['shell','dumpsys','window'],true).toString(); if(!focus.split('\n').some(line=>/mCurrentFocus/.test(line)&&line.includes(pkg)))throw Error('Sudoku is not foreground; touch cancelled.'); run(['shell','input','tap',...args.map(String)]); }
   else if(action==='swipe') run(['shell','input','swipe',...args.map(String)]);
   else if(action==='capture') save(args[0],run(['exec-out','screencap','-p'],true));
+  else if(action==='file') save(args[1],run(['exec-out','run-as',pkg,'cat',args[0]],true));
   else if(action==='journal') save(args[0],run(['exec-out','run-as',pkg,'cat','files/led-sudoku-host.jsonl'],true));
   else if(action==='dump') { run(['shell','uiautomator','dump','/sdcard/led-sudoku-ui.xml']); save(args[0],run(['exec-out','cat','/sdcard/led-sudoku-ui.xml'],true)); }
   else if(action==='wait') await new Promise(resolve=>setTimeout(resolve,Math.min(10000,Number(args[0]))));

@@ -5,7 +5,7 @@ import { Application } from '@nativescript/core';
 import { installNativeSaveRuntime } from '../../../bridge/storage/clone-runtime';
 import { NativeOrientationController } from '../../../bridge/display/orientation';
 import { NativeEngineLaunchPage } from '../../../bridge/branding/launch-page';
-import { onLoaded, onUnloaded } from './main-page';
+import { onLoaded, onUnloaded } from './engine-page';
 export const orientation = new NativeOrientationController('portrait', 'portrait');
 installNativeSaveRuntime(clone);
 Application.run({ create: () => {

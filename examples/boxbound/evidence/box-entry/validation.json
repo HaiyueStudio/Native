@@ -1,0 +1,44 @@
+{
+  "changes": [
+    "plain colored crates with an eight-triangle white goal outline on top",
+    "portal side access derives from all boundary wall cells; off-center openings count",
+    "reject blocked faces before independent puzzle reset, fall back to pushing",
+    "closed puzzles require roof climb then dive; rendering uses same entrance directions"
+  ],
+  "validation": {
+    "boxboundTypecheck": "passed",
+    "nativeTypecheck": "passed",
+    "boxboundUnitTests": 238,
+    "nativeUnitTests": 13,
+    "androidSmokeChecks": 29,
+    "androidQualitySubchecks": 9,
+    "browser": [
+      {
+        "file": "browser-reference-continuity.json",
+        "checks": 47
+      },
+      {
+        "file": "browser-readability-motion.json",
+        "checks": 40
+      },
+      {
+        "file": "browser-parabox-chapter.json",
+        "checks": 42
+      }
+    ],
+    "targetBuilds": [
+      "Boxbound web",
+      "Boxbound Android"
+    ],
+    "unrelatedIssue": "Full Games typecheck blocked by existing led-sudoku/gameplay-session.ts:19 TS2379; Boxbound-only typecheck passed; sudoku untouched"
+  },
+  "normalCrateTriangles": 596,
+  "scope": "No Engine edits or full-repository tests",
+  "sha256": {
+    "Games/games/boxbound/model.ts": "f6a0621056e83a3a784819bf53fa7d9db2b6517ae407c9547fdbce71af14148a",
+    "Games/games/boxbound/scene.ts": "aa1df456ed0d97079eedaff8c9aae4b95508ac449523d4759a575c3e28548642",
+    "Games/games/boxbound/main.ts": "d3f97e79bfcac4580c4f0b0ed0eefcf0d01b083efbe970646ff717e651547d47",
+    "Native/examples/boxbound/src/smoke.ts": "d0db3782d74ae9cbf0b9b443f716f6c10a287028030d1d39fb677c88dc40dbd0",
+    "Native/examples/boxbound/platforms/android/app/build/outputs/apk/debug/app-debug.apk": "b1dafcc7c394bf7d4a0d98989f9cd63b6353b9cbed88334d76b261da6baf470f"
+  }
+}

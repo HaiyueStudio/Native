@@ -1,0 +1,16 @@
+{
+  "canvasVersion": "2.1.18",
+  "abi": "x86_64",
+  "ndk": "27.2.12479018",
+  "headerCommit": "970bde07f0b80bd3192b9197b506719d78580748",
+  "sourceHashes": {
+    "PromiseCallback": "b989fcd12c20038d0e471478278960d18edb0db4b6f83cb22191a19bfd7435ac",
+    "AsyncCallback": "05b6c26fcc304d207c3c6053d919b8b32daf1008a207ab33567ce9e43c68a315"
+  },
+  "replacesSha256": [
+    "4c0092008ab0d2d139c31101d830dd967737b658350b714df4516fd4153af8e4"
+  ],
+  "originalSha256": "7a455a992bf238132e829fd9a5c8742b6d09fa6bb78435a7ec4cfd55691c5492",
+  "rustSha256": "dd675f60fd64629148bc776b636d1d54156ee7c7b1baadc10228258cfa702880",
+  "sha256": "0f93aa7c71a721a2f46fe8d771799c304d384f8ee3466d195da7a8f2f0bcf917"
+}

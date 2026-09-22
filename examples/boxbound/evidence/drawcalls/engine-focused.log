@@ -1,0 +1,41 @@
+✔ stable RenderProfiles form an ordered product contract (6.918946ms)
+✔ shadow and environment product settings survive core scene serialization (12.778136ms)
+✔ GPU-driven negotiation reports every fallback instead of silently disabling it (9.078594ms)
+✔ diagnostic profile remains enabled only when its optional device features exist (1.910017ms)
+✔ Render3DSystem switches profiles through resolved runtime capabilities (20.94244ms)
+✔ PBR material variants preserve a base state and share one extensible shader contract (23.991904ms)
+✔ PBR compatibility contract fixes color-space, UV, mip and per-slot sampler semantics (5.848983ms)
+✔ PBR clearcoat on/off variants use distinct pipeline cache entries (39.27528ms)
+✔ PBR renders GPU morph normals and skinning through one deformation ABI (37.040378ms)
+✔ motion vectors retain per-view previous morph weights and skin poses (22.015147ms)
+✔ PBR view light records and scene IBL/shadow data upload only when their contents change (13.704744ms)
+✔ PBR environment is disabled without a component and default fallback colors are achromatic (5.846559ms)
+✔ PBR packs three directional shadow matrices and array layers into one scene binding (10.443768ms)
+✔ PBR and directional-shadow resources follow runtime ownership and late-load lifecycle (53.67038ms)
+✔ directional shadows isolate caster object tables per layer and share Basic/PBR deformation variants (120.476436ms)
+✔ directional shadow layer batches sweep shared GPU caches only after unioning every encoded layer (13.734258ms)
+✔ directional shadows direct-instance only contiguous geometry, pipeline, cull, and index-compatible casters (13.489625ms)
+✔ directional shadow skinning and morph casters instance only with identical deformation bindings (7.535428ms)
+✔ Render3DSystem uploads visible meshes into GpuDrivenBatchBuffer on the main path (152.99508ms)
+✔ one Render3DSystem extracts once and selects LOD independently for each RenderView (104.960758ms)
+✔ Render3DSystem collects off-camera opaque casters independently from camera visibility (52.681889ms)
+✔ Render3DSystem builds GPU-resident material table and larger opaque mega-batch runs (18.38235ms)
+✔ Render3DSystem dispatches opaque mega-batch runs through material renderBatch (19.000136ms)
+✔ Render3DSystem keeps CPU mega-batching without indirect-first-instance (12.321585ms)
+✔ Render3DSystem batches only explicitly order-independent transparent ranges (22.088249ms)
+✔ default material registry opts in only depth-read-only Basic additive transparency (10.09225ms)
+✔ Render3DSystem keeps sorted transparent instance batches view-local (19.458192ms)
+✔ Render3DSystem keeps one-item portable runs on the prepared batch-table path (13.816571ms)
+✔ Render3DSystem dispatches GPU culling before opening the render pass (12.467617ms)
+✔ Render3DSystem keeps multi-view draw, cull, transparent sort, and readback outputs view-local (28.389657ms)
+✔ Render3DSystem forwards GPU-driven batch context to compatible non-Basic material renderers (21.673272ms)
+✔ Render3DSystem sweeps preview view, LOD selection, and collect-pass caches (499.716595ms)
+✔ shadow enrollment batches interleaved geometry and opaque colors while retaining stable dirty slots (139.595348ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3502.521947

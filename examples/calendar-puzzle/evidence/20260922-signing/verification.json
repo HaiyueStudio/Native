@@ -1,0 +1,24 @@
+{
+  "installed": true,
+  "launched": true,
+  "engineReady": true,
+  "framePresented": true,
+  "runtimeErrors": 0,
+  "productionPreferencesVerifiedBeforeLaunch": true,
+  "saveFieldsVerifiedAfterLaunch": [
+    "completedDates",
+    "starredDates",
+    "language",
+    "year",
+    "month",
+    "day",
+    "weekday",
+    "hintUsed"
+  ],
+  "completedDates": 8,
+  "starredDates": 1,
+  "storeProductAvailable": false,
+  "oldAppPreserved": false,
+  "automatedPaymentAttempted": false,
+  "oldAppUninstalledAtUserRequest": true
+}

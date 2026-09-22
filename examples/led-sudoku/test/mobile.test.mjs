@@ -3,19 +3,19 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { registerHooks } from 'node:module';
 registerHooks({ resolve(specifier, context, next) { return next(specifier.startsWith('.') && !/\.[a-z]+$/i.test(specifier) ? `${specifier}.ts` : specifier, context); } });
-const { portraitLayout } = await import('../src/layout.ts');
+const { sudokuLayout } = await import('../../../../Games/games/led-sudoku/gui-layout.ts');
 const { MobileSession } = await import('../src/model.ts');
 const { NativeGenerator } = await import('../src/generator.ts');
 const { generate, DEFAULT_OPTIONS, isSaveData } = await import('../../../../Games/games/led-sudoku/rules.ts');
 const { paintBoard } = await import('../../../../Games/games/led-sudoku/board-painter.ts');
 
-test('portrait sizing keeps square board and nine large targets within tall phones', () => {
-  for (const [w,h] of [[360,800],[390,844],[412,915],[393,873],[430,932]]) {
-    const l = portraitLayout(w,h);
-    assert(l.board <= w-20); assert(l.board >= 252); assert(l.keypad/3-6 >= 44);
-    assert.equal(l.scroll,false); assert(l.contentHeight <= h-40);
+test('shared engine GUI keeps nine large targets within portrait phones', () => {
+  for (const [width,height] of [[320,568],[360,800],[390,844],[412,915],[393,873],[430,932]]) {
+    const l=sudokuLayout(width,height);
+    assert.equal(l.board.width,l.board.height);assert(l.board.width<=width-24);
+    assert(l.tools>=44);assert(l.keyHeight-6>=44);assert(l.bottom+44<=height);
+    assert(l.keyTop+3*l.keyHeight-6<=l.bottom);
   }
-  const small = portraitLayout(320,568); assert(small.scroll); assert(small.board >= 252);
 });
 test('native session uses the same rule filters and immutable notes/undo/erase', () => {
   const m = new MobileSession(), g = generate(DEFAULT_OPTIONS,20260920); m.start(g);
@@ -52,14 +52,11 @@ test('shared board painter draws seven dark tubes for every playable empty LED c
   fills=0;p.options.led=false;paintBoard(context,state);assert.equal(fills,0);
 });
 
-test('iPhone safe-area content fits portrait layout without double-counting system insets', () => {
-  // Heights exclude UIKit top/bottom safe areas; main-page adds only 8 pt spacing.
-  for (const [width,height] of [[430,839],[393,759],[390,763],[428,845]]) {
-    const l=portraitLayout(width,height,8,8);
-    assert.equal(l.scroll,false);assert(l.contentHeight<=height-16);
-    assert(l.board<=width-20);assert(l.keypad/3-6>=44);
+test('iPhone GUI fits measured safe content without including the home indicator', () => {
+  for (const [width,height] of [[430,839],[393,759],[390,763],[428,845],[375,559]]) {
+    const l=sudokuLayout(width,height);
+    assert(l.bottom+44<=height);assert(l.board.width<=width-24);assert(l.keyHeight-6>=44);
   }
-  const compact=portraitLayout(375,559,8,8);assert(compact.scroll);assert(compact.board>=252);assert(compact.keypad/3-6>=44);
 });
 
 test('candidate hints apply progressively, survive restore and support exact undo', () => {
@@ -71,6 +68,19 @@ test('candidate hints apply progressively, survive restore and support exact und
   const reloaded=new MobileSession();reloaded.restore(JSON.parse(JSON.stringify(m.state)));reloaded.explain();assert.equal(reloaded.hint.kind,'elimination');assert.notEqual(reloaded.hint.cell,38);
   assert(reloaded.applyHint());assert.equal(reloaded.state.deductionSteps,2);assert(reloaded.undo());assert.equal(reloaded.state.deductionSteps,1);
   for(let i=1;i<5;i++){m.explain();assert(m.applyHint());}m.explain();assert.equal(m.hint.kind,'placement');assert.equal(m.hint.value,6);assert.equal(m.hint.cell,8);assert(!m.applyHint());
+});
+
+test('hint eliminations keep their undo steps across a save and reload', () => {
+  const fixture=JSON.parse(readFileSync(new URL('../../../../Games/games/led-sudoku/evidence/hints/elimination.json',import.meta.url),'utf8'));
+  const m=new MobileSession();m.restore(fixture);const before=structuredClone(m.state);
+  m.explain();assert(m.applyHint());const first=structuredClone(m.state);
+  m.explain();assert(m.applyHint());assert.equal(m.history.length,2);
+  const saved=m.snapshot();assert(isSaveData(saved));
+  const resumed=new MobileSession();resumed.restore(JSON.parse(JSON.stringify(saved)));
+  assert.equal(resumed.history.length,2);assert(resumed.undo());assert.deepEqual(resumed.state,first);
+  const resumedAgain=new MobileSession();resumedAgain.restore(JSON.parse(JSON.stringify(resumed.snapshot())));
+  assert(resumedAgain.undo());assert.deepEqual(resumedAgain.state,{...before,deductionSteps:0});assert(!resumedAgain.undo());
+  m.start(generate(DEFAULT_OPTIONS,39));assert.equal(m.history.length,0);
 });
 
 test('missing XV and implication chains use the native explanation/notes/undo flow',()=>{
@@ -112,4 +122,11 @@ test('answer is a no-op on an already completed puzzle, preserving unassisted co
  const m=new MobileSession();m.start(generate(DEFAULT_OPTIONS,20260920));m.state.board=m.state.solution.slice();m.state.assisted=false;
  const before=structuredClone(m.state),history=m.history.length;m.answer();assert.deepEqual(m.state,before);assert.equal(m.history.length,history);
  m.state.board[m.selected]=0;m.answer();assert(m.done);assert(m.state.assisted);assert(m.undo());assert(!m.done);
+});
+
+test('staircase mobile notes, undo, answer and input support the lower-right cell',()=>{
+ const g=generate({...DEFAULT_OPTIONS,staircase:true,led:false},39);g.puzzle.givens=g.solution.slice();g.puzzle.givens[143]=0;
+ const m=new MobileSession();m.start(g);m.select(143);assert.equal(m.selected,143);assert.equal(m.state.notes.length,144);
+ m.pencil=true;assert(m.input(g.solution[143]));assert(m.state.crossed[143]);assert(m.undo());m.pencil=false;assert(m.input(g.solution[143]));assert(m.done);assert(m.undo());assert(!m.done);m.answer();assert(m.done);assert.equal(m.state.notes.length,144);assert(isSaveData(m.state));
+ m.select(9);assert.equal(m.selected,143,'tapping an absent box cannot change selection');
 });

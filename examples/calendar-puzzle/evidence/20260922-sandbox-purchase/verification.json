@@ -1,0 +1,84 @@
+{
+  "productId": "calendar_puzzle_full_unlock",
+  "purchaseVerifiedOnDevice": true,
+  "restartEntitlementVerified": true,
+  "ownedUiFixedAndInstalled": true,
+  "ownedUiChecks": [
+    {
+      "name": "native store completes its initial entitlement query",
+      "passed": true
+    },
+    {
+      "name": "verified ownership enables unlimited hints after restart",
+      "passed": true
+    },
+    {
+      "name": "owned settings offers restore instead of an upgrade",
+      "passed": true
+    },
+    {
+      "name": "verified owner can select another date without a paywall",
+      "passed": true
+    },
+    {
+      "name": "explicit restore returns verified full ownership",
+      "passed": false
+    },
+    {
+      "name": "owned panel hides the purchase button and price",
+      "passed": true
+    },
+    {
+      "name": "owned panel retains restore access",
+      "passed": true
+    }
+  ],
+  "restoreAtAutomatedDeadline": {
+    "entitled": true,
+    "phase": "restoring",
+    "price": "US$1.99",
+    "canPurchase": true,
+    "busy": true
+  },
+  "restoreNote": "Final state captured after the user completed Sandbox authentication and backgrounded the app.",
+  "cancellationOnDevice": {
+    "verified": true,
+    "account": "fresh Sandbox account (user confirmed)",
+    "phase": "cancelled",
+    "entitled": false,
+    "unlimitedHints": false,
+    "busy": false,
+    "canPurchase": true,
+    "price": "US$1.99",
+    "evidence": "iphone-cancel-new-account.jsonl",
+    "observedAt": "2026-09-22T15:50:18+08:00"
+  },
+  "nativeTests": {
+    "passed": 54
+  },
+  "calendarTests": {
+    "passed": 46
+  },
+  "gamesFullSuite": {
+    "passed": 1013,
+    "failed": 4,
+    "cancelled": 6,
+    "skipped": 20,
+    "note": "Failures/long-running interruptions in other games; see /tmp/calendar-owned-games-tests.log."
+  },
+  "finalStoreState": {
+    "entitled": true,
+    "phase": "ready",
+    "price": "US$1.99",
+    "canPurchase": true,
+    "busy": false
+  },
+  "restoreAfterAuthentication": {
+    "entitlementVerified": true,
+    "busy": false,
+    "phase": "ready",
+    "explicitRestoredPhaseObserved": false,
+    "note": "Automated 120-second wait elapsed before user authentication. Subsequent lifecycle snapshot confirms ready + entitled and no pending job; the intermediate restored phase was not captured."
+  },
+  "normalLaunchRestored": true
+}

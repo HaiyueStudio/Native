@@ -1,0 +1,48 @@
+{
+  "schema": "boxbound-crash-validation-v1",
+  "createdAt": "2026-09-22T07:30:30.696368+00:00",
+  "device": "XREAL X4000 / Android 14 / Adreno 710",
+  "cause": "Canvas 2.1.18 Android one-shot callback owner and pipe FD leak; process exhausted FD limit and blocked graphics/UI threads",
+  "originalAnr": "2026-09-22 14:29:40 +08:00",
+  "before": {
+    "frames": 619,
+    "mapCallbacks": 623,
+    "fileDescriptors": 1476
+  },
+  "after": {
+    "passed": true,
+    "baseline": {
+      "maps": 633,
+      "fds": 228
+    },
+    "final": {
+      "maps": 22656,
+      "fds": 230
+    },
+    "iterations": 20000,
+    "mirrorVisits": 24
+  },
+  "functionalChecks": 30,
+  "focusedUnitTests": 14,
+  "typecheck": "passed",
+  "androidBuild": "passed",
+  "testedAbi": "arm64-v8a",
+  "crossCompiledAbis": [
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "engineChanged": false,
+  "apkSha256": "85730e0698a4d3fb51ad758440486cf785f4b0adf66e078352233b2342436905",
+  "nativeLibrarySha256": {
+    "armeabi-v7a": "2a8a7babe862f023bec78e08715b27ee11cba22f6633b0f7c18e712eefe4db4d",
+    "x86": "997c109a72b20f2481dfb2185065a784a05b7dcdf326b09b84bae90f6360f94b",
+    "arm64-v8a": "35f102db044dd1f353555f1a14a0072cf52676fd1cb3257907309d9e779c555a",
+    "x86_64": "0f93aa7c71a721a2f46fe8d771799c304d384f8ee3466d195da7a8f2f0bcf917"
+  },
+  "normalModeRestored": true,
+  "normalQuality": {
+    "msaa": false,
+    "pixelRatio": "auto"
+  }
+}

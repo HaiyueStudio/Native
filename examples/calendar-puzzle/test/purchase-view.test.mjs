@@ -29,6 +29,15 @@ test('purchase view renders exact localized price, disables pending/owned checko
   const count = drawn.length; view.refresh(); assert.equal(drawn.length, count);
   state = { ...state, phase: 'pending' }; view.refresh(); assert.equal(controls.purchaseBuy.disabled, true); assert.equal(controls.purchaseRestore.disabled, false);
   state = { ...state, entitled: true, phase: 'restored' }; view.refresh(); assert.equal(controls.purchaseBuy.disabled, true);
+  assert.equal(controls.purchaseBuy.visible, false); assert.equal(controls.purchasePrice.visible, false);
+  assert.equal(controls.purchaseFree.visible, false); assert.equal(controls.purchaseRestore.visible, true);
+  assert.equal(controls.purchaseTitle.text, 'Full game unlocked');
+  controls.purchaseRestore.layout(); assert.equal(controls.purchaseRestore.rect.x, 620);
+  view.setVisible(false); view.setVisible(true); assert.equal(controls.purchaseBuy.visible, false);
+  state = { ...state, entitled: false, phase: 'revoked' }; view.refresh();
+  assert.equal(controls.purchaseBuy.visible, true); assert.equal(controls.purchasePrice.visible, true);
+  assert.equal(controls.purchaseTitle.text, 'Unlock full game');
+  controls.purchaseRestore.layout(); assert.equal(controls.purchaseRestore.rect.x, 810);
   state = { ...state, entitled: false, price: null, phase: 'offline', canPurchase: false }; view.refresh();
   assert.equal(controls.purchasePrice.visible, false); assert.equal(controls.purchaseBuy.text, 'Buy'); assert.equal(controls.purchaseBuy.disabled, true);
   view.setVisible(false); assert.equal(controls.purchaseBackdrop.visible, false); view.dispose();

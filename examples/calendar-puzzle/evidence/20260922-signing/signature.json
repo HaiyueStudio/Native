@@ -1,0 +1,10 @@
+{
+  "bundleId": "org.haiyue.games.calendarpuzzle",
+  "teamIdentifier": [
+    "22T5YFVY2B"
+  ],
+  "applicationIdentifier": "22T5YFVY2B.*",
+  "profileName": "iOS Team Provisioning Profile: *",
+  "profileExpiration": "2027-09-22 02:00:57",
+  "deviceIncluded": true
+}

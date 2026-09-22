@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-09-21T23:58:46.417049+00:00",
+  "device": "X4000 / Adreno 710",
+  "renderResolution": [
+    1600,
+    720
+  ],
+  "method": "Compare shadows-disabled samples with previous shadows/validation.json, same scenes and eight-hop workload. Separate app launches; thermal/scheduling noise is not controlled, so frame intervals are indicative. Both disabled passes are weighted by sample count; idle and startup capture excluded.",
+  "triangleScope": "3D triangle-list instances loaded for this view, including complete parent, current scene and child LOD; excludes GUI and additional shadow-pass submissions. Shared meshes count once per instance. inFrustum counts whole meshes intersecting the engine camera sphere/frustum test, not pixel-visible or occlusion-tested triangles. The engine spatial-index AABB broad phase can additionally reject meshes; inFrustum is a conservative sphere-based diagnostic, not an exact submitted-triangle counter. Intro 1 sphere count is 199 meshes versus 183 after engine broad-phase culling with shadows disabled.",
+  "comparison": {
+    "World": {
+      "beforeTriangles": 799320,
+      "afterTriangles": 226148,
+      "triangleReductionPercent": 71.70745133363359,
+      "inFrustumSphereEstimate": 226148,
+      "beforeDraws": 243.0,
+      "afterDraws": 245.72830188679245,
+      "beforeFrameIntervalMs": 18.96672903229007,
+      "afterFrameIntervalMs": 21.084523346270107,
+      "beforeRecordCpuMs": 13.684858627097725,
+      "afterRecordCpuMs": 14.530547169961896
+    },
+    "Intro 1": {
+      "beforeTriangles": 1077356,
+      "afterTriangles": 171784,
+      "triangleReductionPercent": 84.05503844597328,
+      "inFrustumSphereEstimate": 41060,
+      "beforeDraws": 159.0,
+      "afterDraws": 120.42198581560284,
+      "beforeFrameIntervalMs": 19.95393362832364,
+      "afterFrameIntervalMs": 18.800582116787123,
+      "beforeRecordCpuMs": 5.114713675173599,
+      "afterRecordCpuMs": 4.66355141816811
+    },
+    "Reference 1": {
+      "beforeTriangles": 506772,
+      "afterTriangles": 95730,
+      "triangleReductionPercent": 81.10984821576567,
+      "inFrustumSphereEstimate": 66900,
+      "beforeDraws": 292.0,
+      "afterDraws": 257.0,
+      "beforeFrameIntervalMs": 21.69973798072533,
+      "afterFrameIntervalMs": 17.539146484381263,
+      "beforeRecordCpuMs": 7.305081019155666,
+      "afterRecordCpuMs": 6.4923049239124255
+    }
+  },
+  "validation": {
+    "boxboundUnit": "230 passed in focused suite; final geometry/cache tests 5 passed (231 distinct tests across both runs)",
+    "nativeUnit": 13,
+    "nativeSmoke": 26,
+    "browser": {
+      "browser-climb": 30,
+      "browser-descent": 30,
+      "browser-reference-continuity": 47,
+      "browser-readability-motion": 40,
+      "browser-theme-inside": 39
+    },
+    "typecheck": "Games and Native passed",
+    "build": "Boxbound web target and Android debug passed",
+    "engineChangesThisTurn": false,
+    "normalLaunch": "ready; smoke=false",
+    "visualReview": "Desktop nested views and final Android chapter screenshot inspected."
+  },
+  "sha256": {
+    "Games/games/boxbound/scene.ts": "278a676fe9e62fc76eba89a4d29a8b85ae9c7c56c7a975d5dbb02d7fa3364ad0",
+    "Games/games/boxbound/wall-mesh.ts": "707f761c8ecebb1bfafbead433a1bc65e732c458fc7b55b7200ca4bfcb1c669c",
+    "Games/games/boxbound/bundle.js": "50655ed441bdf877e5cb0c4e52ff4116327c79db672bce09f7ca566e683e6a06",
+    "Native/examples/boxbound/src/profile.ts": "e59f733b215d55e3dcfa9bdbb14c0dc9af723515a80c0cb0a7572134901f4bf3",
+    "Native/examples/boxbound/platforms/android/app/build/outputs/apk/debug/app-debug.apk": "72f3e8defbd62981d485b7022b9f82bd2398eef21dc9e5f42ab10a983a4bf455"
+  }
+}

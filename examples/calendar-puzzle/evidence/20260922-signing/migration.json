@@ -1,0 +1,17 @@
+{
+  "oldBundleId": "org.haiyue.native.calendarpuzzle",
+  "newBundleId": "org.haiyue.games.calendarpuzzle",
+  "teamId": "22T5YFVY2B",
+  "preferences": {
+    "haiyue-game:haiyue-games:game-save:calendar-puzzle:autosave": {
+      "bytes": 1789,
+      "sha256": "3f5b046ebb8cee4cfed3e0ca8b3612bd1cd99f8a22fea587558ebc99f41172b6"
+    },
+    "calendar-puzzle.reward-wallet.v1": {
+      "bytes": 98,
+      "sha256": "fa2c2140f5c04b847ccaea748c2ba0a5d400932ce5bbe22a1fc4f240f6d8aefc"
+    }
+  },
+  "prelaunchVerified": true,
+  "verifiedProductionKeys": 2
+}

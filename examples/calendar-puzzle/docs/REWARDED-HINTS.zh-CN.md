@@ -19,15 +19,47 @@
 
 ## 正式发布前配置
 
-1. AdMob 为 iOS、Android 分别创建应用与奖励广告单元。
-2. 替换 `App_Resources/iOS/Info.plist` 的 `GADApplicationIdentifier`、AndroidManifest.xml 的 `com.google.android.gms.ads.APPLICATION_ID`。
-3. 替换 `src/rewards-config.ts` 两个平台的广告单元 ID。当前为 Google 官方测试 ID；Release 运行时禁止请求测试广告。
+1. 当前先发布 Apple App Store：只创建 iOS 应用与奖励广告单元，Android 留待后续。
+2. 替换 `App_Resources/iOS/Info.plist` 的 `GADApplicationIdentifier`。
+3. 替换 `src/rewards-config.ts` 的 `iosUnit`。当前为 Google 官方测试 ID；Release 构建只校验目标平台的正式 App ID、广告单元 ID 及发布商一致性，运行时也禁止请求测试广告。开发版仍强制使用 Google 测试广告位。
 4. 在 AdMob 的“隐私和消息”中配置并发布适用地区的 UMP 消息。设置页在 SDK 要求时显示广告隐私选项。
 5. 更新隐私政策、App Store 隐私标签和 Google Play 数据安全表/包含广告声明；按实际 SDK 数据处理填写。`npa=1` 并不免除隐私告知/同意义务。
 6. 按 AdMob 控制台提示完成开发者网站和 app-ads.txt、应用审核及付款账户设置。通过正式商店测试渠道验证真实配置，但开发阶段只能使用测试广告或登记过的测试设备。
 7. 如面向儿童，需另行完成适龄策略和广告配置；当前接入未将产品声明为儿童应用。
 
 未配置正式广告 ID 前不会产生广告收益。广告库存/网络/同意状态都可能导致暂无广告，游戏会保留拼图且不扣额度。
+
+### iOS 后台填写内容（2026-09-22，待账号创建）
+
+目前尚未创建 AdMob 账号、正式应用或广告位，也没有发布隐私消息；以下是待配置内容，并非已完成状态。
+
+| 项目 | 内容 |
+| --- | --- |
+| 应用名称 | Haiyue Calendar Puzzle（与商店名称保持一致） |
+| 平台 | iOS |
+| 是否已在支持的商店上架 | 否；App Store Connect 创建记录不等于公开上架 |
+| Bundle ID（如要求） | org.haiyue.games.calendarpuzzle |
+| 广告格式 | 激励广告 / Rewarded，不选激励插屏 |
+| 广告位名称 | calendar_puzzle_ios_rewarded_hint |
+| 奖励数量 / 名称 | 1 / Hint |
+
+注册国家/地区按实际居住地填写，不按投放市场填写；Google 说明该项创建后不能修改。
+账号注册、付款资料、身份核验和条款由账户所有者完成。此流程不要求先发布 Google Play。
+
+“隐私和消息”中为此 iOS 应用创建并发布欧洲法规消息，覆盖 EEA、英国、瑞士，提供同意、不同意及管理选项。
+默认英语，添加游戏支持的中文、日语、法语、德语、西班牙语中后台可选的语言；必须使用真实公开的隐私政策网址。
+若投放美国适用州，同时配置美国州法规消息及隐私选项。消息需明确选中本 iOS 应用，保存草稿不等于发布。
+当前原生请求指定 `npa=1`，不主动申请 ATT；这不能代替 UMP 同意流程或正式数据披露。
+
+取得正式 App ID（含 `~`）与广告位 ID（含 `/`）后再接入；不要用示例 ID 冒充正式配置。
+随后用测试设备验证同意、拒绝、重新管理选项、取消广告、奖励一次性发放、无填充和断网。
+应用上线后关联真实 App Store 页面，完成 app-ads.txt 验证及 AdMob 应用审核；未发布应用可以先集成测试。
+
+参考：
+- https://support.google.com/admob/answer/7356219?hl=en
+- https://support.google.com/admob/answer/9989980?hl=en
+- https://support.google.com/admob/answer/7311747?hl=en
+- https://support.google.com/admob/answer/10113207?hl=en
 
 ## 数据与限制
 

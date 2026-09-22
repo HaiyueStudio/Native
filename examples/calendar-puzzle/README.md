@@ -7,7 +7,7 @@
 - 同一拼块可双击旋转。轻触保持原尺寸，超过 12 个逻辑屏幕点才开始放大拖拽；双击容差按屏幕点计算，不随棋盘缩放变窄，iOS 与 Android 共用该逻辑。
 - 右侧日期按钮打开万年历：双箭头切换年份、单箭头切换月份，选择日期后自动计算星期并进入拼图；浅绿色日期表示已通关。
 - 通关后弹出大拇指和彩色粒子，点「查看记录」直接查看日历。完整年月日的通关记录自动保存，打乱/换日期不删除。
-- 右上角齿轮提供中文（默认）、English、日本語与通关记录入口。
+- 首次进入默认 English；旧存档缺少语言设置时也使用英文，已有语言选择会保留。设置支持 English、中文、日本語、Français、Deutsch、Español。
 - 纯色拼图关闭色调映射；Canvas 文字纹理使用 sRGB 采样，避免画面灰蒙。
 - ApplicationSettings 自动存档；后台中断拖动时恢复原位置，恢复游戏不会重复绑定事件。
 - Canvas 2D 只用于文字栅格化，纹理按稳定键更新；渲染由 WebGPU 完成。
@@ -25,7 +25,7 @@ npm test
 IOS_DEVICE_UDID=<iPhone UDID> npm run build:device
 ```
 
-安装产物 `platforms/ios/build/Debug-iphoneos/calendarpuzzle.app`，Bundle ID `org.haiyue.native.calendarpuzzle`。`orientation.json` 是方向策略来源，构建前自动同步 Info.plist。
+安装产物 `platforms/ios/build/Debug-iphoneos/calendarpuzzle.app`，Bundle ID `org.haiyue.games.calendarpuzzle`。`orientation.json` 是方向策略来源，构建前自动同步 Info.plist。
 
 设置启动环境变量 `CALENDAR_CAPTURE_FRAME=1` 可在第 120 帧将原生画面保存到 Documents/calendar-puzzle-frame.png；正常启动不截图。桥接诊断保存在 Documents/calendar-puzzle-host.jsonl。
 

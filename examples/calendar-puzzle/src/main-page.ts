@@ -40,7 +40,7 @@ export function onLoaded(args: EventData): void {
   if (canvas && ready.has(canvas)) ensureHost(canvas);
 }
 function ensureSplash(page: Page): NativeEngineSplash {
-  return splash ??= new NativeEngineSplash(page.getViewById<GridLayout>('appRoot'));
+  return splash ??= new NativeEngineSplash(page.getViewById<GridLayout>('appRoot'), { message: 'Loading…' });
 }
 function unhandled(args: { error?: unknown }): void {
   host?.fail(args.error);
@@ -91,7 +91,7 @@ function ensureHost(canvas: Canvas): void {
         catch (error) { console.error('Splash capture failed', error); }
       }
       if (presented) loading.presented();
-      else if (text.startsWith('初始化或渲染失败')) loading.fail();
+      else if (text.startsWith('初始化或渲染失败')) loading.fail('Unable to load. Please reopen the game.');
     },
     {
       canvasInput: {
@@ -140,7 +140,7 @@ function ensureHost(canvas: Canvas): void {
       bindInput: (engine, report) => {
         if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, launchFlag('CALENDAR_SMOKE_CLEAN'), () => host?.requestFrame(), () => host!.renderingSnapshot());
         if (rewardsSmoke && game) removeSmoke = installRewardsSmoke(game, input, canvas, report, () => host?.requestFrame(), launchFlag('CALENDAR_REWARD_AD_SMOKE'));
-        if (purchaseSmoke && game) removeSmoke = installPurchaseSmoke(game, input, canvas, report, () => host?.requestFrame());
+        if (purchaseSmoke && game) removeSmoke = installPurchaseSmoke(game, input, canvas, report, () => host?.requestFrame(), launchFlag('CALENDAR_PURCHASE_RESTORE_SMOKE'));
         return ({
         suspend() {
           game?.suspendAudio();

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-21T12:25:16.254931+00:00",
+  "scope": "Boxbound Android touch input and level-completion checkpoints; no Engine changes or full-repository tests",
+  "androidSmoke": {
+    "passed": true,
+    "checks": 24,
+    "snapshot": {
+      "title": "箱庭迷境",
+      "ready": true,
+      "smoke": true,
+      "home": false,
+      "slot": 1,
+      "room": "pp-intro",
+      "moves": 19,
+      "completed": [
+        11
+      ],
+      "viewport": {
+        "width": 800,
+        "height": 360
+      },
+      "stick": {
+        "width": 146,
+        "height": 146
+      },
+      "jump": {
+        "width": 78,
+        "height": 78
+      },
+      "dive": {
+        "width": 68,
+        "height": 68
+      },
+      "held": null,
+      "undo": 19,
+      "splash": "hidden"
+    }
+  },
+  "mobileUnitTests": {
+    "passed": 11
+  },
+  "boxboundRules": {
+    "total": 226,
+    "initialPassed": 225,
+    "initialFailure": "Existing transcription fixture still expected Eat 8 cyan crate at z=3; authored user correction is z=4. Fixture corrected and targeted rerun passed. All other tests passed."
+  },
+  "browser": [
+    {
+      "status": "passed",
+      "bundleSha256": "dded9d0abdeab6198d897066b66031b979ed1f928b8203d5480c75969d72b0e8",
+      "generatedAt": "2026-09-21T12:20:24.088Z",
+      "view": "completion-return",
+      "checks": 38
+    },
+    {
+      "status": "passed",
+      "bundleSha256": "dded9d0abdeab6198d897066b66031b979ed1f928b8203d5480c75969d72b0e8",
+      "generatedAt": "2026-09-21T12:20:42.059Z",
+      "view": "gate-recoil",
+      "checks": 45
+    }
+  ],
+  "sourceSha256": {
+    "Native/examples/boxbound/src/app.ts": "60842bc618dbd4eec661ecc86352a87de3b3582fa4434e40d601ad9012ea9ac5",
+    "Native/examples/boxbound/src/audio.ts": "6d2dfe14f4850ef2d5c309a2e08fff5d19ca2f59a5bdaf6f4a4d8bbe6c24fc35",
+    "Native/examples/boxbound/src/controls.ts": "2e3560963bff6ae544c275de8b240cb311bba002dec759e67b6ee5811ae78fe4",
+    "Native/examples/boxbound/src/core-js-pure.d.ts": "fce1dcabf2893175b6befa45f8c73e5e358b97856a12e1a0136b86c1a76e9fc5",
+    "Native/examples/boxbound/src/labels.ts": "0d89c4d69f464fdf635e22b0b946ec8690689e17dd384aa686ce5e3cc39ffec6",
+    "Native/examples/boxbound/src/main-page.ts": "29a420f76611ee1fe10625da4eface950535d34c2b3905e392c9db4ea8db73b0",
+    "Native/examples/boxbound/src/runtime.ts": "3b6809122f967209815ee19aa6c818a04ff000b0fdd6e6c5a9970bcafba40a77",
+    "Native/examples/boxbound/src/session.ts": "3472995691155d1bb94c7f24c8b505bb5fc7916c4010a0fffddbfff66f0a1faf",
+    "Native/examples/boxbound/src/smoke.ts": "3cd1a5c17ace2c18b3c448b4a2c7851f9e29a026890b9340769143248502311b",
+    "Native/examples/boxbound/src/storage.ts": "5127d9baf0c502e2277f6311b7f1c4c7a8edfc6fb59bcad7d03e919eb534675e",
+    "Native/examples/boxbound/src/touch-check.android.ts": "6bb067f2503c5863af06158c64ab53287660561aa3ecf6043d131eff4b59369d",
+    "Native/examples/boxbound/package.json": "4178998baa16fc4855dbbf69d3b91971bcc52f9df3cf5b8fa72dbebadb79b515",
+    "Native/examples/boxbound/package-lock.json": "96fc99b1a039ce1f25670d7baed06979bad9e34345e7909758518227214d16dd",
+    "Native/examples/boxbound/vendor/haiyue-animation-spec-0.1.0.tgz": "435d2a29fc4983e2ead1f0a828cd0a323bcc6e800b5ed30eb086d482db350f5c",
+    "Native/examples/boxbound/vendor/haiyue-engine-0.1.0.tgz": "b66b23bedc6de3a05e0b9f79985791b62551673c53021d7aa869291aa28a5d80",
+    "Native/examples/boxbound/vendor/haiyue-extensions-0.1.0.tgz": "62fb49e1a0ffe0dbaed447d5c8b1d47fa723fb624371d6096b0d6720cb343f97",
+    "Games/games/boxbound/main.ts": "c762180550a65f22e54b3cdb151cfc030588c987d833e6917f4d48a857491db0",
+    "Games/games/boxbound/model.ts": "c8a9f441d29a1a2ee7b5cdc29aaad4314325f97a99b59cde583ace50d7ed8aef"
+  },
+  "note": "Browser and Android smoke completed before final exit-message wording change; final builds include the wording change. Player saves untouched by smoke (isolated namespace).",
+  "apkSha256": "f14b506c52f10a47fe44ee215de5477898d4ea8f5016ddef7b8e2d7d9195b752",
+  "finalWebBundleSha256": "5124c539e60a84605240b063bca2566df19e3979569e05778c692bbfaada1e36"
+}

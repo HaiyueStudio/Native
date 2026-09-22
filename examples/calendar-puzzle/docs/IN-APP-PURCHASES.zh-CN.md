@@ -23,7 +23,7 @@
 
 ## 商店配置（需要开发者账号）
 
-1. **App Store Connect**：应用 Bundle ID `org.haiyue.native.calendarpuzzle`，添加相同 ID 的非消耗型内购，填写中/英/日本地化名称和说明、价格与销售地区、审核截图。完成付费协议、税务和收款资料。首次内购和应用一起提交审核。使用正式 Apple Developer 账号签名，当前免费开发签名不等于可上架/可测真实内购。
+1. **App Store Connect**：应用 Bundle ID `org.haiyue.games.calendarpuzzle`，添加相同 ID 的非消耗型内购，填写中/英/日本地化名称和说明、价格与销售地区、审核截图。完成付费协议、税务和收款资料。首次内购和应用一起提交审核。使用正式 Apple Developer 账号签名，并完成商店商品配置后再验证真实沙盒内购。
 2. **Play Console**：包名 `org.haiyue.games.calendarpuzzle`，一次性商品 ID 同上；单个永久 buy 选项，数量 1，先不配置租赁、预购、批量购买或复杂优惠。激活商品/地区，配置支付资料，上传签名 AAB 到内部测试，加入许可测试人员，从 Play 安装测试版本。侧载调试包和没有 Google Play 服务的设备不能代替正式测试渠道验证。
 3. 部署 Google 验证服务。把 HTTPS 完整端点和 RSA 公钥放入 `src/purchases/config.ts` 后重新构建。商店密钥只在服务端。保持现有商品 ID；如需改 ID，先同步原生配置、服务端与后台。
 4. 使用 Apple Sandbox/TestFlight、Google license tester 测试支付。开发中不要使用真实银行卡做自动化付款。Debug `CALENDAR_SMOKE` 仅隔离玩法回归且不触碰生产存档；Release 的原生构建检测会禁用此入口，不能用 Intent 参数绕过付费。

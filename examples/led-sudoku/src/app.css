@@ -1,26 +1,2 @@
-Page, .sheet { background-color: #061015; color: #d6e9ea; }
-Button { color: #d6e9ea; background-color: #10262e; border-color: #29464e; border-width: 1; border-radius: 7; font-size: 12; padding: 0 6; margin: 2; text-transform: none; android-elevation: 0; }
-Button:disabled { opacity: 0.28; }
-.primary { background-color: #83ffc1; color: #0a2920; border-color: #83ffc1; font-weight: bold; }
-.active { color: #83ffc1; border-color: #83ffc1; background-color: #13332d; }
-.muted { color: #8ba6ae; }
-.key-hit { background-color: transparent; color: transparent; border-width: 0; margin: 0; padding: 0; font-size: 1; }
-.key-tile { background-color: #10242b; border-width: 1; border-color: #29464e; border-radius: 7; margin: 3; }
-.sheet { padding: 18; }
-.sheet Label { text-wrap: true; }
-.rule-row { border-bottom-width: 1; border-bottom-color: #20383f; padding: 11 0; }
-.icon-hit { color: transparent; background-color: transparent; border-width: 0; border-radius: 9; margin: 0; padding: 0; }
-.preference-row { margin-top: 18; margin-bottom: 8; }
-
-Label { color: #d6e9ea; }
-.dropdown-options { background-color: #10262e; }
-Page.light-blue { background-color: #edf6fc; color: #183c55; }
-.light-blue Label { color: #183c55; }
-.light-blue Button { color: #183c55; background-color: #f7fbff; border-color: #adc9dc; }
-.light-blue .primary { color: #ffffff; background-color: #1669a6; border-color: #1669a6; }
-.light-blue .active { color: #1669a6; background-color: #d5eafa; border-color: #1669a6; }
-.light-blue .rule-row { border-bottom-color: #c8dce9; }
-.light-blue .dropdown-options { background-color: #e2f0fa; }
-.light-blue .icon-hit, .light-blue .key-hit { color: transparent; background-color: transparent; border-width: 0; }
-.light-blue Switch { color: #ffffff; background-color: #b8d4e7; }
-.light-blue Switch:checked { background-color: #1669a6; }
+/* Game controls are rendered by Haiyue GuiSystem; Native only owns the surface and launch page. */
+Page { background-color: #061015; }

@@ -1,0 +1,28 @@
+✔ Canvas Android one-shot callbacks release their owner and both pipe descriptors (9016.787386ms)
+(node:71659) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:71659) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/boxbound/src/controls.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/qingque/Desktop/HaiyueStudio/Native/examples/boxbound/package.json.
+✔ floating Engine joystick captures touch center, owns one finger and cleans up (12.65836ms)
+✔ grid snapping preserves cardinal hysteresis (0.649196ms)
+✔ held stick repeats moves and release cancels future movement (189.962845ms)
+✔ jump combines with direction; canceled input cannot survive suspension (232.152033ms)
+✔ undo waits for landing and then restores full state (205.90759ms)
+✔ exiting a level preserves progress and moved puzzle objects (191.093996ms)
+✔ Android compatibility methods preserve reversal without mutating input (102.679254ms)
+✔ jump with held stick climbs onto a box without pushing it (137.923829ms)
+✔ holding against an obstacle does not rebuild the scene or repaint each frame (156.569214ms)
+✔ new direction is sampled on the next frame without the repeat cooldown (181.115557ms)
+✔ only completion writes an automatic checkpoint, outside the finished puzzle (578.249673ms)
+✔ blocked input can sleep and a changed direction wakes the host (141.651939ms)
+✔ fast state snapshots detach every mutable nested gameplay field (147.419316ms)
+✔ mirrored stick and buffered movement stay screen-relative and undo restores orientation (157.933322ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9326.002349

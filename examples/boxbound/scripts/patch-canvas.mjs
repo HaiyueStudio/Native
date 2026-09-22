@@ -1,3 +1,5 @@
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 
@@ -37,5 +39,6 @@ export function patchCanvas() {
   if (createHash('sha256').update(queuePristine).digest('hex') !== 'c9275fddae10e4371baa4e5e4b6092b0476808fa7ec56ea30323cc37513b0123') throw new Error('Canvas queue binding hash changed; refusing an unaudited patch.');
   const queueAfter = patchQueueSource(queueBefore);
   if (queueBefore !== queueAfter) writeFileSync(queueFile, queueAfter);
+  execFileSync('python3', [fileURLToPath(new URL('./patch-canvas-native.py', import.meta.url))], { stdio:'inherit' });
   return { version, queueSha256: createHash('sha256').update(queueAfter).digest('hex'), file: 'WebGPU/GPURenderPassEncoder.js', sha256: createHash('sha256').update(after).digest('hex') };
 }

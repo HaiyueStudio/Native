@@ -11,12 +11,14 @@ function run(args) { const r=spawnSync('xcrun',['devicectl','--timeout','60',...
 function copy(source, target) { const destination=path.resolve(app,target);mkdirSync(path.dirname(destination),{recursive:true});run(['device','copy','from','--device',device,'--domain-type','appDataContainer','--domain-identifier',pkg,'--source',`Documents/${source}`,'--destination',destination]); }
 const steps=mode==='batch'?JSON.parse(readFileSync(args[0],'utf8')):[{action:mode,args}];
 for(const {action,args=[]} of steps) {
- if(action==='install') {const bundle=path.join(app,'platforms/ios/build/Debug-iphoneos/ledsudoku.app');if(!existsSync(bundle))throw Error(`Build first: ${bundle}`);run(['device','install','app','--device',device,bundle]);}
- else if(action==='launch') run(['device','process','launch','--device',device,'--terminate-existing',...(args.includes('smoke')?['--environment-variables','{"LED_SMOKE":"1"}']:args.includes('capture')?['--environment-variables','{"LED_CAPTURE":"1"}']:[]),pkg]);
+ if(action==='install') {const build=path.join(app,'platforms/ios/build/Debug-iphoneos');const bundle=[path.join(build,'ledsudoku.app'),path.join(build,'ledsudoku.xcarchive/Products/Applications/ledsudoku.app')].find(existsSync);if(!bundle)throw Error(`Build first: ${build}`);run(['device','install','app','--device',device,bundle]);}
+ else if(action==='launch') run(['device','process','launch','--device',device,'--terminate-existing',...(args.includes('gui')?['--environment-variables','{"LED_GUI_SMOKE":"1"}']:args.includes('staircase')?['--environment-variables','{"LED_STAIRCASE_SMOKE":"1"}']:args.includes('smoke')?['--environment-variables','{"LED_SMOKE":"1"}']:args.includes('capture')?['--environment-variables','{"LED_CAPTURE":"1"}']:[]),pkg]);
  else if(action==='journal') copy('led-sudoku-host.jsonl',args[0]);
  else if(action==='capture') {copy('led-sudoku-screen.png',`${args[0]}/screen.png`);copy('led-sudoku-board.png',`${args[0]}/board.png`);}
  else if(action==='ui') { for(const name of ['english','settings','dropdown','rule-help']) copy(`led-sudoku-${name}.png`,`${args[0]}/${name}.png`); }
  else if(action==='hints') { for(const name of ['start','inequality','box','conclusion','elimination']) copy(`led-sudoku-hint-${name}.png`,`${args[0]}/${name}.png`); }
+ else if(action==='gui') { for(const name of ['dark','settings','help','new','light']) copy(`led-gui-${name}.png`,`${args[0]}/${name}.png`); }
+ else if(action==='staircase') { for(const name of ['help','dark','light','led']) copy(`led-staircase-${name}.png`,`${args[0]}/${name}.png`); }
  else if(action==='splash') copy('led-sudoku-engine-splash.png',args[0]);
  else if(action==='wait') await new Promise(resolve=>setTimeout(resolve,Math.min(Number(args[0]),10000)));
  else throw Error(`Unknown action: ${action}`);

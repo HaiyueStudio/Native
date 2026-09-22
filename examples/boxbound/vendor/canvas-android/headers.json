@@ -1,0 +1,478 @@
+{
+  "commit": "970bde07f0b80bd3192b9197b506719d78580748",
+  "root": "packages/canvas/src-native/canvas-android/canvas/src/main/cpp/include/",
+  "files": [
+    {
+      "path": "APIDesign.md",
+      "gitBlobSha1": "fe42c8ed5da36eca3c9fb7a12e306baabcc7bf53"
+    },
+    {
+      "path": "DEPS",
+      "gitBlobSha1": "21ce3d964593c832d79fa77d0b8d4c7d8f9a6d0b"
+    },
+    {
+      "path": "DIR_METADATA",
+      "gitBlobSha1": "a27ea1b53a3f539745872fa12929070032b5378f"
+    },
+    {
+      "path": "OWNERS",
+      "gitBlobSha1": "535040c539a732f481e62b18ae92390b995fbd87"
+    },
+    {
+      "path": "canvas_android.h",
+      "gitBlobSha1": "c2c4695647cb6ab048fd1361da605cad83473973"
+    },
+    {
+      "path": "canvas_native.h",
+      "gitBlobSha1": "77ee0af38e8107e2bdb22053584504343e9763e4"
+    },
+    {
+      "path": "command_log.txt",
+      "gitBlobSha1": "6b0eb166383370cf4a2cfd5c1bf933fa2bf289f3"
+    },
+    {
+      "path": "cppgc/DEPS",
+      "gitBlobSha1": "861d1187ba55018473d772bbfe1c8f633d5ffee4"
+    },
+    {
+      "path": "cppgc/OWNERS",
+      "gitBlobSha1": "6ccabf60b15cd1244692f2da4631e9bd2b7e7095"
+    },
+    {
+      "path": "cppgc/README.md",
+      "gitBlobSha1": "a7d08f86b32a39c7801c60aefff722aeeb7cdff0"
+    },
+    {
+      "path": "cppgc/allocation.h",
+      "gitBlobSha1": "69883fb34d1e46f9aada3977adc78192daa5a5af"
+    },
+    {
+      "path": "cppgc/common.h",
+      "gitBlobSha1": "b6dbff3dd6f0077d98a44909c04f7b02284e63e7"
+    },
+    {
+      "path": "cppgc/cross-thread-persistent.h",
+      "gitBlobSha1": "c8751e1d64121a92279b42f031da889e57848167"
+    },
+    {
+      "path": "cppgc/custom-space.h",
+      "gitBlobSha1": "757c4fde15ea7c7b5703aa5c6f27112629fbae29"
+    },
+    {
+      "path": "cppgc/default-platform.h",
+      "gitBlobSha1": "a27871cc37ee47cd7a073b5fe473381b67b0dbfa"
+    },
+    {
+      "path": "cppgc/ephemeron-pair.h",
+      "gitBlobSha1": "e16cf1f0aa2accb34529c3e0b2221af6bfb45653"
+    },
+    {
+      "path": "cppgc/explicit-management.h",
+      "gitBlobSha1": "0290328dccbab8f1d1e71bc60e2aea1f2fc4d3b4"
+    },
+    {
+      "path": "cppgc/garbage-collected.h",
+      "gitBlobSha1": "6737c8be49aca4e4e75d8b5516840de01db47305"
+    },
+    {
+      "path": "cppgc/heap-consistency.h",
+      "gitBlobSha1": "54a4dbc21ed2ebcac1947b295ee01f9785a884d0"
+    },
+    {
+      "path": "cppgc/heap-state.h",
+      "gitBlobSha1": "28212589f8d714ad008f5669527544fa037dfdef"
+    },
+    {
+      "path": "cppgc/heap-statistics.h",
+      "gitBlobSha1": "8e626596e5b07b64ebb7942e78c54603d50ba126"
+    },
+    {
+      "path": "cppgc/heap.h",
+      "gitBlobSha1": "aa3c6f468a21de3b01a0dd4f9aeca47b2d755752"
+    },
+    {
+      "path": "cppgc/internal/api-constants.h",
+      "gitBlobSha1": "a50d4d046c953c4b61c1feb7e6c524dd5191a58c"
+    },
+    {
+      "path": "cppgc/internal/atomic-entry-flag.h",
+      "gitBlobSha1": "5a7d3b8f8ac4c10098aaf862a3e6775db9362b81"
+    },
+    {
+      "path": "cppgc/internal/caged-heap-local-data.h",
+      "gitBlobSha1": "a27649c17fce5b6fc6db41476386c1d878665d7b"
+    },
+    {
+      "path": "cppgc/internal/compiler-specific.h",
+      "gitBlobSha1": "595b6398cb720a120f15764ee624c1fd6166f389"
+    },
+    {
+      "path": "cppgc/internal/finalizer-trait.h",
+      "gitBlobSha1": "ab49af870e0ba30708698bb9ee63bcf545ff026e"
+    },
+    {
+      "path": "cppgc/internal/gc-info.h",
+      "gitBlobSha1": "82a0d053431f8a44c657f3fc2ba98fba34dccaa1"
+    },
+    {
+      "path": "cppgc/internal/logging.h",
+      "gitBlobSha1": "3a279fe0bef8392774f4b9d8dd5beff779774b34"
+    },
+    {
+      "path": "cppgc/internal/name-trait.h",
+      "gitBlobSha1": "32a334785926d7414fb3aeb201cbc524bba42c3d"
+    },
+    {
+      "path": "cppgc/internal/persistent-node.h",
+      "gitBlobSha1": "22b4cf093c110f5bc22ddcc67e9552c69be64d36"
+    },
+    {
+      "path": "cppgc/internal/pointer-policies.h",
+      "gitBlobSha1": "853d703153097916d59fec3016c71ac5ac206a5d"
+    },
+    {
+      "path": "cppgc/internal/write-barrier.h",
+      "gitBlobSha1": "bfabc31e13a969b81af5d82db0c2ebe0bb910a66"
+    },
+    {
+      "path": "cppgc/liveness-broker.h",
+      "gitBlobSha1": "c94eef0d4acdaddfe59d307b1fc9cac3b6a0e4dc"
+    },
+    {
+      "path": "cppgc/macros.h",
+      "gitBlobSha1": "030f397e3df15c30cc81778ea0626981ed164a01"
+    },
+    {
+      "path": "cppgc/member.h",
+      "gitBlobSha1": "66a8cfd80294c37982171b61c7fedcd52a0b4293"
+    },
+    {
+      "path": "cppgc/name-provider.h",
+      "gitBlobSha1": "224dd4b5d678ecf73b263e5ea4d0776e4816dc89"
+    },
+    {
+      "path": "cppgc/object-size-trait.h",
+      "gitBlobSha1": "35795596d3621b127ff59fc6c7de9d43357060e6"
+    },
+    {
+      "path": "cppgc/persistent.h",
+      "gitBlobSha1": "244f94c81958b8b167656cd791c4116fe46668ae"
+    },
+    {
+      "path": "cppgc/platform.h",
+      "gitBlobSha1": "5d5f8796adf42beb04c39dfe6ca8134bed16ec4d"
+    },
+    {
+      "path": "cppgc/prefinalizer.h",
+      "gitBlobSha1": "51f2eac8ed466190597d2f62b071827bb371c022"
+    },
+    {
+      "path": "cppgc/process-heap-statistics.h",
+      "gitBlobSha1": "774cc92f46cd92f25b6a64de39cb947f6a62a9cd"
+    },
+    {
+      "path": "cppgc/sentinel-pointer.h",
+      "gitBlobSha1": "b049d1a2b3463274204df32772c90c9821cece99"
+    },
+    {
+      "path": "cppgc/source-location.h",
+      "gitBlobSha1": "da5a5ede52013850e5bb27cc99b676cc1a41c495"
+    },
+    {
+      "path": "cppgc/testing.h",
+      "gitBlobSha1": "bddd1fc163305bb7bf25add65a2d15e0cd8071e4"
+    },
+    {
+      "path": "cppgc/trace-trait.h",
+      "gitBlobSha1": "83619b1d51848b690973b603b09b3162c173e157"
+    },
+    {
+      "path": "cppgc/type-traits.h",
+      "gitBlobSha1": "970ffd4841abf4743562ee8e6fb41ec84cd7fc66"
+    },
+    {
+      "path": "cppgc/visitor.h",
+      "gitBlobSha1": "57e2ce3963af1eff87a117579a0547b02a116a2c"
+    },
+    {
+      "path": "js_protocol-1.2.json",
+      "gitBlobSha1": "dc7be2a847a849a9a2034780ff6545daef96bebc"
+    },
+    {
+      "path": "js_protocol-1.3.json",
+      "gitBlobSha1": "ead7dcbd3fa37c62ea8afe547c94718115091d97"
+    },
+    {
+      "path": "js_protocol.pdl",
+      "gitBlobSha1": "bd277eb0bca175bd633a7a7986809128e68df23d"
+    },
+    {
+      "path": "libplatform/DEPS",
+      "gitBlobSha1": "d8bcf99880d380a09ce263353bffb7f6161ec1ab"
+    },
+    {
+      "path": "libplatform/libplatform-export.h",
+      "gitBlobSha1": "15618434977d933285af1eed45fd3bdea85dae4b"
+    },
+    {
+      "path": "libplatform/libplatform.h",
+      "gitBlobSha1": "9ec60c04f9cce67b054cef53f7c31a943025e260"
+    },
+    {
+      "path": "libplatform/v8-tracing.h",
+      "gitBlobSha1": "12489327c54210b35668e2afd743639760cba515"
+    },
+    {
+      "path": "robin_hood.h",
+      "gitBlobSha1": "72fd84b1c0324210890369371dbd623465db54f7"
+    },
+    {
+      "path": "v8-array-buffer.h",
+      "gitBlobSha1": "e9047b79ce3b1dd19d2531161c959c164e2562be"
+    },
+    {
+      "path": "v8-callbacks.h",
+      "gitBlobSha1": "70b9c2ae9308a58584fb422ed10f1d2987b1c3cf"
+    },
+    {
+      "path": "v8-container.h",
+      "gitBlobSha1": "ce06860364946167581e1313dbee83cee0a935c2"
+    },
+    {
+      "path": "v8-context.h",
+      "gitBlobSha1": "72dfbaad74d1f993463935e7983a9f4b4306e92c"
+    },
+    {
+      "path": "v8-cppgc.h",
+      "gitBlobSha1": "412154930f7d92b5e3932bf7a1cace16eee940e8"
+    },
+    {
+      "path": "v8-data.h",
+      "gitBlobSha1": "cc51fefe105bbe8abbfc83d8a62e3743daba1423"
+    },
+    {
+      "path": "v8-date.h",
+      "gitBlobSha1": "e7a01f29b2d3b7821a30c2775b482f4d2c9d907b"
+    },
+    {
+      "path": "v8-debug.h",
+      "gitBlobSha1": "52255f3700cb73b094776174c0a3d5845e56bf48"
+    },
+    {
+      "path": "v8-embedder-heap.h",
+      "gitBlobSha1": "09dbae1fd8778b75230b1d86390156d04aec7923"
+    },
+    {
+      "path": "v8-embedder-state-scope.h",
+      "gitBlobSha1": "d8a3b08d5caeaed0cc84def2f229797a2abb8d42"
+    },
+    {
+      "path": "v8-exception.h",
+      "gitBlobSha1": "64126c420a692859f9528646a73a5c77147f8a6d"
+    },
+    {
+      "path": "v8-extension.h",
+      "gitBlobSha1": "0705e2afbb8708694c7de3b8ca50fc8b4b986216"
+    },
+    {
+      "path": "v8-external.h",
+      "gitBlobSha1": "2e245036f422317602d5186a79a872c90ff15b42"
+    },
+    {
+      "path": "v8-fast-api-calls.h",
+      "gitBlobSha1": "3403de93eca8529a99ff4163e7e59077142eae42"
+    },
+    {
+      "path": "v8-forward.h",
+      "gitBlobSha1": "db3a2017b7e5ee900459144109597f8f4d8ffde3"
+    },
+    {
+      "path": "v8-function-callback.h",
+      "gitBlobSha1": "2adff99b1cbb826bf2481d99c55fdc1fbe38ab01"
+    },
+    {
+      "path": "v8-function.h",
+      "gitBlobSha1": "897e6ed617593140b3a2b4d04c3f555284bebb75"
+    },
+    {
+      "path": "v8-initialization.h",
+      "gitBlobSha1": "3d59c73f7c9cafafdf493664a3418621063b49f0"
+    },
+    {
+      "path": "v8-inspector-protocol.h",
+      "gitBlobSha1": "a5ffb7d6954bcfe0d5aa5c78ff374a8d3f9b46c0"
+    },
+    {
+      "path": "v8-inspector.h",
+      "gitBlobSha1": "ce5430bd039870237952bfdcbee01ed3a9ff895c"
+    },
+    {
+      "path": "v8-internal.h",
+      "gitBlobSha1": "37c5b336dad935013149044da98278eea79b8658"
+    },
+    {
+      "path": "v8-isolate.h",
+      "gitBlobSha1": "2849d7cae1e9e8b78125686f41f680f43833f3c8"
+    },
+    {
+      "path": "v8-json.h",
+      "gitBlobSha1": "23d918fc9736d8d1c2cee77d710fed4199387ffd"
+    },
+    {
+      "path": "v8-local-handle.h",
+      "gitBlobSha1": "5ae974081f8e32277486894061db9d2b3b65a8b0"
+    },
+    {
+      "path": "v8-locker.h",
+      "gitBlobSha1": "7ca5bf6e421e41d22e5517f470bc67ef8420ceb0"
+    },
+    {
+      "path": "v8-maybe.h",
+      "gitBlobSha1": "0532a510059d029c40fe6093cc5c1139f34c1a23"
+    },
+    {
+      "path": "v8-memory-span.h",
+      "gitBlobSha1": "b26af4f705b7cf34e580841f7b39d19906a7b4c3"
+    },
+    {
+      "path": "v8-message.h",
+      "gitBlobSha1": "a13276412a815239b300d0549f46eb9c572f0f6f"
+    },
+    {
+      "path": "v8-metrics.h",
+      "gitBlobSha1": "d8e8bd865bfc031868df971175358bcd89531a90"
+    },
+    {
+      "path": "v8-microtask-queue.h",
+      "gitBlobSha1": "af9caa54a8ff51b9ce7594b3e6664f22938a0ab6"
+    },
+    {
+      "path": "v8-microtask.h",
+      "gitBlobSha1": "c159203608dc900d03bdd04c2177acb74882b76f"
+    },
+    {
+      "path": "v8-object.h",
+      "gitBlobSha1": "bad299fc42948d9e09d82922980081ae0b1c4bca"
+    },
+    {
+      "path": "v8-persistent-handle.h",
+      "gitBlobSha1": "a6c21268d6ab542b7c3c27e78b9f8f741e19d2ee"
+    },
+    {
+      "path": "v8-platform.h",
+      "gitBlobSha1": "91b3fd9cc3f9a38a1357a3143fe97d624163b40e"
+    },
+    {
+      "path": "v8-primitive-object.h",
+      "gitBlobSha1": "573932d0789cf00c59a0499757823d5bacd9d4fb"
+    },
+    {
+      "path": "v8-primitive.h",
+      "gitBlobSha1": "1b6de16686b10d7044f45df26b7a09f6e67afa79"
+    },
+    {
+      "path": "v8-profiler.h",
+      "gitBlobSha1": "268104073231c620120f69839dacfd03f025756f"
+    },
+    {
+      "path": "v8-promise.h",
+      "gitBlobSha1": "9da8e4b4e86f9ab1ffaae52e800efc8702f80565"
+    },
+    {
+      "path": "v8-proxy.h",
+      "gitBlobSha1": "a08db8805c62c0046720143c9c5b3e72fd6b757b"
+    },
+    {
+      "path": "v8-regexp.h",
+      "gitBlobSha1": "3791bc0368718d4c4a04e0df6d4d749f9c045702"
+    },
+    {
+      "path": "v8-script.h",
+      "gitBlobSha1": "88252ac189731803f9b670e39a3fbcaef14407b7"
+    },
+    {
+      "path": "v8-snapshot.h",
+      "gitBlobSha1": "2400357cf6e069c6523995f12edcaa60ed42a4f6"
+    },
+    {
+      "path": "v8-statistics.h",
+      "gitBlobSha1": "ca20bc9f6c4161e1eb3985c5e1be41645153bef9"
+    },
+    {
+      "path": "v8-template.h",
+      "gitBlobSha1": "0afdccaafb68fe4ee1abca1c8938b7483471fab1"
+    },
+    {
+      "path": "v8-traced-handle.h",
+      "gitBlobSha1": "7719b9bc0167f2acda2592eccc613b685bb5fc4a"
+    },
+    {
+      "path": "v8-typed-array.h",
+      "gitBlobSha1": "483b4f772ffa817d41aa9a7bdb7bc264d93448c6"
+    },
+    {
+      "path": "v8-unwinder-state.h",
+      "gitBlobSha1": "a30f7325f48285337799bc5ef9c7d34356637f95"
+    },
+    {
+      "path": "v8-unwinder.h",
+      "gitBlobSha1": "8dca52f41c817a0a735e4a53776894b321b1e6db"
+    },
+    {
+      "path": "v8-util.h",
+      "gitBlobSha1": "c54418aa251534fc0113342351352414b6a17c56"
+    },
+    {
+      "path": "v8-value-serializer-version.h",
+      "gitBlobSha1": "25eb19ca757d89e46d019adca880d679a23a8923"
+    },
+    {
+      "path": "v8-value-serializer.h",
+      "gitBlobSha1": "078f367c646d0680c4dbc6bb033bd90c5b297163"
+    },
+    {
+      "path": "v8-value.h",
+      "gitBlobSha1": "adca989e0022d195b75a0aa1e459a3694fd4ee92"
+    },
+    {
+      "path": "v8-version-string.h",
+      "gitBlobSha1": "8faed2a740592b93075144eeca028a598e6c379b"
+    },
+    {
+      "path": "v8-version.h",
+      "gitBlobSha1": "fb95e7abbbfc147c132dcea940c41b5462b05259"
+    },
+    {
+      "path": "v8-wasm-trap-handler-posix.h",
+      "gitBlobSha1": "9b8e8a5b496aa05f6d3c91ebb6f467c4daa45a37"
+    },
+    {
+      "path": "v8-wasm-trap-handler-win.h",
+      "gitBlobSha1": "9d3cad584832850e343730a62c06d6d3e069e719"
+    },
+    {
+      "path": "v8-wasm.h",
+      "gitBlobSha1": "59b2a69b1244ca5e9c746b5586971efe0af6deb4"
+    },
+    {
+      "path": "v8-weak-callback-info.h",
+      "gitBlobSha1": "6d0fb3ac1d40f817801bdf982623a5697e5314a7"
+    },
+    {
+      "path": "v8.h",
+      "gitBlobSha1": "1067d3eb243efb50db7450fd5de0a6af4903a049"
+    },
+    {
+      "path": "v8config.h",
+      "gitBlobSha1": "77fd65c6c5b7d8c0a7fe7a37c40e17ce66f49ce6"
+    },
+    {
+      "path": "zip.h",
+      "gitBlobSha1": "d898c4098fcf8006a54092a7b30fece50fba5042"
+    },
+    {
+      "path": "zipconf.h",
+      "gitBlobSha1": "52b84287311175de82346098ab7e82874354621a"
+    }
+  ]
+}

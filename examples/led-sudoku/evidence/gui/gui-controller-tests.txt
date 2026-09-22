@@ -1,0 +1,15 @@
+✔ shared GUI controller saves candidate-hint undo and restores exact steps (54.329013ms)
+✔ new puzzle returns to board with loading state before worker resolves and blocks edits (9.483234ms)
+✔ generation errors restore controls and leave existing puzzle intact (0.736786ms)
+✔ manual mode and display preferences preserve their dependencies (0.264093ms)
+✔ phone GUI layout keeps square board and separate accessible touch rows (0.398236ms)
+✔ GUI text wrapping keeps explicit paragraphs and does not drop characters (0.568188ms)
+✔ saved undo accepts legacy saves and rejects malformed board history (36.771116ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 371.396928

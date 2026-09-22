@@ -7,15 +7,15 @@
 ## 共享与布局
 
 - 启动时使用 [Haiyue 通用启动页](../../bridge/branding/README.md) 的竖屏布局，先展示引擎标志，棋盘首次实际呈现后淡出；前后台切换与打开设置不重播。品牌资源及布局由 Native Bridge 统一提供。
-- 直接复用 `Games/games/led-sudoku/rules.ts`、`session.ts` 和 `board-painter.ts`。十四种规则、部分 LED 线索、唯一解生成、提示文案与网页端一致。
-- 顶部为紧凑标题、LED 计时和进度；中上方方形棋盘；下方工具栏和 3×3 候选按钮；底部为新数独、规则、答案。按实际 DIP 和安全区布局，小屏自动允许滚动。
-- 候选和时钟由轻量原生七段灯视图组成。候选触控区域至少 44 DIP 高；关闭 LED 后切换普通数字。
-- 新数独面板使用原生控件，规则列表独立滚动。兼容规则可组合，开启冲突规则时自动关闭旧选项并给出原因，使用持久 CommonJS Worker 出题；请求 ID 拒绝过期回包，超时可重试。
+- 直接复用 `Games/games/led-sudoku/rules.ts`、`session.ts` 和 `board-painter.ts`。全部附加规则、部分 LED 线索、唯一解生成、提示文案与网页端一致。
+- 顶部为紧凑标题、LED 计时和进度；中上方方形棋盘；下方工具栏和 3×3 候选按钮；底部为新数独、规则、答案。按实际 DIP 和安全区布局，小屏自动压缩棋盘，确保操作区完整显示。
+- HUD、候选和时钟由共享 Haiyue GuiSystem 绘制，七段数字经 GuiImage 显示。候选触控区域至少 44 DIP 高；关闭 LED 后切换普通数字。
+- 新数独和设置全部使用引擎 GuiButton、GuiSwitch、GuiSelect、GuiModal；规则列表分页，按住问号显示说明。兼容规则可组合，开启冲突规则时自动关闭旧选项并给出原因，使用持久 CommonJS Worker 出题；请求 ID 拒绝过期回包，超时可重试。
 - 挑战档按实际候选推演筛题：用尽唯一候选和完整单元唯一位置后，仍至少保留四分之一的初始空格（且不少于 12 格），同时保证唯一解。LED/附加线索更稀疏，摩天大楼空白方向没有可见数限制。旧存档不变，新规则从新开棋局生效。
 - 出题使用共享模型的增量数字掩码和结构缓存优化，保留随机序列、唯一解检查及挑战门槛；相同种子的题目保持一致。桌面 18 题对比及复现方法见 [生成性能记录](../../../Games/games/led-sudoku/evidence/generation-performance.md)。真机诊断另外记录 `generation-timing`，包含新局请求至 UI 更新的耗时。
 - 连续数紫线从一端到另一端必须每步差 1，整条线升序或降序；候选与生成器同步约束。旧版无序 Renban 棋局保留原规则并在说明中标明，点击新数独后采用新规则。
 - 笔记、撤销、擦除、提示、推理解释、显示答案确认、完成边框闪烁均保留。工具栏使用六个方形图标（含齿轮）；底部说明移除，解释通过独立面板显示。
-- 存档使用 Engine SaveService + NativeSettingsStorage，独立的应用私有存储；输入与前后台切换时保存。暂停取消触摸并停止渲染，恢复重新测量。按需渲染：计时只更新原生 HUD，不持续上传棋盘纹理。
+- 存档使用 Engine SaveService + NativeSettingsStorage，独立的应用私有存储；输入与前后台切换时保存。暂停取消触摸并停止渲染，恢复重新测量。按需渲染：计时只更新引擎 GUI 时钟纹理，不持续上传棋盘纹理。
 
 ## 偏好与精简线索
 
@@ -66,7 +66,7 @@ node scripts/device-ios.mjs DEVICE_IDENTIFIER launch
 
 签名和账号可用后，上述命令生成并安装 `platforms/ios/build/Debug-iphoneos/ledsudoku.app`。不修改系统 xcode-select 配置，脚本使用 `DEVELOPER_DIR`，默认 `/Applications/Xcode.app/Contents/Developer`。应用图标采用九宫格、六个不同数字、全暗空格和琥珀色局部灯段，保留无辉光 LED 风格。运行 `python3 scripts/generate-ios-icons.py` 从同一套几何生成 iOS 各尺寸图标、Android 矢量图标和 `App_Resources/branding/icon.svg`，无外部素材依赖。
 
-调试真机检查：`node scripts/device-ios.mjs DEVICE_IDENTIFIER launch smoke`。只在 Debug 构建接受环境变量 `LED_SMOKE=1`，使用独立诊断存档。`launch capture` 使用 `LED_CAPTURE=1` 检查正常棋局在界面稳定后的布局与截图，不执行自动填数。结果和可选截图在应用 Documents 中，通过 `journal` / `capture` 命令导出；`splash 输出路径.png` 可导出开屏截图。正常启动不会截图或运行诊断。
+调试真机检查：`node scripts/device-ios.mjs DEVICE_IDENTIFIER launch gui`。只在 Debug 构建接受环境变量 `LED_GUI_SMOKE=1`（兼容旧 LED_SMOKE / LED_STAIRCASE_SMOKE），使用独立诊断存档。`launch capture` 使用 `LED_CAPTURE=1` 检查正常棋局在界面稳定后的布局与截图，不执行自动填数。结果和可选截图在应用 Documents 中，通过 `journal` / `capture` 命令导出；`splash 输出路径.png` 可导出开屏截图。正常启动不会截图或运行诊断。
 
 ## 验证
 
@@ -78,7 +78,7 @@ node scripts/device-ios.mjs DEVICE_IDENTIFIER launch
 
 候选删减提示与网页共用纯规则逻辑。无直接填数时，高亮可排除候选的格子；解释末页提供“应用到笔记”，随后自动进入笔记模式。关闭解释不改动笔记，确认后可继续提示或撤销，存档保留已确认的候选推理。中文、英语、日语均覆盖。
 
-高级提示已覆盖实际“缺门 + XV”卡住棋局：候选配对、XY/XYZ-Wing、隐性数组和逐步候选推理链均复用共享逻辑；截图棋局通过可解释提示可推出全部剩余 46 格。安卓 smoke 同时验证 XV 配对与推理链的讲解、应用笔记与撤销。
+高级提示已覆盖实际“缺门 + XV”卡住棋局：候选配对、XY/XYZ-Wing、隐性数组和逐步候选推理链均复用共享逻辑；截图棋局通过可解释提示可推出全部剩余 46 格。专项纯逻辑测试覆盖 XV 配对与推理链的讲解、应用笔记与撤销；GUI 真机检查覆盖解释翻页、应用笔记和持久撤销。
 
 解释会识别已划去的“格子 + 数字”，重新验证后跳过已完成排除，部分完成时只提示剩余结果；同格新排除显示“进一步排除”。手动划去不会被当作证明前提。回归包含手动 XV 排除、再次解释、应用笔记与撤销。
 
@@ -86,7 +86,7 @@ node scripts/device-ios.mjs DEVICE_IDENTIFIER launch
 
 完成盘面后，“答案”按钮禁用；撤销到未完成状态后恢复。完成瞬间播放一次约 2.2 秒的格子背景扫光，从左上角沿对角方向到右下角，不给数字添加辉光。载入已完成存档、普通重绘和回到前台不会重复播放；新局、撤销及离开前台会停止动画。
 
-皮肤支持“深色流光”和“晴空浅蓝”，独立于棋局保存，切换不重置进度。Native 在齿轮设置的皮肤下拉框切换，支持中文、英文、日文；网页版在顶栏选择。浅蓝配色覆盖盘面、LED 暗段、候选笔记、规则标记、计时器与面板；浅色 UI 使用无色调压缩的场景输出，保留配色本身的明亮度。
+皮肤支持“深色流光”和“晴空浅蓝”，独立于棋局保存，切换不重置进度。Native 在齿轮设置的皮肤下拉框切换，支持中文、英文、日文；网页版在同一个齿轮设置页选择。浅蓝配色覆盖盘面、LED 暗段、候选笔记、规则标记、计时器与面板；浅色 UI 使用无色调压缩的场景输出，保留配色本身的明亮度。
 
 额外区域：每块轮廓色块含 9 个格子，作为额外的宫约束 1–9 各出现一次。默认从偏移方宫、参考图不规则形状中选择四块四方旋转对称布局，字母 A/B/C/D 区分区域。不可与缺一门、奇偶底色叠加；候选、基础提示和高级推理共用额外宫约束。
 
@@ -109,3 +109,15 @@ node scripts/device-ios.mjs DEVICE_IDENTIFIER launch
 ### 无缘数独
 
 新增可选 `antiKing` 规则（默认关闭）：左上、右上、左下、右下紧邻的可填格不能同数，包括跨宫相邻格；不限制整条对角线。无额外盘面符号，支持中文、英语、日语说明。生成、唯一解验证、候选与分步提示共享相同约束，缺门格不参与。旧存档不自动启用。与不连续组合时优先尝试经完整约束检查的构造终盘，再由原有求解器验证删数后的唯一解。
+
+### 阶梯数独
+
+新数独面板增加阶梯规则及中英日按住说明。采用 12×12 外接布局、12 个 3×3 宫、108 个可填格；行列跨空白缺口仍各包含 1–9。与网页共享动态盘面拓扑、候选、唯一解生成、高级提示及笔记逻辑。可叠加 LED 与奇偶，其他附加规则暂时互斥。深浅皮肤、竖屏键盘及完成扫光适配新盘面，旧九宫存档兼容。
+
+历史阶梯版本的验证记录见 `evidence/staircase/README.md`。当前入口已替换为共享引擎 GUI，旧原生 HUD/设置/解释控件已移除。
+
+## 引擎 GUI 验证
+
+`node scripts/device.mjs launch gui` / `node scripts/device-ios.mjs DEVICE launch gui` 使用独立测试存档，验证引擎触点命中、设置切换、按住帮助、Worker 新局、解释翻页、应用候选排除、重载后撤销以及答案确认。旧 smoke/staircase 启动参数兼容映射到新 GUI 检查。安卓结束后 `stop` 再 `launch`，iPhone `launch`（不带参数）恢复正常玩家存档。`journal` 导出日志，iPhone `gui evidence/gui/ios` 导出界面截图。
+
+核心 UI 位于 `Games/games/led-sudoku/engine-gui.ts`；`engine-page.ts` 只负责原生图形表面、触摸、Worker、持久化和生命周期。设置、生成页和提示不再依赖 NativeScript 的按钮/开关/下拉框/系统 alert。撤销历史最多 200 步随存档持久化，提示剔除的候选在重启后也能撤销。iPhone 按安全区测量值排布控件，而渲染表面覆盖完整原生画布。
