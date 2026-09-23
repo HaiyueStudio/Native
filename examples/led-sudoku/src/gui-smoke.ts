@@ -43,6 +43,7 @@ export async function runGuiSmoke(
     await wait();
     check(c.page === 'settings', 'fast completed touch opens settings without capturing expired touch');
     check(c.page === 'settings', 'engine settings opens');
+    check(gui.statsButton.rect.y < gui.langLabel.rect.y, 'completion records appear first in settings');
     await tap('statistics');
     check(c.page === 'statistics' && gui.statsList.contentHeight > 0, 'completion statistics open in scrollable engine GUI');
     await wait();
@@ -59,6 +60,12 @@ export async function runGuiSmoke(
     check(c.preferences.language === 'ja', 'Japanese');
     gui.language.setValue('zh', true);
     await tap('preferences-done');
+    await tap('rules');
+    check(c.page === 'rules' && !gui.root.findById('info-up') && !gui.root.findById('info-down'), 'rules use a scroll view without footer arrows');
+    check(gui.infoBody.contentHeight > 0 && gui.infoBody.inertia, 'rules text uses inertial scrolling');
+    await wait();
+    captureDiagnostics(game.page, 'led-gui-rules.png');
+    await tap('info-back');
     await tap('new');
     check(c.page === 'new', 'engine new-puzzle page');
     const help = gui.ruleRows.get('led')!.help;
