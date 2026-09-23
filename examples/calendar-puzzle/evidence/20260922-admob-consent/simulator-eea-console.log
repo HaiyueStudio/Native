@@ -1,0 +1,10 @@
+2026-09-22 19:39:18.823 calendarpuzzle[84870:9228247] Requested font not available from file:///Library/Developer/CoreSimulator/Volumes/iOS_23D8133/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.3.simruntime/Contents/Resources/RuntimeRoot/System/Library/Fonts/Core/AppleColorEmoji.ttc#postscript-name=AppleColorEmoji (path:/Library/Developer/CoreSimulator/Volumes/iOS_23D8133/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.3.simruntime/Contents/Resources/RuntimeRoot/System/Library/Fonts/Core/AppleColorEmoji.ttc ps:AppleColorEmoji), fallback to LastResort.
+2026-09-22 19:39:21.533 calendarpuzzle[84870:9228247] [haiyue-consent] reset test consent
+2026-09-22 19:39:21.534 calendarpuzzle[84870:9228247] [haiyue-consent] begin consent bundle=org.haiyue.games.calendarpuzzle appID=ca-app-pub-2053256758816744~9316994454 ump=3.1.0 gma=13.10.0 simulator=true
+2026-09-22 19:39:21.557 calendarpuzzle[84870:9228247] [haiyue-consent] before update elapsedMs=5 consent=UMPConsentStatus(rawValue: 0) status=0 form=UMPFormStatus(rawValue: 0) formStatus=0 privacyStatus=0 canRequestAds=false appState=0
+2026-09-22 19:39:21.557 calendarpuzzle[84870:9228247] [haiyue-consent] parameters simulator=true registeredTestDeviceCount=0 geography=1 underAge=false
+2026-09-22 19:39:22.487 calendarpuzzle[84870:9228247] [haiyue-consent] updated elapsedMs=957 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true appState=0
+2026-09-22 19:39:22.487 calendarpuzzle[84870:9228247] [haiyue-consent] loadAndPresentIfRequired controller=UIViewControllerImpl attached=true
+2026-09-22 19:39:22.488 calendarpuzzle[84870:9228247] [haiyue-consent] completed consent elapsedMs=958 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true appState=0
+2026-09-22 19:39:22.488 calendarpuzzle[84870:9228247] [haiyue-consent] end event=closed elapsedMs=958 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true appState=0
+org.haiyue.games.calendarpuzzle: 84870

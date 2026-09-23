@@ -12,7 +12,7 @@ import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank';
 import { CALENDAR_SOUNDS, CALENDAR_SOUND_IDS } from '../../../../Games/games/calendar-puzzle/audio/Sounds';
 import type { CalendarSolverWorker } from '../../../../Games/games/calendar-puzzle/solver-client';
 import { installCalendarSmoke, seedCalendarSmoke } from './smoke';
-import { Application, EventData, GridLayout, Page, knownFolders, path, Connectivity, isAndroid } from '@nativescript/core';
+import { Application, EventData, GridLayout, Page, knownFolders, path, Connectivity, Utils, isAndroid } from '@nativescript/core';
 import { NativeEngineSplash } from '../../../bridge/branding/engine-splash';
 import { captureNativeView } from '../../../bridge/render/view-capture';
 import type { Canvas } from '@nativescript/canvas';
@@ -60,9 +60,10 @@ function ensureHost(canvas: Canvas): void {
   const performance = launchFlag('CALENDAR_PERFORMANCE');
   const purchaseSmoke = !smoke && launchFlag('CALENDAR_PURCHASE_SMOKE');
   const purchases = smoke ? undefined : new PurchaseController(new CalendarStore());
+  let initialPurchaseRefresh: Promise<void> = Promise.resolve();
   if (purchases) {
     Connectivity.startMonitoring(type => { if (type !== Connectivity.connectionType.none) void purchases.refresh(); });
-    void purchases.refresh();
+    initialPurchaseRefresh = purchases.refresh();
   }
   if (isAndroid && rewardsSmoke) canvas.nativeViewProtected?.setKeepScreenOn(true);
   const rewardKey = rewardsSmoke ? 'calendar-rewards-smoke.wallet.v1' : purchaseSmoke ? 'calendar-purchase-smoke.reward-wallet.v1' : 'calendar-puzzle.reward-wallet.v1';
@@ -115,6 +116,7 @@ function ensureHost(canvas: Canvas): void {
         textures = new NativeCanvasTextures(engine.device, 'rgba8unorm-srgb');
         game = new CalendarPuzzleGame({
           purchases, rewards, engine, autoRun: false, keyboard: false, touchControls: true,
+          openPrivacyPolicy: () => { Utils.openUrl('https://haiyuestudio.github.io/privacy/'); },
           requestRender: () => host?.requestFrame(),
           createCanvas2D: textures.createCanvas2D, textureFromCanvas: textures.textureFromCanvas,
           saveBackend: backend,
@@ -138,6 +140,11 @@ function ensureHost(canvas: Canvas): void {
         textures?.dispose();
       },
       bindInput: (engine, report) => {
+        // Wait for the first frame and verified entitlement before presenting optional consent.
+        if (rewards) void initialPurchaseRefresh.finally(() => setTimeout(() => {
+          if (!game) return;
+          void rewards.initialize().then(() => report('privacy-startup-complete', rewards.snapshot()));
+        }, 500));
         if (smoke && game) removeSmoke = installCalendarSmoke(engine, game, input, backend, report, canvas, launchFlag('CALENDAR_SMOKE_CLEAN'), () => host?.requestFrame(), () => host!.renderingSnapshot());
         if (rewardsSmoke && game) removeSmoke = installRewardsSmoke(game, input, canvas, report, () => host?.requestFrame(), launchFlag('CALENDAR_REWARD_AD_SMOKE'));
         if (purchaseSmoke && game) removeSmoke = installPurchaseSmoke(game, input, canvas, report, () => host?.requestFrame(), launchFlag('CALENDAR_PURCHASE_RESTORE_SMOKE'));

@@ -1,4 +1,5 @@
-import {Application,Color,File,Label,Screen,knownFolders,path,alert,confirm,type EventData} from '@nativescript/core';
+import {profileTransitions} from './profile-transitions';
+import {Application,isAndroid,Color,File,Label,Screen,knownFolders,path,alert,confirm,type EventData} from '@nativescript/core';
 import {Canvas} from '@nativescript/canvas';
 import {LocalStorageSaveBackend} from '@haiyue/engine/save';
 import type {HaiyueEngine} from '@haiyue/engine';
@@ -7,8 +8,8 @@ import {MobileSettingsStorage} from './storage';
 import {NativeRenderHost} from '../../../bridge/lifecycle/host';
 import {nativeLaunchFlag} from '../../../bridge/lifecycle/launch-flags';
 import {NativeEngineLaunchPage} from '../../../bridge/branding/launch-page';
-import {NativeTouchInput} from '../../../bridge/input/native-touch.android';
-import {nativeViewRect} from '../../../bridge/render/view-rect.android';
+import {NativeTouchInput} from '../../../bridge/input/native-touch';
+import {nativeViewRect} from '../../../bridge/render/view-rect';
 import type {NativeCanvasInput} from '../../../bridge/render/surface';
 import {installWorldMap,loadWorldMap} from '../../../../Games/games/boxbound/world-map';
 import {createGame} from '../../../../Games/games/boxbound/levels';
@@ -32,35 +33,39 @@ export class MobileGame {
  slot=1;ready=false;disposed=false;busy=false;smoke=false;private shown=false;private activeSlot:number|null=null;private summaries:Awaited<ReturnType<BoxboundSaves['summaries']>>=[];
  readonly stickInput=createStick(()=>nativeViewRect(this.canvas),(point)=>!!this.session&&!this.session.home&&!this.session.paused&&!this.busy&&!this.gui?.ownsPoint(point.x,point.y));
  quality:QualitySettings={msaa:true,pixelRatio:'auto'};settingsOpen=false;private qualityPending=false;
- private readonly input:NativeTouchInput;
+ private input:NativeTouchInput|null=null;
  private readonly status=new Label();private readonly storage=new MobileSettingsStorage();
  constructor(readonly page:NativeEngineLaunchPage){
-  const root=page.gameRoot;root.backgroundColor=new Color('#eef0df');
-  this.smoke=!!(Application.android.context.getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE)&&nativeLaunchFlag('BOXBOUND_SMOKE');
+  const root=page.gameRoot;root.iosOverflowSafeArea=true;this.canvas.iosOverflowSafeArea=true;root.backgroundColor=new Color('#eef0df');
+  this.smoke=(isAndroid ? !!(Application.android.context.getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) : NSBundle.mainBundle.objectForInfoDictionaryKey('HYBuildConfiguration')==='Debug')&&nativeLaunchFlag('BOXBOUND_SMOKE');
   this.quality=parseQuality(this.storage.getItem(this.smoke?'boxbound-quality-smoke':'boxbound-quality'));
   this.canvas.ignoreTouchEvents=true;this.canvas.id='surface';root.addChild(this.canvas);
   this.status.text='正在打开盒中世界…';this.status.horizontalAlignment='center';this.status.verticalAlignment='middle';root.addChild(this.status);
-  this.input=new NativeTouchInput(this.canvas,sample=>{
-    const action=sample.action;
-    if(action==='down'||action==='move'||action==='up'||action==='cancel')this.stickInput.target.handle(action,sample.points);
-    else this.releaseStick();
-    this.syncStick();this.requestFrame();
-  });
-  this.canvas.on('ready',this.attach);Application.android.on('activityBackPressed',this.back);
+  this.canvas.on('ready',this.attach);if(isAndroid)Application.android.on('activityBackPressed',this.back);
  }
+ readonly handleTouch=(sample:{action:string;points:{id:number;x:number;y:number}[]})=>{
+  const {action,points}=sample;
+  if(action==='down'||action==='move'||action==='up'||action==='cancel')this.stickInput.target.handle(action,points);
+  else this.releaseStick();
+  this.syncStick();this.requestFrame();
+ };
+ private readonly safeInsets=()=>{
+  const i=!isAndroid?(this.canvas.nativeViewProtected as UIView|undefined)?.safeAreaInsets:undefined;
+  return {left:i?.left??0,right:i?.right??0,top:i?.top??0,bottom:i?.bottom??0};
+ };
  private syncStick(){const v=this.stickInput.joystick.state;this.gui?.updateStick(v);this.session?.setDirection(stickDirection(v.direction.x,v.direction.y,this.session.held));}
  readonly requestFrame=()=>{this.scene?.requestPresent();this.host?.requestFrame();};
- private readonly attach=()=>{if(this.host||this.disposed)return;const target=this.stickInput.target;
+ private readonly attach=()=>{if(this.host||this.disposed)return;this.input=new NativeTouchInput(this.canvas,this.handleTouch);const target=this.stickInput.target;
   this.host=new NativeRenderHost(this.canvas,text=>{if(text.startsWith('原生 WebGPU 已呈现'))this.status.visibility='collapse';else{this.status.text=text;this.status.visibility='visible';if(text.includes('失败'))this.page.splash.fail(text);}}, {
    canvasInput:{addEventListener:target.addEventListener.bind(target),removeEventListener:target.removeEventListener.bind(target),setPointerCapture:(id:number)=>{try{target.setPointerCapture(id);}catch(e){if(!(e instanceof Error)||e.message!=='Cannot capture an inactive native touch.')throw e;}},releasePointerCapture:target.releasePointerCapture.bind(target)} as unknown as NativeCanvasInput,
-   engineOptions:{renderProfile:'batched',msaaSamples:this.quality.msaa?4:1,clearColor:{r:.9294,g:.9412,b:.8745,a:1}},diagnosticName:'boxbound',performance:this.smoke,diagnosticIntervalFrames:0,capture:{requested:this.smoke,file:'boxbound-frame.png'},
+   engineOptions:{renderProfile:'batched',msaaSamples:this.quality.msaa?4:1,clearColor:{r:.9294,g:.9412,b:.8745,a:1}},diagnosticName:'boxbound',performance:this.smoke,diagnosticIntervalFrames:0,capture:{requested:this.smoke&&!nativeLaunchFlag('BOXBOUND_TRANSITIONS'),file:'boxbound-frame.png'},
    needsAnimationFrame:()=>!!(this.scene?.hasPendingFrame||this.session?.needsTick||this.audio?.pending),
    prepareScene:async engine=>{
     this.engine=engine;if(this.smoke)this.gpuProbe=probeGpu();engine.devicePixelRatio=resolvePixelRatio(this.quality.pixelRatio,Screen.mainScreen.scale);
     const base=path.join(knownFolders.currentApp().path,'game/levels/index.json');installWorldMap(await loadWorldMap(new URL('file://'+base),async url=>JSON.parse(await File.fromPath(decodeURIComponent(url.pathname)).readText())));
     this.saves=new BoxboundSaves(new LocalStorageSaveBackend({namespace:this.smoke?'boxbound-native-smoke':'haiyue-games',storage:this.storage}));
     this.session=new MobileSession();this.session.wake=this.requestFrame;
-    this.gui=new MobileGui(engine,this.session.state,{undo:()=>this.session?.undo(),exit:()=>{this.releaseStick();this.session?.exit();},jump:()=>this.session?.jump(),dive:()=>this.session?.act({type:'dive'}),menu:()=>void this.openMenu(),start:fresh=>void this.start(fresh),slot:n=>{this.slot=n;this.paint();},help:()=>void this.help(),reset:()=>void this.reset(),settings:()=>this.openSettings(),closeSettings:()=>this.closeSettings(),quality:value=>this.setQuality(value),sound:()=>{if(this.audio){this.audio.muted=!this.audio.muted;if(this.audio.muted)this.audio.stop();if(!this.smoke)this.storage.setItem('boxbound-muted',String(this.audio.muted));this.paint();}}});
+    this.gui=new MobileGui(engine,this.session.state,{undo:()=>this.session?.undo(),exit:()=>{this.releaseStick();this.session?.exit();},jump:()=>this.session?.jump(),dive:()=>this.session?.act({type:'dive'}),menu:()=>void this.openMenu(),start:fresh=>void this.start(fresh),slot:n=>{this.slot=n;this.paint();},help:()=>void this.help(),reset:()=>void this.reset(),replay:()=>{this.releaseStick();this.session?.reset();},settings:()=>this.openSettings(),closeSettings:()=>this.closeSettings(),quality:value=>this.setQuality(value),sound:()=>{if(this.audio){this.audio.muted=!this.audio.muted;if(this.audio.muted)this.audio.stop();if(!this.smoke)this.storage.setItem('boxbound-muted',String(this.audio.muted));this.paint();}}},this.safeInsets);
     await this.gui.loadTextures();
     // Input/session is applied before the scene update, including the first movement frame.
     engine.on('update',this.tick);const canvas=this.canvas;
@@ -71,8 +76,8 @@ export class MobileGame {
     this.audio=new MobileAudio();if(!this.smoke)this.audio.muted=this.storage.getItem('boxbound-muted')==='true';void this.audio.load();this.session.audio=cues=>this.audio?.schedule(cues);
     this.summaries=await this.saves.summaries();this.scene.show(this.session.state);this.ready=true;this.status.visibility='collapse';engine.on('after-update',this.presented);this.paint();return this.snapshot();
    },
-   bindInput:(_engine,report)=>{if(this.smoke)setTimeout(()=>void (nativeLaunchFlag('BOXBOUND_PROFILE')?profileMobile(this,report):Promise.resolve()).then(()=>runSmoke(this,report)).then(()=>nativeLaunchFlag('BOXBOUND_STRESS')?runResourceStress(this,report):undefined).catch(e=>report('smoke-failed',{error:String(e)})),1500);
-    return{suspend:()=>{this.input.suspend();this.releaseStick();this.session?.cancel();if(this.session)this.session.paused=true;this.audio?.stop();void this.flushSaves();},resume:()=>{this.input.resume();if(this.session)this.session.paused=this.settingsOpen;this.requestFrame();},dispose:()=>this.input.dispose(),snapshot:()=>this.snapshot()};
+   bindInput:(_engine,report)=>{if(this.smoke)setTimeout(()=>void (nativeLaunchFlag('BOXBOUND_TRANSITIONS')?profileTransitions(this,report):(nativeLaunchFlag('BOXBOUND_PROFILE')?profileMobile(this,report):Promise.resolve()).then(()=>runSmoke(this,report)).then(()=>nativeLaunchFlag('BOXBOUND_STRESS')?runResourceStress(this,report):undefined)).catch(e=>report('smoke-failed',{error:String(e)})),1500);
+    return{suspend:()=>{this.input?.suspend();this.releaseStick();this.session?.cancel();if(this.session)this.session.paused=true;this.audio?.stop();void this.flushSaves();},resume:()=>{this.input?.resume();if(this.session)this.session.paused=this.settingsOpen;this.requestFrame();},dispose:()=>this.input?.dispose(),snapshot:()=>this.snapshot()};
    },disposeScene:()=>{this.engine?.off('update',this.tick);this.engine?.off('after-update',this.presented);this.scene?.dispose();this.gui?.dispose();this.audio?.dispose();this.gpuProbe?.dispose();}
   });
  };
@@ -94,6 +99,6 @@ export class MobileGame {
   async reset(){if(!this.session?.state.rooms[this.session.state.player.room]?.level){await alert({title:'重玩关卡',message:'进入一个关卡后可以重玩。',okButtonText:'知道了'});return;}if(await confirm({title:'重玩当前关卡？',message:'重置当前关卡内的箱子，保留通关记录。',okButtonText:'重玩',cancelButtonText:'返回'})){this.session.home=false;this.scene!.home=false;this.session.reset();this.paint();}}
   private readonly back=(e:EventData&{cancel?:boolean})=>{e.cancel=true;if(this.settingsOpen){this.closeSettings();return;}if(!this.session)return;if(this.session.home){if(this.ready)void this.start(false);}else if(this.session.state.player.route.length)this.session.exit();else void this.openMenu();};
 
- snapshot(){return{gpuProbe:this.gpuProbe?.snapshot(),quality:this.quality,settingsOpen:this.settingsOpen,msaaSamples:this.engine?.msaaSamples,pixelRatio:this.engine?.devicePixelRatio,title:'箱庭迷境',ready:this.ready,smoke:this.smoke,home:this.session?.home,slot:this.slot,room:this.session?.state.player.room,moves:this.session?.state.moves,completed:this.session?.state.completed,viewport:this.canvas.getActualSize(),gui:'Haiyue GuiSystem',stick:this.stickInput.joystick.state,stickVisible:this.gui?.stickBase.visible,jump:this.gui?.jump.rect,dive:this.gui?.dive.rect,held:this.session?.held,undo:this.session?.history.length,splash:this.page.splash.status,rendering:this.host?.renderingSnapshot()};}
- dispose(){if(this.disposed)return;this.disposed=true;Application.android.off('activityBackPressed',this.back);this.canvas.off('ready',this.attach);this.input.dispose();this.releaseStick();this.stickInput.joystick.destroy();this.stickInput.target.dispose();void this.flushSaves();this.host?.dispose();this.page.splash.dispose();}
+ snapshot(){return{safeInsets:this.safeInsets(),audio:this.audio?.snapshot(),touch:this.input?.snapshot(),gpuProbe:this.gpuProbe?.snapshot(),quality:this.quality,settingsOpen:this.settingsOpen,msaaSamples:this.engine?.msaaSamples,pixelRatio:this.engine?.devicePixelRatio,title:'箱庭迷境',ready:this.ready,smoke:this.smoke,home:this.session?.home,slot:this.slot,room:this.session?.state.player.room,moves:this.session?.state.moves,completed:this.session?.state.completed,viewport:this.canvas.getActualSize(),gui:'Haiyue GuiSystem',stick:this.stickInput.joystick.state,stickVisible:this.gui?.stickBase.visible,jump:this.gui?.jump.rect,dive:this.gui?.dive.rect,held:this.session?.held,undo:this.session?.history.length,splash:this.page.splash.status,rendering:this.host?.renderingSnapshot()};}
+ dispose(){if(this.disposed)return;this.disposed=true;if(isAndroid)Application.android.off('activityBackPressed',this.back);this.canvas.off('ready',this.attach);this.input?.dispose();this.releaseStick();this.stickInput.joystick.destroy();this.stickInput.target.dispose();void this.flushSaves();this.host?.dispose();this.page.splash.dispose();}
 }

@@ -1,0 +1,8 @@
+18:53:35  Enabling developer disk image services.
+18:53:35  Acquired usage assertion.
+Launched application with org.haiyue.games.calendarpuzzle bundle identifier.
+Waiting for the application to terminate…
+Runtime initialization took 29ms (version 9.0.3, V8 version 10.3.22)
+2026-09-22 18:53:37.932 calendarpuzzle[20511:3252110] [haiyue-consent] begin consent
+2026-09-22 18:53:47.947 calendarpuzzle[20511:3252110] [haiyue-consent] update failed: The request timed out.
+App terminated due to signal 9.

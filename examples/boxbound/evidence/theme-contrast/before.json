@@ -1,0 +1,1355 @@
+{
+  "rooms": 406,
+  "edges": 456,
+  "reference6": [
+    [
+      "pp-reference6-la",
+      "ocean"
+    ],
+    [
+      "pp-reference6-lb",
+      "violet"
+    ]
+  ],
+  "close": [
+    {
+      "box": "gate-1",
+      "from": "world",
+      "to": "level-1",
+      "a": "meadow",
+      "b": "amber"
+    },
+    {
+      "box": "gate-2",
+      "from": "world",
+      "to": "level-2",
+      "a": "meadow",
+      "b": "teal"
+    },
+    {
+      "box": "gate-3",
+      "from": "world",
+      "to": "level-3",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "gate-4",
+      "from": "world",
+      "to": "level-4",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "gate-7",
+      "from": "world",
+      "to": "level-7",
+      "a": "meadow",
+      "b": "amber"
+    },
+    {
+      "box": "gate-8",
+      "from": "world",
+      "to": "level-8",
+      "a": "meadow",
+      "b": "teal"
+    },
+    {
+      "box": "gate-9",
+      "from": "world",
+      "to": "level-9",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "gate-10",
+      "from": "world",
+      "to": "level-10",
+      "a": "meadow",
+      "b": "amber"
+    },
+    {
+      "box": "pp-museum",
+      "from": "world",
+      "to": "pp-hub",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "room-7",
+      "from": "level-7",
+      "to": "inner-7",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-2",
+      "from": "pp-intro",
+      "to": "pp-intro2-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-3",
+      "from": "pp-intro",
+      "to": "pp-intro3-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-5",
+      "from": "pp-intro",
+      "to": "pp-intro5-lr",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-8",
+      "from": "pp-intro",
+      "to": "pp-intro8-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-9",
+      "from": "pp-intro",
+      "to": "pp-intro9-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-intro5-lr-1",
+      "from": "pp-intro5-lr",
+      "to": "pp-intro5-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-intro6-lr-1",
+      "from": "pp-intro6-lr",
+      "to": "pp-intro6-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-11",
+      "from": "pp-enter",
+      "to": "pp-enter2-lr",
+      "a": "teal",
+      "b": "ocean"
+    },
+    {
+      "box": "pp-gateway-14",
+      "from": "pp-enter",
+      "to": "pp-enter5-lr",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-15",
+      "from": "pp-enter",
+      "to": "pp-enter6-lr",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-17",
+      "from": "pp-enter",
+      "to": "pp-enter8-lr",
+      "a": "teal",
+      "b": "ocean"
+    },
+    {
+      "box": "pp-gateway-21",
+      "from": "pp-enter",
+      "to": "pp-enter12-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-23",
+      "from": "pp-enter",
+      "to": "pp-enter14-la",
+      "a": "teal",
+      "b": "ocean"
+    },
+    {
+      "box": "pp-gateway-26",
+      "from": "pp-enter",
+      "to": "pp-enter17-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-27",
+      "from": "pp-enter",
+      "to": "pp-enter18-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-enter2-lr-1",
+      "from": "pp-enter2-lr",
+      "to": "pp-enter2-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-enter4-lr-2",
+      "from": "pp-enter4-lr",
+      "to": "pp-enter4-lb",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-enter4-lr-3",
+      "from": "pp-enter4-lr",
+      "to": "pp-enter4-lc",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-enter5-lr-1",
+      "from": "pp-enter5-lr",
+      "to": "pp-enter5-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-enter6-lr-2",
+      "from": "pp-enter6-lr",
+      "to": "pp-enter6-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-enter8-lr-1",
+      "from": "pp-enter8-lr",
+      "to": "pp-enter8-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-enter11-la-1",
+      "from": "pp-enter11-la",
+      "to": "pp-enter11-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-enter11-lb-1",
+      "from": "pp-enter11-lb",
+      "to": "pp-enter11-lc",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-30",
+      "from": "pp-empty",
+      "to": "pp-empty3-lr",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-31",
+      "from": "pp-empty",
+      "to": "pp-empty4-lr",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-36",
+      "from": "pp-empty",
+      "to": "pp-empty9-lr",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-39",
+      "from": "pp-empty",
+      "to": "pp-empty12-la",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-empty1-lr-1",
+      "from": "pp-empty1-lr",
+      "to": "pp-empty1-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-empty2-lr-2",
+      "from": "pp-empty2-lr",
+      "to": "pp-empty2-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-empty5-lr-2",
+      "from": "pp-empty5-lr",
+      "to": "pp-empty5-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-empty7-lr-3",
+      "from": "pp-empty7-lr",
+      "to": "pp-empty7-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-empty8-lr-1",
+      "from": "pp-empty8-lr",
+      "to": "pp-empty8-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-empty9-lr-2",
+      "from": "pp-empty9-lr",
+      "to": "pp-empty9-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-empty10-lr-1",
+      "from": "pp-empty10-lr",
+      "to": "pp-empty10-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-empty10-lr-2",
+      "from": "pp-empty10-lr",
+      "to": "pp-empty10-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-empty11-lr-1",
+      "from": "pp-empty11-lr",
+      "to": "pp-empty11-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-42",
+      "from": "pp-eat",
+      "to": "pp-eat1-lr",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-45",
+      "from": "pp-eat",
+      "to": "pp-eat4-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-47",
+      "from": "pp-eat",
+      "to": "pp-eat6-la",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-48",
+      "from": "pp-eat",
+      "to": "pp-eat7-lr",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-52",
+      "from": "pp-eat",
+      "to": "pp-eat11-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-53",
+      "from": "pp-eat",
+      "to": "pp-eat12-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-eat1-lr-1",
+      "from": "pp-eat1-lr",
+      "to": "pp-eat1-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-eat2-lr-3",
+      "from": "pp-eat2-lr",
+      "to": "pp-eat2-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-eat7-lr-4",
+      "from": "pp-eat7-lr",
+      "to": "pp-eat7-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-57",
+      "from": "pp-reference",
+      "to": "pp-reference4-la",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-58",
+      "from": "pp-reference",
+      "to": "pp-reference5-la",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-63",
+      "from": "pp-reference",
+      "to": "pp-reference10-la",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-reference2-la-1",
+      "from": "pp-reference2-la",
+      "to": "pp-reference2-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-reference3-la-1",
+      "from": "pp-reference3-la",
+      "to": "pp-reference3-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-reference4-la-1",
+      "from": "pp-reference4-la",
+      "to": "pp-reference4-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-reference6-la-1",
+      "from": "pp-reference6-la",
+      "to": "pp-reference6-lb",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-reference8-la-1",
+      "from": "pp-reference8-la",
+      "to": "pp-reference8-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-reference8-lb-1",
+      "from": "pp-reference8-lb",
+      "to": "pp-reference8-lc",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-reference8-ld-1",
+      "from": "pp-reference8-ld",
+      "to": "pp-reference8-la",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-reference9-la-1",
+      "from": "pp-reference9-la",
+      "to": "pp-reference9-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-reference9-lb-1",
+      "from": "pp-reference9-lb",
+      "to": "pp-reference9-la",
+      "a": "meadow",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-64",
+      "from": "pp-swap",
+      "to": "pp-swap1-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-66",
+      "from": "pp-swap",
+      "to": "pp-swap3-la",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-swap3-la-3",
+      "from": "pp-swap3-la",
+      "to": "pp-swap3-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-swap4-la-2",
+      "from": "pp-swap4-la",
+      "to": "pp-swap4-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-swap5-la-4",
+      "from": "pp-swap5-la",
+      "to": "pp-swap5-ld",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-gateway-71",
+      "from": "pp-center",
+      "to": "pp-center3-lr",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-72",
+      "from": "pp-center",
+      "to": "pp-center4-lr",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-77",
+      "from": "pp-center",
+      "to": "pp-center9-lr",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-78",
+      "from": "pp-center",
+      "to": "pp-center10-lr",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-79",
+      "from": "pp-center",
+      "to": "pp-center11-lr",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-center1-lr-1",
+      "from": "pp-center1-lr",
+      "to": "pp-center1-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-center2-lr-1",
+      "from": "pp-center2-lr",
+      "to": "pp-center2-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-center3-lr-2",
+      "from": "pp-center3-lr",
+      "to": "pp-center3-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-center4-la-1",
+      "from": "pp-center4-la",
+      "to": "pp-center4-lb",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-center5-lr-1",
+      "from": "pp-center5-lr",
+      "to": "pp-center5-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-center5-lr-3",
+      "from": "pp-center5-lr",
+      "to": "pp-center5-lc",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-center8-lr-1",
+      "from": "pp-center8-lr",
+      "to": "pp-center8-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-center9-lr-1",
+      "from": "pp-center9-lr",
+      "to": "pp-center9-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-center9-lb-1",
+      "from": "pp-center9-lb",
+      "to": "pp-center9-lc",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-center10-lr-3",
+      "from": "pp-center10-lr",
+      "to": "pp-center10-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-center12-lr-2",
+      "from": "pp-center12-lr",
+      "to": "pp-center12-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-center14-lr-1",
+      "from": "pp-center14-lr",
+      "to": "pp-center14-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-center14-lr-3",
+      "from": "pp-center14-lr",
+      "to": "pp-center14-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-83",
+      "from": "pp-clone",
+      "to": "pp-clone1-lr",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-84",
+      "from": "pp-clone",
+      "to": "pp-clone2-lr",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-89",
+      "from": "pp-clone",
+      "to": "pp-clone7-la",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-92",
+      "from": "pp-clone",
+      "to": "pp-clone10-la",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-98",
+      "from": "pp-clone",
+      "to": "pp-clone16-lr",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-99",
+      "from": "pp-clone",
+      "to": "pp-clone17-lr",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-101",
+      "from": "pp-clone",
+      "to": "pp-clone19-vla",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-105",
+      "from": "pp-clone",
+      "to": "pp-clone23-vla",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-clone1-lr-2",
+      "from": "pp-clone1-lr",
+      "to": "pp-clone1-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-clone1-lr-3",
+      "from": "pp-clone1-lr",
+      "to": "pp-clone1-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-clone3-lr-2",
+      "from": "pp-clone3-lr",
+      "to": "pp-clone3-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-clone3-lr-3",
+      "from": "pp-clone3-lr",
+      "to": "pp-clone3-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-clone5-lr-1",
+      "from": "pp-clone5-lr",
+      "to": "pp-clone5-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone5-lr-2",
+      "from": "pp-clone5-lr",
+      "to": "pp-clone5-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone6-lr-1",
+      "from": "pp-clone6-lr",
+      "to": "pp-clone6-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone6-lr-2",
+      "from": "pp-clone6-lr",
+      "to": "pp-clone6-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone6-la-1",
+      "from": "pp-clone6-la",
+      "to": "pp-clone6-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-clone15-lr-2",
+      "from": "pp-clone15-lr",
+      "to": "pp-clone15-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone16-lr-1",
+      "from": "pp-clone16-lr",
+      "to": "pp-clone16-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-clone16-lr-2",
+      "from": "pp-clone16-lr",
+      "to": "pp-clone16-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-clone18-lr-1",
+      "from": "pp-clone18-lr",
+      "to": "pp-clone18-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-clone19-vla-1",
+      "from": "pp-clone19-vla",
+      "to": "pp-clone19-la",
+      "a": "meadow",
+      "b": "amber"
+    },
+    {
+      "box": "pp-clone19-la-1",
+      "from": "pp-clone19-la",
+      "to": "pp-clone19-lc",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone20-vla-1",
+      "from": "pp-clone20-vla",
+      "to": "pp-clone20-la",
+      "a": "teal",
+      "b": "ocean"
+    },
+    {
+      "box": "pp-clone20-la-2",
+      "from": "pp-clone20-la",
+      "to": "pp-clone20-lb",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-clone21-lr-1",
+      "from": "pp-clone21-lr",
+      "to": "pp-clone21-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-clone21-lr-2",
+      "from": "pp-clone21-lr",
+      "to": "pp-clone21-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-clone21-lr-3",
+      "from": "pp-clone21-lr",
+      "to": "pp-clone21-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-clone23-la-1",
+      "from": "pp-clone23-la",
+      "to": "pp-clone23-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone24-lb-1",
+      "from": "pp-clone24-lb",
+      "to": "pp-clone24-la",
+      "a": "rose",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone24-lb-3",
+      "from": "pp-clone24-lb",
+      "to": "pp-clone24-la",
+      "a": "rose",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone24-lb-4",
+      "from": "pp-clone24-lb",
+      "to": "pp-clone24-la",
+      "a": "rose",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-clone24-lb-5",
+      "from": "pp-clone24-lb",
+      "to": "pp-clone24-la",
+      "a": "rose",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-109",
+      "from": "pp-transfer",
+      "to": "pp-transfer3-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-110",
+      "from": "pp-transfer",
+      "to": "pp-transfer4-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-112",
+      "from": "pp-transfer",
+      "to": "pp-transfer6-lr",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-115",
+      "from": "pp-transfer",
+      "to": "pp-transfer9-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-119",
+      "from": "pp-transfer",
+      "to": "pp-transfer13-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-120",
+      "from": "pp-transfer",
+      "to": "pp-transfer14-la",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-121",
+      "from": "pp-transfer",
+      "to": "pp-transfer15-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-123",
+      "from": "pp-transfer",
+      "to": "pp-transfer17-lr",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-126",
+      "from": "pp-transfer",
+      "to": "pp-transfer20-lr",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-129",
+      "from": "pp-transfer",
+      "to": "pp-transfer23-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-130",
+      "from": "pp-transfer",
+      "to": "pp-transfer24-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-gateway-132",
+      "from": "pp-transfer",
+      "to": "pp-transfer26-lr",
+      "a": "ocean",
+      "b": "teal"
+    },
+    {
+      "box": "pp-gateway-135",
+      "from": "pp-transfer",
+      "to": "pp-transfer29-lr",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-transfer5-lr-1",
+      "from": "pp-transfer5-lr",
+      "to": "pp-transfer5-lb",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer6-lr-1",
+      "from": "pp-transfer6-lr",
+      "to": "pp-transfer6-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer7-lr-2",
+      "from": "pp-transfer7-lr",
+      "to": "pp-transfer7-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer10-lr-2",
+      "from": "pp-transfer10-lr",
+      "to": "pp-transfer10-lb",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer11-la-2",
+      "from": "pp-transfer11-la",
+      "to": "pp-transfer11-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer17-lr-1",
+      "from": "pp-transfer17-lr",
+      "to": "pp-transfer17-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer17-lr-2",
+      "from": "pp-transfer17-lr",
+      "to": "pp-transfer17-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer17-lr-3",
+      "from": "pp-transfer17-lr",
+      "to": "pp-transfer17-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer17-lr-4",
+      "from": "pp-transfer17-lr",
+      "to": "pp-transfer17-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer17-lr-5",
+      "from": "pp-transfer17-lr",
+      "to": "pp-transfer17-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer17-la-1",
+      "from": "pp-transfer17-la",
+      "to": "pp-transfer17-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer18-lr-1",
+      "from": "pp-transfer18-lr",
+      "to": "pp-transfer18-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer18-lr-2",
+      "from": "pp-transfer18-lr",
+      "to": "pp-transfer18-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer18-lr-3",
+      "from": "pp-transfer18-lr",
+      "to": "pp-transfer18-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer19-lr-3",
+      "from": "pp-transfer19-lr",
+      "to": "pp-transfer19-lc",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-transfer19-lr-4",
+      "from": "pp-transfer19-lr",
+      "to": "pp-transfer19-lc",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-transfer20-lr-1",
+      "from": "pp-transfer20-lr",
+      "to": "pp-transfer20-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer20-lr-2",
+      "from": "pp-transfer20-lr",
+      "to": "pp-transfer20-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer20-lr-3",
+      "from": "pp-transfer20-lr",
+      "to": "pp-transfer20-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer21-lr-2",
+      "from": "pp-transfer21-lr",
+      "to": "pp-transfer21-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer22-lr-3",
+      "from": "pp-transfer22-lr",
+      "to": "pp-transfer22-lc",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-transfer25-lr-2",
+      "from": "pp-transfer25-lr",
+      "to": "pp-transfer25-lb",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer25-lr-3",
+      "from": "pp-transfer25-lr",
+      "to": "pp-transfer25-lc",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-transfer26-lr-3",
+      "from": "pp-transfer26-lr",
+      "to": "pp-transfer26-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-transfer26-lr-5",
+      "from": "pp-transfer26-lr",
+      "to": "pp-transfer26-lc",
+      "a": "teal",
+      "b": "ocean"
+    },
+    {
+      "box": "pp-transfer27-lr-1",
+      "from": "pp-transfer27-lr",
+      "to": "pp-transfer27-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-137",
+      "from": "pp-open",
+      "to": "pp-open2-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-138",
+      "from": "pp-open",
+      "to": "pp-open3-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-140",
+      "from": "pp-open",
+      "to": "pp-open5-la",
+      "a": "teal",
+      "b": "ocean"
+    },
+    {
+      "box": "pp-gateway-143",
+      "from": "pp-open",
+      "to": "pp-open8-la",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-144",
+      "from": "pp-open",
+      "to": "pp-open9-lr",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-open2-la-2",
+      "from": "pp-open2-la",
+      "to": "pp-open2-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-open3-la-2",
+      "from": "pp-open3-la",
+      "to": "pp-open3-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-open5-la-2",
+      "from": "pp-open5-la",
+      "to": "pp-open5-lb",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-open7-lb-1",
+      "from": "pp-open7-lb",
+      "to": "pp-open7-lc",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-open7-lc-1",
+      "from": "pp-open7-lc",
+      "to": "pp-open7-la",
+      "a": "meadow",
+      "b": "amber"
+    },
+    {
+      "box": "pp-open8-la-1",
+      "from": "pp-open8-la",
+      "to": "pp-open8-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-open8-lc-1",
+      "from": "pp-open8-lc",
+      "to": "pp-open8-ld",
+      "a": "ocean",
+      "b": "violet"
+    },
+    {
+      "box": "pp-open9-lr-2",
+      "from": "pp-open9-lr",
+      "to": "pp-open9-la",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-open9-lr-3",
+      "from": "pp-open9-lr",
+      "to": "pp-open9-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-148",
+      "from": "pp-flip",
+      "to": "pp-flip1-la",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-153",
+      "from": "pp-flip",
+      "to": "pp-flip6-la",
+      "a": "amber",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-gateway-154",
+      "from": "pp-flip",
+      "to": "pp-flip7-la",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-gateway-155",
+      "from": "pp-flip",
+      "to": "pp-flip8-lr",
+      "a": "amber",
+      "b": "rose"
+    },
+    {
+      "box": "pp-flip5-la-2",
+      "from": "pp-flip5-la",
+      "to": "pp-flip5-lb",
+      "a": "teal",
+      "b": "meadow"
+    },
+    {
+      "box": "pp-flip5-la-4",
+      "from": "pp-flip5-la",
+      "to": "pp-flip5-ld",
+      "a": "teal",
+      "b": "ocean"
+    },
+    {
+      "box": "pp-flip6-la-2",
+      "from": "pp-flip6-la",
+      "to": "pp-flip6-lb",
+      "a": "meadow",
+      "b": "rose"
+    },
+    {
+      "box": "pp-flip7-la-5",
+      "from": "pp-flip7-la",
+      "to": "pp-flip7-ld",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-flip8-lr-7",
+      "from": "pp-flip8-lr",
+      "to": "pp-flip8-lc",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-chapter-empty",
+      "from": "pp-hub",
+      "to": "pp-empty",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-chapter-reference",
+      "from": "pp-hub",
+      "to": "pp-reference",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-chapter-center",
+      "from": "pp-hub",
+      "to": "pp-center",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-chapter-clone",
+      "from": "pp-hub",
+      "to": "pp-clone",
+      "a": "rose",
+      "b": "amber"
+    },
+    {
+      "box": "pp-chapter-flip",
+      "from": "pp-hub",
+      "to": "pp-flip",
+      "a": "rose",
+      "b": "amber"
+    }
+  ],
+  "hues": {
+    "meadow": 86.53846153846155,
+    "rose": 1.6901408450704025,
+    "ocean": 204,
+    "violet": 271.42857142857144,
+    "amber": 36.63157894736844,
+    "teal": 166.53061224489795
+  },
+  "maxSiblings": 5
+}

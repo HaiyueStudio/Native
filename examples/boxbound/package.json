@@ -7,7 +7,9 @@
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-transform-types --test test/*.test.mjs",
     "build:android": "node scripts/android.mjs build android",
-    "run:android": "node scripts/android.mjs run android"
+    "run:android": "node scripts/android.mjs run android",
+    "build:ios": "node scripts/build-device.mjs",
+    "prepare:ios": "node scripts/ios.mjs prepare ios"
   },
   "dependencies": {
     "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-0.1.0.tgz",

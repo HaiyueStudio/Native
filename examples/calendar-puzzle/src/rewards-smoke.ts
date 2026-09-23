@@ -19,7 +19,7 @@ export function installRewardsSmoke(game:CalendarPuzzleGame,input:NativeTouchInp
   const idle=async()=>{await delay();const deadline=Date.now()+12000;while(game.snapshot().hintBusy&&Date.now()<deadline)await delay(100);};
   void(async()=>{
     await delay(2500);
-    const deadline=Date.now()+45000;while(game.snapshot().purchases?.busy&&Date.now()<deadline)await delay();
+    const deadline=Date.now()+180000;while((game.snapshot().purchases?.busy || game.snapshot().rewards?.busy)&&Date.now()<deadline)await delay();
     check('free daily allowance starts at one',game.snapshot().rewards?.free===1);
     tap('hint');await idle();
     check('free hint shows a useful placement and debits once',!!game.snapshot().hint&&game.snapshot().hintUsed&&game.snapshot().rewards?.free===0);

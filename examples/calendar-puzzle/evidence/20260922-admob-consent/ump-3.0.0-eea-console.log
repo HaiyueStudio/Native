@@ -1,0 +1,11 @@
+2026-09-22 21:01:07.006 UMPProbe[91062:9339287] [ump-minimal] Minimal native UMP probe
+No game, bridge, purchases or ad requests.
+2026-09-22 21:01:08.395 UMPProbe[91062:9339287] [ump-minimal] bundle=org.haiyue.games.calendarpuzzle
+appID=ca-app-pub-2053256758816744~9316994454
+UMP=3.0.0
+2026-09-22 21:01:08.417 UMPProbe[91062:9339287] [ump-minimal] reset elapsedMs=23 consent=0 form=0 privacy=0 canRequestAds=false active=true attached=true
+2026-09-22 21:01:08.423 UMPProbe[91062:9339287] [ump-minimal] simulator=true geography=1 underAge=false
+2026-09-22 21:01:10.234 UMPProbe[91062:9339287] [ump-minimal] updated elapsedMs=1839 consent=2 form=2 privacy=2 canRequestAds=true active=true attached=true
+2026-09-22 21:01:10.242 UMPProbe[91062:9339287] [ump-minimal] Calling loadAndPresentIfRequired
+2026-09-22 21:01:10.263 UMPProbe[91062:9339287] [ump-minimal] completed elapsedMs=1868 consent=2 form=2 privacy=2 canRequestAds=true active=true attached=true
+org.haiyue.games.calendarpuzzle: 91062

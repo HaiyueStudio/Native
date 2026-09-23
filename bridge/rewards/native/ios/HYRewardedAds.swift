@@ -7,61 +7,137 @@ import UserMessagingPlatform
     private var ad: RewardedAd?
     private var disposed = false
     private var generation = 0
-    private var loading = false
+    private var timeout: Task<Void, Never>?
+    private var startedAt = ProcessInfo.processInfo.systemUptime
     @objc public var privacyRequired: Bool { ConsentInformation.shared.privacyOptionsRequirementStatus == .required }
+    private var development: Bool { Bundle.main.object(forInfoDictionaryKey: "HYBuildConfiguration") as? String == "Debug" }
+    private func log(_ text: String) { if development { NSLog("[haiyue-consent] %@", text) } }
+    private var simulator: Bool {
+        #if targetEnvironment(simulator)
+        return true
+        #else
+        return false
+        #endif
+    }
+    private func logState(_ stage: String) {
+        guard development else { return }
+        let info = ConsentInformation.shared
+        let elapsed = Int((ProcessInfo.processInfo.systemUptime - startedAt) * 1000)
+        log("\(stage) elapsedMs=\(elapsed) consent=\(info.consentStatus) status=\(info.consentStatus.rawValue) form=\(info.formStatus) formStatus=\(info.formStatus.rawValue) privacyStatus=\(info.privacyOptionsRequirementStatus.rawValue) canRequestAds=\(info.canRequestAds) appState=\(UIApplication.shared.applicationState.rawValue)")
+    }
+    private func logError(_ stage: String, _ error: Error) {
+        guard development else { return }
+        let failure = error as NSError
+        // Do not dump userInfo, consent strings, identifiers or network payloads.
+        log("\(stage) domain=\(failure.domain) code=\(failure.code) description=\(failure.localizedDescription)")
+        if let underlying = failure.userInfo[NSUnderlyingErrorKey] as? NSError {
+            log("\(stage) underlyingDomain=\(underlying.domain) underlyingCode=\(underlying.code) description=\(underlying.localizedDescription)")
+        }
+        logState("\(stage) state")
+    }
     private func root() -> UIViewController? {
         let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
         var controller = scenes.flatMap { $0.windows }.first { $0.isKeyWindow }?.rootViewController
         while let presented = controller?.presentedViewController { controller = presented }
         return controller
     }
+    private func active(_ token: Int) -> Bool { !disposed && events != nil && token == generation }
     private func end(_ event: String) {
-        loading = false; generation += 1
+        logState("end event=\(event)")
+        timeout?.cancel(); timeout = nil; generation += 1
         let callback = events; events = nil; ad = nil; callback?(event)
+    }
+    private func deadline(_ seconds: UInt64, token: Int) {
+        timeout?.cancel()
+        timeout = Task { @MainActor [weak self] in
+            do { try await Task.sleep(nanoseconds: seconds * 1_000_000_000) } catch { return }
+            guard let self, self.active(token) else { return }
+            self.log("network timeout"); self.end("error:unavailable")
+        }
+    }
+    private func parameters() -> RequestParameters {
+        let parameters = RequestParameters()
+        // Explicit device-scoped diagnostics only; never applied in a Release binary.
+        let device = ProcessInfo.processInfo.environment["HY_UMP_TEST_DEVICE_ID"] ?? ""
+        if development && (simulator || !device.isEmpty) {
+            let debug = DebugSettings()
+            debug.testDeviceIdentifiers = device.isEmpty ? [] : [device]
+            if ProcessInfo.processInfo.environment["HY_UMP_EEA"] == "1" { debug.geography = .EEA }
+            parameters.debugSettings = debug
+        }
+        log("parameters simulator=\(simulator) registeredTestDeviceCount=\(parameters.debugSettings?.testDeviceIdentifiers?.count ?? 0) geography=\(parameters.debugSettings?.geography.rawValue ?? 0) underAge=\(parameters.isTaggedForUnderAgeOfConsent)")
+        return parameters
     }
     @objc(perform:unit:events:) public func perform(_ action: String, unit: String, events callback: @escaping (String) -> Void) {
         guard !disposed, events == nil, let controller = root() else { callback("error:unavailable"); return }
-        events = callback
+        guard ["consent", "refreshPrivacy", "privacy", "show"].contains(action) else { callback("error:unavailable"); return }
+        events = callback; generation += 1
+        startedAt = ProcessInfo.processInfo.systemUptime
+        let token = generation
+        if development && ["consent", "refreshPrivacy"].contains(action) && ProcessInfo.processInfo.environment["HY_UMP_RESET"] == "1" {
+            ConsentInformation.shared.reset()
+            log("reset test consent")
+        }
         Task { @MainActor in
-            if action == "privacy" {
-                do {
-                    try await ConsentInformation.shared.requestConsentInfoUpdate(with: RequestParameters())
-                    guard !disposed else { end("error:unavailable"); return }
-                    try await ConsentForm.presentPrivacyOptionsForm(from: controller); end("closed")
-                }
-                catch { end("error:unavailable") }
-                return
-            }
+            let appID = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "missing"
+            let adsVersion = MobileAds.shared.versionNumber
+            log("begin \(action) bundle=\(Bundle.main.bundleIdentifier ?? "missing") appID=\(appID) ump=\(UserMessagingPlatform.Version) gma=\(adsVersion.majorVersion).\(adsVersion.minorVersion).\(adsVersion.patchVersion) simulator=\(simulator)")
+            logState("before update")
+            deadline(20, token: token)
             do {
-                try await ConsentInformation.shared.requestConsentInfoUpdate(with: RequestParameters())
-                try await ConsentForm.loadAndPresentIfRequired(from: controller)
+                try await ConsentInformation.shared.requestConsentInfoUpdate(with: parameters())
             } catch {
-                if !ConsentInformation.shared.canRequestAds { end("error:unavailable"); return }
+                logError("update failed", error)
+                guard active(token) else { return }
+                // Only the ad path may fall back to a still-valid previous consent state.
+                if action != "show" || !ConsentInformation.shared.canRequestAds { end("error:unavailable"); return }
             }
-            guard !disposed, ConsentInformation.shared.canRequestAds else { end("error:unavailable"); return }
-            loading = true; generation += 1
-            let token = generation
-            DispatchQueue.main.asyncAfter(deadline: .now() + 45) { [weak self] in
-                guard let self, self.loading, self.generation == token else { return }
-                self.end("error:unavailable")
+            guard active(token) else { return }
+            timeout?.cancel(); timeout = nil
+            logState("updated")
+            if action == "refreshPrivacy" { end("closed"); return }
+            guard UIApplication.shared.applicationState == .active else { end("error:unavailable"); return }
+            do {
+                // No timeout while a user is reading or interacting with the consent form.
+                if action == "privacy" {
+                    guard privacyRequired else { end("closed"); return }
+                    try await ConsentForm.presentPrivacyOptionsForm(from: controller)
+                } else {
+                    log("loadAndPresentIfRequired controller=\(type(of: controller)) attached=\(controller.viewIfLoaded?.window != nil)")
+                    try await ConsentForm.loadAndPresentIfRequired(from: controller)
+                }
+            } catch {
+                logError("form failed", error)
+                guard active(token) else { return }
+                end("error:unavailable"); return
             }
+            guard active(token) else { return }
+            logState("completed \(action)")
+            if action != "show" { end("closed"); return }
+            guard ConsentInformation.shared.canRequestAds else { end("error:unavailable"); return }
+            deadline(45, token: token)
             await MobileAds.shared.start()
-            guard loading, token == generation, !disposed else { return }
+            guard active(token) else { return }
             do {
                 let request = Request()
                 let extras = Extras(); extras.additionalParameters = ["npa": "1"]; request.register(extras)
                 let loaded = try await RewardedAd.load(with: unit, request: request)
-                guard loading, token == generation, !disposed else { return }
-                loading = false; ad = loaded; loaded.fullScreenContentDelegate = self
+                guard active(token) else { return }
+                timeout?.cancel(); timeout = nil
+                ad = loaded; loaded.fullScreenContentDelegate = self
                 guard UIApplication.shared.applicationState == .active else { end("error:unavailable"); return }
                 self.events?("presenting")
-                loaded.present(from: controller) { [weak self] in self?.events?("earned") }
+                loaded.present(from: controller) { [weak self] in
+                    guard let self, self.active(token) else { return }
+                    self.events?("earned")
+                }
             } catch {
-                if token == generation { end((error as NSError).code == 2 ? "error:offline" : "error:unavailable") }
+                logError("ad failed", error)
+                if active(token) { end((error as NSError).code == 2 ? "error:offline" : "error:unavailable") }
             }
         }
     }
     public func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) { end("closed") }
     public func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) { end("error:unavailable") }
-    @objc public func dispose() { disposed = true; if loading { end("error:unavailable") } }
+    @objc public func dispose() { disposed = true; end("error:unavailable") }
 }

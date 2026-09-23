@@ -1,4 +1,4 @@
-import {viewAction} from '../../../../Games/games/boxbound/model';
+import {reversePlayerCrossing,viewAction} from '../../../../Games/games/boxbound/model';
 import {createGame,advanceGame,resetLevel} from '../../../../Games/games/boxbound/levels';
 import {canJump,reverseTransfers,type State,type Action,type Vec} from '../../../../Games/games/boxbound/model';
 import {remember,type UndoEntry} from '../../../../Games/games/boxbound/history';
@@ -37,7 +37,7 @@ export class MobileSession {
   }
   exit(){this.cancel();this.completion=null;if(this.state.rooms[this.state.player.room]!.level)this.act({type:'exit-level'});else if(this.state.player.route.length)this.act({type:'leave'});}
   undo(){if(!this.history.length||this.home||this.paused)return;this.cancel();this.completion=null;if(this.scene.moving||this.scene.transitioning){this.pendingUndo=true;return;}this.performUndo();}
-  private performUndo(){const entry=this.history.pop();if(!entry)return;const before=this.state;this.state=entry.state;this.state.message='已撤销上一步。';this.scene.cancelMotion();this.scene.show(this.state,before,entry.jump,reverseTransfers(entry.transfers),true,!!entry.reset,undefined,entry.playerCrossing?{...entry.playerCrossing,entering:!entry.playerCrossing.entering}:undefined);this.changed();}
+  private performUndo(){const entry=this.history.pop();if(!entry)return;const before=this.state;this.state=entry.state;this.state.message='已撤销上一步。';this.scene.cancelMotion();this.scene.show(this.state,before,entry.jump,reverseTransfers(entry.transfers),true,!!entry.reset,undefined,entry.playerCrossing?reversePlayerCrossing(entry.playerCrossing):undefined);this.changed();}
   reset(){if(this.home||!this.state.rooms[this.state.player.room]!.level)return;this.cancel();this.completion=null;remember(this.history,this.state,false,[],true);this.state=resetLevel(this.state);this.scene.cancelMotion();this.scene.show(this.state);this.changed();}
   tick(now:number){if(this.home||this.paused)return;
     if(this.pendingUndo&&!this.scene.moving&&!this.scene.transitioning){this.pendingUndo=false;this.performUndo();return;}

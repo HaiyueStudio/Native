@@ -6,6 +6,7 @@ export interface RewardSnapshot {
   busy: boolean; phase: RewardPhase; privacyRequired: boolean;
 }
 export interface RewardGateway {
+  initialize?(presentForm: boolean): Promise<void>;
   show(earned: () => void): Promise<void>;
   privacy(): Promise<void>;
   privacyRequired(): boolean;
@@ -20,6 +21,7 @@ export class RewardController {
   private disposed = false;
   private broken = false;
   private listeners = new Set<() => void>();
+  private initialization?: Promise<void>;
   constructor(private readonly options: {
     storage: RewardStorage; gateway: RewardGateway; entitled: () => boolean;
     dailyFree: number; dailyAds: number; pause: () => (() => void) | Promise<() => void>; now?: () => Date;
@@ -57,6 +59,22 @@ export class RewardController {
   }
   subscribe(listener: () => void): () => void { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; }
   refresh(): void { this.rollover(); this.emit(); }
+  /** Startup failure must leave normal play and the wallet intact. */
+  initialize(): Promise<void> {
+    if (this.disposed || !this.options.gateway.initialize) return Promise.resolve();
+    return this.initialization ??= this.initializeConsent();
+  }
+  private async initializeConsent(): Promise<void> {
+    if (this.busy) return;
+    this.busy = true; this.emit();
+    let resume = () => {};
+    try {
+      const pause = this.options.pause();
+      resume = typeof pause === 'function' ? pause : await pause;
+      if (!this.disposed) await this.options.gateway.initialize!(!this.options.entitled());
+    } catch { /* Retry through the next explicit ad/privacy request. */ }
+    finally { this.busy = false; resume(); this.emit(); }
+  }
   private emit(): void { if (!this.disposed) for (const listener of this.listeners) listener(); }
   /** Call only once a useful result is ready. The same result key is free to redisplay. */
   consume(key: string): boolean {

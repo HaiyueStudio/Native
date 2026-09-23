@@ -65,3 +65,25 @@ node scripts/device.mjs launch
 2026-09-22 入口规则：普通箱子使用纯色与顶部白色平面方框（主体 588 + 标记 8 个三角形）。关卡侧面入口由内部边界墙体决定，非中央开口也有效；无开口的侧面可推箱，不能通过走动或下钻直接入关。四周封闭时跳上盒顶再下钻。入口资格在内部重置之前检查，封闭侧推箱保留内部状态。关卡盒子的入口标识使用同一开口数据，真机与浏览器共用规则。验证证据见 `evidence/box-entry/`。
 
 2026-09-22 ANR 修复：长期游玩时 Canvas Android 一次性 GPU 回调泄漏 pipe 文件句柄，最终触发 `Too many open files` 并卡住图形/UI 线程。修复回调所有权与管道两端释放，四种 ABI 产物通过版本/哈希校验自动补入 Android 构建；不改引擎和存档。真机 20,000 次 GPU 读回与 24 次镜像关卡访问后 FD 为 228 → 230；30 项设备功能检查和 14 项定向单测通过。重建方式见 `vendor/canvas-android/README.md`，完整证据见 `evidence/crash-investigation/README.md`。`launch stress` 仅在 debug 隔离存档模式开启压力循环。
+## iPhone 安装与验证
+
+复用同一份游戏规则、场景和引擎 GUI，iOS 使用现有 Metal、UIKit 触控与 AVAudioEngine 适配。画布铺满横屏，固定 HUD 按钮单独遵守刘海和底部手势区的安全边距；存档保存在本机。
+
+```sh
+IOS_DEVICE_UDID=<iPhone硬件UDID> IOS_TEAM_ID=<开发团队ID> npm run build:ios
+node scripts/device-ios.mjs <设备标识> install
+node scripts/device-ios.mjs <设备标识> launch
+```
+
+签名也可配置到被忽略的 `App_Resources/iOS/signing.local.xcconfig`。脚本通过 `DEVELOPER_DIR` 使用 Xcode，不更改系统的 xcode-select。图标沿用 Android 的既有矢量形状；构建时将游戏音效转换为 iOS 音频接口需要的 44.1 kHz PCM，不改动共享资源。
+
+`launch smoke` 使用隔离测试存档，检查渲染、引擎指针输入、关卡、镜像、音效和自动存档；结束后用普通 `launch` 回到正常模式。iOS 指针测试通过共用事件入口注入，不冒充 UIKit 真手势测试。日志及截图位于 `evidence/ios/`。
+
+
+2026-09-22 iPhone 关卡进出优化：棋盘地面按两种颜色合成共享网格，每个房间/预览只需两个地面对象，保留每格两片三角形、原配色、镜像和完整父场景。重进独立关卡只复制该关可重置的箱子，不再深拷贝整份世界。采用引擎既有的逐物体视锥裁剪，避免转场时更新共享空间索引的高开销。类型检查、原生会话与关卡/网格测试及浏览器递归/镜像回归均限定在 Boxbound，未改引擎。
+
+`node scripts/device-ios.mjs <设备标识> launch transitions` 运行有限的隔离存档进出性能对照，逐次记录同步耗时、场景重建、渲染帧和资源数；测试涉及 Intro / Reference / Flip / Clone / Transfer。测试结束读取 `journal` 并用普通 `launch` 恢复游戏。诊断结果见 [iPhone 转场性能](evidence/ios-transitions/README.md)。
+
+2026-09-22 重玩与相邻盒子转场：右上角新增可撤销的小关卡重玩按钮，五个图标缩小 20%、不透明度 75%，触控范围不缩小。跳跃/下钻换成生成的圆形按钮。Reference 5 一次跨越多个盒子边界时组合完整空间变换，保持原角色连续运动与正确的盒子相对位置，撤销沿反向路径播放。墙顶切分按高度选择对角线，消除右上/左下凸角，不增加面数。验证与素材记录见 [专项证据](evidence/replay-adjacent/README.md)。
+
+2026-09-22 地图配色辨识度：根据引用关系选择色相分离的地图主题，并兼顾同屏地图的颜色区分。地图盒子的外壳及末级 LOD 使用内部地图主题，自身引用/克隆/镜像保持相同颜色；普通箱子目标色不变。全量扫描 406 个地图、456 条非自身嵌套引用，接近色系组合已消除。Reference 6 现在为红色地图/递归盒子与青绿色普通地图盒子。验证见 [配色专项](evidence/theme-contrast/README.md)。

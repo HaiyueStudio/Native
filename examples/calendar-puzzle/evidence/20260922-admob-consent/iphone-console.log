@@ -1,0 +1,9 @@
+18:52:51  Enabling developer disk image services.
+18:52:51  Acquired usage assertion.
+Launched application with org.haiyue.games.calendarpuzzle bundle identifier.
+Waiting for the application to terminate…
+Runtime initialization took 19ms (version 9.0.3, V8 version 10.3.22)
+2026-09-22 18:52:54.253 calendarpuzzle[20510:3251673] [haiyue-consent] begin consent
+2026-09-22 18:52:54.254 calendarpuzzle[20510:3251673] <UMP SDK> To enable debug mode for this device, set: UMPDebugSettings.testDeviceIdentifiers = @[ @"E6105F61-18CF-47A2-9648-A1F6E2F03440" ];
+2026-09-22 18:53:04.277 calendarpuzzle[20510:3251673] [haiyue-consent] update failed: The request timed out.
+App terminated due to signal 9.

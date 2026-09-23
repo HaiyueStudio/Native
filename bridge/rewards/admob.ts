@@ -7,6 +7,7 @@ declare const org: any;
 export class AdMobRewardGateway implements RewardGateway {
   private native: any;
   private disposed = false;
+  private initialization?: Promise<void>;
   constructor(private readonly config: { iosUnit: string; androidUnit: string; development: boolean }) {}
   private getNative(): any {
     return this.native ??= isAndroid ? new org.haiyue.rewards.HYRewardedAds() : new HYRewardedAds();
@@ -24,7 +25,7 @@ export class AdMobRewardGateway implements RewardGateway {
     const unit = this.config.development
       ? (isIOS ? 'ca-app-pub-3940256099942544/1712485313' : 'ca-app-pub-3940256099942544/5224354917')
       : (isIOS ? this.config.iosUnit : this.config.androidUnit);
-    if (!unit || (!this.config.development && unit.includes('3940256099942544'))) throw Error('unavailable');
+    if (action === 'show' && (!unit || (!this.config.development && unit.includes('3940256099942544')))) throw Error('unavailable');
     this.getNative();
     await new Promise<void>((resolve, reject) => {
       let ended = false;
@@ -44,6 +45,11 @@ export class AdMobRewardGateway implements RewardGateway {
     });
   }
   show(earned: () => void): Promise<void> { return this.call('show', earned); }
+  /** Update consent once per host session, without initializing or preloading ads. */
+  initialize(presentForm = true): Promise<void> {
+    if (!isIOS) return Promise.resolve();
+    return this.initialization ??= this.call(presentForm ? 'consent' : 'refreshPrivacy', () => {});
+  }
   privacy(): Promise<void> { return this.call('privacy', () => {}); }
   dispose(): void { this.disposed = true; this.native?.dispose(); }
 }

@@ -11,7 +11,7 @@ import {FONT_CHARS} from './font-chars';
 export const rects=(w:number,h:number)=>({jump:{x:w-108,y:h-176,width:78,height:78},dive:{x:w-184,y:h-94,width:68,height:68}});
 function place(node:GuiElement,rect:(r:GuiRect)=>GuiRect){node.layout=r=>{node.rect=rect(r);for(const child of node.children)child.layout(node.rect);};}
 function positioned(node:GuiElement,rect:GuiRect){const old=node.rect;if(old.x!==rect.x||old.y!==rect.y||old.width!==rect.width||old.height!==rect.height){node.rect=rect;node.markDirty();}node.layout=()=>{};}
-export interface GuiActions {undo():void;exit():void;jump():void;dive():void;menu():void;start(fresh:boolean):void;slot(n:number):void;help():void;reset():void;sound():void;settings():void;closeSettings():void;quality(value:QualitySettings):void;}
+export interface GuiActions {undo():void;exit():void;jump():void;dive():void;menu():void;start(fresh:boolean):void;slot(n:number):void;help():void;reset():void;replay():void;sound():void;settings():void;closeSettings():void;quality(value:QualitySettings):void;}
 /** Native host supplies pixels and events; every game HUD/control/menu is Engine GUI. */
 export class MobileGui {
  readonly root=new GuiRoot({theme:{fontFamily:'sans-serif',fontSize:14,radius:14,colors:{text:'#34594f',textMuted:'#72867b',background:'#f4f3df',surface:'#f8f3e3',primary:'#cbdcc2',danger:'#df9b89',border:'#9cb7a0',hover:'#e3e9ce',active:'#b7ccaf',disabled:'#a8afa2'}}});
@@ -24,7 +24,7 @@ export class MobileGui {
  readonly toast=new GuiLabel({text:'',fontSize:12,textAlign:'center'});
  readonly stickBase=new GuiImage({id:'joystick-base',disabled:true,visible:false,tint:'#ffffff80',uv:[.065,.065,.935,.935]});
  readonly stickThumb=new GuiImage({id:'joystick-thumb',disabled:true,visible:false,tint:'#ffffff80',uv:[.23,.23,.77,.77]});
- readonly jump:GuiButton;readonly dive:GuiButton;readonly undo:GuiButton;readonly exit:GuiButton;
+ readonly jump:GuiButton;readonly dive:GuiButton;readonly undo:GuiButton;readonly exit:GuiButton;readonly replay:GuiButton;
  readonly continueButton:GuiButton;readonly slotButtons:GuiButton[]=[];readonly sound:GuiButton;
  readonly settingsButton:GuiButton;
  readonly settingsPanel=new GuiElement({id:'quality-settings',width:'100%',height:'100%',visible:false,style:{backgroundColor:'#eef0dfee'}});
@@ -38,24 +38,35 @@ export class MobileGui {
  private readonly slotStyles=['#f3f1df','#aacfc0'];
  private readonly levelCount:number;
  private slotShown=0;private playing=false;
- constructor(engine:HaiyueEngine,state:State,actions:GuiActions){
+ constructor(engine:HaiyueEngine,state:State,actions:GuiActions,private readonly safeInsets:()=>{left:number;right:number;top:number;bottom:number}=()=>({left:0,right:0,top:0,bottom:0})){
   this.levelCount=new Set(Object.values(state.rooms).filter(r=>r.level>0).map(r=>r.level)).size;
   this.textures=new NativeCanvasTextures(engine.device);
   const chars=[...new Set(FONT_CHARS+'画质设置抗锯齿开启关闭自动分辨率倍率设备默认上限应用保存返回恢复跟随机型，×'+Object.values(state.rooms).map(r=>r.name+r.hint+(r.exitLabel??'')).join(''))].join('');
   this.system=new GuiSystem(engine,{loadOp:'load',font:{canvasFactory:this.textures.createCanvas2D,readAtlasPixels:this.textures.readAtlasPixels,chars,fontSize:32,atlasSize:2048,fontFamily:'sans-serif'}});
+  // The 3D surface fills the display; only fixed controls respect native cutouts.
+  const placeHud=(node:GuiElement,layout:(r:GuiRect)=>GuiRect)=>place(node,r=>{
+   const inset=this.safeInsets(),p=layout({...r,x:0,y:0,width:Math.max(1,r.width-inset.left-inset.right),height:Math.max(1,r.height-inset.top-inset.bottom)});
+   return {...p,x:p.x+inset.left,y:p.y+inset.top};
+  });
   this.root.add(this.labels);this.root.add(this.hud);this.hud.add(this.title);this.hud.add(this.room);
-  place(this.title,()=>({x:28,y:12,width:260,height:28}));place(this.room,r=>({x:28,y:42,width:r.width-272,height:22}));
+  placeHud(this.title,()=>({x:28,y:12,width:260,height:28}));placeHud(this.room,r=>({x:28,y:42,width:r.width-272,height:22}));
   const button=(parent:GuiElement,text:string,id:string,action:()=>void,down=false)=>parent.add(new GuiButton({id,text,...(down?{onPointerDown:action}:{onClick:action}),style:{backgroundColor:'#f8f3e3e8',borderColor:'#a6b699',radius:16}}));
   const iconButton=(parent:GuiElement,name:string,id:string,action:()=>void,down=false)=>{
    const b=button(parent,'',id,action,down);b.setStyle({backgroundColor:'#00000000',hoverBackgroundColor:'#00000000',borderColor:'#00000000',radius:0});
    const icon=b.add(new GuiImage({id:`icon-${name}`,disabled:true}));place(icon,r=>({...r}));this.iconNodes.set(name,icon);return b;
   };
-  this.undo=iconButton(this.hud,'undo','undo',actions.undo);this.exit=iconButton(this.hud,'exit','exit-level',actions.exit);
+  this.undo=iconButton(this.hud,'undo','undo',actions.undo);this.replay=iconButton(this.hud,'reset','replay-level',actions.replay);this.exit=iconButton(this.hud,'exit','exit-level',actions.exit);
   const menu=iconButton(this.hud,'menu','open-menu',actions.menu);
-  [this.undo,this.exit,menu].forEach((b,i)=>place(b,r=>({x:r.width-228+i*50,y:12,width:46,height:44})));
-  this.jump=iconButton(this.hud,'jump','jump',actions.jump,true);place(this.jump,r=>rects(r.width,r.height).jump);
-  this.dive=iconButton(this.hud,'dive','dive',actions.dive,true);place(this.dive,r=>rects(r.width,r.height).dive);
-  this.hud.add(this.toast);place(this.toast,r=>({x:r.width*.2,y:r.height-36,width:r.width*.6,height:24}));
+  // Shrink the visible icons, retaining the existing touch targets.
+  const topButton=(b:GuiButton,index:number)=>{
+   b.setStyle({opacity:.75});
+   place(b.children[0]!,r=>({x:r.x+r.width*.1,y:r.y+r.height*.1,width:r.width*.8,height:r.height*.8}));
+   placeHud(b,r=>({x:r.width-278+index*50,y:12,width:46,height:44}));
+  };
+  [this.undo,this.replay,this.exit,menu].forEach(topButton);
+  this.jump=iconButton(this.hud,'jump','jump',actions.jump,true);placeHud(this.jump,r=>rects(r.width,r.height).jump);
+  this.dive=iconButton(this.hud,'dive','dive',actions.dive,true);placeHud(this.dive,r=>rects(r.width,r.height).dive);
+  this.hud.add(this.toast);placeHud(this.toast,r=>({x:r.width*.2,y:r.height-36,width:r.width*.6,height:24}));
   this.root.add(this.stickBase);this.root.add(this.stickThumb);
   this.root.add(this.menu);const panel=this.menu.add(new GuiElement({style:{backgroundColor:'#fff7e8f5',radius:22}}));place(panel,r=>({x:(r.width-344)/2,y:(r.height-296)/2,width:344,height:296}));
   panel.add(new GuiLabel({text:'箱庭迷境',x:20,y:14,width:304,height:38,fontSize:28,textAlign:'center'}));panel.add(new GuiLabel({text:'每个盒子里，都藏着一个世界。',x:10,y:54,width:324,height:24,fontSize:13,textAlign:'center'}));
@@ -64,7 +75,7 @@ export class MobileGui {
   const buttons=[button(panel,'新的旅程','new',()=>actions.start(true)),button(panel,'玩法说明','help',actions.help),button(panel,'重玩当前关卡','reset',actions.reset),this.sound=button(panel,'音效 开','sound',actions.sound)];
   buttons.forEach((b,i)=>place(b,r=>({x:r.x+18+(i%2)*158,y:r.y+191+Math.floor(i/2)*46,width:150,height:38})));
   this.settingsButton=iconButton(this.root.root,'settings','open-settings',actions.settings);
-  place(this.settingsButton,r=>({x:r.width-78,y:12,width:46,height:44}));
+  topButton(this.settingsButton,4);
   this.root.add(this.settingsPanel);
   const qualityPanel=this.settingsPanel.add(new GuiElement({style:{backgroundColor:'#fff7e8',radius:22}}));
   place(qualityPanel,r=>({x:(r.width-360)/2,y:(r.height-292)/2,width:360,height:292}));
@@ -98,6 +109,8 @@ export class MobileGui {
   (['auto',1,1.5,2,3] as const).forEach((v,i)=>this.ratioButtons[i]!.setStyle({backgroundColor:quality.pixelRatio===v?'#aacfc0':'#f3f1df'}));
   this.room.setText(`${state.rooms[state.player.room]!.name} · ${state.completed.length}/${this.levelCount}`);this.toast.setText(state.message);
   this.iconNodes.get('undo')!.setTint(undo?'#ffffffff':'#ffffff60');this.iconNodes.get('exit')!.setTint(state.player.route.length?'#ffffffff':'#ffffff60');
+  const canReplay=playing&&!busy&&state.rooms[state.player.room]!.level>0;
+  this.replay.setDisabled(!canReplay);this.iconNodes.get('reset')!.setTint(canReplay?'#ffffffff':'#ffffff60');
   this.undo.setDisabled(!undo);this.exit.setDisabled(!state.player.route.length);this.continueButton.setDisabled(busy||!slots.has(slot));
   if(!playing){this.sound.setText(muted?'音效 关':'音效 开');for(let i=0;i<5;i++){const b=this.slotButtons[i]!;if(this.slotShown!==slot)b.setStyle({backgroundColor:this.slotStyles[slot===i+1?1:0]});b.setText(`${i+1}${slots.has(i+1)?' ·':''}`);}this.slotShown=slot;}
  }

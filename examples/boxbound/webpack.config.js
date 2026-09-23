@@ -7,6 +7,6 @@ module.exports = env => {
   webpack.chainWebpack(config => config.resolve.modules.prepend(path.resolve(__dirname, 'node_modules')));
   addEngineBrandingCopyRule(webpack);
   webpack.Utils.addCopyRule({from:path.resolve(__dirname,'src/assets/ui'),to:'assets/ui',noErrorOnMissing:false});
-  for(const folder of ['levels','assets/audio'])webpack.Utils.addCopyRule({from:path.resolve(__dirname,'../../../Games/games/boxbound',folder),to:'game/'+folder,noErrorOnMissing:false});
+  for(const folder of ['levels','assets/audio'])webpack.Utils.addCopyRule({from:env.ios&&folder==='assets/audio'?path.resolve(__dirname,'artifacts/ios-audio'):path.resolve(__dirname,'../../../Games/games/boxbound',folder),to:'game/'+folder,noErrorOnMissing:false});
   return webpack.resolveConfig();
 };

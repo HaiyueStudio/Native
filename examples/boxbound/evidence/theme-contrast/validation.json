@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-09-22T15:20:34.620Z",
+  "scope": "Boxbound only; Engine unchanged",
+  "worldScan": {
+    "rooms": 406,
+    "nonSelfEdges": 456,
+    "minHueGapDegrees": 80,
+    "similarBefore": 151,
+    "similarAfter": 0
+  },
+  "unitTests": 3,
+  "browser": [
+    {
+      "view": "theme-reference6",
+      "status": "passed",
+      "checks": 33,
+      "bundleSha256": "f52c5806fa69ae1e630c0024ccd8e53aa2e030faf74288cd5e45ccaeb87bac7b"
+    },
+    {
+      "view": "theme-nested",
+      "status": "passed",
+      "checks": 39,
+      "bundleSha256": "f52c5806fa69ae1e630c0024ccd8e53aa2e030faf74288cd5e45ccaeb87bac7b"
+    },
+    {
+      "view": "theme-inside",
+      "status": "passed",
+      "checks": 39,
+      "bundleSha256": "f52c5806fa69ae1e630c0024ccd8e53aa2e030faf74288cd5e45ccaeb87bac7b"
+    },
+    {
+      "view": "theme-gallery",
+      "status": "passed",
+      "checks": 39,
+      "bundleSha256": "f52c5806fa69ae1e630c0024ccd8e53aa2e030faf74288cd5e45ccaeb87bac7b"
+    }
+  ],
+  "iphone": {
+    "passed": true,
+    "checks": 33,
+    "normalLaunchVerified": true
+  },
+  "build": {
+    "browser": "passed after raising build timeout",
+    "ios": "passed"
+  }
+}

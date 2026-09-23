@@ -77,3 +77,27 @@ test('presentation failure unlocks the UI without consuming an ad allowance',asy
   const f=fixture();f.options.pause=()=>{throw Error('presentation failed');};await f.c.watch();
   assert.equal(f.c.snapshot().busy,false);assert.equal(f.c.snapshot().phase,'error');assert.equal(f.c.snapshot().adsRemaining,2);
 });
+
+test('startup consent is deduplicated, pauses rendering, and does not request ads or spend hints',async()=>{
+  const f=fixture();let finish,calls=0,present;
+  f.options.gateway.initialize=show=>{calls++;present=show;return new Promise(resolve=>{finish=resolve;});};
+  const first=f.c.initialize(),second=f.c.initialize();assert.equal(first,second);
+  assert.equal(f.c.snapshot().busy,true);await f.c.watch();assert.equal(f.info().calls,0);
+  finish();await first;assert.equal(calls,1);assert.equal(present,true);
+  assert.equal(f.c.snapshot().busy,false);assert.equal(f.c.snapshot().free,1);
+  assert.equal(f.c.snapshot().credits,0);assert.equal(f.info().pauses,f.info().resumes);
+});
+test('paid startup refreshes privacy without showing consent and failed updates leave play available',async()=>{
+  const f=fixture();f.paid(true);let present;
+  f.options.gateway.initialize=async show=>{present=show;throw Error('offline');};
+  await f.c.initialize();assert.equal(present,false);assert.equal(f.c.snapshot().busy,false);
+  assert.equal(f.c.snapshot().phase,'ready');assert.equal(f.info().calls,0);
+  f.paid(false);assert.equal(f.c.consume('after-offline-startup'),true);
+  assert.equal(f.info().pauses,f.info().resumes);
+});
+test('privacy changes refresh the entry requirement without spending a reward',async()=>{
+  const f=fixture();let required=true;f.options.gateway.privacyRequired=()=>required;
+  f.options.gateway.privacy=async()=>{required=false;};await f.c.privacy();
+  assert.equal(f.c.snapshot().privacyRequired,false);assert.equal(f.c.snapshot().free,1);
+  assert.equal(f.c.snapshot().adsRemaining,2);assert.equal(f.c.snapshot().busy,false);
+});

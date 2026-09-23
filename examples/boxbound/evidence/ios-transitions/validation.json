@@ -1,0 +1,386 @@
+{
+  "device": "iPhone 15 Plus / A16 / iOS 18.7.3",
+  "renderSize": [
+    1864,
+    860
+  ],
+  "msaa": 4,
+  "pixelRatio": 2,
+  "portalAnimationMs": 820,
+  "baseline": "baseline.jsonl",
+  "optimized": "floor.jsonl",
+  "notes": [
+    "Same isolated workload: Intro 1, Reference 1, Flip 1; two enter/exit cycles each.",
+    "Optimized run includes debug-only native call timing, absent from normal mode.",
+    "Frame gap includes synchronous action time in the first sample; elapsed includes intentional 820 ms zoom.",
+    "Repeated terminal entity, geometry, material and GPU buffer counts match; no sustained growth in this workload.",
+    "Not a long-duration leak or thermal stress test.",
+    "Additional final-run attempt backgrounded immediately; excluded from timings.",
+    "Final run disables the optional spatial broad phase using Render3DSystem.spatialCullingThreshold; per-mesh frustum culling remains enabled.",
+    "Final run has no native method probes.",
+    "Direct gallery fixture loads remain relatively expensive (0.69-1.20 s); they replace all room definitions, unlike normal entry."
+  ],
+  "samples": [
+    {
+      "name": "Intro 1 gallery load",
+      "before": {
+        "syncMs": 788.1249999627471,
+        "elapsedMs": 2143.7089999672025,
+        "maxGapMs": 2142.7499999990687,
+        "renderedFrames": 1,
+        "parts": 3180
+      },
+      "after": {
+        "syncMs": 712.6669999561273,
+        "elapsedMs": 770.5419999547303,
+        "maxGapMs": 769.29199998267,
+        "renderedFrames": 1,
+        "medianFrameMs": 769.29199998267,
+        "parts": 849
+      }
+    },
+    {
+      "name": "Intro 1 enter 0",
+      "before": {
+        "syncMs": 283.20799994980916,
+        "elapsedMs": 2897.707999974955,
+        "maxGapMs": 2259.874999988824,
+        "renderedFrames": 2,
+        "parts": 1123
+      },
+      "after": {
+        "syncMs": 61.6669999435544,
+        "elapsedMs": 914.8749999585561,
+        "maxGapMs": 99.20899994904175,
+        "renderedFrames": 44,
+        "medianFrameMs": 16.583000018727034,
+        "parts": 349
+      }
+    },
+    {
+      "name": "Intro 1 exit 0",
+      "before": {
+        "syncMs": 170.62499996973202,
+        "elapsedMs": 2069.7909999871626,
+        "maxGapMs": 1941.7499999981374,
+        "renderedFrames": 2,
+        "parts": 3180
+      },
+      "after": {
+        "syncMs": 47.24999994505197,
+        "elapsedMs": 907.3329999810085,
+        "maxGapMs": 99.66699994402006,
+        "renderedFrames": 40,
+        "medianFrameMs": 17.9585000150837,
+        "parts": 849
+      }
+    },
+    {
+      "name": "Intro 1 enter 1",
+      "before": {
+        "syncMs": 276.0419999831356,
+        "elapsedMs": 4003.9169999654405,
+        "maxGapMs": 3333.0839999835007,
+        "renderedFrames": 2,
+        "parts": 1123
+      },
+      "after": {
+        "syncMs": 60.29100000159815,
+        "elapsedMs": 911.5410000085831,
+        "maxGapMs": 96.95800003828481,
+        "renderedFrames": 45,
+        "medianFrameMs": 16.62499998928979,
+        "parts": 349
+      }
+    },
+    {
+      "name": "Intro 1 exit 1",
+      "before": {
+        "syncMs": 186.74999999348074,
+        "elapsedMs": 2223.8329999963753,
+        "maxGapMs": 2066.9159999815747,
+        "renderedFrames": 2,
+        "parts": 3180
+      },
+      "after": {
+        "syncMs": 57.45800002478063,
+        "elapsedMs": 939.5830000285059,
+        "maxGapMs": 113.75000001862645,
+        "renderedFrames": 39,
+        "medianFrameMs": 20.208000030834228,
+        "parts": 849
+      }
+    },
+    {
+      "name": "Reference 1 gallery load",
+      "before": {
+        "syncMs": 773.332999960985,
+        "elapsedMs": 1764.666999981273,
+        "maxGapMs": 1763.457999972161,
+        "renderedFrames": 1,
+        "parts": 3274
+      },
+      "after": {
+        "syncMs": 776.1670000036247,
+        "elapsedMs": 825.1670000026934,
+        "maxGapMs": 824.583999987226,
+        "renderedFrames": 1,
+        "medianFrameMs": 824.583999987226,
+        "parts": 904
+      }
+    },
+    {
+      "name": "Reference 1 enter 0",
+      "before": {
+        "syncMs": 283.45799999078736,
+        "elapsedMs": 1848.0419999687,
+        "maxGapMs": 1781.4580000122078,
+        "renderedFrames": 2,
+        "parts": 395
+      },
+      "after": {
+        "syncMs": 103.66600000998005,
+        "elapsedMs": 954.1660000104457,
+        "maxGapMs": 141.04100002441555,
+        "renderedFrames": 49,
+        "medianFrameMs": 16.62499998928979,
+        "parts": 208
+      }
+    },
+    {
+      "name": "Reference 1 exit 0",
+      "before": {
+        "syncMs": 190.4590000049211,
+        "elapsedMs": 2335.8749999897555,
+        "maxGapMs": 2165.999999968335,
+        "renderedFrames": 2,
+        "parts": 3274
+      },
+      "after": {
+        "syncMs": 73.9169999724254,
+        "elapsedMs": 950.6249999976717,
+        "maxGapMs": 120.08299998706207,
+        "renderedFrames": 36,
+        "medianFrameMs": 23.16650000284426,
+        "parts": 904
+      }
+    },
+    {
+      "name": "Reference 1 enter 1",
+      "before": {
+        "syncMs": 261.9589999667369,
+        "elapsedMs": 2139.8749999934807,
+        "maxGapMs": 2073.583999997936,
+        "renderedFrames": 2,
+        "parts": 395
+      },
+      "after": {
+        "syncMs": 60.45799999265,
+        "elapsedMs": 918.4169999789447,
+        "maxGapMs": 101.91699996357784,
+        "renderedFrames": 49,
+        "medianFrameMs": 16.62499998928979,
+        "parts": 208
+      }
+    },
+    {
+      "name": "Reference 1 exit 1",
+      "before": {
+        "syncMs": 187.20899999607354,
+        "elapsedMs": 2203.4589999821037,
+        "maxGapMs": 2024.5420000283048,
+        "renderedFrames": 2,
+        "parts": 3274
+      },
+      "after": {
+        "syncMs": 55.54199998732656,
+        "elapsedMs": 928.0840000137687,
+        "maxGapMs": 122.33400001423433,
+        "renderedFrames": 36,
+        "medianFrameMs": 22.916999994777143,
+        "parts": 904
+      }
+    },
+    {
+      "name": "Flip 1 gallery load",
+      "before": {
+        "syncMs": 731.4170000026934,
+        "elapsedMs": 1877.2919999901205,
+        "maxGapMs": 1876.5830000047572,
+        "renderedFrames": 1,
+        "parts": 3072
+      },
+      "after": {
+        "syncMs": 648.8750000135042,
+        "elapsedMs": 687.9579999949783,
+        "maxGapMs": 686.8750000139698,
+        "renderedFrames": 1,
+        "medianFrameMs": 686.8750000139698,
+        "parts": 860
+      }
+    },
+    {
+      "name": "Flip 1 enter 0",
+      "before": {
+        "syncMs": 274.75000004051253,
+        "elapsedMs": 2399.1660000174306,
+        "maxGapMs": 2330.833000014536,
+        "renderedFrames": 2,
+        "parts": 437
+      },
+      "after": {
+        "syncMs": 67.62499996693805,
+        "elapsedMs": 918.7919999822043,
+        "maxGapMs": 119.08299999777228,
+        "renderedFrames": 48,
+        "medianFrameMs": 16.66649998514913,
+        "parts": 200
+      }
+    },
+    {
+      "name": "Flip 1 exit 0",
+      "before": {
+        "syncMs": 198.54200002737343,
+        "elapsedMs": 1359.2920000082813,
+        "maxGapMs": 1166.8340000323951,
+        "renderedFrames": 2,
+        "parts": 3072
+      },
+      "after": {
+        "syncMs": 81.16699999663979,
+        "elapsedMs": 946.6249999823049,
+        "maxGapMs": 148.0829999782145,
+        "renderedFrames": 34,
+        "medianFrameMs": 22.125499992398545,
+        "parts": 860
+      }
+    },
+    {
+      "name": "Flip 1 enter 1",
+      "before": {
+        "syncMs": 275.37499996833503,
+        "elapsedMs": 2150.249999947846,
+        "maxGapMs": 2084.2919999849983,
+        "renderedFrames": 2,
+        "parts": 437
+      },
+      "after": {
+        "syncMs": 61.000000045169145,
+        "elapsedMs": 917.0000000158325,
+        "maxGapMs": 101.7920000012964,
+        "renderedFrames": 49,
+        "medianFrameMs": 16.62499998928979,
+        "parts": 200
+      }
+    },
+    {
+      "name": "Flip 1 exit 1",
+      "before": {
+        "syncMs": 191.20900001144037,
+        "elapsedMs": 1818.1249999906868,
+        "maxGapMs": 1647.417000029236,
+        "renderedFrames": 2,
+        "parts": 3072
+      },
+      "after": {
+        "syncMs": 66.87500001862645,
+        "elapsedMs": 951.5830000163987,
+        "maxGapMs": 139.7080000024289,
+        "renderedFrames": 35,
+        "medianFrameMs": 22.791000024881214,
+        "parts": 860
+      }
+    }
+  ],
+  "validation": {
+    "nativeUnitTests": 15,
+    "floorAndChapterTests": 19,
+    "wallAndMirrorTests": 15,
+    "browserMirrorChecks": 82,
+    "browserRecursiveChecks": 47,
+    "engineModified": false,
+    "normalLaunchVerified": true,
+    "deviceTransitions": 20,
+    "fiveChaptersPassed": true,
+    "deviceSmokeChecks": 26,
+    "screenshotReviewed": true
+  },
+  "intermediateFiveChapterRun": {
+    "file": "final.jsonl",
+    "passed": true,
+    "transitions": 20,
+    "maxGapsMs": {
+      "IntroReferenceFlip": 386,
+      "Clone": 807,
+      "Transfer": 733
+    }
+  },
+  "finalOptimized": "culling.jsonl",
+  "largeChapters": [
+    {
+      "name": "Clone 1 enter 0",
+      "synchronousMs": 121.12500000512227,
+      "elapsedMs": 1008.7920000078157,
+      "maxGapMs": 206.9589999737218,
+      "renderedFrames": 30
+    },
+    {
+      "name": "Clone 1 exit 0",
+      "synchronousMs": 109.9580000154674,
+      "elapsedMs": 1026.5830000280403,
+      "maxGapMs": 182.4159999960102,
+      "renderedFrames": 28
+    },
+    {
+      "name": "Clone 1 enter 1",
+      "synchronousMs": 117.37499997252598,
+      "elapsedMs": 1001.7919999663718,
+      "maxGapMs": 179.37500000698492,
+      "renderedFrames": 30
+    },
+    {
+      "name": "Clone 1 exit 1",
+      "synchronousMs": 112.66599997179583,
+      "elapsedMs": 999.5409999974072,
+      "maxGapMs": 179.4579999987036,
+      "renderedFrames": 27
+    },
+    {
+      "name": "Transfer 1 enter 0",
+      "synchronousMs": 144.00000002933666,
+      "elapsedMs": 1020.9160000085831,
+      "maxGapMs": 293.500000028871,
+      "renderedFrames": 30
+    },
+    {
+      "name": "Transfer 1 exit 0",
+      "synchronousMs": 115.00000004889444,
+      "elapsedMs": 1031.1670000082813,
+      "maxGapMs": 163.9590000268072,
+      "renderedFrames": 29
+    },
+    {
+      "name": "Transfer 1 enter 1",
+      "synchronousMs": 115.41699996450916,
+      "elapsedMs": 993.4169999905862,
+      "maxGapMs": 235.79199996311218,
+      "renderedFrames": 29
+    },
+    {
+      "name": "Transfer 1 exit 1",
+      "synchronousMs": 117.45899997185916,
+      "elapsedMs": 1031.834000023082,
+      "maxGapMs": 196.87500002328306,
+      "renderedFrames": 28
+    }
+  ],
+  "sourceSha256": {
+    "src/profile-transitions.ts": "d00deaba86c7d2adb85439ad63aa7b33ffb96c5660e6ff06e23962f04b41a6df",
+    "src/main-page.ts": "7a1185fad2ba6121c161ab2db824a16141b45c91878aac80a4a60d33c7837049",
+    "../../../Games/games/boxbound/scene.ts": "32d192c22301be81f843cddd90e455fb69f7cd8b5d95a70af1cdfb64db552b3f",
+    "../../../Games/games/boxbound/floor-mesh.ts": "4e1cda83d34d71320c80e862f7790942e2d04520ad1d1a8b7ab806983a43f803",
+    "../../../Games/games/boxbound/levels.ts": "b1a825e0c65e0f3ccdd798ba6baf13e2f12fce00257ceec89e7c647ab0c8716a",
+    "../../../Games/games/boxbound/world-map.ts": "cde4440427dd66cc680b08fcd978484bedf70d8757c723e05cce931bbc7cf921",
+    "../../../Games/games/boxbound/bundle.js": "2d3e0e6a598da3d2314d0f667e507f0864d6325251b6ec72fd9a6ca5b5a44c9b"
+  }
+}

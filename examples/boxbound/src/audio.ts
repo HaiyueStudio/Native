@@ -9,5 +9,6 @@ export class MobileAudio {
   schedule(cues:SoundCue[]){if(!this.muted){this.bank.unlock();this.queue.push(...cues.map(c=>({...c,at:performance.now()+c.delay})));}}
   tick(){const now=performance.now();const due=this.queue.filter(c=>c.at<=now);this.queue=this.queue.filter(c=>c.at>now);for(const c of due)this.bank.play(c.name,{channel:c.name,loop:false,gain:.6,pan:0,priority:1});}
   stop(){this.queue=[];this.bank.suspend();}
+  snapshot(){return this.bank.snapshot();}
   dispose(){this.stop();this.bank.dispose();}
 }

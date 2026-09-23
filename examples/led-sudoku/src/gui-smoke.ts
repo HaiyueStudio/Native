@@ -3,7 +3,10 @@ import { isSaveData, type SaveData } from '../../../../Games/games/led-sudoku/ru
 import fixture from '../../../../Games/games/led-sudoku/evidence/hints/elimination.json';
 import { captureDiagnostics } from './diagnostics';
 import type { EngineGame } from './engine-page';
-export async function runGuiSmoke(game: EngineGame, report: (event: string, detail: unknown) => void) {
+export async function runGuiSmoke(
+  game: EngineGame,
+  report: (event: string, detail: unknown) => void,
+) {
   let checks = 0;
   const check = (ok: unknown, name: string) => {
       if (!ok) throw Error(name);
@@ -14,7 +17,7 @@ export async function runGuiSmoke(game: EngineGame, report: (event: string, deta
   const gui = game.gui!,
     c = game.controller,
     s = c.session;
-  const pointer = async (action: 'down' | 'up', x: number, y: number) => {
+  const pointer = async (action: 'down' | 'move' | 'up', x: number, y: number) => {
     game.input.target.handle(action, [{ id: 7, x, y }]);
     game.requestFrame();
     await new Promise((r) => setTimeout(r, 100));
@@ -30,7 +33,14 @@ export async function runGuiSmoke(game: EngineGame, report: (event: string, deta
     check(gui.snapshot().gui === 'Haiyue GuiSystem', 'HUD uses engine GUI');
     await wait();
     captureDiagnostics(game.page, 'led-gui-dark.png');
-    await tap('settings');
+    const settings = gui.root.findById('settings')!;
+    const sr = settings.rect, sx = sr.x + sr.width / 2, sy = sr.y + sr.height / 2;
+    // A real fast tap can end before the next GUI frame drains its input queue.
+    game.input.target.handle('down', [{ id: 7, x: sx, y: sy }]);
+    game.input.target.handle('up', [{ id: 7, x: sx, y: sy }]);
+    game.requestFrame();
+    await wait();
+    check(c.page === 'settings', 'fast completed touch opens settings without capturing expired touch');
     check(c.page === 'settings', 'engine settings opens');
     gui.language.setValue('en', true);
     check(c.preferences.language === 'en', 'language select');
@@ -47,11 +57,43 @@ export async function runGuiSmoke(game: EngineGame, report: (event: string, deta
     const help = gui.ruleRows.get('led')!.help;
     const hr = help.rect;
     await pointer('down', hr.x + hr.width / 2, hr.y + hr.height / 2);
-    check(gui.help.visible, 'hold help opens');
+    check(!gui.help.visible, 'pointer down does not open help');
+    await pointer('up', hr.x + hr.width / 2, hr.y + hr.height / 2);
+    check(gui.help.visible, 'tap help stays open after release');
     await wait();
     captureDiagnostics(game.page, 'led-gui-help.png');
-    await pointer('up', hr.x + hr.width / 2, hr.y + hr.height / 2);
-    check(!gui.help.visible, 'release help closes');
+    const dr = gui.help.dialogRect;
+    await pointer('down', dr.x + 6, dr.y + 6);
+    await pointer('up', dr.x + 6, dr.y + 6);
+    check(gui.help.visible, 'interior blank area does not close help');
+    await tap(gui.help.closeButton.id);
+    check(!gui.help.visible, 'close button dismisses help');
+    await tap(help.id);
+    await pointer('down', 2, 2);
+    await pointer('up', 2, 2);
+    check(!gui.help.visible, 'backdrop dismisses help');
+    const toggle = gui.ruleRows.get('led')!.toggle,
+      was = toggle.checked,
+      tr = { ...toggle.rect };
+    await pointer('down', tr.x + 20, tr.y + 15);
+    await pointer('move', tr.x + 20, tr.y - 85);
+    await pointer('up', tr.x + 20, tr.y - 85);
+    check(
+      gui.ruleList.scrollY > 0 && toggle.checked === was,
+      'dragging a switch scrolls without toggling',
+    );
+    gui.ruleList.scrollTo(gui.ruleList.maxScrollY);
+    await wait();
+    const last = Array.from(gui.ruleRows.values()).at(-1)!;
+    check(
+      last.help.rect.y >= gui.ruleList.rect.y &&
+        last.help.rect.y + last.help.rect.height <= gui.ruleList.rect.y + gui.ruleList.rect.height,
+      'last rule reachable without pagination',
+    );
+    await tap(last.help.id);
+    check(gui.help.visible, 'scrolled rule help can be opened');
+    await tap(gui.help.closeButton.id);
+    gui.ruleList.scrollTo(0);
     gui.ruleRows.get('staircase')!.toggle.setChecked(true, true);
     await tap('difficulty-hard');
     await wait();
@@ -66,6 +108,24 @@ export async function runGuiSmoke(game: EngineGame, report: (event: string, deta
     const before = JSON.stringify(s.state);
     await tap('explain');
     check(c.lesson === 0, 'explanation opens');
+    check(!gui.root.findById('text-up') && !gui.root.findById('text-down'), 'lesson has no arrow buttons');
+    const step = s.hint!.steps[0]!, originalText = step.text;
+    step.text = Array(24).fill(originalText).join('\n');
+    gui.update(false);
+    await wait();
+    const lr = gui.lessonBody.rect;
+    await pointer('down', lr.x + lr.width / 2, lr.y + lr.height - 10);
+    await pointer('move', lr.x + lr.width / 2, lr.y + 10);
+    await pointer('up', lr.x + lr.width / 2, lr.y + 10);
+    check(gui.lessonBody.scrollY > 0, 'long lesson scrolls by dragging text');
+    await tap('lesson-next');
+    check(gui.lessonBody.scrollY === 0, 'changing lesson resets text scroll');
+    await tap('lesson-previous');
+    step.text = originalText;
+    gui.update(false);
+    check(gui.lessonBody.scrollY === 0, 'short lesson has no stale scroll offset');
+    await wait();
+    captureDiagnostics(game.page, 'led-gui-lesson.png');
     for (let i = 0; c.lesson >= 0 && i < 30; i++) await tap('lesson-next');
     check(
       s.history.length === 1 && s.state!.deductionSteps === 1,
@@ -76,7 +136,10 @@ export async function runGuiSmoke(game: EngineGame, report: (event: string, deta
     check(isSaveData(saved) && saved.undoHistory?.length === 1, 'undo history persists');
     c.restore(saved!);
     await tap('undo');
-    check(s.state!.deductionSteps === 0 && s.state!.crossed === undefined, 'reloaded hint can be undone');
+    check(
+      s.state!.deductionSteps === 0 && s.state!.crossed === undefined,
+      'reloaded hint can be undone',
+    );
     await tap('answer');
     check(gui.confirmation.visible, 'answer uses engine modal');
     gui.confirmation.close('confirm');
@@ -85,7 +148,12 @@ export async function runGuiSmoke(game: EngineGame, report: (event: string, deta
     check(!s.done, 'answer undo');
     await wait();
     captureDiagnostics(game.page, 'led-gui-light.png');
-    report('gui-complete', { passed: true, checks, snapshot: game.snapshot(), baselineBytes: before.length });
+    report('gui-complete', {
+      passed: true,
+      checks,
+      snapshot: game.snapshot(),
+      baselineBytes: before.length,
+    });
   } catch (error) {
     report('gui-failed', { checks, error: String(error), snapshot: game.snapshot() });
   }
