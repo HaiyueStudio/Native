@@ -18,10 +18,10 @@ export async function runGuiSmoke(
   const gui = game.gui!,
     c = game.controller,
     s = c.session;
-  const pointer = async (action: 'down' | 'move' | 'up', x: number, y: number) => {
+  const pointer = async (action: 'down' | 'move' | 'up', x: number, y: number, delay = 100) => {
     game.input.target.handle(action, [{ id: 7, x, y }]);
     game.requestFrame();
-    await new Promise((r) => setTimeout(r, 100));
+    await new Promise((r) => setTimeout(r, delay));
   };
   const tap = async (id: string) => {
     const node = gui.root.findById(id);
@@ -90,6 +90,19 @@ export async function runGuiSmoke(
       gui.ruleList.scrollY > 0 && toggle.checked === was,
       'dragging a switch scrolls without toggling',
     );
+    check(toggle.thumbTransitionMs === 200 && toggle.colorTransitionMs === 200, 'switch motion uses 200 ms for thumb and color');
+    gui.ruleList.scrollTo(0);
+    const vx = gui.ruleList.rect.x + 20, vy = gui.ruleList.rect.y + 130;
+    await pointer('down', vx, vy, 16);
+    await pointer('move', vx, vy - 40, 16);
+    await pointer('move', vx, vy - 80, 16);
+    await pointer('up', vx, vy - 80, 16);
+    const releasedOffset = gui.ruleList.scrollY;
+    await wait();
+    check(gui.ruleList.scrollY > releasedOffset + 1, 'inertial scrolling continues after release on demand-rendered Native');
+    await pointer('down', vx, vy, 16);
+    await pointer('up', vx, vy, 16);
+    check(!gui.ruleList.animating, 'new contact stops momentum');
     gui.ruleList.scrollTo(gui.ruleList.maxScrollY);
     await wait();
     const last = Array.from(gui.ruleRows.values()).at(-1)!;
