@@ -1,0 +1,30 @@
+✔ ObjectTableSlotAllocator reuses released slots and ignores duplicate release (3.350435ms)
+✔ RendererObjectTable grows storage and reuses released slots (2.383158ms)
+✔ RendererObjectTable sorts sparse slots, merges contiguous ranges, and promotes high churn to a whole-table upload (0.910811ms)
+✔ RendererObjectTable skips value-identical slot uploads across views (0.424111ms)
+✔ RendererObjectTable retires grown buffers only after frame submission completes (0.729094ms)
+✔ RendererCacheMap owns keyed resource release and clear (0.597121ms)
+✔ RendererObjectSlotCache releases object table slots through cache lifecycle (0.667082ms)
+✔ Mesh3DRenderer keeps frame batch slots out of the stable entity object table (3.182122ms)
+✔ Mesh3DRenderer collapses contiguous portable batches into instanced draws (1.558061ms)
+✔ Mesh3DRenderer batches additive transparent slots with the blend pipeline and global batch offset (1.595208ms)
+✔ Mesh3DRenderer releases a texture result that arrives after renderer destruction (0.953315ms)
+✔ NormalRenderer merges sparse prepared object slots into one table upload (1.721514ms)
+✔ NormalRenderer uploads clipping storage only for semantic plane changes and reuses it across views (1.50426ms)
+✔ NormalRenderer collapses contiguous portable object slots into an instanced draw (13.750572ms)
+✔ DepthRenderer batches shared deformation bindings and falls back for incompatible geometry (1.737309ms)
+✔ PBR and Blinn batch renderers consume source ranges and derive indirect offsets from source indices (10.988489ms)
+✔ SharedGeometry3DGPUCache releases buffers only after the last owner leaves (0.828275ms)
+✔ SharedGeometry3DGPUCache represents empty geometry without zero-byte GPU buffers (0.443412ms)
+✔ SharedGeometry3DGPUCache uploads dynamic UV semantics in physical layout order (0.746782ms)
+✔ RendererResourceCache evicts shared resources with LRU and clears device caches (1.028987ms)
+✔ RendererPipelineLayoutCache has bounded device-scoped storage (0.487248ms)
+✔ Mesh3DRenderer rebinds the fallback while replacement textures load (19.704296ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 599.553866

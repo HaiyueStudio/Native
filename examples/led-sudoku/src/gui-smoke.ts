@@ -1,3 +1,4 @@
+import { nativeLaunchFlag } from '../../../bridge/lifecycle/launch-flags';
 import { GuiButton } from '@haiyue/engine/gui';
 import { isSaveData, type SaveData } from '../../../../Games/games/led-sudoku/rules';
 import fixture from '../../../../Games/games/led-sudoku/evidence/hints/elimination.json';
@@ -42,6 +43,12 @@ export async function runGuiSmoke(
     await wait();
     check(c.page === 'settings', 'fast completed touch opens settings without capturing expired touch');
     check(c.page === 'settings', 'engine settings opens');
+    await tap('statistics');
+    check(c.page === 'statistics' && gui.statsList.contentHeight > 0, 'completion statistics open in scrollable engine GUI');
+    await wait();
+    captureDiagnostics(game.page, 'led-gui-statistics.png');
+    await tap('statistics-back');
+    check(!gui.tools.has('hint') && gui.tools.has('explain') && gui.tools.has('export'), 'single explanation and export toolbar actions');
     gui.language.setValue('en', true);
     check(c.preferences.language === 'en', 'language select');
     gui.theme.setValue('light-blue', true);
@@ -56,6 +63,7 @@ export async function runGuiSmoke(
     check(c.page === 'new', 'engine new-puzzle page');
     const help = gui.ruleRows.get('led')!.help;
     const hr = help.rect;
+    check(hr.width === 24 && hr.height === 24, 'rule help shrinks by thirty percent');
     await pointer('down', hr.x + hr.width / 2, hr.y + hr.height / 2);
     check(!gui.help.visible, 'pointer down does not open help');
     await pointer('up', hr.x + hr.width / 2, hr.y + hr.height / 2);
@@ -148,6 +156,12 @@ export async function runGuiSmoke(
     check(!s.done, 'answer undo');
     await wait();
     captureDiagnostics(game.page, 'led-gui-light.png');
+    if (nativeLaunchFlag('LED_EXPORT_SMOKE')) {
+      await tap('export');
+      for (let i = 0; i < 90 && gui.tools.get('export')!.disabled; i++) await wait();
+      check(c.status === c.text('exportSaved'), 'export saved successfully to photo library');
+      report('photo-export-complete', { status: c.status });
+    }
     report('gui-complete', {
       passed: true,
       checks,

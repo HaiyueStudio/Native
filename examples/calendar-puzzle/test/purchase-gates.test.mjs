@@ -10,6 +10,9 @@ function module(file, modules = {}) {
 }
 const purchases = module('../../../../Games/games/calendar-puzzle/purchases.ts');
 const { CalendarPuzzleGame } = module('../../../../Games/games/calendar-puzzle/CalendarPuzzleGame.ts', { '@haiyue/engine/gui': { GuiRoot: class {} }, './purchases': purchases, './model': { calendarWeekday: (y, m, d) => new Date(y, m - 1, d).getDay() } });
+const { RewardController } = module('../../../bridge/rewards/controller.ts');
+const { PresentationPause } = module('../../../bridge/lifecycle/presentation-pause.ts');
+const { OrbitPointerTarget } = module('../../../bridge/input/pointer-target.ts');
 function fixture(entitled = false) {
   const game = Object.create(CalendarPuzzleGame.prototype);
   const today = new Date(); let opens = 0, resets = 0, saves = 0, transforms = 0;
@@ -41,6 +44,45 @@ test('locked hint never starts solver and never marks a clean completion as assi
 test('purchase panel blocks gameplay while visible, web embedding remains fully enabled', () => {
   const { game } = fixture(true); game.purchaseView.visible = true; assert.equal(game.allowPlay(), false);
   game.purchaseView.visible = false; delete game.platform.purchases; assert.equal(game.canPlayDate(2000, 1, 1), true);
+});
+
+test('cold-start calendar and next-day paywall input work before startup privacy request completes', async () => {
+  const { game } = fixture();
+  const input = new OrbitPointerTarget(() => ({ x: 0, y: 0, width: 1600, height: 720 }));
+  const gate = new PresentationPause(() => input.suspend(), () => input.resume());
+  let finish, action, historyVisible = false;
+  const rewards = new RewardController({ dailyFree: 1, dailyAds: 2, storage: { read: () => null, write() {} },
+    entitled: () => false, pause: () => gate.acquire(),
+    gateway: { initialize: () => new Promise(resolve => { finish = resolve; }), privacyRequired: () => false, dispose() {} },
+  });
+  game.platform.rewards = rewards;
+  Object.assign(game, { cancelInteraction() {}, cancelHint() {}, finishMotions() {}, updateStatus() {},
+    historyView: { open() { historyVisible = true; }, setVisible(value) { historyVisible = value; } },
+    mainControls: [], purchaseView: { visible: false, setVisible(value) { this.visible = value; } },
+    toggleSettings() {},
+  });
+  game.toggleHistory = CalendarPuzzleGame.prototype.toggleHistory;
+  game.togglePurchase = CalendarPuzzleGame.prototype.togglePurchase;
+  input.addEventListener('pointerup', () => action());
+  const tap = callback => { action = callback; input.handle('down', [{ id: 1, x: 10, y: 10 }]); input.handle('up', [{ id: 1, x: 10, y: 10 }]); };
+  const startup = rewards.initialize();
+  tap(() => game.toggleHistory(true));assert.equal(historyVisible, true);
+
+  // Resume yesterday's saved puzzle with the same startup request still pending.
+  gate.setBackground(true);
+  const yesterday = new Date();yesterday.setDate(yesterday.getDate() - 1);
+  game.selectedYear = yesterday.getFullYear();game.selectedMonth = yesterday.getMonth() + 1;game.selectedDay = yesterday.getDate();
+  gate.setBackground(false);rewards.refresh();
+  assert.equal(game.canPlayDate(), false);game.togglePurchase(true);
+  tap(() => game.togglePurchase(false));assert.equal(game.purchaseView.visible, false);
+  game.togglePurchase(true);
+  tap(() => {
+    game.togglePurchase(false);const today = new Date();
+    game.chooseDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  });
+  assert.equal(game.purchaseView.visible, false);assert.equal(game.canPlayDate(), true);
+  assert.equal(input.snapshot().paused, false);assert.equal(rewards.snapshot().busy, false);
+  finish();await startup;rewards.dispose();input.dispose();
 });
 
 function hintFixture({ solved = true, consume = () => true } = {}) {

@@ -33,7 +33,7 @@ export function installPurchaseSmoke(game: CalendarPuzzleGame, input: NativeTouc
       input.target.handle('down', [point]); input.target.handle('up', [point]); requestFrame(); await delay();
       check('owned settings offers restore instead of an upgrade', game.snapshot().ui.settingsPurchases?.text === 'Restore purchases');
       capture('iphone-iap-owned-settings');
-      tap('done'); await delay(); tap('calendar'); await delay();
+      tap('settingsClose'); await delay(); tap('calendar'); await delay();
       const index = game.snapshot().history.cells.findIndex(cell => cell && cell.day !== initial.day);
       const target = game.snapshot().history.cells[index]!;
       tap('calendarDay' + index); await delay();
@@ -83,7 +83,7 @@ export function installPurchaseSmoke(game: CalendarPuzzleGame, input: NativeTouc
     await game.flushSave(); capture('iphone-iap-free');
     tap('settings'); await delay(); tap('languageSelect'); await delay(); tap('languageSelect'); await delay();
     check('closing dropdown without a selection preserves language', game.snapshot().language === 'zh' && !game.snapshot().languageMenu?.open);
-    tap('done'); await delay();
+    tap('settingsClose'); await delay();
     for (const id of ['rotate', 'flip', 'shuffle']) {
       tap(id); await delay();
       const state = game.snapshot().ui[id]!;

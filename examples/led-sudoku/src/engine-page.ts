@@ -15,7 +15,8 @@ import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage'
 import { nativeLaunchFlag } from '../../../bridge/lifecycle/launch-flags';
 import type { NativeCanvasInput } from '../../../bridge/render/surface';
 import { NativeGenerator, type GeneratorWorker } from './generator';
-import { readPreferences, writePreferences } from './preferences';
+import { savePhoto } from '../../../bridge/media/save-photo';
+import { readStatistics, writeStatistics, readPreferences, writePreferences } from './preferences';
 import { isDevelopmentBuild } from './development';
 import { captureDiagnostics } from './diagnostics';
 import { runGuiSmoke } from './gui-smoke';
@@ -79,6 +80,7 @@ export class EngineGame {
         save: (s) => {
           void this.save.save(s);
         },
+        statistics: { read: () => this.smoke ? null : readStatistics(), write: value => { if (!this.smoke) writeStatistics(value); } },
         preferences: (p) => {
           if (!this.smoke) writePreferences(p);
         },
@@ -150,6 +152,7 @@ export class EngineGame {
               readAtlasPixels: textures.readAtlasPixels,
               textureFromCanvas: textures.textureFromCanvas,
               icon,
+              saveImage: savePhoto,
               dispose: () => textures.dispose(),
             },
             this.requestFrame,

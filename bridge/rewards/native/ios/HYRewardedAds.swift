@@ -8,8 +8,10 @@ import UserMessagingPlatform
     private var disposed = false
     private var generation = 0
     private var timeout: Task<Void, Never>?
+    private var presentation: CheckedContinuation<Bool, Never>?
     private var startedAt = ProcessInfo.processInfo.systemUptime
     @objc public var privacyRequired: Bool { ConsentInformation.shared.privacyOptionsRequirementStatus == .required }
+    @objc public var consentRequired: Bool { ConsentInformation.shared.consentStatus == .required }
     private var development: Bool { Bundle.main.object(forInfoDictionaryKey: "HYBuildConfiguration") as? String == "Debug" }
     private func log(_ text: String) { if development { NSLog("[haiyue-consent] %@", text) } }
     private var simulator: Bool {
@@ -45,7 +47,19 @@ import UserMessagingPlatform
     private func end(_ event: String) {
         logState("end event=\(event)")
         timeout?.cancel(); timeout = nil; generation += 1
+        let pending = presentation; presentation = nil; pending?.resume(returning: false)
         let callback = events; events = nil; ad = nil; callback?(event)
+    }
+    @objc public func continuePresentation(_ ready: Bool) {
+        let pending = presentation; presentation = nil
+        pending?.resume(returning: ready && !disposed && UIApplication.shared.applicationState == .active)
+    }
+    private func preparePresentation(_ token: Int) async -> Bool {
+        guard active(token) else { return false }
+        return await withCheckedContinuation { continuation in
+            presentation = continuation
+            events?("presenting")
+        }
     }
     private func deadline(_ seconds: UInt64, token: Int) {
         timeout?.cancel()
@@ -70,7 +84,7 @@ import UserMessagingPlatform
     }
     @objc(perform:unit:events:) public func perform(_ action: String, unit: String, events callback: @escaping (String) -> Void) {
         guard !disposed, events == nil, let controller = root() else { callback("error:unavailable"); return }
-        guard ["consent", "refreshPrivacy", "privacy", "show"].contains(action) else { callback("error:unavailable"); return }
+        guard ["consent", "refreshPrivacy", "presentConsent", "privacy", "show"].contains(action) else { callback("error:unavailable"); return }
         events = callback; generation += 1
         startedAt = ProcessInfo.processInfo.systemUptime
         let token = generation
@@ -83,14 +97,18 @@ import UserMessagingPlatform
             let adsVersion = MobileAds.shared.versionNumber
             log("begin \(action) bundle=\(Bundle.main.bundleIdentifier ?? "missing") appID=\(appID) ump=\(UserMessagingPlatform.Version) gma=\(adsVersion.majorVersion).\(adsVersion.minorVersion).\(adsVersion.patchVersion) simulator=\(simulator)")
             logState("before update")
-            deadline(20, token: token)
-            do {
-                try await ConsentInformation.shared.requestConsentInfoUpdate(with: parameters())
-            } catch {
-                logError("update failed", error)
-                guard active(token) else { return }
-                // Only the ad path may fall back to a still-valid previous consent state.
-                if action != "show" || !ConsentInformation.shared.canRequestAds { end("error:unavailable"); return }
+            // Startup already refreshed consent with input active. Do not repeat
+            // that network request after acquiring the form-presentation pause.
+            if action != "presentConsent" {
+                deadline(20, token: token)
+                do {
+                    try await ConsentInformation.shared.requestConsentInfoUpdate(with: parameters())
+                } catch {
+                    logError("update failed", error)
+                    guard active(token) else { return }
+                    // Only the ad path may fall back to a still-valid previous consent state.
+                    if action != "show" || !ConsentInformation.shared.canRequestAds { end("error:unavailable"); return }
+                }
             }
             guard active(token) else { return }
             timeout?.cancel(); timeout = nil
@@ -101,10 +119,18 @@ import UserMessagingPlatform
                 // No timeout while a user is reading or interacting with the consent form.
                 if action == "privacy" {
                     guard privacyRequired else { end("closed"); return }
+                    guard await preparePresentation(token), active(token) else { if active(token) { end("error:unavailable") }; return }
                     try await ConsentForm.presentPrivacyOptionsForm(from: controller)
-                } else {
-                    log("loadAndPresentIfRequired controller=\(type(of: controller)) attached=\(controller.viewIfLoaded?.window != nil)")
-                    try await ConsentForm.loadAndPresentIfRequired(from: controller)
+                    events?("presentation-closed")
+                } else if consentRequired {
+                    // Load while the game's loading indicator is still animating.
+                    deadline(20, token: token)
+                    let form = try await ConsentForm.load()
+                    guard active(token) else { return }
+                    timeout?.cancel(); timeout = nil
+                    guard await preparePresentation(token), active(token) else { if active(token) { end("error:unavailable") }; return }
+                    try await form.present(from: controller)
+                    events?("presentation-closed")
                 }
             } catch {
                 logError("form failed", error)
@@ -126,7 +152,7 @@ import UserMessagingPlatform
                 timeout?.cancel(); timeout = nil
                 ad = loaded; loaded.fullScreenContentDelegate = self
                 guard UIApplication.shared.applicationState == .active else { end("error:unavailable"); return }
-                self.events?("presenting")
+                guard await preparePresentation(token), active(token) else { if active(token) { end("error:unavailable") }; return }
                 loaded.present(from: controller) { [weak self] in
                     guard let self, self.active(token) else { return }
                     self.events?("earned")

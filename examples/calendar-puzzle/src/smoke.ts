@@ -63,15 +63,15 @@ export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleG
     if(frame===290){check('month navigation crosses year',s.history.year===2023&&s.history.month===12);tap('calendarBack');}
     if(frame===300)tap('settings');
     if(frame===310)tap('en');
-    if(frame===320){check('English settings',s.language==='en');tap('settingsCalendar');}
+    if(frame===320){check('English settings',s.language==='en');tap('settingsClose');if(!s.historyOpen)tap('calendar');}
     if(frame===330){capture('history-en');tap('nextMonth');}
     if(frame===334){capture('history-six-weeks');tap('previousMonth');tap('settings');}
     if(frame===340)tap('ja');
-    if(frame===350){check('Japanese settings',s.language==='ja');tap('settingsCalendar');}
+    if(frame===350){check('Japanese settings',s.language==='ja');tap('settingsClose');if(!s.historyOpen)tap('calendar');}
     if(frame===360){capture('history-ja');tap('calendarBack');}
     if(frame===370)tap('settings');
     if(frame===380)tap('zh');
-    if(frame===390)tap('done');
+    if(frame===390)tap('settingsClose');
     if(frame===410){const p=s.pieces[0]!,c=p.cells[0]!;pointer('down',p.x+(c.x*74+32)*p.scale,p.y+(c.y*74+32)*p.scale);pointer('up',p.x+(c.x*74+32)*p.scale,p.y+(c.y*74+32)*p.scale);tap('rotate');}
     if(frame===412){check('rotate starts a visible transition',s.animating===1);capture('rotate-transition');}
     if(frame===450){check('rotation settles before next input',s.animating===0);tap('flip');}
@@ -155,7 +155,7 @@ export function installCalendarSmoke(engine: HaiyueEngine, game: CalendarPuzzleG
         tap('settings'); await delay(120);
         check('settings wakes from idle and opens', game.snapshot().settingsOpen && rendering().frames > before);
         tap('ja'); await delay(100); check('language change renders after queued GUI input', game.snapshot().language === 'ja');
-        tap('zh'); tap('done'); await delay(120);
+        tap('zh'); tap('settingsClose'); await delay(120);
         await rests('settings close returns to zero idle frames');
         const pick = anchor();
         pointer('down',pick.x,pick.y); pointer('up',pick.x,pick.y); await delay(1000);

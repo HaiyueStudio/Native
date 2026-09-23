@@ -1,6 +1,6 @@
 # Haiyue 通用启动页
 
-`NativeEngineLaunchPage` 是原生启动页面，初始化期间显示 Haiyue 标志，游戏实际呈现首帧后淡出。默认自动适配横竖屏，也可指定 `portrait` / `landscape`；指定样式不会锁定系统方向。背景铺满屏幕，`gameRoot` 中的应用内容遵守安全区。
+`NativeEngineLaunchPage` 是原生启动页面，初始化期间显示 Haiyue 标志，游戏实际呈现首帧后淡出。默认自动适配横竖屏，也可指定 `portrait` / `landscape`；指定样式不会锁定系统方向。背景铺满屏幕，`gameRoot` 中的应用内容遵守安全区。Android 的 Page 和背景容器将窗口边缘信息传递给子层，仅 `gameRoot` 应用安全区留白，避免开屏遮罩外露出页面背景。
 
 ## 接入
 

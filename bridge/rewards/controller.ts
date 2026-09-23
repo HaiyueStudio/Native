@@ -4,11 +4,13 @@ export type RewardPhase = 'ready' | 'loading' | 'earned' | 'cancelled' | 'unavai
 export interface RewardSnapshot {
   unlimited: boolean; free: number; credits: number; adsRemaining: number;
   busy: boolean; phase: RewardPhase; privacyRequired: boolean;
+  initializing: boolean; presenting: boolean; operation: 'ad' | 'privacy' | 'consent' | null;
 }
+export interface RewardPresentation { prepare(): Promise<boolean>; closed(): void; }
 export interface RewardGateway {
-  initialize?(presentForm: boolean): Promise<void>;
-  show(earned: () => void): Promise<void>;
-  privacy(): Promise<void>;
+  initialize?(presentForm: boolean, beforePresent: () => Promise<boolean>): Promise<void>;
+  show(earned: () => void, presentation: RewardPresentation): Promise<void>;
+  privacy(presentation: RewardPresentation): Promise<void>;
   privacyRequired(): boolean;
   dispose(): void;
 }
@@ -22,10 +24,14 @@ export class RewardController {
   private broken = false;
   private listeners = new Set<() => void>();
   private initialization?: Promise<void>;
+  private initializing: boolean;
+  private presenting = false;
+  private operation: RewardSnapshot['operation'] = null;
   constructor(private readonly options: {
     storage: RewardStorage; gateway: RewardGateway; entitled: () => boolean;
     dailyFree: number; dailyAds: number; pause: () => (() => void) | Promise<() => void>; now?: () => Date;
   }) {
+    this.initializing = !!options.gateway.initialize;
     if (![options.dailyFree, options.dailyAds].every(n => Number.isSafeInteger(n) && n >= 0)) throw Error('Invalid daily allowance');
     try {
       const raw = options.storage.read();
@@ -55,7 +61,8 @@ export class RewardController {
     this.rollover();
     return { unlimited:this.options.entitled(), free:this.broken ? 0 : Math.max(0,this.options.dailyFree-this.wallet.used),
       credits:this.broken ? 0 : this.wallet.credits, adsRemaining:this.broken ? 0 : Math.max(0,this.options.dailyAds-this.wallet.ads),
-      busy:this.busy, phase:this.phase, privacyRequired:this.options.gateway.privacyRequired() };
+      busy:this.busy, phase:this.phase, privacyRequired:this.options.gateway.privacyRequired(),
+      initializing:this.initializing, presenting:this.presenting, operation:this.operation };
   }
   subscribe(listener: () => void): () => void { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; }
   refresh(): void { this.rollover(); this.emit(); }
@@ -65,15 +72,47 @@ export class RewardController {
     return this.initialization ??= this.initializeConsent();
   }
   private async initializeConsent(): Promise<void> {
-    if (this.busy) return;
-    this.busy = true; this.emit();
+    if (this.busy) { this.initializing = false; this.emit(); return; }
+    let presenting = false;
     let resume = () => {};
     try {
-      const pause = this.options.pause();
-      resume = typeof pause === 'function' ? pause : await pause;
-      if (!this.disposed) await this.options.gateway.initialize!(!this.options.entitled());
+      await this.options.gateway.initialize!(!this.options.entitled(), async () => {
+        // A silent network refresh must not stop calendar, paywall or puzzle input.
+        // Explicit ad/privacy work takes precedence and will collect consent itself.
+        if (this.disposed || this.busy || this.options.entitled()) return false;
+        presenting = true; this.busy = true; this.operation = 'consent'; this.presenting = true; this.emit();
+        const pause = this.options.pause();
+        resume = typeof pause === 'function' ? pause : await pause;
+        return !this.disposed;
+      });
     } catch { /* Retry through the next explicit ad/privacy request. */ }
-    finally { this.busy = false; resume(); this.emit(); }
+    finally {
+      this.initializing = false;
+      if (presenting) { this.busy = false; this.presenting = false; this.operation = null; resume(); }
+      this.emit();
+    }
+  }
+  private presentation(): { hooks: RewardPresentation; release(): void } {
+    let active = true, resume: (() => void) | undefined;
+    let preparing: Promise<boolean> | undefined;
+    const close = () => {
+      preparing = undefined;
+      this.presenting = false;
+      const release = resume; resume = undefined; release?.(); this.emit();
+    };
+    return {
+      hooks: {
+        prepare: () => preparing ??= (async () => {
+          if (!active || this.disposed) return false;
+          this.presenting = true; this.emit();
+          const release = await this.options.pause();
+          if (!active || this.disposed) { release(); return false; }
+          resume = release; return true;
+        })(),
+        closed: close,
+      },
+      release: () => { active = false; close(); },
+    };
   }
   private emit(): void { if (!this.disposed) for (const listener of this.listeners) listener(); }
   /** Call only once a useful result is ready. The same result key is free to redisplay. */
@@ -92,12 +131,10 @@ export class RewardController {
     if (!this.snapshot().adsRemaining) { this.phase = 'limit'; this.emit(); return; }
     const sequence = this.wallet.sequence + 1;
     if (!this.save({ ...this.wallet, sequence })) { this.emit(); return; }
-    this.busy = true; this.phase = 'loading'; this.emit();
-    let resume = () => {};
+    this.busy = true; this.operation = 'ad'; this.phase = 'loading'; this.emit();
+    const presentation = this.presentation();
     let earned = false, ended = false;
     try {
-      const pause = this.options.pause();
-      resume = typeof pause === 'function' ? pause : await pause;
       if (this.disposed) return;
       await this.options.gateway.show(() => {
         // Google-earned events precede dismissal. Stale/duplicate callbacks never mint credits.
@@ -105,24 +142,22 @@ export class RewardController {
         this.rollover();
         earned = this.save({ ...this.wallet, rewarded:sequence, credits:this.wallet.credits+1, ads:this.wallet.ads+1 });
         this.phase = earned ? 'earned' : 'error'; this.emit();
-      });
+      }, presentation.hooks);
       if (!this.broken) this.phase = earned ? 'earned' : 'cancelled';
     } catch (error) {
       if (!earned && !this.broken) this.phase = error instanceof Error && ['offline','unavailable'].includes(error.message) ? error.message as RewardPhase : 'error';
-    } finally { ended = true; this.busy = false; resume(); this.emit(); }
+    } finally { ended = true; this.busy = false; this.operation = null; presentation.release(); this.emit(); }
   }
   async privacy(): Promise<void> {
     if (this.disposed || this.busy) return;
-    this.busy = true; this.phase = 'loading'; this.emit();
-    let resume = () => {};
+    this.busy = true; this.operation = 'privacy'; this.phase = 'loading'; this.emit();
+    const presentation = this.presentation();
     try {
-      const pause = this.options.pause();
-      resume = typeof pause === 'function' ? pause : await pause;
       if (this.disposed) return;
-      await this.options.gateway.privacy(); this.phase = 'ready';
+      await this.options.gateway.privacy(presentation.hooks); this.phase = 'ready';
     }
     catch { this.phase = 'error'; }
-    finally { this.busy = false; resume(); this.emit(); }
+    finally { this.busy = false; this.operation = null; presentation.release(); this.emit(); }
   }
   dispose(): void { this.disposed = true; this.listeners.clear(); this.options.gateway.dispose(); }
 }

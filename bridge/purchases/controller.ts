@@ -25,7 +25,10 @@ export class PurchaseController implements CalendarPurchases {
   private validUntil = Infinity;
   constructor(gateway: StoreGateway) {
     this.gateway = gateway;
-    this.removeStore = gateway.onChange(() => { void this.refresh(); });
+    this.removeStore = gateway.onChange(() => {
+      if (this.job) this.dirty = true;
+      else void this.refresh();
+    });
   }
   snapshot(): CalendarPurchaseState { return this.state.entitled && Date.now() / 1000 >= this.validUntil ? { ...this.state, entitled: false, phase: 'offline' } : { ...this.state }; }
   subscribe(listener: () => void): () => void { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; }
@@ -36,7 +39,7 @@ export class PurchaseController implements CalendarPurchases {
   }
   refresh(): Promise<void> {
     if (this.disposed) return Promise.resolve();
-    if (this.job) { this.dirty = true; return this.job; }
+    if (this.job) return this.job;
     return this.run('refresh');
   }
   purchase(): Promise<void> { return this.disposed || this.job ? this.job ?? Promise.resolve() : this.run('purchase'); }
@@ -45,7 +48,6 @@ export class PurchaseController implements CalendarPurchases {
     // Set job before any callbacks or async SDK completions can reenter.
     const work = Promise.resolve().then(async () => {
       if (this.disposed) return;
-      this.patch({ busy: true, phase: action === 'purchase' ? 'purchasing' : action === 'restore' ? 'restoring' : 'loading' });
       try {
         if (action === 'purchase') {
           const result = await this.gateway.purchase();
@@ -62,6 +64,8 @@ export class PurchaseController implements CalendarPurchases {
       if (this.dirty && !this.disposed) { this.dirty = false; void this.refresh(); }
     });
     this.job = work;
+    // Publish disabled/loading synchronously, before another pointer event can run.
+    this.patch({ busy: true, phase: action === 'purchase' ? 'purchasing' : action === 'restore' ? 'restoring' : 'loading' });
     return work;
   }
   private async reconcile(restore: boolean): Promise<void> {

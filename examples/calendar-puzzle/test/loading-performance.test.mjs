@@ -72,6 +72,9 @@ test('shared splash scales for portrait, landscape and small windows, and relayo
   assert.equal(page.content.children[1],page.splash.view);
   assert.equal(page.gameRoot.iosOverflowSafeArea,false);
   assert.equal(page.content.iosOverflowSafeArea,true);
+  assert.equal(page.androidOverflowEdge,'ignore');
+  assert.equal(page.content.androidOverflowEdge,'ignore');
+  assert.equal(page.gameRoot.androidOverflowEdge,'none');
   assert.equal(page.splash.status,'loading');
   splash.dispose();page.splash.dispose();
 });

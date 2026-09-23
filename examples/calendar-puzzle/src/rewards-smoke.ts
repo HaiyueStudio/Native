@@ -41,12 +41,12 @@ export function installRewardsSmoke(game:CalendarPuzzleGame,input:NativeTouchInp
       tap('languageSelect');await delay();const menu=game.snapshot().languageMenu!;
       const p={id:9201,x:menu.popup.x+menu.popup.width/2,y:menu.popup.y+(menu.values.indexOf(language as any)+.5)*menu.optionHeight-menu.scrollY};
       input.target.handle('down',[p]);input.target.handle('up',[p]);requestFrame();await delay();
-      tap('done');await delay();tap('hint');await idle();
+      tap('settingsClose');await delay();tap('hint');await idle();
       check(`${language} reward panel`,game.snapshot().rewardOpen&&game.snapshot().language===language);
       report('reward-capture',captureSurfaceFrame(canvas,'reward-'+language+'.png'));
       tap('rewardClose');await delay();tap('settings');await delay();
     }
-    tap('done');await delay();
+    tap('settingsClose');await delay();
     if(realAd){
       tap('hint');await idle();tap('rewardWatch');await delay();
       report('reward-loading-capture',captureSurfaceFrame(canvas,'reward-loading.png'));

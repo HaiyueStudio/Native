@@ -35,6 +35,15 @@ test('cancel/pending never unlock and duplicate taps launch checkout once', asyn
     assert.equal(s.buys, 1); assert.equal(c.snapshot().phase, result); assert.equal(c.snapshot().entitled, false);
   }
 });
+test('refresh disables controls synchronously and repeated UI refresh taps do not enqueue another request', async () => {
+  const s = store();let finish;
+  s.product = () => new Promise(resolve => { finish = resolve; });
+  const c = new PurchaseController(s);const first = c.refresh();
+  assert.equal(c.snapshot().busy, true);assert.equal(c.snapshot().phase, 'loading');
+  for(let i=0;i<20;i++)assert.equal(c.refresh(), first);
+  await tick();finish({ price: '¥18', purchasable: true });await first;await tick();
+  assert.equal(s.reads, 1);assert.equal(c.snapshot().busy, false);
+});
 test('repeated store callbacks coalesce, pending completion is verified, refund removes access', async () => {
   const s = store(), c = new PurchaseController(s);
   s.result = 'pending'; await c.purchase();

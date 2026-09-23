@@ -1,0 +1,4 @@
+
+> @haiyue/native-calendar-puzzle@0.1.0 typecheck
+> tsc --noEmit
+

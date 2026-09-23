@@ -11,11 +11,16 @@ export class NativeEngineLaunchPage extends Page {
   constructor(options: NativeEngineSplashOptions = {}) {
     super();
     this.actionBarHidden = true;
+    // Android Page defaults to inset padding. Forward insets to gameRoot instead,
+    // so the sibling branding overlay can cover the entire window.
+    this.androidOverflowEdge = 'ignore';
     this.backgroundColor = new Color('#07111f');
     const layers = new GridLayout();
     layers.iosOverflowSafeArea = true;
+    layers.androidOverflowEdge = 'ignore';
     // App controls respect notches/home indicators; the branding fills the screen.
     this.gameRoot.iosOverflowSafeArea = false;
+    this.gameRoot.androidOverflowEdge = 'none';
     layers.addChild(this.gameRoot);
     this.splash = new NativeEngineSplash(layers, options);
     this.content = layers;

@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 import ts from 'typescript';
 function load(file, modules) {
   const exports = {};
-  runInNewContext(ts.transpileModule(readFileSync(new URL(file, import.meta.url), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, { exports, require: name => modules[name] });
+  runInNewContext(ts.transpileModule(readFileSync(new URL(file, import.meta.url), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText, { exports, require: name => modules[name], performance });
   return exports;
 }
 class Element {
@@ -14,19 +14,26 @@ class Element {
   setText(value) { this.text = value; }
   setFontSize() {} markDirty() {}
   setSource(value) { this.source = value; }
+  setStyle(value) { this.style = { ...this.style, ...value }; }
 }
 const { CalendarRasterSurface } = load('../../../../Games/games/calendar-puzzle/raster-surface.ts', {});
-const { CalendarPurchaseView } = load('../../../../Games/games/calendar-puzzle/purchase-ui.ts', { '@haiyue/engine/gui': { GuiButton: Element, GuiElement: Element, GuiLabel: Element, GuiImage: Element }, './raster-surface': { CalendarRasterSurface } });
+const gui = { GuiButton: Element, GuiElement: Element, GuiLabel: Element, GuiImage: Element };
+const network = load('../../../../Games/games/calendar-puzzle/network-buttons.ts', { '@haiyue/engine/gui': gui });
+const { CalendarPurchaseView } = load('../../../../Games/games/calendar-puzzle/purchase-ui.ts', { '@haiyue/engine/gui': gui, './raster-surface': { CalendarRasterSurface }, './network-buttons': network });
 test('purchase view renders exact localized price, disables pending/owned checkout and keeps restore accessible', () => {
   const controls = {}, drawn = [];
   let state = { entitled: false, phase: 'ready', price: '١٫٩٩\u00a0د.إ.', busy: false, canPurchase: true };
   const context = { setTransform() {}, clearRect() {}, measureText: () => ({ width: 240 }), fillText: text => drawn.push(text) };
-  const view = new CalendarPurchaseView({ root: { add() {} }, raster: { canvas: () => ({ getContext: () => context }) }, layout: () => ({ width: 1600, height: 720, scale: 1 }), language: () => 'en',
+  const view = new CalendarPurchaseView({ root: { theme: { colors: { text: '#243d3b', textMuted: '#607572', primary: '#17847b' } }, add() {} }, raster: { canvas: () => ({ getContext: () => context }) }, layout: () => ({ width: 1600, height: 720, scale: 1 }), language: () => 'en',
     register: (id, control) => { controls[id] = control; }, close() {}, today() {}, purchases: { snapshot: () => state },
   });
   view.setVisible(true);
   assert.equal(drawn.at(-1), 'Buy · ١٫٩٩\u00a0د.إ.'); assert.equal(controls.purchasePrice.visible, true); assert.equal(controls.purchaseBuy.disabled, false);
   const count = drawn.length; view.refresh(); assert.equal(drawn.length, count);
+  state = { ...state, busy: true, phase: 'loading' }; view.refresh();
+  assert.equal(controls.purchaseBuy.disabled, true); assert.equal(controls.purchaseRestore.disabled, true);
+  assert.notEqual(controls.purchaseToday.disabled, true); assert.notEqual(controls.purchaseClose.disabled, true);
+  state = { ...state, busy: false, phase: 'ready' };
   state = { ...state, phase: 'pending' }; view.refresh(); assert.equal(controls.purchaseBuy.disabled, true); assert.equal(controls.purchaseRestore.disabled, false);
   state = { ...state, entitled: true, phase: 'restored' }; view.refresh(); assert.equal(controls.purchaseBuy.disabled, true);
   assert.equal(controls.purchaseBuy.visible, false); assert.equal(controls.purchasePrice.visible, false);
