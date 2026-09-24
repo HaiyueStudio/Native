@@ -1,0 +1,17 @@
+export { NativeRenderHost, type NativeRenderHostOptions, type NativeHostInput } from './bridge/lifecycle/host';
+export { NativeSurface, NativeSurfaceUnavailableError, type NativeCanvasInput } from './bridge/render/surface';
+export { NativeTouchInput, type NativeTouchSample } from './bridge/input/native-touch';
+export { NativeDeviceMotion, type NativeDeviceMotionOptions, type NativeMotionSample, type MotionScreenRotation } from './bridge/motion/device-motion';
+export { NativeHaptics, type NativeImpact } from './bridge/feedback/haptics';
+export { NativePcmAudioBank, type NativePcmSound, type NativePcmPlay } from './bridge/audio/pcm-bank';
+export { NativeOrientationController } from './bridge/display/orientation';
+export { type OrientationPolicy } from './bridge/display/orientation-policy';
+export { NativeCanvasTextures } from './bridge/render/canvas-textures';
+export { NativeSettingsStorage } from './bridge/storage/settings-storage';
+export { installNativeSaveRuntime } from './bridge/storage/clone-runtime';
+export { readNativeBytes } from './bridge/files/read-bytes';
+export { savePhoto } from './bridge/media/save-photo';
+export { NativeEngineLaunchPage } from './bridge/branding/launch-page';
+export { NativeEngineSplash, type NativeEngineSplashOptions } from './bridge/branding/engine-splash';
+export { NativeDemandFrames } from './bridge/lifecycle/demand-frames';
+export { PresentationPause } from './bridge/lifecycle/presentation-pause';

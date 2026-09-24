@@ -1,16 +1,87 @@
 {
   "name": "@haiyue/native",
   "version": "0.1.0",
-  "description": "Haiyue Native mobile WebGPU examples and reproducible source project initializer",
+  "description": "NativeScript iOS and Android adapters for Haiyue WebGPU rendering, input, motion, haptics and lifecycle",
   "license": "MIT",
   "type": "module",
-  "bin": { "haiyue-native": "bin/haiyue-native.mjs" },
-  "files": ["bin/", "dist/source.tar.gz", "dist/source.json", "README.md", "LICENSE"],
-  "repository": { "type": "git", "url": "git+https://github.com/HaiyueStudio/Native.git", "directory": "npm" },
+  "main": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./motion": {
+      "types": "./bridge/motion/device-motion.ts",
+      "default": "./bridge/motion/device-motion"
+    },
+    "./feedback": {
+      "types": "./bridge/feedback/haptics.ts",
+      "default": "./bridge/feedback/haptics"
+    },
+    "./audio": {
+      "types": "./bridge/audio/pcm-bank.ts",
+      "default": "./bridge/audio/pcm-bank"
+    },
+    "./orientation": {
+      "types": "./bridge/display/orientation.ts",
+      "default": "./bridge/display/orientation"
+    },
+    "./media": {
+      "types": "./bridge/media/save-photo.ts",
+      "default": "./bridge/media/save-photo"
+    },
+    "./branding": "./bridge/branding/launch-page.ts",
+    "./branding/webpack": "./bridge/branding/webpack.cjs",
+    "./rewards": "./bridge/rewards/controller.ts",
+    "./rewards/admob": "./bridge/rewards/admob.ts",
+    "./bridge/*": "./bridge/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.ts",
+    "bridge/**/*.ts",
+    "bridge/branding/webpack.cjs",
+    "bridge/branding/assets/haiyue-moon.png",
+    "bridge/rewards/native/",
+    "provenance.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaiyueStudio/Native.git",
+    "directory": "npm"
+  },
   "homepage": "https://github.com/HaiyueStudio/Native/tree/main/npm",
-  "bugs": { "url": "https://github.com/HaiyueStudio/Native/issues" },
-  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org" },
-  "engines": { "node": "24.19.0", "npm": "11.17.0" },
-  "scripts": { "build": "node pack.mjs" },
-  "keywords": ["webgpu", "nativescript", "ios", "android", "haiyue"]
+  "bugs": {
+    "url": "https://github.com/HaiyueStudio/Native/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@haiyue/engine": "0.1.0",
+    "@nativescript/canvas": "2.1.18",
+    "@nativescript/core": "9.1.1"
+  },
+  "devDependencies": {
+    "@nativescript/types": "9.0.0",
+    "@nativescript/webpack": "5.0.38",
+    "@webgpu/types": "0.1.64",
+    "typescript": "5.7.3"
+  },
+  "scripts": {
+    "build": "node pack.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/*.test.mjs"
+  },
+  "keywords": [
+    "webgpu",
+    "nativescript",
+    "ios",
+    "android",
+    "haiyue"
+  ]
 }

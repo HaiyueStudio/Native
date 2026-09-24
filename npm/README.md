@@ -1,35 +1,61 @@
 # @haiyue/native
 
-Haiyue Native 的移动端 WebGPU 示例源码与初始化命令，包含六个原生示例和五款游戏实现。源码版本为 **0.1.0**，与 GitHub `native-v0.1.0` 冻结输入一致。
+Haiyue 的 NativeScript 原生适配层，支持 iOS / Android：WebGPU 宿主与帧调度、触摸输入、陀螺仪、震动、音频、屏幕方向、存储、图片保存和通用开屏组件。
 
-## 创建可构建项目
+**npm 只包含可复用的原生代码与小尺寸通用标志。游戏、示例、美术、模型、引擎 vendor 包、构建产物和验收资料均不包含。** 完整游戏示例从 [GitHub](https://github.com/HaiyueStudio/Native) 下载。
 
-准备 Node **24.19.0**、npm **11.17.0**、Git 和 tar，在已存在的父目录下执行：
+## 安装
+
+在 NativeScript 应用项目中执行：
 
 ```sh
-npx --yes @haiyue/native@0.1.0 init my-native-app
-cd my-native-app
-npm run release:verify -- --install
+npm install @haiyue/native@0.1.0
 ```
 
-也可安装后使用 `haiyue-native` 命令。目标目录必须不存在；初始化检查源码归档的 SHA-256，解压锁文件和源码，初始化本地 Git 工作目录，再校验全部冻结输入。初始化不安装原生 SDK、npm 依赖或手机应用。
+配套版本：`@haiyue/engine@0.1.0`、`@nativescript/core@9.1.1`、`@nativescript/canvas@2.1.18`，通过 peer dependencies 使用应用自己的依赖，不复制引擎或平台二进制到本包。
 
-这是可独立构建的项目源码包。原生宿主、六个应用入口和固定引擎依赖均在生成的项目里；不提供 `import ... from '@haiyue/native'` 的单一库入口。
+这是 NativeScript 专用 TypeScript 包，交给 NativeScript Webpack 编译；保留 `.ios.ts` / `.android.ts`，由平台解析器选择实现，并处理 `@NativeClass`。已验证 `@nativescript/webpack@5.0.38` / TypeScript 5.7.3。宿主 tsconfig 使用 `experimentalDecorators: true`、`emitDecoratorMetadata: true`，并包含 `@nativescript/types` 和 `@webgpu/types`；这些类型工具由宿主开发依赖提供。本包不能直接在浏览器或普通 Node.js 中执行。
 
-包内源码包含自有美术与固定依赖，压缩后约 192 MiB，首次下载和解压需要一些时间。源码以归档形式保存，避免 npm 打包时省略 package-lock.json、.gitignore 等构建必需文件。
+```ts
+import { NativeDeviceMotion, NativeHaptics } from '@haiyue/native';
+// 也可按能力导入：import { NativeDeviceMotion } from '@haiyue/native/motion';
 
-## 模型、平台与签名
+const motion = new NativeDeviceMotion({ updateIntervalMs: 1000 / 60 });
+motion.onUpdate(sample => console.log(sample.angles.pitch, sample.angles.roll));
+motion.start();
+// 在应用已有的逐帧回调内调用 motion.update(deltaMs)。
 
-- PBR Orbit、蜘蛛纸牌、Sky Strike、魔方无需外部模型。
-- AK47 Range 需要 `local-assets/ak47-range/ren42.glb` 和 `qiang_ak47.glb`。
-- Neon Circuit 需要 `local-assets/neon-circuit/wraith-raider.glb`。
+const haptics = new NativeHaptics();
+haptics.resume();
+haptics.impact('light');
+// 页面真正销毁时调用 motion.dispose()、haptics.dispose()。
+```
 
-三个模型没有可核实的原始许可及下载来源，不随包分发；没有占位或自动下载模式。`npm run models:check` 会打印所需路径并校验哈希。缺少模型不影响全部源码检查，仍可构建前四个示例。
+iOS 使用陀螺仪时配置 `NSMotionUsageDescription`；Android 震动声明 `android.permission.VIBRATE`。其他权限和生命周期要求见 [原生能力说明](https://github.com/HaiyueStudio/Native/tree/main/bridge)。
 
-生成项目内的 `games/ASSETS.md` 说明替代模型与配置方式，`release/README.md` 说明固定 Xcode、Ruby、Python、Android SDK/JDK 工具链，`release/SIGNING.md` 说明开发者自己的签名。原生构建需另行安装相应平台工具。
+## 能力入口
 
-## 验证与许可
+| 入口 | 内容 |
+| --- | --- |
+| `@haiyue/native` | 常用宿主、渲染、输入、运动、反馈、音频、存储与开屏 API |
+| `@haiyue/native/motion` | NativeDeviceMotion |
+| `@haiyue/native/feedback` | NativeHaptics |
+| `@haiyue/native/audio` | NativePcmAudioBank |
+| `@haiyue/native/orientation` | NativeOrientationController |
+| `@haiyue/native/media` | savePhoto |
+| `@haiyue/native/branding` | NativeEngineLaunchPage |
+| `@haiyue/native/rewards` | 可选的 RewardController |
+| `@haiyue/native/rewards/admob` | 可选的 AdMobRewardGateway |
 
-源码已通过六个应用类型检查、依赖检查和 88 项测试。[源码发布与验证范围](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0) 区分本轮源码检查与历史原生构建、真机记录。npm 包额外验证解压结果和安装后的 CLI。
+使用开屏组件时，在应用 webpack 配置的 `webpack.init(env)` 之后添加：
 
-源码采用 MIT；引擎 vendor 和其他第三方依赖保留各自许可，见生成项目中的 THIRD_PARTY_NOTICES.md。模型不属于 MIT 授权范围。包中不包含模型转换产物、签名、APK/IPA/AAB、历史验收图片或开发机缓存。
+```js
+const { addEngineBrandingCopyRule } = require('@haiyue/native/branding/webpack');
+addEngineBrandingCopyRule(webpack);
+```
+
+只有小尺寸通用月牙图会复制到应用资源。广告接口需要应用单独集成 Google SDK、Swift/Java 桥接源文件、广告配置与许可流程；本包不会自动接入广告服务。参考 [奖励接口说明](https://github.com/HaiyueStudio/Native/tree/main/bridge/rewards)。
+
+## 许可与验证
+
+MIT。原生实现取自 `native-v0.1.0` 的冻结源码，文件哈希保存在包内 `provenance.json`。npm 包验证独立类型检查、平台模块解析、安装和包内文件范围；已有原生构建与真机验证的范围见 [GitHub 发布说明](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0)。游戏模型不随 npm 分发。

@@ -1,70 +1,20 @@
 {
+  "checkedAt": "2026-09-24T12:12:36.045944+00:00",
   "name": "@haiyue/native",
   "version": "0.1.0",
-  "npmTarball": {
-    "filename": "haiyue-native-0.1.0.tgz",
-    "size": 201649238,
-    "integrity": "sha512-T5twQ570vCRl7mApz5jljnXl6AGZIwE1H0Abl2AorFuqKmDzz0jYrqxsOE403ZF8ZUrFGh1QbQZI8QJ4WY3UPQ==",
-    "shasum": "8c1e377fe0b428eb2f898cdae2715fbabbbd9ead"
-  },
-  "outerPackageFiles": [
-    "LICENSE",
-    "README.md",
-    "bin/haiyue-native.mjs",
-    "dist/source.json",
-    "dist/source.tar.gz",
-    "package.json"
-  ],
-  "frozenSourceFiles": 684,
-  "allSourceHashesMatch": true,
-  "installFromLocalTarball": "passed",
-  "installedCliChecks": [
-    {
-      "args": [
-        "--version"
-      ],
-      "exitCode": 0,
-      "passed": true
-    },
-    {
-      "args": [
-        "--help"
-      ],
-      "exitCode": 0,
-      "passed": true
-    },
-    {
-      "args": [
-        "bad-command"
-      ],
-      "exitCode": 1,
-      "passed": true
-    },
-    {
-      "args": [
-        "init",
-        "/private/tmp/haiyue-npm-smoke-s_x061i8/existing"
-      ],
-      "exitCode": 1,
-      "passed": true
-    },
-    {
-      "args": [
-        "init",
-        "/private/tmp/haiyue-npm-smoke-s_x061i8/corrupt-source"
-      ],
-      "exitCode": 1,
-      "passed": true
-    },
-    {
-      "args": [
-        "init",
-        "/private/tmp/haiyue-npm-smoke-s_x061i8/new-project"
-      ],
-      "exitCode": 0,
-      "passed": true
-    }
-  ],
-  "modelFreeAndMissingModelBehavior": "passed",
-  "nativeBuildRepeated": false
+  "sizeBytes": 177192,
+  "unpackedSizeBytes": 283680,
+  "fileCount": 62,
+  "integrity": "sha512-NN6kn2b2XndJyLeI2ktt9r2Argzx93X9S/ANEnAFqvCIE8HleTYtAMz6j2WHitELgH333Cbt2Rwoxk0CGX907w==",
+  "shasum": "8a5d019164ab212a72f7b277014385983cc8de85",
+  "nativeBridgeInputs": 57,
+  "allBridgeHashesMatchFrozenSource": true,
+  "examplesIncluded": false,
+  "gamesIncluded": false,
+  "vendorArchivesIncluded": false,
+  "initializerIncluded": false,
+  "installFromAuditedTarball": "passed",
+  "installedPackageContentAndIosAndroidResolutionTests": 3,
+  "peerDependenciesInstalledFrom": "https://registry.npmjs.org",
+  "nativeDeviceTestsRepeated": false
 }

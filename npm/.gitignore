@@ -1,3 +1,5 @@
 dist/
+bridge/
+provenance.json
 *.tgz
 node_modules/
