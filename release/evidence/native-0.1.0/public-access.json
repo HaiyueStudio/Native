@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-09-24T11:30:16.843026+00:00",
+  "repository": "HaiyueStudio/Native",
+  "visibility": "public",
+  "release": {
+    "id": 395603840,
+    "tag_name": "native-v0.1.0",
+    "name": "@haiyue/native 0.1.0",
+    "draft": false,
+    "prerelease": false,
+    "html_url": "https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0",
+    "target_commitish": "609d5669bee2a758e2beafffb87d01682232bb8f",
+    "published_at": "2026-09-24T11:29:01Z"
+  },
+  "latestReleaseMatches": true,
+  "publishedBodyMatchesPreparedNotes": true,
+  "anonymousChecks": [
+    {
+      "url": "https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0",
+      "httpStatus": 200,
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/releases/latest",
+      "httpStatus": 200,
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/native-v0.1.0/release/NOTES-native-0.1.0.md",
+      "httpStatus": 200,
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/native-v0.1.0/release/README.md",
+      "httpStatus": 200,
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/native-v0.1.0/games/ASSETS.md",
+      "httpStatus": 200,
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/native-v0.1.0/release/SIGNING.md",
+      "httpStatus": 200,
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/native-v0.1.0/release/evidence/native-0.1.0/README.md",
+      "httpStatus": 200,
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/native-v0.1.0/examples/sky-strike/evidence/shared-launch-ipad-20260924/README.md",
+      "httpStatus": 200,
+      "exitCode": 0
+    }
+  ],
+  "sourceVerification": {
+    "method": "Anonymous fetch of native-v0.1.0 in the previously independently cloned public repository, then checkout and candidate validation",
+    "authenticationUsed": false,
+    "credentialHelperAndGlobalConfigDisabled": true,
+    "reusedPublicGitObjects": true,
+    "commit": "609d5669bee2a758e2beafffb87d01682232bb8f",
+    "packageName": "@haiyue/native",
+    "version": "0.1.0",
+    "rootAndLockMetadata": "matched",
+    "frozenInputCount": 683,
+    "candidateAndDependencies": "passed",
+    "modelFreeRubiksCheck": "passed"
+  },
+  "distribution": "GitHub source release only; no npm package published."
+}
