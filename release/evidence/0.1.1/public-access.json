@@ -1,0 +1,126 @@
+{
+  "checkedAt": "2026-09-24T10:37:12.531941+00:00",
+  "repository": "HaiyueStudio/Native",
+  "visibility": "public",
+  "release": {
+    "id": 395560624,
+    "tag_name": "v0.1.1",
+    "name": "Native 0.1.1 · 独立源码版",
+    "draft": false,
+    "prerelease": false,
+    "html_url": "https://github.com/HaiyueStudio/Native/releases/tag/v0.1.1",
+    "target_commitish": "3b3bbaa7fbeab582e45efd1d1a991dee9f780c4b",
+    "published_at": "2026-09-24T10:21:06Z"
+  },
+  "publishedBodyMatchesPreparedNotes": true,
+  "remoteMainAndTagMatch": true,
+  "commit": "3b3bbaa7fbeab582e45efd1d1a991dee9f780c4b",
+  "anonymousChecks": [
+    {
+      "url": "https://github.com/HaiyueStudio/Native",
+      "httpStatus": 200,
+      "finalUrl": "https://github.com/HaiyueStudio/Native"
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/releases/tag/v0.1.1",
+      "httpStatus": 200,
+      "finalUrl": "https://github.com/HaiyueStudio/Native/releases/tag/v0.1.1"
+    },
+    {
+      "url": "https://api.github.com/repos/HaiyueStudio/Native",
+      "httpStatus": 403,
+      "finalUrl": "https://api.github.com/repos/HaiyueStudio/Native",
+      "rateLimitRemaining": "0",
+      "message": "GitHub API rate limit exceeded for this egress IP."
+    },
+    {
+      "url": "https://api.github.com/repos/HaiyueStudio/Native/releases/tags/v0.1.1",
+      "httpStatus": 403,
+      "finalUrl": "https://api.github.com/repos/HaiyueStudio/Native/releases/tags/v0.1.1",
+      "rateLimitRemaining": "0",
+      "message": "GitHub API rate limit exceeded for this egress IP."
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/archive/refs/tags/v0.1.1.zip",
+      "httpStatus": 200,
+      "finalUrl": "https://codeload.github.com/HaiyueStudio/Native/zip/refs/tags/v0.1.1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/HaiyueStudio/Native/v0.1.1/games/ASSETS.md",
+      "initialError": "URLError: <urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>",
+      "httpStatus": 0,
+      "retryExitCode": 35,
+      "error": "curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to raw.githubusercontent.com:443 \n"
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/README.md",
+      "httpStatus": 200,
+      "finalUrl": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/README.md"
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/games/ASSETS.md",
+      "httpStatus": 200,
+      "finalUrl": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/games/ASSETS.md"
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/SIGNING.md",
+      "httpStatus": 200,
+      "finalUrl": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/SIGNING.md"
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/evidence/0.1.1-rc.4/README.md",
+      "httpStatus": 200,
+      "finalUrl": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/evidence/0.1.1-rc.4/README.md"
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/evidence/0.1.1/README.md",
+      "httpStatus": 200,
+      "finalUrl": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/evidence/0.1.1/README.md"
+    },
+    {
+      "url": "https://github.com/HaiyueStudio/Native/blob/v0.1.1/release/NOTES-0.1.1.md",
+      "initialError": "URLError: <urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>",
+      "httpStatus": 200,
+      "retryExitCode": 0
+    }
+  ],
+  "conclusion": "Public repository, release page and all six linked documentation pages returned 200 anonymously. Source ZIP endpoint returned 200; its full transfer timed out. Independent anonymous clone verifies all 682 frozen inputs and dependencies, and expected model-free/missing-model behavior. Anonymous REST API was rate limited for this egress IP; raw.githubusercontent.com TLS failed from this environment, while the normal model documentation page returned 200.",
+  "sourceClone": {
+    "url": "https://github.com/HaiyueStudio/Native.git",
+    "tag": "v0.1.1",
+    "authenticationUsed": false,
+    "credentialHelperAndGlobalConfigDisabled": true,
+    "commit": "3b3bbaa7fbeab582e45efd1d1a991dee9f780c4b",
+    "frozenInputCount": 682,
+    "candidateAndDependencyVerification": "passed",
+    "candidateManifestMatchesTaggedRelease": true,
+    "freshDirectoryChecks": [
+      {
+        "command": "node --input-type=module -e import { verifyCandidate } from './scripts/release/common.mjs'; const c=verifyCandidate(); console.log(c.candidate, Object.keys(c.files).length)",
+        "exitCode": 0,
+        "expectedExitCode": 0,
+        "passed": true
+      },
+      {
+        "command": "npm run models:check -- --app rubiks-cube",
+        "exitCode": 0,
+        "expectedExitCode": 0,
+        "passed": true
+      },
+      {
+        "command": "npm run models:check -- --app neon-circuit",
+        "exitCode": 1,
+        "expectedExitCode": 1,
+        "passed": true
+      }
+    ],
+    "limitations": "No native rebuild or physical device acceptance was repeated during this access check."
+  },
+  "sourceArchive": {
+    "url": "https://github.com/HaiyueStudio/Native/archive/refs/tags/v0.1.1.zip",
+    "authenticationUsed": false,
+    "httpStatus": 200,
+    "fullDownloadCompleted": false,
+    "reason": "Network transfer timed out after 299 seconds and 37763521 bytes. Automatic retry stopped; full source verified via independent anonymous clone instead."
+  }
+}

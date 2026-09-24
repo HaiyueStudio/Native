@@ -4,6 +4,7 @@
 - 模型检查入口的五种情况通过：已有模型、无需模型的示例、缺失模型、错误应用名、错误哈希，见 model-cli.json。
 - 与 0.1.1-rc.4 相比仅有八个文档、根版本元数据和新增模型检查入口发生变化。运行代码、原生构建输入、游戏素材、模型哈希、npm 依赖和工具链保持一致，见 runtime-equivalence.json。
 - 沿用 [rc.4 的六个 iOS 与 Neon Android 全新目录构建证据](../0.1.1-rc.4/README.md)，不声称重新编译全部原生 App 或重新执行真机交互。
-- 仓库当前为 private；匿名仓库首页和 API 返回 404。历史包含私有应用文件，不能将当前源码不含这些文件等同于整个 Git 历史可公开。外部访问记录见 external-access.json。
+- 发布前仓库为 private；匿名仓库首页和 API 返回 404，原始记录保留在 [external-access.json](external-access.json)。随后维护者明确同意公开现有仓库及全部旧历史，仓库现已公开。
+- 正式发布页、源码下载和使用文档的匿名访问结果见 [public-access.json](public-access.json)。该记录在发布后追加，`v0.1.1` 标签和冻结输入保持不变；请从 `main` 查看最新访问证据。匿名 REST API 若返回 403，记录中区分 GitHub 出口 IP 限流与仓库权限问题。
 
 正式源码版本 0.1.1，应用版本仍为 0.1.0。模型不随源码分发；操作路径见 [模型指南](../../../games/ASSETS.md)。
