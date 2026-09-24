@@ -1,0 +1,9 @@
+{
+  "name": "@haiyue/native",
+  "version": "0.1.0",
+  "sourceTag": "native-v0.1.0",
+  "sourceCommit": "609d5669bee2a758e2beafffb87d01682232bb8f",
+  "frozenInputCount": 683,
+  "archiveSha256": "20d238e21df23b9180256ecf74380208f4afb19c36d39afe4896025a6aa5f735",
+  "manifestSha256": "f4fa432c6140b7d49ad05b49dceabf36dc3477c24242e628f3e41d814ef5e8a9"
+}

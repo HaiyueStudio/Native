@@ -1,0 +1,70 @@
+{
+  "name": "@haiyue/native",
+  "version": "0.1.0",
+  "npmTarball": {
+    "filename": "haiyue-native-0.1.0.tgz",
+    "size": 201649238,
+    "integrity": "sha512-T5twQ570vCRl7mApz5jljnXl6AGZIwE1H0Abl2AorFuqKmDzz0jYrqxsOE403ZF8ZUrFGh1QbQZI8QJ4WY3UPQ==",
+    "shasum": "8c1e377fe0b428eb2f898cdae2715fbabbbd9ead"
+  },
+  "outerPackageFiles": [
+    "LICENSE",
+    "README.md",
+    "bin/haiyue-native.mjs",
+    "dist/source.json",
+    "dist/source.tar.gz",
+    "package.json"
+  ],
+  "frozenSourceFiles": 684,
+  "allSourceHashesMatch": true,
+  "installFromLocalTarball": "passed",
+  "installedCliChecks": [
+    {
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "args": [
+        "--help"
+      ],
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "args": [
+        "bad-command"
+      ],
+      "exitCode": 1,
+      "passed": true
+    },
+    {
+      "args": [
+        "init",
+        "/private/tmp/haiyue-npm-smoke-s_x061i8/existing"
+      ],
+      "exitCode": 1,
+      "passed": true
+    },
+    {
+      "args": [
+        "init",
+        "/private/tmp/haiyue-npm-smoke-s_x061i8/corrupt-source"
+      ],
+      "exitCode": 1,
+      "passed": true
+    },
+    {
+      "args": [
+        "init",
+        "/private/tmp/haiyue-npm-smoke-s_x061i8/new-project"
+      ],
+      "exitCode": 0,
+      "passed": true
+    }
+  ],
+  "modelFreeAndMissingModelBehavior": "passed",
+  "nativeBuildRepeated": false
+}
