@@ -10,7 +10,10 @@
     "run:ios": "node scripts/ios.mjs run ios",
     "bundle:ios": "node scripts/ios.mjs prepare ios",
     "test": "node --test test/*.test.mjs",
-    "build:device": "node scripts/build-device.mjs"
+    "build:device": "node scripts/build-device.mjs",
+    "build:android": "node scripts/android.mjs build android",
+    "run:android": "node scripts/android.mjs run android",
+    "bundle:android": "node scripts/android.mjs prepare android"
   },
   "dependencies": {
     "@haiyue/engine": "file:vendor/haiyue-engine-0.1.0.tgz",
@@ -19,7 +22,8 @@
     "@nativescript/font-manager": "1.0.14",
     "core-js-pure": "3.50.0",
     "wgpu-matrix": "3.4.2",
-    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.1.0.tgz"
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.1.0.tgz",
+    "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-0.1.0.tgz"
   },
   "devDependencies": {
     "@nativescript/ios": "9.0.3",
@@ -27,7 +31,8 @@
     "@nativescript/webpack": "5.0.38",
     "@webgpu/types": "0.1.64",
     "nativescript": "9.1.1",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "@nativescript/android": "9.0.3"
   },
   "engines": {
     "node": ">=22"

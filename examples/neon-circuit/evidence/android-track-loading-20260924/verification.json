@@ -1,0 +1,609 @@
+{
+  "status": "passed",
+  "checks": [
+    "landscape Vulkan rendering",
+    "all fourteen sound resources available",
+    "native GUI opens settings",
+    "GUI selects Android gyroscope",
+    "race starts",
+    "PBR hovercraft loaded",
+    "real Android sensor samples reach steering",
+    "finite tilt angles and normalized gravity",
+    "display rotation maps landscape sensor axes",
+    "suspend unregisters sensors and clears samples",
+    "resume obtains fresh sensor samples",
+    "independent joystick and throttle touches move vehicle",
+    "engine sound channel gain updates without Android errors",
+    "light collision calls Android vibration",
+    "medium collision calls Android vibration",
+    "heavy collision calls Android vibration",
+    "no audio backend error",
+    "neon-city starts after switching tracks",
+    "neon-city clears native loading status without periodic diagnostics",
+    "neon-city keeps rendering with loading status hidden",
+    "sky-harbor starts after switching tracks",
+    "sky-harbor clears native loading status without periodic diagnostics",
+    "sky-harbor keeps rendering with loading status hidden"
+  ],
+  "sensorEvidence": {
+    "timestampMs": 329955413.949546,
+    "deltaMs": 16.564999998081475,
+    "sensorDeltaMs": 16.666979994624853,
+    "angles": {
+      "pitch": -0.9457226357666945,
+      "roll": -4.008226980806042,
+      "yaw": 0.06684396507060288
+    },
+    "radians": {
+      "pitch": -0.016505973804767905,
+      "roll": -0.069956757982337,
+      "yaw": 0.001166647275570104
+    },
+    "quaternion": {
+      "x": -0.008268242531846569,
+      "y": -0.034965238746154925,
+      "z": 0.00029433302674488146,
+      "w": 0.9993542823308099
+    },
+    "rotationRate": {
+      "x": 0.0032374027650803328,
+      "y": -0.0004910199786536396,
+      "z": 0.005942173767834902
+    },
+    "gravity": {
+      "x": -0.06988045491367764,
+      "y": 0.01654639001220324,
+      "z": -0.9974181364897179
+    },
+    "userAcceleration": {
+      "x": 0.0014467577876027954,
+      "y": -0.001924374724145729,
+      "z": 0.020743668991926034
+    },
+    "screenRotation": 90,
+    "tilt": {
+      "right": -0.948081578673028,
+      "forward": -4.007120974978045,
+      "total": 4.118108218089313
+    }
+  },
+  "nativeStatus": {
+    "text": "",
+    "visibility": "collapse"
+  },
+  "driving": {
+    "mode": "joystick",
+    "axis": 0,
+    "joystick": {
+      "active": false,
+      "pointerId": null,
+      "center": {
+        "x": 98,
+        "y": 244
+      },
+      "direction": {
+        "x": 0,
+        "y": 0
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "rawDistance": 0,
+      "distance": 0,
+      "strength": 0,
+      "angle": 0
+    },
+    "gyroAvailable": true,
+    "gyroActive": false,
+    "sensorSamples": 102,
+    "sample": null,
+    "rotation": 90
+  },
+  "game": {
+    "raceMode": "time-trial",
+    "difficulty": "normal",
+    "winner": null,
+    "opponent": null,
+    "opponentModel": "skipped",
+    "cameraMode": "chase",
+    "fireballs": [],
+    "phase": "racing",
+    "lap": 1,
+    "speed": 0,
+    "elapsed": 2.2499999999999947,
+    "progress": 0,
+    "lateral": 0,
+    "boostRemaining": 0,
+    "wallHits": 0,
+    "health": 100,
+    "headingOffset": 0,
+    "impact": 0,
+    "trackId": "sky-harbor",
+    "buildingCount": 194,
+    "exhaustLength": 1.35,
+    "fov": 1.0471975511965976,
+    "reverseZ": true,
+    "depthFormat": "depth32float",
+    "coaster": null,
+    "cameraPhi": 1.1800830627234278,
+    "theme": "harbor",
+    "space": null,
+    "rainbowTime": null,
+    "particles": {
+      "smoke": 0,
+      "sparks": 0
+    }
+  },
+  "audio": {
+    "played": {
+      "click": 6,
+      "count-3": 3,
+      "count-2": 3,
+      "count-1": 3,
+      "go": 3,
+      "music": 3,
+      "engine-low": 1,
+      "engine-high": 1,
+      "rail": 3,
+      "course": 2
+    },
+    "musicPlaying": true,
+    "engineLevel": 0,
+    "loops": 0,
+    "pending": 0,
+    "backend": {
+      "kind": "android-sound-pool",
+      "error": null,
+      "running": true,
+      "buffers": 14,
+      "pcmBytes": 714420,
+      "voices": 1,
+      "nodeCount": 9,
+      "loopChannels": [
+        "music"
+      ],
+      "played": 28,
+      "volume": 0.40800000000000003,
+      "disposed": false
+    }
+  },
+  "haptics": {
+    "active": true,
+    "impactsRequested": 3,
+    "lastKind": "heavy"
+  },
+  "gui": {
+    "carouselCardSize": {
+      "cardWidth": 183.065,
+      "cardHeight": 223.25,
+      "spacing": 142.79070000000002,
+      "focal": 549.1949999999999
+    },
+    "carouselZoom": 1.5,
+    "arrowStyle": "translucent-glow",
+    "homeActions": {
+      "solo": {
+        "text": "单人计时",
+        "x": 539.3333333333333,
+        "y": 187,
+        "width": 202.66666666666666,
+        "height": 39.266666666666666
+      },
+      "duel": {
+        "text": "人机竞速",
+        "x": 539.3333333333333,
+        "y": 232.6,
+        "width": 133,
+        "height": 39.266666666666666
+      },
+      "difficulty": {
+        "text": "普通 ↻",
+        "x": 676.1333333333333,
+        "y": 232.6,
+        "width": 65.86666666666666,
+        "height": 39.266666666666666
+      }
+    },
+    "raceMode": "time-trial",
+    "difficulty": "normal",
+    "resultTitle": "赛车损毁",
+    "language": "zh",
+    "title": "极速新星",
+    "courseName": "云端港湾",
+    "settingsVisible": false,
+    "settingsBackdrop": "#020617a6",
+    "settingsBounds": {
+      "x": 90,
+      "y": 10,
+      "width": 620,
+      "height": 316
+    },
+    "renderer": "engine-gui",
+    "homeVisible": false,
+    "selected": "sky-harbor",
+    "routeCount": 7,
+    "carouselPosition": 0,
+    "carouselTarget": 0,
+    "carouselBounds": {
+      "x": 58,
+      "y": 54,
+      "width": 468.66666666666663,
+      "height": 237.5
+    },
+    "recordStamp": {
+      "visible": false,
+      "age": 0
+    },
+    "cameraMode": "chase",
+    "windshield": {
+      "revision": 0,
+      "health": 100,
+      "clusters": [],
+      "stage": 0,
+      "visible": false
+    },
+    "wheel": {
+      "bounds": {
+        "x": 24,
+        "y": 170,
+        "width": 148,
+        "height": 148
+      },
+      "active": false,
+      "x": 98,
+      "y": 244,
+      "angle": 0,
+      "opacity": 0.36,
+      "visible": true
+    },
+    "pedalPress": {
+      "s": 0,
+      "w": 0
+    },
+    "modalBackdrop": "#00000000",
+    "announcementSkin": {
+      "text": "",
+      "visible": false,
+      "background": "#00000000"
+    },
+    "skinnedButtonsTransparent": true,
+    "modalVisible": false,
+    "activeButtons": [
+      "pause"
+    ],
+    "courseBounds": {
+      "x": 300,
+      "y": 0,
+      "width": 200,
+      "height": 30
+    },
+    "timingBounds": {
+      "x": 141.984,
+      "y": 31.448000000000004,
+      "width": 139.20000000000002,
+      "height": 55.68000000000001
+    },
+    "dialBounds": {
+      "x": 0,
+      "y": 5,
+      "width": 139.20000000000002,
+      "height": 139.20000000000002
+    },
+    "minimap": {
+      "opponentStyle": "magenta-ring",
+      "opponent": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mode": "spatial-curve",
+      "basis": {
+        "right": [
+          0.00020422295370233634,
+          0.03939937469823101,
+          0.9992235223243965
+        ],
+        "up": [
+          0.8659797922365688,
+          0.4996837042995513,
+          -0.019879514446484704
+        ],
+        "depth": [
+          -0.5000789514967957,
+          0.8653114381135317,
+          -0.034017015433415836
+        ]
+      },
+      "marker": {
+        "x": 0.20984375564003516,
+        "y": 0.5007035454251388,
+        "depth": -0.0012433111907685136
+      },
+      "projection": {
+        "center": [
+          0.7912082408779497,
+          541.5936119092323,
+          -135.02837157795693
+        ],
+        "scale": 0.00005909813279177496
+      },
+      "segments": 936,
+      "visible": true,
+      "bounds": {
+        "x": 631.2896,
+        "y": 11.971200000000003,
+        "width": 112.47360000000002,
+        "height": 112.47360000000002
+      },
+      "frameBounds": {
+        "x": 614.4,
+        "y": 0,
+        "width": 185.60000000000002,
+        "height": 139.20000000000002
+      },
+      "trackId": "sky-harbor"
+    },
+    "instrumentsBounds": {
+      "x": 0,
+      "y": 5,
+      "width": 296.71152502910365,
+      "height": 148.35576251455183
+    },
+    "timingRows": 2,
+    "lapReadout": {
+      "text": "圈数 1 / 3",
+      "bounds": {
+        "x": 659.5008,
+        "y": 119.71200000000002,
+        "width": 56.05120000000001,
+        "height": 13.920000000000002
+      }
+    },
+    "instrumentsVisible": true,
+    "displaySpeed": "000",
+    "health": 100,
+    "healthColor": [
+      0.32,
+      0.95,
+      0.6,
+      1
+    ],
+    "countdownVisible": false,
+    "announcement": "",
+    "touchVisible": true,
+    "bounds": [
+      {
+        "x": 200.80083333333332,
+        "y": 61.125,
+        "width": 183.06499999999997,
+        "height": 223.25
+      },
+      {
+        "x": 353.3198440211892,
+        "y": 82.61334733544597,
+        "width": 104.43873516498667,
+        "height": 199.3610670698372
+      },
+      {
+        "x": 490.521863006899,
+        "y": 102.0046748143693,
+        "width": 2.3691635581444075,
+        "height": 175.00159388024434
+      },
+      {
+        "x": 514.6121543280649,
+        "y": 119.36147829267625,
+        "width": 12.05451233860174,
+        "height": 149.8065982235353
+      },
+      {
+        "x": 58,
+        "y": 119.36147829267625,
+        "width": 12.054512338601768,
+        "height": 149.8065982235353
+      },
+      {
+        "x": 91.7756401016232,
+        "y": 102.0046748143693,
+        "width": 2.3691635581444075,
+        "height": 175.00159388024434
+      },
+      {
+        "x": 126.90808748049074,
+        "y": 82.61334733544597,
+        "width": 104.43873516498667,
+        "height": 199.3610670698372
+      }
+    ],
+    "start": {
+      "x": 539.3333333333333,
+      "y": 187,
+      "width": 202.66666666666666,
+      "height": 39.266666666666666
+    },
+    "buttons": {
+      "track-sky-harbor": {
+        "x": 200.80083333333332,
+        "y": 61.125,
+        "width": 183.06499999999997,
+        "height": 223.25
+      },
+      "track-neon-city": {
+        "x": 353.3198440211892,
+        "y": 82.61334733544597,
+        "width": 104.43873516498667,
+        "height": 199.3610670698372
+      },
+      "track-reactor-run": {
+        "x": 490.521863006899,
+        "y": 102.0046748143693,
+        "width": 2.3691635581444075,
+        "height": 175.00159388024434
+      },
+      "track-rainbow-road": {
+        "x": 514.6121543280649,
+        "y": 119.36147829267625,
+        "width": 12.05451233860174,
+        "height": 149.8065982235353
+      },
+      "track-sky-coaster": {
+        "x": 58,
+        "y": 119.36147829267625,
+        "width": 12.054512338601768,
+        "height": 149.8065982235353
+      },
+      "track-ashfall": {
+        "x": 91.7756401016232,
+        "y": 102.0046748143693,
+        "width": 2.3691635581444075,
+        "height": 175.00159388024434
+      },
+      "track-mobius-ring": {
+        "x": 126.90808748049074,
+        "y": 82.61334733544597,
+        "width": 104.43873516498667,
+        "height": 199.3610670698372
+      },
+      "previous-course": {
+        "x": 62,
+        "y": 134.75,
+        "width": 56,
+        "height": 76
+      },
+      "next-course": {
+        "x": 466.66666666666663,
+        "y": 134.75,
+        "width": 56,
+        "height": 76
+      },
+      "start-race": {
+        "x": 539.3333333333333,
+        "y": 187,
+        "width": 202.66666666666666,
+        "height": 39.266666666666666
+      },
+      "start-duel": {
+        "x": 539.3333333333333,
+        "y": 232.6,
+        "width": 133,
+        "height": 39.266666666666666
+      },
+      "cycle-difficulty": {
+        "x": 676.1333333333333,
+        "y": 232.6,
+        "width": 65.86666666666666,
+        "height": 39.266666666666666
+      },
+      "pause": {
+        "x": 749.232,
+        "y": 2.777600000000003,
+        "width": 44,
+        "height": 44
+      },
+      "control-a": {
+        "x": 16,
+        "y": 258,
+        "width": 72,
+        "height": 58
+      },
+      "control-d": {
+        "x": 98,
+        "y": 258,
+        "width": 72,
+        "height": 58
+      },
+      "control-s": {
+        "x": 630,
+        "y": 258,
+        "width": 72,
+        "height": 58
+      },
+      "control-w": {
+        "x": 712,
+        "y": 258,
+        "width": 72,
+        "height": 58
+      },
+      "resume": {
+        "x": 212.8,
+        "y": 155.84,
+        "width": 374.4,
+        "height": 50
+      },
+      "restart": {
+        "x": 212.8,
+        "y": 155.84,
+        "width": 374.4,
+        "height": 50
+      },
+      "home-button": {
+        "x": 212.8,
+        "y": 219.68,
+        "width": 374.4,
+        "height": 50
+      },
+      "settings": {
+        "x": 748,
+        "y": 6,
+        "width": 46,
+        "height": 46
+      },
+      "language-zh": {
+        "x": 145.8,
+        "y": 95.32000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "language-en": {
+        "x": 319.4,
+        "y": 95.32000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "language-ja": {
+        "x": 493,
+        "y": 95.32000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "camera-chase": {
+        "x": 145.8,
+        "y": 209.08,
+        "width": 248,
+        "height": 36
+      },
+      "camera-first-person": {
+        "x": 406.2,
+        "y": 209.08,
+        "width": 248,
+        "height": 36
+      },
+      "settings-done": {
+        "x": 263.6,
+        "y": 265.96000000000004,
+        "width": 272.8,
+        "height": 36
+      },
+      "steering-joystick": {
+        "x": 145.8,
+        "y": 152.20000000000002,
+        "width": 248,
+        "height": 36
+      },
+      "steering-gyro": {
+        "x": 406.2,
+        "y": 152.20000000000002,
+        "width": 248,
+        "height": 36
+      }
+    },
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "width": 800,
+      "height": 360
+    }
+  }
+}

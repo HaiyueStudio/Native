@@ -1,5 +1,6 @@
+import { readNativeBytes } from '../../../bridge/files/read-bytes';
 import { File, knownFolders, path } from '@nativescript/core';
-import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures.ios';
+import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures';
 import type { NeonRaster } from '../../../../Games/games/neon-circuit/NeonRaster';
 import type { Canvas } from '@nativescript/canvas';
 
@@ -40,9 +41,7 @@ export class NativeNeonRaster implements NeonRaster {
   async loadTexture(device: GPUDevice, name: string): Promise<GPUTexture> {
     const entry = this.entries[name];
     if (!entry) throw new Error(`Missing native texture ${name}`);
-    const data = NSData.dataWithContentsOfFile(path.join(this.directory, entry.file));
-    if (!data) throw new Error(`Cannot read native texture ${name}`);
-    const rgba = new Uint8Array(interop.bufferFromData(data));
+    const rgba = new Uint8Array(readNativeBytes(path.join(this.directory, entry.file)));
     if (rgba.byteLength !== entry.width * entry.height * 4) throw new Error(`Invalid RGBA length: ${name}`);
     const texture = device.createTexture({ label: name, size: [entry.width, entry.height], format: 'rgba8unorm', usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST });
     try { device.queue.writeTexture({ texture }, rgba, { bytesPerRow: entry.width * 4 }, [entry.width, entry.height]); return texture; }

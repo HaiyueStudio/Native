@@ -1,7 +1,7 @@
 export interface MotionVector { readonly x: number; readonly y: number; readonly z: number }
 export interface MotionAngles { readonly pitch: number; readonly roll: number; readonly yaw: number }
 export interface MotionQuaternion extends MotionVector { readonly w: number }
-/** Clockwise rotation of screen axes from the device's portrait axes. */
+/** Screen rotation from the device's reference axes (iOS portrait; Android natural orientation). */
 export type MotionScreenRotation = 0 | 90 | 180 | 270;
 export interface MotionReading {
   readonly timestamp: number;
@@ -35,7 +35,7 @@ export function validateScreenRotation(rotation: number): MotionScreenRotation {
   if (![0, 90, 180, 270].includes(rotation)) throw new RangeError('Motion screenRotation must be 0, 90, 180 or 270.');
   return rotation as MotionScreenRotation;
 }
-/** Copy native structs; snapshots never retain mutable Core Motion objects. */
+/** Copy native structs; snapshots never retain mutable native sensor objects. */
 export function createMotionSample(raw: MotionReading, deltaMs: number, sensorDeltaMs: number, rotation: MotionScreenRotation): NativeMotionSample {
   validateScreenRotation(rotation);
   const vector = (v: MotionVector) => Object.freeze({ x: v.x, y: v.y, z: v.z });

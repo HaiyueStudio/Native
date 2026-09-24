@@ -1,10 +1,10 @@
-# 设备姿态与陀螺仪（iOS）
+# 设备姿态与陀螺仪（iOS / Android）
 
-`NativeDeviceMotion` 使用 Core Motion 的融合设备姿态，提供前后/左右倾斜、pitch/roll/yaw、四元数、三轴角速度及加速度。目前实现 iOS；不向 Engine 引入 NativeScript 或 Core Motion 依赖。
+`NativeDeviceMotion` 使用 Core Motion 的融合设备姿态，提供前后/左右倾斜、pitch/roll/yaw、四元数、三轴角速度及加速度。iOS 使用 Core Motion，Android 使用 SensorManager 的游戏旋转向量（缺失时回退旋转向量）、陀螺仪和加速度计。不向 Engine 引入平台依赖。
 
 ## 接入
 
-App 的 `Info.plist` 添加：
+iOS App 的 `Info.plist` 添加：
 
 ```xml
 <key>NSMotionUsageDescription</key>
@@ -14,7 +14,7 @@ App 的 `Info.plist` 添加：
 在 App 内创建一个控制器，接入现有 Engine 更新循环：
 
 ```ts
-import { NativeDeviceMotion } from '../../../bridge/motion/device-motion.ios';
+import { NativeDeviceMotion } from '../../../bridge/motion/device-motion';
 
 const motion = new NativeDeviceMotion({ updateIntervalMs: 1000 / 60 });
 const unsubscribe = motion.onUpdate(sample => {
@@ -76,3 +76,15 @@ motion.dispose();
 已完成的真机结果和验证边界见 [evidence/verification.md](./evidence/verification.md)。
 
 依据：[Apple CMMotionManager](https://developer.apple.com/documentation/coremotion/cmmotionmanager)、[设备姿态参考系](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe)、[Core Motion 用途声明](https://developer.apple.com/documentation/coremotion)。
+
+## Android
+
+使用无后缀的 `bridge/motion/device-motion` 导入；NativeScript 自动选择平台实现。最低 API 26，无需运行时权限。采样间隔下限 5 ms（最高请求 200 Hz），无需高频传感器权限。硬件缺失时 `available/start()` 返回 false，游戏应回退虚拟摇杆。
+
+Android 的设备坐标以自然屏幕方向为基准（部分平板是横屏），`screenRotation` 传入 `Display.getRotation() * 90`。融合四元数、重力和角速度都保持设备坐标；只有 `tilt` 映射到屏幕方向。重力朝下、单位 g，角速度 rad/s，角度 °；yaw 是相对参考方向，不保证磁北，也允许缓慢漂移。
+
+后台停止全部传感器并清空样本；恢复只接收恢复时间之后的新数据。传感器回调只复制数据，`onUpdate` 仍由游戏帧中的 `update(deltaMs)` 同步触发。`setUpdateInterval()` 会重新注册传感器。
+
+验证：`cd examples/neon-circuit && npm test` 包含 Android 数学、生命周期及震动测试；iOS 原有测试仍位于 `examples/ak47-range/test/device-motion.test.mjs`。
+
+Android 官方参考：[运动传感器与坐标系](https://developer.android.com/develop/sensors-and-location/sensors/sensors_motion)、[游戏旋转向量](https://developer.android.com/develop/sensors-and-location/sensors/sensors_position)。

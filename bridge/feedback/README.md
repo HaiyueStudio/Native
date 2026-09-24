@@ -1,11 +1,11 @@
-# iOS 触觉反馈
+# 原生震动（iOS / Android）
 
-`NativeHaptics` 封装 UIKit `UIImpactFeedbackGenerator`，提供 `impact('light' | 'medium' | 'heavy')`，可由各游戏的平台回调复用。无需额外插件。
+通过无平台后缀的 `bridge/feedback/haptics` 导入 `NativeHaptics`。页面就绪时 `resume()`，前后台调用 `suspend()/resume()`，退出调用 `dispose()`。用 `impact('light' | 'medium' | 'heavy')` 请求轻、中、重反馈；250 ms 内重复或更弱请求被合并，更强请求可立即覆盖。
 
-宿主主线程在准备场景或恢复时调用 `resume()`，切后台调用 `suspend()`，释放场景调用 `dispose()`。只在前台触发；250 ms 内同类反馈合并，更强的反馈可以覆盖紧邻的较轻反馈。没有延迟定时器，也不会恢复播放后台积压的震动。
+iOS 使用 UIImpactFeedbackGenerator。Android Manifest 需要 `<uses-permission android:name="android.permission.VIBRATE" />`（普通权限，不弹授权框）。API 26+ 使用 VibrationEffect；三档持续时间为 12/24/40 ms，支持幅度控制时分别为 55/120/210。无幅度控制时以持续时间区分，无振动器时静默跳过；实际触感取决于硬件。`suspend()` 取消尚在运行的震动。
 
-Sky Strike 用轻反馈表示玩家实际受伤或精英被击败、中反馈表示成功释放炸弹、重反馈表示玩家被击毁或整场 Boss 被击败；双子暂时倒地不触发 Boss 反馈。浏览器不注入该回调，游戏规则不依赖 UIKit。
+`snapshot()` 返回 active、impactsRequested、lastKind。计数表示已调用原生接口，不证明硬件实际产生了震动。
 
-官方 API：[UIImpactFeedbackGenerator](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator)。`impactsRequested` 仅记录原生 API 调用，实际触感受硬件及系统设置影响，需要真机手感验收。
+Sky Strike 用轻反馈表示玩家受伤或精英被击败、中反馈表示释放炸弹、重反馈表示玩家被击毁或整场 Boss 被击败；双子暂时倒地不触发 Boss 反馈。极速新星根据真实护栏碰撞的车速和入射角选择轻、中、重档。游戏规则不依赖原生反馈。
 
-极速新星复用该接口处理真实护栏碰撞：由包含车速和碰撞入射角的物理冲击强度选择轻 / 中 / 重档。`snapshot().lastKind` 记录最后实际调用的档位，用于真机验收。
+官方接口：[Apple UIImpactFeedbackGenerator](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator)、[Android VibrationEffect](https://developer.android.com/reference/android/os/VibrationEffect)。

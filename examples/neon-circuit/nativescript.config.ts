@@ -4,4 +4,5 @@ export default {
   appPath: 'src',
   appResourcesPath: 'App_Resources',
   ios: { discardUncaughtJsExceptions: false },
+  android: { id: 'org.haiyue.games.neoncircuit' },
 } as NativeScriptConfig;

@@ -9,6 +9,11 @@
     "extensions": {
       "file": "haiyue-extensions-0.1.0.tgz",
       "sha256": "62fb49e1a0ffe0dbaed447d5c8b1d47fa723fb624371d6096b0d6720cb343f97"
+    },
+    "animation-spec": {
+      "file": "haiyue-animation-spec-0.1.0.tgz",
+      "sha256": "435d2a29fc4983e2ead1f0a828cd0a323bcc6e800b5ed30eb086d482db350f5c",
+      "source": "Native/examples/sky-strike/vendor; pinned local peer dependency"
     }
   },
   "engineWorkingTreeDirty": true

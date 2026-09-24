@@ -1,19 +1,19 @@
-import type {NativeHaptics} from '../../../bridge/feedback/haptics.ios';
-import { File, knownFolders, path } from '@nativescript/core';
+import type {NativeHaptics} from '../../../bridge/feedback/haptics';
+import { File, knownFolders, path, isAndroid, type Label } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import type { HaiyueEngine } from '@haiyue/engine';
 import type { NeonCircuitGame } from '../../../../Games/games/neon-circuit/main';
 import { CIRCUITS, BOOST_MAX_SPEED, BOOST_ZONES, RAIL_LIMIT, circuitTrack, createInitialRaceState } from '../../../../Games/games/neon-circuit/RaceRules';
 import type { OrbitPointerTarget } from '../../../bridge/input/pointer-target';
-import { captureSurfaceFrame } from '../../../bridge/render/frame-capture.ios';
+import { captureSurfaceFrame } from '../../../bridge/render/frame-capture';
 import type { NativeDriving } from './driving';
 
 /** Opt-in fixture through the actual native pointer target and Metal surface. */
 export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => NeonCircuitGame, driving: NativeDriving, target: OrbitPointerTarget, canvas: Canvas,
   safeInsets: () => { top: number; left: number; right: number; bottom: number }, haptics:NativeHaptics): Promise<void> {
   // Synthetic test touches do not reset iOS's idle timer. Keep this bounded fixture awake.
-  const previousIdleTimer=UIApplication.sharedApplication.idleTimerDisabled;
-  UIApplication.sharedApplication.idleTimerDisabled=true;
+  const previousIdleTimer=isAndroid ? false : UIApplication.sharedApplication.idleTimerDisabled;
+  if(!isAndroid) UIApplication.sharedApplication.idleTimerDisabled=true;
   const checks: string[] = [], captures: unknown[] = [], states: unknown[] = [];
   const output = File.fromPath(path.join(knownFolders.documents().path, 'neon-circuit-verification.json'));
   const startedAt = new Date().toISOString();
@@ -43,8 +43,8 @@ export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => Neon
     record('running'); await until(() => getGame().modelStatus === 'loaded', 'bundled PBR hovercraft loaded'); await frames(5);
     const rect = target.getBoundingClientRect(), i = safeInsets();
     const audioBank=getGame().audioState.backend as {error:string|null;buffers:number;nodeCount:number};
-    check(audioBank.error===null && audioBank.buffers===14 && audioBank.nodeCount===12,'native audio preloads fourteen MIDI-derived effects including 30-second music into a bounded pool');
-    check(rect.width > rect.height, 'landscape native Metal surface');
+    check(audioBank.error===null && audioBank.buffers===14 && (isAndroid?audioBank.nodeCount>=8:audioBank.nodeCount===12),'native audio preloads fourteen MIDI-derived effects including 30-second music into a bounded pool');
+    check(rect.width > rect.height, 'landscape native WebGPU surface');
     check(getGame().snapshot().reverseZ && getGame().snapshot().depthFormat === 'depth32float', 'reverse Z and float depth enabled');
     check(getGame().guiView.snapshot.routeCount === 7, 'seven shared courses in native carousel');
     check(getGame().guiView.snapshot.language === 'zh' && getGame().guiView.snapshot.title === '极速新星', 'fresh settings default to Chinese and the new title');
@@ -259,5 +259,66 @@ export async function verifyNativeNeon(engine: HaiyueEngine, getGame: () => Neon
     await until(()=>getGame().snapshot().cameraMode==='chase' && getGame().modelStatus==='loaded','switching back restores the normal native ship');
     await engine.device.queue.onSubmittedWorkDone(); record('passed');
   } catch (error) { console.error('[neon-verify]', error); record('failed', { error: String(error) }); }
-  finally { UIApplication.sharedApplication.idleTimerDisabled=previousIdleTimer; engine.off('after-update', onCapture); target.cancel(); driving.cancel(); getGame()?.cancelInteraction(); }
+  finally { if(!isAndroid) UIApplication.sharedApplication.idleTimerDisabled=previousIdleTimer; engine.off('after-update', onCapture); target.cancel(); driving.cancel(); getGame()?.cancelInteraction(); }
+}
+
+/** Bounded Android integration check: real sensors/audio/haptics, shared GUI input, memory-only race saves. */
+export async function verifyAndroidNeon(engine: HaiyueEngine, getGame: () => NeonCircuitGame, driving: NativeDriving, target: OrbitPointerTarget, canvas: Canvas,
+  safeInsets: () => {top:number;left:number;right:number;bottom:number}, haptics: NativeHaptics): Promise<void> {
+  const checks: string[] = [], output = File.fromPath(path.join(knownFolders.documents().path, 'neon-android-verification.json'));
+  const nativeStatus = canvas.page.getViewById<Label>('status');
+  const originalMode = driving.snapshot().mode;
+  let sensorEvidence: ReturnType<NativeDriving['snapshot']>['sample'] = null;
+  const record = (status:string, extra={}) => output.writeTextSync(JSON.stringify({status,checks,sensorEvidence,nativeStatus:{text:nativeStatus.text,visibility:nativeStatus.visibility},driving:driving.snapshot(),game:getGame().snapshot(),audio:getGame().audioState,haptics:haptics.snapshot(),gui:getGame().guiView.snapshot,...extra},null,2));
+  const check = (ok:unknown, label:string) => {if(!ok)throw new Error(label);checks.push(label);record('running');};
+  const frame = () => new Promise<void>((resolve,reject)=>{
+    const callback=()=>{clearTimeout(timer);resolve();};
+    const timer=setTimeout(()=>{engine.off('after-update',callback);reject(new Error('No Android frame in 25 seconds'));},25000);
+    engine.once('after-update',callback);
+  });
+  const frames = async(n:number)=>{for(let i=0;i<n;i++)await frame();};
+  const until = async(predicate:()=>boolean,label:string)=>{const deadline=Date.now()+60000;while(!predicate()&&Date.now()<deadline)await frame();check(predicate(),label);};
+  const point=(id:string)=>{const r=getGame().guiView.buttonRect(id);return {x:r.x+r.width/2,y:r.y+r.height/2};};
+  const touch=(action:'down'|'move'|'up',id:number,p:{x:number;y:number})=>target.handle(action,[{id,...p}]);
+  const click=async(id:string)=>{const p=point(id);touch('down',9101,p);await frames(2);touch('up',9101,p);await frames(3);};
+  try {
+    record('running');await frames(4);
+    check(canvas.clientWidth>canvas.clientHeight,'landscape Vulkan rendering');
+    await until(()=> (getGame().audioState.backend as {buffers:number}).buffers===14,'all fourteen sound resources available');
+    await click('settings');check(getGame().guiView.snapshot.settingsVisible,'native GUI opens settings');
+    await click('steering-gyro');check(driving.snapshot().mode==='gyro','GUI selects Android gyroscope');await click('settings-done');
+    await click('start-race');await until(()=>getGame().snapshot().phase==='racing','race starts');
+    await until(()=>getGame().modelStatus==='loaded','PBR hovercraft loaded');
+    await until(()=>driving.snapshot().sensorSamples>=20,'real Android sensor samples reach steering');
+    const sample=driving.snapshot().sample; sensorEvidence=sample;
+    check(sample && Number.isFinite(sample.tilt.right) && Math.abs(Math.hypot(sample.gravity.x,sample.gravity.y,sample.gravity.z)-1)<.001,'finite tilt angles and normalized gravity');
+    check(driving.snapshot().rotation===90 || driving.snapshot().rotation===270,'display rotation maps landscape sensor axes');
+    driving.suspend();check(!driving.snapshot().gyroActive && driving.snapshot().sample===null,'suspend unregisters sensors and clears samples');
+    const before=driving.snapshot().sensorSamples;driving.resume();await until(()=>driving.snapshot().sensorSamples>before,'resume obtains fresh sensor samples');
+    driving.choose('joystick');await frames(2);
+    const rect=target.getBoundingClientRect(), inset=safeInsets(), center={x:inset.left+100,y:rect.height-inset.bottom-80}, pedal=point('control-w');
+    touch('down',9102,center);touch('move',9102,{x:center.x+30,y:center.y});touch('down',9103,pedal);await frames(20);
+    check(driving.axis<-.1 && getGame().snapshot().speed>0,'independent joystick and throttle touches move vehicle');
+    check(getGame().audioState.loops===2,'engine sound channel gain updates without Android errors');
+    touch('up',9102,center);touch('up',9103,pedal);await frames(3);
+    for(const [kind,speed,lateralSpeed,headingOffset] of [['light',180,40,.12],['medium',650,450,.55],['heavy',1350,1100,1]] as const){
+      getGame().setState({...createInitialRaceState(),distance:300});await frames(25);
+      const count=haptics.snapshot().impactsRequested;
+      getGame().setState({...createInitialRaceState(),distance:300,speed,lateral:RAIL_LIMIT,lateralSpeed,headingOffset});await frames(3);
+      check(haptics.snapshot().impactsRequested>count && haptics.snapshot().lastKind===kind,`${kind} collision calls Android vibration`);
+    }
+    check((getGame().audioState.backend as {error:string|null}).error===null,'no audio backend error');
+    // Exercise successful scene replacement with ordinary periodic diagnostics disabled.
+    for (const track of ['neon-city', 'sky-harbor']) {
+      const previous = getGame(); previous.showHome(); await frames(3);
+      previous.guiView.select(track); await frames(70); await click('start-race');
+      await until(() => getGame() !== previous && getGame().snapshot().trackId === track
+        && getGame().snapshot().phase === 'racing' && getGame().modelStatus === 'loaded', `${track} starts after switching tracks`);
+      check(nativeStatus.visibility === 'collapse' && nativeStatus.text === '', `${track} clears native loading status without periodic diagnostics`);
+      await frames(130);
+      check(nativeStatus.visibility === 'collapse', `${track} keeps rendering with loading status hidden`);
+    }
+    record('passed');
+  } catch(error) {record('failed',{error:String(error)});console.error('[neon-android-verify]',String(error));}
+  finally {target.cancel();driving.choose(originalMode);getGame().showHome();}
 }

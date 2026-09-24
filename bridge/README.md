@@ -9,7 +9,7 @@
 | [`branding/`](./branding/README.md) | Haiyue 通用启动页、横竖屏品牌布局、首帧淡出与初始化错误显示 | `NativeEngineLaunchPage` 或已有页面中的 `NativeEngineSplash` |
 | `render/` | Canvas GPU provider、surface、尺寸、格式检查、每帧呈现与错误诊断 | 通过 `HaiyueEngineOptions.gpu` 和对象 canvas 注入 |
 | `input/` | 原生触点身份、单指过滤、逻辑坐标、捕获和取消 | 驱动现有 `OrbitControl`，不重写球面旋转算法 |
-| [`motion/`](./motion/README.md) | iOS 陀螺仪融合姿态、各方向倾斜角、角速度与前后台采集管理 | 通过现有 Engine update 读取，提供新样本事件 |
+| [`motion/`](./motion/README.md) | iOS / Android 陀螺仪融合姿态、各方向倾斜角、角速度与前后台采集管理 | 通过现有 Engine update 读取，提供新样本事件 |
 | `lifecycle/` | 唯一帧调度器、前后台、重入保护、取消回调、释放 | 驱动 Engine `run/stop/destroy`；通过宿主 RAF/performance globals 接入现有 FrameLoop，无 Engine API 新增 |
 | `files/`、`storage/`、`settings/` | 后续能力，本 Demo 不加载 | 已有 `GameSaveBackend` 是存档边界 |
 

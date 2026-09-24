@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "checks": [
+    "landscape Vulkan rendering",
+    "all fourteen sound resources available",
+    "native GUI opens settings",
+    "GUI selects Android gyroscope",
+    "race starts",
+    "PBR hovercraft loaded",
+    "real Android sensor samples reach steering",
+    "finite tilt angles and normalized gravity",
+    "display rotation maps landscape sensor axes",
+    "suspend unregisters sensors and clears samples",
+    "resume obtains fresh sensor samples",
+    "independent joystick and throttle touches move vehicle",
+    "engine sound channel gain updates without Android errors",
+    "light collision calls Android vibration",
+    "medium collision calls Android vibration",
+    "heavy collision calls Android vibration",
+    "no audio backend error"
+  ],
+  "sensorEvidence": {
+    "timestampMs": 327430533.276551,
+    "deltaMs": 23.502000025473535,
+    "sensorDeltaMs": 50.00093701528385,
+    "angles": {
+      "pitch": 0.21344163975705324,
+      "roll": 0.5855123591564046,
+      "yaw": 90.00171847022757
+    },
+    "radians": {
+      "pitch": 0.003725259374616209,
+      "roll": 0.01021911847839883,
+      "yaw": 1.5708263197584653
+    },
+    "quaternion": {
+      "x": 0.004930076556893377,
+      "y": 0.0022958479364815,
+      "z": 0.7071001985029195,
+      "w": 0.7070924498992529
+    },
+    "rotationRate": {
+      "x": 0.0035037186462432146,
+      "y": 4.1611860069679096e-05,
+      "z": 0.004876910243183374
+    },
+    "gravity": {
+      "x": -0.0037253627400220977,
+      "y": -0.010218828884846397,
+      "z": -0.9999408468547915
+    },
+    "userAcceleration": {
+      "x": 0.00034110445639561147,
+      "y": -0.0025665458879842694,
+      "z": 0.022615485675751
+    },
+    "screenRotation": 90,
+    "tilt": {
+      "right": 0.5855059571605247,
+      "forward": -0.21344805587750532,
+      "total": 0.6232017895009695
+    }
+  },
+  "haptics": {
+    "active": true,
+    "impactsRequested": 3,
+    "lastKind": "heavy"
+  },
+  "date": "2026-09-24",
+  "device": "X4000 / Android 14 / Adreno 710",
+  "applicationId": "org.haiyue.games.neoncircuit",
+  "build": "Debug; NativeScript Android 9.0.3; target/compile SDK 36",
+  "apkSha256": "c4d4953839e351d563b66ddd004b94394e24ce1a5fd0fa1fe23d1fbea90bb840",
+  "automatedTests": {
+    "neonCircuit": 15,
+    "ak47IOSRegression": 12,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "limitations": [
+    "Physical vibration feel and real hand-tilt steering require user/device handling; automated checks confirm sensor data and native API calls."
+  ],
+  "systemLifecycle": "Android HOME and foreground return passed; same process, suspend/resume recorded; no fatal/JS error/OOM in scoped final process log",
+  "fullscreen": {
+    "viewWidthDp": 800,
+    "viewHeightDp": 360,
+    "originX": 0,
+    "originY": 0
+  }
+}

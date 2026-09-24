@@ -1,12 +1,8 @@
+import { readNativeBytes as bytes } from '../../../bridge/files/read-bytes';
 import { File, knownFolders, path } from '@nativescript/core';
 import { AssetManager, type AssetHandle, type TextureAssetOptions } from '@haiyue/engine/assets';
 import { loadGltfModel, type GltfAssetWorker, type LoadedGltfModel } from '@haiyue/extensions/gltf';
 interface TextureEntry { image: string; rgba: string; width: number; height: number }
-function bytes(file: string): ArrayBuffer {
-  const data = NSData.dataWithContentsOfFile(file);
-  if (!data) throw new Error(`Missing bundled model resource: ${file}`);
-  return interop.bufferFromData(data).slice(0);
-}
 /** The public loader/handle contract uploads bundled RGBA; no browser image APIs or network. */
 class BundledTextures extends AssetManager {
   constructor(private readonly gpu: GPUDevice, private readonly directory: string, private readonly entries: TextureEntry[]) { super(gpu); }
