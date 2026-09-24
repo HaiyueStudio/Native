@@ -1,0 +1,19 @@
+{
+  "from": "0.1.1-rc.4",
+  "to": "0.1.1",
+  "changedInputs": [
+    "Native/README.md",
+    "Native/games/ASSETS.md",
+    "Native/package-lock.json",
+    "Native/package.json",
+    "Native/release/NOTES-0.1.1.md",
+    "Native/release/README.md",
+    "Native/release/config.json",
+    "Native/scripts/assets/check-models.mjs"
+  ],
+  "runtimeAndNativeBuildInputsIdentical": true,
+  "dependenciesAndToolchainIdentical": true,
+  "sourceManifestSha256": "925b2bb57617bdfea78a78ce9762431c539a647457a2b0e4528c76340a4a2702",
+  "reusedEvidence": "../0.1.1-rc.4/README.md",
+  "qualification": "No repeat native build or device acceptance claimed. New model CLI and documentation validated separately."
+}

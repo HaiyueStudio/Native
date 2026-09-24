@@ -1,11 +1,11 @@
-import { verifyEnemies, stageEnemyPreview } from '../../../../Games/games/ak47-range/enemy-verification';
-import { verifyRadar } from '../../../../Games/games/ak47-range/radar-verification';
-import { verifyTwinStick } from '../../../../Games/games/ak47-range/twin-stick-verification';
+import { verifyEnemies, stageEnemyPreview } from '../../../games/ak47-range/enemy-verification';
+import { verifyRadar } from '../../../games/ak47-range/radar-verification';
+import { verifyTwinStick } from '../../../games/ak47-range/twin-stick-verification';
 import { File, knownFolders, path } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { captureSurfaceFrame } from '../../../bridge/render/frame-capture.ios';
 import type { OrbitPointerTarget } from '../../../bridge/input/pointer-target';
-import { type RangeGame } from '../../../../Games/games/ak47-range/RangeGame';
+import { type RangeGame } from '../../../games/ak47-range/RangeGame';
 /** Only runs with RANGE_VERIFY=1. Uses the same native pointer target as UITouch input. */
 export async function verifyNativeRange(game: RangeGame, target: OrbitPointerTarget, canvas: Canvas, feedback: () => { recoilPulses: number; hitPulses: number }): Promise<void> {
   const checks: string[] = [];

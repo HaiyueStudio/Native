@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "candidate": "0.1.0",
+  "candidate": "0.1.1",
   "appVersion": "0.1.0",
   "apps": {
     "ios-pbr-orbit": [
@@ -23,16 +23,6 @@
       "android"
     ]
   },
-  "gamesInputs": [
-    "LICENSE",
-    "games/arrayAccess.ts",
-    "games/save",
-    "games/spider-solitaire",
-    "games/sky-strike",
-    "games/rubiks-cube",
-    "games/ak47-range",
-    "games/neon-circuit"
-  ],
   "toolchain": {
     "node": "24.19.0",
     "npm": "11.17.0",
@@ -46,5 +36,15 @@
     "gradle": "8.14.3",
     "python": "3.12.14",
     "pillow": "12.3.0"
-  }
+  },
+  "gameInputs": [
+    "games/LICENSE",
+    "games/arrayAccess.ts",
+    "games/save",
+    "games/spider-solitaire",
+    "games/sky-strike",
+    "games/rubiks-cube",
+    "games/ak47-range",
+    "games/neon-circuit"
+  ]
 }

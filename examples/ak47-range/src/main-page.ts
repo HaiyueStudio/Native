@@ -13,7 +13,7 @@ import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures.ios
 import { NativeModels } from './models';
 import { OrbitPointerTarget } from '../../../bridge/input/pointer-target';
 import { nativeViewRect } from '../../../bridge/render/view-rect.ios';
-import { RangeGame } from '../../../../Games/games/ak47-range/RangeGame';
+import { RangeGame } from '../../../games/ak47-range/RangeGame';
 let host: NativeRenderHost | null = null;
 let game: RangeGame | null = null;
 let activeCanvas: Canvas | null = null;

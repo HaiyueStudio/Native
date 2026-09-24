@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-09-24",
+  "authenticatedRepositoryVisibility": "private",
+  "anonymousChecks": [
+    {
+      "url": "https://github.com/HaiyueStudio/Native",
+      "httpStatus": 404
+    },
+    {
+      "url": "https://api.github.com/repos/HaiyueStudio/Native",
+      "httpStatus": 404
+    },
+    {
+      "url": "https://api.github.com/repos/HaiyueStudio/Native/releases",
+      "httpStatus": 404
+    }
+  ],
+  "historyAudit": {
+    "privateApplicationPathCount": 1115,
+    "examples": [
+      "examples/calendar-puzzle/",
+      "examples/led-sudoku/",
+      "examples/boxbound/"
+    ],
+    "currentTreePrivateApplicationFiles": 0
+  },
+  "conclusion": "Authorized users can access the private repository; anonymous public access is blocked. Making the existing repository public would also expose private application history. Publication to a clean public repository requires a separate choice."
+}

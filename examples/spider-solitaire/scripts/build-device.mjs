@@ -8,7 +8,7 @@ const udid = process.env.IOS_DEVICE_UDID;
 const signingFile = path.join(app, 'App_Resources/iOS/signing.local.xcconfig');
 const team = process.env.IOS_TEAM_ID || (existsSync(signingFile)
   ? readFileSync(signingFile, 'utf8').match(/DEVELOPMENT_TEAM\s*=\s*([A-Z0-9]+)/)?.[1] : undefined);
-if (!udid || !team) throw new Error('Set IOS_DEVICE_UDID and IOS_TEAM_ID (or signing.local.xcconfig DEVELOPMENT_TEAM).');
+if (!team) throw new Error('Set IOS_TEAM_ID (or signing.local.xcconfig DEVELOPMENT_TEAM).');
 const env = { ...process.env,
   DEVELOPER_DIR: process.env.DEVELOPER_DIR || '/Applications/Xcode.app/Contents/Developer',
   BUNDLE_GEMFILE: path.join(app, 'Gemfile'), COCOAPODS_DISABLE_STATS: 'true',
@@ -24,7 +24,7 @@ mkdirSync(path.dirname(resolved), { recursive: true });
 copyFileSync(path.join(app, 'locks/Package.resolved'), resolved);
 run('bundle', ['exec', 'xcrun', 'xcodebuild',
   '-workspace', 'platforms/ios/spidersolitaire.xcworkspace', '-scheme', 'spidersolitaire',
-  '-configuration', 'Debug', '-sdk', 'iphoneos', '-destination', `id=${udid}`,
+  '-configuration', 'Debug', '-sdk', 'iphoneos', '-destination', udid ? `id=${udid}` : 'generic/platform=iOS',
   '-allowProvisioningUpdates', '-allowProvisioningDeviceRegistration',
   '-disableAutomaticPackageResolution',
   `DEVELOPMENT_TEAM=${team}`, 'SWIFT_ENABLE_EXPLICIT_MODULES=NO',

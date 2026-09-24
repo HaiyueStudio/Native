@@ -1,0 +1,16 @@
+{
+  "candidate": "0.1.1-rc.4",
+  "publicInputs": 680,
+  "copiedInputs": 297,
+  "copiedInputsByteIdentical": true,
+  "npmDependencyInventoryUnchangedFrom010": true,
+  "toolchainUnchangedFrom010": true,
+  "externalRepositoryInputs": 0,
+  "privateModelFilesExcluded": [
+    "neon-circuit/wraith-raider.glb",
+    "ak47-range/ren42.glb",
+    "ak47-range/qiang_ak47.glb"
+  ],
+  "manifestSha256": "9ab0ad9e72bba5d61cc369df25831c7e43d0af22189e8a6d903bb46f5c6a7619",
+  "scope": "Frozen public inputs only; no model bytes, model derivatives, app binaries or signing files."
+}

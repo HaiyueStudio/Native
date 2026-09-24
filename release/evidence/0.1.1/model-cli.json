@@ -1,0 +1,32 @@
+[
+  {
+    "case": "existing-models",
+    "exitCode": 0,
+    "passed": true,
+    "output": "\n> @haiyue/native-repository@0.1.1 models:check\n> node scripts/assets/check-models.mjs\n\nModel input directory: /Users/qingque/Desktop/HaiyueStudio/Native/local-assets\nRequired: /Users/qingque/Desktop/HaiyueStudio/Native/local-assets/neon-circuit/wraith-raider.glb\nRequired: /Users/qingque/Desktop/HaiyueStudio/Native/local-assets/ak47-range/ren42.glb\nRequired: /Users/qingque/Desktop/HaiyueStudio/Native/local-assets/ak47-range/qiang_ak47.glb\n[passed] neon-circuit: model hashes match\n[passed] ak47-range: model hashes match\n"
+  },
+  {
+    "case": "no-model-app",
+    "exitCode": 0,
+    "passed": true,
+    "output": "\n> @haiyue/native-repository@0.1.1 models:check\n> node scripts/assets/check-models.mjs --app rubiks-cube\n\nSelected apps require no external models.\n"
+  },
+  {
+    "case": "missing-model",
+    "exitCode": 1,
+    "passed": true,
+    "output": "\n> @haiyue/native-repository@0.1.1 models:check\n> node scripts/assets/check-models.mjs --app neon-circuit\n\nModel input directory: /var/folders/dk/w2v78rnj53578xh5l88280nw0000gn/T/native-model-check-_gg88t4a\nRequired: /var/folders/dk/w2v78rnj53578xh5l88280nw0000gn/T/native-model-check-_gg88t4a/neon-circuit/wraith-raider.glb\n[failed] neon-circuit: Missing user-provided model: /var/folders/dk/w2v78rnj53578xh5l88280nw0000gn/T/native-model-check-_gg88t4a/neon-circuit/wraith-raider.glb; see games/ASSETS.md\nNo model download is provided. See games/ASSETS.md for compatible inputs or model-free examples.\n"
+  },
+  {
+    "case": "unknown-app",
+    "exitCode": 1,
+    "passed": true,
+    "output": "\n> @haiyue/native-repository@0.1.1 models:check\n> node scripts/assets/check-models.mjs --app invalid\n\nUnknown app: invalid\n"
+  },
+  {
+    "case": "wrong-hash",
+    "exitCode": 1,
+    "passed": true,
+    "output": "\n> @haiyue/native-repository@0.1.1 models:check\n> node scripts/assets/check-models.mjs --app neon-circuit\n\nModel input directory: /var/folders/dk/w2v78rnj53578xh5l88280nw0000gn/T/native-model-check-_gg88t4a\nRequired: /var/folders/dk/w2v78rnj53578xh5l88280nw0000gn/T/native-model-check-_gg88t4a/neon-circuit/wraith-raider.glb\n[failed] neon-circuit: Model input differs: neon-circuit/wraith-raider.glb; review and freeze replacement assets before validation\nNo model download is provided. See games/ASSETS.md for compatible inputs or model-free examples.\n"
+  }
+]

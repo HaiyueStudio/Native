@@ -4,7 +4,7 @@ import type { Canvas } from '@nativescript/canvas';
 import type { HaiyueEngine } from '@haiyue/engine';
 import { VirtualJoystickControls } from '@haiyue/extensions/controls';
 import { NativeDeviceMotion, type MotionScreenRotation } from '../../../bridge/motion/device-motion';
-import type { NeonCircuitGame } from '../../../../Games/games/neon-circuit/main';
+import type { NeonCircuitGame } from '../../../games/neon-circuit/main';
 import { TiltSteering, type SteeringMode } from './steering';
 
 export class NativeDriving {

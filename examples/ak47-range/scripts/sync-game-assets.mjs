@@ -1,11 +1,15 @@
-import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, rmSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 export function syncGameAssets() {
-  for (const name of ['ren42', 'qiang_ak47']) {
-    const source = new URL(`../../../../Games/games/ak47-range/assets/${name}/`, import.meta.url);
-    if (!existsSync(new URL('model.gltf', source))) throw new Error(`Prepare Games AK47 assets first: ${name}`);
-    const target = new URL(`../src/game-assets/${name}/`, import.meta.url); mkdirSync(target, { recursive: true });
-    cpSync(source, target, { recursive: true, filter: path => !/\.(jpg|png)$/.test(path) });
-  }
+  const source = path.join(process.env.HAIYUE_MODEL_ASSETS || fileURLToPath(new URL('../../../local-assets/', import.meta.url)), 'ak47-range');
+  for (const name of ['ren42', 'qiang_ak47']) if (!existsSync(path.join(source, `${name}.glb`)))
+    throw new Error(`Missing user-provided model: ${path.join(source, `${name}.glb`)}. See games/ASSETS.md.`);
+  const target = new URL('../src/game-assets/', import.meta.url);
+  rmSync(target, { recursive: true, force: true });
+  execFileSync(process.env.PYTHON || 'python3', [fileURLToPath(new URL('../../../scripts/assets/prepare-ak47-assets.py', import.meta.url)),
+    '--source', source, '--output', fileURLToPath(target)], { stdio: 'inherit' });
 }
 export function verifyBundledAssets() {
   let count = 0;

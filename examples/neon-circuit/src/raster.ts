@@ -1,7 +1,7 @@
 import { readNativeBytes } from '../../../bridge/files/read-bytes';
 import { File, knownFolders, path } from '@nativescript/core';
 import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures';
-import type { NeonRaster } from '../../../../Games/games/neon-circuit/NeonRaster';
+import type { NeonRaster } from '../../../games/neon-circuit/NeonRaster';
 import type { Canvas } from '@nativescript/canvas';
 
 /** Predecoded, straight-alpha RGBA is bundled with the app and uploaded directly to Metal. */

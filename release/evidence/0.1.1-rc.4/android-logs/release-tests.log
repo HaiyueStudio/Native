@@ -1,0 +1,22 @@
+
+> @haiyue/native-repository@0.1.1-rc.4 test
+> node --test test/*.test.mjs
+
+✔ freeze includes shared source and tarballs, excludes generated/private/historical files (83.996593ms)
+✔ same version source/tarball changes and new untracked inputs invalidate candidate (137.16852ms)
+✔ full dependency inventory verifies tarball bytes and rejects floating or stale locks (43.253952ms)
+✔ transitive integrity and installed dependency versions are enforced (45.773836ms)
+✔ release gate stops after failure and records it without running subsequent stages (0.575892ms)
+✔ command failures and signals propagate while stdout/stderr remain reviewable (286.440029ms)
+✔ standalone checkout includes local games and rejects sibling repository imports (178.085537ms)
+✔ private model inputs are explicit, hashed and not required for unrelated apps (63.025691ms)
+✔ freezing rejects empty Ruby checksums that break frozen installation (63.554189ms)
+✔ Podfile lock ignores generated checkout comments but rejects code and dependency drift (78.186764ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1118.944406

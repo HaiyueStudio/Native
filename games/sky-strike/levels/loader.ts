@@ -1,0 +1,213 @@
+export interface FixedSpawnPosition {
+  readonly mode: 'fixed';
+  readonly x: number;
+}
+
+export interface RandomSpawnPosition {
+  readonly mode: 'random';
+  readonly minX: number;
+  readonly maxX: number;
+}
+
+export type SpawnPosition = FixedSpawnPosition | RandomSpawnPosition;
+
+export interface LevelSpawnGroup {
+  readonly atMs: number;
+  readonly quantumPair?: boolean;
+  readonly enemyId: string;
+  readonly position: SpawnPosition;
+  readonly count?: number;
+  readonly intervalMs?: number;
+}
+
+export interface LevelBackground {
+  readonly top: string;
+  readonly middle: string;
+  readonly bottom: string;
+  readonly nebula: string;
+}
+
+export interface AsteroidBelt { readonly startMs: number; readonly endMs: number; readonly intervalMs: number; readonly bossIntervalMs: number }
+
+export interface SkyStrikeLevel {
+  readonly id: string;
+  readonly number?: number;
+  readonly name: string;
+  readonly seed: number;
+  readonly bossId: string;
+  readonly background: LevelBackground;
+  readonly spawns: readonly LevelSpawnGroup[];
+  readonly asteroidBelt?: AsteroidBelt;
+}
+
+export interface CompiledLevelSpawn {
+  readonly atMs: number;
+  readonly quantumPair?: boolean;
+  readonly enemyId: string;
+  readonly position: SpawnPosition;
+}
+
+const LEVEL_PATHS = [
+  'levels/level-01.json',
+  'levels/level-02.json',
+  'levels/level-03.json',
+  'levels/level-04.json',
+  'levels/level-05.json',
+  'levels/level-06.json',
+  'levels/level-07.json',
+  'levels/level-08.json',
+  'levels/level-09.json',
+  'levels/level-10.json',
+  'levels/level-11.json',
+  'levels/level-12.json',
+] as const;
+
+export async function loadSkyStrikeLevels(readJson?: (path: string) => Promise<unknown>): Promise<readonly SkyStrikeLevel[]> {
+  return Promise.all(LEVEL_PATHS.map(async path => {
+    if (readJson) return parseLevel(await readJson(path), path);
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`[SKY_STRIKE_LEVEL_LOAD_FAILED] ${path}: HTTP ${response.status}.`);
+    return parseLevel(await response.json(), path);
+  }));
+}
+
+export function compileLevelTimeline(level: SkyStrikeLevel): CompiledLevelSpawn[] {
+  return level.spawns
+    .flatMap(group => Array.from({ length: group.count ?? 1 }, (_, index) => ({
+      atMs: group.atMs + index * (group.intervalMs ?? 0),
+      enemyId: group.enemyId,
+      ...(group.quantumPair ? {quantumPair:true} : {}),
+      position: group.position,
+    })))
+    .sort((a, b) => a.atMs - b.atMs);
+}
+
+export function resolveSpawnX(position: SpawnPosition, random: () => number): number {
+  if (position.mode === 'fixed') return position.x;
+  return position.minX + (position.maxX - position.minX) * random();
+}
+
+export function wrapLevelIndex(index: number, levelCount: number): number {
+  const count = Math.max(0, Math.floor(Number.isFinite(levelCount) ? levelCount : 0));
+  if (count === 0) return 0;
+  const safeIndex = Math.floor(Number.isFinite(index) ? index : 0);
+  return (safeIndex % count + count) % count;
+}
+
+export function mixHexColor(from: string, to: string, amount: number): string {
+  const progress = Math.max(0, Math.min(1, Number.isFinite(amount) ? amount : 0));
+  const fromValue = Number.parseInt(from.slice(1), 16);
+  const toValue = Number.parseInt(to.slice(1), 16);
+  const channel = (shift: number) => Math.round(
+    ((fromValue >> shift) & 0xff) * (1 - progress) + ((toValue >> shift) & 0xff) * progress,
+  );
+  return `#${[channel(16), channel(8), channel(0)]
+    .map(value => value.toString(16).padStart(2, '0'))
+    .join('')}`;
+}
+
+export function mixLevelBackground(
+  from: LevelBackground,
+  to: LevelBackground,
+  amount: number,
+): LevelBackground {
+  return {
+    top: mixHexColor(from.top, to.top, amount),
+    middle: mixHexColor(from.middle, to.middle, amount),
+    bottom: mixHexColor(from.bottom, to.bottom, amount),
+    nebula: mixHexColor(from.nebula, to.nebula, amount),
+  };
+}
+
+function parseLevel(value: unknown, path: string): SkyStrikeLevel {
+  if (!isRecord(value)
+    || typeof value.id !== 'string'
+    || (value.number !== undefined && (!Number.isInteger(value.number) || (value.number as number) < 1))
+    || typeof value.name !== 'string'
+    || !isFiniteNumber(value.seed)
+    || typeof value.bossId !== 'string'
+    || !isLevelBackground(value.background)
+    || !Array.isArray(value.spawns)) {
+    throw new Error(`[SKY_STRIKE_LEVEL_INVALID] ${path} has an invalid root object.`);
+  }
+  const belt = value.asteroidBelt;
+  if (belt !== undefined && (!isRecord(belt) || !isFiniteNumber(belt.startMs) || belt.startMs < 0
+    || !isFiniteNumber(belt.endMs) || belt.endMs <= belt.startMs
+    || !isFiniteNumber(belt.intervalMs) || belt.intervalMs < 250 || belt.intervalMs > 5000
+    || !isFiniteNumber(belt.bossIntervalMs) || belt.bossIntervalMs < 250 || belt.bossIntervalMs > 5000))
+    throw new Error(`[SKY_STRIKE_LEVEL_INVALID] ${path} has an invalid asteroid belt.`);
+  const spawns = value.spawns.map((spawn, index) => parseSpawn(spawn, `${path}#spawns[${index}]`));
+  if (!spawns.some(spawn => spawn.enemyId === value.bossId)) {
+    throw new Error(`[SKY_STRIKE_LEVEL_INVALID] ${path} must schedule boss "${value.bossId}".`);
+  }
+  return Object.freeze({
+    id: value.id,
+    ...(value.number !== undefined ? {number:value.number as number} : {}),
+    name: value.name,
+    seed: Math.floor(value.seed),
+    bossId: value.bossId,
+    background: Object.freeze({ ...value.background }),
+    spawns: Object.freeze(spawns),
+    ...(belt ? { asteroidBelt: Object.freeze({ ...belt }) as unknown as AsteroidBelt } : {}),
+  });
+}
+
+function parseSpawn(value: unknown, label: string): LevelSpawnGroup {
+  if (!isRecord(value)
+    || !isFiniteNumber(value.atMs)
+    || value.atMs < 0
+    || (value.quantumPair !== undefined && typeof value.quantumPair !== 'boolean')
+    || typeof value.enemyId !== 'string'
+    || !isSpawnPosition(value.position)) {
+    throw new Error(`[SKY_STRIKE_LEVEL_INVALID] ${label} is invalid.`);
+  }
+  const count = value.count === undefined ? 1 : value.count;
+  const intervalMs = value.intervalMs === undefined ? 0 : value.intervalMs;
+  if (!isFiniteNumber(count)
+    || !Number.isInteger(count)
+    || count < 1
+    || count > 32
+    || !isFiniteNumber(intervalMs)
+    || intervalMs < 0) {
+    throw new Error(`[SKY_STRIKE_LEVEL_INVALID] ${label} has an invalid count or interval.`);
+  }
+  return Object.freeze({
+    atMs: value.atMs,
+    enemyId: value.enemyId,
+    ...(value.quantumPair ? {quantumPair:true} : {}),
+    position: Object.freeze(value.position),
+    count,
+    intervalMs,
+  });
+}
+
+function isSpawnPosition(value: unknown): value is SpawnPosition {
+  if (!isRecord(value)) return false;
+  if (value.mode === 'fixed') return isFiniteNumber(value.x) && value.x >= 24 && value.x <= 456;
+  return value.mode === 'random'
+    && isFiniteNumber(value.minX)
+    && isFiniteNumber(value.maxX)
+    && value.minX >= 24
+    && value.maxX <= 456
+    && value.minX <= value.maxX;
+}
+
+function isLevelBackground(value: unknown): value is LevelBackground {
+  return isRecord(value)
+    && isHexColor(value.top)
+    && isHexColor(value.middle)
+    && isHexColor(value.bottom)
+    && isHexColor(value.nebula);
+}
+
+function isHexColor(value: unknown): value is string {
+  return typeof value === 'string' && /^#[\da-f]{6}$/i.test(value);
+}
+
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}

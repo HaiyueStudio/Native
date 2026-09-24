@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync, readFileSync, existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { root, manifestPath, readConfig, readJSON, hash, command, verifyCandidate, verifyInstalled } from './common.mjs';
+import { root, manifestPath, readConfig, readJSON, hash, command, verifyCandidate, verifyInstalled, verifyModelInputs, verifyPodsLock } from './common.mjs';
 import { runLogged, runStages } from './runner.mjs';
 
 const report = { schemaVersion: 1, startedAt: new Date().toISOString(), status: 'failed', stages: [], skipped: [] };
@@ -41,12 +41,13 @@ try {
     run(`${app}-tests`, 'npm', ['test'], cwd);
   }
   if (profile !== 'source') {
+    stage('model-inputs', () => { report.modelInputs = verifyModelInputs(apps); });
     stage('native-toolchain', () => {
       const check = (name, got, expected = config.toolchain[name]) => {
         report.toolchain[name] = got;
         if (got !== expected) throw new Error(`${name}: expected ${expected}, got ${got}`);
       };
-      if (apps.includes('neon-circuit')) {
+      if (apps.some(app => ['neon-circuit', 'ak47-range', 'sky-strike'].includes(app))) {
         const python = env.PYTHON || 'python3';
         const versions = command(python, ['-c', 'import platform,PIL; print(platform.python_version()); print(PIL.__version__)']).split('\n');
         check('python', versions[0]); check('pillow', versions[1]);
@@ -71,7 +72,7 @@ try {
         for (const relative of [`platforms/android-${config.toolchain.androidPlatform}/android.jar`, `build-tools/${config.toolchain.androidBuildTools}/aapt2`]) {
           if (!existsSync(path.join(sdk, relative))) throw new Error(`Missing Android SDK: ${relative}`);
         }
-        Object.assign(env, { JAVA_HOME: javaHome, ANDROID_HOME: sdk, ANDROID_SDK_ROOT: sdk, GRADLE_USER_HOME: path.join(tools, 'gradle') });
+        Object.assign(env, { JAVA_HOME: javaHome, ANDROID_HOME: sdk, ANDROID_SDK_ROOT: sdk, GRADLE_USER_HOME: env.GRADLE_USER_HOME || path.join(tools, 'gradle') });
         report.toolchain.androidPlatform = config.toolchain.androidPlatform;
         report.toolchain.androidBuildTools = config.toolchain.androidBuildTools;
       }
@@ -92,10 +93,7 @@ try {
           report.artifacts = [...(report.artifacts ?? []), { app, platform, file, sha256: hash(readFileSync(file)), kind: 'debug-apk' }];
         });
       } else {
-        stage(`${app}-pods-lock`, () => {
-          const actual = readFileSync(path.join(cwd, 'platforms/ios/Podfile.lock'), 'utf8');
-          if (actual !== readFileSync(path.join(cwd, 'locks/Podfile.lock'), 'utf8')) throw new Error('Resolved CocoaPods lock differs');
-        });
+        stage(`${app}-pods-lock`, () => verifyPodsLock(cwd));
         if (profile === 'build') stage(`${app}-swiftpm-lock`, () => {
           const workspace = readdirSync(path.join(cwd, 'platforms/ios')).find(name => name.endsWith('.xcworkspace'));
           const actual = readJSON(path.join(cwd, 'platforms/ios', workspace, 'xcshareddata/swiftpm/Package.resolved'));
@@ -106,6 +104,7 @@ try {
     }
   }
   stage('candidate-integrity-after-validation', () => verifyCandidate(config));
+  if (profile !== 'source') stage('model-inputs-after-validation', () => verifyModelInputs(apps));
   report.skipped.push('Device install/interaction, signing/export and store submission are not performed by this gate.');
   if (profile === 'source') report.skipped.push('Native bundle/build: request --profile bundle|build --platform ios|android.');
   if (profile === 'bundle') report.skipped.push('Native binary build: request --profile build.');

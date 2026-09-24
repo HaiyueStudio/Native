@@ -1,0 +1,33 @@
+{
+  "candidate": "0.1.1-rc.4",
+  "status": "passed",
+  "manifestSha256": "9ab0ad9e72bba5d61cc369df25831c7e43d0af22189e8a6d903bb46f5c6a7619",
+  "testCounts": {
+    "ak47-range-tests": 12,
+    "sky-strike-tests": 9,
+    "neon-circuit-tests": 18,
+    "rubiks-cube-tests": 4,
+    "release-tests": 10,
+    "spider-solitaire-tests": 7,
+    "ios-pbr-orbit-tests": 27
+  },
+  "totalTests": 87,
+  "iosApps": [
+    "ios-pbr-orbit",
+    "spider-solitaire",
+    "sky-strike",
+    "rubiks-cube",
+    "ak47-range",
+    "neon-circuit"
+  ],
+  "androidApps": [
+    "neon-circuit"
+  ],
+  "sourceCheckouts": {
+    "ios": "/private/tmp/haiyue-native-clean-final-ios/checkout",
+    "android": "/private/tmp/haiyue-native-clean-final-android/checkout"
+  },
+  "initialState": "Both directories newly exported from the same frozen public inputs; no sibling Games, node_modules, platforms, model derivatives or prior application build products. Raw models were supplied separately.",
+  "caches": "Existing npm download cache, installed frozen Ruby tools, CocoaPods/SwiftPM and SDK/module/Maven/Gradle caches may be reused; project-specific build directories were newly generated.",
+  "qualification": "Local frozen working-tree snapshot; not a remote tag clone, fresh OS setup, repeated physical-device acceptance or store submission."
+}

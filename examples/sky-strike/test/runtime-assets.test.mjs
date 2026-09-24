@@ -10,9 +10,13 @@ test('runtime staging includes all levels/pack and removes obsolete master PNGs'
  try {
   for(const folder of [new URL('assets/',source),new URL('levels/',source),target,stale])mkdirSync(folder,{recursive:true});
   mkdirSync(new URL('assets/audio/',source),{recursive:true});
-  for(const f of runtimeAssets)writeFileSync(new URL(f,source),'fixture');
+  for(const f of runtimeAssets.filter(f => !f.startsWith('assets/sprites.')))writeFileSync(new URL(f,source),'fixture');
   writeFileSync(new URL('assets/unused-master.png',source),'large art');writeFileSync(new URL('old.png',target),'stale');writeFileSync(new URL('old.png',stale),'stale');
-  syncGameAssets({source,target,staleTargets:[stale]});
+  syncGameAssets({source,target,staleTargets:[stale],packSprites:(input,output)=>{
+   assert.equal(input,source);assert.equal(output,target);
+   mkdirSync(new URL('assets/',output),{recursive:true});
+   for(const file of ['sprites.json','sprites.rgba'])writeFileSync(new URL('assets/'+file,output),'generated');
+  }});
   for(const f of runtimeAssets)assert.ok(existsSync(new URL(f,target)));
   assert.equal(existsSync(new URL('old.png',target)),false);assert.equal(existsSync(new URL('assets/unused-master.png',target)),false);assert.equal(existsSync(stale),false);
  } finally {rmSync(root,{recursive:true,force:true});}

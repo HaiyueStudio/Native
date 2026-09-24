@@ -1,7 +1,7 @@
 # Sky Strike — native iOS
 
 A separate portrait-only app (`org.haiyue.native.skystrike`, display name Sky Strike)
-using the shared Games Sky Strike rules, all eight levels and a predecoded RGBA sprite pack.
+using the bundled Sky Strike rules, all eight levels and a predecoded RGBA sprite pack.
 It does not replace Spider Solitaire or the native PBR milestone app.
 
 The browser and iOS app share one visible WebGPU canvas. Haiyue Extensions'
@@ -16,9 +16,9 @@ It respects safe areas and scales text to stay between the two gauges.
 Native Canvas 2D is used only once to build the Engine GUI's font atlas.
 
 The icon and mission-selection background use generated deep-purple space art.
-See `assets/image-generation.md` for prompts and provenance. The later generated button and pause-panel skins are documented in `Games/games/sky-strike/assets/gui-art.md` (studio-relative), with verification in `evidence/gui-skins/`. Sprite conversion is
-reproducible with `python3 Games/scripts/pack-sky-sprites.py` (Pillow required), run
-from the studio root after editing source PNGs. `assets/sprites.json` validates byte
+See `assets/image-generation.md` for prompts and provenance. The later generated button and pause-panel skins are documented in `games/sky-strike/assets/gui-art.md` (repository-relative), with verification in `evidence/gui-skins/`. Sprite conversion is
+reproducible with `python3 scripts/assets/pack-sky-sprites.py --output examples/sky-strike/src/game-assets/assets` (Pillow required), run
+from the Native root after editing source PNGs. `assets/sprites.json` validates byte
 ranges into `sprites.rgba`; both platforms upload those same pixels.
 
 The renderer intentionally consumes the public experimental indexed-sprite subpath;
@@ -31,7 +31,7 @@ No new Engine API or shader is introduced. The bridge supplies the standard
 Each of the eight missions has its own generated 512px starfield/nebula texture:
 navy, crimson, violet, amber, teal, emerald, red/blue and copper mineral dust. Independent 384px ice-planet
 and ringed-planet layers decorate selected missions. Exact built-in imagegen prompts
-and master PNG names are recorded in `Games/games/sky-strike/assets/space-art.md`.
+and master PNG names are recorded in `games/sky-strike/assets/space-art.md`.
 
 `spaceBackdrop.ts` composes far stars at 7 logical pixels/second, diffuse dust at
 19 px/s, planets at 11 px/s, and the existing faster foreground particles. Layers
@@ -69,7 +69,7 @@ Thrown/held rocks remain destructible. The shared grab interval scales continuou
 from 2,500 ms at full HP toward 650 ms near zero; multiple arms can work at once.
 No phantom projectile substitutes the held rock. The field is capped at 28 rocks;
 exit, retry, boss victory and level changes clear hazards, and pause freezes them.
-New art/prompts: `Games/games/sky-strike/assets/mining-art.md` (studio-relative).
+New art/prompts: `games/sky-strike/assets/mining-art.md` (repository-relative).
 
 ## Ordinary fighter pre-fire aiming
 
@@ -111,7 +111,7 @@ sparks and camera shake. Bubbles are capped at 24 and recycle outside the field.
 Fission Cruisers split into exactly two ordinary scouts when destroyed. Scouts
 cannot split again; the elite remains eligible for the carrier's random elite pool.
 All new text supports Chinese, English and Japanese. Three generated transparent
-masters and their built-in imagegen prompts live in `Games/games/sky-strike/assets/twins-art.md`.
+masters and their built-in imagegen prompts live in `games/sky-strike/assets/twins-art.md`.
 The runtime pack keeps twins at 384px and the elite at 256px. Before the scrolling
 background expansion, these 37 sprites occupied 16,705,024 bytes; current totals
 are documented below. No frame texture uploads.
@@ -152,7 +152,7 @@ respect iOS safe-area insets. One uniform scale preserves geometry:
   fighter crosses its horizontal movement range. Pointer coordinates use the
   inverse transform, so the fighter remains under the finger while the view moves.
 
-`Games/games/sky-strike/viewport.ts` is shared by browser/native rendering and
+`games/sky-strike/viewport.ts` is shared by browser/native rendering and
 input. The projection reads current engine display dimensions each frame; native GUI placement also respects safe-area insets.
 
 ## Input and lifecycle
@@ -185,7 +185,7 @@ Effects use bounded state and clear on restart/disposal; no gameplay RNG is used
 
 See `evidence/i18n-fx/verification.md` for tests, screenshots and package hashes.
 Source assets and exact built-in image generation prompts are in
-`Games/games/sky-strike/assets/gui-art.md` (studio-relative).
+`games/sky-strike/assets/gui-art.md` (repository-relative).
 
 ## Build
 
@@ -206,7 +206,7 @@ IOS_DEVICE_UDID=<connected-device> npm run build:device
 The prepare script stages only the RGBA pack, its index and seven level JSON files
 into ignored `src/game-assets`, which webpack bundles as `app/game-assets`. It
 removes stale generated art from staging/output directories. Original PNG masters
-remain in Games for editing; they are not duplicated in the app bundle. Runtime
+remain in Native/games for editing; they are not duplicated in the app bundle. Runtime
 loading is local and offline. Small art is downsampled according to actual display
 size; GUI-only sprites stay out of the battle atlas. A 2048px atlas page limit
 reduces sparse space without increasing representative combat draw-call counts.

@@ -2,7 +2,7 @@
 
 2026-09-19：经用户授权，手机上的 App 已卸载并换装日历拼图。卸载前完整备份了 44 个本地文件（含存档 Preferences），校验清单和数据保存在忽略目录 `artifacts/backups/20260919-before-calendar-puzzle/`，不纳入版本控制。
 
-The existing `Games/games/spider-solitaire/SpiderSolitaireGame.ts` runs on Haiyue
+The existing `games/spider-solitaire/SpiderSolitaireGame.ts` runs on Haiyue
 Engine through NativeScript Canvas/wgpu/Metal. The app has its own bundle ID,
 `org.haiyue.native.spidersolitaire`, and home-screen name **蜘蛛纸牌**.
 
@@ -42,10 +42,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun devicectl device 
 synchronizes Info.plist; the bridge also applies the runtime restriction. See
 `../../bridge/display/README.md` for portrait and flexible hosts.
 
-The application imports sibling `Games` source, so both repositories must be
-present in their current workspace layout. Webpack resolves runtime packages from
-this application's pinned dependencies. It does not need Games' unrelated UI or
-MUGEN assets to build the native app.
+The application imports the bundled `games/` source in this repository. TypeScript and webpack resolve its Engine imports through this application's pinned dependencies. A sibling Games checkout is not required.
 
 ## Verification and diagnostics
 

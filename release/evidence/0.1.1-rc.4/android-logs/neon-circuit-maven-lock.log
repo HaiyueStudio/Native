@@ -1,0 +1,30 @@
+
+> Configure project :
+	 + failed to load gradle properties from "/private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/platforms/android/additional_gradle.properties". Error is: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/platforms/android/additional_gradle.properties (No such file or directory)
+
+> Configure project :app
+	 + setting applicationId
+	 + applying user-defined configuration from /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/App_Resources/Android/app.gradle
+	 + adding nativescript runtime package dependency: nativescript-optimized
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/core/platforms/android/core.aar
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/core/platforms/android/widgets-release.aar
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/core/platforms/android/winter_tc-release.aar
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/canvas/platforms/android/canvas-release.aar
+WARNING: Using flatDir should be avoided because it doesn't support any meta-data formats.
+Configuration 'debugCompileClasspath' was resolved during configuration time.
+This is a build performance and scalability issue.
+See https://github.com/gradle/gradle/issues/2298
+Run with --info for a stacktrace.
+Configuration 'debugRuntimeClasspath' was resolved during configuration time.
+This is a build performance and scalability issue.
+See https://github.com/gradle/gradle/issues/2298
+Run with --info for a stacktrace.
+
+> Task :app:verifyReleaseDependencies
+Resolved debugCompileClasspath: 55 artifacts
+Resolved debugRuntimeClasspath: 65 artifacts
+Resolved releaseCompileClasspath: 45 artifacts
+Resolved releaseRuntimeClasspath: 59 artifacts
+
+[Incubating] Problems report is available at: file:///private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/platforms/android/build/reports/problems/problems-report.html
+1 actionable task: 1 executed

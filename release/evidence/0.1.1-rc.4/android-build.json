@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-24T08:55:40.560Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 1078
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 1544
+    },
+    {
+      "name": "neon-circuit-install",
+      "status": "passed",
+      "durationMs": 13240
+    },
+    {
+      "name": "neon-circuit-dependencies",
+      "status": "passed",
+      "durationMs": 1645
+    },
+    {
+      "name": "neon-circuit-typecheck",
+      "status": "passed",
+      "durationMs": 6066
+    },
+    {
+      "name": "neon-circuit-tests",
+      "status": "passed",
+      "durationMs": 1768
+    },
+    {
+      "name": "model-inputs",
+      "status": "passed",
+      "durationMs": 16
+    },
+    {
+      "name": "native-toolchain",
+      "status": "passed",
+      "durationMs": 282
+    },
+    {
+      "name": "neon-circuit-build-android",
+      "status": "passed",
+      "durationMs": 95432
+    },
+    {
+      "name": "neon-circuit-gradle-version",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "neon-circuit-maven-lock",
+      "status": "passed",
+      "durationMs": 3194
+    },
+    {
+      "name": "neon-circuit-artifact",
+      "status": "passed",
+      "durationMs": 963
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 1428
+    },
+    {
+      "name": "model-inputs-after-validation",
+      "status": "passed",
+      "durationMs": 18
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate."
+  ],
+  "candidate": "0.1.1-rc.4",
+  "profile": "build",
+  "platform": "android",
+  "apps": [
+    "neon-circuit"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "java": "21.0.12.1",
+    "androidPlatform": "36",
+    "androidBuildTools": "36.0.0",
+    "gradle": "8.14.3"
+  },
+  "manifestSha256": "9ab0ad9e72bba5d61cc369df25831c7e43d0af22189e8a6d903bb46f5c6a7619",
+  "modelInputs": {
+    "neon-circuit/wraith-raider.glb": "5ca426907f272934aa854ae09177f66d35e53467190bdc85a17b419679e08eda"
+  },
+  "artifacts": [
+    {
+      "app": "neon-circuit",
+      "platform": "android",
+      "file": "/private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/platforms/android/app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "91e3901bf77d99e7ac33a59a0398024b7b29a5181c527d3c67f96f65e35fdcfb",
+      "kind": "debug-apk"
+    }
+  ],
+  "finishedAt": "2026-09-24T08:57:47.459Z"
+}

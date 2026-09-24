@@ -1,0 +1,66 @@
+
+> @haiyue/native-neon-circuit@0.1.0 build:android
+> node scripts/android.mjs build android
+
+Prepared 25 images and 9 PBR model textures
+Canvas binding patch: {
+  version: '2.1.18',
+  queueSha256: 'a38a58942c488ccece244424b1c4e91c8f3e257dd201b85dd63871988ff30369',
+  file: 'WebGPU/GPURenderPassEncoder.js',
+  sha256: '7a14f279e042bb748781c10a6c56a6122931525f56943096815fb1143b583cf7'
+}
+Copying template files...
+Platform android successfully added. v9.0.3
+Preparing project...
+assets by path game-assets/ 84.2 MiB
+  assets by path game-assets/*.rgba 60 MiB 25 assets
+  assets by path game-assets/audio/*.wav 3.21 MiB 14 assets
+  assets by path game-assets/wraith-raider/ 21 MiB
+    assets by path game-assets/wraith-raider/*.rgba 16.6 MiB 9 assets
+    + 3 assets
+  assets by path game-assets/*.json 13.4 KiB
+    asset game-assets/source.json 6.93 KiB [emitted] [from: src/game-assets/source.json] [copied]
+    asset game-assets/textures.json 6.46 KiB [emitted] [from: src/game-assets/textures.json] [copied]
+assets by path *.mjs 7.8 MiB
+  asset vendor.mjs 7.3 MiB [emitted] [javascript module] (name: vendor) (id hint: vendor) 1 related asset
+  asset bundle.mjs 508 KiB [emitted] [javascript module] (name: bundle) 1 related asset
+  asset runtime.mjs 6.05 KiB [emitted] [javascript module] (name: runtime) 1 related asset
+asset tns_modules/inspector_modules.mjs 778 bytes [emitted] [javascript module] (name: tns_modules/inspector_modules) 1 related asset
+Entrypoint bundle 7.8 MiB (8.52 MiB) = runtime.mjs 6.05 KiB vendor.mjs 7.3 MiB bundle.mjs 508 KiB 3 auxiliary assets
+Entrypoint tns_modules/inspector_modules 7.31 MiB (7.65 MiB) = runtime.mjs 6.05 KiB vendor.mjs 7.3 MiB tns_modules/inspector_modules.mjs 778 bytes 3 auxiliary assets
+orphan modules 1.3 MiB [orphan] 43 modules
+runtime modules 3.12 KiB 7 modules
+modules by path ./node_modules/ 6.36 MiB 710 modules
+modules by path ../../ 363 KiB
+  modules by path ../../games/ 292 KiB 33 modules
+  modules by path ../../bridge/ 70.3 KiB 27 modules
+modules by path ./src/ 61.2 KiB
+  modules by path ./src/*.ts 59.2 KiB 9 modules
+  ./src/ sync \.(xml%7Cjs%7C(%3F<%21\.d\.)ts%7Cs%3Fcss)$ 358 bytes [built] [code generated]
+  ./src/app.css 523 bytes [built] [code generated]
+  ./src/main-page.xml 1.14 KiB [optional] [built] [code generated]
+./orientation.json 57 bytes [built] [code generated]
+external "~/package.json" 42 bytes [built] [code generated]
+webpack 5.110.3 compiled successfully in 7181 ms
+Webpack compilation complete.
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+Built aar for @nativescript/core
+Updating runtime package.json with configuration values...
+Project successfully prepared (android)
+Building project...
+Gradle build...
+	 + setting applicationId
+	 + applying user-defined configuration from /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/App_Resources/Android/app.gradle
+	 + adding nativescript runtime package dependency: nativescript-optimized-with-inspector
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/core/platforms/android/core.aar
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/core/platforms/android/widgets-release.aar
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/core/platforms/android/winter_tc-release.aar
+	 + adding aar plugin dependency: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/node_modules/@nativescript/canvas/platforms/android/canvas-release.aar
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+Project successfully built.
+Build time: 65.824 s.
+The build result is located at: /private/tmp/haiyue-native-clean-final-android/checkout/examples/neon-circuit/platforms/android/app/build/outputs/apk/debug/app-debug.apk

@@ -1,0 +1,8 @@
+{
+  "command": "apksigner verify --verbose",
+  "exitCode": 0,
+  "verified": true,
+  "v2Signature": true,
+  "signers": 1,
+  "apkSha256": "91e3901bf77d99e7ac33a59a0398024b7b29a5181c527d3c67f96f65e35fdcfb"
+}

@@ -6,7 +6,7 @@ import type { NativeCanvasInput } from '../../../bridge/render/surface';
 import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures.ios';
 import { LocalStorageSaveBackend } from '@haiyue/engine/save';
 import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage';
-import { CubeGame } from '../../../../Games/games/rubiks-cube/CubeGame';
+import { CubeGame } from '../../../games/rubiks-cube/CubeGame';
 let host: NativeRenderHost | null = null;
 let game: CubeGame | null = null;
 let activeCanvas: Canvas | null = null;

@@ -7,7 +7,7 @@ import { NativeTouchInput } from '../../../bridge/input/native-touch.ios';
 import type { NativeCanvasInput } from '../../../bridge/render/surface';
 import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures.ios';
 import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage';
-import { SpiderSolitaire } from '../../../../Games/games/spider-solitaire/SpiderSolitaireGame';
+import { SpiderSolitaire } from '../../../games/spider-solitaire/SpiderSolitaireGame';
 
 let host: NativeRenderHost | null = null;
 let game: SpiderSolitaire | null = null;

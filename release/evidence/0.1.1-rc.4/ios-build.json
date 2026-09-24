@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-24T08:55:35.214Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 1075
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 1363
+    },
+    {
+      "name": "ios-pbr-orbit-install",
+      "status": "passed",
+      "durationMs": 11596
+    },
+    {
+      "name": "ios-pbr-orbit-dependencies",
+      "status": "passed",
+      "durationMs": 2457
+    },
+    {
+      "name": "ios-pbr-orbit-typecheck",
+      "status": "passed",
+      "durationMs": 6105
+    },
+    {
+      "name": "ios-pbr-orbit-tests",
+      "status": "passed",
+      "durationMs": 1251
+    },
+    {
+      "name": "spider-solitaire-install",
+      "status": "passed",
+      "durationMs": 11588
+    },
+    {
+      "name": "spider-solitaire-dependencies",
+      "status": "passed",
+      "durationMs": 1144
+    },
+    {
+      "name": "spider-solitaire-typecheck",
+      "status": "passed",
+      "durationMs": 5540
+    },
+    {
+      "name": "spider-solitaire-tests",
+      "status": "passed",
+      "durationMs": 1581
+    },
+    {
+      "name": "sky-strike-install",
+      "status": "passed",
+      "durationMs": 12571
+    },
+    {
+      "name": "sky-strike-dependencies",
+      "status": "passed",
+      "durationMs": 2128
+    },
+    {
+      "name": "sky-strike-typecheck",
+      "status": "passed",
+      "durationMs": 7338
+    },
+    {
+      "name": "sky-strike-tests",
+      "status": "passed",
+      "durationMs": 1130
+    },
+    {
+      "name": "rubiks-cube-install",
+      "status": "passed",
+      "durationMs": 14332
+    },
+    {
+      "name": "rubiks-cube-dependencies",
+      "status": "passed",
+      "durationMs": 1835
+    },
+    {
+      "name": "rubiks-cube-typecheck",
+      "status": "passed",
+      "durationMs": 5054
+    },
+    {
+      "name": "rubiks-cube-tests",
+      "status": "passed",
+      "durationMs": 888
+    },
+    {
+      "name": "ak47-range-install",
+      "status": "passed",
+      "durationMs": 15871
+    },
+    {
+      "name": "ak47-range-dependencies",
+      "status": "passed",
+      "durationMs": 2626
+    },
+    {
+      "name": "ak47-range-typecheck",
+      "status": "passed",
+      "durationMs": 7564
+    },
+    {
+      "name": "ak47-range-tests",
+      "status": "passed",
+      "durationMs": 1740
+    },
+    {
+      "name": "neon-circuit-install",
+      "status": "passed",
+      "durationMs": 16424
+    },
+    {
+      "name": "neon-circuit-dependencies",
+      "status": "passed",
+      "durationMs": 2643
+    },
+    {
+      "name": "neon-circuit-typecheck",
+      "status": "passed",
+      "durationMs": 7905
+    },
+    {
+      "name": "neon-circuit-tests",
+      "status": "passed",
+      "durationMs": 1428
+    },
+    {
+      "name": "model-inputs",
+      "status": "passed",
+      "durationMs": 35
+    },
+    {
+      "name": "native-toolchain",
+      "status": "passed",
+      "durationMs": 8799
+    },
+    {
+      "name": "ios-pbr-orbit-build-ios",
+      "status": "passed",
+      "durationMs": 105164
+    },
+    {
+      "name": "ios-pbr-orbit-pods-lock",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "name": "ios-pbr-orbit-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "spider-solitaire-build-ios",
+      "status": "passed",
+      "durationMs": 109464
+    },
+    {
+      "name": "spider-solitaire-pods-lock",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "spider-solitaire-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "sky-strike-build-ios",
+      "status": "passed",
+      "durationMs": 106494
+    },
+    {
+      "name": "sky-strike-pods-lock",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "sky-strike-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "rubiks-cube-build-ios",
+      "status": "passed",
+      "durationMs": 206526
+    },
+    {
+      "name": "rubiks-cube-pods-lock",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "name": "rubiks-cube-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "name": "ak47-range-build-ios",
+      "status": "passed",
+      "durationMs": 299794
+    },
+    {
+      "name": "ak47-range-pods-lock",
+      "status": "passed",
+      "durationMs": 17
+    },
+    {
+      "name": "ak47-range-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "name": "neon-circuit-build-ios",
+      "status": "passed",
+      "durationMs": 181686
+    },
+    {
+      "name": "neon-circuit-pods-lock",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "name": "neon-circuit-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 1445
+    },
+    {
+      "name": "model-inputs-after-validation",
+      "status": "passed",
+      "durationMs": 38
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate."
+  ],
+  "candidate": "0.1.1-rc.4",
+  "profile": "build",
+  "platform": "ios",
+  "apps": [
+    "ios-pbr-orbit",
+    "spider-solitaire",
+    "sky-strike",
+    "rubiks-cube",
+    "ak47-range",
+    "neon-circuit"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "ruby": "4.0.6",
+    "bundler": "4.0.16",
+    "xcode": "Xcode 26.3\nBuild version 17C529"
+  },
+  "manifestSha256": "9ab0ad9e72bba5d61cc369df25831c7e43d0af22189e8a6d903bb46f5c6a7619",
+  "modelInputs": {
+    "neon-circuit/wraith-raider.glb": "5ca426907f272934aa854ae09177f66d35e53467190bdc85a17b419679e08eda",
+    "ak47-range/ren42.glb": "25aa8c535c43b1cc0a5298bc249ee7ce94595457b3da5f215b65a4eb3a10df25",
+    "ak47-range/qiang_ak47.glb": "7b487cb6cdf7746cbc02ffc22d7b54b8ea8ec60aca90732f7047c3708f8341b3"
+  },
+  "finishedAt": "2026-09-24T09:15:00.125Z"
+}

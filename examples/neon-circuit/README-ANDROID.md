@@ -6,7 +6,7 @@
 
 - Node 22+、JDK 21、Android SDK platform 36 / build-tools 36.0.0、带 Pillow 的 Python。
 - 默认复用 `Native/.android-tools` 的 JDK、SDK、Gradle 缓存；也可设置 `JAVA_HOME`、`ANDROID_HOME`、`PYTHON`。
-- 同级需要 Games 仓库的 neon-circuit 源码与素材。依赖使用 vendor 中固定的 Engine / Extensions / Animation Spec tarball。
+- 游戏源码与自有素材位于仓库内 games/neon-circuit；本地模型准备见 ../../games/ASSETS.md。依赖使用 vendor 中固定的 Engine / Extensions / Animation Spec tarball。
 
 ```sh
 npm ci

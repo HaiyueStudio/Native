@@ -1,6 +1,6 @@
 {
   "name": "@haiyue/native-repository",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -12,6 +12,8 @@
   "scripts": {
     "test": "node --test test/*.test.mjs",
     "release:freeze": "node scripts/release/freeze.mjs",
-    "release:verify": "node scripts/release/verify.mjs"
+    "release:verify": "node scripts/release/verify.mjs",
+    "release:export": "node scripts/release/export-clean.mjs",
+    "models:check": "node scripts/assets/check-models.mjs"
   }
 }

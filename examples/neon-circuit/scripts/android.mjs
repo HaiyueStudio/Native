@@ -12,7 +12,7 @@ const sdk=process.env.ANDROID_HOME || path.join(tools,'sdk');
 if(!existsSync(path.join(jdk,'bin/java'))||!existsSync(path.join(sdk,'platform-tools/adb')))throw new Error('Install JDK 21 and Android SDK, or set JAVA_HOME and ANDROID_HOME. See README-ANDROID.md.');
 const args=process.argv.slice(2);const profile=path.join(app,'.ns-profile');mkdirSync(profile,{recursive:true});
 if(['build','prepare','run'].includes(args[0])){ syncGameAssets(); console.log('Canvas binding patch:',patchCanvas()); }
-const env={...process.env,JAVA_HOME:jdk,ANDROID_HOME:sdk,ANDROID_SDK_ROOT:sdk,ANDROID_USER_HOME:path.join(tools,'user'),GRADLE_USER_HOME:path.join(tools,'gradle'),PATH:[path.join(jdk,'bin'),path.join(sdk,'platform-tools'),path.join(sdk,'cmdline-tools/latest/bin'),process.env.PATH].join(path.delimiter)};
+const env={...process.env,JAVA_HOME:jdk,ANDROID_HOME:sdk,ANDROID_SDK_ROOT:sdk,ANDROID_USER_HOME:process.env.ANDROID_USER_HOME||path.join(tools,'user'),GRADLE_USER_HOME:process.env.GRADLE_USER_HOME||path.join(tools,'gradle'),PATH:[path.join(jdk,'bin'),path.join(sdk,'platform-tools'),path.join(sdk,'cmdline-tools/latest/bin'),process.env.PATH].join(path.delimiter)};
 if(['build','prepare','run'].includes(args[0])) {
   for(const file of ['platforms/android-36/android.jar','build-tools/36.0.0/aapt2','build-tools/36.0.0/apksigner']) {
     if(!existsSync(path.join(sdk,file)))throw new Error(`Missing Android build dependency: ${file}`);

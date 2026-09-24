@@ -14,3 +14,7 @@
 # Reproducible release reports and local build logs.
 /artifacts/
 /node_modules/
+
+# User-provided models are not licensed for public redistribution.
+/local-assets/
+**/__pycache__/

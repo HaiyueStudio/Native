@@ -1,6 +1,6 @@
 # 极速新星 — iOS
 
-独立 iPhone App，Bundle ID `org.haiyue.native.neoncircuit`。共享 `Games/games/neon-circuit/` 的五条赛道、1.8 倍路线、360 / 522 km/h 驾驶规则、PBR 赛车、Engine GUI 轮播与仪表、碰撞火星/烟雾和流动彩虹路面。采用 NativeScript Canvas → wgpu → Metal 原生渲染，资源全部随 App 打包，常规启动无需浏览器或开发服务器。
+独立 iPhone App，Bundle ID `org.haiyue.native.neoncircuit`。共享 `games/neon-circuit/` 的五条赛道、1.8 倍路线、360 / 522 km/h 驾驶规则、PBR 赛车、Engine GUI 轮播与仪表、碰撞火星/烟雾和流动彩虹路面。采用 NativeScript Canvas → wgpu → Metal 原生渲染，资源全部随 App 打包，常规启动无需浏览器或开发服务器。
 
 首页右上角齿轮打开设置面板，可选择“虚拟摇杆”或“陀螺仪”，偏好通过 iOS 设置存储持久化。在左下操作区按下时，浮动摇杆以该触点为中心出现，松开后淡回 36% 不透明度，下次按下重新定位。右下角左侧刹车、右侧油门，分别拥有独立触点；即使手指滑出按钮后松开，也会释放对应油门或刹车，不影响另一个手指。陀螺仪使用真实 Core Motion 姿态，进入比赛、暂停恢复和屏幕旋转时重新校准握持角度；2° 死区和连续滤波抑制手抖，约 24° 相对倾斜达到最大转向。UIKit LandscapeLeft / LandscapeRight 分别映射到运动坐标 270° / 90°，使两种横屏握持方向均朝倾斜的一侧转向。切至后台自动暂停、清空触点并停止传感器，返回后从暂停面板继续。
 
@@ -26,7 +26,7 @@ npm test
 PYTHON=/path/to/python-with-pillow IOS_DEVICE_UDID=<device-udid> npm run build:device
 ```
 
-`scripts/prepare-assets.py` 需要 Pillow，在构建阶段把原始 GLB 的贴图和 PNG 素材转换为直通 alpha 的 RGBA，并记录源文件及像素哈希。原始模型和美术仍由 Games 管理；原生 loader 使用 glTF 的公共预解析资源接口和 AssetManager 上传本地像素。`scripts/sync-game-assets.mjs` 在签名构建后逐字节比较 App 内资源。
+`scripts/prepare-assets.py` 需要 Pillow，在构建阶段把原始 GLB 的贴图和 PNG 素材转换为直通 alpha 的 RGBA，并记录源文件及像素哈希。自有美术位于本仓库 games/neon-circuit/assets，原始模型由 local-assets/neon-circuit 提供；原生 loader 使用 glTF 的公共预解析资源接口和 AssetManager 上传本地像素。`scripts/sync-game-assets.mjs` 在签名构建后逐字节比较 App 内资源。
 
 签名使用本机忽略文件 `App_Resources/iOS/signing.local.xcconfig` 或 `IOS_TEAM_ID`。生成包：`platforms/ios/build/Debug-iphoneos/neoncircuit.app`。
 
@@ -86,7 +86,7 @@ App 图标由内置 ImageGen 生成，原图和来源记录在 `assets/`；iOS �
 
 方向盘固定在左下安全区，隐形摇杆仍以按下位置作为中心，最大行程 57.5 点（原 46 点的 125%）。设置增加中英日三语的第三人称/第一人称选项，保存为 `neon.camera` 并在开始比赛时应用；第一人称不创建赛车 glTF，原生模型几何按需读取。第一人称受损有四档玻璃裂纹，重开清除；普通视角不分配玻璃纹理。
 
-内置 ImageGen 生成的两张素材及提示词位于 `Games/games/neon-circuit/assets/apocalypse-generation.json`；打包保留全景比例并逐文件校验。原生验收新增固定方向盘、25% 行程扩展、真实落火躲避/命中、暂停冻结、裂纹分级和切回第三人称检查；验收期间临时禁用 iOS 自动锁屏，结束恢复原值。
+内置 ImageGen 生成的两张素材及提示词位于 `games/neon-circuit/assets/apocalypse-generation.json`；打包保留全景比例并逐文件校验。原生验收新增固定方向盘、25% 行程扩展、真实落火躲避/命中、暂停冻结、裂纹分级和切回第三人称检查；验收期间临时禁用 iOS 自动锁屏，结束恢复原值。
 
 连续切换压力检查发现 iOS `highwater` 内存终止（原生离屏画布和体积很大的 GPU/图片对象对应的 JS 包装很小，回收不及时）。现在临时光栅画布在帧末上传完成后缩小并释放，字体画布在场景销毁后释放；只在光栅重建/切换完成的边界调用 NativeScript `Utils.GC()`，不在持续驾驶的每一帧触发。保留字体动态更新生命周期，不会提前释放仍用于布局的字体画布。参考 [NativeScript Utils.GC](https://beta.docs.nativescript.org/core/utils)。
 

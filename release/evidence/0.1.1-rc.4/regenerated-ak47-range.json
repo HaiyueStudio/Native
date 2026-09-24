@@ -1,0 +1,29 @@
+{
+  "comparison": "Existing local runtime staging (Sky/AK had also been checked against original frozen Games assets before native builds)",
+  "byteIdentical": true,
+  "fileCount": 22,
+  "files": {
+    "provenance.json": "0a47ec90da76ddb42076e839c83ac99026d803e4795cc09577a7ad22128819dc",
+    "qiang_ak47/image-0.rgba": "c8bc5974b95dbbd53b37b9e56a2544940792790c5890611ced6f016b9599af11",
+    "qiang_ak47/image-1.rgba": "0afce20a172c32ff582ffcba90163ccd770be8f09b9727c050eda9d1e2c6935f",
+    "qiang_ak47/image-2.rgba": "1183330b7299ce5f3bdb9e2ba54212accfd345188247096dea047d376cdf3bbb",
+    "qiang_ak47/image-3.rgba": "e944416263ba6b62e307c7bccff15bc88ffdf20392094e352a270394f1d36d18",
+    "qiang_ak47/image-4.rgba": "b0bd11182b857f86bd9dda3f2326438ead53c0f072bd03d91c8b80cc02e5becc",
+    "qiang_ak47/model.bin": "c0663d13f1b673686aaf4bd09177b4f4a1d9d6f29ac6d77adc8436a43e553d22",
+    "qiang_ak47/model.gltf": "b23e43d26e97522360c49757316025d7b90694f67fe1f6f6baee40e4194a190c",
+    "qiang_ak47/textures.json": "fb6b2e66eacd462381c1f2450e513996abd8aa10eaa4f9d870d89cc5778427ea",
+    "ren42/image-0.rgba": "8b5fbcc801b1506bdde8ca830f5b31bee2baf4d60837220882427885556ddbdc",
+    "ren42/image-1.rgba": "54a5fe175a2e85179d7cc2fa739b74c96849166724b8748227052ee64d805c14",
+    "ren42/image-2.rgba": "a66002aa2ff9a1e13e99a884ff7d2b9b228e16cf69c85237123b60a4f7774e4a",
+    "ren42/image-3.rgba": "393f78f58adbf64f2ec1e9544ef9d76b8bc8f18f44942526d2ad4eaa63ac0ecd",
+    "ren42/image-4.rgba": "18164616887d95df6cf236213b5527ced930ec49ee0feaaacdddc5101b89cc63",
+    "ren42/image-5.rgba": "59d747aeb7f2ba0edf5abb321f59c7fc18c533e1718f173fc7f96989584405f3",
+    "ren42/image-6.rgba": "6554b928d08499ff41a6e68efbdc0afc42cee6f83d52c531076380449ad79acc",
+    "ren42/image-7.rgba": "30e619445d4a537e2a402c77003de8a0c6d164397aa50f3d9e7dcc6029569c69",
+    "ren42/image-8.rgba": "728fad0328bad2d453068b4c5d47461b22fdb4419bf71f87a078473b97d3ce83",
+    "ren42/image-9.rgba": "3c07dba6c143fb07abf0f152898f84b0998ff84fb66c6b5a341fb280140df652",
+    "ren42/model.bin": "060acc3bdc24d248bb64f3aebdfd75436d681134bed74495a9b24ae54f8c004e",
+    "ren42/model.gltf": "bde7449a0d6ddd6b04fc6d4d02c4310a2d3b09ef9cbad2dfa29aaf3f0e4849c2",
+    "ren42/textures.json": "46f207872ec5ded2b593b4fa3d6d811831d864550cb0bf996a617905bd31470b"
+  }
+}

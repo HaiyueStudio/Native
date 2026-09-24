@@ -1,0 +1,155 @@
+[
+  {
+    "name": "ak47-range-build-ios.log",
+    "sha256": "2061afdd792db6b490a376836a40d07638ea150976b9919064f429f78631f16c",
+    "bytes": 883167,
+    "milestones": [
+      "Prepared ren42 character and rifle-only AK47; original GLBs preserved.",
+      "Webpack compilation complete.",
+      "** BUILD SUCCEEDED **",
+      "Verified 21 bundled model/texture files byte-for-byte."
+    ]
+  },
+  {
+    "name": "ak47-range-install.log",
+    "sha256": "fd834f74ebde29594d45a83cea412cc1c4e35362f15c260855b807bd07f5adde",
+    "bytes": 782
+  },
+  {
+    "name": "ak47-range-tests.log",
+    "sha256": "4a5c1d81ede627d7f2be9dcf0f1f08a6304132fff4b4d26793fce744a423dd17",
+    "bytes": 1871
+  },
+  {
+    "name": "ak47-range-typecheck.log",
+    "sha256": "1f7704ea00265fefaa73e9591d23b947f3b4b4d2b7dd079412a388d62e47d9da",
+    "bytes": 61
+  },
+  {
+    "name": "ios-pbr-orbit-build-ios.log",
+    "sha256": "d12ad25069c910afb9407034d0b1c7a946076f0eb0ad10b718711b66d5b109fc",
+    "bytes": 887710,
+    "milestones": [
+      "Webpack compilation complete.",
+      "** BUILD SUCCEEDED **"
+    ]
+  },
+  {
+    "name": "ios-pbr-orbit-install.log",
+    "sha256": "66d3938b3a0862d1bb39591a77aa9e5af604eaf8b9b47a1c464762faee8fd2f0",
+    "bytes": 782
+  },
+  {
+    "name": "ios-pbr-orbit-tests.log",
+    "sha256": "abeec0cc458c80ac620be2ca04a26ad4626cb6ba64ccfbb377bd04b13ae06d6c",
+    "bytes": 2802
+  },
+  {
+    "name": "ios-pbr-orbit-typecheck.log",
+    "sha256": "fb4e487940cfa93c42593c710d21f3d8e45bf54f86d9d463c9215e4c04fc2fdb",
+    "bytes": 64
+  },
+  {
+    "name": "neon-circuit-build-ios.log",
+    "sha256": "49c2a3656c3f4eaf1e27e0d68c732b8520cf335a6e40f529a7082ef52d1dcd20",
+    "bytes": 892252,
+    "milestones": [
+      "Prepared 25 images and 9 PBR model textures",
+      "Webpack compilation complete.",
+      "** BUILD SUCCEEDED **",
+      "Verified 53 bundled resources byte-for-byte."
+    ]
+  },
+  {
+    "name": "neon-circuit-install.log",
+    "sha256": "b1f78266d4c36afc5c24c73037f529f84a823c3f3795a62dce138ff177b70d47",
+    "bytes": 782
+  },
+  {
+    "name": "neon-circuit-tests.log",
+    "sha256": "d86393ca2cf42801ef8f1b53cc69a9a75a08891e8cc34e42d14c69b45a8ee794",
+    "bytes": 2114
+  },
+  {
+    "name": "neon-circuit-typecheck.log",
+    "sha256": "89e7afcb3680891d7b3c66781455cf14c438afcdb53d2f3fbd4d3a8e76b9d24c",
+    "bytes": 63
+  },
+  {
+    "name": "release-tests.log",
+    "sha256": "9251c7e5b1939ae3150132864eb118dfcd94f92c70002d54a08b1cf293769023",
+    "bytes": 1171
+  },
+  {
+    "name": "rubiks-cube-build-ios.log",
+    "sha256": "7edb83d88f2302557fc09b6d20a7a19f4559cd4f14cce9199bef1350d29f30a4",
+    "bytes": 886300,
+    "milestones": [
+      "Webpack compilation complete.",
+      "** BUILD SUCCEEDED **"
+    ]
+  },
+  {
+    "name": "rubiks-cube-install.log",
+    "sha256": "afffa4d106b2f39bbe45dd2d47a85745e1ebf0f55cec73527c1b2cd4725a9242",
+    "bytes": 782
+  },
+  {
+    "name": "rubiks-cube-tests.log",
+    "sha256": "40f019a4e52009300d367cb5f60726aea77c5e8bc01ec98826c347fd96b8c2ae",
+    "bytes": 537
+  },
+  {
+    "name": "rubiks-cube-typecheck.log",
+    "sha256": "57f46c8b9dfcd6f7807baa072336b0b90dde9a344e13121a35c5ed5d6db47a89",
+    "bytes": 62
+  },
+  {
+    "name": "sky-strike-build-ios.log",
+    "sha256": "66eb192cf4bca4e760fc4b9bea41cbfa3b2d92837685f2596b591405902832d0",
+    "bytes": 882297,
+    "milestones": [
+      "Webpack compilation complete.",
+      "** BUILD SUCCEEDED **"
+    ]
+  },
+  {
+    "name": "sky-strike-install.log",
+    "sha256": "75aca900a9190f2bbf68bdae72b1065b2ea072d33f2ab6ee0533ae4831d71e9f",
+    "bytes": 782
+  },
+  {
+    "name": "sky-strike-tests.log",
+    "sha256": "8e82dea36a1d36eadb38be4052dcac73f807d6241d532bd973bc560feecdc524",
+    "bytes": 1268
+  },
+  {
+    "name": "sky-strike-typecheck.log",
+    "sha256": "7f74ec81af01d11d4e4cc4d79f39ff6c6b74eac85322e1dadfaf44b82f437ebb",
+    "bytes": 61
+  },
+  {
+    "name": "spider-solitaire-build-ios.log",
+    "sha256": "134b735fa4162368adb1df005b49fa37834d7751a305655bd32035dcd61237a0",
+    "bytes": 909632,
+    "milestones": [
+      "Webpack compilation complete.",
+      "** BUILD SUCCEEDED **"
+    ]
+  },
+  {
+    "name": "spider-solitaire-install.log",
+    "sha256": "66d3938b3a0862d1bb39591a77aa9e5af604eaf8b9b47a1c464762faee8fd2f0",
+    "bytes": 782
+  },
+  {
+    "name": "spider-solitaire-tests.log",
+    "sha256": "4bc83555cd8599bf95b77dabb89d9ffabc05c059f299c05aa473051831d91e0d",
+    "bytes": 852
+  },
+  {
+    "name": "spider-solitaire-typecheck.log",
+    "sha256": "fbf7e56983b19c5d79066b85ac2b482b94e56ee92ad3aa37021afc9e687958b7",
+    "bytes": 67
+  }
+]

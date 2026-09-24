@@ -17,12 +17,11 @@ export function gitFiles(dir) {
   return [...new Set(command('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], dir).split('\0').filter(Boolean))].sort();
 }
 const within = (file, prefix) => file === prefix || file.startsWith(`${prefix}/`);
-export function selectedFiles(config, native = root, games = path.resolve(native, '../Games')) {
-  const prefixes = ['bridge', 'scripts', 'test', 'release', ...Object.keys(config.apps).map(app => `examples/${app}`)];
+export function selectedFiles(config, native = root) {
+  const prefixes = ['bridge', 'games', 'scripts', 'test', 'release', ...Object.keys(config.apps).map(app => `examples/${app}`)];
   const files = {};
   for (const [repo, dir, select] of [
     ['Native', native, file => !file.includes('/') || prefixes.some(prefix => within(file, prefix))],
-    ['Games', games, file => config.gamesInputs.some(prefix => within(file, prefix))],
   ]) {
     for (const file of gitFiles(dir)) {
       if (!select(file) || file === 'release/candidate.json' || file.split('/').includes('evidence')) continue;
@@ -32,8 +31,8 @@ export function selectedFiles(config, native = root, games = path.resolve(native
       files[`${repo}/${file}`] = hash(readFileSync(absolute));
     }
   }
-  for (const input of config.gamesInputs) {
-    if (!Object.keys(files).some(file => within(file, `Games/${input}`))) throw new Error(`Missing Games input: ${input}`);
+  for (const input of config.gameInputs) {
+    if (!Object.keys(files).some(file => within(file, `Native/${input}`))) throw new Error(`Missing bundled game input: ${input}`);
   }
   return files;
 }
@@ -45,6 +44,44 @@ export function compareFiles(expected, actual) {
     else if (expected[file] !== actual[file]) errors.push(`Changed: ${file}`);
   }
   if (errors.length) throw new Error(`Candidate drift:\n${errors.join('\n')}`);
+}
+export function verifyModelInputs(apps, native = root, assets = process.env.HAIYUE_MODEL_ASSETS || path.join(native, 'local-assets')) {
+  const expected = readJSON(path.join(native, 'release/model-inputs.json')).files;
+  const verified = {};
+  for (const [file, sha256] of Object.entries(expected)) {
+    if (!apps.includes(file.split('/')[0])) continue;
+    const absolute = path.join(assets, file);
+    if (!existsSync(absolute)) throw new Error(`Missing user-provided model: ${absolute}; see games/ASSETS.md`);
+    if (!lstatSync(absolute).isFile() || hash(readFileSync(absolute)) !== sha256) throw new Error(`Model input differs: ${file}; review and freeze replacement assets before validation`);
+    verified[file] = sha256;
+  }
+  return verified;
+}
+export function verifyRubyLocks(config, native = root) {
+  for (const [app, platforms] of Object.entries(config.apps)) {
+    if (!platforms.includes('ios')) continue;
+    const lock = readFileSync(path.join(native, 'examples', app, 'Gemfile.lock'), 'utf8');
+    const checksums = lock.split('CHECKSUMS\n')[1]?.split('\n\n')[0];
+    if (!checksums || checksums.split('\n').some(line => !/^  \S+ \([^)]+\) sha256=[a-f0-9]{64}$/.test(line)))
+      throw new Error(`${app}: incomplete Ruby lock checksums; run bundle lock --add-checksums and review before freezing`);
+  }
+}
+// Only NativeScript's two generated provenance comments contain checkout paths.
+// Keep the Ruby body, target, platform, all dependencies and all other comments intact.
+export const normalizePodfile = source => source.replace(/^(# (?:NativeScriptPlatformSection |Begin Podfile - )).*?\/node_modules\//gm, '$1node_modules/');
+export function verifyPodsLock(cwd) {
+  const actualSource = readFileSync(path.join(cwd, 'platforms/ios/Podfile'), 'utf8');
+  const expectedSource = readFileSync(path.join(cwd, 'locks/Podfile'), 'utf8');
+  if (normalizePodfile(actualSource) !== expectedSource) throw new Error('Generated Podfile body differs');
+  const actual = readFileSync(path.join(cwd, 'platforms/ios/Podfile.lock'), 'utf8');
+  const expected = readFileSync(path.join(cwd, 'locks/Podfile.lock'), 'utf8');
+  const checksum = source => createHash('sha1').update(source).digest('hex');
+  const actualSha = checksum(actualSource), expectedSha = checksum(expectedSource);
+  const field = /^PODFILE CHECKSUM: ([a-f0-9]{40})$/m;
+  if (actual.match(field)?.[1] !== actualSha || expected.match(field)?.[1] !== expectedSha)
+    throw new Error('Podfile checksum does not match its source');
+  if (actual.replace(field, `PODFILE CHECKSUM: ${expectedSha}`) !== expected)
+    throw new Error('Resolved CocoaPods lock differs');
 }
 export function dependencies(config, native = root) {
   const inventory = {};
@@ -118,6 +155,7 @@ export function verifyCandidate(config = readConfig()) {
   if (candidate.schemaVersion !== 1 || candidate.candidate !== config.candidate) throw new Error('Candidate/config identity mismatch');
   compareFiles(candidate.files, selectedFiles(config));
   verifyRelativeImports(candidate.files);
+  verifyRubyLocks(config);
   const current = dependencies(config);
   if (JSON.stringify(current) !== JSON.stringify(candidate.dependencies)) throw new Error('Dependency inventory differs from candidate');
   const pkg = readJSON(path.join(root, 'package.json'));
@@ -126,10 +164,11 @@ export function verifyCandidate(config = readConfig()) {
 }
 
 /** A new cross-directory import must not silently escape the frozen input set. */
-export function verifyRelativeImports(files, workspace = path.resolve(root, '..')) {
+export function verifyRelativeImports(files, native = root) {
   for (const file of Object.keys(files)) {
+    if (!file.startsWith('Native/')) throw new Error(`Input outside repository: ${file}`);
     if (!file.endsWith('.ts')) continue;
-    const source = readFileSync(path.join(workspace, file), 'utf8');
+    const source = readFileSync(path.join(native, file.slice('Native/'.length)), 'utf8');
     const imports = source.matchAll(/(?:\bfrom\s*|\bimport\s*\(\s*|\bimport\s*)['"](\.[^'"]+)['"]/g);
     for (const [, specifier] of imports) {
       const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(file), specifier));

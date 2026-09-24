@@ -1,0 +1,8 @@
+{
+  "note": "Private user-provided model hashes for reproducible local builds; no redistribution license is implied.",
+  "files": {
+    "neon-circuit/wraith-raider.glb": "5ca426907f272934aa854ae09177f66d35e53467190bdc85a17b419679e08eda",
+    "ak47-range/ren42.glb": "25aa8c535c43b1cc0a5298bc249ee7ce94595457b3da5f215b65a4eb3a10df25",
+    "ak47-range/qiang_ak47.glb": "7b487cb6cdf7746cbc02ffc22d7b54b8ea8ec60aca90732f7047c3708f8341b3"
+  }
+}

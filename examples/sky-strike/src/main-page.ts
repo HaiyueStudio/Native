@@ -1,9 +1,9 @@
-import {ENEMY_DEFINITIONS} from '../../../../Games/games/sky-strike/rules';
+import {ENEMY_DEFINITIONS} from '../../../games/sky-strike/rules';
 import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank.ios';
-import { SkyStrikeAudio } from '../../../../Games/games/sky-strike/audio/SkyStrikeAudio';
-import { SKY_SOUND_IDS, SKY_SOUNDS, SKY_AUDIO_ASSETS, soundPath } from '../../../../Games/games/sky-strike/audio/synthesis';
+import { SkyStrikeAudio } from '../../../games/sky-strike/audio/SkyStrikeAudio';
+import { SKY_SOUND_IDS, SKY_SOUNDS, SKY_AUDIO_ASSETS, soundPath } from '../../../games/sky-strike/audio/synthesis';
 import { NativeHaptics } from '../../../bridge/feedback/haptics.ios';
-import { SkyStrikeLocale } from '../../../../Games/games/sky-strike/i18n';
+import { SkyStrikeLocale } from '../../../games/sky-strike/i18n';
 import { Application, File, knownFolders, path, type EventData, type Page, type Label } from '@nativescript/core';
 import { type Canvas } from '@nativescript/canvas';
 import { World } from '@haiyue/engine';
@@ -14,10 +14,10 @@ import { NativeRenderHost } from '../../../bridge/lifecycle/host';
 import { NativeTouchInput } from '../../../bridge/input/native-touch.ios';
 import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures.ios';
 import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage';
-import { SkyStrikeGame } from '../../../../Games/games/sky-strike/SkyStrikeGame';
-import { SkyStrikeBattleLayer, unpackSkySprites } from '../../../../Games/games/sky-strike/battleLayer';
-import { SkyStrikeGuiHud } from '../../../../Games/games/sky-strike/guiHud';
-import { loadSkyStrikeLevels } from '../../../../Games/games/sky-strike/levels/loader';
+import { SkyStrikeGame } from '../../../games/sky-strike/SkyStrikeGame';
+import { SkyStrikeBattleLayer, unpackSkySprites } from '../../../games/sky-strike/battleLayer';
+import { SkyStrikeGuiHud } from '../../../games/sky-strike/guiHud';
+import { loadSkyStrikeLevels } from '../../../games/sky-strike/levels/loader';
 
 let host: NativeRenderHost | null = null;
 let activeCanvas: Canvas | null = null;

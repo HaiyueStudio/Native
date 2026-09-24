@@ -33,6 +33,9 @@
       ],
       "wgpu-matrix": [
         "node_modules/wgpu-matrix"
+      ],
+      "@haiyue/extensions/experimental/indexed-sprite": [
+        "node_modules/@haiyue/extensions/dist/experimental-indexed-sprite.d.ts"
       ]
     },
     "resolveJsonModule": true

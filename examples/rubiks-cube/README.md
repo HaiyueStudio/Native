@@ -1,8 +1,8 @@
 # 魔方实验室 — iOS
 
-第三款共享 Games 游戏源码的独立 iPhone App，Bundle ID `org.haiyue.native.rubikscube`，显示名“魔方实验室”。支持二阶、三阶、四阶和会改变外形的镜面魔方。
+第三款使用仓库内 游戏源码的独立 iPhone App，Bundle ID `org.haiyue.native.rubikscube`，显示名“魔方实验室”。支持二阶、三阶、四阶和会改变外形的镜面魔方。
 
-一个原生 WebGPU / Metal Canvas 绘制 PBR 魔方和 Engine GUI。Native Canvas 2D 只在启动时生成一次中文字形图集。无需远程资源、WebView 或外部图片。游戏规则、动画、选型页、HUD、拖动转层和相机交互均来自 `Games/games/rubiks-cube/`。
+一个原生 WebGPU / Metal Canvas 绘制 PBR 魔方和 Engine GUI。Native Canvas 2D 只在启动时生成一次中文字形图集。无需远程资源、WebView 或外部图片。游戏规则、动画、选型页、HUD、拖动转层和相机交互均来自 `games/rubiks-cube/`。
 
 小块本体与面片均使用 Engine 圆角盒体几何，使用 45° 透视相机并随横竖屏调整取景。此版本已更新到 iPhone，并归档真机圆角四阶首页截图及运行日志，见 `evidence/rounded-perspective/verification.md`。
 
