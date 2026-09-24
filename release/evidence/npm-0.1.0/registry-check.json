@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-09-24T12:22:13.196268+00:00",
+  "name": "@haiyue/native",
+  "version": "0.1.0",
+  "registryMetadataHttpStatus": 200,
+  "metadataAccess": "anonymous",
+  "registryIntegrityMatchesAuditedTarball": true,
+  "dist": {
+    "shasum": "8a5d019164ab212a72f7b277014385983cc8de85",
+    "tarball": "https://registry.npmjs.org/@haiyue/native/-/native-0.1.0.tgz",
+    "fileCount": 62,
+    "integrity": "sha512-NN6kn2b2XndJyLeI2ktt9r2Argzx93X9S/ANEnAFqvCIE8HleTYtAMz6j2WHitELgH333Cbt2Rwoxk0CGX907w==",
+    "signatures": [
+      {
+        "sig": "MEQCIFus3z+0g+3fkIzgPIJaUxZQimWXjYuYVa41mNjYbqCEAiBOqtGhmLVpBlXHgv2J6BD3UoN1rU05qNj6c/yANYiqIQ==",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 283680
+  },
+  "packageSizeBytes": 177192,
+  "examplesIncluded": false,
+  "gamesIncluded": false,
+  "initializerIncluded": false,
+  "install": {
+    "source": "npm registry by exact name and version",
+    "usedExistingCache": false,
+    "usedNpmCredentials": false,
+    "status": "passed"
+  },
+  "installedPackageContentAndIosAndroidResolutionTests": 3,
+  "consumerTypecheck": "passed",
+  "brandingWebpackExport": "passed",
+  "nativeDeviceTestsRepeated": false
+}
