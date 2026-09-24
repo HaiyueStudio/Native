@@ -26,6 +26,13 @@ its pinned local Extensions and animation-spec tarballs are bundled in `vendor/`
 No new Engine API or shader is introduced. The bridge supplies the standard
 `GPUColorWrite` mask when Canvas 2.1.x does not expose it.
 
+## Shared launch page
+
+The app uses `bridge/branding/NativeEngineLaunchPage` and the shared Haiyue moon
+asset. It fades only after `NativeRenderHost` confirms a successful GPU present;
+initialization failures remain visible. Loading messages use the saved game
+language. Sky Strike keeps its edge-to-edge canvas and GPU HUD safe-area handling.
+
 ## Layered scrolling space
 
 Each of the eight missions has its own generated 512px starfield/nebula texture:

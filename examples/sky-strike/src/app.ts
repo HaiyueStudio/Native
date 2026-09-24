@@ -1,9 +1,10 @@
 import clone from 'core-js-pure/actual/structured-clone';
 import { installNativeSaveRuntime } from '../../../bridge/storage/clone-runtime';
 import { Application } from '@nativescript/core';
+import { createLaunchPage } from './main-page';
 import { NativeOrientationController } from '../../../bridge/display/orientation.ios';
 import type { OrientationPolicy } from '../../../bridge/display/orientation-policy';
 import policy from '../orientation.json';
 export const orientation = new NativeOrientationController(policy.supported as OrientationPolicy, policy.initial as OrientationPolicy);
 installNativeSaveRuntime(clone);
-Application.run({ moduleName: 'main-page' });
+Application.run({ create: createLaunchPage });

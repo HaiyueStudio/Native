@@ -1,0 +1,24 @@
+{
+  "device": "iPad Air (4th generation)",
+  "bundleId": "org.haiyue.native.skystrike",
+  "deviceFamily": [
+    1,
+    2
+  ],
+  "orientation": [
+    "UIInterfaceOrientationPortrait"
+  ],
+  "fullScreen": true,
+  "renderPixels": [
+    1640,
+    2360
+  ],
+  "displayPoints": [
+    820,
+    1180
+  ],
+  "startupPhase": "ready",
+  "webgpuFrameCapture": true,
+  "nativeTestsPassed": 9,
+  "bundleSha256": "7f5f71fe6fb196e6cf94478bd69387d9bf31c17093bda9cc8ef7d1ef4729e2ea"
+}

@@ -4,8 +4,9 @@ import { SkyStrikeAudio } from '../../../games/sky-strike/audio/SkyStrikeAudio';
 import { SKY_SOUND_IDS, SKY_SOUNDS, SKY_AUDIO_ASSETS, soundPath } from '../../../games/sky-strike/audio/synthesis';
 import { NativeHaptics } from '../../../bridge/feedback/haptics.ios';
 import { SkyStrikeLocale } from '../../../games/sky-strike/i18n';
-import { Application, File, knownFolders, path, type EventData, type Page, type Label } from '@nativescript/core';
-import { type Canvas } from '@nativescript/canvas';
+import { Application, File, knownFolders, path, type EventData, type Page } from '@nativescript/core';
+import { Canvas } from '@nativescript/canvas';
+import { NativeEngineLaunchPage } from '../../../bridge/branding/launch-page';
 import { World } from '@haiyue/engine';
 import { RenderIntegration } from '@haiyue/engine/experimental';
 import { LocalStorageSaveBackend, MemorySaveBackend } from '@haiyue/engine/save';
@@ -21,7 +22,20 @@ import { loadSkyStrikeLevels } from '../../../games/sky-strike/levels/loader';
 
 let host: NativeRenderHost | null = null;
 let activeCanvas: Canvas | null = null;
+let activePage: NativeEngineLaunchPage | null = null;
 const ready = new WeakSet<Canvas>();
+export function createLaunchPage(): NativeEngineLaunchPage {
+  const locale = new SkyStrikeLocale(new NativeSettingsStorage());
+  const page = new NativeEngineLaunchPage({ orientation: 'portrait', message: locale.text('preparing') });
+  // Sky Strike owns safe-area handling in its GPU HUD; preserve its edge-to-edge canvas.
+  page.gameRoot.iosOverflowSafeArea = true;
+  const canvas = new Canvas();
+  canvas.id = 'surface'; canvas.ignoreTouchEvents = true; canvas.iosOverflowSafeArea = true;
+  canvas.on('ready', onCanvasReady);
+  page.gameRoot.addChild(canvas);
+  page.on('loaded', onLoaded); page.on('unloaded', onUnloaded);
+  return page;
+}
 export function onCanvasReady(args: EventData): void { const canvas = args.object as Canvas; ready.add(canvas); ensureHost(canvas); }
 export function onLoaded(args: EventData): void { const canvas = (args.object as Page).getViewById<Canvas>('surface'); if (canvas && ready.has(canvas)) ensureHost(canvas); }
 function unhandled(args: { error?: unknown }): void { host?.fail(args.error); }
@@ -30,7 +44,8 @@ function ensureHost(canvas: Canvas): void {
   if (host) return;
   activeCanvas = canvas;
   const locale = new SkyStrikeLocale(new NativeSettingsStorage());
-  const status = (canvas.page as Page).getViewById<Label>('status');
+  const page = canvas.page as NativeEngineLaunchPage;
+  activePage = page;
   const input = new NativeTouchInput(canvas, () => {});
   const haptics = new NativeHaptics();
   const musicProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_MUSIC_PROBE')) === '1';
@@ -46,8 +61,9 @@ function ensureHost(canvas: Canvas): void {
   let textures: NativeCanvasTextures | null = null;
   let detachUpdate = () => {};
   host = new NativeRenderHost(canvas, text => {
-    status.visibility = text.startsWith('原生 WebGPU 已呈现') ? 'collapse' : 'visible';
-    status.text = locale.text(text.startsWith('正在初始化') ? 'preparing' : 'startupFailed');
+    if (text.startsWith('原生 WebGPU 已呈现')) page.splash.presented();
+    else if (text.startsWith('正在初始化')) page.splash.setMessage(locale.text('preparing'));
+    else page.splash.fail(locale.text('startupFailed'));
   }, {
     diagnosticName: 'sky-strike',
     performance: ['1','detailed'].includes(String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PERF'))),
@@ -182,11 +198,11 @@ function ensureHost(canvas: Canvas): void {
     },
     bindInput() { return {
       suspend() { haptics.suspend(); input.suspend(); game?.suspend(); }, resume() { haptics.resume(); input.resume(); },
-      dispose() { input.dispose(); }, snapshot() { return { ...input.snapshot(), game: game?.snapshot(), haptics: haptics.snapshot(), textures: textures?.snapshot() }; },
+      dispose() { input.dispose(); }, snapshot() { return { ...input.snapshot(), splash: page.splash.status, game: game?.snapshot(), haptics: haptics.snapshot(), textures: textures?.snapshot() }; },
     }; },
     disposeScene() { haptics.dispose(); audio?.dispose(); detachUpdate(); input.dispose(); game?.dispose(); world?.destroy(); textures?.dispose();  },
   });
   Application.on(Application.uncaughtErrorEvent, unhandled); Application.on(Application.exitEvent, disposeHost);
 }
 export function onUnloaded(): void { if (!Application.inBackground && !Application.suspended) disposeHost(); }
-function disposeHost(): void { Application.off(Application.uncaughtErrorEvent, unhandled); Application.off(Application.exitEvent, disposeHost); host?.dispose(); host = null; activeCanvas = null; }
+function disposeHost(): void { Application.off(Application.uncaughtErrorEvent, unhandled); Application.off(Application.exitEvent, disposeHost); host?.dispose(); host = null; activeCanvas = null; activePage?.splash.dispose(); activePage = null; }

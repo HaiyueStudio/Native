@@ -1,6 +1,6 @@
 {
-  "name": "@haiyue/native-repository",
-  "version": "0.1.1",
+  "name": "@haiyue/native",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "type": "module",

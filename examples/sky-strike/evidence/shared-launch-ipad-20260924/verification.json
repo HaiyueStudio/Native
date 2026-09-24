@@ -1,0 +1,17 @@
+{
+  "device": "iPad Air (4th generation)",
+  "launchPage": "NativeEngineLaunchPage",
+  "splashAtFirstPresent": "leaving",
+  "splashAtFrame120": "hidden",
+  "display": [
+    820,
+    1180
+  ],
+  "renderPixels": [
+    1640,
+    2360
+  ],
+  "testsPassed": 10,
+  "brandingSha256": "697577528fcc8585f9c452bb0579c077f8f0b8c3588e358864d5b21ead7b3f10",
+  "bundleSha256": "537dc20b7819572aa0e8cbb1ac08561797d465e4da2b16422f09f0a36e541bd3"
+}
