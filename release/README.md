@@ -1,6 +1,6 @@
 # Native 0.1 发布
 
-当前冻结源码版本：**0.1.1**，应用版本仍为 **0.1.0**，标签 `v0.1.1`。游戏代码与自有素材已纳入 Native，见 [正式版本说明](NOTES-0.1.1.md) 和 [发布页](https://github.com/HaiyueStudio/Native/releases/tag/v0.1.1)。正式版与 rc.4 运行输入相同，沿用其完整的新目录原生构建证据；最终源码检查单独记录。已发布 v0.1.0 的 [真机验收](ACCEPTANCE.md) 保留为历史记录，不冒充本次重新验收。本次不上传商店或发布 npm 包。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
+当前冻结源码名称：**@haiyue/native**，版本 **0.1.0**，应用版本仍为 **0.1.0**，标签 `native-v0.1.0`。这是更名后的 GitHub 源码发布，保留原 `@haiyue/native-repository` 的 `v0.1.0` / `v0.1.1` 标签及验证记录。游戏代码与自有素材已纳入 Native，见 [本次版本说明](NOTES-native-0.1.0.md) 和 [发布页](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0)。本次包含最新 Sky Strike iPad 支持与共享开屏页；源码 gate 重新执行，已有的全新目录构建与真机记录注明各自版本范围。本次不上传商店或发布 npm 包。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
 
 ## 候选范围
 
@@ -50,7 +50,7 @@ IOS_DEVICE_UDID=<udid> IOS_TEAM_ID=<team> PYTHON=/path/to/python npm run release
 
 ## 冻结和后续修订
 
-首次冻结执行 `npm run release:freeze`。已有同名版本时命令拒绝覆盖。需要改动时，将根 package.json / package-lock.json 和 release/config.json 的版本一起递增，例如 0.1.1-rc.4；更新必要的 npm、Ruby、SPM、Maven 锁文件，审查差异后重新冻结和验证。不要手工修改 candidate.json 来消除校验失败。下一应用版本发布时同步更新 config.appVersion 和各示例 package 元数据。
+首次冻结执行 `npm run release:freeze`。已有同名版本时命令拒绝覆盖。需要改动时，将根 package.json / package-lock.json 和 release/config.json 的版本一起递增，例如 0.1.1-rc.1；更新必要的 npm、Ruby、SPM、Maven 锁文件，审查差异后重新冻结和验证。不要手工修改 candidate.json 来消除校验失败。下一应用版本发布时同步更新 config.appVersion 和各示例 package 元数据。
 
 Android Maven 锁由 Gradle `:app:verifyReleaseDependencies --write-locks` 生成，普通构建启用严格锁模式。依赖更新时同时解析 Debug / Release 的编译及运行配置，解析失败会返回非零；发布 gate 不自动执行 `--write-locks`。iOS Podfile.lock 快照在本候选中没有外部 pod，仅含 Podfile checksum 和 CocoaPods 版本。locks/Podfile 保留规范化的完整正文：仅去除 NativeScript 两类生成注释中的检出路径；验证先检查实际 Podfile 的原始 SHA-1，再逐字比较规范化正文、依赖锁和 CocoaPods 版本，不能忽略真实依赖变更；SwiftPM 另行固定 font-manager revision。
 

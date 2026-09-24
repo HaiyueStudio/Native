@@ -4,7 +4,7 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 
 ## 0.1 源码版
 
-当前源码版本为 **0.1.1**，发布标签为 `v0.1.1`。五款游戏源码、自有图片与音效位于本仓库 `games/`，无需相邻 Games 目录。[版本说明](release/NOTES-0.1.1.md) 提供下载、构建与验证范围；[正式发布页](https://github.com/HaiyueStudio/Native/releases/tag/v0.1.1) 的访问权限与仓库一致。运行 `npm run release:verify -- --install` 验证全部源码。三个第三方模型不随源码提供，运行 `npm run models:check` 检查放置路径与哈希，详见 [模型使用路径](games/ASSETS.md)。没有模型时仍可构建 PBR、蜘蛛纸牌、Sky Strike 和魔方。
+当前源码名称为 **@haiyue/native**，版本为 **0.1.0**，发布标签为 `native-v0.1.0`。这是原 `@haiyue/native-repository` 的更名源码版，历史 `v0.1.0` / `v0.1.1` 保留。五款游戏源码、自有图片与音效位于本仓库 `games/`，无需相邻 Games 目录。[版本说明](release/NOTES-native-0.1.0.md) 提供下载、构建与验证范围；[正式发布页](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0) 公开可访问。本次通过 GitHub 分发源码，根包保留 `private: true`，不作为可直接 import 的 npm 库发布。运行 `npm run release:verify -- --install` 验证全部源码。三个第三方模型不随源码提供，运行 `npm run models:check` 检查放置路径与哈希，详见 [模型使用路径](games/ASSETS.md)。没有模型时仍可构建 PBR、蜘蛛纸牌、Sky Strike 和魔方。
 
 本仓库采用 [MIT License](LICENSE)，第三方依赖和游戏素材保留各自许可，见 [第三方声明](THIRD_PARTY_NOTICES.md)。
 

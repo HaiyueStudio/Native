@@ -1,0 +1,13 @@
+{
+  "source": "release:export from frozen current tree",
+  "independentDirectory": true,
+  "copiesPreviousNodeModules": false,
+  "copiesGamesRepository": false,
+  "packageName": "@haiyue/native",
+  "version": "0.1.0",
+  "frozenInputs": 683,
+  "candidateVerification": "passed",
+  "rootAndLockMetadata": "matched",
+  "modelFreeRubiksCheck": "passed",
+  "nativeBuildRepeated": false
+}

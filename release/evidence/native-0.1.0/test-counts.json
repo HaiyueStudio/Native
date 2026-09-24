@@ -1,0 +1,12 @@
+{
+  "total": 88,
+  "logs": {
+    "ak47-range-tests.log": 12,
+    "ios-pbr-orbit-tests.log": 27,
+    "neon-circuit-tests.log": 18,
+    "release-tests.log": 10,
+    "rubiks-cube-tests.log": 4,
+    "sky-strike-tests.log": 10,
+    "spider-solitaire-tests.log": 7
+  }
+}

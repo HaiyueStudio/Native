@@ -1,0 +1,76 @@
+{
+  "previousTag": "v0.1.1",
+  "newTag": "native-v0.1.0",
+  "packageName": "@haiyue/native",
+  "packageVersion": "0.1.0",
+  "frozenInputs": 683,
+  "manifestSha256": "f4fa432c6140b7d49ad05b49dceabf36dc3477c24242e628f3e41d814ef5e8a9",
+  "dependenciesUnchanged": true,
+  "changedInputs": [
+    {
+      "path": "Native/README.md",
+      "previous": "6148dc3235c1cfe9c60e31e9911a208fd50a3ca53322d0fe3ea844daf565db74",
+      "current": "13da47ccfa327260766f44cc34910e341c8eac646592562da33d1faa50abab74"
+    },
+    {
+      "path": "Native/examples/sky-strike/App_Resources/iOS/build.xcconfig",
+      "previous": "8dc0410b7d1ab89032da864e5ebd63671d6230d5c9aaf426badf8fcf58ea00d9",
+      "current": "a911e54f9d52afbd45c0590c70201d339616b142be15974217256f6976d11c7c"
+    },
+    {
+      "path": "Native/examples/sky-strike/README.md",
+      "previous": "f26011cd208f4009cf7ec898402319e67c2f881dbcf5208273d53ea2e6f2427e",
+      "current": "dc5c3f7a30a197de3da65ac4fe7b65b5f518383f32a759f3b116025141c7df3d"
+    },
+    {
+      "path": "Native/examples/sky-strike/src/app.ts",
+      "previous": "9d3d5f735e94a8e68f4962c51651cc697ef850ede06b4406e36c74d0b3427a33",
+      "current": "95e775a4387260b6d0ba082896fb4fa9e8ec925536da6389563313414af96cdf"
+    },
+    {
+      "path": "Native/examples/sky-strike/src/main-page.ts",
+      "previous": "ccb64986b0a042f7e069a02f97063a8f1f7c9c5776df4c1e95877fc023b375df",
+      "current": "d30c78fded30e0960a9ac420560af9de29ed6ce63632140becfbf0c9e60d9a69"
+    },
+    {
+      "path": "Native/examples/sky-strike/src/main-page.xml",
+      "previous": "8e9a2e8320fdccb50be31b0ceff71c65d60982ade0aa591301f0203d9d224634",
+      "current": null
+    },
+    {
+      "path": "Native/examples/sky-strike/test/launch-page.test.mjs",
+      "previous": null,
+      "current": "3c38b4183acca46899a4407784fc8a3dee2110d91d070ee158614fa818654bb9"
+    },
+    {
+      "path": "Native/examples/sky-strike/webpack.config.js",
+      "previous": "b339cada9cf75d1afe0cbf481caba6116e174bc31406925295d9a39ed759339d",
+      "current": "88678b95ac7aec25bb0246a9610f81657c353da96d3381906160e970b42bdae9"
+    },
+    {
+      "path": "Native/package-lock.json",
+      "previous": "0858b3e9d84bd0f0a158d8ac55132d4660ee8459ac97fbb2f077a3f0db70c0f4",
+      "current": "5fccbb6355206fc63a25480daa74e6a6f50b5efa68ed1507dcda6b8dc77f954c"
+    },
+    {
+      "path": "Native/package.json",
+      "previous": "cf13bdb76748892dd9e411ae114b7b9674cdebcf2e0acae9593bde9f7a49de16",
+      "current": "becdcd03c72f27032bd80c5d9590ed8a49116c97512d63f929f5198c0c9b3d7b"
+    },
+    {
+      "path": "Native/release/NOTES-native-0.1.0.md",
+      "previous": null,
+      "current": "bd9a2c73281a8bbd66b6df721d36ba6f8d69f5af9524a5ba32958bacc2626a1a"
+    },
+    {
+      "path": "Native/release/README.md",
+      "previous": "644d1237f186839271585808009476f050003172708831c5dd35bfdc433773c1",
+      "current": "884df322d18d184c8c937e342b7f59b669ff4604ebcd91c40344bdb4696f6339"
+    },
+    {
+      "path": "Native/release/config.json",
+      "previous": "42c62a736b389559962e9dfbf86d98b3706002f5164a4bad614c2d284d347f52",
+      "current": "f4ed185419237b0719cdebf0c4f58563226dfb6c9739a92ab26a90e2cfdfdac7"
+    }
+  ]
+}
