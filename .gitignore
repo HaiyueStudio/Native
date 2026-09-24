@@ -1,1 +1,12 @@
 .android-tools/
+
+# Private CalendarPuzzle application lives in a sibling repository.
+/examples/calendar-puzzle/
+/services/calendar-entitlements/
+/bridge/purchases/
+
+# MoonlightSudoku application is maintained in its private repository.
+/examples/led-sudoku/
+
+# BoxWorld is a private standalone application.
+/examples/boxbound/

@@ -6,9 +6,7 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 
 | 路径 | 用途 |
 | --- | --- |
-| [examples/boxbound/](./examples/boxbound/README.md) | 箱庭迷境，Android 横屏盒中世界、半透明摇杆与双指跳跃 |
 | [examples/](./examples/README.md) | 原生 App 示例 |
-| [examples/led-sudoku/](./examples/led-sudoku/README.md) | iPhone / Android 竖屏流光数独，LED 灯管、九宫格输入与十四种规则 |
 | [examples/neon-circuit/](./examples/neon-circuit/README.md) | 四赛道反重力竞速，陀螺仪 / 虚拟摇杆、独立刹车与油门 |
 | [bridge/motion/](./bridge/motion/README.md) | iOS 陀螺仪、设备姿态和屏幕方向倾斜角 |
 | [examples/ak47-range/](./examples/ak47-range/README.md) | 横屏第三人称 AK47 生存射击、掩体寻路、视野迷雾和震动 |
@@ -22,3 +20,5 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 方案与执行计划见 [Native 文档入口](../milestones/native/README.md)；跨仓依赖规则见 [repository-version-policy.json](../milestones/milestones/repository-version-policy.json)。
 
 G02 已完成 [原生宿主](./bridge/README.md) 与 private App，真机清屏、暂停恢复、独立冷启动和逐像素校验通过。G03 已完成真机静态 PBR 立方体和粗糙度对照，Orbit 由 G04 接续。
+
+Moonlight Sudoku (LED Sudoku) is maintained in the private [MoonlightSudoku repository](https://github.com/HaiyueStudio/MoonlightSudoku).

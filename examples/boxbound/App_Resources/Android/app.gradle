@@ -1,1 +1,0 @@
-android { defaultConfig { minSdkVersion 26 } }

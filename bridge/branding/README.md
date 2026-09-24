@@ -33,16 +33,16 @@ Application.run({ create: () => {
 - 页面真正销毁时调用 `page.splash.dispose()`；后台切换、临时模态窗口不需要销毁或重播开屏。销毁会移除布局监听，重复调用安全。
 - `page.splash.status` 可供启动诊断使用。
 
-已有 XML 页面可以继续使用 `new NativeEngineSplash(fullscreenGrid)`，保留同样的首帧/失败/销毁接线。`calendar-puzzle` 使用该方式；`led-sudoku` 使用共享页面的竖屏方式。
+已有 XML 页面可以继续使用 `new NativeEngineSplash(fullscreenGrid)`，保留同样的首帧/失败/销毁接线。私有应用可使用该方式；`led-sudoku` 使用共享页面的竖屏方式。
 
 此组件覆盖 NativeScript 页面创建后的应用初始化阶段。操作系统在 JavaScript 启动前显示的 LaunchScreen / Android 系统启动画面仍由各应用的 `App_Resources` 配置。
 
 ## 品牌素材
 
-沿用 calendar-puzzle 已使用的冰蓝色琉璃月牙：`assets/haiyue-moon-master.png` 为透明 RGBA 母版，`assets/haiyue-moon.png` 为 384 px、约 127 KiB 的发布版本。共享打包规则只复制发布版本，不打包母版，也不替换各游戏的应用图标。
+共享冰蓝色琉璃月牙：`assets/haiyue-moon-master.png` 为透明 RGBA 母版，`assets/haiyue-moon.png` 为 384 px、约 127 KiB 的发布版本。共享打包规则只复制发布版本，不打包母版，也不替换各游戏的应用图标。
 
 素材于 2026-09-20 使用 imagegen 根据用户轮廓生成，参考文件为 `codex-clipboard-d5dc03ec-570a-48f9-8a70-78b7ec3c10eb.png`。原提示为宽左月牙、淡蓝透明抛光琉璃、透明圆形镂空、无文字及装饰；发布版本使用 macOS sips 缩放并保留透明通道。本次仅复用素材并调整页面布局。
 
 ## 验证
 
-`examples/calendar-puzzle/test/loading-performance.test.mjs` 验证横竖屏尺寸、旋转重排、页面分层、消息更新、失败与淡出竞争、销毁清理。数独的真机诊断额外检查首帧后启动页已隐藏；仅诊断模式会保存开屏截图。
+私有应用的启动页回归验证横竖屏尺寸、旋转重排、页面分层、消息更新、失败与淡出竞争、销毁清理。数独的真机诊断额外检查首帧后启动页已隐藏；仅诊断模式会保存开屏截图。

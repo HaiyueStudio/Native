@@ -2,7 +2,7 @@
 
 `RewardController` is independent of NativeScript, rendering, puzzle rules and AdMob.
 `AdMobRewardGateway` implements the native SDK boundary (Swift + Java), including UMP consent.
-Existing nonconsumable ownership stays in `bridge/purchases`; pass its current verified entitlement to `entitled()`.
+Nonconsumable ownership belongs to the consuming app; pass its current verified entitlement to `entitled()`.
 
 ## Integrating another game
 
@@ -15,7 +15,7 @@ Existing nonconsumable ownership stays in `bridge/purchases`; pass its current v
 7. Display a privacy-options button when `snapshot().privacyRequired` is true, calling `privacy()`.
 8. Use a structural game-side interface so browser builds never import NativeScript/SDK code.
 
-Calendar Puzzle is the reference integration (`examples/calendar-puzzle/src/main-page.ts`, `Games/games/calendar-puzzle/rewards.ts`). For NativeScript, include the shared Swift files through `ios.NativeSource`, GoogleMobileAds via `ios.SPMPackages`, and the shared Java source directory plus Google Mobile Ads/UMP dependencies in app.gradle. Each app must supply its own AdMob app IDs and ad units.
+For NativeScript, include the shared Swift files through `ios.NativeSource`, GoogleMobileAds via `ios.SPMPackages`, and the shared Java source directory plus Google Mobile Ads/UMP dependencies in app.gradle. Each app must supply its own AdMob app IDs and ad units.
 
 ## Semantics
 

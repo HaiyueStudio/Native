@@ -1,9 +1,0 @@
-
-> @haiyue/games-repository@0.1.0 build:target
-> node scripts/build-target.mjs game:calendar-puzzle
-
-
-> rollup game calendar-puzzle
-
-games/calendar-puzzle/main.ts → games/calendar-puzzle/bundle.js...
-created games/calendar-puzzle/bundle.js in 30.5s

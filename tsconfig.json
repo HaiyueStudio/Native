@@ -1,8 +1,15 @@
 {
-  "extends": "./examples/calendar-puzzle/tsconfig.json",
+  "extends": "./examples/ios-pbr-orbit/tsconfig.json",
   "compilerOptions": {
-    "typeRoots": ["./examples/calendar-puzzle/node_modules"]
+    "typeRoots": [
+      "./examples/ios-pbr-orbit/node_modules"
+    ]
   },
-  "include": ["bridge/**/*.ts"],
-  "exclude": ["**/node_modules", "**/platforms"]
+  "include": [
+    "bridge/**/*.ts"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/platforms"
+  ]
 }

@@ -1,7 +1,0 @@
-node_modules/
-platforms/
-artifacts/
-.ns-profile/
-.env.local
-App_Resources/iOS/signing.local.xcconfig
-__pycache__/

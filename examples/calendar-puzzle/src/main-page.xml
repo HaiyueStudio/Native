@@ -1,5 +1,0 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gpu="@nativescript/canvas" actionBarHidden="true" androidOverflowEdge="ignore" loaded="onLoaded" unloaded="onUnloaded" backgroundColor="#07111f">
-  <GridLayout id="appRoot" iosOverflowSafeArea="true">
-    <gpu:Canvas id="surface" ready="onCanvasReady" ignoreTouchEvents="true" iosOverflowSafeArea="true" />
-  </GridLayout>
-</Page>
