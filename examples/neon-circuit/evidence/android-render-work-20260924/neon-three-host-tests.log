@@ -1,0 +1,113 @@
+
+> @haiyue/native-ios-pbr-orbit@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Engine typed-array offsets reach native without losing count or copying the view (4.163235ms)
+✔ ordinary offset arrays and bindings without offsets retain Canvas behavior (3.160255ms)
+✔ Canvas can extend a frozen Engine request without mutating Engine feature policy (6.111169ms)
+✔ default device requests get independent mutable feature arrays (0.356101ms)
+✔ native handle zero cancels and a stale callback cannot fire (6.70994ms)
+✔ callbacks use the engine clock and can schedule exactly one following frame (0.513135ms)
+✔ native callbacks report errors to the host and release their handle (0.420152ms)
+✖ five resume cycles clear input before stopping, refresh layout, and keep one callback (4.385751ms)
+✖ background during asynchronous init prevents run until foreground (19.925906ms)
+✖ dispose during init cannot bind input or start a late frame loop (1.404833ms)
+✖ dispose removes listeners and input before GPU teardown; stale lifecycle events do nothing (5.120861ms)
+✖ GPU failure cancels input and refuses the remainder of the failed frame (10.391233ms)
+✖ failed scene initialization releases scene resources once before GPU teardown (1.312372ms)
+✔ packed production OrbitControl gives identical logical drag at different DPR and safe-area origins (10.863799ms)
+✔ up, cancel and suspend stop Orbit; stale moves cannot resume the drag (5.282174ms)
+✔ second finger never reaches pinch, and lifting primary does not adopt the held finger (0.692ms)
+✔ batch downs select one primary and duplicate downs cannot reset its last position (1.576067ms)
+✔ captured drag continues outside the view, clamps both poles, and never pans or zooms (0.703256ms)
+✔ dispose ends active gesture and removes listeners; rebuilding does not double rotation (1.31932ms)
+✔ native identity compares underlying touch across new wrappers and never reuses IDs (0.854741ms)
+✔ Page loaded before Canvas ready waits, and duplicate ready/loaded do not add hosts (9.019519ms)
+✔ returning to the same ready Canvas recreates exactly one host after permanent unload (1.874207ms)
+✔ background Page unload retains the paused host, while exit disposes it (0.65266ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 17
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2016.025103
+
+✖ failing tests:
+
+test at test/host-lifecycle.test.mjs:61:1
+✖ five resume cycles clear input before stopping, refresh layout, and keep one callback (4.385751ms)
+  TypeError: Cannot read properties of undefined (reading 'PresentationPause')
+      at new NativeRenderHost (eval at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:53:3), <anonymous>:46:59)
+      at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:54:16)
+      at TestContext.<anonymous> (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:62:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at test/host-lifecycle.test.mjs:81:1
+✖ background during asynchronous init prevents run until foreground (19.925906ms)
+  TypeError: Cannot read properties of undefined (reading 'PresentationPause')
+      at new NativeRenderHost (eval at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:53:3), <anonymous>:46:59)
+      at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:54:16)
+      at TestContext.<anonymous> (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:82:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at test/host-lifecycle.test.mjs:90:1
+✖ dispose during init cannot bind input or start a late frame loop (1.404833ms)
+  TypeError: Cannot read properties of undefined (reading 'PresentationPause')
+      at new NativeRenderHost (eval at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:53:3), <anonymous>:46:59)
+      at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:54:16)
+      at TestContext.<anonymous> (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:91:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at test/host-lifecycle.test.mjs:99:1
+✖ dispose removes listeners and input before GPU teardown; stale lifecycle events do nothing (5.120861ms)
+  TypeError: Cannot read properties of undefined (reading 'PresentationPause')
+      at new NativeRenderHost (eval at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:53:3), <anonymous>:46:59)
+      at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:54:16)
+      at TestContext.<anonymous> (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:100:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at test/host-lifecycle.test.mjs:111:1
+✖ GPU failure cancels input and refuses the remainder of the failed frame (10.391233ms)
+  TypeError: Cannot read properties of undefined (reading 'PresentationPause')
+      at new NativeRenderHost (eval at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:53:3), <anonymous>:46:59)
+      at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:54:16)
+      at TestContext.<anonymous> (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:112:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at test/host-lifecycle.test.mjs:121:2
+✖ failed scene initialization releases scene resources once before GPU teardown (1.312372ms)
+  TypeError: Cannot read properties of undefined (reading 'PresentationPause')
+      at new NativeRenderHost (eval at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:53:3), <anonymous>:46:59)
+      at setup (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:54:16)
+      at TestContext.<anonymous> (file:///Users/qingque/Desktop/HaiyueStudio/Native/examples/ios-pbr-orbit/test/host-lifecycle.test.mjs:122:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

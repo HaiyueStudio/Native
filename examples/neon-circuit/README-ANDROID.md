@@ -56,4 +56,8 @@ adb -s <serial> shell am start -S -n org.haiyue.games.neoncircuit/com.tns.Native
 
 后续修复了关闭周期日志后切换赛道的加载提示不消失问题：加载成功后主动隐藏原生标签，真机回归扩展至 23 项，包含连续切换霓虹都市与云端港湾。见 [加载提示修复记录](evidence/android-track-loading-20260924/README.md)。
 
+每帧实现进一步减少了诊断快照分配、摇杆重复采样、安全区与音量重复原生调用。固定场景 FPS 本轮未见明显提升；已完成的改动、测量结果和后续渲染优化候选见 [代码性能检查](evidence/android-code-performance-20260924/README.md)。
+
+随后完成动态纹理共用 encoder/submit、实时读数独立 GUI 根缓存、Native 尺寸与窗口坐标分离及当帧缓存。新增结构检查和 25 项真机回归通过，四个浏览器场景已验证；固定场景仍约 58 FPS。实现细节、计数、性能对比与检查限制见 [三项渲染优化](evidence/android-render-work-20260924/README.md)。
+
 2026-09-24 已在 X4000（Android 14 / Adreno 710）构建、安装并完成 17 项真机检查；15 项赛车单元测试与 12 项原 iOS 桥接回归全部通过。结构化结果见 [验收记录](evidence/android-20260924/verification.json)。

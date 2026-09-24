@@ -289,6 +289,14 @@ export async function verifyAndroidNeon(engine: HaiyueEngine, getGame: () => Neo
     await click('steering-gyro');check(driving.snapshot().mode==='gyro','GUI selects Android gyroscope');await click('settings-done');
     await click('start-race');await until(()=>getGame().snapshot().phase==='racing','race starts');
     await until(()=>getGame().modelStatus==='loaded','PBR hovercraft loaded');
+    await frames(30);
+    const cachedBefore=getGame().guiView.snapshot.cacheWork;
+    await frames(60);
+    const cachedAfter=getGame().guiView.snapshot.cacheWork;
+    check(cachedAfter.staticLayouts===cachedBefore.staticLayouts && cachedAfter.readoutLayouts>cachedBefore.readoutLayouts,
+      'live timer rebuilds readouts without rebuilding static HUD');
+    const textureWork=getGame().snapshot().dynamicTextures;
+    check(textureWork.encodes>=2 && textureWork.submissions===1,'dynamic textures share one submission before scene rendering');
     await until(()=>driving.snapshot().sensorSamples>=20,'real Android sensor samples reach steering');
     const sample=driving.snapshot().sample; sensorEvidence=sample;
     check(sample && Number.isFinite(sample.tilt.right) && Math.abs(Math.hypot(sample.gravity.x,sample.gravity.y,sample.gravity.z)-1)<.001,'finite tilt angles and normalized gravity');

@@ -1,0 +1,47 @@
+[
+  {
+    "profile": "batched",
+    "windows": 6,
+    "frames": 720,
+    "meanCpuMs": 15.993854167350541,
+    "meanIntervalMs": 17.338359722230557,
+    "worstWindowP95Ms": 19.266999966930598,
+    "detailedDiagnostics": false,
+    "pose": {
+      "raceMode": "time-trial",
+      "difficulty": "normal",
+      "winner": null,
+      "opponent": null,
+      "opponentModel": "skipped",
+      "cameraMode": "chase",
+      "fireballs": [],
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 3.024999999999992,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "sky-harbor",
+      "buildingCount": 194,
+      "exhaustLength": 1.35,
+      "fov": 1.0471975511965976,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.1800830627236196,
+      "theme": "harbor",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    "estimatedFps": 57.675582697585845
+  }
+]

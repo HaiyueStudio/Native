@@ -1,7 +1,7 @@
 import { Screen, isAndroid } from '@nativescript/core';
 import { Canvas, GPU, GPUAdapter, GPUCanvasContext } from '@nativescript/canvas';
 import type { HaiyueEngine } from '@haiyue/engine';
-import { nativeViewRect } from './view-rect';
+import { nativeViewRect, nativeViewSize } from './view-rect';
 import { copyDeviceDescriptor } from './device-descriptor';
 import { installNativeWebGpuConstants } from './webgpu-constants';
 import { installQueueFence } from './queue-fence';
@@ -15,6 +15,7 @@ export class NativeSurface {
   private adapter: GPUAdapter | null = null;
   private context: GPUCanvasContext | null = null;
   private acquired = false;
+  private measuredSize: ReturnType<typeof nativeViewSize> | null = null;
   presentedFrames = 0;
 
   constructor(readonly view: Canvas, private readonly report: (event: string, detail: unknown) => void, private readonly input?: NativeCanvasInput) {
@@ -51,7 +52,12 @@ export class NativeSurface {
     getPreferredCanvasFormat: () => this.gpu.getPreferredCanvasFormat(),
   };
 
-  get hasLayout(): boolean { return nativeViewRect(this.view).width > 0 && nativeViewRect(this.view).height > 0; }
+  get hasLayout(): boolean {
+    // Host calls this on layout and resume, even while rendering is stopped.
+    this.measuredSize = nativeViewSize(this.view);
+    return this.measuredSize.width > 0 && this.measuredSize.height > 0;
+  }
+  private get size() { return this.measuredSize ??= nativeViewSize(this.view); }
 
   engineOptions(): Pick<EngineOptions, 'canvas' | 'gpu' | 'devicePixelRatio'> {
     const self = this;
@@ -82,8 +88,8 @@ export class NativeSurface {
       set width(value: number) { self.view.width = value; },
       get height() { return self.view.height; },
       set height(value: number) { self.view.height = value; },
-      get clientWidth() { return nativeViewRect(self.view).width; },
-      get clientHeight() { return nativeViewRect(self.view).height; },
+      get clientWidth() { return self.size.width; },
+      get clientHeight() { return self.size.height; },
       getBoundingClientRect() { return nativeViewRect(self.view); },
       getContext(type: string) { return type === 'webgpu' ? context : null; },
     };
@@ -93,6 +99,8 @@ export class NativeSurface {
   }
 
   present(): boolean {
+    // Bound the cache to one frame; hit testing still reads current window coordinates.
+    this.measuredSize = null;
     if (!this.acquired) return false;
     this.getContext().presentSurface();
     this.acquired = false;
@@ -102,6 +110,7 @@ export class NativeSurface {
 
   /** Finish an interrupted acquired frame before releasing the surface. */
   release(): void {
+    this.measuredSize = null;
     try {
       if (this.acquired) {
         this.acquired = false;
