@@ -1,0 +1,4 @@
+
+> @haiyue/native-spider-solitaire@0.1.0 typecheck
+> tsc --noEmit
+

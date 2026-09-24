@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-24T07:13:31.364Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 2066
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 3525
+    },
+    {
+      "name": "rubiks-cube-dependencies",
+      "status": "passed",
+      "durationMs": 3365
+    },
+    {
+      "name": "rubiks-cube-typecheck",
+      "status": "passed",
+      "durationMs": 8932
+    },
+    {
+      "name": "rubiks-cube-tests",
+      "status": "passed",
+      "durationMs": 1784
+    },
+    {
+      "name": "native-toolchain",
+      "status": "passed",
+      "durationMs": 3501
+    },
+    {
+      "name": "rubiks-cube-build-ios",
+      "status": "passed",
+      "durationMs": 121932
+    },
+    {
+      "name": "rubiks-cube-pods-lock",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "rubiks-cube-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 1757
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate."
+  ],
+  "candidate": "0.1.0-rc.3",
+  "profile": "build",
+  "platform": "ios",
+  "apps": [
+    "rubiks-cube"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "ruby": "4.0.6",
+    "bundler": "4.0.16",
+    "xcode": "Xcode 26.3\nBuild version 17C529"
+  },
+  "manifestSha256": "969b6900d688a6658004b7adb5376a801662e8e9d695c8f1ecdaf42cd1154653",
+  "finishedAt": "2026-09-24T07:15:58.618Z"
+}

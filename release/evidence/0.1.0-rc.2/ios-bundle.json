@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-24T06:08:55.943Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 1416
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 2177
+    },
+    {
+      "name": "neon-circuit-dependencies",
+      "status": "passed",
+      "durationMs": 2223
+    },
+    {
+      "name": "neon-circuit-typecheck",
+      "status": "passed",
+      "durationMs": 6210
+    },
+    {
+      "name": "neon-circuit-tests",
+      "status": "passed",
+      "durationMs": 1611
+    },
+    {
+      "name": "native-toolchain",
+      "status": "passed",
+      "durationMs": 2823
+    },
+    {
+      "name": "neon-circuit-bundle-ios",
+      "status": "passed",
+      "durationMs": 23663
+    },
+    {
+      "name": "neon-circuit-pods-lock",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 1388
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate.",
+    "Native binary build: request --profile build."
+  ],
+  "candidate": "0.1.0-rc.2",
+  "profile": "bundle",
+  "platform": "ios",
+  "apps": [
+    "neon-circuit"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "ruby": "4.0.6",
+    "bundler": "4.0.16",
+    "xcode": "Xcode 26.3\nBuild version 17C529"
+  },
+  "manifestSha256": "051d76a3f7d3589c973650fe044ba393dc85f2fd05229280b6aa56aefa0e1705",
+  "finishedAt": "2026-09-24T06:09:37.682Z"
+}

@@ -36,5 +36,6 @@
   "allowScripts": {
     "@nativescript/core@9.1.1": true,
     "nativescript@9.1.1": true
-  }
+  },
+  "license": "MIT"
 }

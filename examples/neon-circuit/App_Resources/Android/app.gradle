@@ -1,1 +1,22 @@
 android { defaultConfig { minSdkVersion 26 } }
+
+// Lock the shipped application's compile/runtime graph for both build variants.
+// Other configurations (IDE, instrumentation tooling) are not release app inputs.
+def releaseConfigurations = ['debugCompileClasspath', 'debugRuntimeClasspath',
+                             'releaseCompileClasspath', 'releaseRuntimeClasspath']
+configurations.configureEach {
+    if (name in releaseConfigurations) resolutionStrategy.activateDependencyLocking()
+}
+dependencyLocking {
+    lockMode = LockMode.STRICT
+    lockFile = file("$rootDir/../../locks/android-app.lockfile")
+}
+// Unlike Gradle's reporting-only `dependencies`, resolution errors fail this task.
+tasks.register('verifyReleaseDependencies') {
+    doLast {
+        releaseConfigurations.each { name ->
+            def files = configurations.getByName(name).resolve()
+            logger.lifecycle("Resolved ${name}: ${files.size()} artifacts")
+        }
+    }
+}

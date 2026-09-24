@@ -35,3 +35,27 @@ test('iOS size keeps full UIKit drawing bounds and does not request window origi
   const view={clientWidth:814,clientHeight:361,nativeViewProtected:{bounds:{size:{width:932,height:430}}},getLocationInWindow(){throw new Error('size query requested window coordinates');}};
   assert.deepEqual(ios.nativeViewSize(view),{width:932,height:430});
 });
+
+test('a missing swapchain image is retryable; one real texture is shared until present and reconfigure retains the device',()=>{
+  let reads=0,presents=0,missing=true,configured=[];
+  const texture={createView(){return {};}};
+  const context={getCapabilities:()=>({format:['rgba8unorm']}),configure:options=>configured.push(options),
+    getCurrentTexture:()=>{reads++;return missing?null:texture;},presentSurface:()=>presents++,unconfigure(){}};
+  const view={getContext:()=>context,nativeViewProtected:{getWidth:()=>1200,getHeight:()=>600}};
+  const previous=Object.getOwnPropertyDescriptor(globalThis.navigator,'gpu');
+  const surface=new NativeSurface(view,()=>{});
+  try {
+    surface.adapter={}; // Supply the already acquired adapter at this boundary.
+    const canvas=surface.engineOptions().canvas, wrapped=canvas.getContext('webgpu');
+    const options={device:{},format:'rgba8unorm'};wrapped.configure(options);
+    assert.throws(()=>surface.beginFrame(),{name:'NativeSurfaceUnavailableError'});
+    assert.equal(surface.present(),false);assert.equal(presents,0);
+    surface.reconfigure();assert.equal(configured[1].device,options.device);
+    missing=false;surface.beginFrame();assert.equal(wrapped.getCurrentTexture(),texture);
+    assert.equal(wrapped.getCurrentTexture(),texture);assert.equal(reads,2);
+    assert.throws(()=>surface.reconfigure(),/acquired/);
+    assert.equal(surface.present(),true);assert.equal(presents,1);
+    surface.beginFrame();assert.equal(reads,3);surface.release();assert.equal(presents,2);
+    assert.equal(surface.presentedFrames,1,'aborted frames are not successful presentations');
+  } finally {if(previous)Object.defineProperty(globalThis.navigator,'gpu',previous);else delete globalThis.navigator.gpu;}
+});

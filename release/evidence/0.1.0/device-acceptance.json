@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "candidate": "0.1.0",
+  "manifestSha256": "a97db8a6bc697138007bf30a1e14e837c3be3e86b146c941fb00abe9d54a55de",
+  "iosDevice": "iPhone 15 Plus",
+  "iosVersion": "18.7.3",
+  "uiTestFlows": 9,
+  "apps": {
+    "neon-circuit": {
+      "status": "passed",
+      "nativeAssertions": 106,
+      "evidence": "../0.1.0-rc.3/neon-ios-verification.json"
+    },
+    "ak47-range": {
+      "status": "passed",
+      "nativeAssertions": 47,
+      "evidence": "../0.1.0-rc.3/range-ios-verification.json"
+    },
+    "rubiks-cube": {
+      "status": "passed",
+      "cases": {
+        "2": {
+          "scrambleMoves": 16,
+          "restoredAfterScramble": true
+        },
+        "3": {
+          "scrambleMoves": 25,
+          "restoredAfterScramble": true
+        },
+        "4": {
+          "scrambleMoves": 40,
+          "restoredAfterScramble": true
+        },
+        "mirror": {
+          "scrambleMoves": 25,
+          "restoredAfterScramble": true
+        }
+      },
+      "innerTurnAndUndo": true
+    },
+    "spider-solitaire": {
+      "status": "passed",
+      "difficultySwitches": 3,
+      "dealUndo": true,
+      "legalDragColdRestore": true,
+      "invalidDropEvidence": "../0.1.0-rc.3/ui/spider-invalid-drop.png"
+    },
+    "sky-strike": {
+      "status": "passed",
+      "realMoveFirePause": true,
+      "bossProbeIds": [
+        "crimson-lance",
+        "dreadnought",
+        "fission-elite",
+        "helios-prism",
+        "ion-seraph",
+        "iron-serpent",
+        "ore-reaper",
+        "prism-lancer",
+        "quantum-dreadnought",
+        "star-carrier",
+        "twin-red",
+        "violet-fortress",
+        "void-mantis"
+      ],
+      "audioEffects": 20
+    },
+    "ios-pbr-orbit": {
+      "status": "passed",
+      "actualTouchChangesOrbit": true
+    }
+  },
+  "lifecycle": "../0.1.0-rc.3/ios-lifecycle.json",
+  "androidEvidence": "../0.1.0-rc.2/android-verification.json",
+  "runtimeEquivalence": "runtime-equivalence.json",
+  "scope": "Recorded source-release acceptance, not all devices, long thermal stress or store distribution."
+}

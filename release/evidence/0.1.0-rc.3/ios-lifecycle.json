@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "apps": {
+    "g04": {
+      "resumedAtFrames": 788,
+      "laterFrames": 3960,
+      "fatalErrors": 0,
+      "source": "g04-host.jsonl"
+    },
+    "spider": {
+      "resumedAtFrames": 1620,
+      "laterFrames": 3720,
+      "fatalErrors": 0,
+      "source": "spider-host.jsonl"
+    },
+    "sky-strike": {
+      "resumedAtFrames": 1044,
+      "laterFrames": 1354,
+      "fatalErrors": 0,
+      "source": "sky-strike-host.jsonl"
+    },
+    "rubiks-cube": {
+      "resumedAtFrames": 7499,
+      "laterFrames": 7869,
+      "fatalErrors": 0,
+      "source": "rubiks-cube-host.jsonl"
+    },
+    "ak47-range": {
+      "resumedAtFrames": 484,
+      "laterFrames": 642,
+      "fatalErrors": 0,
+      "source": "ak47-range-host.jsonl"
+    },
+    "neon-circuit": {
+      "resumedAtFrames": 331,
+      "laterFrames": 553,
+      "fatalErrors": 0,
+      "source": "neon-circuit-host.jsonl"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-24T07:12:11.331Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 1478
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 2436
+    },
+    {
+      "name": "spider-solitaire-dependencies",
+      "status": "passed",
+      "durationMs": 2613
+    },
+    {
+      "name": "spider-solitaire-typecheck",
+      "status": "passed",
+      "durationMs": 6650
+    },
+    {
+      "name": "spider-solitaire-tests",
+      "status": "passed",
+      "durationMs": 1727
+    },
+    {
+      "name": "native-toolchain",
+      "status": "passed",
+      "durationMs": 2723
+    },
+    {
+      "name": "spider-solitaire-build-ios",
+      "status": "passed",
+      "durationMs": 106834
+    },
+    {
+      "name": "spider-solitaire-pods-lock",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "spider-solitaire-swiftpm-lock",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 6693
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate."
+  ],
+  "candidate": "0.1.0-rc.3",
+  "profile": "build",
+  "platform": "ios",
+  "apps": [
+    "spider-solitaire"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "ruby": "4.0.6",
+    "bundler": "4.0.16",
+    "xcode": "Xcode 26.3\nBuild version 17C529"
+  },
+  "manifestSha256": "969b6900d688a6658004b7adb5376a801662e8e9d695c8f1ecdaf42cd1154653",
+  "finishedAt": "2026-09-24T07:14:22.787Z"
+}

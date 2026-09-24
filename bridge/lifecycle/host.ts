@@ -5,7 +5,7 @@ import { HaiyueEngine } from '@haiyue/engine';
 import { getEngineDiagnosticsSnapshot } from '@haiyue/engine/diagnostics';
 import { FramePerformance } from './frame-performance';
 import { NativeDemandFrames } from './demand-frames';
-import { NativeSurface, type NativeCanvasInput } from '../render/surface';
+import { NativeSurface, NativeSurfaceUnavailableError, type NativeCanvasInput } from '../render/surface';
 import { captureSurfaceFrame, isFrameCaptureRequested } from '../render/frame-capture';
 import { nativeFrames, installNativeFrameRuntime } from './runtime';
 
@@ -57,6 +57,19 @@ export class NativeRenderHost {
       engine.on('after-update', finish); this.requestFrame();
     });
   }
+  private surfaceRetry: ReturnType<typeof setTimeout> | null = null;
+  private surfaceMisses = 0;
+  private surfaceInputPaused = false;
+  private surfacePause: (() => void) | null = null;
+  private layoutPause: (() => void) | null = null;
+  private readonly surfaceDestroyed = (): void => {
+    if (!this.disposed && !this.failed && !this.surfacePause) this.surfacePause = this.presentationPause.acquire();
+  };
+  private readonly surfaceCreated = (): void => {
+    const release = this.surfacePause;
+    this.surfacePause = null;
+    release?.();
+  };
   private failed = false;
   private generation = 0;
   private input: NativeHostInput | null = null;
@@ -82,6 +95,8 @@ export class NativeRenderHost {
     Application.on(Application.suspendEvent, this.appSuspend);
     Application.on(Application.resumeEvent, this.appResume);
     view.on('layoutChanged', this.layout);
+    view.on('surfaceDestroyed', this.surfaceDestroyed);
+    view.on('surfaceCreated', this.surfaceCreated);
     this.report('host-created', { engine: '0.1.0', canvas: '2.1.18', runtime: '9.0.3', backendRoute: isAndroid ? 'Canvas/wgpu/Vulkan' : 'Canvas/wgpu/Metal', dpr: this.surface.pixelRatio, captureRequested: this.captureRequested });
     this.layout();
   }
@@ -96,7 +111,15 @@ export class NativeRenderHost {
   };
 
   private readonly layout = (): void => {
-    if (this.disposed || this.failed || this.suspended || !this.surface.hasLayout) return;
+    if (this.disposed || this.failed) return;
+    if (!this.surface.hasLayout) {
+      if (this.engine && !this.layoutPause) this.layoutPause = this.presentationPause.acquire();
+      return;
+    }
+    if (this.layoutPause) {
+      const release = this.layoutPause; this.layoutPause = null; release(); return;
+    }
+    if (this.suspended || this.surfaceRetry !== null) return;
     if (!this.engine) { void this.initialize(); return; }
     if (this.engine.state === 'ready') {
       try { this.engine.resizeToDisplaySize(); this.requestFrame(); } catch (error) { this.fail(error); }
@@ -115,7 +138,7 @@ export class NativeRenderHost {
       if (this.disposed || this.failed || generation !== this.generation) { engine.destroy(); return; }
       this.observedDevice = engine.device;
       this.observedDevice.addEventListener('uncapturederror', this.onGpuError);
-      if(this.options.performance)engine.on('update',this.beforeFrame);
+      engine.on('update',this.beforeFrame);
       engine.on('device-lost', event => this.fail(new Error(`WebGPU device lost: ${event.detail?.message}`)));
       if (this.options.prepareScene) this.report('scene-ready', await this.options.prepareScene(engine));
       else engine.switchScene(engine.createScene({ render3D: true, view: { clearColor: engine.clearColor } }));
@@ -141,6 +164,10 @@ export class NativeRenderHost {
       catch (error) { this.report('capture-error', { message: String(error) }); }
     }
     if (!this.surface.present()) { this.finishDemandFrame(); return; }
+    if (this.surfaceMisses) {
+      this.report('surface-recovered', { attempts: this.surfaceMisses, frames: this.surface.presentedFrames });
+      this.surfaceMisses = 0;
+    }
     if(this.options.performance)this.performance.end(performance.now());
     const frames = this.surface.presentedFrames;
     const interval = this.options.diagnosticIntervalFrames ?? 120;
@@ -160,9 +187,42 @@ export class NativeRenderHost {
     this.demand?.afterFrame(this.captureRequested || this.options.needsAnimationFrame?.() === true);
   }
 
-  private readonly beforeFrame = ():void => {this.performance.begin(performance.now());};
+  private readonly beforeFrame = ():void => {
+    if (this.options.performance) this.performance.begin(performance.now());
+    this.surface.beginFrame();
+    if (this.surfaceInputPaused) { this.surfaceInputPaused = false; this.input?.resume(); }
+  };
+
+  private cancelSurfaceRetry(): void {
+    if (this.surfaceRetry !== null) clearTimeout(this.surfaceRetry);
+    this.surfaceRetry = null;
+  }
+
+  private retrySurface(): void {
+    if (this.suspended || this.surfaceRetry !== null) return;
+    if (++this.surfaceMisses > 8) { this.fail(new Error('Native surface remained unavailable after 8 retries.')); return; }
+    this.demand?.suspend();
+    this.engine?.stop();
+    nativeFrames.cancelAll();
+    if (!this.surfaceInputPaused) { this.surfaceInputPaused = true; this.input?.suspend(); }
+    this.performance.reset();
+    this.report('surface-wait', { attempt: this.surfaceMisses });
+    // Never restart inside the failing RAF. Backoff avoids hot-looping a lost surface.
+    this.surfaceRetry = setTimeout(() => {
+      this.surfaceRetry = null;
+      if (this.disposed || this.failed || this.suspended || this.engine?.state !== 'ready') return;
+      try {
+        if (!this.surface.hasLayout) { this.layout(); return; }
+        this.engine.resizeToDisplaySize();
+        this.surface.reconfigure();
+        if (this.demand) this.demand.resume(); else this.engine.run();
+      } catch (error) { this.fail(error); }
+    }, Math.min(50 * 2 ** (this.surfaceMisses - 1), 400));
+  }
 
   private readonly suspend = (): void => {
+    this.cancelSurfaceRetry();
+    this.surfaceMisses = 0;
     this.performance.reset();
     this.suspended = true;
     this.demand?.suspend();
@@ -175,18 +235,27 @@ export class NativeRenderHost {
   private readonly resume = (): void => {
     if (this.disposed || this.failed || !this.suspended) return;
     this.suspended = false;
-    this.layout();
-    if (this.engine?.state === 'ready' && !this.initializing) {
-      this.engine.resizeToDisplaySize(true);
-      this.input?.resume();
-      if (this.demand) this.demand.resume(); else this.engine.run();
-    }
+    try {
+      this.layout();
+      if (this.suspended) return;
+      if (this.engine?.state === 'ready' && !this.initializing) {
+        this.engine.resizeToDisplaySize(true);
+        this.surface.reconfigure();
+        this.input?.resume();
+        this.surfaceInputPaused = false;
+        if (this.demand) this.demand.resume(); else this.engine.run();
+      }
+    } catch (error) { this.fail(error); return; }
     this.report('resume', { count: ++this.resumeCount, frames: this.surface.presentedFrames, scheduledCallbacks: nativeFrames.pendingCount, input: this.input?.snapshot() ?? null });
   };
 
   fail(error: unknown): void {
     if (this.disposed || this.failed) return;
+    if (error instanceof NativeSurfaceUnavailableError && this.engine?.state === 'ready' && !this.initializing) {
+      this.retrySurface(); return;
+    }
     this.failed = true;
+    this.cancelSurfaceRetry();
     this.demand?.suspend();
     this.input?.suspend();
     this.engine?.stop();
@@ -242,6 +311,7 @@ export class NativeRenderHost {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.cancelSurfaceRetry();
     this.demand?.dispose();
     ++this.generation;
     this.disposeInput();
@@ -249,6 +319,8 @@ export class NativeRenderHost {
     Application.off(Application.suspendEvent, this.appSuspend);
     Application.off(Application.resumeEvent, this.appResume);
     this.view.off('layoutChanged', this.layout);
+    this.view.off('surfaceDestroyed', this.surfaceDestroyed);
+    this.view.off('surfaceCreated', this.surfaceCreated);
     nativeFrames.cancelAll();
     this.removeDeviceListener();
     this.engine?.destroy();

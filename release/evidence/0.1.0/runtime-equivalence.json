@@ -1,0 +1,19 @@
+{
+  "from": "0.1.0-rc.3",
+  "to": "0.1.0",
+  "fromManifestSha256": "969b6900d688a6658004b7adb5376a801662e8e9d695c8f1ecdaf42cd1154653",
+  "toManifestSha256": "a97db8a6bc697138007bf30a1e14e837c3be3e86b146c941fb00abe9d54a55de",
+  "sameBridgeAppsGamesInputs": true,
+  "sameDependencies": true,
+  "sameToolchain": true,
+  "changedInputs": [
+    "Native/README.md",
+    "Native/package-lock.json",
+    "Native/package.json",
+    "Native/release/ACCEPTANCE.md",
+    "Native/release/NOTES-0.1.0.md",
+    "Native/release/README.md",
+    "Native/release/config.json",
+    "Native/scripts/release/freeze.mjs"
+  ]
+}

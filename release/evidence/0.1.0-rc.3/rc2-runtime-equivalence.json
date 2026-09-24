@@ -1,0 +1,17 @@
+{
+  "from": "0.1.0-rc.2",
+  "to": "0.1.0-rc.3",
+  "changedInputs": [
+    "Native/README.md",
+    "Native/THIRD_PARTY_NOTICES.md",
+    "Native/package-lock.json",
+    "Native/package.json",
+    "Native/release/ACCEPTANCE.md",
+    "Native/release/README.md",
+    "Native/release/SIGNING.md",
+    "Native/release/config.json"
+  ],
+  "sameBridgeAppsGamesInputs": true,
+  "androidEvidence": "../0.1.0-rc.2/android-verification.json",
+  "qualification": "Same frozen runtime inputs; no new Android execution claimed."
+}

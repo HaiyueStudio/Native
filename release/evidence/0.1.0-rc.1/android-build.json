@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-24T05:47:55.411Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 1860
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 2769
+    },
+    {
+      "name": "neon-circuit-dependencies",
+      "status": "passed",
+      "durationMs": 4025
+    },
+    {
+      "name": "neon-circuit-typecheck",
+      "status": "passed",
+      "durationMs": 8717
+    },
+    {
+      "name": "neon-circuit-tests",
+      "status": "passed",
+      "durationMs": 1805
+    },
+    {
+      "name": "native-toolchain",
+      "status": "passed",
+      "durationMs": 259
+    },
+    {
+      "name": "neon-circuit-build-android",
+      "status": "passed",
+      "durationMs": 27403
+    },
+    {
+      "name": "neon-circuit-gradle-version",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "neon-circuit-maven-lock",
+      "status": "passed",
+      "durationMs": 2421
+    },
+    {
+      "name": "neon-circuit-artifact",
+      "status": "passed",
+      "durationMs": 979
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 1795
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate."
+  ],
+  "candidate": "0.1.0-rc.1",
+  "profile": "build",
+  "platform": "android",
+  "apps": [
+    "neon-circuit"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "java": "21.0.12.1",
+    "androidPlatform": "36",
+    "androidBuildTools": "36.0.0",
+    "gradle": "8.14.3"
+  },
+  "manifestSha256": "cfa3c9f1af3e5cb02fb2f596fa1573b91a145e913fbde542d5a0839ab0d5582e",
+  "artifacts": [
+    {
+      "app": "neon-circuit",
+      "platform": "android",
+      "file": "/Users/qingque/Desktop/HaiyueStudio/Native/examples/neon-circuit/platforms/android/app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "9f9a639656f1be15a2b59071a84d8f4eaece4eb61f482f9335b484fc4e3877f9",
+      "kind": "debug-apk"
+    }
+  ],
+  "finishedAt": "2026-09-24T05:48:47.735Z"
+}

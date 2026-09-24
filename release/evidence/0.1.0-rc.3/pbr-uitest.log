@@ -1,0 +1,62 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project artifacts/release-ui/Acceptance.xcodeproj -scheme Acceptance -destination id=00008120-000948541182601E -derivedDataPath artifacts/release-ui/build "-only-testing:Acceptance/Acceptance/testPbrOrbit" -resultBundlePath artifacts/release-ui/pbr.xcresult
+
+Writing result bundle at path:
+	/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/release-ui/pbr.xcresult
+
+2026-09-24 15:18:37.617283+0800 Acceptance-Runner[6114:848925] [Default] Running tests...
+    t =      nans Interface orientation changed to Landscape Right
+Test Suite 'Selected tests' started at 2026-09-24 15:18:45.665.
+Test Suite 'Acceptance.xctest' started at 2026-09-24 15:18:45.665.
+Test Suite 'Acceptance' started at 2026-09-24 15:18:45.665.
+Test Case '-[Acceptance.Acceptance testPbrOrbit]' started.
+    t =     0.00s Start Test at 2026-09-24 15:18:45.666
+    t =     0.06s Set Up
+    t =     0.06s Open org.haiyue.native.iospbrorbit
+    t =     0.06s     Launch org.haiyue.native.iospbrorbit
+    t =     0.21s         Interface orientation changed to Portrait
+    t =     0.29s         Setting up automation session
+    t =     1.27s         Wait for org.haiyue.native.iospbrorbit to idle
+    t =     2.41s Wait for org.haiyue.native.iospbrorbit to become Running Foreground
+    t =    10.53s Device orientation changed to Face Up
+    t =    10.59s Added attachment named 'pbr-initial'
+    t =    10.59s Press Application 'org.haiyue.native.iospbrorbit'[0.50, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.iospbrorbit'[0.72, 0.60] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    10.59s     Wait for org.haiyue.native.iospbrorbit to idle
+    t =    10.60s     Find the Application 'org.haiyue.native.iospbrorbit'
+    t =    10.64s     Check for interrupting elements affecting "HaiYue Native" Application
+    t =    10.66s     Synthesize event
+    t =    10.66s         Find the Application 'org.haiyue.native.iospbrorbit'
+    t =    10.66s         Find the Application 'org.haiyue.native.iospbrorbit'
+    t =    10.66s         Find the Application 'org.haiyue.native.iospbrorbit'
+    t =    10.67s         Find the Application 'org.haiyue.native.iospbrorbit'
+    t =    10.67s         Find the Application 'org.haiyue.native.iospbrorbit'
+    t =    11.40s     Wait for org.haiyue.native.iospbrorbit to idle
+    t =    14.42s Device orientation changed to Portrait
+    t =    14.42s Device orientation changed to Face Up
+    t =    14.53s Added attachment named 'pbr-rotated'
+    t =    14.59s Added attachment named 'pbr-before-background'
+    t =    14.59s Pressing Home button
+    t =    17.06s Open org.haiyue.native.iospbrorbit
+    t =    17.06s     Activate org.haiyue.native.iospbrorbit
+    t =    17.12s         Wait for org.haiyue.native.iospbrorbit to idle
+    t =    17.12s Wait for org.haiyue.native.iospbrorbit to become Running Foreground
+    t =    21.14s Get number of matches for: Elements matching predicate 'label CONTAINS "初始化或渲染失败"'
+    t =    21.28s Added attachment named 'pbr-resumed'
+    t =    21.28s Tear Down
+Test Case '-[Acceptance.Acceptance testPbrOrbit]' passed (21.524 seconds).
+Test Suite 'Acceptance' passed at 2026-09-24 15:19:07.191.
+	 Executed 1 test, with 0 failures (0 unexpected) in 21.524 (21.526) seconds
+Test Suite 'Acceptance.xctest' passed at 2026-09-24 15:19:07.195.
+	 Executed 1 test, with 0 failures (0 unexpected) in 21.524 (21.530) seconds
+Test Suite 'Selected tests' passed at 2026-09-24 15:19:07.197.
+	 Executed 1 test, with 0 failures (0 unexpected) in 21.524 (21.533) seconds
+2026-09-24 15:19:07.262 xcodebuild[93606:11508842] [MT] IDETestOperationsObserverDebug: 35.399 elapsed -- Testing started completed.
+2026-09-24 15:19:07.262 xcodebuild[93606:11508842] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-09-24 15:19:07.262 xcodebuild[93606:11508842] [MT] IDETestOperationsObserverDebug: 35.399 sec, +35.399 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/release-ui/pbr.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

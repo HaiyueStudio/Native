@@ -61,3 +61,9 @@ adb -s <serial> shell am start -S -n org.haiyue.games.neoncircuit/com.tns.Native
 随后完成动态纹理共用 encoder/submit、实时读数独立 GUI 根缓存、Native 尺寸与窗口坐标分离及当帧缓存。新增结构检查和 25 项真机回归通过，四个浏览器场景已验证；固定场景仍约 58 FPS。实现细节、计数、性能对比与检查限制见 [三项渲染优化](evidence/android-render-work-20260924/README.md)。
 
 2026-09-24 已在 X4000（Android 14 / Adreno 710）构建、安装并完成 17 项真机检查；15 项赛车单元测试与 12 项原 iOS 桥接回归全部通过。结构化结果见 [验收记录](evidence/android-20260924/verification.json)。
+
+## 偶发空画面纹理恢复
+
+Native Canvas 偶尔会在取下一帧纹理时返回空值。共享宿主现在在游戏更新之前取得并缓存本帧纹理；暂不可用时停止绘制与输入，保留当前场景，用 50–400 ms 退避重配表面并重试，最多 8 次。恢复后的帧使用新的时间起点，不把等待时间算成一次大步进。比赛中会沿用安全暂停行为，恢复画面后可继续比赛。真正的 GPU 校验错误、设备丢失或超过重试上限仍走失败清理。
+
+Android 的 `surfaceDestroyed` / `surfaceCreated` 与零尺寸布局也接入暂停管理，和应用后台状态共同决定何时恢复；退出时取消重试与事件监听。日志记录 `surface-wait`、`surface-recovered`。显式 `NEON_VERIFY_ANDROID` 验收增加连续 3 次空纹理注入及表面销毁/重建检查，普通启动不会注入故障。

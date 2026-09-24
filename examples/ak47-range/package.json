@@ -19,7 +19,8 @@
     "@nativescript/font-manager": "1.0.14",
     "core-js-pure": "3.50.0",
     "wgpu-matrix": "3.4.2",
-    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.1.0.tgz"
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.1.0.tgz",
+    "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-0.1.0.tgz"
   },
   "devDependencies": {
     "@nativescript/ios": "9.0.3",
@@ -35,5 +36,6 @@
   "allowScripts": {
     "@nativescript/core@9.1.1": true,
     "nativescript@9.1.1": true
-  }
+  },
+  "license": "MIT"
 }

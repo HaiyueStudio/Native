@@ -1,0 +1,19 @@
+
+> @haiyue/native-repository@0.1.0-rc.1 test
+> node --test test/*.test.mjs
+
+✔ freeze includes shared source and tarballs, excludes generated/private/historical files (326.400026ms)
+✔ same version source/tarball changes and new untracked inputs invalidate candidate (676.044465ms)
+✔ full dependency inventory verifies tarball bytes and rejects floating or stale locks (146.498147ms)
+✔ transitive integrity and installed dependency versions are enforced (151.359523ms)
+✔ release gate stops after failure and records it without running subsequent stages (0.671182ms)
+✔ command failures and signals propagate while stdout/stderr remain reviewable (410.476982ms)
+✔ relative imports cannot escape the frozen shared Games inputs (332.761038ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2231.72772

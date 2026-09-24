@@ -1,0 +1,19 @@
+
+> @haiyue/native-spider-solitaire@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (5.544741ms)
+✔ native pinch cancels primary input and prevents remaining-finger takeover across lifecycle (199.866651ms)
+✔ real Engine save survives a new service when native structuredClone is absent (192.149622ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (2.566844ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.575544ms)
+✔ multi-pointer target drives real Engine OrbitControl pinch and cancels both pointers (3.620117ms)
+✔ landscape picking uses UIKit drawing bounds rather than safe-area measurement (2.649855ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1072.980187

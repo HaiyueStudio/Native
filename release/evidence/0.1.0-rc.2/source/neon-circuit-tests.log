@@ -1,0 +1,30 @@
+
+> @haiyue/native-neon-circuit@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ long music avoids SoundPool truncation; engine gain changes and suspend release both playback paths (4.237518ms)
+✔ Android quaternion and acceleration normalize to gravity in g; both landscape directions steer correctly (4.956264ms)
+✔ Android sensors register once, emit once per fresh sample, discard stale readings and cleanly resume/dispose (15.992214ms)
+✔ partial sensor registration failures unregister and cannot restart on resume (0.412889ms)
+✔ Android haptics throttle repeated cues, allow stronger impacts, degrade without amplitude control and cancel on suspend (0.564236ms)
+✔ performance sampling separates frame intervals and work, excludes background suspension (3.881267ms)
+✔ missing report callbacks cannot accumulate unbounded performance samples (1.924584ms)
+✔ temporary native canvases survive repeated same-frame uploads and release backing stores exactly once (3.6983ms)
+✔ font atlases remain valid across frames and release only after their scene is destroyed (0.483162ms)
+✔ many language redraws and consecutive courses keep the native surface count bounded (0.613074ms)
+✔ both UIKit landscape orientations map a lowered right edge to right steering (3.46902ms)
+✔ handheld position calibrates to neutral and hand tremor does not steer (0.530973ms)
+✔ screen-right tilt turns right, screen-left turns left, and output is bounded (1.069211ms)
+✔ smoothing agrees at 30/60/120 Hz and resume recalibrates without a steering jump (0.601474ms)
+✔ invalid sensor data never propagates a NaN into racing physics (0.51627ms)
+✔ dimensions are read once per frame without window coordinates; layout/resume refresh and touch bounds stay live (2.415902ms)
+✔ iOS size keeps full UIKit drawing bounds and does not request window origin (1.210678ms)
+✔ a missing swapchain image is retryable; one real texture is shared until present and reconfigure retains the device (1.201605ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1031.250891

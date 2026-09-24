@@ -1,0 +1,16 @@
+
+> @haiyue/native-rubiks-cube@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (3.445957ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (2.541387ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.55824ms)
+✔ landscape picking uses UIKit drawing bounds rather than safe-area measurement (2.157549ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 610.533242

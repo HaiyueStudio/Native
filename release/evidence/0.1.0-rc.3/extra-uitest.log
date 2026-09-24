@@ -1,0 +1,166 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project artifacts/release-ui/Acceptance.xcodeproj -scheme Acceptance -destination id=00008120-000948541182601E -derivedDataPath artifacts/release-ui/build "-only-testing:Acceptance/Acceptance/testSpiderDragSave" "-only-testing:Acceptance/Acceptance/testCubeDragUndo" "-only-testing:Acceptance/Acceptance/testSkyBossProbe" -resultBundlePath artifacts/release-ui/extra.xcresult
+
+Writing result bundle at path:
+	/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/release-ui/extra.xcresult
+
+2026-09-24 15:29:55.226250+0800 Acceptance-Runner[6159:854258] [Default] Running tests...
+    t =      nans Interface orientation changed to Landscape Right
+Test Suite 'Selected tests' started at 2026-09-24 15:29:55.655.
+Test Suite 'Acceptance.xctest' started at 2026-09-24 15:29:55.655.
+Test Suite 'Acceptance' started at 2026-09-24 15:29:55.655.
+Test Case '-[Acceptance.Acceptance testCubeDragUndo]' started.
+    t =     0.00s Start Test at 2026-09-24 15:29:55.655
+    t =     0.01s Set Up
+    t =     0.01s Setting device orientation to Portrait
+    t =     0.01s     Wait for org.haiyue.native.spidersolitaire to idle
+    t =     0.02s Open org.haiyue.native.rubikscube
+    t =     0.02s     Launch org.haiyue.native.rubikscube
+    t =     0.02s         Terminate org.haiyue.native.rubikscube:6130
+    t =     1.12s         Interface orientation changed to Portrait
+    t =     1.15s         Setting up automation session
+    t =     1.97s         Wait for org.haiyue.native.rubikscube to idle
+    t =     3.05s Wait for org.haiyue.native.rubikscube to become Running Foreground
+    t =    11.06s Tap Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (310.0, 718.0)
+    t =    11.06s     Wait for org.haiyue.native.rubikscube to idle
+    t =    11.07s     Find the Application 'org.haiyue.native.rubikscube'
+    t =    11.10s     Check for interrupting elements affecting "魔方实验室" Application
+    t =    11.12s     Synthesize event
+    t =    11.13s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    11.14s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    11.15s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    11.45s     Wait for org.haiyue.native.rubikscube to idle
+    t =    13.46s Press Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (230.0, 417.0) for 0.1 seconds, then drag to Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (290.0, 417.0) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    13.46s     Wait for org.haiyue.native.rubikscube to idle
+    t =    13.48s     Find the Application 'org.haiyue.native.rubikscube'
+    t =    13.49s     Check for interrupting elements affecting "魔方实验室" Application
+    t =    13.50s     Synthesize event
+    t =    13.51s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    13.52s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    13.53s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    13.54s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    13.56s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    14.03s     Wait for org.haiyue.native.rubikscube to idle
+    t =    17.16s Added attachment named 'cube-face-drag'
+    t =    17.16s Tap Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (47.0, 850.0)
+    t =    17.16s     Wait for org.haiyue.native.rubikscube to idle
+    t =    17.16s     Find the Application 'org.haiyue.native.rubikscube'
+    t =    17.17s     Check for interrupting elements affecting "魔方实验室" Application
+    t =    17.18s     Synthesize event
+    t =    17.18s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    17.18s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    17.19s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    17.46s     Wait for org.haiyue.native.rubikscube to idle
+    t =    20.59s Added attachment named 'cube-face-undone'
+    t =    20.59s Tap Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (139.0, 752.0)
+    t =    20.59s     Wait for org.haiyue.native.rubikscube to idle
+    t =    20.60s     Find the Application 'org.haiyue.native.rubikscube'
+    t =    20.61s     Check for interrupting elements affecting "魔方实验室" Application
+    t =    20.61s     Synthesize event
+    t =    20.61s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    20.62s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    20.62s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    20.91s     Wait for org.haiyue.native.rubikscube to idle
+    t =    20.92s Tap Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (316.0, 800.0)
+    t =    20.92s     Wait for org.haiyue.native.rubikscube to idle
+    t =    20.93s     Find the Application 'org.haiyue.native.rubikscube'
+    t =    20.94s     Check for interrupting elements affecting "魔方实验室" Application
+    t =    20.96s     Synthesize event
+    t =    20.96s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    20.97s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    20.98s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    21.27s     Wait for org.haiyue.native.rubikscube to idle
+    t =    24.41s Added attachment named 'cube-inner-turn'
+    t =    24.41s Tap Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (47.0, 850.0)
+    t =    24.41s     Wait for org.haiyue.native.rubikscube to idle
+    t =    24.41s     Find the Application 'org.haiyue.native.rubikscube'
+    t =    24.43s     Check for interrupting elements affecting "魔方实验室" Application
+    t =    24.43s     Synthesize event
+    t =    24.43s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    24.44s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    24.44s         Find the Application 'org.haiyue.native.rubikscube'
+    t =    24.72s     Wait for org.haiyue.native.rubikscube to idle
+    t =    27.85s Added attachment named 'cube-inner-undone'
+    t =    27.85s Tear Down
+Test Case '-[Acceptance.Acceptance testCubeDragUndo]' passed (28.074 seconds).
+Test Case '-[Acceptance.Acceptance testSkyBossProbe]' started.
+    t =     0.00s Start Test at 2026-09-24 15:30:23.731
+    t =     0.03s Set Up
+    t =     0.03s Open org.haiyue.native.skystrike
+    t =     0.03s     Launch org.haiyue.native.skystrike
+    t =     0.03s         Terminate org.haiyue.native.skystrike:6137
+    t =     1.18s         Setting up automation session
+    t =     1.98s         Wait for org.haiyue.native.skystrike to idle
+    t =     3.06s Wait for org.haiyue.native.skystrike to become Running Foreground
+    t =    46.22s Added attachment named 'sky-boss-probe'
+    t =    46.33s Added attachment named 'sky-boss-before-background'
+    t =    46.33s Pressing Home button
+    t =    48.80s Open org.haiyue.native.skystrike
+    t =    48.81s     Activate org.haiyue.native.skystrike
+    t =    48.86s         Wait for org.haiyue.native.skystrike to idle
+    t =    48.87s Wait for org.haiyue.native.skystrike to become Running Foreground
+    t =    52.87s Get number of matches for: Elements matching predicate 'label CONTAINS "初始化或渲染失败"'
+    t =    53.07s Added attachment named 'sky-boss-resumed'
+    t =    53.07s Tear Down
+Test Case '-[Acceptance.Acceptance testSkyBossProbe]' passed (53.348 seconds).
+Test Case '-[Acceptance.Acceptance testSpiderDragSave]' started.
+    t =     0.00s Start Test at 2026-09-24 15:31:17.080
+    t =     0.03s Set Up
+    t =     0.03s Open org.haiyue.native.spidersolitaire
+    t =     0.03s     Launch org.haiyue.native.spidersolitaire
+    t =     0.03s         Terminate org.haiyue.native.spidersolitaire:6141
+    t =     1.19s         Interface orientation changed to Landscape Right
+    t =     1.20s         Setting up automation session
+    t =     2.00s         Wait for org.haiyue.native.spidersolitaire to idle
+    t =     3.08s Wait for org.haiyue.native.spidersolitaire to become Running Foreground
+    t =    11.22s Added attachment named 'spider-save-before'
+    t =    11.22s Press Application 'org.haiyue.native.spidersolitaire'[0.20, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.spidersolitaire'[0.73, 0.47] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    11.22s     Wait for org.haiyue.native.spidersolitaire to idle
+    t =    11.24s     Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    11.31s     Check for interrupting elements affecting "蜘蛛纸牌" Application
+    t =    11.36s     Synthesize event
+    t =    11.37s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    11.41s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    11.46s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    11.49s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    11.56s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    12.99s     Wait for org.haiyue.native.spidersolitaire to idle
+    t =    16.14s Added attachment named 'spider-invalid-drop'
+    t =    16.14s Press Application 'org.haiyue.native.spidersolitaire'[0.27, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.spidersolitaire'[0.73, 0.47] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    16.14s     Wait for org.haiyue.native.spidersolitaire to idle
+    t =    16.15s     Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    16.16s     Check for interrupting elements affecting "蜘蛛纸牌" Application
+    t =    16.17s     Synthesize event
+    t =    16.17s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    16.17s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    16.17s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    16.18s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    16.18s         Find the Application 'org.haiyue.native.spidersolitaire'
+    t =    17.44s     Wait for org.haiyue.native.spidersolitaire to idle
+    t =    20.58s Added attachment named 'spider-legal-drop'
+    t =    20.58s Terminate org.haiyue.native.spidersolitaire:6168
+    t =    20.72s     Interface orientation changed to Portrait
+    t =    21.66s Open org.haiyue.native.spidersolitaire
+    t =    21.66s     Launch org.haiyue.native.spidersolitaire
+    t =    21.70s         Setting up automation session
+    t =    21.83s             Interface orientation changed to Landscape Right
+    t =    22.46s         Wait for org.haiyue.native.spidersolitaire to idle
+    t =    31.66s Added attachment named 'spider-save-reloaded'
+    t =    31.66s Tear Down
+Test Case '-[Acceptance.Acceptance testSpiderDragSave]' passed (31.885 seconds).
+Test Suite 'Acceptance' passed at 2026-09-24 15:31:48.966.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 113.307 (113.311) seconds
+Test Suite 'Acceptance.xctest' passed at 2026-09-24 15:31:48.969.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 113.307 (113.315) seconds
+Test Suite 'Selected tests' passed at 2026-09-24 15:31:48.974.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 113.307 (113.319) seconds
+2026-09-24 15:31:49.120 xcodebuild[94759:11522636] [MT] IDETestOperationsObserverDebug: 117.665 elapsed -- Testing started completed.
+2026-09-24 15:31:49.120 xcodebuild[94759:11522636] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-09-24 15:31:49.120 xcodebuild[94759:11522636] [MT] IDETestOperationsObserverDebug: 117.665 sec, +117.665 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/release-ui/extra.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

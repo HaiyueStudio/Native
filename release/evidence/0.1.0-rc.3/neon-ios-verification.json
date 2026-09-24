@@ -1,0 +1,1064 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-24T07:13:28.392Z",
+  "updatedAt": "2026-09-24T07:15:06.442Z",
+  "status": "passed",
+  "checks": [
+    "bundled PBR hovercraft loaded",
+    "native audio preloads fourteen MIDI-derived effects including 30-second music into a bounded pool",
+    "landscape native WebGPU surface",
+    "reverse Z and float depth enabled",
+    "seven shared courses in native carousel",
+    "fresh settings default to Chinese and the new title",
+    "gear opens the settings panel",
+    "settings show a translucent backdrop and gear click plays sound",
+    "settings consume carousel keyboard navigation",
+    "English applies immediately to the GUI",
+    "Japanese applies to circuit labels",
+    "settings close and language returns to Chinese",
+    "native carousel swipe commits selection",
+    "carousel selection plays its distinct cue",
+    "settings select joystick steering",
+    "countdown starts race",
+    "3 2 1 and GO each sound once in the first countdown",
+    "race starts the looping music",
+    "title and upper-right compass/pause dock to the safe top edge",
+    "phone dial moves exactly twenty-five points left and five down",
+    "left instrument/timing, central title and right compass/pause do not overlap",
+    "native compass rotates with actual racer steering",
+    "native minimap follows the current position on the selected route",
+    "native upcoming road side agrees between the rendered chase camera and minimap",
+    "two left timing rows and live lap label on the compass",
+    "idle F1 wheel stays visible and translucent",
+    "brake left and throttle right at bottom-right",
+    "pedals avoid native safe-area edges",
+    "floating joystick appears centered at the new touch without steering jump",
+    "held throttle starts both bounded engine registers",
+    "joystick and throttle work with separate simultaneous touches",
+    "steering wheel rotates right and throttle depresses under the held finger",
+    "leftward joystick motion rotates the wheel counterclockwise",
+    "releasing joystick returns steering to neutral",
+    "released wheel fades back to its translucent idle state",
+    "moving brake press plays the braking sound",
+    "brake slows the car even with throttle held",
+    "brake has its own depressed pedal state",
+    "cancellation releases native driving pointers",
+    "crossing a lap shows the generated banner without a solid rectangle",
+    "crossing a lap plays the lap-complete chime",
+    "next joystick touch establishes a different center",
+    "steering wheel stays fixed while invisible touch origin changes",
+    "expanded joystick radius gives half steering at 28.75 points",
+    "releasing throttle outside button starts gradual coasting and preserves joystick finger",
+    "released throttle keeps decelerating without wall impact or boost assistance",
+    "pause freezes race time",
+    "transparent modal blocks input without an outer colored scrim or active wheel",
+    "pause stops the music loop",
+    "pause stops the engine audio immediately",
+    "pause panel resumes race",
+    "host suspension enters pause safely",
+    "settings select gyroscope steering",
+    "gyro mode starts race",
+    "real Core Motion samples reach racing controls",
+    "boost expiry decelerates continuously",
+    "wall impact damages hull and sharply slows car",
+    "real wall impact triggers collision audio",
+    "crossing a boost strip triggers the rising boost cue",
+    "actual light wall impact invokes the matching native haptic",
+    "actual medium wall impact invokes the matching native haptic",
+    "actual heavy wall impact invokes the matching native haptic",
+    "crossing final finish line opens record result",
+    "a personal best earns the new-record seal",
+    "stamp approaches the result corner",
+    "stamp lands and settles without restarting each frame",
+    "new-record stamp sounds once on landing after music stops",
+    "slower race completes normally",
+    "slower result does not receive or retain the record stamp",
+    "ordinary completion never repeats the record stamp sound",
+    "destroyed hull opens its transparent result panel",
+    "switch to neon-city without browser navigation",
+    "neon-city countdown completes",
+    "switch to reactor-run without browser navigation",
+    "reactor-run countdown completes",
+    "switch to rainbow-road without browser navigation",
+    "rainbow-road countdown completes",
+    "native rainbow course contains planets and meteors",
+    "switch to sky-coaster without browser navigation",
+    "sky-coaster countdown completes",
+    "native loop camera follows the road up vector",
+    "native loop reaches an inverted road",
+    "native roll camera follows the road up vector",
+    "native roll reaches an inverted road",
+    "native helix camera follows the road up vector",
+    "switch to ashfall without browser navigation",
+    "ashfall countdown completes",
+    "switch to mobius-ring without browser navigation",
+    "mobius-ring countdown completes",
+    "native Mobius front camera follows its driving face",
+    "native Mobius back camera follows its driving face",
+    "first-person scene skips the native ship loader",
+    "first person starts without loading the ship",
+    "first-person glass starts clear",
+    "volcano launches a warning ahead of the car",
+    "fireball lands and expires",
+    "moving to the free lane avoids actual native fireball damage",
+    "a later random fireball warns of another impact",
+    "pause freezes native fireball descent",
+    "landing inside the marked circle causes fireball damage",
+    "fireball damage fractures native windshield",
+    "native glass fracture stage 2",
+    "native glass fracture stage 3",
+    "native glass fracture stage 4",
+    "restart clears native fractures and falling hazards",
+    "switching back restores the normal native ship"
+  ],
+  "captures": [
+    {
+      "file": "neon-home.png",
+      "bytes": 646813
+    },
+    {
+      "file": "neon-settings-en.png",
+      "bytes": 856464
+    },
+    {
+      "file": "neon-home-en.png",
+      "bytes": 647910
+    },
+    {
+      "file": "neon-settings-ja.png",
+      "bytes": 839618
+    },
+    {
+      "file": "neon-home-ja.png",
+      "bytes": 645197
+    },
+    {
+      "file": "neon-compass-turn.png",
+      "bytes": 633914
+    },
+    {
+      "file": "neon-compass-progress.png",
+      "bytes": 651875
+    },
+    {
+      "file": "neon-wheel-idle.png",
+      "bytes": 680653
+    },
+    {
+      "file": "neon-floating-joystick.png",
+      "bytes": 641586
+    },
+    {
+      "file": "neon-wheel-left.png",
+      "bytes": 685059
+    },
+    {
+      "file": "neon-pedals-down.png",
+      "bytes": 646993
+    },
+    {
+      "file": "neon-lap-banner.png",
+      "bytes": 794942
+    },
+    {
+      "file": "neon-paused.png",
+      "bytes": 731384
+    },
+    {
+      "file": "neon-driving.png",
+      "bytes": 633807
+    },
+    {
+      "file": "neon-record-approach.png",
+      "bytes": 803549
+    },
+    {
+      "file": "neon-record.png",
+      "bytes": 790457
+    },
+    {
+      "file": "neon-finished.png",
+      "bytes": 723736
+    },
+    {
+      "file": "neon-destroyed.png",
+      "bytes": 736238
+    },
+    {
+      "file": "neon-neon-city.png",
+      "bytes": 633370
+    },
+    {
+      "file": "neon-reactor-run.png",
+      "bytes": 665638
+    },
+    {
+      "file": "neon-rainbow-road.png",
+      "bytes": 1026151
+    },
+    {
+      "file": "neon-coaster-loop.png",
+      "bytes": 585353
+    },
+    {
+      "file": "neon-coaster-roll.png",
+      "bytes": 597089
+    },
+    {
+      "file": "neon-coaster-helix.png",
+      "bytes": 671883
+    },
+    {
+      "file": "neon-sky-coaster.png",
+      "bytes": 672813
+    },
+    {
+      "file": "neon-ashfall.png",
+      "bytes": 1135808
+    },
+    {
+      "file": "neon-mobius-front.png",
+      "bytes": 1138345
+    },
+    {
+      "file": "neon-mobius-back.png",
+      "bytes": 1226497
+    },
+    {
+      "file": "neon-mobius-ring.png",
+      "bytes": 1224357
+    },
+    {
+      "file": "neon-first-person.png",
+      "bytes": 1249758
+    },
+    {
+      "file": "neon-fireball-impact.png",
+      "bytes": 1280902
+    },
+    {
+      "file": "neon-glass-2.png",
+      "bytes": 1328213
+    },
+    {
+      "file": "neon-glass-3.png",
+      "bytes": 1378587
+    },
+    {
+      "file": "neon-glass-4.png",
+      "bytes": 1423840
+    }
+  ],
+  "states": [
+    {
+      "raceMode": "time-trial",
+      "difficulty": "normal",
+      "winner": null,
+      "opponent": null,
+      "opponentModel": "skipped",
+      "cameraMode": "chase",
+      "fireballs": [],
+      "dynamicTextures": {
+        "encodes": 2,
+        "submissions": 1
+      },
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.08333333333333333,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "neon-city",
+      "buildingCount": 195,
+      "exhaustLength": 1.35,
+      "fov": 1.0471975511965976,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.017014401148219,
+      "theme": "neon",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "raceMode": "time-trial",
+      "difficulty": "normal",
+      "winner": null,
+      "opponent": null,
+      "opponentModel": "skipped",
+      "cameraMode": "chase",
+      "fireballs": [],
+      "dynamicTextures": {
+        "encodes": 2,
+        "submissions": 1
+      },
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.09166666666666666,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "reactor-run",
+      "buildingCount": 200,
+      "exhaustLength": 1.35,
+      "fov": 1.0471975511965976,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.198598136994769,
+      "theme": "reactor",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "raceMode": "time-trial",
+      "difficulty": "normal",
+      "winner": null,
+      "opponent": null,
+      "opponentModel": "skipped",
+      "cameraMode": "chase",
+      "fireballs": [],
+      "dynamicTextures": {
+        "encodes": 3,
+        "submissions": 1
+      },
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.05833333333333333,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "rainbow-road",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 1.0471975511965976,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.2338061047847149,
+      "theme": "cosmic",
+      "space": {
+        "planets": 3,
+        "meteors": 36
+      },
+      "rainbowTime": 3.468334000010509,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "raceMode": "time-trial",
+      "difficulty": "normal",
+      "winner": null,
+      "opponent": null,
+      "opponentModel": "skipped",
+      "cameraMode": "chase",
+      "fireballs": [],
+      "dynamicTextures": {
+        "encodes": 2,
+        "submissions": 1
+      },
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.22499999999999998,
+      "progress": 0.4277901919451706,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": -1.8735013540549517e-16,
+      "impact": 0,
+      "trackId": "sky-coaster",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 1.0471975511965976,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": {
+        "section": "helix",
+        "roadUp": [
+          0.48203396384331804,
+          0.8691351998126863,
+          0.11066734906041875
+        ],
+        "cameraUp": [
+          0.4456914961338043,
+          0.8517224788665771,
+          -0.2755502164363861
+        ]
+      },
+      "cameraPhi": 1.2837387606646165,
+      "theme": "daylight",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "raceMode": "time-trial",
+      "difficulty": "normal",
+      "winner": null,
+      "opponent": null,
+      "opponentModel": "skipped",
+      "cameraMode": "chase",
+      "fireballs": [],
+      "dynamicTextures": {
+        "encodes": 2,
+        "submissions": 1
+      },
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.075,
+      "progress": 0,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "ashfall",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 1.0471975511965976,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": null,
+      "cameraPhi": 1.1409653898937497,
+      "theme": "volcanic",
+      "space": null,
+      "rainbowTime": null,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    },
+    {
+      "raceMode": "time-trial",
+      "difficulty": "normal",
+      "winner": null,
+      "opponent": null,
+      "opponentModel": "skipped",
+      "cameraMode": "chase",
+      "fireballs": [],
+      "dynamicTextures": {
+        "encodes": 3,
+        "submissions": 1
+      },
+      "phase": "racing",
+      "lap": 1,
+      "speed": 0,
+      "elapsed": 0.19166666666666665,
+      "progress": 0.4994415629188747,
+      "lateral": 0,
+      "boostRemaining": 0,
+      "wallHits": 0,
+      "health": 100,
+      "headingOffset": 0,
+      "impact": 0,
+      "trackId": "mobius-ring",
+      "buildingCount": 0,
+      "exhaustLength": 1.35,
+      "fov": 1.0471975511965976,
+      "reverseZ": true,
+      "depthFormat": "depth32float",
+      "coaster": {
+        "section": "front",
+        "roadUp": [
+          -6.539948233206375e-16,
+          -0.9999999999999998,
+          1.069479529943219e-19
+        ],
+        "cameraUp": [
+          0.0003341349074617028,
+          -0.9246060252189636,
+          0.38092467188835144
+        ]
+      },
+      "cameraPhi": 1.18,
+      "theme": "mobius",
+      "space": {
+        "planets": 3,
+        "meteors": 36
+      },
+      "rainbowTime": 3.8652920000167796,
+      "particles": {
+        "smoke": 0,
+        "sparks": 0
+      }
+    }
+  ],
+  "game": {
+    "raceMode": "time-trial",
+    "difficulty": "normal",
+    "winner": null,
+    "opponent": null,
+    "opponentModel": "skipped",
+    "cameraMode": "chase",
+    "fireballs": [],
+    "dynamicTextures": {
+      "encodes": 2,
+      "submissions": 1
+    },
+    "phase": "countdown",
+    "lap": 1,
+    "speed": 0,
+    "elapsed": 0,
+    "progress": 0,
+    "lateral": 0,
+    "boostRemaining": 0,
+    "wallHits": 0,
+    "health": 100,
+    "headingOffset": 0,
+    "impact": 0,
+    "trackId": "ashfall",
+    "buildingCount": 0,
+    "exhaustLength": 1.35,
+    "fov": 1.0471975511965976,
+    "reverseZ": true,
+    "depthFormat": "depth32float",
+    "coaster": null,
+    "cameraPhi": 1.1682249967785818,
+    "theme": "volcanic",
+    "space": null,
+    "rainbowTime": null,
+    "particles": {
+      "smoke": 0,
+      "sparks": 0
+    }
+  },
+  "gui": {
+    "cacheWork": {
+      "staticLayouts": 3,
+      "readoutLayouts": 3
+    },
+    "readoutsVisible": true,
+    "carouselCardSize": {
+      "cardWidth": 209.2936111111111,
+      "cardHeight": 255.2361111111111,
+      "spacing": 163.24901666666665,
+      "focal": 627.8808333333333
+    },
+    "carouselZoom": 1.5,
+    "arrowStyle": "translucent-glow",
+    "homeActions": {
+      "solo": {
+        "text": "单人计时",
+        "x": 625.2962962962963,
+        "y": 226.22222222222223,
+        "width": 231.7037037037037,
+        "height": 44.89259259259259
+      },
+      "duel": {
+        "text": "人机竞速",
+        "x": 625.2962962962963,
+        "y": 278.35555555555555,
+        "width": 152.05555555555557,
+        "height": 44.89259259259259
+      },
+      "difficulty": {
+        "text": "普通 ↻",
+        "x": 781.6962962962963,
+        "y": 278.35555555555555,
+        "width": 75.3037037037037,
+        "height": 44.89259259259259
+      }
+    },
+    "raceMode": "time-trial",
+    "difficulty": "normal",
+    "resultTitle": "赛车损毁",
+    "language": "zh",
+    "title": "极速新星",
+    "courseName": "熔火末途",
+    "settingsVisible": false,
+    "settingsBackdrop": "#020617a6",
+    "settingsBounds": {
+      "x": 156,
+      "y": 14.5,
+      "width": 620,
+      "height": 380
+    },
+    "renderer": "engine-gui",
+    "homeVisible": false,
+    "selected": "ashfall",
+    "routeCount": 7,
+    "carouselPosition": 5,
+    "carouselTarget": 5,
+    "carouselBounds": {
+      "x": 75,
+      "y": 74.16666666666667,
+      "width": 535.8148148148148,
+      "height": 271.52777777777777
+    },
+    "recordStamp": {
+      "visible": false,
+      "age": 0
+    },
+    "cameraMode": "chase",
+    "windshield": {
+      "revision": 0,
+      "health": 100,
+      "clusters": [],
+      "stage": 0,
+      "visible": false
+    },
+    "wheel": {
+      "bounds": {
+        "x": 83,
+        "y": 243,
+        "width": 148,
+        "height": 148
+      },
+      "active": false,
+      "x": 157,
+      "y": 317,
+      "angle": 0,
+      "opacity": 0.36,
+      "visible": true
+    },
+    "pedalPress": {
+      "s": 0,
+      "w": 0
+    },
+    "modalBackdrop": "#00000000",
+    "announcementSkin": {
+      "text": "3",
+      "visible": false,
+      "background": "#00000000"
+    },
+    "skinnedButtonsTransparent": true,
+    "modalVisible": false,
+    "activeButtons": [
+      "pause"
+    ],
+    "courseBounds": {
+      "x": 359,
+      "y": 0,
+      "width": 214,
+      "height": 30
+    },
+    "timingBounds": {
+      "x": 175.984,
+      "y": 31.448000000000004,
+      "width": 139.20000000000002,
+      "height": 55.68000000000001
+    },
+    "dialBounds": {
+      "x": 34,
+      "y": 5,
+      "width": 139.20000000000002,
+      "height": 139.20000000000002
+    },
+    "minimap": {
+      "opponentStyle": "magenta-ring",
+      "opponent": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "mode": "spatial-curve",
+      "basis": {
+        "right": [
+          0.3205458061494411,
+          -0.11089967351965796,
+          0.9407186872669417
+        ],
+        "up": [
+          0.8543492013655912,
+          0.46273600601957626,
+          -0.23656464414249934
+        ],
+        "depth": [
+          -0.4090694663321862,
+          0.879532063739312,
+          0.24307513358714233
+        ]
+      },
+      "marker": {
+        "x": 0.23743632636353446,
+        "y": 0.4652593366078021,
+        "depth": -0.09729789500787052
+      },
+      "projection": {
+        "center": [
+          279.0532544378698,
+          1199.5619784554697,
+          -99.49874829312785
+        ],
+        "scale": 0.0000526115649528316
+      },
+      "segments": 936,
+      "visible": true,
+      "bounds": {
+        "x": 704.2896,
+        "y": 11.971200000000003,
+        "width": 112.47360000000002,
+        "height": 112.47360000000002
+      },
+      "frameBounds": {
+        "x": 687.4,
+        "y": 0,
+        "width": 185.60000000000002,
+        "height": 139.20000000000002
+      },
+      "trackId": "ashfall"
+    },
+    "instrumentsBounds": {
+      "x": 34,
+      "y": 5,
+      "width": 296.71152502910365,
+      "height": 148.35576251455183
+    },
+    "timingRows": 2,
+    "lapReadout": {
+      "text": "圈数 1 / 3",
+      "bounds": {
+        "x": 732.5008,
+        "y": 119.71200000000002,
+        "width": 56.05120000000001,
+        "height": 13.920000000000002
+      }
+    },
+    "instrumentsVisible": true,
+    "displaySpeed": "000",
+    "health": 100,
+    "healthColor": [
+      0.32,
+      0.95,
+      0.6,
+      1
+    ],
+    "countdownVisible": true,
+    "announcement": "3",
+    "touchVisible": true,
+    "bounds": [
+      {
+        "x": 569.491369695022,
+        "y": 129.04920424683743,
+        "width": 2.7086051205685635,
+        "height": 200.07492165840802
+      },
+      {
+        "x": 597.0331939832554,
+        "y": 148.89280120595444,
+        "width": 13.781620831559394,
+        "height": 171.27011668246286
+      },
+      {
+        "x": 75,
+        "y": 148.89280120595444,
+        "width": 13.781620831559394,
+        "height": 171.27011668246286
+      },
+      {
+        "x": 113.61483999922424,
+        "y": 129.04920424683743,
+        "width": 2.7086051205685635,
+        "height": 200.07492165840802
+      },
+      {
+        "x": 153.78088363997628,
+        "y": 106.87958715836075,
+        "width": 119.4021796769292,
+        "height": 227.92449480791322
+      },
+      {
+        "x": 238.26060185185185,
+        "y": 82.31250000000001,
+        "width": 209.2936111111111,
+        "height": 255.23611111111111
+      },
+      {
+        "x": 412.6317514979093,
+        "y": 106.87958715836075,
+        "width": 119.40217967692917,
+        "height": 227.92449480791322
+      }
+    ],
+    "start": {
+      "x": 625.2962962962963,
+      "y": 226.22222222222223,
+      "width": 231.7037037037037,
+      "height": 44.89259259259259
+    },
+    "buttons": {
+      "track-sky-harbor": {
+        "x": 569.491369695022,
+        "y": 129.04920424683743,
+        "width": 2.7086051205685635,
+        "height": 200.07492165840802
+      },
+      "track-neon-city": {
+        "x": 597.0331939832554,
+        "y": 148.89280120595444,
+        "width": 13.781620831559394,
+        "height": 171.27011668246286
+      },
+      "track-reactor-run": {
+        "x": 75,
+        "y": 148.89280120595444,
+        "width": 13.781620831559394,
+        "height": 171.27011668246286
+      },
+      "track-rainbow-road": {
+        "x": 113.61483999922424,
+        "y": 129.04920424683743,
+        "width": 2.7086051205685635,
+        "height": 200.07492165840802
+      },
+      "track-sky-coaster": {
+        "x": 153.78088363997628,
+        "y": 106.87958715836075,
+        "width": 119.4021796769292,
+        "height": 227.92449480791322
+      },
+      "track-ashfall": {
+        "x": 238.26060185185185,
+        "y": 82.31250000000001,
+        "width": 209.2936111111111,
+        "height": 255.23611111111111
+      },
+      "track-mobius-ring": {
+        "x": 412.6317514979093,
+        "y": 106.87958715836075,
+        "width": 119.40217967692917,
+        "height": 227.92449480791322
+      },
+      "previous-course": {
+        "x": 79,
+        "y": 171.93055555555554,
+        "width": 56,
+        "height": 76
+      },
+      "next-course": {
+        "x": 550.8148148148148,
+        "y": 171.93055555555554,
+        "width": 56,
+        "height": 76
+      },
+      "start-race": {
+        "x": 625.2962962962963,
+        "y": 226.22222222222223,
+        "width": 231.7037037037037,
+        "height": 44.89259259259259
+      },
+      "start-duel": {
+        "x": 625.2962962962963,
+        "y": 278.35555555555555,
+        "width": 152.05555555555557,
+        "height": 44.89259259259259
+      },
+      "cycle-difficulty": {
+        "x": 781.6962962962963,
+        "y": 278.35555555555555,
+        "width": 75.3037037037037,
+        "height": 44.89259259259259
+      },
+      "pause": {
+        "x": 822.232,
+        "y": 2.777600000000003,
+        "width": 44,
+        "height": 44
+      },
+      "control-a": {
+        "x": 75,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-d": {
+        "x": 157,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-s": {
+        "x": 703,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "control-w": {
+        "x": 785,
+        "y": 331,
+        "width": 72,
+        "height": 58
+      },
+      "resume": {
+        "x": 278.8,
+        "y": 190.1,
+        "width": 374.4,
+        "height": 50
+      },
+      "restart": {
+        "x": 278.8,
+        "y": 190.1,
+        "width": 374.4,
+        "height": 50
+      },
+      "home-button": {
+        "x": 278.8,
+        "y": 265.70000000000005,
+        "width": 374.4,
+        "height": 50
+      },
+      "settings": {
+        "x": 821,
+        "y": 6,
+        "width": 46,
+        "height": 46
+      },
+      "language-zh": {
+        "x": 211.8,
+        "y": 117.10000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "language-en": {
+        "x": 385.4,
+        "y": 117.10000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "language-ja": {
+        "x": 559,
+        "y": 117.10000000000001,
+        "width": 161.20000000000002,
+        "height": 36
+      },
+      "camera-chase": {
+        "x": 211.8,
+        "y": 253.9,
+        "width": 248,
+        "height": 36
+      },
+      "camera-first-person": {
+        "x": 472.2,
+        "y": 253.9,
+        "width": 248,
+        "height": 36
+      },
+      "settings-done": {
+        "x": 329.6,
+        "y": 322.3,
+        "width": 272.8,
+        "height": 36
+      },
+      "steering-joystick": {
+        "x": 211.8,
+        "y": 185.5,
+        "width": 248,
+        "height": 36
+      },
+      "steering-gyro": {
+        "x": 472.2,
+        "y": 185.5,
+        "width": 248,
+        "height": 36
+      }
+    },
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "width": 932,
+      "height": 430
+    }
+  },
+  "audio": {
+    "played": {
+      "click": 36,
+      "course": 9,
+      "count-3": 14,
+      "count-2": 12,
+      "count-1": 12,
+      "go": 12,
+      "music": 14,
+      "engine-low": 1,
+      "engine-high": 1,
+      "brake": 1,
+      "lap": 1,
+      "rail": 5,
+      "boost": 1,
+      "record": 1
+    },
+    "musicPlaying": false,
+    "engineLevel": 0,
+    "loops": 0,
+    "pending": 0,
+    "backend": {
+      "kind": "av-audio-engine",
+      "error": null,
+      "running": true,
+      "buffers": 14,
+      "pcmBytes": 6720840,
+      "voices": 1,
+      "nodeCount": 12,
+      "loopChannels": [],
+      "played": 120,
+      "volume": 0.68,
+      "disposed": false
+    }
+  },
+  "haptics": {
+    "active": true,
+    "impactsRequested": 5,
+    "lastKind": "heavy"
+  },
+  "driving": {
+    "mode": "joystick",
+    "axis": 0,
+    "joystick": {
+      "active": false,
+      "pointerId": null,
+      "center": {
+        "x": 157,
+        "y": 317
+      },
+      "direction": {
+        "x": 0,
+        "y": 0
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "rawDistance": 0,
+      "distance": 0,
+      "strength": 0,
+      "angle": 0
+    },
+    "gyroAvailable": true,
+    "gyroActive": false,
+    "sensorSamples": 161,
+    "sample": null,
+    "rotation": 90
+  }
+}

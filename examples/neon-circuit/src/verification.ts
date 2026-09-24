@@ -284,6 +284,32 @@ export async function verifyAndroidNeon(engine: HaiyueEngine, getGame: () => Neo
   try {
     record('running');await frames(4);
     check(canvas.clientWidth>canvas.clientHeight,'landscape Vulkan rendering');
+    // Fault injection runs only inside the explicit Android verification launch.
+    // Reproduce the provider's intermittent null without changing the game or device.
+    const nativeContext = canvas.getContext('webgpu')!;
+    const acquire = nativeContext.getCurrentTexture;
+    const originalGame = getGame();
+    let missingFrames = 3;
+    nativeContext.getCurrentTexture = function () {
+      if (missingFrames > 0) { missingFrames--; return null as unknown as ReturnType<typeof acquire>; }
+      return acquire.call(this);
+    };
+    try {
+      await frames(3);
+      check(missingFrames === 0 && getGame() === originalGame && engine.state === 'ready', 'three empty surface textures recover without recreating the scene');
+      check(nativeStatus.visibility === 'collapse', 'temporary surface failure does not leave a fatal error overlay');
+    } finally { nativeContext.getCurrentTexture = acquire; }
+    canvas.notify({eventName:'surfaceDestroyed',object:canvas});
+    let pausedFrames = 0;
+    const observePaused = () => { pausedFrames++; };
+    engine.on('after-update',observePaused);
+    try {
+      await new Promise(resolve=>setTimeout(resolve,150));
+      check(pausedFrames === 0, 'destroyed Android surface suspends rendering');
+    } finally { engine.off('after-update',observePaused); canvas.notify({eventName:'surfaceCreated',object:canvas}); }
+    await frames(3);
+    check(getGame() === originalGame && nativeStatus.visibility === 'collapse', 'recreated Android surface resumes the existing scene');
+
     await until(()=> (getGame().audioState.backend as {buffers:number}).buffers===14,'all fourteen sound resources available');
     await click('settings');check(getGame().guiView.snapshot.settingsVisible,'native GUI opens settings');
     await click('steering-gyro');check(driving.snapshot().mode==='gyro','GUI selects Android gyroscope');await click('settings-done');

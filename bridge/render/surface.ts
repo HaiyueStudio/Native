@@ -9,12 +9,18 @@ import { installQueueFence } from './queue-fence';
 type EngineOptions = ConstructorParameters<typeof HaiyueEngine>[0];
 export type NativeCanvasInput = Pick<HTMLCanvasElement, 'addEventListener' | 'removeEventListener' | 'setPointerCapture' | 'releasePointerCapture'>;
 
+/** Only a missing swapchain image is retryable; validation/device errors are not. */
+export class NativeSurfaceUnavailableError extends Error {
+  constructor() { super('Native surface returned an empty current texture.'); this.name = 'NativeSurfaceUnavailableError'; }
+}
+
 export class NativeSurface {
   readonly pixelRatio = Math.min(Screen.mainScreen.scale, 2);
   readonly gpu = new GPU();
   private adapter: GPUAdapter | null = null;
   private context: GPUCanvasContext | null = null;
-  private acquired = false;
+  private acquired: GPUTexture | null = null;
+  private configuration: GPUCanvasConfiguration | null = null;
   private measuredSize: ReturnType<typeof nativeViewSize> | null = null;
   presentedFrames = 0;
 
@@ -69,13 +75,11 @@ export class NativeSurface {
         if (!(caps.format as readonly string[]).includes(options.format)) throw new Error(`Surface does not support ${options.format}.`);
         self.report('surface-configure', { format: options.format, capabilities: caps });
         native.configure(options as unknown as Parameters<GPUCanvasContext['configure']>[0]);
+        self.configuration = { ...options };
       },
       unconfigure(): void { self.release(); },
       getCurrentTexture(): GPUTexture {
-        const texture = self.getContext().getCurrentTexture();
-        if (!texture) throw new Error('Native surface returned an empty current texture.');
-        self.acquired = true;
-        return texture as unknown as GPUTexture;
+        return self.acquire();
       },
     };
     const canvas = {
@@ -98,12 +102,29 @@ export class NativeSurface {
     return { canvas: canvas as unknown as EngineOptions['canvas'], gpu: this.provider as unknown as EngineOptions['gpu'], devicePixelRatio: this.pixelRatio };
   }
 
+  private acquire(): GPUTexture {
+    if (this.acquired) return this.acquired;
+    const texture = this.getContext().getCurrentTexture();
+    if (!texture) { this.measuredSize = null; throw new NativeSurfaceUnavailableError(); }
+    return this.acquired = texture as unknown as GPUTexture;
+  }
+
+  /** Called before scene update so an unavailable surface cannot advance gameplay. */
+  beginFrame(): void { this.acquire(); }
+
+  /** Rebind the existing device after a native surface recreation or acquisition miss. */
+  reconfigure(): void {
+    this.measuredSize = null;
+    if (this.acquired) throw new Error('Cannot reconfigure an acquired native frame.');
+    if (this.configuration) this.getContext().configure(this.configuration as unknown as Parameters<GPUCanvasContext['configure']>[0]);
+  }
+
   present(): boolean {
     // Bound the cache to one frame; hit testing still reads current window coordinates.
     this.measuredSize = null;
     if (!this.acquired) return false;
     this.getContext().presentSurface();
-    this.acquired = false;
+    this.acquired = null;
     this.presentedFrames++;
     return true;
   }
@@ -113,12 +134,13 @@ export class NativeSurface {
     this.measuredSize = null;
     try {
       if (this.acquired) {
-        this.acquired = false;
+        this.acquired = null;
         // Canvas releases its per-frame native texture/view handles at present.
         // An interrupted frame is never counted as a successful Engine frame.
         this.context?.presentSurface();
       }
     } finally {
+      this.configuration = null;
       this.context?.unconfigure();
     }
   }

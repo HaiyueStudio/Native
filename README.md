@@ -2,12 +2,18 @@
 
 HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构建和真机调试工具。
 
+## 0.1 源码版
+
+当前源码版本为 **0.1.0**，发布 tag 为 `v0.1.0`。六个公开示例已完成 [真机验收](release/ACCEPTANCE.md)。在仓库根目录运行 `npm run release:verify` 验证冻结输入、依赖、类型和测试；原生 bundle/build 使用同一入口的 profile 参数。范围、工具链和重建命令见 [发布说明](release/README.md)，变更与素材限制见 [0.1.0 版本说明](release/NOTES-0.1.0.md)。
+
+本仓库采用 [MIT License](LICENSE)，第三方依赖和游戏素材保留各自许可，见 [第三方声明](THIRD_PARTY_NOTICES.md)。
+
 ## 目录
 
 | 路径 | 用途 |
 | --- | --- |
 | [examples/](./examples/README.md) | 原生 App 示例 |
-| [examples/neon-circuit/](./examples/neon-circuit/README.md) | 四赛道反重力竞速，陀螺仪 / 虚拟摇杆、独立刹车与油门 |
+| [examples/neon-circuit/](./examples/neon-circuit/README.md) | 七赛道反重力竞速，陀螺仪 / 虚拟摇杆、独立刹车与油门 |
 | [bridge/motion/](./bridge/motion/README.md) | iOS / Android 陀螺仪、设备姿态和屏幕方向倾斜角 |
 | [examples/ak47-range/](./examples/ak47-range/README.md) | 横屏第三人称 AK47 生存射击、掩体寻路、视野迷雾和震动 |
 | [examples/rubiks-cube/](./examples/rubiks-cube/README.md) | 共享 Games 源码的二阶/三阶/四阶/镜面魔方，横竖屏与历史还原 |

@@ -10,3 +10,7 @@
 
 # BoxWorld is a private standalone application.
 /examples/boxbound/
+
+# Reproducible release reports and local build logs.
+/artifacts/
+/node_modules/
