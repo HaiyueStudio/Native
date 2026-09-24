@@ -20,7 +20,7 @@ Test Case '-[Acceptance.Acceptance testPbrOrbit]' started.
     t =     2.41s Wait for org.haiyue.native.iospbrorbit to become Running Foreground
     t =    10.53s Device orientation changed to Face Up
     t =    10.59s Added attachment named 'pbr-initial'
-    t =    10.59s Press Application 'org.haiyue.native.iospbrorbit'[0.50, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.iospbrorbit'[0.72, 0.60] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    10.59s Press Application 'org.haiyue.native.iospbrorbit'[0.50, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.iospbrorbit'[0.72, 0.60] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
     t =    10.59s     Wait for org.haiyue.native.iospbrorbit to idle
     t =    10.60s     Find the Application 'org.haiyue.native.iospbrorbit'
     t =    10.64s     Check for interrupting elements affecting "HaiYue Native" Application

@@ -266,7 +266,7 @@ Test Case '-[Acceptance.Acceptance testSkyLifecycle]' started.
     t =    10.49s         Find the Application 'org.haiyue.native.skystrike'
     t =    10.77s     Wait for org.haiyue.native.skystrike to idle
     t =    14.96s Added attachment named 'sky-playing'
-    t =    14.96s Press Application 'org.haiyue.native.skystrike'[0.50, 0.70] for 1.0 seconds, then drag to Application 'org.haiyue.native.skystrike'[0.70, 0.60] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    14.96s Press Application 'org.haiyue.native.skystrike'[0.50, 0.70] for 1.0 seconds, then drag to Application 'org.haiyue.native.skystrike'[0.70, 0.60] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
     t =    14.96s     Wait for org.haiyue.native.skystrike to idle
     t =    14.97s     Find the Application 'org.haiyue.native.skystrike'
     t =    14.98s     Check for interrupting elements affecting "Sky Strike" Application

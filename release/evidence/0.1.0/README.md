@@ -7,3 +7,5 @@
 `device-acceptance.json` 汇总六个示例的实际断言、交互和生命周期证据；源码、日志、截图及安装包文件哈希见相邻 rc.3 目录。`source.json` 保存正式清单冻结后的最终统一源码检查，`source-content-audit.json` 检查源码分发范围不含模型、安装包、签名文件或私钥标记，并检查现有 vendor 压缩包条目。
 
 发布方式为 Native 仓库 `v0.1.0` 源码 tag，不发布手机二进制或未知原始许可的模型。签名配置仅保留在本机 ignored 文件中。参见 [版本说明](../../NOTES-0.1.0.md) 与 [验收范围](../../ACCEPTANCE.md)。
+
+归档的文本日志仅统一行尾并移除行末空白，以通过 Git whitespace 检查；测试内容、时间戳和结果未改动。原始构建日志及 xcresult 保留在本机 ignored artifacts。

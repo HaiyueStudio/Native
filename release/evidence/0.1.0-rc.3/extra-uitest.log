@@ -30,7 +30,7 @@ Test Case '-[Acceptance.Acceptance testCubeDragUndo]' started.
     t =    11.14s         Find the Application 'org.haiyue.native.rubikscube'
     t =    11.15s         Find the Application 'org.haiyue.native.rubikscube'
     t =    11.45s     Wait for org.haiyue.native.rubikscube to idle
-    t =    13.46s Press Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (230.0, 417.0) for 0.1 seconds, then drag to Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (290.0, 417.0) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    13.46s Press Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (230.0, 417.0) for 0.1 seconds, then drag to Application 'org.haiyue.native.rubikscube'[0.00, 0.00] -> (290.0, 417.0) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
     t =    13.46s     Wait for org.haiyue.native.rubikscube to idle
     t =    13.48s     Find the Application 'org.haiyue.native.rubikscube'
     t =    13.49s     Check for interrupting elements affecting "魔方实验室" Application
@@ -114,7 +114,7 @@ Test Case '-[Acceptance.Acceptance testSpiderDragSave]' started.
     t =     2.00s         Wait for org.haiyue.native.spidersolitaire to idle
     t =     3.08s Wait for org.haiyue.native.spidersolitaire to become Running Foreground
     t =    11.22s Added attachment named 'spider-save-before'
-    t =    11.22s Press Application 'org.haiyue.native.spidersolitaire'[0.20, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.spidersolitaire'[0.73, 0.47] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    11.22s Press Application 'org.haiyue.native.spidersolitaire'[0.20, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.spidersolitaire'[0.73, 0.47] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
     t =    11.22s     Wait for org.haiyue.native.spidersolitaire to idle
     t =    11.24s     Find the Application 'org.haiyue.native.spidersolitaire'
     t =    11.31s     Check for interrupting elements affecting "蜘蛛纸牌" Application
@@ -126,7 +126,7 @@ Test Case '-[Acceptance.Acceptance testSpiderDragSave]' started.
     t =    11.56s         Find the Application 'org.haiyue.native.spidersolitaire'
     t =    12.99s     Wait for org.haiyue.native.spidersolitaire to idle
     t =    16.14s Added attachment named 'spider-invalid-drop'
-    t =    16.14s Press Application 'org.haiyue.native.spidersolitaire'[0.27, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.spidersolitaire'[0.73, 0.47] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    16.14s Press Application 'org.haiyue.native.spidersolitaire'[0.27, 0.50] for 0.1 seconds, then drag to Application 'org.haiyue.native.spidersolitaire'[0.73, 0.47] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
     t =    16.14s     Wait for org.haiyue.native.spidersolitaire to idle
     t =    16.15s     Find the Application 'org.haiyue.native.spidersolitaire'
     t =    16.16s     Check for interrupting elements affecting "蜘蛛纸牌" Application
