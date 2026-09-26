@@ -1,3 +1,5 @@
+import { inputProbe } from './input-probe';
+import { previewProbe } from './preview-probe';
 import {ENEMY_DEFINITIONS} from '../../../games/sky-strike/rules';
 import { NativePcmAudioBank } from '../../../bridge/audio/pcm-bank.ios';
 import { SkyStrikeAudio } from '../../../games/sky-strike/audio/SkyStrikeAudio';
@@ -46,7 +48,7 @@ function ensureHost(canvas: Canvas): void {
   const locale = new SkyStrikeLocale(new NativeSettingsStorage());
   const page = canvas.page as NativeEngineLaunchPage;
   activePage = page;
-  const input = new NativeTouchInput(canvas, () => {});
+  const input = new NativeTouchInput(canvas, () => {}, { pointerMode: 'all' });
   const haptics = new NativeHaptics();
   const musicProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_MUSIC_PROBE')) === '1';
   const holeProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_HOLE_PROBE')) === '1';
@@ -60,6 +62,10 @@ function ensureHost(canvas: Canvas): void {
   let world: World | null = null;
   let textures: NativeCanvasTextures | null = null;
   let detachUpdate = () => {};
+  let disposePreviewProbe = () => {};
+  let disposeInputProbe = () => {};
+  const inputProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_INPUT_PROBE')) === '1';
+  const previewProbeMode = String(NSProcessInfo.processInfo.environment.objectForKey('SKY_PREVIEW_PROBE')) === '1';
   host = new NativeRenderHost(canvas, text => {
     if (text.startsWith('原生 WebGPU 已呈现')) page.splash.presented();
     else if (text.startsWith('正在初始化')) page.splash.setMessage(locale.text('preparing'));
@@ -71,7 +77,7 @@ function ensureHost(canvas: Canvas): void {
     canvasInput: {
       addEventListener: input.target.addEventListener.bind(input.target),
       removeEventListener: input.target.removeEventListener.bind(input.target),
-      setPointerCapture: (id: number) => { if (input.snapshot().primary === id) input.target.setPointerCapture(id); },
+      setPointerCapture: (id: number) => { if (input.target.hasActivePointer(id)) input.target.setPointerCapture(id); },
       releasePointerCapture: input.target.releasePointerCapture.bind(input.target),
     } as unknown as NativeCanvasInput,
     capture: { requested: String(NSProcessInfo.processInfo.environment.objectForKey('SKY_CAPTURE_FRAME')) === '1', file: 'sky-strike-frame.png' },
@@ -85,7 +91,9 @@ function ensureHost(canvas: Canvas): void {
       const entries = JSON.parse(File.fromPath(path.join(assetsRoot, 'assets/sprites.json')).readTextSync());
       const data = NSData.dataWithContentsOfFile(path.join(assetsRoot, 'assets/sprites.rgba'));
       if (!data) throw new Error('Bundled sprite pack is missing.');
-      const bytes = new Uint8Array(interop.bufferFromData(data));
+      // bufferFromData borrows NSData storage. Boss portraits access these pixels
+      // long after this method returns, so keep a JS-owned copy before NSData dies.
+      const bytes = new Uint8Array(interop.bufferFromData(data)).slice();
       world = new World('Sky Strike Native');
       const battle = new SkyStrikeBattleLayer(engine, unpackSkySprites(entries, bytes)); world.addSystem(battle);
       const nativeInsets = (canvas.nativeViewProtected as UIView).safeAreaInsets;
@@ -95,8 +103,8 @@ function ensureHost(canvas: Canvas): void {
       game = new SkyStrikeGame(surface, battle, engine, world, {
         ui, locale, levels, audio, keyboard: false, guiLoadOp: 'load',
         haptic: event => haptics.impact(event === 'boss-defeated' || event === 'player-destroyed' ? 'heavy' : event === 'bomb' ? 'medium' : 'light'),
-        acceptsGameplayInput: (_x, y) => y >= insets.top + 94 && y <= surface.getBoundingClientRect().height - insets.bottom - 94,
-        saveBackend: (musicProbeMode||holeProbeMode||prismProbeMode||quantumProbeMode||partsProbeMode||fireProbeMode) ? new MemorySaveBackend() : new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
+        acceptsGameplayInput: (x, y) => ui.acceptsGameplayInput(x, y),
+        saveBackend: (inputProbeMode||previewProbeMode||musicProbeMode||holeProbeMode||prismProbeMode||quantumProbeMode||partsProbeMode||fireProbeMode) ? new MemorySaveBackend() : new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage: new NativeSettingsStorage() }),
         guiFont: { canvasFactory: textures.createCanvas2D, readAtlasPixels: textures.readAtlasPixels },
 
       });
@@ -194,13 +202,15 @@ function ensureHost(canvas: Canvas): void {
         }
       };
       engine.on('update', update); detachUpdate = () => engine.off('update', update);
+      if (inputProbeMode) disposeInputProbe = inputProbe(engine, input.target, game, ui);
+      if (previewProbeMode) disposePreviewProbe = previewProbe(engine, battle, game, canvas);
       return { ...game.snapshot(), bundledImages: entries.length, levels: levels.length, textures: textures.snapshot() };
     },
     bindInput() { return {
       suspend() { haptics.suspend(); input.suspend(); game?.suspend(); }, resume() { haptics.resume(); input.resume(); },
       dispose() { input.dispose(); }, snapshot() { return { ...input.snapshot(), splash: page.splash.status, game: game?.snapshot(), haptics: haptics.snapshot(), textures: textures?.snapshot() }; },
     }; },
-    disposeScene() { haptics.dispose(); audio?.dispose(); detachUpdate(); input.dispose(); game?.dispose(); world?.destroy(); textures?.dispose();  },
+    disposeScene() { disposeInputProbe(); disposePreviewProbe(); haptics.dispose(); audio?.dispose(); detachUpdate(); input.dispose(); game?.dispose(); world?.destroy(); textures?.dispose();  },
   });
   Application.on(Application.uncaughtErrorEvent, unhandled); Application.on(Application.exitEvent, disposeHost);
 }

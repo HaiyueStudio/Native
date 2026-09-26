@@ -16,9 +16,9 @@ export class NativeTouchInput {
   private disposed = false;
   private paused = false;
   get isPinching(): boolean { return this.pinching; }
-  constructor(private readonly view: Canvas, private readonly sample: (event: NativeTouchSample) => void, options: { pinchZoom?: boolean } = {}) {
+  constructor(private readonly view: Canvas, private readonly sample: (event: NativeTouchSample) => void, options: { pinchZoom?: boolean; pointerMode?: 'primary' | 'all' } = {}) {
     if (!view.ignoreTouchEvents) throw new Error('Disable Canvas pointer synthesis before attaching Core touch.');
-    this.target = new OrbitPointerTarget(() => nativeViewRect(view));
+    this.target = new OrbitPointerTarget(() => nativeViewRect(view), options.pointerMode ?? 'primary');
     this.orbitTarget = options.pinchZoom ? new OrbitPointerTarget(() => nativeViewRect(view), 'all') : null;
     // Android dispatches only observers registered on Core's View. A standalone
     // GesturesObserver is never included in that dispatch list. Bypass Canvas's

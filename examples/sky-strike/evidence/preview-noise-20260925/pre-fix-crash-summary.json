@@ -1,0 +1,88 @@
+[
+  {
+    "diagnosticRun": "182953",
+    "exception": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "frames": [
+      {
+        "image": "libsystem_platform.dylib",
+        "symbol": "_platform_memmove"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_TypedArrayPrototypeSlice"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "construct_stub_create_deopt_addr"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_ConstructWideHandler"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      }
+    ]
+  },
+  {
+    "diagnosticRun": "183826",
+    "exception": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "frames": [
+      {
+        "image": "libsystem_platform.dylib",
+        "symbol": "_platform_memmove"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_TypedArrayPrototypeSlice"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "construct_stub_create_deopt_addr"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_ConstructWideHandler"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      },
+      {
+        "image": "NativeScript",
+        "symbol": "Builtins_InterpreterEntryTrampoline"
+      }
+    ]
+  }
+]

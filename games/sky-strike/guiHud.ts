@@ -66,6 +66,15 @@ export class SkyStrikeGuiHud implements SkyStrikeUi {
     this.offLocale = locale.subscribe(refresh); refresh();
     const entity = new Entity('SkyStrikeNativeHud'); entity.addComponent(this.root); world.addEntity(entity);
   }
+  /** Only actual controls block a new flight gesture; the rest of the HUD is pass-through. */
+  acceptsGameplayInput(x: number, y: number): boolean {
+    if (!this.root.root.visible) return true;
+    if (this.overlay.visible) return false;
+    return ![this.bomb.button, this.pause.button].some(button => button.visible &&
+      x >= button.rect.x && x <= button.rect.x + button.rect.width &&
+      y >= button.rect.y && y <= button.rect.y + button.rect.height);
+  }
+
   update(hud: SkyStrikeHud): void {
     this.lastHud = hud;
     this.holeHint.setVisible(hud.bossName==='black-hole'||hud.bossName==='crystal-prism'||!!hud.crystalStorm||!!hud.quantumEncounter);

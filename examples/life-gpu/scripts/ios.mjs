@@ -1,6 +1,5 @@
-import { patchEngineInput } from './patch-engine-input.mjs';
-import { syncGameAssets } from './sync-game-assets.mjs';
-import { syncOrientation } from './sync-orientation.mjs';
+
+
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -14,8 +13,8 @@ const profile = path.join(app, '.ns-profile');
 mkdirSync(profile, { recursive: true });
 const cli = path.join(app, 'node_modules/nativescript/bin/tns');
 const args = process.argv.slice(2);
-if (['prepare', 'build', 'run'].includes(args[0])) { syncOrientation(); syncGameAssets(); }
-if (['prepare', 'build', 'run'].includes(args[0])) { console.log('Canvas binding patch:', patchCanvas()); console.log('GUI multitouch backport:', patchEngineInput()); }
+if (['prepare', 'build', 'run'].includes(args[0])) {   }
+if (['prepare', 'build', 'run'].includes(args[0])) console.log('Canvas binding patch:', patchCanvas());
 const signingFile = path.join(app, 'App_Resources/iOS/signing.local.xcconfig');
 if (['build', 'run'].includes(args[0]) && !args.includes('--teamId') && !args.includes('--provision')) {
   const team = process.env.IOS_TEAM_ID || (existsSync(signingFile)

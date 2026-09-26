@@ -51,6 +51,7 @@ export class SkyStrikeBattleLayer extends System {
   private readonly sources = new Map<string, IndexedSpritePlaneDescriptor>();
   private readonly guiTextures = new Map<string, GPUTexture>();
   private guiTextureBytes = 0;
+  private readonly pendingPreviews = new Set<() => void>();
   private readonly previews = new Map<string,{source:GPUTexture;sourceKey:string;aspect:number}>();
   private view = skyStrikeViewport(480, 960);
   private hole:HoleVisual|null=null;
@@ -102,17 +103,27 @@ export class SkyStrikeBattleLayer extends System {
     const msaa=sampleCount===4?device.createTexture({label:key+'.msaa',size:[tw,th],format,sampleCount,usage:GPUTextureUsage.RENDER_ATTACHMENT}):null;
     // A GUI click can run after the battle pass is encoded. Never overwrite that
     // renderer's instance/viewport buffers before the pending frame is submitted.
-    // Upload only this portrait's assets; release temporary resources after submission.
+    // Keep native textures, views and staging owners alive through GPU completion.
+    // submit() queues work; it is not a resource-retirement fence.
     let previewRenderer:IndexedSpriteRenderer|null=null;
+    let submitted=false;
+    const views=[texture.createView(),...(msaa?[msaa.createView()]:[])];
     try {
       const sources=[...new Set(commands.map(c=>c.spriteId))].map(id=>this.sources.get(id)!);
       previewRenderer=new IndexedSpriteRenderer(device,sources,[],{targetFormat:format,sampleCount,label:key,
         limits:{...DEFAULT_INDEXED_SPRITE_ATLAS_LIMITS,maxTextureDimension2D:2048,maxDrawCommandsPerFrame:Math.max(1,commands.length)}});
       previewRenderer.uploadAll();
       const encoder=device.createCommandEncoder({label:key}),pass=encoder.beginRenderPass({colorAttachments:[{
-      view:(msaa??texture).createView(),...(msaa?{resolveTarget:texture.createView()}:{}),loadOp:'clear',storeOp:'store',clearValue:{r:0,g:0,b:0,a:0}}]});
-      previewRenderer.render(pass,commands,tw,th);pass.end();device.queue.submit([encoder.finish()]);
-    }catch(error){texture.destroy();throw error;}finally{previewRenderer?.dispose();msaa?.destroy();}
+      view:views[1]??views[0]!,...(msaa?{resolveTarget:views[0]!}:{}),loadOp:'clear',storeOp:'store',clearValue:{r:0,g:0,b:0,a:0}}]});
+      previewRenderer.render(pass,commands,tw,th);pass.end();device.queue.submit([encoder.finish()]);submitted=true;
+    }catch(error){texture.destroy();throw error;}finally{
+      const renderer=previewRenderer;
+      const release=()=>{renderer?.dispose();msaa?.destroy();views.length=0;this.pendingPreviews.delete(release);};
+      if(submitted){
+        this.pendingPreviews.add(release);
+        void device.queue.onSubmittedWorkDone().then(release,release);
+      }else release();
+    }
     const result={source:texture,sourceKey:key,aspect:th/tw};this.previews.set(key,result);this.guiTextures.set(key,texture);this.guiTextureBytes+=tw*th*4;return result;
   }
   begin(playerX: number, shakeX = 0, shakeY = 0): void {
@@ -146,7 +157,7 @@ export class SkyStrikeBattleLayer extends System {
   setBlackHole(visual:HoleVisual|null):void {this.hole=visual; if(!visual)this.lens?.releaseTargets();}
   setFlames(cones:readonly FlameCone[],nozzles:readonly FlameNozzle[],time:number):void{this.flames=cones;this.nozzles=nozzles;this.flameTime=time;}
   lava(core:LavaCore):void{this.cores.push(core);}
-  stats() { return { fire:this.flamePass?.stats()??null,lens:this.lens?.stats()??null, ...this.renderer.stats(), renderer: 'haiyue-gpu-sprites', guiTextureBytes: this.guiTextureBytes, frameTextureUploads: 0 }; }
+  stats() { return { fire:this.flamePass?.stats()??null,lens:this.lens?.stats()??null, ...this.renderer.stats(), renderer: 'haiyue-gpu-sprites', guiTextureBytes: this.guiTextureBytes, pendingPreviewCompositions: this.pendingPreviews.size, frameTextureUploads: 0 }; }
   record(_world: World, context: RenderCommandContext): this {
     const draw=(pass:GPURenderPassEncoder)=>{
       const dpr=this.engine.width/this.engine.displayWidth;

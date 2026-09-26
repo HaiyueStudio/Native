@@ -19,7 +19,7 @@ async function main(): Promise<void> {
   let settingsStorage: Storage | undefined; try { settingsStorage=globalThis.localStorage; } catch { /* Private browsing can deny persistence. */ }
   const audio = new SkyStrikeAudio(audioBackend, settingsStorage);
   const game = new SkyStrikeGame(canvas, battle, engine, world, { ui, locale, audio,
-    acceptsGameplayInput: (_x,y) => y >= 94 && y <= canvas.getBoundingClientRect().height - 94,
+    acceptsGameplayInput: (x, y) => ui.acceptsGameplayInput(x, y),
   });
   await game.init();
   const renderIntegration = new RenderIntegration(engine, { label: 'SkyStrike.gui' });

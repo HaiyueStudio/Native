@@ -21,12 +21,12 @@ export class NativeTouchInput {
   private disposed = false;
   private paused = false;
 
-  constructor(private readonly view: Canvas, private readonly sample: (event: NativeTouchSample) => void, options: { pinchZoom?: boolean } = {}) {
+  constructor(private readonly view: Canvas, private readonly sample: (event: NativeTouchSample) => void, options: { pinchZoom?: boolean; pointerMode?: 'primary' | 'all' } = {}) {
     if (!view.ignoreTouchEvents) throw new Error('Disable Canvas pointer synthesis before attaching Core touch.');
     const native = view.nativeViewProtected as UIView;
     this.previousMultipleTouch = native.multipleTouchEnabled;
     native.multipleTouchEnabled = true;
-    this.target = new OrbitPointerTarget(() => nativeViewRect(view));
+    this.target = new OrbitPointerTarget(() => nativeViewRect(view), options.pointerMode ?? 'primary');
     this.orbitTarget = options.pinchZoom ? new OrbitPointerTarget(() => nativeViewRect(view), 'all') : null;
     this.observer = new GesturesObserver(view, event => this.touch(event as TouchGestureEventData), this);
     this.observer.observe(GestureTypes.touch);

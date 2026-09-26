@@ -1,0 +1,2 @@
+const webpack=require('@nativescript/webpack'),path=require('node:path');
+module.exports=env=>{webpack.init(env);webpack.chainWebpack(config=>{config.resolve.modules.prepend(path.resolve(__dirname,'node_modules'));config.resolve.alias.set('@haiyue/engine/compute$',path.resolve(__dirname,'../../../RustNative/comparison-life/vendor/engine/dist/compute.js'));config.resolve.alias.set('@haiyue/engine$',path.resolve(__dirname,'../../../RustNative/comparison-life/vendor/engine/dist/index.js'));});return webpack.resolveConfig();};

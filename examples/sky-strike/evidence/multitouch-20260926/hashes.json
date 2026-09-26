@@ -1,0 +1,11 @@
+{
+  "bridge/input/native-touch.ios.ts": "2612be11647e22f6e2f89a2b53afb0e0672059c24be7fe519b5f20eb02a2a0df",
+  "bridge/input/native-touch.android.ts": "fae04b99c95904be4894deebbdb4b8f8abff080c2869fb3e5f621eb904c55c60",
+  "bridge/input/pointer-target.ts": "8551e9b33da0eea02cba874d0253861180b4b28d3c386162395e17a8cd1bd505",
+  "games/sky-strike/guiHud.ts": "e2f5fa76f23c49e16e6862cbd3c40f9c0b23812d232e3a4765c0b7047e7f0ed4",
+  "games/sky-strike/main.ts": "42ab05e5dfbfbb28ff514fdbaee7ee5da7049793700b12a9115cf69999df28d8",
+  "examples/sky-strike/src/main-page.ts": "236147c463f113bd537be9a14db339471474809a262fd0f4d7bfa35a9e19e358",
+  "examples/sky-strike/src/input-probe.ts": "5c7c4ab9b7cb093f2ab24eb1bd37a106f5b7730ed7356423314dd8f9ad2600df",
+  "examples/sky-strike/scripts/patch-engine-input.mjs": "b98a65b04e1aaf3c51675ab5478969b4223bdd57c3cdb2fe7a665cab3adfa3b0",
+  "examples/sky-strike/platforms/ios/build/Debug-iphoneos/skystrike.app/app/bundle.mjs": "5b79b541daba7e2825b62dd227dd8591ddcc4cb46124affc31d21789090e28c8"
+}

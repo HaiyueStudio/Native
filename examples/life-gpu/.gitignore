@@ -1,0 +1,4 @@
+node_modules/
+platforms/
+.ns-profile/
+App_Resources/iOS/signing.local.xcconfig

@@ -8,7 +8,7 @@ export interface OrbitPointer {
 }
 type Listener = (event: OrbitPointer) => void;
 
-/** A single-pointer event target. Coordinates and bounds are both UIKit points. */
+/** A primary-only or all-pointer event target. Coordinates and bounds are both UIKit points. */
 export class OrbitPointerTarget {
   private readonly listeners = new Map<string, Set<Listener>>();
   private readonly touches = new Map<number, TouchPoint>();
@@ -34,6 +34,8 @@ export class OrbitPointerTarget {
   removeEventListener(type: string, listener: Listener): void {
     this.listeners.get(type)?.delete(listener);
   }
+
+  hasActivePointer(id: number): boolean { return this.touches.has(id); }
 
   setPointerCapture(id: number): void {
     if ((this.mode === 'primary' && id !== this.primary) || !this.touches.has(id)) throw new Error('Cannot capture an inactive native touch.');

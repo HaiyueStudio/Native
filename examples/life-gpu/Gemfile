@@ -1,0 +1,5 @@
+# G01 verified Ruby toolchain; this is not the future App Podfile.lock.
+source "https://rubygems.org"
+ruby "4.0.6"
+gem "cocoapods", "1.17.0"
+gem "xcodeproj", "1.28.1"
