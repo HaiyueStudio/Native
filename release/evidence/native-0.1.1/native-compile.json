@@ -1,0 +1,21 @@
+{
+  "candidate": "0.1.1",
+  "manifestSha256": "eadfa7fbc90c635e873562f4bfb01bb85cae1ca8aea329cd0d8a83978a9257de",
+  "status": "passed",
+  "swift": "swiftc -typecheck, arm64-apple-ios15.0",
+  "java": "javac, Android API 36",
+  "scope": "Compile/typecheck only, not consuming app SDK wiring or device acceptance",
+  "inputs": {
+    "bridge/purchases/native/ios/HYNonConsumableStore.swift": "d630ceefb0624e324faf0bdce96d8b498778472a370146acd5619872f3f12f29",
+    "bridge/rewards/native/ios/HYRewardedAds.swift": "ba3906cd70ecf7644e5ea1c4f909343ea84290f3a0c9bcc3045eb31f023dcfb7",
+    "bridge/purchases/native/android/org/haiyue/purchases/HYPlayBilling.java": "648371e85ce816707bdb49d16a393146554e49f6b55d9ef843263b1624116fc6",
+    "bridge/rewards/native/android/org/haiyue/rewards/HYRewardedAds.java": "2927b62aa212801f831ef674c7a350b9124e8dd2962ef540ca5f422c268288fe"
+  },
+  "sdkPins": {
+    "iosAds": "13.10.0",
+    "androidAds": "25.5.0",
+    "androidUMP": "4.0.0",
+    "androidBilling": "8.3.0"
+  },
+  "dependencyCaches": "Read-only existing Google iOS frameworks from CalendarPuzzle build; Native .android-tools Gradle cache. No CalendarPuzzle source or resources changed."
+}

@@ -1,0 +1,46 @@
+{
+  "status": "passed-with-deferred-app-acceptance",
+  "candidate": "0.1.1",
+  "manifestSha256": "eadfa7fbc90c635e873562f4bfb01bb85cae1ca8aea329cd0d8a83978a9257de",
+  "inputCount": 739,
+  "sourcePackageExampleTests": {
+    "ak47-range-tests": 12,
+    "sky-strike-tests": 16,
+    "npm-package-tests": 3,
+    "neon-circuit-tests": 18,
+    "rubiks-cube-tests": 4,
+    "release-tests": 65,
+    "spider-solitaire-tests": 7,
+    "ios-pbr-orbit-tests": 27
+  },
+  "sourcePackageExampleTestCount": 152,
+  "storekit": {
+    "uniqueTests": 13,
+    "iterations": 3,
+    "executions": 39,
+    "failures": 0
+  },
+  "gates": {
+    "clean-source": "/private/tmp/native-0.1.1-release-clean/artifacts/release/2026-09-27T01-49-16-887Z/report.json",
+    "android": "artifacts/release/2026-09-27T01-49-12-424Z/report.json",
+    "ios": "artifacts/release/2026-09-27T01-49-07-377Z/report.json"
+  },
+  "package": {
+    "path": "artifacts/haiyue-native-0.1.1.tgz",
+    "privateCandidate": true,
+    "published": false,
+    "bytes": 212818,
+    "sha256": "2dc7e0bdb784b3b96a2cef300ef225044640c15b790363e502aeb832da75a1fc"
+  },
+  "calendarPuzzle": {
+    "keySourceResourceFilesHashChecked": 49,
+    "changed": 0
+  },
+  "environment": "Clean exported source installed with npm ci, no copied node_modules/platforms. Existing npm download cache; native builds use local fixed toolchains, existing platform caches and hash-verified external models. Not a fresh OS or a remote tag clone.",
+  "deferred": [
+    "New consuming game native SDK build wiring and real-device lifecycle",
+    "App Store Sandbox / Google Play purchase, restore, offline and account tests",
+    "AdMob/UMP consent refusal, reopening and rewarded completion on devices"
+  ],
+  "publication": "No git release tag, push or npm publication performed by this closeout."
+}

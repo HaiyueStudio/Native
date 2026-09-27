@@ -4,7 +4,7 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../../', import.meta.url));
-const require = createRequire(new URL('../../npm/package.json', import.meta.url));
+const require = createRequire(new URL('../../package.json', import.meta.url));
 const ts = require('typescript');
 export function loadTS(file, mocks = {}, globals = {}, cache = new Map()) {
   file = path.resolve(root, file);

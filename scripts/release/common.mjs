@@ -18,7 +18,7 @@ export function gitFiles(dir) {
 }
 const within = (file, prefix) => file === prefix || file.startsWith(`${prefix}/`);
 export function selectedFiles(config, native = root) {
-  const prefixes = ['bridge', 'services/play-entitlements', 'games', 'scripts', 'test', 'release', ...Object.keys(config.apps).map(app => `examples/${app}`)];
+  const prefixes = ['npm', 'bridge', 'services/play-entitlements', 'games', 'scripts', 'test', 'release', ...Object.keys(config.apps).map(app => `examples/${app}`)];
   const files = {};
   for (const [repo, dir, select] of [
     ['Native', native, file => !file.includes('/') || prefixes.some(prefix => within(file, prefix))],
@@ -121,6 +121,12 @@ export function dependencies(config, native = root) {
   }
   return inventory;
 }
+export function verifyVendorContent(app, name, file, pristine, installed, patches = []) {
+  if (pristine.equals(installed)) return;
+  const approved = patches.find(patch => patch.app === app && patch.package === name && patch.file === file
+    && patch.originalSha256 === hash(pristine) && patch.patchedSha256 === hash(installed));
+  if (!approved) throw new Error(`${app}: installed vendor content differs: ${name}/${file}; run npm ci`);
+}
 export function verifyInstalled(app, native = root) {
   const dir = path.join(native, 'examples', app);
   const lock = readJSON(path.join(dir, 'package-lock.json'));
@@ -131,6 +137,8 @@ export function verifyInstalled(app, native = root) {
     if (!existsSync(file) || readJSON(file).version !== entry.version) throw new Error(`${app}: installed dependency differs: ${location}; run npm ci`);
   }
   command('npm', ['ls', '--all', '--json'], dir);
+  const patchesFile = path.join(native, 'release/vendor-patches.json');
+  const patches = existsSync(patchesFile) ? readJSON(patchesFile).patches : [];
   const pkg = readJSON(path.join(dir, 'package.json'));
   for (const [name, spec] of Object.entries({ ...pkg.dependencies, ...pkg.devDependencies })) {
     if (!spec.startsWith('file:vendor/')) continue;
@@ -145,10 +153,14 @@ export function verifyInstalled(app, native = root) {
         if (lstatSync(source).isDirectory()) continue;
         if (!lstatSync(source).isFile()) throw new Error(`Unsupported tarball entry: ${name}/${file}`);
         const installed = path.join(dir, 'node_modules', name, file.slice('package/'.length));
-        if (!existsSync(installed) || !readFileSync(source).equals(readFileSync(installed))) throw new Error(`${app}: installed vendor content differs: ${name}/${file}; run npm ci`);
+        if (!existsSync(installed)) throw new Error(`${app}: missing installed vendor file: ${name}/${file}; run npm ci`);
+        verifyVendorContent(app, name, file.slice('package/'.length), readFileSync(source), readFileSync(installed), patches);
       }
     } finally { rmSync(temp, { recursive: true, force: true }); }
   }
+}
+export function verifyManifestSnapshot(expectedSha256, file = manifestPath) {
+  if (hash(readFileSync(file)) !== expectedSha256) throw new Error('Frozen manifest changed during validation; rerun the complete gate');
 }
 export function verifyCandidate(config = readConfig()) {
   const candidate = readJSON(manifestPath);
@@ -171,7 +183,10 @@ export function verifyRelativeImports(files, native = root) {
     const source = readFileSync(path.join(native, file.slice('Native/'.length)), 'utf8');
     const imports = source.matchAll(/(?:\bfrom\s*|\bimport\s*\(\s*|\bimport\s*)['"](\.[^'"]+)['"]/g);
     for (const [, specifier] of imports) {
-      const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(file), specifier));
+      let resolved = path.posix.normalize(path.posix.join(path.posix.dirname(file), specifier));
+      // npm/index.ts targets the staged bridge; freeze its actual repository source.
+      if (file === 'Native/npm/index.ts' && resolved.startsWith('Native/npm/bridge/'))
+        resolved = resolved.replace('Native/npm/bridge/', 'Native/bridge/');
       const candidates = [resolved, ...['.ts', '.ios.ts', '.android.ts', '.json', '.js', '/index.ts'].map(ext => resolved + ext)];
       if (!candidates.some(name => name in files)) throw new Error(`Import outside candidate: ${file} -> ${specifier}`);
     }

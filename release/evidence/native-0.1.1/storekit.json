@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "uniqueTests": 13,
+  "iterations": 3,
+  "executions": 39,
+  "failures": 0,
+  "sdk": "iOS Simulator 26.3, Xcode 26.3",
+  "scope": "Local synthetic StoreKitTest, not Sandbox/TestFlight",
+  "resultBundle": "artifacts/storekit-repeat-result.xcresult",
+  "inputs": {
+    "bridge/purchases/native/ios/HYNonConsumableStore.swift": "d630ceefb0624e324faf0bdce96d8b498778472a370146acd5619872f3f12f29",
+    "test/storekit/NativeStoreTests.swift": "ca6ce486078a3ab4368ab69e81e603e599f5950a8015302a55074adb7bff1c9a",
+    "test/storekit/Native.storekit": "7212e2f4e98414b8d8412ba0fe8e9502ce46dde7039ae5cd7990f56e307fd443",
+    "test/storekit/Host.swift": "beee5c108bfd265d5c69bc2e0c755fd3b6ba9b863d239485ead9668477bb6899",
+    "test/storekit/Host.entitlements": "ecb0acfcaa62fca2ca3f9d658f0bedac90c520e5cb4a0b436301a294ca583f5f",
+    "test/storekit/generate.rb": "9c71b5ce9fabd78d0c260642d77d9b6fb0df608adc24ce1bb5faeb41a6c9d489"
+  },
+  "manifestSha256": "eadfa7fbc90c635e873562f4bfb01bb85cae1ca8aea329cd0d8a83978a9257de",
+  "candidate": "0.1.1",
+  "binding": "All tested bridge, fixture, host and generator source hashes match this frozen manifest."
+}

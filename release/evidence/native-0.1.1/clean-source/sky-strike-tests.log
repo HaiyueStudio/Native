@@ -1,0 +1,30 @@
+
+> @haiyue/native-sky-strike@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ native PCM bank preloads once, bounds voices, protects loops, uses no audio thread JS callbacks and handles interruptions (11.345365ms)
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (4.366377ms)
+✔ native feedback selects impact style, limits clustered kills and suppresses background/disposed events (6.0503ms)
+✔ Sky Strike uses the shared launch page and dismisses only after a GPU present (268.965593ms)
+✔ shooting finger cannot steal the bomb finger; both release orders work (7.055549ms)
+✔ starting on bomb before dragging, cancelled touches, and same-frame taps stay independent (2.770726ms)
+✔ bottom centre and HUD decoration allow flight; only actual buttons and modal block it (13.365022ms)
+✔ primary-only bridge mode still suppresses extra fingers for other games (0.274163ms)
+✔ real Engine save survives a new service when native structuredClone is absent (130.436869ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (2.080291ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.411907ms)
+✔ Sky Strike has a distinct app identity and portrait-only packaged orientations (20.856942ms)
+✔ preview resources retire at GPU completion, cache remains valid and pending commands stay isolated (305.072356ms)
+✔ runtime staging includes all levels/pack and removes obsolete master PNGs (51.388607ms)
+✔ native sprite pack owns its pixels after the temporary NSData storage is released (3.077899ms)
+(node:49798) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ bridge supplies missing color mask while retaining a provider-owned implementation (1.13291ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1194.609917

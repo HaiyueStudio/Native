@@ -1,6 +1,6 @@
 # Reusable purchases and rewarded ads
 
-This is development source for the next Native release. Published `@haiyue/native@0.1.0` has only the original rewards entry points. CalendarPuzzle and its submitted build are unchanged. Validate this implementation with the next consuming game before a new package release.
+These are experimental capabilities in the Native 0.1.1 candidate. Published `@haiyue/native@0.1.0` has only the original rewards entry points. CalendarPuzzle and its submitted build are unchanged. Validate this implementation with the next consuming game before enabling monetization in that game.
 
 ## Boundary
 
@@ -93,6 +93,6 @@ Android additionally needs `services/play-entitlements`: configure and deploy it
 
 ## Validation and development package
 
-From Native: `npm ci && npm test`. From Native/npm: `npm ci && npm run stage:development`, then `NATIVE_PACKAGE_ROOT=../artifacts/native-development-package npm test` (resolve the path from the npm directory). The stage command produces a private `0.1.0-development.0` package in `Native/artifacts/native-development-package`; its version is a development label, not a published release. Run `npm pack` in that directory for a local tarball.
+From Native: `npm ci && npm test`. From Native/npm: `npm ci && npm run stage:development`, then `NATIVE_PACKAGE_ROOT=../artifacts/native-development-package npm test` (resolve the path from the npm directory). The stage command produces a private `<source-version>-development.0` package in `Native/artifacts/native-development-package`; its version is a development label, not a published release. Run `npm pack` in that directory for a local tarball.
 
-The production pack command still requires the frozen release/tag to match. Do not refreeze the already published 0.1.0 candidate to accommodate new code. Before releasing a new version, validate the next game on both native platforms, including restore/cancel/pending/refund, offline/expired rights, UMP refusal/reopen, rewarded callback/dismissal and native UI lifecycle. Unit tests and native compilation are not store/Sandbox acceptance evidence.
+The production pack command still requires the frozen release/tag to match. Do not refreeze the already published 0.1.0 candidate to accommodate new code. Before shipping a consuming app, validate the next game on both native platforms, including restore/cancel/pending/refund, offline/expired rights, UMP refusal/reopen, rewarded callback/dismissal and native UI lifecycle. Unit tests and native compilation are not store/Sandbox acceptance evidence.

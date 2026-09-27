@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-27T01:49:12.424Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 910
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "root-dependencies",
+      "status": "passed",
+      "durationMs": 483
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 2005
+    },
+    {
+      "name": "npm-dependencies",
+      "status": "passed",
+      "durationMs": 815
+    },
+    {
+      "name": "npm-candidate-pack",
+      "status": "passed",
+      "durationMs": 1161
+    },
+    {
+      "name": "npm-typecheck",
+      "status": "passed",
+      "durationMs": 5348
+    },
+    {
+      "name": "npm-package-tests",
+      "status": "passed",
+      "durationMs": 6166
+    },
+    {
+      "name": "neon-circuit-dependencies",
+      "status": "passed",
+      "durationMs": 2815
+    },
+    {
+      "name": "neon-circuit-typecheck",
+      "status": "passed",
+      "durationMs": 6959
+    },
+    {
+      "name": "neon-circuit-tests",
+      "status": "passed",
+      "durationMs": 1778
+    },
+    {
+      "name": "model-inputs",
+      "status": "passed",
+      "durationMs": 17
+    },
+    {
+      "name": "native-toolchain",
+      "status": "passed",
+      "durationMs": 227
+    },
+    {
+      "name": "neon-circuit-build-android",
+      "status": "passed",
+      "durationMs": 24090
+    },
+    {
+      "name": "neon-circuit-dependencies-after-build",
+      "status": "passed",
+      "durationMs": 2082
+    },
+    {
+      "name": "neon-circuit-gradle-version",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "neon-circuit-maven-lock",
+      "status": "passed",
+      "durationMs": 2086
+    },
+    {
+      "name": "neon-circuit-artifact",
+      "status": "passed",
+      "durationMs": 785
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 1184
+    },
+    {
+      "name": "model-inputs-after-validation",
+      "status": "passed",
+      "durationMs": 14
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate."
+  ],
+  "candidate": "0.1.1",
+  "profile": "build",
+  "platform": "android",
+  "apps": [
+    "neon-circuit"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "java": "21.0.12.1",
+    "androidPlatform": "36",
+    "androidBuildTools": "36.0.0",
+    "gradle": "8.14.3"
+  },
+  "manifestSha256": "eadfa7fbc90c635e873562f4bfb01bb85cae1ca8aea329cd0d8a83978a9257de",
+  "modelInputs": {
+    "neon-circuit/wraith-raider.glb": "5ca426907f272934aa854ae09177f66d35e53467190bdc85a17b419679e08eda"
+  },
+  "artifacts": [
+    {
+      "app": "neon-circuit",
+      "platform": "android",
+      "file": "/Users/qingque/Desktop/HaiyueStudio/Native/examples/neon-circuit/platforms/android/app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "bb5f4601e94db153f8069286b6b9239e9ecc251bf6c141e2df5403a16b141eaf",
+      "kind": "debug-apk"
+    }
+  ],
+  "finishedAt": "2026-09-27T01:50:11.583Z"
+}

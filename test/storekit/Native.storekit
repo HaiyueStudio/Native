@@ -1,0 +1,11 @@
+{
+  "identifier": "NativeMonetizationAcceptance",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {"displayPrice":"1.99","familyShareable":false,"internalID":"1001","localizations":[{"description":"Synthetic non-consumable test entitlement","displayName":"Full game","locale":"en_US"}],"productID":"native_test_full_unlock","referenceName":"Full game","type":"NonConsumable"},
+    {"displayPrice":"0.99","familyShareable":false,"internalID":"1002","localizations":[{"description":"Wrong product test fixture","displayName":"Other item","locale":"en_US"}],"productID":"native_test_consumable","referenceName":"Wrong product test fixture","type":"Consumable"}
+  ],
+  "settings":{"_failTransactionsEnabled":false,"_locale":"en_US","_storefront":"USA"},
+  "subscriptionGroups":[],
+  "version":{"major":3,"minor":0}
+}

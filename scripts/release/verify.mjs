@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync, readFileSync, existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { root, manifestPath, readConfig, readJSON, hash, command, verifyCandidate, verifyInstalled, verifyModelInputs, verifyPodsLock } from './common.mjs';
+import { root, manifestPath, readConfig, readJSON, hash, command, verifyCandidate, verifyInstalled, verifyModelInputs, verifyPodsLock, verifyManifestSnapshot } from './common.mjs';
 import { runLogged, runStages } from './runner.mjs';
 
 const report = { schemaVersion: 1, startedAt: new Date().toISOString(), status: 'failed', stages: [], skipped: [] };
@@ -32,7 +32,16 @@ try {
   stage('node-toolchain', () => {
     for (const name of ['node', 'npm']) if (report.toolchain[name] !== config.toolchain[name]) throw new Error(`${name}: expected ${config.toolchain[name]}, got ${report.toolchain[name]}`);
   });
+  if (values.install) run('root-install', 'npm', ['ci', '--ignore-scripts', '--registry=https://registry.npmjs.org', '--no-audit', '--no-fund']);
+  run('root-dependencies', 'npm', ['ls', '--all']);
   run('release-tests', 'npm', ['test']);
+  const npmRoot = path.join(root, 'npm');
+  if (values.install) run('npm-install', 'npm', ['ci', '--ignore-scripts', '--registry=https://registry.npmjs.org', '--no-audit', '--no-fund'], npmRoot);
+  run('npm-dependencies', 'npm', ['ls', '--all'], npmRoot);
+  const packageRoot = path.join(output, 'package');
+  run('npm-candidate-pack', process.execPath, ['pack.mjs', '--candidate', '--output', packageRoot], npmRoot);
+  run('npm-typecheck', process.execPath, ['typecheck-package.mjs', packageRoot], npmRoot);
+  run('npm-package-tests', 'npm', ['test'], npmRoot, { NATIVE_PACKAGE_ROOT: packageRoot });
   for (const app of apps) {
     const cwd = path.join(root, 'examples', app);
     if (values.install) run(`${app}-install`, 'npm', ['ci', '--registry=https://registry.npmjs.org', '--no-audit', '--no-fund'], cwd);
@@ -81,6 +90,7 @@ try {
       const script = profile === 'bundle' ? `bundle:${platform}` : platform === 'ios' ? 'build:device' : 'build:android';
       const cwd = path.join(root, 'examples', app);
       run(`${app}-${profile}-${platform}`, 'npm', ['run', script], cwd);
+      stage(`${app}-dependencies-after-${profile}`, () => verifyInstalled(app));
       if (platform === 'android') {
         stage(`${app}-gradle-version`, () => {
           const wrapper = readFileSync(path.join(cwd, 'platforms/android/gradle/wrapper/gradle-wrapper.properties'), 'utf8');
@@ -103,7 +113,7 @@ try {
       }
     }
   }
-  stage('candidate-integrity-after-validation', () => verifyCandidate(config));
+  stage('candidate-integrity-after-validation', () => { verifyManifestSnapshot(report.manifestSha256); verifyCandidate(config); });
   if (profile !== 'source') stage('model-inputs-after-validation', () => verifyModelInputs(apps));
   report.skipped.push('Device install/interaction, signing/export and store submission are not performed by this gate.');
   if (profile === 'source') report.skipped.push('Native bundle/build: request --profile bundle|build --platform ios|android.');

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -42,7 +42,23 @@ for (const platform of ['ios', 'android']) test(`NativeScript ${platform} resolv
   t.after(() => rmSync(temp, { recursive: true, force: true }));
   const entry = path.join(temp, 'entry.js');
   mkdirSync(path.join(temp, 'node_modules/@haiyue'), { recursive: true });
-  symlinkSync(packageRoot, path.join(temp, 'node_modules/@haiyue/native'), 'dir');
+  const [packed] = JSON.parse(execFileSync('npm', ['pack', '--ignore-scripts', '--json', '--cache', temp, '--pack-destination', temp], { cwd: packageRoot, encoding: 'utf8' }));
+  execFileSync('tar', ['-xzf', path.join(temp, packed.filename), '-C', temp]);
+  symlinkSync(path.join(temp, 'package'), path.join(temp, 'node_modules/@haiyue/native'), 'dir');
+  const { monetizationBuild } = createRequire(entry)('@haiyue/native/monetization/build');
+  const build = monetizationBuild({ purchases: true, development: true, rewards: {
+    iosAppId: 'ca-app-pub-3940256099942544~1458002511', androidAppId: 'ca-app-pub-3940256099942544~3347511713',
+  } });
+  for (const [feature, swift, java] of [
+    ['purchases', 'HYNonConsumableStore.swift', 'org/haiyue/purchases/HYPlayBilling.java'],
+    ['rewards', 'HYRewardedAds.swift', 'org/haiyue/rewards/HYRewardedAds.java'],
+  ]) {
+    const nativeRoot = realpathSync(path.join(temp, 'package/bridge', feature, 'native'));
+    assert.ok(build.ios.NativeSource.some(source => source.path === path.join(nativeRoot, 'ios/*.swift')));
+    assert.ok(existsSync(path.join(nativeRoot, 'ios', swift)));
+    assert.ok(build.androidGradle.includes(path.join(nativeRoot, 'android')));
+    assert.ok(existsSync(path.join(nativeRoot, 'android', java)));
+  }
   writeFileSync(entry, `import * as native from '@haiyue/native';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nimport { createPurchases } from '@haiyue/native/purchases/native';\nimport { PurchaseController } from '@haiyue/native/purchases';\nimport { createRewards } from '@haiyue/native/rewards/native';\nglobalThis.nativeSmoke = { native, NativeDeviceMotion, NativeHaptics, audio, orientation, media, createPurchases, PurchaseController, createRewards };`);
   const compiler = webpack({
     mode: 'development', context: temp, entry, devtool: false,

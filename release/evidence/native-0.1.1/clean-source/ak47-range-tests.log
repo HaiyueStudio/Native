@@ -1,0 +1,28 @@
+
+> @haiyue/native-ak47-range@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Canvas texture upload accepts ArrayBuffer and preserves view byte ranges (3.492639ms)
+✔ angles use degrees while radians, quaternion, rate and acceleration retain their units (3.060279ms)
+✔ gravity tilt covers left/right, forward/back, face down and all screen rotations (0.958344ms)
+✔ frame polling emits fresh samples only; stop, background, resume and disposal cleanly own the sensor (1.187918ms)
+✔ unavailable hardware, invalid parameters and failed starts cannot leave collection active (0.636517ms)
+✔ recoil follows 10 Hz shots; hits override recoil; suspension cancels feedback (1.809223ms)
+(node:50406) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/native-0.1.1-release-clean/examples/ak47-range/src/pointer-capture.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/native-0.1.1-release-clean/examples/ak47-range/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ native all-pointer routing keeps movement and fire independent until lifecycle cancellation (2.429775ms)
+✔ queued GUI capture after same-frame release is safe; other failures are not swallowed (0.845184ms)
+✔ portrait, landscape and flexible App masks match UIKit and plist (3.899893ms)
+✔ runtime policy can narrow but cannot exceed packaged orientations (0.50472ms)
+✔ AK47 app packages and initially requests landscape only (2.346907ms)
+✔ landscape picking uses UIKit drawing bounds rather than safe-area measurement (2.307896ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 847.593026

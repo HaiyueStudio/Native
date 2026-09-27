@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "patches": [
+    {
+      "app": "sky-strike",
+      "package": "@haiyue/engine",
+      "file": "dist/chunks/GuiSystem-y6ULBwdc.js",
+      "originalSha256": "453103666261601dbe87df7a473f8acfb8ab2ee353b78826c8566f623499df8b",
+      "patchedSha256": "61465dd40d10ac68d7062aac2cade8aed7c860085ba1f1b43285a9a2ca753f32",
+      "source": "examples/sky-strike/scripts/patch-engine-input.mjs",
+      "reason": "Pinned Engine 0.1.0 multitouch backport applied by the existing example build."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Native 0.1 发布
 
-当前冻结源码名称：**@haiyue/native**，版本 **0.1.0**，应用版本仍为 **0.1.0**，标签 `native-v0.1.0`。这是更名后的 GitHub 源码发布，保留原 `@haiyue/native-repository` 的 `v0.1.0` / `v0.1.1` 标签及验证记录。游戏代码与自有素材已纳入 Native，见 [本次版本说明](NOTES-native-0.1.0.md) 和 [发布页](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0)。本次包含最新 Sky Strike iPad 支持与共享开屏页；源码 gate 重新执行，已有的全新目录构建与真机记录注明各自版本范围。本次不上传商店或发布 npm 包。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
+当前待发布版本为 **@haiyue/native 0.1.1**，应用示例版本仍为 **0.1.0**。新版本说明见 [NOTES-native-0.1.1.md](NOTES-native-0.1.1.md)。正式标签计划使用 `native-v0.1.1`；原项目历史 `v0.1.1` 不重用。0.1.0 的源码发布和 npm 发布均保留历史记录，本页不代表 0.1.1 已发布。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
 
 ## 候选范围
 
@@ -19,19 +19,19 @@
 
 ## 统一验证入口
 
-在 Native 根目录执行，Node **24.19.0**（`.nvmrc`），npm **11.17.0**。根目录工具没有第三方 npm 依赖。各示例已有 node_modules 时：
+在 Native 根目录执行，Node **24.19.0**（`.nvmrc`），npm **11.17.0**。根目录测试依赖固定版本 TypeScript；根目录、npm/ 和各示例已有 node_modules 时：
 
 ```sh
 npm run release:verify
 ```
 
-默认验证全部六个应用：候选输入及依赖完整性、工具版本、发布脚本回归测试、安装依赖版本、npm 依赖图与已安装 vendor 文件内容、TypeScript 检查、应用单元测试，最后再次验证候选没有被检查过程修改。缺失依赖会失败。新环境使用同一入口安装锁定依赖：
+默认验证全部六个应用：候选输入及依赖完整性、工具版本、发布脚本与通用商业化回归、私有候选 npm 包类型检查及真实 tarball 的双平台入口解析、安装依赖版本、npm 依赖图与已安装 vendor 文件内容、TypeScript 检查、应用单元测试，最后再次验证候选没有被检查过程修改。缺失依赖会失败。新环境使用同一入口安装锁定依赖：
 
 ```sh
 npm run release:verify -- --install
 ```
 
-`--install` 对所选应用执行 `npm ci --registry=https://registry.npmjs.org`（会替换其 node_modules，运行依赖安装脚本，可能联网）。普通验证不更新锁文件、不重新冻结、不安装手机应用。
+`--install` 先对根目录和 npm/ 执行 `npm ci --ignore-scripts`，然后对所选应用执行 `npm ci --registry=https://registry.npmjs.org`（会替换其 node_modules，运行依赖安装脚本，可能联网）。普通验证不更新锁文件、不重新冻结、不安装手机应用。
 
 按应用运行或增加原生打包/构建：
 
@@ -50,13 +50,15 @@ IOS_DEVICE_UDID=<udid> IOS_TEAM_ID=<team> PYTHON=/path/to/python npm run release
 
 ## 冻结和后续修订
 
-首次冻结执行 `npm run release:freeze`。已有同名版本时命令拒绝覆盖。需要改动时，将根 package.json / package-lock.json 和 release/config.json 的版本一起递增，例如 0.1.1-rc.1；更新必要的 npm、Ruby、SPM、Maven 锁文件，审查差异后重新冻结和验证。不要手工修改 candidate.json 来消除校验失败。下一应用版本发布时同步更新 config.appVersion 和各示例 package 元数据。
+首次冻结执行 `npm run release:freeze`。已有同名版本时命令拒绝覆盖。需要改动时，将根目录与 npm/ 的 package.json / package-lock.json，以及 release/config.json 的版本一起递增，例如 0.1.1-rc.1；更新必要的 npm、Ruby、SPM、Maven 锁文件，审查差异后重新冻结和验证。不要手工修改 candidate.json 来消除校验失败。下一应用版本发布时同步更新 config.appVersion 和各示例 package 元数据。
+
+已审计的示例 vendor 补丁在 `vendor-patches.json` 固定应用、包、文件路径以及补丁前后 SHA-256。安装检查仅接受原始 tarball 字节或这一个精确补丁结果，原生构建后再次核验，其他变化仍失败。
 
 Android Maven 锁由 Gradle `:app:verifyReleaseDependencies --write-locks` 生成，普通构建启用严格锁模式。依赖更新时同时解析 Debug / Release 的编译及运行配置，解析失败会返回非零；发布 gate 不自动执行 `--write-locks`。iOS Podfile.lock 快照在本候选中没有外部 pod，仅含 Podfile checksum 和 CocoaPods 版本。locks/Podfile 保留规范化的完整正文：仅去除 NativeScript 两类生成注释中的检出路径；验证先检查实际 Podfile 的原始 SHA-1，再逐字比较规范化正文、依赖锁和 CocoaPods 版本，不能忽略真实依赖变更；SwiftPM 另行固定 font-manager revision。
 
 验证通过后一起提交候选清单、配置、源码、依赖锁与验收记录，并保存实际二进制的哈希。正式源码 tag 指向该提交，应用商店发布另行进行。
 
-## 0.1 源码正式发布条件
+## 历史 0.1.0 源码正式发布条件
 
 2026-09-24 确认发布范围：六个公开示例逐个完成候选真机验收后，发布 Native 源码版。此次不发布 npm 包、游戏模型、APK / IPA / AAB，也不上传应用商店。六个示例均验收 iOS；Neon Circuit 另外验收 Android。
 
@@ -85,3 +87,16 @@ npm run release:verify -- --profile build --platform android --app neon-circuit
 导出程序只复制通过校验的冻结输入及 candidate.json，初始化独立 Git 工作目录，不复制历史截图、原目录 .git、node_modules、platforms、生成素材、模型或签名。输出目录必须不存在。可选的 HAIYUE_MODEL_ASSETS 指向独立模型目录；模型哈希记录在原生构建报告内。Android 可用 GRADLE_USER_HOME 指定全新下载缓存。
 
 这是当前工作树的冻结源码快照验证，不等同于已推送远端的干净克隆，也不是全新操作系统验证。构建可以使用本机已安装的固定工具链和平台依赖下载缓存；应在证据中准确记录缓存使用情况。候选发布后还可按 tag 克隆复验。
+
+## npm 候选与正式制包
+
+源码门禁会从冻结输入准备 `private: true` 的候选包并验证，不要求提前创建正式 tag。`npm/` 下的元数据、入口、构建和测试脚本也属于冻结输入。默认 `npm/pack.mjs` 的正式模式仍要求 `native-v<版本>` 标签内的候选清单与当前源码一致；通过 gate 不会自动提交、打 tag、推送或发布。
+
+```sh
+node npm/pack.mjs --candidate --output /absolute/new-package-dir
+node npm/typecheck-package.mjs /absolute/new-package-dir
+# 正式提交/tag 准备完成后，才运行：
+# cd npm && npm run build && npm pack
+```
+
+0.1.1 新增的内购和广告入口目前按实验性能力交付。独立 StoreKit 本地验收见 [test/storekit](../test/storekit/README.md)；它不替代新游戏上的 Sandbox、Play Billing 和 AdMob/UMP 真机验收。正式发布前应检查对应证据清单中的未完成项，并在说明中保留这些适用边界。

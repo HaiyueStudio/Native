@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { compareFiles, selectedFiles, dependencies, verifyInstalled, verifyRelativeImports, verifyModelInputs, verifyRubyLocks, normalizePodfile, verifyPodsLock } from '../scripts/release/common.mjs';
+import { compareFiles, selectedFiles, dependencies, verifyInstalled, verifyRelativeImports, verifyModelInputs, verifyRubyLocks, normalizePodfile, verifyPodsLock, verifyManifestSnapshot, verifyVendorContent, hash } from '../scripts/release/common.mjs';
 import { runStages, runLogged } from '../scripts/release/runner.mjs';
 
 function fixture(t) {
@@ -144,4 +144,40 @@ test('Podfile lock ignores generated checkout comments but rejects code and depe
   assert.throws(() => verifyPodsLock(cwd), /lock differs/);
   f.write(path.join(cwd, 'platforms/ios/Podfile.lock'), lock(normalized));
   assert.throws(() => verifyPodsLock(cwd), /checksum does not match/);
+});
+
+
+test('npm entry and tooling are frozen; staged bridge imports resolve only to frozen source', t => {
+  const f = fixture(t);
+  f.write(path.join(f.native, 'npm/index.ts'), "export * from './bridge/host';");
+  f.write(path.join(f.native, 'npm/pack.mjs'), 'fixture');
+  const files = selectedFiles(f.config, f.native);
+  assert.ok(files['Native/npm/index.ts']);
+  assert.ok(files['Native/npm/pack.mjs']);
+  verifyRelativeImports(files, f.native);
+  f.write(path.join(f.native, 'npm/index.ts'), "export * from './bridge/missing';");
+  assert.throws(() => verifyRelativeImports(selectedFiles(f.config, f.native), f.native), /Import outside candidate/);
+});
+
+
+test('a different frozen manifest cannot be substituted while a gate is running', t => {
+  const f = fixture(t), file = path.join(f.native, 'manifest.json');
+  f.write(file, '{"candidate":"fixture"}');
+  const before = hash(readFileSync(file));
+  verifyManifestSnapshot(before, file);
+  f.write(file, '{"candidate":"replacement"}');
+  assert.throws(() => verifyManifestSnapshot(before, file), /manifest changed during validation/);
+});
+
+
+test('vendor validation accepts only exact frozen backport bytes and scope', () => {
+  const original = Buffer.from('original'), patched = Buffer.from('audited patch');
+  const patches = [{ app: 'demo', package: 'engine', file: 'chunk.js', originalSha256: hash(original), patchedSha256: hash(patched) }];
+  verifyVendorContent('demo', 'engine', 'chunk.js', original, original, []);
+  verifyVendorContent('demo', 'engine', 'chunk.js', original, patched, patches);
+  assert.throws(() => verifyVendorContent('other', 'engine', 'chunk.js', original, patched, patches), /content differs/);
+  assert.throws(() => verifyVendorContent('demo', 'other', 'chunk.js', original, patched, patches), /content differs/);
+  assert.throws(() => verifyVendorContent('demo', 'engine', 'other.js', original, patched, patches), /content differs/);
+  assert.throws(() => verifyVendorContent('demo', 'engine', 'chunk.js', original, Buffer.from('unexpected'), patches), /content differs/);
+  assert.throws(() => verifyVendorContent('demo', 'engine', 'chunk.js', Buffer.from('new upstream'), patched, patches), /content differs/);
 });

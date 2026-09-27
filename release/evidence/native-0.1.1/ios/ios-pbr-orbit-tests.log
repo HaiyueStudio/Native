@@ -1,0 +1,39 @@
+
+> @haiyue/native-ios-pbr-orbit@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ Engine typed-array offsets reach native without losing count or copying the view (2.012374ms)
+✔ ordinary offset arrays and bindings without offsets retain Canvas behavior (0.499514ms)
+✔ Canvas can extend a frozen Engine request without mutating Engine feature policy (39.717358ms)
+✔ default device requests get independent mutable feature arrays (0.321015ms)
+✔ native handle zero cancels and a stale callback cannot fire (2.334799ms)
+✔ callbacks use the engine clock and can schedule exactly one following frame (0.322835ms)
+✔ native callbacks report errors to the host and release their handle (0.277535ms)
+✔ five resume cycles clear input before stopping, refresh layout, and keep one callback (32.33197ms)
+✔ background during asynchronous init prevents run until foreground (35.234075ms)
+✔ dispose during init cannot bind input or start a late frame loop (24.361202ms)
+✔ dispose removes listeners and input before GPU teardown; stale lifecycle events do nothing (17.14924ms)
+✔ GPU failure cancels input and refuses the remainder of the failed frame (19.740755ms)
+✔ failed scene initialization releases scene resources once before GPU teardown (14.066186ms)
+✔ empty textures retry before scene update, keep the scene and reset the retry budget on recovery (14.60268ms)
+✔ persistent empty texture has bounded retries, while real errors fail immediately (30.987885ms)
+✔ suspend/dispose cancel pending retries and overlapping surface/background pauses wait for both (22.035123ms)
+✔ zero-size surface pauses until a usable layout and demand rendering also recovers (17.391347ms)
+✔ packed production OrbitControl gives identical logical drag at different DPR and safe-area origins (4.748927ms)
+✔ up, cancel and suspend stop Orbit; stale moves cannot resume the drag (1.334804ms)
+✔ second finger never reaches pinch, and lifting primary does not adopt the held finger (0.490559ms)
+✔ batch downs select one primary and duplicate downs cannot reset its last position (0.56382ms)
+✔ captured drag continues outside the view, clamps both poles, and never pans or zooms (0.456124ms)
+✔ dispose ends active gesture and removes listeners; rebuilding does not double rotation (0.602166ms)
+✔ native identity compares underlying touch across new wrappers and never reuses IDs (0.486534ms)
+✔ Page loaded before Canvas ready waits, and duplicate ready/loaded do not add hosts (2.849477ms)
+✔ returning to the same ready Canvas recreates exactly one host after permanent unload (0.725817ms)
+✔ background Page unload retains the paused host, while exit disposes it (0.315595ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1245.215536
