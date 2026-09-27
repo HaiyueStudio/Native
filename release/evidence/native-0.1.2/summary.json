@@ -1,0 +1,48 @@
+{
+  "version": "0.1.2",
+  "status": "candidate-ready-not-published",
+  "manifestSha256": "f7c5b72b1c56b73c4e7c14262d0b6d9a97a2df20544ad369c4c7782d9e53be76",
+  "inputCount": 742,
+  "stages": 27,
+  "tests": {
+    "ak47-range-tests.log": 12,
+    "ios-pbr-orbit-tests.log": 27,
+    "neon-circuit-tests.log": 18,
+    "npm-package-tests.log": 3,
+    "release-tests.log": 70,
+    "rubiks-cube-tests.log": 4,
+    "sky-strike-tests.log": 16,
+    "spider-solitaire-tests.log": 7
+  },
+  "totalTests": 157,
+  "package": {
+    "file": "artifacts/haiyue-native-0.1.2.tgz",
+    "private": true,
+    "sha256": "75b27b3be65cd45c2656c336a1e868e64635a31eef63dec3c8d2a52eb6253419",
+    "integrity": "sha512-Jc/egeio4tB1pjaplU9hCPPmAzcktRP8FR15xyBYmZtmzzvY8aWGPWjlc2W28b1vwoJOgBJlSGwxAMxBUlZCQw==",
+    "entryCount": 93,
+    "size": 215586
+  },
+  "changes": [
+    "Native/README.md",
+    "Native/bridge/monetization/README.md",
+    "Native/bridge/purchases/README.md",
+    "Native/bridge/purchases/index.ts",
+    "Native/bridge/rewards/README.md",
+    "Native/bridge/rewards/controller.ts",
+    "Native/bridge/rewards/native.ts",
+    "Native/npm/README.md",
+    "Native/npm/package-lock.json",
+    "Native/npm/package.json",
+    "Native/npm/test/package.test.mjs",
+    "Native/package-lock.json",
+    "Native/package.json",
+    "Native/release/README.md",
+    "Native/release/config.json",
+    "Native/test/rewards.test.mjs",
+    "Native/bridge/purchases/catalog.ts",
+    "Native/release/NOTES-native-0.1.2.md",
+    "Native/test/purchase-catalog.test.mjs"
+  ],
+  "validation": "Existing locked dependencies; full source gate. No new native binary builds, device/store/ad acceptance, clean dependency installation, release tag or publication."
+}

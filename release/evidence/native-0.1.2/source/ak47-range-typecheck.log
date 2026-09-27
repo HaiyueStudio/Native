@@ -1,0 +1,4 @@
+
+> @haiyue/native-ak47-range@0.1.0 typecheck
+> tsc --noEmit
+

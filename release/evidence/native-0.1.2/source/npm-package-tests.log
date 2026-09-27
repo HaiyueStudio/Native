@@ -1,0 +1,15 @@
+
+> @haiyue/native@0.1.2 test
+> node --test test/*.test.mjs
+
+✔ package contains only native capabilities and verified bridge inputs (641.113067ms)
+✔ NativeScript ios resolves public entry points to its own platform (1742.630912ms)
+✔ NativeScript android resolves public entry points to its own platform (1048.875125ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3817.138339

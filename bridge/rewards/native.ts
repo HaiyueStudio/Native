@@ -4,6 +4,8 @@ import { AdMobRewardGateway } from './admob';
 import type { AdMobPolicy } from './policy';
 export interface RewardsConfig {
   storageNamespace: string;
+  /** Credits granted by each valid rewarded event; default 1. */
+  rewardAmount?: number;
   dailyFree: number;
   dailyAds: number;
   iosUnit: string;

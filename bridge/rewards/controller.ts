@@ -2,7 +2,7 @@
  * One controller per namespaced storage key. Never share a key between games. */
 export type RewardPhase = 'ready' | 'loading' | 'earned' | 'cancelled' | 'unavailable' | 'offline' | 'error' | 'limit';
 export interface RewardSnapshot {
-  unlimited: boolean; free: number; credits: number; adsRemaining: number;
+  rewardAmount: number; unlimited: boolean; free: number; credits: number; adsRemaining: number;
   busy: boolean; phase: RewardPhase; privacyRequired: boolean;
   initializing: boolean; presenting: boolean; operation: 'ad' | 'privacy' | 'consent' | null;
 }
@@ -18,6 +18,7 @@ export interface RewardStorage { read(): string | null; write(value: string): vo
 interface Wallet { version: 2; day: string; used: number; ads: number; credits: number; sequence: number; rewarded: number; results: string[]; }
 export class RewardController {
   private wallet!: Wallet;
+  private readonly rewardAmount: number;
   private phase: RewardPhase = 'ready';
   private busy = false;
   private disposed = false;
@@ -29,8 +30,11 @@ export class RewardController {
   private operation: RewardSnapshot['operation'] = null;
   constructor(private readonly options: {
     storage: RewardStorage; gateway: RewardGateway; entitled: () => boolean;
-    dailyFree: number; dailyAds: number; pause: () => (() => void) | Promise<() => void>; now?: () => Date;
+    /** Credits per completed ad; defaults to one for existing games. */
+    rewardAmount?: number; dailyFree: number; dailyAds: number; pause: () => (() => void) | Promise<() => void>; now?: () => Date;
   }) {
+    this.rewardAmount = options.rewardAmount ?? 1;
+    if (!Number.isSafeInteger(this.rewardAmount) || this.rewardAmount < 1) throw Error('Invalid reward amount');
     this.initializing = !!options.gateway.initialize;
     if (![options.dailyFree, options.dailyAds].every(n => Number.isSafeInteger(n) && n >= 0)) throw Error('Invalid daily allowance');
     try {
@@ -60,7 +64,7 @@ export class RewardController {
   }
   snapshot(): RewardSnapshot {
     this.rollover();
-    return { unlimited:this.options.entitled(), free:this.broken ? 0 : Math.max(0,this.options.dailyFree-this.wallet.used),
+    return { rewardAmount:this.rewardAmount, unlimited:this.options.entitled(), free:this.broken ? 0 : Math.max(0,this.options.dailyFree-this.wallet.used),
       credits:this.broken ? 0 : this.wallet.credits, adsRemaining:this.broken ? 0 : Math.max(0,this.options.dailyAds-this.wallet.ads),
       busy:this.busy, phase:this.phase, privacyRequired:this.options.gateway.privacyRequired(),
       initializing:this.initializing, presenting:this.presenting, operation:this.operation };
@@ -130,6 +134,7 @@ export class RewardController {
   async watch(): Promise<void> {
     if (this.disposed || this.busy || this.options.entitled() || this.broken) return;
     if (!this.snapshot().adsRemaining) { this.phase = 'limit'; this.emit(); return; }
+    if (!Number.isSafeInteger(this.wallet.credits + this.rewardAmount) || !Number.isSafeInteger(this.wallet.sequence + 1)) { this.phase = 'error'; this.emit(); return; }
     const sequence = this.wallet.sequence + 1;
     if (!this.save({ ...this.wallet, sequence })) { this.emit(); return; }
     this.busy = true; this.operation = 'ad'; this.phase = 'loading'; this.emit();
@@ -141,7 +146,7 @@ export class RewardController {
         // Google-earned events precede dismissal. Stale/duplicate callbacks never mint credits.
         if (ended || earned || this.wallet.rewarded >= sequence) return;
         this.rollover();
-        earned = this.save({ ...this.wallet, rewarded:sequence, credits:this.wallet.credits+1, ads:this.wallet.ads+1 });
+        earned = this.save({ ...this.wallet, rewarded:sequence, credits:this.wallet.credits+this.rewardAmount, ads:this.wallet.ads+1 });
         this.phase = earned ? 'earned' : 'error'; this.emit();
       }, presentation.hooks);
       if (!this.broken) this.phase = earned ? 'earned' : 'cancelled';

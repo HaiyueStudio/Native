@@ -9,11 +9,11 @@ For the configurable factory, advertising policy and build helper see [monetizat
 ## Integrating another game
 
 1. Create one controller per feature/wallet, with a unique persistent storage key. Do not put the wallet in a level save or clear it on restart/shuffle.
-2. Set `dailyFree`, `dailyAds`, `entitled`, synchronous atomic `storage.read/write`, and `pause: () => host.preparePresentation()`.
+2. Set `dailyFree`, `dailyAds`, optional `rewardAmount` (positive safe integer, default 1), `entitled`, synchronous atomic `storage.read/write`, and `pause: () => host.preparePresentation()`.
 3. Subscribe to snapshots and request a frame on changes. After the first frame and entitlement refresh, call `initialize()` once per host session. iOS updates UMP at startup without setting reward busy or pausing input/rendering. Only if consent is required for a free user does the gateway await the controller's `beforePresent` callback to acquire the presentation pause, then present without repeating the consent-info request. It never initializes or preloads ads here. Refresh on app resume. Dispose with the host. Android startup initialization remains deferred; its explicit ad/privacy flow still updates UMP.
 4. Run the requested operation first. Once a useful result is ready, call `consume(stableResultKey)`. Show the result only if it returns true. Do not debit on timeout/cancellation/no solution.
 5. A previously delivered result key is free to display again during the same allowance day. Include level/date and result identity in the key.
-6. When access is exhausted, offer an explicit “watch an ad for 1 [reward]” action calling `watch()`, along with decline and paid-unlock actions. Never call `watch()` from a timer, level transition or failed solver.
+6. When access is exhausted, offer an explicit “watch an ad for {snapshot().rewardAmount} [rewards]” action calling `watch()`, along with decline and paid-unlock actions. Never call `watch()` from a timer, level transition or failed solver.
 7. Display a privacy-options button when `snapshot().privacyRequired` is true, calling `privacy()`.
 8. Use a structural game-side interface so browser builds never import NativeScript/SDK code.
 
@@ -24,7 +24,7 @@ For NativeScript, include the shared Swift files through `ios.NativeSource`, Goo
 - Local calendar day; moving the clock backwards cannot refresh an already used day. This is a local convenience quota, not a server-backed anti-cheat or account-sync service. Reinstall, cleared storage and clock manipulation are not cryptographically prevented.
 - Free allowances do not accumulate. Earned credits survive day changes and restarts; free allowance is used first.
 - Ads are limited by **earned rewards** per day; no-fill, early close, consent failure and offline attempts do not use the cap.
-- Only Google's earned callback adds a credit, synchronously persisted before dismissal. Duplicate/stale callbacks are ignored. Concurrent watch requests coalesce by rejecting additional attempts while busy.
+- Only Google's earned callback adds the configured `rewardAmount` credits, synchronously persisted before dismissal. Duplicate/stale callbacks are ignored. Concurrent watch requests coalesce by rejecting additional attempts while busy.
 - There is no mediation configuration. Google guarantees earned callbacks precede dismissal; a future mediation provider with different ordering must adapt its protocol before reuse.
 - Corrupt storage/write failures fail closed with an error; do not pretend a failed save succeeded. Storage is local and not a substitute for high-value server-side verification.
 - Network requests keep rendering active so disabled buttons can animate their loading indicators. Native consent/ad surfaces emit `presenting` only when ready; the adapter awaits the controller's presentation pause and acknowledges it with `continuePresentation`. `presentation-closed` releases the pause between consent and ad loading. OS background/foreground changes cannot release a visible presentation's token. Each token is idempotent and supports nesting.

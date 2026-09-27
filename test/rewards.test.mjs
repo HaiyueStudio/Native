@@ -185,3 +185,17 @@ test('version-one wallets migrate without resetting balances, limits or consumed
   const saved = JSON.parse(data); assert.equal(saved.version, 2); assert.deepEqual(saved.results, ['old-result', 'new-result']);
   assert.equal(saved.credits, 2); assert.equal(saved.hints, undefined);
 });
+
+test('configurable rewards grant three credits exactly once and survive restarts and rollover',async()=>{
+ const f=fixture(),c=new RewardController({...f.options,dailyFree:5,rewardAmount:3});
+ f.setShow(async earn=>{earn();earn();});await c.watch();assert.equal(c.snapshot().credits,3);assert.equal(c.snapshot().adsRemaining,1);assert.equal(c.snapshot().rewardAmount,3);
+ const reloaded=new RewardController({...f.options,dailyFree:5,rewardAmount:3});assert.equal(reloaded.snapshot().credits,3);
+ f.date(new Date(2026,8,21));assert.equal(reloaded.snapshot().credits,3);
+ for(let i=0;i<5;i++)assert(reloaded.consume('free'+i));assert.equal(reloaded.snapshot().credits,3);
+ assert(reloaded.consume('paid'));assert.equal(reloaded.snapshot().credits,2);
+ for(const rewardAmount of [0,-1,1.5,NaN,Infinity])assert.throws(()=>new RewardController({...f.options,rewardAmount}));
+});
+test('reward credit overflow fails before showing an ad',async()=>{
+ const f=fixture(),c=new RewardController({...f.options,rewardAmount:Number.MAX_SAFE_INTEGER});await c.watch();await c.watch();
+ assert.equal(c.snapshot().credits,Number.MAX_SAFE_INTEGER);assert.equal(c.snapshot().phase,'error');assert.equal(f.info().calls,1);
+});

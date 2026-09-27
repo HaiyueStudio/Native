@@ -96,3 +96,42 @@ Android additionally needs `services/play-entitlements`: configure and deploy it
 From Native: `npm ci && npm test`. From Native/npm: `npm ci && npm run stage:development`, then `NATIVE_PACKAGE_ROOT=../artifacts/native-development-package npm test` (resolve the path from the npm directory). The stage command produces a private `<source-version>-development.0` package in `Native/artifacts/native-development-package`; its version is a development label, not a published release. Run `npm pack` in that directory for a local tarball.
 
 The production pack command still requires the frozen release/tag to match. Do not refreeze the already published 0.1.0 candidate to accommodate new code. Before shipping a consuming app, validate the next game on both native platforms, including restore/cancel/pending/refund, offline/expired rights, UMP refusal/reopen, rewarded callback/dismissal and native UI lifecycle. Unit tests and native compilation are not store/Sandbox acceptance evidence.
+
+## Reward amounts and upgrade catalogs
+
+`createRewards({ ..., dailyFree: 5, dailyAds: 5, rewardAmount: 3 }, hooks)` grants
+three credits per **earned ad**, consuming one ad allowance. `rewardAmount` is a
+positive safe integer (default 1); `snapshot().rewardAmount` is the amount to show
+in the app's reward disclosure. Existing wallets keep their actual balances.
+Duplicate callbacks, cancellation and overflow never create extra credits.
+
+`PurchaseCatalog` from `@haiyue/native/purchases` combines verified controllers:
+
+```ts
+const catalog = new PurchaseCatalog([
+  { id: 'basic', store: basicStore, grants: ['basic'] },
+  { id: 'advanced', store: advancedStore, grants: ['advanced'] },
+  { id: 'full', store: fullStore, grants: ['basic', 'advanced'] },
+  // Optional separately priced upgrade SKU, for games offering a base-owner price:
+  { id: 'upgrade', store: upgradeStore, requires: ['basic'], grants: ['advanced'] },
+], [{ id: 'full', requires: ['basic', 'advanced'] }]);
+await catalog.refresh();
+// Snapshot provides store-localized prices, eligibility and canPurchase.
+await catalog.purchase('upgrade');
+await catalog.restore();
+const unlimitedHints = catalog.snapshot().entitlements.includes('full');
+```
+
+Configure each permanent product and price independently in App Store Connect /
+Play Console: for example basic $1.99, advanced $4.99, full $5.99. The direct full
+purchase is slightly cheaper; buying the separate packs still grants the complete
+entitlement. The optional upgrade's price is also store-configured, not a dynamic
+charge or a parsing/subtraction of localized prices. Do not display fabricated
+price differences. Route every checkout through the catalog so native store UI
+is single-flight. Controllers remain host-owned and should be disposed separately.
+
+Upgrade prerequisites are rechecked before checkout and when deriving entitlements.
+An upgrade receipt alone does not unlock dependent content after base revocation;
+restoring both verified receipts restores access regardless of their read order.
+This is not a store-level automatic bundle-discount API. Configure the Android
+verifier for **each** product scope/endpoint. There is no iOS/Android account linkage.

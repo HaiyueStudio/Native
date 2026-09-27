@@ -1,0 +1,4 @@
+
+> @haiyue/native-rubiks-cube@0.1.0 typecheck
+> tsc --noEmit
+

@@ -1,6 +1,6 @@
 # Native 0.1 发布
 
-当前待发布版本为 **@haiyue/native 0.1.1**，应用示例版本仍为 **0.1.0**。新版本说明见 [NOTES-native-0.1.1.md](NOTES-native-0.1.1.md)。正式标签计划使用 `native-v0.1.1`；原项目历史 `v0.1.1` 不重用。0.1.0 的源码发布和 npm 发布均保留历史记录，本页不代表 0.1.1 已发布。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
+当前待发布版本为 **@haiyue/native 0.1.2**，应用示例版本仍为 **0.1.0**。新版本说明见 [NOTES-native-0.1.2.md](NOTES-native-0.1.2.md)。正式标签计划使用 `native-v0.1.2`；0.1.0、0.1.1 的发布和验收记录保留。本页不代表 0.1.2 已发布。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
 
 ## 候选范围
 

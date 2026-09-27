@@ -1,0 +1,479 @@
+{
+  "id": "@haiyue/native@0.1.2",
+  "name": "@haiyue/native",
+  "version": "0.1.2",
+  "size": 215586,
+  "unpackedSize": 386591,
+  "shasum": "5be2e7c3ee7917d447a44a4b7807d88449d409b0",
+  "integrity": "sha512-Jc/egeio4tB1pjaplU9hCPPmAzcktRP8FR15xyBYmZtmzzvY8aWGPWjlc2W28b1vwoJOgBJlSGwxAMxBUlZCQw==",
+  "filename": "haiyue-native-0.1.2.tgz",
+  "files": [
+    {
+      "path": "LICENSE",
+      "size": 1083,
+      "mode": 420
+    },
+    {
+      "path": "README.md",
+      "size": 4720,
+      "mode": 420
+    },
+    {
+      "path": "bridge/audio/pcm-bank.android.ts",
+      "size": 6749,
+      "mode": 420
+    },
+    {
+      "path": "bridge/audio/pcm-bank.ios.ts",
+      "size": 6176,
+      "mode": 420
+    },
+    {
+      "path": "bridge/audio/pcm-bank.ts",
+      "size": 114,
+      "mode": 420
+    },
+    {
+      "path": "bridge/branding/assets/haiyue-moon.png",
+      "size": 129565,
+      "mode": 420
+    },
+    {
+      "path": "bridge/branding/engine-splash.ts",
+      "size": 5099,
+      "mode": 420
+    },
+    {
+      "path": "bridge/branding/launch-page.ts",
+      "size": 1293,
+      "mode": 420
+    },
+    {
+      "path": "bridge/branding/README.md",
+      "size": 3269,
+      "mode": 420
+    },
+    {
+      "path": "bridge/branding/webpack.cjs",
+      "size": 365,
+      "mode": 420
+    },
+    {
+      "path": "bridge/display/orientation-policy.ts",
+      "size": 1222,
+      "mode": 420
+    },
+    {
+      "path": "bridge/display/orientation.android.ts",
+      "size": 2536,
+      "mode": 420
+    },
+    {
+      "path": "bridge/display/orientation.ios.ts",
+      "size": 2903,
+      "mode": 420
+    },
+    {
+      "path": "bridge/display/orientation.ts",
+      "size": 117,
+      "mode": 420
+    },
+    {
+      "path": "bridge/display/README.md",
+      "size": 2021,
+      "mode": 420
+    },
+    {
+      "path": "bridge/feedback/haptics.android.ts",
+      "size": 1726,
+      "mode": 420
+    },
+    {
+      "path": "bridge/feedback/haptics.ios.ts",
+      "size": 1820,
+      "mode": 420
+    },
+    {
+      "path": "bridge/feedback/haptics.ts",
+      "size": 121,
+      "mode": 420
+    },
+    {
+      "path": "bridge/feedback/README.md",
+      "size": 1450,
+      "mode": 420
+    },
+    {
+      "path": "bridge/files/read-bytes.ts",
+      "size": 952,
+      "mode": 420
+    },
+    {
+      "path": "bridge/input/native-touch.android.ts",
+      "size": 4362,
+      "mode": 420
+    },
+    {
+      "path": "bridge/input/native-touch.ios.ts",
+      "size": 4767,
+      "mode": 420
+    },
+    {
+      "path": "bridge/input/native-touch.ts",
+      "size": 118,
+      "mode": 420
+    },
+    {
+      "path": "bridge/input/pointer-target.ts",
+      "size": 4309,
+      "mode": 420
+    },
+    {
+      "path": "bridge/input/README.md",
+      "size": 1353,
+      "mode": 420
+    },
+    {
+      "path": "bridge/input/touch-identity.ts",
+      "size": 825,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/demand-frames.ts",
+      "size": 1854,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/frame-performance.ts",
+      "size": 1041,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/frame-scheduler.ts",
+      "size": 1059,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/host.ts",
+      "size": 15700,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/launch-flags.ts",
+      "size": 443,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/presentation-pause.ts",
+      "size": 745,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/README.md",
+      "size": 896,
+      "mode": 420
+    },
+    {
+      "path": "bridge/lifecycle/runtime.ts",
+      "size": 1930,
+      "mode": 420
+    },
+    {
+      "path": "bridge/media/README.md",
+      "size": 939,
+      "mode": 420
+    },
+    {
+      "path": "bridge/media/save-photo.android.ts",
+      "size": 2542,
+      "mode": 420
+    },
+    {
+      "path": "bridge/media/save-photo.ios.ts",
+      "size": 1184,
+      "mode": 420
+    },
+    {
+      "path": "bridge/media/save-photo.ts",
+      "size": 135,
+      "mode": 420
+    },
+    {
+      "path": "bridge/monetization/build.cjs",
+      "size": 2532,
+      "mode": 420
+    },
+    {
+      "path": "bridge/monetization/README.md",
+      "size": 10431,
+      "mode": 420
+    },
+    {
+      "path": "bridge/motion/android-reading.ts",
+      "size": 1215,
+      "mode": 420
+    },
+    {
+      "path": "bridge/motion/device-motion.android.ts",
+      "size": 6244,
+      "mode": 420
+    },
+    {
+      "path": "bridge/motion/device-motion.ios.ts",
+      "size": 6138,
+      "mode": 420
+    },
+    {
+      "path": "bridge/motion/device-motion.ts",
+      "size": 127,
+      "mode": 420
+    },
+    {
+      "path": "bridge/motion/motion-sample.ts",
+      "size": 3703,
+      "mode": 420
+    },
+    {
+      "path": "bridge/motion/README.md",
+      "size": 6824,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/catalog.ts",
+      "size": 4837,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/config.ts",
+      "size": 900,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/controller.ts",
+      "size": 4738,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/google-access.ts",
+      "size": 3032,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/index.ts",
+      "size": 216,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/native.d.ts",
+      "size": 953,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/native.ts",
+      "size": 309,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/native/android/org/haiyue/purchases/HYPlayBilling.java",
+      "size": 11171,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/native/ios/HYNonConsumableStore.swift",
+      "size": 7477,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/README.md",
+      "size": 2066,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/requests.ts",
+      "size": 1664,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/store.android.ts",
+      "size": 3954,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/store.ios.ts",
+      "size": 1708,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/store.ts",
+      "size": 110,
+      "mode": 420
+    },
+    {
+      "path": "bridge/purchases/types.ts",
+      "size": 643,
+      "mode": 420
+    },
+    {
+      "path": "bridge/README.md",
+      "size": 7883,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/canvas-textures.ios.ts",
+      "size": 2801,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/canvas-textures.ts",
+      "size": 99,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/device-descriptor.ts",
+      "size": 426,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/frame-capture.android.ts",
+      "size": 891,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/frame-capture.ios.ts",
+      "size": 1264,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/frame-capture.ts",
+      "size": 119,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/queue-fence.android.ts",
+      "size": 1498,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/queue-fence.ts",
+      "size": 63,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/README.md",
+      "size": 1437,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/surface.ts",
+      "size": 7924,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/view-capture.android.ts",
+      "size": 707,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/view-capture.ios.ts",
+      "size": 1003,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/view-capture.ts",
+      "size": 36,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/view-rect.android.ts",
+      "size": 762,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/view-rect.ios.ts",
+      "size": 665,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/view-rect.ts",
+      "size": 115,
+      "mode": 420
+    },
+    {
+      "path": "bridge/render/webgpu-constants.ts",
+      "size": 353,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/admob.ts",
+      "size": 4928,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/controller.ts",
+      "size": 9515,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/development.ts",
+      "size": 483,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/native.ts",
+      "size": 1391,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/native/android/org/haiyue/rewards/HYRewardedAds.java",
+      "size": 8131,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/native/ios/HYRewardedAds.swift",
+      "size": 11763,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/policy.ts",
+      "size": 790,
+      "mode": 420
+    },
+    {
+      "path": "bridge/rewards/README.md",
+      "size": 7323,
+      "mode": 420
+    },
+    {
+      "path": "bridge/storage/clone-runtime.ts",
+      "size": 357,
+      "mode": 420
+    },
+    {
+      "path": "bridge/storage/README.md",
+      "size": 538,
+      "mode": 420
+    },
+    {
+      "path": "bridge/storage/settings-storage.ts",
+      "size": 973,
+      "mode": 420
+    },
+    {
+      "path": "index.ts",
+      "size": 1457,
+      "mode": 420
+    },
+    {
+      "path": "package.json",
+      "size": 2770,
+      "mode": 420
+    },
+    {
+      "path": "provenance.json",
+      "size": 9631,
+      "mode": 420
+    }
+  ],
+  "entryCount": 93,
+  "bundled": []
+}

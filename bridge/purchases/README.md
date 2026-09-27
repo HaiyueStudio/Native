@@ -10,3 +10,5 @@ See [integration](../monetization/README.md) for build wiring, UI mapping and su
 - `dispose()` detaches listeners and settles outstanding JavaScript bridge calls. Late native replies cannot update a disposed controller. Checkout has no JavaScript timeout that would enable a duplicate checkout while system UI is active.
 - Android storage keys contain the namespace and product; leases bind package, product, installation, token hash and expiry. A successfully empty/pending inventory clears previous account access, even if the verifier is down. A different purchase token cannot borrow the cached grant.
 - Restored ownership is platform store-account ownership; there is no cross-iOS/Android account mapping, RTDN service or consumable ledger.
+
+- `PurchaseCatalog` (0.1.2): combines per-product controllers into reusable pack, full-bundle and prerequisite-gated upgrade entitlements; serializes catalog checkout and rechecks prerequisites before purchasing. Separate products retain their store-localized prices. Full ownership prevents buying already-covered packs; refunds recompute dependent rights. Host applications retain ownership of the underlying controllers.

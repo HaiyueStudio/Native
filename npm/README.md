@@ -6,12 +6,12 @@ Haiyue 的 NativeScript 原生适配层，支持 iOS / Android：WebGPU 宿主�
 
 ## 安装
 
-本说明对应待发布 0.1.1；发布前请使用通过门禁的本地候选 tarball。
+本说明对应待发布 0.1.2；发布前请使用通过门禁的本地候选 tarball。
 
 在 NativeScript 应用项目中执行：
 
 ```sh
-npm install @haiyue/native@0.1.1
+npm install @haiyue/native@0.1.2
 ```
 
 配套版本：`@haiyue/engine@0.1.0`、`@nativescript/core@9.1.1`、`@nativescript/canvas@2.1.18`，通过 peer dependencies 使用应用自己的依赖，不复制引擎或平台二进制到本包。
@@ -60,8 +60,10 @@ addEngineBrandingCopyRule(webpack);
 
 ## 许可与验证
 
-MIT。原生实现来自对应版本的冻结源码，文件哈希保存在包内 `provenance.json`。npm 包验证独立类型检查、平台模块解析、安装和包内文件范围；已有原生构建与真机验证的范围见 [GitHub 发布说明](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0)。游戏模型不随 npm 分发。
+MIT。原生实现来自对应版本的冻结源码，文件哈希保存在包内 `provenance.json`。npm 包验证独立类型检查、平台模块解析、安装和包内文件范围；已有原生构建与真机验证的范围见 [GitHub 发布说明](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.1)。游戏模型不随 npm 分发。
 
 ## Experimental: reusable monetization
 
 Version 0.1.1 adds `@haiyue/native/purchases`, `@haiyue/native/purchases/native`, `@haiyue/native/rewards/native`, `@haiyue/native/rewards/policy` and `@haiyue/native/monetization/build`. These entries are not available in the published 0.1.0 package. These new monetization APIs are experimental until the next consuming game completes native store/ad acceptance. See [the integration guide](bridge/monetization/README.md) (included as `bridge/monetization/README.md` in the staged package). Use `npm run stage:development` to test source without altering the frozen release. No existing game is migrated automatically.
+
+Version 0.1.2 adds `rewardAmount` (default 1) to rewarded allowances and `PurchaseCatalog` to `@haiyue/native/purchases`. The catalog combines verified base, advanced, full and prerequisite-gated upgrade products. Prices remain separate store-configured products; there is no automatic store discount or cross-platform purchase sharing. Existing wallet balances are unchanged. See the integration guide for examples and restore/refund semantics.
