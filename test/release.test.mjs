@@ -15,8 +15,9 @@ function fixture(t) {
   const write = (file, content) => { mkdirSync(path.dirname(file), { recursive: true }); writeFileSync(file, typeof content === 'string' ? content : JSON.stringify(content)); };
   for (const repo of [native]) { mkdirSync(repo); execFileSync('git', ['init', '-q', repo]); }
   const config = { apps: { demo: ['ios'] }, appVersion: '0.1.0', gameInputs: ['games/demo'] };
-  write(path.join(native, '.gitignore'), 'examples/demo/node_modules/\nexamples/demo/platforms/\nbridge/purchases/\n');
+  write(path.join(native, '.gitignore'), 'examples/demo/node_modules/\nexamples/demo/platforms/\nbridge/private-fixture/\n');
   write(path.join(native, 'bridge/host.ts'), 'host');
+  write(path.join(native, 'services/play-entitlements/service.mjs'), 'export const fixture = true;');
   write(path.join(native, 'games/demo/main.ts'), 'game');
   write(path.join(native, 'examples/demo/vendor/engine.tgz'), 'tarball');
   const pkg = { version: '0.1.0', license: 'MIT', dependencies: { engine: 'file:vendor/engine.tgz', tool: '1.2.3' } };
@@ -32,12 +33,13 @@ function fixture(t) {
 
 test('freeze includes shared source and tarballs, excludes generated/private/historical files', t => {
   const f = fixture(t);
-  for (const file of ['examples/demo/node_modules/a.js', 'examples/demo/platforms/build', 'bridge/purchases/private.ts', 'examples/demo/evidence/old.json', 'examples/private/main.ts', 'release/candidate.json']) f.write(path.join(f.native, file), 'excluded');
+  for (const file of ['examples/demo/node_modules/a.js', 'examples/demo/platforms/build', 'bridge/private-fixture/private.ts', 'examples/demo/evidence/old.json', 'examples/private/main.ts', 'release/candidate.json']) f.write(path.join(f.native, file), 'excluded');
   const files = selectedFiles(f.config, f.native);
   assert.ok(files['Native/bridge/host.ts']);
   assert.ok(files['Native/games/demo/main.ts']);
   assert.ok(files['Native/examples/demo/vendor/engine.tgz']);
-  assert.equal(Object.keys(files).length, 6);
+  assert.ok(files['Native/services/play-entitlements/service.mjs']);
+  assert.equal(Object.keys(files).length, 7);
 });
 
 test('same version source/tarball changes and new untracked inputs invalidate candidate', t => {

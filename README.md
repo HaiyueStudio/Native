@@ -28,3 +28,7 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 G02 已完成 [原生宿主](./bridge/README.md) 与 private App，真机清屏、暂停恢复、独立冷启动和逐像素校验通过。G03 已完成真机静态 PBR 立方体和粗糙度对照，Orbit 由 G04 接续。
 
 Moonlight Sudoku (LED Sudoku) is maintained in the private [MoonlightSudoku repository](https://github.com/HaiyueStudio/MoonlightSudoku).
+
+## 通用内购与激励广告（开发中）
+
+买断内购、已验证权益、AdMob/UMP、奖励额度与构建接线已提供通用模块，UI 和业务规则由 App 注入。见 [接入说明](bridge/monetization/README.md)。Android 验证服务模板位于 [services/play-entitlements](services/play-entitlements/README.md)，单独部署，不进入移动 npm 包。本次不修改现有应用或已发布的 0.1.0，后续通过新游戏完成真机验收。

@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isBridgePackageFile } from './package-files.mjs';
 import { root, verifyCandidate } from '../scripts/release/common.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -21,8 +22,7 @@ rmSync(path.join(here, 'bridge'), { recursive: true, force: true });
 rmSync(path.join(here, 'dist'), { recursive: true, force: true });
 for (const [input, sha256] of Object.entries(candidate.files)) {
   const file = input.slice('Native/'.length);
-  if (!file.startsWith('bridge/') || !(/\.(?:ts|swift|java)$/.test(file)
-    || file === 'bridge/branding/webpack.cjs' || file === 'bridge/branding/assets/haiyue-moon.png')) continue;
+  if (!isBridgePackageFile(file)) continue;
   const destination = path.join(here, file);
   mkdirSync(path.dirname(destination), { recursive: true });
   copyFileSync(path.join(root, file), destination);

@@ -18,7 +18,7 @@ export function gitFiles(dir) {
 }
 const within = (file, prefix) => file === prefix || file.startsWith(`${prefix}/`);
 export function selectedFiles(config, native = root) {
-  const prefixes = ['bridge', 'games', 'scripts', 'test', 'release', ...Object.keys(config.apps).map(app => `examples/${app}`)];
+  const prefixes = ['bridge', 'services/play-entitlements', 'games', 'scripts', 'test', 'release', ...Object.keys(config.apps).map(app => `examples/${app}`)];
   const files = {};
   for (const [repo, dir, select] of [
     ['Native', native, file => !file.includes('/') || prefixes.some(prefix => within(file, prefix))],

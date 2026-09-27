@@ -59,3 +59,7 @@ addEngineBrandingCopyRule(webpack);
 ## 许可与验证
 
 MIT。原生实现取自 `native-v0.1.0` 的冻结源码，文件哈希保存在包内 `provenance.json`。npm 包验证独立类型检查、平台模块解析、安装和包内文件范围；已有原生构建与真机验证的范围见 [GitHub 发布说明](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.0)。游戏模型不随 npm 分发。
+
+## Development: reusable monetization
+
+The next-version source adds `@haiyue/native/purchases`, `@haiyue/native/purchases/native`, `@haiyue/native/rewards/native`, `@haiyue/native/rewards/policy` and `@haiyue/native/monetization/build`. These entries are not available in the published 0.1.0 package. See [the integration guide](bridge/monetization/README.md) (included as `bridge/monetization/README.md` in the staged package). Use `npm run stage:development` to test source without altering the frozen release. No existing game is migrated automatically.

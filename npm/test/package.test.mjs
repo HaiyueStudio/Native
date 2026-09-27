@@ -25,7 +25,7 @@ test('package contains only native capabilities and verified bridge inputs', t =
   assert.equal(pkg.dependencies, undefined, 'runtime dependencies are app-owned peers');
   for (const { path: file } of packed.files) {
     assert.ok(['index.ts', 'package.json', 'provenance.json', 'README.md', 'LICENSE'].includes(file)
-      || /^bridge\/.+\.(ts|cjs|java|swift)$/.test(file)
+      || /^bridge\/.+\.(ts|cjs|java|swift|md)$/.test(file)
       || file === 'bridge/branding/assets/haiyue-moon.png', file);
     assert.doesNotMatch(file, /(?:examples|games|node_modules|vendor|evidence|dist|bin)\/|master\.png|\.tgz$/);
   }
@@ -43,7 +43,7 @@ for (const platform of ['ios', 'android']) test(`NativeScript ${platform} resolv
   const entry = path.join(temp, 'entry.js');
   mkdirSync(path.join(temp, 'node_modules/@haiyue'), { recursive: true });
   symlinkSync(packageRoot, path.join(temp, 'node_modules/@haiyue/native'), 'dir');
-  writeFileSync(entry, `import * as native from '@haiyue/native';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nglobalThis.nativeSmoke = { native, NativeDeviceMotion, NativeHaptics, audio, orientation, media };`);
+  writeFileSync(entry, `import * as native from '@haiyue/native';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nimport { createPurchases } from '@haiyue/native/purchases/native';\nimport { PurchaseController } from '@haiyue/native/purchases';\nimport { createRewards } from '@haiyue/native/rewards/native';\nglobalThis.nativeSmoke = { native, NativeDeviceMotion, NativeHaptics, audio, orientation, media, createPurchases, PurchaseController, createRewards };`);
   const compiler = webpack({
     mode: 'development', context: temp, entry, devtool: false,
     output: { path: temp, filename: 'bundle.js' },
@@ -73,7 +73,7 @@ for (const platform of ['ios', 'android']) test(`NativeScript ${platform} resolv
   }));
   assert.equal(stats.hasErrors(), false, stats.toString({ all: false, errors: true }));
   const modules = stats.toJson({ all: false, modules: true }).modules.map(m => m.name).join('\n');
-  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'input/native-touch', 'audio/pcm-bank', 'render/view-rect']) {
+  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'input/native-touch', 'audio/pcm-bank', 'render/view-rect', 'purchases/store']) {
     assert.ok(modules.includes(`${unit}.${platform}.ts`), `${unit}: ${modules}`);
     assert.ok(!modules.includes(`${unit}.${platform === 'ios' ? 'android' : 'ios'}.ts`), `${unit}: wrong platform`);
   }

@@ -8,9 +8,34 @@ import com.google.android.gms.ads.*;
 import com.google.android.gms.ads.rewarded.*;
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.ump.*;
+import org.json.JSONObject;
 
 /** Reusable AdMob adapter. No mediation: Google's reward callback precedes dismissal. */
 public final class HYRewardedAds {
+    private static String processPolicy;
+    private boolean underAgeOfConsent, configured;
+    public boolean configurePolicy(String json) {
+        synchronized (HYRewardedAds.class) {
+            if (disposed || busy) return false;
+            try {
+                JSONObject value = new JSONObject(json);
+                String rating = value.getString("maxAdContentRating");
+                if (!java.util.Arrays.asList("G", "PG", "T", "MA").contains(rating)) return false;
+                boolean underAge = value.getBoolean("underAgeOfConsent");
+                String treatment = value.getString("ageTreatment");
+                if (!java.util.Arrays.asList("unspecified", "child", "teen").contains(treatment)) return false;
+                AgeRestrictedTreatment age = AgeRestrictedTreatment.valueOf(treatment.toUpperCase(java.util.Locale.ROOT));
+                String key = rating + ":" + underAge + ":" + treatment;
+                if (processPolicy != null && !processPolicy.equals(key)) return false;
+                MobileAds.putPublisherFirstPartyIdEnabled(false);
+                MobileAds.setRequestConfiguration(MobileAds.getRequestConfiguration().toBuilder()
+                    .setPublisherPrivacyPersonalizationState(RequestConfiguration.PublisherPrivacyPersonalizationState.DISABLED)
+                    .setMaxAdContentRating(rating).setAgeRestrictedTreatment(age).build());
+                underAgeOfConsent = underAge; processPolicy = key; configured = true;
+                return true;
+            } catch (Exception e) { return false; }
+        }
+    }
     public interface Events { void onEvent(String event); }
     private final Handler handler = new Handler(Looper.getMainLooper());
     private ConsentInformation consent;
@@ -53,11 +78,11 @@ public final class HYRewardedAds {
     }
     public void perform(Activity activity, String action, String unit, Events callback) {
         activity.runOnUiThread(() -> {
-            if (disposed || busy || activity.isFinishing() || activity.isDestroyed()) { callback.onEvent("error:unavailable"); return; }
+            if (!configured || disposed || busy || activity.isFinishing() || activity.isDestroyed()) { callback.onEvent("error:unavailable"); return; }
             busy = true; events = callback; final int token = ++generation;
             consent = UserMessagingPlatform.getConsentInformation(activity);
             deadline(token, 20000);
-            consent.requestConsentInfoUpdate(activity, new ConsentRequestParameters.Builder().build(), () -> {
+            consent.requestConsentInfoUpdate(activity, new ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(underAgeOfConsent).build(), () -> {
                 if (!active(token)) return;
                 if (action.equals("privacy")) {
                     if (!privacyRequired(activity)) { end("closed"); return; }

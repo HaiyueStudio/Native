@@ -2,7 +2,9 @@
 
 `RewardController` is independent of NativeScript, rendering, puzzle rules and AdMob.
 `AdMobRewardGateway` implements the native SDK boundary (Swift + Java), including UMP consent.
-Nonconsumable ownership belongs to the consuming app; pass its current verified entitlement to `entitled()`.
+Use `@haiyue/native/purchases/native` for non-consumable ownership; the consuming app decides how that verified entitlement maps to `entitled()`.
+
+For the configurable factory, advertising policy and build helper see [monetization integration](../monetization/README.md).
 
 ## Integrating another game
 
@@ -28,14 +30,14 @@ For NativeScript, include the shared Swift files through `ios.NativeSource`, Goo
 - Network requests keep rendering active so disabled buttons can animate their loading indicators. Native consent/ad surfaces emit `presenting` only when ready; the adapter awaits the controller's presentation pause and acknowledges it with `continuePresentation`. `presentation-closed` releases the pause between consent and ad loading. OS background/foreground changes cannot release a visible presentation's token. Each token is idempotent and supports nesting.
 - A slow startup privacy refresh leaves calendar navigation, free hints, and purchase-panel Today/Back actions responsive, including after background/resume. Explicit ad/privacy requests wait for that native refresh to settle and then retry independently; a pending explicit request supersedes automatic startup presentation. Startup completion must not release another operation's pause or clear its busy state.
 - Consent-info/form loading has a 20-second native deadline; ad loading has a 45-second native SDK deadline. Once an ad or consent form is on screen, no JS timer forces rendering to resume behind it.
-- Reward snapshots expose `initializing`, `operation`, and `presenting` independently of `busy`: startup can disable only its network-dependent controls, and the UI stops loading animation when a native surface is visible. Wallet operations and local navigation are not locked by startup queries. Calendar network buttons use a 400 ms leading-edge debounce plus controller in-flight guards, without delayed or replayed actions.
+- Reward snapshots expose `initializing`, `operation`, and `presenting` independently of `busy`: startup can disable only its network-dependent controls, and the UI stops loading animation when a native surface is visible. Wallet operations and local navigation are not locked by startup queries. Consumers can add a leading-edge debounce in their UI, in addition to controller in-flight guards; never delay or replay checkout/ad actions.
 - Paid users' `watch()` is a no-op, and consume is unlimited. Entitlement revocation is evaluated live; earned credits remain available.
 
 ## Test / production
 
 Calendar Puzzle has production iOS IDs configured; Debug always substitutes Google's official demo ad unit. Android production setup is deferred. The adapter refuses demo IDs in Release builds; it does not silently show fake rewarded ads. Production requires replacing the native app IDs and TS ad unit IDs, configuring UMP messages, and completing each store's privacy disclosures. No Firebase dependency or ATT permission request is introduced; requests explicitly set `npa=1`. Non-personalized ads still require appropriate consent and privacy disclosures.
 
-Run reference-app `npm test` for quota, persistence, failure, callback ordering, entitlement and lifecycle tests. `CALENDAR_REWARDS_SMOKE` is a development-only isolated save/wallet integration test. Add `CALENDAR_REWARD_AD_SMOKE` to request an official demo ad; do not interact with live ads during development.
+Run Native `npm test` for quota, persistence, failure, callback ordering, entitlement and lifecycle tests. `CALENDAR_REWARDS_SMOKE` is a development-only isolated save/wallet integration test. Add `CALENDAR_REWARD_AD_SMOKE` to request an official demo ad; do not interact with live ads during development.
 
 For iOS UMP diagnostics, first read the test-device identifier from the SDK log. In Debug only, supply `HY_UMP_TEST_DEVICE_ID` and `HY_UMP_EEA=1` to simulate Europe; `HY_UMP_RESET=1` resets consent during initialization for a fresh-choice test. Do not use these flags for a normal launch. No device identifier is hardcoded. Release ignores these flags. These settings do not bypass the SDK, grant rewards or unlock paid access.
 

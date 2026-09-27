@@ -3,6 +3,30 @@ import GoogleMobileAds
 import UserMessagingPlatform
 
 @MainActor @objc(HYRewardedAds) public final class HYRewardedAds: NSObject, FullScreenContentDelegate {
+    private static var processPolicy: String?
+    private var underAgeOfConsent = false
+    private var configured = false
+    /// SDK-wide settings are fixed by the first gateway; conflicting instances fail closed.
+    @objc public func configurePolicy(_ json: String) -> Bool {
+        guard !disposed, events == nil, let data = json.data(using: .utf8),
+              let value = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any],
+              let rating = value["maxAdContentRating"] as? String,
+              let underAge = value["underAgeOfConsent"] as? Bool else { return false }
+        let ratings: [String: GADMaxAdContentRating] = ["G": .general, "PG": .parentalGuidance, "T": .teen, "MA": .matureAudience]
+        guard let maximum = ratings[rating] else { return false }
+        let treatments: [String: AgeRestrictedTreatment] = ["unspecified": .unspecified, "child": .child, "teen": .teen]
+        guard let treatment = value["ageTreatment"] as? String, let age = treatments[treatment] else { return false }
+        let key = "\(rating):\(underAge):\(treatment)"
+        if let existing = Self.processPolicy, existing != key { return false }
+        let config = MobileAds.shared.requestConfiguration
+        config.setPublisherFirstPartyIDEnabled(false)
+        config.publisherPrivacyPersonalizationState = .disabled
+        config.maxAdContentRating = maximum
+        config.ageRestrictedTreatment = age
+        underAgeOfConsent = underAge
+        Self.processPolicy = key; configured = true
+        return true
+    }
     private var events: ((String) -> Void)?
     private var ad: RewardedAd?
     private var disposed = false
@@ -71,6 +95,7 @@ import UserMessagingPlatform
     }
     private func parameters() -> RequestParameters {
         let parameters = RequestParameters()
+        parameters.isTaggedForUnderAgeOfConsent = underAgeOfConsent
         // Explicit device-scoped diagnostics only; never applied in a Release binary.
         let device = ProcessInfo.processInfo.environment["HY_UMP_TEST_DEVICE_ID"] ?? ""
         if development && (simulator || !device.isEmpty) {
@@ -83,7 +108,7 @@ import UserMessagingPlatform
         return parameters
     }
     @objc(perform:unit:events:) public func perform(_ action: String, unit: String, events callback: @escaping (String) -> Void) {
-        guard !disposed, events == nil, let controller = root() else { callback("error:unavailable"); return }
+        guard configured, !disposed, events == nil, let controller = root() else { callback("error:unavailable"); return }
         guard ["consent", "refreshPrivacy", "presentConsent", "privacy", "show"].contains(action) else { callback("error:unavailable"); return }
         events = callback; generation += 1
         startedAt = ProcessInfo.processInfo.systemUptime

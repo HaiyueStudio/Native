@@ -33,7 +33,12 @@
     "./rewards": "./bridge/rewards/controller.ts",
     "./rewards/admob": "./bridge/rewards/admob.ts",
     "./bridge/*": "./bridge/*",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./purchases": "./bridge/purchases/index.ts",
+    "./purchases/native": "./bridge/purchases/native.ts",
+    "./rewards/native": "./bridge/rewards/native.ts",
+    "./rewards/policy": "./bridge/rewards/policy.ts",
+    "./monetization/build": "./bridge/monetization/build.cjs"
   },
   "files": [
     "index.ts",
@@ -43,7 +48,10 @@
     "bridge/rewards/native/",
     "provenance.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "bridge/purchases/native/",
+    "bridge/monetization/*.cjs",
+    "bridge/**/*.md"
   ],
   "repository": {
     "type": "git",
@@ -75,7 +83,8 @@
   "scripts": {
     "build": "node pack.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "stage:development": "node stage-development.mjs"
   },
   "keywords": [
     "webgpu",

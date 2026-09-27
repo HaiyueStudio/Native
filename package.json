@@ -10,10 +10,13 @@
     "npm": "11.17.0"
   },
   "scripts": {
-    "test": "node --test test/*.test.mjs",
+    "test": "node --test test/*.test.mjs services/play-entitlements/test/*.test.mjs",
     "release:freeze": "node scripts/release/freeze.mjs",
     "release:verify": "node scripts/release/verify.mjs",
     "release:export": "node scripts/release/export-clean.mjs",
     "models:check": "node scripts/assets/check-models.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
   }
 }

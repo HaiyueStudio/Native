@@ -1,16 +1,27 @@
 import { Application, Connectivity, isAndroid, isIOS } from '@nativescript/core';
+import { isNativeDebugBuild } from './development';
+import { resolveAdMobPolicy, type AdMobPolicy } from './policy';
 import type { RewardGateway, RewardPresentation } from './controller';
 
-declare const HYRewardedAds: { new(): { privacyRequired: boolean; consentRequired: boolean; continuePresentation(ready: boolean): void; performUnitEvents(action: string, unit: string, events: (event: string) => void): void; dispose(): void } };
+declare const HYRewardedAds: { new(): { configurePolicy(policy: string): boolean; privacyRequired: boolean; consentRequired: boolean; continuePresentation(ready: boolean): void; performUnitEvents(action: string, unit: string, events: (event: string) => void): void; dispose(): void } };
 declare const org: any;
 /** Platform adapter is lazy: paid users and players who never opt in make no ad requests. */
 export class AdMobRewardGateway implements RewardGateway {
   private native: any;
   private disposed = false;
   private initialization?: Promise<void>;
-  constructor(private readonly config: { iosUnit: string; androidUnit: string; development: boolean }) {}
+  private readonly policy: AdMobPolicy;
+  private readonly development = isNativeDebugBuild();
+  constructor(private readonly config: { iosUnit: string; androidUnit: string; development?: boolean; policy?: Partial<AdMobPolicy> }) {
+    this.policy = resolveAdMobPolicy(config.policy);
+  }
   private getNative(): any {
-    return this.native ??= isAndroid ? new org.haiyue.rewards.HYRewardedAds() : new HYRewardedAds();
+    if (!this.native) {
+      const native = isAndroid ? new org.haiyue.rewards.HYRewardedAds() : new HYRewardedAds();
+      if (!native.configurePolicy(JSON.stringify(this.policy))) { native.dispose(); throw Error('unavailable'); }
+      this.native = native;
+    }
+    return this.native;
   }
   privacyRequired(): boolean {
     if (this.disposed) return false;
@@ -22,16 +33,16 @@ export class AdMobRewardGateway implements RewardGateway {
   private async call(action: string, earned: () => void, presentation?: RewardPresentation): Promise<void> {
     if (this.disposed) throw Error('unavailable');
     if (Connectivity.getConnectionType() === Connectivity.connectionType.none) throw Error('offline');
-    const unit = this.config.development
+    const unit = this.development
       ? (isIOS ? 'ca-app-pub-3940256099942544/1712485313' : 'ca-app-pub-3940256099942544/5224354917')
       : (isIOS ? this.config.iosUnit : this.config.androidUnit);
-    if (action === 'show' && (!unit || (!this.config.development && unit.includes('3940256099942544')))) throw Error('unavailable');
+    if (action === 'show' && (!/^ca-app-pub-\d{16}\/\d{10}$/.test(unit) || (!this.development && unit.includes('3940256099942544')))) throw Error('unavailable');
     this.getNative();
     await new Promise<void>((resolve, reject) => {
       let ended = false, preparing = false;
       const onEvent = (event: string) => {
         if (ended) return;
-        if (this.config.development) console.log('[haiyue-rewards]', event);
+        if (this.development) console.log('[haiyue-rewards]', event);
         if (event === 'earned') { earned(); return; }
         if (event === 'presenting') {
           if (preparing) return;
