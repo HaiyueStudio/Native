@@ -1,0 +1,15 @@
+{
+  "version": "0.1.2",
+  "status": "published-and-installed",
+  "sourceTag": "native-v0.1.2",
+  "sourceCommit": "5c737b05d1ccff0773a4237026f3a1a10534337a",
+  "integrity": "sha512-cc53fpbTkpac5XnQEYC8qHk/4ndIeptPKTKRvvGeJGQi68LExL+yMZpgdj7ubJ5pbf6INIBlZKESnbzNQzP0lA==",
+  "resolved": "https://registry.npmjs.org/@haiyue/native/-/native-0.1.2.tgz",
+  "distTags": {
+    "latest": "0.1.2"
+  },
+  "verifiedAt": "2026-09-27T05:02:59.491Z",
+  "verifiedFiles": 88,
+  "method": "Fresh npm cache, official registry install, ignore scripts and omit peer dependency installation",
+  "directory": "/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/npm-0.1.2/registry-install-Rcxe6e"
+}
