@@ -54,12 +54,12 @@ for (const platform of ['ios', 'android']) test(`NativeScript ${platform} resolv
     ['rewards', 'HYRewardedAds.swift', 'org/haiyue/rewards/HYRewardedAds.java'],
   ]) {
     const nativeRoot = realpathSync(path.join(temp, 'package/bridge', feature, 'native'));
-    assert.ok(build.ios.NativeSource.some(source => source.path === path.join(nativeRoot, 'ios/*.swift')));
+    assert.ok(build.ios.NativeSource.some(source => !path.isAbsolute(source.path) && path.resolve(source.path) === path.join(nativeRoot, 'ios/*.swift')));
     assert.ok(existsSync(path.join(nativeRoot, 'ios', swift)));
     assert.ok(build.androidGradle.includes(path.join(nativeRoot, 'android')));
     assert.ok(existsSync(path.join(nativeRoot, 'android', java)));
   }
-  writeFileSync(entry, `import * as native from '@haiyue/native';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nimport { createPurchases } from '@haiyue/native/purchases/native';\nimport { PurchaseController, PurchaseCatalog } from '@haiyue/native/purchases';\nimport { createRewards } from '@haiyue/native/rewards/native';\nglobalThis.nativeSmoke = { native, NativeDeviceMotion, NativeHaptics, audio, orientation, media, createPurchases, PurchaseController, PurchaseCatalog, createRewards };`);
+  writeFileSync(entry, `import * as native from '@haiyue/native';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nimport { scanCode, cancelScan } from '@haiyue/native/scanner';\nimport { createPurchases } from '@haiyue/native/purchases/native';\nimport { PurchaseController, PurchaseCatalog } from '@haiyue/native/purchases';\nimport { createRewards } from '@haiyue/native/rewards/native';\nglobalThis.nativeSmoke = { native, NativeDeviceMotion, NativeHaptics, audio, orientation, media, scanCode, cancelScan, createPurchases, PurchaseController, PurchaseCatalog, createRewards };`);
   const compiler = webpack({
     mode: 'development', context: temp, entry, devtool: false,
     output: { path: temp, filename: 'bundle.js' },
@@ -89,7 +89,7 @@ for (const platform of ['ios', 'android']) test(`NativeScript ${platform} resolv
   }));
   assert.equal(stats.hasErrors(), false, stats.toString({ all: false, errors: true }));
   const modules = stats.toJson({ all: false, modules: true }).modules.map(m => m.name).join('\n');
-  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'input/native-touch', 'audio/pcm-bank', 'render/view-rect', 'purchases/store']) {
+  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'input/native-touch', 'audio/pcm-bank', 'render/view-rect', 'purchases/store', 'scanner/scan-code']) {
     assert.ok(modules.includes(`${unit}.${platform}.ts`), `${unit}: ${modules}`);
     assert.ok(!modules.includes(`${unit}.${platform === 'ios' ? 'android' : 'ios'}.ts`), `${unit}: wrong platform`);
   }

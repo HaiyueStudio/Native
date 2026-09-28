@@ -1,6 +1,6 @@
 {
   "name": "@haiyue/native",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "NativeScript iOS and Android adapters for Haiyue WebGPU rendering, input, motion, haptics and lifecycle",
   "license": "MIT",
   "type": "module",

@@ -1,0 +1,9 @@
+{"time":"2026-09-28T01:05:50.637Z","platform":"ios","event":"ready","data":{}}
+{"time":"2026-09-28T01:07:22.967Z","platform":"ios","event":"scan-start","data":{"maxTextLength":8192,"autoCancel":true}}
+{"time":"2026-09-28T01:07:22.984Z","platform":"ios","event":"concurrent-rejected","data":"Error: Scanner already open"}
+{"time":"2026-09-28T01:07:26.985Z","platform":"ios","event":"scan-cancel-request","data":{}}
+{"time":"2026-09-28T01:07:27.093Z","platform":"ios","event":"scan-cancelled","data":{}}
+{"time":"2026-09-28T01:07:34.714Z","platform":"ios","event":"reward-before","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":0,"adsRemaining":100,"busy":false,"phase":"ready","privacyRequired":false,"initializing":true,"presenting":false,"operation":null}}
+{"time":"2026-09-28T01:07:49.550Z","platform":"ios","event":"reward-before","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":0,"adsRemaining":100,"busy":true,"phase":"loading","privacyRequired":false,"initializing":true,"presenting":false,"operation":"ad"}}
+{"time":"2026-09-28T01:07:49.553Z","platform":"ios","event":"reward-after","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":0,"adsRemaining":100,"busy":true,"phase":"loading","privacyRequired":false,"initializing":true,"presenting":false,"operation":"ad"}}
+{"time":"2026-09-28T01:08:00.866Z","platform":"ios","event":"reward-after","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":3,"adsRemaining":99,"busy":false,"phase":"earned","privacyRequired":false,"initializing":true,"presenting":false,"operation":null}}

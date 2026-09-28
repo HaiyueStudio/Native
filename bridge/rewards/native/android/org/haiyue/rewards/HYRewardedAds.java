@@ -27,7 +27,6 @@ public final class HYRewardedAds {
                 AgeRestrictedTreatment age = AgeRestrictedTreatment.valueOf(treatment.toUpperCase(java.util.Locale.ROOT));
                 String key = rating + ":" + underAge + ":" + treatment;
                 if (processPolicy != null && !processPolicy.equals(key)) return false;
-                MobileAds.putPublisherFirstPartyIdEnabled(false);
                 MobileAds.setRequestConfiguration(MobileAds.getRequestConfiguration().toBuilder()
                     .setPublisherPrivacyPersonalizationState(RequestConfiguration.PublisherPrivacyPersonalizationState.DISABLED)
                     .setMaxAdContentRating(rating).setAgeRestrictedTreatment(age).build());
@@ -152,6 +151,11 @@ public final class HYRewardedAds {
         deadline(adToken, 45000);
         MobileAds.initialize(activity.getApplicationContext(), status -> handler.post(() -> {
             if (!active(adToken)) return;
+            // SDK 25.5 throws if this is called from configurePolicy before
+            // initialize. Disable it here, before any ad request is constructed.
+            try {
+                if (!MobileAds.putPublisherFirstPartyIdEnabled(false)) { fail("policy_rejected"); return; }
+            } catch (Exception error) { fail("policy_rejected"); return; }
             Bundle extras = new Bundle(); extras.putString("npa", "1");
             AdRequest request = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras).build();
             stage = "ad_load";

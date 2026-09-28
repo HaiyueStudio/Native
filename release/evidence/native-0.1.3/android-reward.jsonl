@@ -1,0 +1,7 @@
+{"time":"2026-09-28T01:33:42.225Z","platform":"android","event":"ready","data":{}}
+{"time":"2026-09-28T01:33:44.511Z","platform":"android","event":"scan-start","data":{"maxTextLength":8192,"autoCancel":false}}
+{"time":"2026-09-28T01:34:27.730Z","platform":"android","event":"scan-error","data":"Error: Camera permission denied"}
+{"time":"2026-09-28T01:37:56.320Z","platform":"android","event":"reward-before","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":0,"adsRemaining":100,"busy":false,"phase":"ready","privacyRequired":false,"initializing":true,"presenting":false,"operation":null}}
+{"time":"2026-09-28T01:37:59.687Z","platform":"android","event":"reward-before","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":0,"adsRemaining":100,"busy":true,"phase":"loading","privacyRequired":false,"initializing":true,"presenting":false,"operation":"ad"}}
+{"time":"2026-09-28T01:37:59.695Z","platform":"android","event":"reward-after","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":0,"adsRemaining":100,"busy":true,"phase":"loading","privacyRequired":false,"initializing":true,"presenting":false,"operation":"ad"}}
+{"time":"2026-09-28T01:38:21.732Z","platform":"android","event":"reward-after","data":{"rewardAmount":3,"unlimited":false,"free":5,"credits":3,"adsRemaining":99,"busy":false,"phase":"earned","privacyRequired":false,"initializing":true,"presenting":false,"operation":null}}

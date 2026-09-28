@@ -1,0 +1,3 @@
+{"time":"2026-09-28T01:33:42.225Z","platform":"android","event":"ready","data":{}}
+{"time":"2026-09-28T01:33:44.511Z","platform":"android","event":"scan-start","data":{"maxTextLength":8192,"autoCancel":false}}
+{"time":"2026-09-28T01:34:27.730Z","platform":"android","event":"scan-error","data":"Error: Camera permission denied"}

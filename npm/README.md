@@ -46,6 +46,7 @@ iOS 使用陀螺仪时配置 `NSMotionUsageDescription`；Android 震动声明 `
 | `@haiyue/native/orientation` | NativeOrientationController |
 | `@haiyue/native/media` | savePhoto |
 | `@haiyue/native/branding` | NativeEngineLaunchPage |
+| `@haiyue/native/scanner` | 可取消的离线 QR 扫描（相机权限按需申请） |
 | `@haiyue/native/rewards` | 可选的 RewardController |
 | `@haiyue/native/rewards/admob` | 可选的 AdMobRewardGateway |
 
@@ -67,3 +68,5 @@ MIT。原生实现来自对应版本的冻结源码，文件哈希保存在包�
 Version 0.1.1 adds `@haiyue/native/purchases`, `@haiyue/native/purchases/native`, `@haiyue/native/rewards/native`, `@haiyue/native/rewards/policy` and `@haiyue/native/monetization/build`. These entries are not available in the published 0.1.0 package. These new monetization APIs are experimental until the next consuming game completes native store/ad acceptance. See [the integration guide](bridge/monetization/README.md) (included as `bridge/monetization/README.md` in the staged package). Use `npm run stage:development` to test source without altering the frozen release. No existing game is migrated automatically.
 
 Version 0.1.2 adds `rewardAmount` (default 1) to rewarded allowances and `PurchaseCatalog` to `@haiyue/native/purchases`. The catalog combines verified base, advanced, full and prerequisite-gated upgrade products. Prices remain separate store-configured products; there is no automatic store discount or cross-platform purchase sharing. Existing wallet balances are unchanged. See the integration guide for examples and restore/refund semantics.
+
+Version 0.1.3 adds `@haiyue/native/scanner` (iOS AVFoundation / Android ZXing Embedded) and sanitized structured rewarded-ad failure diagnostics. Hosts must configure camera permissions and the Android scanner dependency; see [QR scanning](bridge/scanner/README.md). See [reward diagnostics](bridge/rewards/README.md) for `onFailure` and `snapshot().lastFailure`. Existing error messages and wallet formats remain compatible. Release readiness and device coverage are recorded in the repository release evidence.

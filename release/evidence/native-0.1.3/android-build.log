@@ -1,0 +1,37 @@
+Preparing project...
+asset [1m[32mvendor.js[39m[22m 3.46 MiB [1m[33m[compared for emit][39m[22m (name: vendor) (id hint: defaultVendor) 1 related asset
+asset [1m[32mbundle.js[39m[22m 7.31 KiB [1m[33m[compared for emit][39m[22m (name: bundle) 1 related asset
+asset [1m[32mruntime.js[39m[22m 6.77 KiB [1m[33m[compared for emit][39m[22m (name: runtime) 1 related asset
+asset [1m[32mtns_modules/inspector_modules.js[39m[22m 900 bytes [1m[33m[compared for emit][39m[22m (name: tns_modules/inspector_modules) 1 related asset
+Entrypoint [1mbundle[39m[22m 3.47 MiB (3.32 MiB) = [1m[32mruntime.js[39m[22m 6.77 KiB [1m[32mvendor.js[39m[22m 3.46 MiB [1m[32mbundle.js[39m[22m 7.31 KiB 3 auxiliary assets
+Entrypoint [1mtns_modules/inspector_modules[39m[22m 3.47 MiB (3.31 MiB) = [1m[32mruntime.js[39m[22m 6.77 KiB [1m[32mvendor.js[39m[22m 3.46 MiB [1m[32mtns_modules/inspector_modules.js[39m[22m 900 bytes 3 auxiliary assets
+orphan modules 21.5 KiB [1m[33m[orphan][39m[22m 15 modules
+runtime modules 3.5 KiB 8 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/@nativescript/[39m[22m 1.85 MiB 245 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-tree/[39m[22m 358 KiB 120 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/source-map-js/[39m[22m 104 KiB 11 modules
+modules by path [1m./[39m[22m 25.5 KiB
+  modules by path [1m./node_modules/@haiyue/native/bridge/[39m[22m 22.4 KiB 8 modules
+  modules by path [1m./src/[39m[22m 3.09 KiB 2 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/@csstools/[39m[22m 132 KiB
+  [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/@csstools/css-calc/...(truncated)[39m[22m 28.3 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  + 4 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-what/dist/esm/*.js[39m[22m 20 KiB
+  [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-what/dis...(truncated)[39m[22m 18.7 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-what/dis...(truncated)[39m[22m 1.29 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
++ 4 modules
+webpack 5.110.3 compiled [1m[32msuccessfully[39m[22m in 7756 ms
+Webpack compilation complete.
+Updating runtime package.json with configuration values...
+Project successfully prepared (android)
+Building project...
+Gradle build...
+	 + setting applicationId
+	 + applying user-defined configuration from /Users/qingque/Desktop/HaiyueStudio/Native/artifacts/native-validation/App_Resources/Android/app.gradle
+	 + adding nativescript runtime package dependency: nativescript-optimized-with-inspector
+	 + adding aar plugin dependency: /Users/qingque/Desktop/HaiyueStudio/MoonlightSudoku/native/led-sudoku/node_modules/@nativescript/core/platforms/android/core.aar
+	 + adding aar plugin dependency: /Users/qingque/Desktop/HaiyueStudio/MoonlightSudoku/native/led-sudoku/node_modules/@nativescript/core/platforms/android/widgets-release.aar
+	 + adding aar plugin dependency: /Users/qingque/Desktop/HaiyueStudio/MoonlightSudoku/native/led-sudoku/node_modules/@nativescript/core/platforms/android/winter_tc-release.aar
+Project successfully built.
+Build time: 41.063 s.
+The build result is located at: /Users/qingque/Desktop/HaiyueStudio/Native/artifacts/native-validation/platforms/android/app/build/outputs/apk/debug/app-debug.apk

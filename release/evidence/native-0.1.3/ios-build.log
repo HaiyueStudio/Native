@@ -1,0 +1,46 @@
+Preparing project...
+asset [1m[32mvendor.mjs[39m[22m 3.76 MiB [1m[33m[compared for emit][39m[22m [javascript module] (name: vendor) (id hint: vendor) 1 related asset
+asset [1m[32mbundle.mjs[39m[22m 6.88 KiB [1m[33m[compared for emit][39m[22m [javascript module] (name: bundle) 1 related asset
+asset [1m[32mruntime.mjs[39m[22m 5.63 KiB [1m[33m[compared for emit][39m[22m [javascript module] (name: runtime) 1 related asset
+asset [1m[32mtns_modules/inspector_modules.mjs[39m[22m 819 bytes [1m[33m[compared for emit][39m[22m [javascript module] (name: tns_modules/inspector_modules) 1 related asset
+Entrypoint [1mbundle[39m[22m 3.78 MiB (3.66 MiB) = [1m[32mruntime.mjs[39m[22m 5.63 KiB [1m[32mvendor.mjs[39m[22m 3.76 MiB [1m[32mbundle.mjs[39m[22m 6.88 KiB 3 auxiliary assets
+Entrypoint [1mtns_modules/inspector_modules[39m[22m 3.77 MiB (3.65 MiB) = [1m[32mruntime.mjs[39m[22m 5.63 KiB [1m[32mvendor.mjs[39m[22m 3.76 MiB [1m[32mtns_modules/inspector_modules.mjs[39m[22m 819 bytes 3 auxiliary assets
+orphan modules 21.5 KiB [1m[33m[orphan][39m[22m 15 modules
+runtime modules 2.85 KiB 6 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/@nativescript/[39m[22m 2.14 MiB 239 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-tree/[39m[22m 358 KiB 120 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/source-map-js/[39m[22m 104 KiB 11 modules
+modules by path [1m./[39m[22m 28.8 KiB
+  modules by path [1m./node_modules/@haiyue/native/bridge/[39m[22m 25.8 KiB 8 modules
+  modules by path [1m./src/[39m[22m 3.03 KiB 2 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/@csstools/[39m[22m 132 KiB
+  [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/@csstools/css-calc/...(truncated)[39m[22m 28.3 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  + 4 modules
+modules by path [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-what/dist/esm/*.js[39m[22m 20 KiB
+  [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-what/dis...(truncated)[39m[22m 18.7 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  [1m../../../MoonlightSudoku/native/led-sudoku/node_modules/css-what/dis...(truncated)[39m[22m 1.29 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
++ 4 modules
+webpack 5.110.3 compiled [1m[32msuccessfully[39m[22m in 5970 ms
+Webpack compilation complete.
+Swift Packages:
+  GoogleMobileAds (13.10.0 · https://github.com/googleads/swift-package-manager-google-mobile-ads.git)
+- Resolving Swift Package dependencies… (0m 0s)
+✔ Swift Package dependencies resolved (0m 2s)
+Updating runtime package.json with configuration values...
+Project successfully prepared (ios)
+Building project...
+Searching for devices...
+Xcode build...
+warning: All interface orientations must be supported unless the app requires full screen. (in target 'nativevalidation' from project 'nativevalidation')
+note: Run script build phase 'NativeScript PreBuild' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'nativevalidation' from project 'nativevalidation')
+note: Run script build phase 'NativeScript PostBuild' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'nativevalidation' from project 'nativevalidation')
+note: Run script build phase 'NativeScript PreLink' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'nativevalidation' from project 'nativevalidation')
+Xcode build...
+2026-09-28 09:01:15.400 xcodebuild[11482:15528479] [MT] IDEDistribution: -[IDEDistributionLogging _createLoggingBundleAtPath:]: Created bundle at path "/var/folders/dk/w2v78rnj53578xh5l88280nw0000gn/T/nativevalidation_2026-09-28_09-01-15.398.xcdistributionlogs".
+2026-09-28 09:01:15.567 xcodebuild[11482:15528479] [MT] IDEDistribution: Command line name "development" is deprecated. Use "debugging" instead.
+Exported nativevalidation to: /Users/qingque/Desktop/HaiyueStudio/Native/artifacts/native-validation/platforms/ios/build/Debug-iphoneos
+** EXPORT SUCCEEDED **
+
+Project successfully built.
+Build time: 51.969 s.
+The build result is located at: /Users/qingque/Desktop/HaiyueStudio/Native/artifacts/native-validation/platforms/ios/build/Debug-iphoneos/nativevalidation.ipa

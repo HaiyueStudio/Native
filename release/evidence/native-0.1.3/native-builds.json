@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-28",
+  "appId": "org.haiyue.nativevalidation",
+  "builds": {
+    "ios": {
+      "path": "artifacts/native-validation/platforms/ios/build/Debug-iphoneos/nativevalidation.ipa",
+      "sha256": "1abdccc49edc06227f3fc4ffa7ece42809ee4b1a17cbcafbe381b2639f851fb4"
+    },
+    "android": {
+      "path": "artifacts/native-validation/platforms/android/app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "2f167013c5cee00940b2ec233afe06c20164ef887d9e06807fdb4d7b7b63b813"
+    }
+  },
+  "bridgeInputs": {
+    "bridge/rewards/errors.ts": "a28ea55fc224f847ac29ba9b418666828c9aa7e65a501e78830256b8f9d455d4",
+    "bridge/rewards/README.md": "41afd3387f47cde91aed04e1e354f8d8df9e55638823231d37d40729ecaea149",
+    "bridge/rewards/development.ts": "d2500bbd190134fb3a223b1b0474f0cdc42f7f7752f1ee94c864ce06b2e0a213",
+    "bridge/rewards/native.ts": "7221e7b29e2b84699a5ce2de046ee11d0c2e0d2d6e0d574bd17d565e5a2a9948",
+    "bridge/rewards/policy.ts": "5c73bc46c16be2f52a5069c4495262a3dc522bc495e34d0fe381fa4e774e4fe8",
+    "bridge/rewards/admob.ts": "d46b895504fc1916406e50e0afd2dc49c1324f9894b36edc897a3491b6e98da1",
+    "bridge/rewards/controller.ts": "4e75654e68ecacb4ba517f7ce7fc352585f21ebbf7e482cf9e7d9da905e5f83a",
+    "bridge/rewards/native/ios/HYRewardedAds.swift": "37cb2468290c268c97645f5eec60b53b9fd991b6b2efe7d20f007de95ab0b3a6",
+    "bridge/rewards/native/android/org/haiyue/rewards/HYRewardedAds.java": "94ef6c6fbbce1d05efb2bdf03e6678c591d45bc9b875885eb7de5c4b8c0c511a",
+    "bridge/scanner/scan-code.ios.ts": "66c8193147e8a74d8dfd97a8138ccd2d405886572cb0fe7a1fb93a2571919bfe",
+    "bridge/scanner/scan-code.ts": "cde1c1ad53077e6d6bbd0546f7c176b80872ddb7b6fa2658eb43e8b63fff9237",
+    "bridge/scanner/README.md": "cc46a67a0957258f8b5b0d2b8545dd2140f316588271811b506fbe0d3360427e",
+    "bridge/scanner/types.ts": "54db882a5163bc7eb7bfd260e68f024f128960675504bfb6ca1327236c7c933f",
+    "bridge/scanner/scan-code.android.ts": "fc17e820d80f6c5e9ce18b0015bf4c895e87c0e3e8e80f1a29a01125852676c3",
+    "bridge/monetization/README.md": "dd4224ed2e7365567a29c1f248e866fcd07b651063387076147dd152cea7dd19",
+    "bridge/monetization/build.cjs": "8a64efa586f080398eff2ea3796b454283d72c45c2c5c392a20b088fff6cadf8"
+  },
+  "sdkVersions": {
+    "iosAds": "13.10.0",
+    "androidAds": "25.5.0",
+    "androidUMP": "4.0.0",
+    "zxingEmbedded": "4.3.0"
+  },
+  "notes": [
+    "Isolated validation host; no game data modified.",
+    "iOS native bridge unchanged by Android first-party ID fix; Android rebuilt after that fix.",
+    "Google test ad units only."
+  ]
+}

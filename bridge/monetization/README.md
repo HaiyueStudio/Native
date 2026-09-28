@@ -135,3 +135,5 @@ An upgrade receipt alone does not unlock dependent content after base revocation
 restoring both verified receipts restores access regardless of their read order.
 This is not a store-level automatic bundle-discount API. Configure the Android
 verifier for **each** product scope/endpoint. There is no iOS/Android account linkage.
+
+`monetizationBuild` should run with the consuming application as the current working directory (NativeScript CLI default). iOS `NativeSource` paths are relative to that directory, because NativeScript 9.1.1 prefixes them with the application directory when writing Xcode projects. Android source directories remain absolute.

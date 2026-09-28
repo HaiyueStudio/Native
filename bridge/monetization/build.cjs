@@ -9,8 +9,10 @@ function monetizationBuild({ purchases = false, rewards, development = false } =
   const dependencies = [], sources = [];
   const iosInfoPlist = {}, androidManifestMetadata = {};
   const nativeRoot = path.resolve(__dirname, '..');
+  // NativeScript joins NativeSource paths to the application directory in its
+  // Xcode project. Absolute paths become invalid duplicated paths there.
   function source(feature) {
-    ios.NativeSource.push({ name: `Haiyue${feature === 'purchases' ? 'Purchases' : 'Rewards'}`, path: path.join(nativeRoot, feature, 'native/ios/*.swift') });
+    ios.NativeSource.push({ name: `Haiyue${feature === 'purchases' ? 'Purchases' : 'Rewards'}`, path: path.relative(process.cwd(), path.join(nativeRoot, feature, 'native/ios/*.swift')).split(path.sep).join('/') });
     sources.push(path.join(nativeRoot, feature, 'native/android'));
   }
   if (purchases) { source('purchases'); dependencies.push('com.android.billingclient:billing:8.3.0'); }

@@ -1,0 +1,46 @@
+{
+  "candidate": "0.1.3",
+  "date": "2026-09-28",
+  "manifestSha256": "fb79d472ebdb1abbc0d962a3403849cb0807f95ef607551570f1e2a62b4299dc",
+  "sourceGateStages": 27,
+  "cleanInstallGateStages": 35,
+  "tests": {
+    "repository": 84,
+    "package": 3,
+    "examples": 84,
+    "total": 171
+  },
+  "ios": {
+    "device": "iPhone 15 Plus",
+    "qrScan": true,
+    "oversizedRejected": true,
+    "concurrencyRejected": true,
+    "cancel": true,
+    "rewardedAd": true,
+    "creditsBefore": 0,
+    "creditsAfter": 3,
+    "adAllowanceBefore": 100,
+    "adAllowanceAfter": 99,
+    "automatedXCTest": "driver connection failed before cases ran"
+  },
+  "android": {
+    "device": "X4000",
+    "qrScan": true,
+    "oversizedRejected": true,
+    "concurrencyRejected": true,
+    "cancel": true,
+    "permissionDenied": true,
+    "rewardedAd": true,
+    "rewardedAdStatus": "Passed after user enabled VPN: native test ad completed, reward granted once; prior UMP timeout retained as failure-path evidence",
+    "creditsBefore": 0,
+    "creditsAfter": 3,
+    "adAllowanceBefore": 100,
+    "adAllowanceAfter": 99,
+    "duplicateTapWhileBusy": "no extra reward or allowance consumed",
+    "rewardEvidence": "android-reward.jsonl"
+  },
+  "gameSavesModified": false,
+  "committed": false,
+  "tagged": false,
+  "published": false
+}

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import path from 'node:path';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { loadTS } from './support/load-ts.mjs';
@@ -10,6 +11,8 @@ const demo = { iosAppId: 'ca-app-pub-3940256099942544~1458002511', androidAppId:
 test('optional build wiring includes only selected SDKs and refuses release demo IDs', () => {
   const empty = monetizationBuild(); assert.equal(empty.ios.NativeSource.length, 0);
   const purchases = monetizationBuild({ purchases: true });
+  assert.equal(path.isAbsolute(purchases.ios.NativeSource[0].path), false);
+  assert.equal(path.resolve(purchases.ios.NativeSource[0].path), path.resolve('bridge/purchases/native/ios/*.swift'));
   assert.equal(purchases.ios.NativeSource.length, 1); assert.equal(purchases.ios.SPMPackages.length, 0);
   assert.match(purchases.androidGradle, /billing:8.3.0/); assert.doesNotMatch(purchases.androidGradle, /play-services-ads/);
   const full = monetizationBuild({ purchases: true, rewards: demo, development: true });

@@ -28,6 +28,7 @@ export async function scanCode(options:ScanCodeOptions={}):Promise<ScannedCode|n
   const allowed=await new Promise<boolean>(resolve=>AVCaptureDevice.requestAccessForMediaTypeCompletionHandler(AVMediaTypeVideo,resolve));
   if(cancelled){cancel=null;return null;}if(!allowed)throw Error('Camera permission denied');
   return await new Promise<ScannedCode|null>((resolve,reject)=>Utils.executeOnMainThread(()=>{
+   if(cancelled){cancel=null;resolve(null);return;}
    let finished=false;const controller=CodeController.new() as CodeController,delegate=CodeDelegate.new() as CodeDelegate,session=AVCaptureSession.new();
    const finish=(result:ScannedCode|null,error?:unknown)=>{if(finished)return;finished=true;session.stopRunning();delegate.receive=null;controller.onClose=null;cancel=null;controller.dismissViewControllerAnimatedCompletion(true,()=>{});error?reject(error):resolve(result);};
    cancel=()=>finish(null);controller.onClose=()=>finish(null);
