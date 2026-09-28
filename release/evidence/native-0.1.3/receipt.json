@@ -40,7 +40,9 @@
     "rewardEvidence": "android-reward.jsonl"
   },
   "gameSavesModified": false,
-  "committed": false,
-  "tagged": false,
-  "published": false
+  "committed": true,
+  "tagged": true,
+  "published": false,
+  "sourceCommit": "d7a677b071b2618cdb91d9ea8aaf42db846a692b",
+  "sourceTag": "native-v0.1.3"
 }

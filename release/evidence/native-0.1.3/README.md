@@ -1,6 +1,6 @@
 # Native 0.1.3 release acceptance — 2026-09-28
 
-Version metadata and lockfiles are 0.1.3. No release commit, tag, push or npm publish has been performed in this task.
+Version metadata and lockfiles are 0.1.3. Release commit `d7a677b071b2618cdb91d9ea8aaf42db846a692b` and tag `native-v0.1.3` have been pushed to origin. npm login succeeded, but the separate publish two-factor authorization expired before completion. npm publication is pending a fresh publish authorization. The formal tarball has passed type and platform-entry tests.
 
 ## Source and package gates
 
