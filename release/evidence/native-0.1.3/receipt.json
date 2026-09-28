@@ -42,7 +42,8 @@
   "gameSavesModified": false,
   "committed": true,
   "tagged": true,
-  "published": false,
+  "published": true,
   "sourceCommit": "d7a677b071b2618cdb91d9ea8aaf42db846a692b",
-  "sourceTag": "native-v0.1.3"
+  "sourceTag": "native-v0.1.3",
+  "publicationEvidence": "publication.json"
 }

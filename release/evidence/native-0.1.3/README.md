@@ -1,13 +1,13 @@
 # Native 0.1.3 release acceptance — 2026-09-28
 
-Version metadata and lockfiles are 0.1.3. Release commit `d7a677b071b2618cdb91d9ea8aaf42db846a692b` and tag `native-v0.1.3` have been pushed to origin. npm login succeeded, but the separate publish two-factor authorization expired before completion. npm publication is pending a fresh publish authorization. The formal tarball has passed type and platform-entry tests.
+Version metadata and lockfiles are 0.1.3. Release commit `d7a677b071b2618cdb91d9ea8aaf42db846a692b` and tag `native-v0.1.3` have been pushed to origin. The formal package is published to npm as `@haiyue/native@0.1.3`, and `latest` points to `0.1.3`. A fresh-cache install from the official registry matched the formal tarball integrity and all 94 bridge file hashes; see [publication verification](publication.json). The formal tarball has passed type and platform-entry tests.
 
 ## Source and package gates
 
 - Final freeze contains 757 inputs.
 - [Source gate](source-gate.json): 27 stages passed, 171 tests (84 repository/service, 3 actual-tarball/package, 84 across six examples), all relevant TypeScript checks passed.
 - [Independent clean export gate](clean-source-gate.json): locked dependencies installed in a fresh exported working directory and all checks passed. Its manifest hash matches the final working-tree gate and `release/candidate.json`.
-- Candidate package is private. Formal package still requires the matching `native-v0.1.3` tag.
+- Candidate package is private. The public formal package is bound to the matching `native-v0.1.3` tag and release commit.
 - Earlier pre-device-fix gates are superseded by these final reports; do not reuse their manifest hashes as final evidence.
 
 ## Native build and device results
