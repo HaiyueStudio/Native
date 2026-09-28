@@ -1,7 +1,13 @@
+import { RewardError, type RewardFailure } from './errors';
+export { RewardError } from './errors';
+export type { RewardFailure, RewardFailureStage, RewardFailureCode, RewardSDKError } from './errors';
+
 /** SDK-independent daily allowances and durable, idempotent rewarded credits.
  * One controller per namespaced storage key. Never share a key between games. */
 export type RewardPhase = 'ready' | 'loading' | 'earned' | 'cancelled' | 'unavailable' | 'offline' | 'error' | 'limit';
 export interface RewardSnapshot {
+  /** Most recent structured gateway failure in this session; retained after retries. */
+  lastFailure?: RewardFailure;
   rewardAmount: number; unlimited: boolean; free: number; credits: number; adsRemaining: number;
   busy: boolean; phase: RewardPhase; privacyRequired: boolean;
   initializing: boolean; presenting: boolean; operation: 'ad' | 'privacy' | 'consent' | null;
@@ -20,6 +26,7 @@ export class RewardController {
   private wallet!: Wallet;
   private readonly rewardAmount: number;
   private phase: RewardPhase = 'ready';
+  private lastFailure?: RewardFailure;
   private busy = false;
   private disposed = false;
   private broken = false;
@@ -64,7 +71,7 @@ export class RewardController {
   }
   snapshot(): RewardSnapshot {
     this.rollover();
-    return { rewardAmount:this.rewardAmount, unlimited:this.options.entitled(), free:this.broken ? 0 : Math.max(0,this.options.dailyFree-this.wallet.used),
+    return { lastFailure:this.lastFailure, rewardAmount:this.rewardAmount, unlimited:this.options.entitled(), free:this.broken ? 0 : Math.max(0,this.options.dailyFree-this.wallet.used),
       credits:this.broken ? 0 : this.wallet.credits, adsRemaining:this.broken ? 0 : Math.max(0,this.options.dailyAds-this.wallet.ads),
       busy:this.busy, phase:this.phase, privacyRequired:this.options.gateway.privacyRequired(),
       initializing:this.initializing, presenting:this.presenting, operation:this.operation };
@@ -90,7 +97,7 @@ export class RewardController {
         resume = typeof pause === 'function' ? pause : await pause;
         return !this.disposed;
       });
-    } catch { /* Retry through the next explicit ad/privacy request. */ }
+    } catch (error) { this.captureFailure(error); /* Retry on the next explicit request. */ }
     finally {
       this.initializing = false;
       if (presenting) { this.busy = false; this.presenting = false; this.operation = null; resume(); }
@@ -118,6 +125,9 @@ export class RewardController {
       },
       release: () => { active = false; close(); },
     };
+  }
+  private captureFailure(error: unknown): void {
+    if (error instanceof RewardError) this.lastFailure = error.failure;
   }
   private emit(): void { if (!this.disposed) for (const listener of this.listeners) listener(); }
   /** Call only once a useful result is ready. The same result key is free to redisplay. */
@@ -151,6 +161,7 @@ export class RewardController {
       }, presentation.hooks);
       if (!this.broken) this.phase = earned ? 'earned' : 'cancelled';
     } catch (error) {
+      this.captureFailure(error);
       if (!earned && !this.broken) this.phase = error instanceof Error && ['offline','unavailable'].includes(error.message) ? error.message as RewardPhase : 'error';
     } finally { ended = true; this.busy = false; this.operation = null; presentation.release(); this.emit(); }
   }
@@ -162,7 +173,7 @@ export class RewardController {
       if (this.disposed) return;
       await this.options.gateway.privacy(presentation.hooks); this.phase = 'ready';
     }
-    catch { this.phase = 'error'; }
+    catch (error) { this.captureFailure(error); this.phase = 'error'; }
     finally { this.busy = false; this.operation = null; presentation.release(); this.emit(); }
   }
   dispose(): void { this.disposed = true; this.listeners.clear(); this.options.gateway.dispose(); }

@@ -61,6 +61,34 @@ import UserMessagingPlatform
         }
         logState("\(stage) state")
     }
+    private var stage = "configuration"
+    /// Suffix preserves the legacy error:phase protocol. Never serialize userInfo/messages.
+    private func failureEvent(_ stage: String, _ code: String, _ error: Error? = nil) -> String {
+        var reason = code
+        var phase = "unavailable"
+        var details: [String: Any] = ["stage": stage]
+        if let error {
+            let native = error as NSError
+            details["sdk"] = ["domain": native.domain, "code": native.code]
+            if let cause = native.userInfo[NSUnderlyingErrorKey] as? NSError {
+                details["underlying"] = ["domain": cause.domain, "code": cause.code]
+            }
+            // Numeric codes are meaningful only in their SDK domain and operation.
+            if stage == "ad_load" && native.domain == GADErrorDomain {
+                switch native.code {
+                case 1: reason = "no_fill"
+                case 2: reason = "network"; phase = "offline"
+                case 5: reason = "timeout"
+                default: break
+                }
+            }
+        }
+        details["code"] = reason
+        let data = try? JSONSerialization.data(withJSONObject: details)
+        let json = data.flatMap { String(data: $0, encoding: .utf8) } ?? "{}"
+        return "error:\(phase):\(json)"
+    }
+    private func fail(_ code: String, _ error: Error? = nil) { end(failureEvent(stage, code, error)) }
     private func root() -> UIViewController? {
         let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
         var controller = scenes.flatMap { $0.windows }.first { $0.isKeyWindow }?.rootViewController
@@ -90,7 +118,7 @@ import UserMessagingPlatform
         timeout = Task { @MainActor [weak self] in
             do { try await Task.sleep(nanoseconds: seconds * 1_000_000_000) } catch { return }
             guard let self, self.active(token) else { return }
-            self.log("network timeout"); self.end("error:unavailable")
+            self.log("network timeout"); self.fail("timeout")
         }
     }
     private func parameters() -> RequestParameters {
@@ -108,8 +136,11 @@ import UserMessagingPlatform
         return parameters
     }
     @objc(perform:unit:events:) public func perform(_ action: String, unit: String, events callback: @escaping (String) -> Void) {
-        guard configured, !disposed, events == nil, let controller = root() else { callback("error:unavailable"); return }
-        guard ["consent", "refreshPrivacy", "presentConsent", "privacy", "show"].contains(action) else { callback("error:unavailable"); return }
+        guard configured else { callback(failureEvent("configuration", "policy_rejected")); return }
+        guard !disposed else { callback(failureEvent("lifecycle", "disposed")); return }
+        guard events == nil else { callback(failureEvent("lifecycle", "busy")); return }
+        guard let controller = root() else { callback(failureEvent("lifecycle", "no_presenter")); return }
+        guard ["consent", "refreshPrivacy", "presentConsent", "privacy", "show"].contains(action) else { callback(failureEvent("configuration", "invalid_action")); return }
         events = callback; generation += 1
         startedAt = ProcessInfo.processInfo.systemUptime
         let token = generation
@@ -118,6 +149,7 @@ import UserMessagingPlatform
             log("reset test consent")
         }
         Task { @MainActor in
+            guard active(token) else { return }
             let appID = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "missing"
             let adsVersion = MobileAds.shared.versionNumber
             log("begin \(action) bundle=\(Bundle.main.bundleIdentifier ?? "missing") appID=\(appID) ump=\(UserMessagingPlatform.Version) gma=\(adsVersion.majorVersion).\(adsVersion.minorVersion).\(adsVersion.patchVersion) simulator=\(simulator)")
@@ -125,6 +157,7 @@ import UserMessagingPlatform
             // Startup already refreshed consent with input active. Do not repeat
             // that network request after acquiring the form-presentation pause.
             if action != "presentConsent" {
+                stage = "consent_update"
                 deadline(20, token: token)
                 do {
                     try await ConsentInformation.shared.requestConsentInfoUpdate(with: parameters())
@@ -132,63 +165,69 @@ import UserMessagingPlatform
                     logError("update failed", error)
                     guard active(token) else { return }
                     // Only the ad path may fall back to a still-valid previous consent state.
-                    if action != "show" || !ConsentInformation.shared.canRequestAds { end("error:unavailable"); return }
+                    if action != "show" || !ConsentInformation.shared.canRequestAds { fail("sdk_error", error); return }
                 }
             }
             guard active(token) else { return }
             timeout?.cancel(); timeout = nil
             logState("updated")
             if action == "refreshPrivacy" { end("closed"); return }
-            guard UIApplication.shared.applicationState == .active else { end("error:unavailable"); return }
+            guard UIApplication.shared.applicationState == .active else { fail("inactive"); return }
             do {
                 // No timeout while a user is reading or interacting with the consent form.
                 if action == "privacy" {
+                    stage = "privacy_present"
                     guard privacyRequired else { end("closed"); return }
-                    guard await preparePresentation(token), active(token) else { if active(token) { end("error:unavailable") }; return }
+                    guard await preparePresentation(token), active(token) else { if active(token) { fail("presentation_rejected") }; return }
                     try await ConsentForm.presentPrivacyOptionsForm(from: controller)
                     events?("presentation-closed")
                 } else if consentRequired {
                     // Load while the game's loading indicator is still animating.
+                    stage = "consent_load"
                     deadline(20, token: token)
                     let form = try await ConsentForm.load()
                     guard active(token) else { return }
                     timeout?.cancel(); timeout = nil
-                    guard await preparePresentation(token), active(token) else { if active(token) { end("error:unavailable") }; return }
+                    stage = "consent_present"
+                    guard await preparePresentation(token), active(token) else { if active(token) { fail("presentation_rejected") }; return }
                     try await form.present(from: controller)
                     events?("presentation-closed")
                 }
             } catch {
                 logError("form failed", error)
                 guard active(token) else { return }
-                end("error:unavailable"); return
+                fail("sdk_error", error); return
             }
             guard active(token) else { return }
             logState("completed \(action)")
             if action != "show" { end("closed"); return }
-            guard ConsentInformation.shared.canRequestAds else { end("error:unavailable"); return }
+            guard ConsentInformation.shared.canRequestAds else { fail("consent_unavailable"); return }
+            stage = "sdk_initialize"
             deadline(45, token: token)
             await MobileAds.shared.start()
             guard active(token) else { return }
             do {
+                stage = "ad_load"
                 let request = Request()
                 let extras = Extras(); extras.additionalParameters = ["npa": "1"]; request.register(extras)
                 let loaded = try await RewardedAd.load(with: unit, request: request)
                 guard active(token) else { return }
                 timeout?.cancel(); timeout = nil
+                stage = "ad_present"
                 ad = loaded; loaded.fullScreenContentDelegate = self
-                guard UIApplication.shared.applicationState == .active else { end("error:unavailable"); return }
-                guard await preparePresentation(token), active(token) else { if active(token) { end("error:unavailable") }; return }
+                guard UIApplication.shared.applicationState == .active else { fail("inactive"); return }
+                guard await preparePresentation(token), active(token) else { if active(token) { fail("presentation_rejected") }; return }
                 loaded.present(from: controller) { [weak self] in
                     guard let self, self.active(token) else { return }
                     self.events?("earned")
                 }
             } catch {
                 logError("ad failed", error)
-                if active(token) { end((error as NSError).code == 2 ? "error:offline" : "error:unavailable") }
+                if active(token) { fail("sdk_error", error) }
             }
         }
     }
-    public func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) { end("closed") }
-    public func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) { end("error:unavailable") }
-    @objc public func dispose() { disposed = true; end("error:unavailable") }
+    public func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) { if self.ad === ad { end("closed") } }
+    public func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) { if self.ad === ad { fail("sdk_error", error) } }
+    @objc public func dispose() { disposed = true; stage = "lifecycle"; fail("disposed") }
 }

@@ -1,6 +1,7 @@
 import { ApplicationSettings } from '@nativescript/core';
 import { RewardController } from './controller';
 import { AdMobRewardGateway } from './admob';
+import type { RewardFailure } from './errors';
 import type { AdMobPolicy } from './policy';
 export interface RewardsConfig {
   storageNamespace: string;
@@ -13,6 +14,8 @@ export interface RewardsConfig {
   /** Deprecated: the native build determines debug mode. */
   development?: boolean;
   policy?: Partial<AdMobPolicy>;
+  /** Receives sanitized diagnostics in Debug and Release. Host owns persistence/retention. */
+  onFailure?: (failure: RewardFailure) => void;
 }
 /** Own one wallet/gateway per feature; dispose it when its host is destroyed. */
 export function createRewards(config: RewardsConfig, hooks: {

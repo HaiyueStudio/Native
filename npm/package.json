@@ -38,7 +38,11 @@
     "./purchases/native": "./bridge/purchases/native.ts",
     "./rewards/native": "./bridge/rewards/native.ts",
     "./rewards/policy": "./bridge/rewards/policy.ts",
-    "./monetization/build": "./bridge/monetization/build.cjs"
+    "./monetization/build": "./bridge/monetization/build.cjs",
+    "./scanner": {
+      "types": "./bridge/scanner/scan-code.ts",
+      "default": "./bridge/scanner/scan-code"
+    }
   },
   "files": [
     "index.ts",

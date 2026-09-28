@@ -42,3 +42,68 @@ Run Native `npm test` for quota, persistence, failure, callback ordering, entitl
 For iOS UMP diagnostics, first read the test-device identifier from the SDK log. In Debug only, supply `HY_UMP_TEST_DEVICE_ID` and `HY_UMP_EEA=1` to simulate Europe; `HY_UMP_RESET=1` resets consent during initialization for a fresh-choice test. Do not use these flags for a normal launch. No device identifier is hardcoded. Release ignores these flags. These settings do not bypass the SDK, grant rewards or unlock paid access.
 
 Simulators are automatically recognized as UMP test devices, so omit `HY_UMP_TEST_DEVICE_ID` there. Launch with `SIMCTL_CHILD_HY_UMP_EEA=1 SIMCTL_CHILD_HY_UMP_RESET=1 xcrun simctl launch --console <simulator> <bundle-id>`. Debug logs include the app ID, runtime SDK versions, simulator flag, parameter geography and under-age flag, consent/form/privacy status, elapsed time, presenting-controller attachment, and error domain/code/description (including underlying errors). They do not dump consent strings, test-device identifiers or arbitrary error payloads. A logged geography is the supplied parameter, not proof that the server accepted it; compare the resulting form state across simulator and device.
+
+## Failure diagnostics (Debug and Release)
+
+`createRewards({ ..., onFailure })` and `new AdMobRewardGateway({ ..., onFailure })`
+accept a synchronous, optional diagnostic callback. Each failed gateway operation
+reports once, including startup consent failures. Callback exceptions are ignored
+so diagnostic storage cannot prevent settlement or change rewards. No automatic
+upload or disk storage occurs. The host owns any storage, retention and export UI.
+
+`RewardController.snapshot().lastFailure` exposes the latest structured failure in
+this session, retained after a successful retry and cleared by creating a new
+controller. Startup failures still leave `phase: 'ready'` and local play available.
+Failures after an earned callback retain the earned credits. Direct gateway callers
+receive `RewardError` (exported from `@haiyue/native/rewards`); `error.message`
+remains the existing `offline` / `unavailable` / `error` category.
+
+```ts
+import { ApplicationSettings } from '@nativescript/core';
+import { createRewards } from '@haiyue/native/rewards/native';
+import type { RewardFailure } from '@haiyue/native/rewards';
+
+const diagnosticsKey = 'my-game.reward-last-failure';
+const rewards = createRewards({
+  storageNamespace: 'my-game', dailyFree: 1, dailyAds: 2,
+  iosUnit: config.iosRewardUnit, androidUnit: config.androidRewardUnit,
+  onFailure(failure: RewardFailure) {
+    // Optional bounded local storage: overwrite one record, never the wallet.
+    ApplicationSettings.setString(diagnosticsKey, JSON.stringify(failure));
+    ApplicationSettings.flush();
+  },
+}, { entitled: () => purchases.snapshot().entitled, pause: () => host.preparePresentation() });
+```
+
+The version-1 record contains `platform`, gateway `action`, `stage`, stable `code`,
+legacy `phase`, wall-clock ISO `timestamp`, and `elapsedMs` measured over the gateway
+operation (including its internal phases, excluding the wait for a prior startup
+operation). Optional `sdk` and `underlying` contain only `{ domain, code }`. Android
+UMP has no domain accessor; its provider namespace is `com.google.android.ump`.
+No messages, stack traces, ad unit/app/device IDs, account details, consent strings,
+response IDs or raw SDK payloads are included. Unknown/malformed or older bridge
+responses degrade to `unknown`; unknown numeric SDK codes are preserved.
+
+Stages: `configuration`, `consent_update`, `consent_load`, `consent_present`,
+`privacy_present`, `sdk_initialize`, `ad_load`, `ad_present`, `lifecycle`, `unknown`.
+Typical codes: `no_fill`, `network`, `timeout`, `sdk_error`, `consent_unavailable`,
+`invalid_unit`, `policy_rejected`, `no_presenter`, `presentation_rejected`, `busy`,
+`inactive`, `disposed`, `invalid_action`, `bridge_error`, `unknown`.
+A recoverable consent-update error followed by successful fallback is not a failed
+operation and does not invoke `onFailure`. Cancellation without earning a reward
+is also not an SDK failure.
+
+For `ad_load`, normalize no-fill/network only when the SDK domain matches Google:
+iOS no-fill is 1, network is 2, timeout is 5; Android uses the SDK constants (no-fill
+3, network 2). Codes in other domains or presentation phases remain `sdk_error`;
+do not interpret a bare numeric code across SDKs. Native deadlines report `timeout`
+with the current stage and no fabricated SDK code. SDK initialization and ad load
+share the existing 45-second deadline. Consent update and form load each have a
+20-second deadline; no deadline runs while a form/ad is presented.
+
+`no_fill` alone does not prove an account or app-readiness restriction. Diagnose the
+SDK domain/code alongside the AdMob console and connectivity. References:
+[iOS error codes](https://developers.google.com/admob/ios/api/reference/Enums/GADErrorCode),
+[Android load errors](https://developers.google.com/admob/android/ad-load-errors).
+Upgrade the TS adapter and both native bridges together and rebuild the app;
+installing an npm dependency alone cannot update an existing TestFlight binary.

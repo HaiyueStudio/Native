@@ -42,10 +42,33 @@ public final class HYRewardedAds {
     private Events events;
     private RewardedAd ad;
     private boolean busy, disposed, loading;
-    private int generation;
+    private int generation, deadlineGeneration;
     public boolean privacyRequired(android.content.Context context) {
         consent = UserMessagingPlatform.getConsentInformation(context);
         return consent != null && consent.getPrivacyOptionsRequirementStatus() == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED;
+    }
+    private String stage = "configuration";
+    private static String failureEvent(String stage, String code, String phase, String domain, Integer sdkCode, AdError cause) {
+        try {
+            JSONObject value = new JSONObject().put("stage", stage).put("code", code);
+            if (domain != null) value.put("sdk", new JSONObject().put("domain", domain).put("code", sdkCode));
+            if (cause != null) value.put("underlying", new JSONObject().put("domain", cause.getDomain()).put("code", cause.getCode()));
+            return "error:" + phase + ":" + value.toString();
+        } catch (org.json.JSONException e) { return "error:" + phase; }
+    }
+    private static String localFailure(String stage, String code) { return failureEvent(stage, code, "unavailable", null, null, null); }
+    private void fail(String code) { end(localFailure(stage, code)); }
+    private void fail(FormError error) {
+        // UMP exposes a code, but no domain accessor; use a documented provider namespace.
+        end(failureEvent(stage, "sdk_error", "unavailable", "com.google.android.ump", error.getErrorCode(), null));
+    }
+    private void fail(AdError error) {
+        String code = "sdk_error", phase = "unavailable";
+        if (stage.equals("ad_load") && error.getDomain().equals(MobileAds.ERROR_DOMAIN)) {
+            if (error.getCode() == AdRequest.ERROR_CODE_NO_FILL) code = "no_fill";
+            if (error.getCode() == AdRequest.ERROR_CODE_NETWORK_ERROR) { code = "network"; phase = "offline"; }
+        }
+        end(failureEvent(stage, code, phase, error.getDomain(), error.getCode(), error.getCause()));
     }
     private Runnable pendingPresentation;
     private boolean active(int token) { return !disposed && busy && token == generation; }
@@ -57,13 +80,16 @@ public final class HYRewardedAds {
     }
     private void deadline(int token, long milliseconds) {
         loading = true;
-        handler.postDelayed(() -> { if (loading && token == generation) end("error:unavailable"); }, milliseconds);
+        final int deadlineToken = ++deadlineGeneration;
+        handler.postDelayed(() -> { if (loading && token == generation && deadlineToken == deadlineGeneration) fail("timeout"); }, milliseconds);
     }
     private void preparePresentation(Activity activity, int token, Runnable show) {
-        if (!active(token) || activity.isFinishing() || activity.isDestroyed()) { end("error:unavailable"); return; }
+        if (!active(token)) return;
+        if (activity.isFinishing() || activity.isDestroyed()) { fail("inactive"); return; }
         loading = false;
         pendingPresentation = () -> {
-            if (!active(token) || activity.isFinishing() || activity.isDestroyed()) { end("error:unavailable"); return; }
+            if (!active(token)) return;
+            if (activity.isFinishing() || activity.isDestroyed()) { fail("inactive"); return; }
             show.run();
         };
         emit("presenting");
@@ -72,38 +98,48 @@ public final class HYRewardedAds {
         handler.post(() -> {
             Runnable show = pendingPresentation; pendingPresentation = null;
             if (show == null) return;
-            if (!ready || disposed) { end("error:unavailable"); return; }
+            if (!ready || disposed) { fail(disposed ? "disposed" : "presentation_rejected"); return; }
             show.run();
         });
     }
     public void perform(Activity activity, String action, String unit, Events callback) {
         activity.runOnUiThread(() -> {
-            if (!configured || disposed || busy || activity.isFinishing() || activity.isDestroyed()) { callback.onEvent("error:unavailable"); return; }
+            if (!configured || disposed || busy || activity.isFinishing() || activity.isDestroyed()) {
+                callback.onEvent(localFailure(!configured ? "configuration" : "lifecycle",
+                    !configured ? "policy_rejected" : disposed ? "disposed" : busy ? "busy" : "inactive")); return;
+            }
+            if (!action.equals("show") && !action.equals("privacy")) { callback.onEvent(localFailure("configuration", "invalid_action")); return; }
             busy = true; events = callback; final int token = ++generation;
             consent = UserMessagingPlatform.getConsentInformation(activity);
+            stage = "consent_update";
             deadline(token, 20000);
             consent.requestConsentInfoUpdate(activity, new ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(underAgeOfConsent).build(), () -> {
                 if (!active(token)) return;
                 if (action.equals("privacy")) {
                     if (!privacyRequired(activity)) { end("closed"); return; }
+                    stage = "privacy_present";
                     preparePresentation(activity, token, () -> UserMessagingPlatform.showPrivacyOptionsForm(activity,
-                        error -> { if (token == generation) end(error == null ? "closed" : "error:unavailable"); }));
+                        error -> { if (token == generation) { if (error == null) end("closed"); else fail(error); } }));
                 } else if (consent.getConsentStatus() == ConsentInformation.ConsentStatus.REQUIRED) {
+                    stage = "consent_load";
+                    deadline(token, 20000);
                     UserMessagingPlatform.loadConsentForm(activity, form -> {
                         if (!active(token)) return;
+                        stage = "consent_present";
                         preparePresentation(activity, token, () -> form.show(activity, error -> {
                             if (token != generation) return;
                             emit("presentation-closed");
-                            if (error != null || disposed || !consent.canRequestAds()) { end("error:unavailable"); return; }
+                            if (error != null) { fail(error); return; }
+                            if (disposed || !consent.canRequestAds()) { fail(disposed ? "disposed" : "consent_unavailable"); return; }
                             initialize(activity, unit, token);
                         }));
-                    }, error -> { if (active(token)) end("error:unavailable"); });
+                    }, error -> { if (active(token)) fail(error); });
                 } else if (consent.canRequestAds()) initialize(activity, unit, token);
-                else end("error:unavailable");
+                else fail("consent_unavailable");
             }, error -> {
                 if (!active(token)) return;
                 if (!action.equals("privacy") && consent.canRequestAds()) initialize(activity, unit, token);
-                else end("error:unavailable");
+                else fail(error);
             });
         });
     }
@@ -112,21 +148,24 @@ public final class HYRewardedAds {
         // New phase invalidates the consent deadline without invalidating callbacks.
         loading = false;
         final int adToken = ++generation;
+        stage = "sdk_initialize";
         deadline(adToken, 45000);
         MobileAds.initialize(activity.getApplicationContext(), status -> handler.post(() -> {
             if (!active(adToken)) return;
             Bundle extras = new Bundle(); extras.putString("npa", "1");
             AdRequest request = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras).build();
+            stage = "ad_load";
             RewardedAd.load(activity, unit, request, new RewardedAdLoadCallback() {
                 @Override public void onAdFailedToLoad(LoadAdError error) {
-                    if (active(adToken)) end(error.getCode() == AdRequest.ERROR_CODE_NETWORK_ERROR ? "error:offline" : "error:unavailable");
+                    if (active(adToken)) fail(error);
                 }
                 @Override public void onAdLoaded(RewardedAd loaded) {
                     if (!active(adToken)) return;
+                    stage = "ad_present";
                     ad = loaded;
                     ad.setFullScreenContentCallback(new FullScreenContentCallback() {
                         @Override public void onAdDismissedFullScreenContent() { if (adToken == generation) end("closed"); }
-                        @Override public void onAdFailedToShowFullScreenContent(AdError error) { if (adToken == generation) end("error:unavailable"); }
+                        @Override public void onAdFailedToShowFullScreenContent(AdError error) { if (adToken == generation) fail(error); }
                     });
                     preparePresentation(activity, adToken, () -> ad.show(activity, reward -> { if (adToken == generation) emit("earned"); }));
                 }
@@ -136,6 +175,6 @@ public final class HYRewardedAds {
     public void dispose() {
         disposed = true;
         // Keep earned/dismiss callbacks alive if an ad is already on screen.
-        if (loading || pendingPresentation != null) end("error:unavailable");
+        if (loading || pendingPresentation != null) { stage = "lifecycle"; fail("disposed"); }
     }
 }
