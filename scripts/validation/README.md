@@ -11,3 +11,9 @@ This disposable host lives under ignored `artifacts/native-validation`, uses ID 
 7. Collect `Documents/native-validation.jsonl` (iOS appDataContainer via devicectl, Android `run-as` files). Logs capture test payloads; use synthetic data only. Restore the normal game to the foreground after tests.
 
 Record actual devices, package hashes and each outcome under release evidence. Node mocks only validate lifecycle control flow; they cannot prove camera access, native metadata binding, or SDK presentation.
+
+## System share acceptance
+
+The host also includes Share text / Share image using synthetic content and example.com. Android preparation installs a dedicated cache-only FileProvider. Open and cancel each sheet, reopen immediately, rotate, and test background/return. On iPad confirm the popover is anchored. To verify a receiving app, manually choose an intended destination and inspect the image and text; do not treat presentation or chooser return as publication. No photos permission should appear. Android returns presented even after cancellation because chooser results cannot establish delivery.
+
+For Web, run `node scripts/validation/prepare-share-web.mjs` and serve `artifacts/share-web` over localhost or HTTPS. Check capability reporting, text/image sharing on a supported browser, cancellation, and the explicit image-download fallback. Browser and mocked tests cannot prove Native UI acceptance.

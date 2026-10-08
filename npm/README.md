@@ -16,7 +16,7 @@ npm install @haiyue/native@0.1.2
 
 配套版本：`@haiyue/engine@0.1.0`、`@nativescript/core@9.1.1`、`@nativescript/canvas@2.1.18`，通过 peer dependencies 使用应用自己的依赖，不复制引擎或平台二进制到本包。
 
-这是 NativeScript 专用 TypeScript 包，交给 NativeScript Webpack 编译；保留 `.ios.ts` / `.android.ts`，由平台解析器选择实现，并处理 `@NativeClass`。已验证 `@nativescript/webpack@5.0.38` / TypeScript 5.7.3。宿主 tsconfig 使用 `experimentalDecorators: true`、`emitDecoratorMetadata: true`，并包含 `@nativescript/types` 和 `@webgpu/types`；这些类型工具由宿主开发依赖提供。本包不能直接在浏览器或普通 Node.js 中执行。
+这是 NativeScript 专用 TypeScript 包，交给 NativeScript Webpack 编译；保留 `.ios.ts` / `.android.ts`，由平台解析器选择实现，并处理 `@NativeClass`。已验证 `@nativescript/webpack@5.0.38` / TypeScript 5.7.3。宿主 tsconfig 使用 `experimentalDecorators: true`、`emitDecoratorMetadata: true`，并包含 `@nativescript/types` 和 `@webgpu/types`；这些类型工具由宿主开发依赖提供。根入口不能直接在浏览器或普通 Node.js 中执行。系统分享的独立 `@haiyue/native/share`（Web 默认）和 `@haiyue/native/share/web` 入口可经 Web 构建器编译使用，不加载原生依赖。
 
 ```ts
 import { NativeDeviceMotion, NativeHaptics } from '@haiyue/native';
@@ -45,6 +45,8 @@ iOS 使用陀螺仪时配置 `NSMotionUsageDescription`；Android 震动声明 `
 | `@haiyue/native/audio` | NativePcmAudioBank |
 | `@haiyue/native/orientation` | NativeOrientationController |
 | `@haiyue/native/media` | savePhoto |
+| `@haiyue/native/share` | shareContent、canShareContent（iOS / Android / Web 系统分享，源码新增未发布） |
+| `@haiyue/native/share/web` | 显式浏览器分享入口，无 NativeScript 依赖 |
 | `@haiyue/native/branding` | NativeEngineLaunchPage |
 | `@haiyue/native/scanner` | 可取消的离线 QR 扫描（相机权限按需申请） |
 | `@haiyue/native/rewards` | 可选的 RewardController |
@@ -70,3 +72,5 @@ Version 0.1.1 adds `@haiyue/native/purchases`, `@haiyue/native/purchases/native`
 Version 0.1.2 adds `rewardAmount` (default 1) to rewarded allowances and `PurchaseCatalog` to `@haiyue/native/purchases`. The catalog combines verified base, advanced, full and prerequisite-gated upgrade products. Prices remain separate store-configured products; there is no automatic store discount or cross-platform purchase sharing. Existing wallet balances are unchanged. See the integration guide for examples and restore/refund semantics.
 
 Version 0.1.3 adds `@haiyue/native/scanner` (iOS AVFoundation / Android ZXing Embedded) and sanitized structured rewarded-ad failure diagnostics. Hosts must configure camera permissions and the Android scanner dependency; see [QR scanning](bridge/scanner/README.md). See [reward diagnostics](bridge/rewards/README.md) for `onFailure` and `snapshot().lastFailure`. Existing error messages and wallet formats remain compatible. Release readiness and device coverage are recorded in the repository release evidence.
+
+系统分享接入与 Android provider 配置见 [系统分享](bridge/share/README.md)。当前源码新增，使用私有开发包验证；不表示已包含在此前发布版本中。

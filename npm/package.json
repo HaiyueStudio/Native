@@ -42,7 +42,12 @@
     "./scanner": {
       "types": "./bridge/scanner/scan-code.ts",
       "default": "./bridge/scanner/scan-code"
-    }
+    },
+    "./share": {
+      "types": "./bridge/share/share-content.ts",
+      "default": "./bridge/share/share-content"
+    },
+    "./share/web": "./bridge/share/share-content.web.ts"
   },
   "files": [
     "index.ts",
@@ -55,7 +60,9 @@
     "LICENSE",
     "bridge/purchases/native/",
     "bridge/monetization/*.cjs",
-    "bridge/**/*.md"
+    "bridge/**/*.md",
+    "bridge/share/android/*.xml",
+    "bridge/share/android/*.java"
   ],
   "repository": {
     "type": "git",

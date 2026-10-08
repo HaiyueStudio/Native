@@ -26,6 +26,7 @@ test('package contains only native capabilities and verified bridge inputs', t =
   for (const { path: file } of packed.files) {
     assert.ok(['index.ts', 'package.json', 'provenance.json', 'README.md', 'LICENSE'].includes(file)
       || /^bridge\/.+\.(ts|cjs|java|swift|md)$/.test(file)
+      || file === 'bridge/share/android/haiyue_share_paths.xml'
       || file === 'bridge/branding/assets/haiyue-moon.png', file);
     assert.doesNotMatch(file, /(?:examples|games|node_modules|vendor|evidence|dist|bin)\/|master\.png|\.tgz$/);
   }
@@ -59,7 +60,7 @@ for (const platform of ['ios', 'android']) test(`NativeScript ${platform} resolv
     assert.ok(build.androidGradle.includes(path.join(nativeRoot, 'android')));
     assert.ok(existsSync(path.join(nativeRoot, 'android', java)));
   }
-  writeFileSync(entry, `import * as native from '@haiyue/native';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nimport { scanCode, cancelScan } from '@haiyue/native/scanner';\nimport { createPurchases } from '@haiyue/native/purchases/native';\nimport { PurchaseController, PurchaseCatalog } from '@haiyue/native/purchases';\nimport { createRewards } from '@haiyue/native/rewards/native';\nglobalThis.nativeSmoke = { native, NativeDeviceMotion, NativeHaptics, audio, orientation, media, scanCode, cancelScan, createPurchases, PurchaseController, PurchaseCatalog, createRewards };`);
+  writeFileSync(entry, `import * as native from '@haiyue/native';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nimport { scanCode, cancelScan } from '@haiyue/native/scanner';\nimport { shareContent, canShareContent } from '@haiyue/native/share';\nimport { createPurchases } from '@haiyue/native/purchases/native';\nimport { PurchaseController, PurchaseCatalog } from '@haiyue/native/purchases';\nimport { createRewards } from '@haiyue/native/rewards/native';\nglobalThis.nativeSmoke = { native, NativeDeviceMotion, NativeHaptics, audio, orientation, media, scanCode, cancelScan, shareContent, canShareContent, createPurchases, PurchaseController, PurchaseCatalog, createRewards };`);
   const compiler = webpack({
     mode: 'development', context: temp, entry, devtool: false,
     output: { path: temp, filename: 'bundle.js' },
@@ -89,9 +90,38 @@ for (const platform of ['ios', 'android']) test(`NativeScript ${platform} resolv
   }));
   assert.equal(stats.hasErrors(), false, stats.toString({ all: false, errors: true }));
   const modules = stats.toJson({ all: false, modules: true }).modules.map(m => m.name).join('\n');
-  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'input/native-touch', 'audio/pcm-bank', 'render/view-rect', 'purchases/store', 'scanner/scan-code']) {
+  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'input/native-touch', 'audio/pcm-bank', 'render/view-rect', 'purchases/store', 'scanner/scan-code', 'share/share-content']) {
     assert.ok(modules.includes(`${unit}.${platform}.ts`), `${unit}: ${modules}`);
     assert.ok(!modules.includes(`${unit}.${platform === 'ios' ? 'android' : 'ios'}.ts`), `${unit}: wrong platform`);
   }
   if (platform === 'ios') assert.doesNotMatch(readFileSync(path.join(temp, 'bundle.js'), 'utf8'), /NativeClass\(\)/);
+});
+
+test('Web share public entries compile without NativeScript, Engine or platform globals', async t => {
+  const temp = mkdtempSync(path.join(tmpdir(), 'native-web-share-'));
+  t.after(() => rmSync(temp, { recursive: true, force: true }));
+  mkdirSync(path.join(temp, 'node_modules/@haiyue'), { recursive: true });
+  symlinkSync(packageRoot, path.join(temp, 'node_modules/@haiyue/native'), 'dir');
+  const entry = path.join(temp, 'entry.ts');
+  writeFileSync(entry, `import { shareContent, type ShareContent } from '@haiyue/native/share';
+import { canShareContent } from '@haiyue/native/share/web';
+const value: ShareContent = {text:'Demo score'};
+export const supported = canShareContent(value);
+export const onClick = () => shareContent(value);`);
+  const config = path.join(temp, 'tsconfig.json');
+  writeFileSync(config, JSON.stringify({ compilerOptions: {
+    strict: true, target: 'ES2020', module: 'esnext', moduleResolution: 'bundler', lib: ['ES2022','DOM'], types: [], noEmit: true,
+  }, include: [entry] }));
+  execFileSync(process.execPath, [path.join(root, 'node_modules/typescript/bin/tsc'), '-p', config], {stdio:'pipe'});
+  const compiler = webpack({ mode:'development', target:'web', context:temp, entry, devtool:false,
+    output:{path:temp,filename:'bundle.js'}, resolve:{extensions:['.ts','.js'],fullySpecified:false},
+    module:{rules:[{test:/\.ts$/,use:[{loader:require.resolve('ts-loader'),options:{
+      configFile:config,transpileOnly:true,allowTsInNodeModules:true,compilerOptions:{noEmit:false},
+    }}]}]},
+  });
+  const stats = await new Promise((resolve,reject) => compiler.run((error,stats) => compiler.close(closeError => error||closeError ? reject(error||closeError) : resolve(stats))));
+  assert.equal(stats.hasErrors(),false,stats.toString({all:false,errors:true}));
+  const modules=stats.toJson({all:false,modules:true}).modules.map(m=>m.name).join('\n');
+  assert.match(modules,/share-content.web.ts/);
+  assert.doesNotMatch(modules,/@nativescript|share-content\.(ios|android)\.ts|@haiyue\/engine/);
 });

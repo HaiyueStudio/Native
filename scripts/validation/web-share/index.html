@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Haiyue 系统分享验收</title>
+<style>body{font:16px system-ui;background:#111a2b;color:#eaf1ff;max-width:680px;margin:40px auto;padding:0 20px}canvas{width:100%;border-radius:16px}button{padding:12px 16px;margin:8px 8px 0 0;border:0;border-radius:8px;background:#c0e4ff;color:#142032}button:disabled{opacity:.4}pre{white-space:pre-wrap;overflow-wrap:anywhere}p{line-height:1.6}</style>
+<h1>分享你的最佳战绩</h1><p>系统分享只会在点击后打开。示例使用虚构战绩与 example.com 链接。</p>
+<canvas id="card" width="1200" height="630" aria-label="专家数独，6分32秒，零提示，演示战绩"></canvas>
+<div><button id="text">分享文字与链接</button><button id="image" disabled>分享战绩图片</button><button id="download" disabled>下载图片</button></div>
+<p id="capability">正在准备图片…</p><pre id="result" aria-live="polite"></pre>
+<script type="module">
+import {canShareContent,shareContent} from './share-content.js';
+const canvas=document.querySelector('#card'),ctx=canvas.getContext('2d');
+ctx.fillStyle='#1b3150';ctx.fillRect(0,0,1200,630);ctx.fillStyle='#b6e5ff';ctx.font='38px system-ui';ctx.fillText('HAIYUE · DAILY CHALLENGE',70,100);
+ctx.fillStyle='white';ctx.font='bold 82px system-ui';ctx.fillText('专家数独',70,230);ctx.font='bold 120px system-ui';ctx.fillText('06:32',70,395);
+ctx.fillStyle='#c4d5e6';ctx.font='34px system-ui';ctx.fillText('零提示 · 最佳纪录 · 演示数据',70,490);ctx.font='25px system-ui';ctx.fillText('example.com/challenge',70,560);
+const text={title:'我的数独战绩',text:'专家数独 06:32，零提示。来挑战同一道题！',url:'https://example.com/challenge'};
+const result=document.querySelector('#result');
+let image,blob;
+async function share(value){result.textContent='等待系统分享面板返回…';try{result.textContent=JSON.stringify(await shareContent(value));}catch(error){result.textContent=JSON.stringify({code:error.code,message:error.message});}}
+document.querySelector('#text').onclick=()=>share(text);
+document.querySelector('#image').onclick=()=>share({...text,image});
+document.querySelector('#download').onclick=()=>{const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='sudoku-result.png';a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);};
+// Prepare outside the tap handler so encoding does not consume user activation.
+blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+image={bytes:new Uint8Array(await blob.arrayBuffer()),mimeType:'image/png',filename:'sudoku-result.png'};
+document.querySelector('#image').disabled=false;document.querySelector('#download').disabled=false;
+document.querySelector('#capability').textContent=JSON.stringify({text:canShareContent(text),image:canShareContent({image})})+'；不支持系统分享时可手动下载图片。';
+</script></html>

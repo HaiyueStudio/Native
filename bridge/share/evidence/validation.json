@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-08",
+  "scope": "Source implementation; no release freeze, npm publish or game migration",
+  "tests": {
+    "nativeRepository": {
+      "passed": 93,
+      "failed": 0
+    },
+    "focusedShare": {
+      "passed": 9,
+      "failed": 0
+    },
+    "package": {
+      "passed": 4,
+      "failed": 0,
+      "checks": [
+        "pack file allowlist and hashes",
+        "iOS platform resolution",
+        "Android platform resolution",
+        "isolated Web types and bundle without NativeScript or Engine"
+      ]
+    },
+    "stagedPackageTypecheck": "passed"
+  },
+  "browser": {
+    "surface": "Codex in-app browser",
+    "url": "http://127.0.0.1:8163/",
+    "capabilities": {
+      "text": true,
+      "image": true
+    },
+    "observed": [
+      "Generated PNG score card rendered",
+      "Real click invoked text and image share",
+      "One cancelled result was observed across the text/image interactions",
+      "Fresh image invocation remained pending; system sheet was outside the browser snapshot",
+      "No console warnings/errors observed"
+    ],
+    "notProven": [
+      "Native iOS/Android system sheet presentation",
+      "Delivery to an external receiving app",
+      "Image download: browser download event timed out"
+    ],
+    "preview": "artifacts/share-web-preview.jpg"
+  },
+  "nativeDeviceAcceptance": "not run",
+  "sourceSha256": {
+    "bridge/share/share-content.android.ts": "cd8e48a659ecd98bb98c23222320c66d0d2943fc81ced493757c1af54f1ad69a",
+    "bridge/share/README.md": "18c16a36742c040358f8b10de270e30e63438fe40de06723bc418c82d479cf77",
+    "bridge/share/share-content.ios.ts": "78c4ef94ff44076c99bbdad23a2fb6af1c4df19bb7ac7f6dfb5feed39e12b562",
+    "bridge/share/types.ts": "bc5ae29ecf077aca88b29dbae0102df82b7f01033eca7fc945815233db8c680b",
+    "bridge/share/share-content.web.ts": "8b97907c769e99dcea880b0031244c8e6c9b03c8907a617dba76ea45935b788c",
+    "bridge/share/share-content.ts": "a59087862fad4956a851c0c3e4b498c065a7568beee4be3c92acb6c3c59026ad",
+    "bridge/share/android/HaiyueShareProvider.java": "1df71c5a0a55f968e8670bbfef2ddba7934618ce5c85593a24cbd26ad088fbcd",
+    "bridge/share/android/haiyue_share_paths.xml": "26ddb63bb6504e610fc29a2c13cdd72548bf4dec9536d74bc30db86c14bb1944"
+  }
+}

@@ -6,6 +6,7 @@
 
 | 模块 | 负责 | 接入位置 |
 | --- | --- | --- |
+| [`share/`](./share/README.md) | 文字、链接、PNG/JPEG 的 iOS / Android / Web 系统分享 | `@haiyue/native/share`，图片 Android provider 按说明配置 |
 | [`branding/`](./branding/README.md) | Haiyue 通用启动页、横竖屏品牌布局、首帧淡出与初始化错误显示 | `NativeEngineLaunchPage` 或已有页面中的 `NativeEngineSplash` |
 | `render/` | Canvas GPU provider、surface、尺寸、格式检查、每帧呈现与错误诊断 | 通过 `HaiyueEngineOptions.gpu` 和对象 canvas 注入 |
 | `input/` | 原生触点身份、单指过滤、逻辑坐标、捕获和取消 | 驱动现有 `OrbitControl`，不重写球面旋转算法 |

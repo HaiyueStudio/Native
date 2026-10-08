@@ -15,3 +15,4 @@ export { NativeEngineLaunchPage } from './bridge/branding/launch-page';
 export { NativeEngineSplash, type NativeEngineSplashOptions } from './bridge/branding/engine-splash';
 export { NativeDemandFrames } from './bridge/lifecycle/demand-frames';
 export { PresentationPause } from './bridge/lifecycle/presentation-pause';
+export { shareContent, canShareContent, ShareError, type ShareContent, type ShareImage, type ShareResult, type ShareErrorCode } from './bridge/share/share-content';
