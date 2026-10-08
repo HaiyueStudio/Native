@@ -1,0 +1,281 @@
+{
+  "date": "2026-10-08",
+  "scope": "Independent org.haiyue.nativevalidation acceptance app; no game replacement, publication, or external sharing",
+  "platforms": {
+    "ios": {
+      "model": "iPhone 15 Plus",
+      "os": "iOS 27.2 beta (24B5089g)",
+      "installed": true,
+      "contentGeneration": "passed",
+      "locales": [
+        "zh-CN",
+        "en"
+      ],
+      "layouts": [
+        "1200x630",
+        "900x1200"
+      ],
+      "lastCards": [
+        {
+          "locale": "zh-CN",
+          "portrait": false,
+          "width": 1200,
+          "height": 630,
+          "bytes": 175901,
+          "sourceBrightPixels": 5384,
+          "fingerprint": "afeda309",
+          "title": "专家数独 · 最佳纪录",
+          "text": "我用 06:32 完成专家数独，零提示！来挑战同一道题。",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "zh-CN",
+          "portrait": true,
+          "width": 900,
+          "height": 1200,
+          "bytes": 133893,
+          "sourceBrightPixels": 5384,
+          "fingerprint": "6d2244f1",
+          "title": "专家数独 · 最佳纪录",
+          "text": "我用 06:32 完成专家数独，零提示！来挑战同一道题。",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "en",
+          "portrait": false,
+          "width": 1200,
+          "height": 630,
+          "bytes": 173879,
+          "sourceBrightPixels": 5384,
+          "fingerprint": "8eb6cac3",
+          "title": "Expert Sudoku · Personal Best",
+          "text": "Expert Sudoku in 06:32, without hints! Try the same puzzle.",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "en",
+          "portrait": true,
+          "width": 900,
+          "height": 1200,
+          "bytes": 131235,
+          "sourceBrightPixels": 5384,
+          "fingerprint": "1966b7a8",
+          "title": "Expert Sudoku · Personal Best",
+          "text": "Expert Sudoku in 06:32, without hints! Try the same puzzle.",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "zh-CN",
+          "portrait": false,
+          "width": 1200,
+          "height": 630,
+          "bytes": 175901,
+          "sourceBrightPixels": 5384,
+          "fingerprint": "afeda309",
+          "title": "专家数独 · 最佳纪录",
+          "text": "我用 06:32 完成专家数独，零提示！来挑战同一道题。",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        }
+      ],
+      "pngSha256": {
+        "result-zh-CN-landscape.png": "a0827c328a4fbb90bd577c485c0ae6e47af53cdaf134177f8afef98a89a559d4",
+        "result-en-portrait.png": "4f6d43c38a521e8745d419eb067b9de890c31fd49d84313a3e4673b0be9434b2",
+        "result-zh-CN-portrait.png": "0ea1251030c5b32f15d13be6163bcb57f5ab11865785b959ee70463c4601c1cb",
+        "result-en-landscape.png": "56af8997174d8c698dd0df8a425b506bf3971d052c35ab4c96d9b36c6ed02cef"
+      },
+      "evidence": "device-content-2026-10-08/ios/share-content-validation.jsonl",
+      "systemShare": "passed: image and text cancellation/immediate same-type reopening; landscape; background/foreground; cancellation after resume and fresh four-variant generation",
+      "externalRecipientDelivery": "not tested",
+      "automation": "XCTest passed: Acceptance/testShareContent, 1 test, 0 failures, 46.413 seconds",
+      "windowCaptureLimitation": "UIKit app-window capture shows sheet shell but omits remote system extension content",
+      "installedBundleSha256": "f5ef5e8d77df56e8a28f38d1964db1f2d51df99777672ad8038c5fecb217cda0",
+      "ipaSha256": "eb7e892f99e3607f8feed509ae1f1c496764dac52269aa4c2088a64e056cd9d6",
+      "pending": [],
+      "cancelledResults": 5,
+      "verifiedRuns": 2,
+      "testLog": "device-content-2026-10-08/ios/xctest.log",
+      "screenshots": {
+        "image-share-reopened": "be214a74af62d4661cf6334af6aca576c115cadd122e46daccd965fa8d950e36",
+        "text-share-reopened": "5ff01a34b7135be7365c1347e875bb52ef7effefcdc9998fbae4e5a308a158ac",
+        "share-landscape": "c57a1d5e04be596266c9a35634f0432542b71f49d766105f04edd7f978118394",
+        "share-resumed": "c57a1d5e04be596266c9a35634f0432542b71f49d766105f04edd7f978118394",
+        "verified-after-resume": "8f1ef06a19936a6cf5e4db44d2363ceab2a254b44042efc73a4ba9b21db76c0b"
+      },
+      "automationHistory": "Earlier runs could not establish the XCTest session; USB reconnection restored automation. Test selectors were adapted to actual portrait/landscape share-sheet dismissal controls."
+    },
+    "android": {
+      "model": "X4000",
+      "os": "Android 14",
+      "installed": true,
+      "contentGeneration": "passed",
+      "locales": [
+        "zh-CN",
+        "en"
+      ],
+      "layouts": [
+        "1200x630",
+        "900x1200"
+      ],
+      "lastCards": [
+        {
+          "locale": "zh-CN",
+          "portrait": false,
+          "width": 1200,
+          "height": 630,
+          "bytes": 179646,
+          "sourceBrightPixels": 7949,
+          "fingerprint": "1f98f313",
+          "title": "专家数独 · 最佳纪录",
+          "text": "我用 06:32 完成专家数独，零提示！来挑战同一道题。",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "zh-CN",
+          "portrait": true,
+          "width": 900,
+          "height": 1200,
+          "bytes": 136742,
+          "sourceBrightPixels": 7949,
+          "fingerprint": "3e790584",
+          "title": "专家数独 · 最佳纪录",
+          "text": "我用 06:32 完成专家数独，零提示！来挑战同一道题。",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "en",
+          "portrait": false,
+          "width": 1200,
+          "height": 630,
+          "bytes": 180255,
+          "sourceBrightPixels": 7949,
+          "fingerprint": "1e2b461a",
+          "title": "Expert Sudoku · Personal Best",
+          "text": "Expert Sudoku in 06:32, without hints! Try the same puzzle.",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "en",
+          "portrait": true,
+          "width": 900,
+          "height": 1200,
+          "bytes": 135313,
+          "sourceBrightPixels": 7949,
+          "fingerprint": "93468390",
+          "title": "Expert Sudoku · Personal Best",
+          "text": "Expert Sudoku in 06:32, without hints! Try the same puzzle.",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        },
+        {
+          "locale": "zh-CN",
+          "portrait": false,
+          "width": 1200,
+          "height": 630,
+          "bytes": 179646,
+          "sourceBrightPixels": 7949,
+          "fingerprint": "1f98f313",
+          "title": "专家数独 · 最佳纪录",
+          "text": "我用 06:32 完成专家数独，零提示！来挑战同一道题。",
+          "challenge": {
+            "gameId": "sudoku-demo",
+            "rulesVersion": "v3",
+            "mode": "expert",
+            "seed": "104729"
+          },
+          "canShare": true
+        }
+      ],
+      "pngSha256": {
+        "result-zh-CN-landscape.png": "fa77ef611ca4576a20efa92db96301f437c4ea7c5e607df57ad0cfaccdbdadfa",
+        "result-en-portrait.png": "f8a7ef84301f41f83e5b77c29416db8efbd3e48e727e45493c8e094772fc9d8f",
+        "result-zh-CN-portrait.png": "5d342ba1467346d574a079895ea1cef90ba01d1570f3e71618ad9540c2274ec8",
+        "result-en-landscape.png": "188dd99e5ddd4744efc1d5be805277667ef132efed4c24fc74b6f6b0badfda82"
+      },
+      "evidence": "device-content-2026-10-08/android/share-content-validation.jsonl",
+      "systemShare": "passed: image/text chooser, cancel/back, immediate reopen, landscape, background return and fresh generation",
+      "externalRecipientDelivery": "not tested",
+      "instrumentationResult": "Share content device acceptance passed",
+      "apkSha256": "493c470218c3b4757ed3c0b4be34d0a88756852cf02c6b762bb473aac0df4f72"
+    }
+  },
+  "fixes": [
+    "Native host Intl.getCanonicalLocales polyfill (pinned 3.2.12, host only)",
+    "Native AbortController reason/throwIfAborted compatibility",
+    "Engine plain-text card wrap supports no Intl global",
+    "Embedded Canvas fills a fixed parent to avoid Android ScaleDown resize feedback"
+  ],
+  "checks": {
+    "engineTests": 1457,
+    "shareContentTests": 13,
+    "nativeTests": 95,
+    "engineTypecheck": "passed",
+    "nativeHostTypecheck": "passed",
+    "engineBuild": "99 fresh targets",
+    "androidAppAndInstrumentationBuild": "passed",
+    "iosSignedInstall": "passed",
+    "nativePackageTypecheck": "passed with Engine 0.2.1",
+    "nativePackageTests": 4,
+    "cleanNpmInstall": "passed with pinned local Engine 0.2.1 candidate"
+  },
+  "sourceSha256": {
+    "bridge/lifecycle/abort-runtime.ts": "bb04833887d2c7a204dded4312fd00d03d5a1deac4f0d52cbb8f1001f07cb598",
+    "bridge/lifecycle/runtime.ts": "ec9756e3399d3a481dacdbc0052ae174b2bcdcf13f09c1b72208a52431034392",
+    "scripts/validation/share-mobile/app.ts": "f6b2e2d632707c519bc4dbd9a64d3172dc238b55bbbf4b107af791cefe395a60",
+    "scripts/validation/share-mobile/ShareAcceptance.java": "e632a2681862ef203afdccba1a480dcfe90481cab8bec7a460ff15834774a547",
+    "scripts/validation/share-mobile/Acceptance.swift": "c8193ae47357375ace3c1963044882f3560c0753661138f4e94435a7f549124a"
+  },
+  "engineShareContentSha256": "2d69bc0447d3225fc37da2bec53a995fd279e44820fb97cd100343b403c84dee"
+}

@@ -3,3 +3,6 @@ bridge/
 provenance.json
 *.tgz
 node_modules/
+
+# Pinned local Engine candidate for reproducible development until npm 0.2.1 exists.
+!vendor/haiyue-engine-0.2.1.tgz

@@ -1,6 +1,6 @@
 import { requestAnimationFrame, cancelAnimationFrame } from '@nativescript/core/animation-frame';
 import { time } from '@nativescript/core/profiling';
-import { AbortController, AbortSignal } from '@nativescript/core/abortcontroller';
+import { installNativeAbortRuntime } from './abort-runtime';
 import { createFrameScheduler } from './frame-scheduler';
 
 let reportFrameError: (error: unknown) => void = error => console.error(error);
@@ -17,10 +17,7 @@ export function installNativeFrameRuntime(onError: (error: unknown) => void): vo
   reportFrameError = onError;
   // Core 9.1 leaves this to the runtime; the Canvas-compatible iOS 9.0.3
   // runtime needs Core's existing implementation for Scene asset ownership.
-  if (typeof globalThis.AbortController === 'undefined') {
-    Object.defineProperty(globalThis, 'AbortController', { configurable: true, value: AbortController });
-    Object.defineProperty(globalThis, 'AbortSignal', { configurable: true, value: AbortSignal });
-  }
+  installNativeAbortRuntime();
   if (typeof globalThis.performance?.now !== 'function') {
     Object.defineProperty(globalThis, 'performance', { configurable: true, value: { now: clock } });
   }

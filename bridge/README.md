@@ -14,7 +14,7 @@
 | `lifecycle/` | 唯一帧调度器、前后台、重入保护、取消回调、释放 | 驱动 Engine `run/stop/destroy`；通过宿主 RAF/performance globals 接入现有 FrameLoop，无 Engine API 新增 |
 | `files/`、`storage/`、`settings/` | 后续能力，本 Demo 不加载 | 已有 `GameSaveBackend` 是存档边界 |
 
-App 入口只装配上述模块与场景。Bridge 属于 Native 仓库内部 TS 源码，不发布新包，不向 Engine 引入 NativeScript/iOS 依赖。App 只消费 `@haiyue/engine` 公共导出和打包后的 Engine tarball。
+App 入口只装配上述模块与场景。Bridge 通过 `@haiyue/native` 发布，不向 Engine 引入 NativeScript/iOS 依赖。系统能力可通过独立子入口使用，无需 Engine；渲染适配层由 `@haiyue/native/engine` 导出，消费 Engine 公共 API。旧根入口保持兼容，仍需要 Engine。
 
 ## render
 

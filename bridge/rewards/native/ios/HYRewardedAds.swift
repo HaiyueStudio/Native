@@ -1,11 +1,13 @@
 import UIKit
 import GoogleMobileAds
 import UserMessagingPlatform
+import AppTrackingTransparency
 
 @MainActor @objc(HYRewardedAds) public final class HYRewardedAds: NSObject, FullScreenContentDelegate {
     private static var processPolicy: String?
     private var underAgeOfConsent = false
     private var configured = false
+    private var requestsTrackingAuthorization = false
     /// SDK-wide settings are fixed by the first gateway; conflicting instances fail closed.
     @objc public func configurePolicy(_ json: String) -> Bool {
         guard !disposed, events == nil, let data = json.data(using: .utf8),
@@ -16,7 +18,13 @@ import UserMessagingPlatform
         guard let maximum = ratings[rating] else { return false }
         let treatments: [String: AgeRestrictedTreatment] = ["unspecified": .unspecified, "child": .child, "teen": .teen]
         guard let treatment = value["ageTreatment"] as? String, let age = treatments[treatment] else { return false }
-        let key = "\(rating):\(underAge):\(treatment)"
+        let tracking = value["iosTrackingAuthorization"] as? String ?? "none"
+        guard ["none", "system"].contains(tracking) else { return false }
+        if tracking == "system" {
+            guard let usage = Bundle.main.object(forInfoDictionaryKey: "NSUserTrackingUsageDescription") as? String,
+                  !usage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return false }
+        }
+        let key = "\(rating):\(underAge):\(treatment):\(tracking)"
         if let existing = Self.processPolicy, existing != key { return false }
         let config = MobileAds.shared.requestConfiguration
         config.setPublisherFirstPartyIDEnabled(false)
@@ -24,6 +32,7 @@ import UserMessagingPlatform
         config.maxAdContentRating = maximum
         config.ageRestrictedTreatment = age
         underAgeOfConsent = underAge
+        requestsTrackingAuthorization = tracking == "system" && treatment == "unspecified"
         Self.processPolicy = key; configured = true
         return true
     }
@@ -36,6 +45,51 @@ import UserMessagingPlatform
     private var startedAt = ProcessInfo.processInfo.systemUptime
     @objc public var privacyRequired: Bool { ConsentInformation.shared.privacyOptionsRequirementStatus == .required }
     @objc public var consentRequired: Bool { ConsentInformation.shared.consentStatus == .required }
+    @objc public var trackingAuthorizationStatus: String {
+        switch ATTrackingManager.trackingAuthorizationStatus {
+        case .notDetermined: return "notDetermined"
+        case .restricted: return "restricted"
+        case .denied: return "denied"
+        case .authorized: return "authorized"
+        @unknown default: return "unavailable"
+        }
+    }
+    /// A GDPR refusal must not be followed by another request to enable tracking.
+    /// Read the CMP's standard TCF values; never write, log or synthesize consent.
+    private var mayRequestTrackingAuthorization: Bool {
+        guard !underAgeOfConsent else { return false }
+        let info = ConsentInformation.shared
+        if info.consentStatus == .notRequired { return true }
+        guard info.consentStatus == .obtained else { return false }
+        let defaults = UserDefaults.standard
+        return HYTrackingConsent.permitsPrompt(
+            purposes: defaults.string(forKey: "IABTCF_PurposeConsents"),
+            vendors: defaults.string(forKey: "IABTCF_VendorConsents"),
+            legitimatePurposes: defaults.string(forKey: "IABTCF_PurposeLegitimateInterests"),
+            legitimateVendors: defaults.string(forKey: "IABTCF_VendorLegitimateInterests"))
+    }
+    private func requestTrackingAuthorizationIfNeeded(_ token: Int) async -> Bool {
+        guard requestsTrackingAuthorization, mayRequestTrackingAuthorization,
+              ATTrackingManager.trackingAuthorizationStatus == .notDetermined else { return true }
+        stage = "tracking_authorization"
+        guard await preparePresentation(token), active(token) else {
+            if active(token) { fail("presentation_rejected") }; return false
+        }
+        // No deadline while the player is reading Apple's system alert.
+        await ATTrackingManager.requestTrackingAuthorization()
+        guard active(token) else { return false }
+        events?("presentation-closed")
+        // The callback can precede the foreground transition after a system alert.
+        for _ in 0..<30 {
+            if UIApplication.shared.applicationState == .active { break }
+            try? await Task.sleep(nanoseconds: 100_000_000)
+            guard active(token) else { return false }
+        }
+        guard ATTrackingManager.trackingAuthorizationStatus != .notDetermined else {
+            fail("tracking_unresolved"); return false
+        }
+        return true
+    }
     private var development: Bool { Bundle.main.object(forInfoDictionaryKey: "HYBuildConfiguration") as? String == "Debug" }
     private func log(_ text: String) { if development { NSLog("[haiyue-consent] %@", text) } }
     private var simulator: Bool {
@@ -49,7 +103,7 @@ import UserMessagingPlatform
         guard development else { return }
         let info = ConsentInformation.shared
         let elapsed = Int((ProcessInfo.processInfo.systemUptime - startedAt) * 1000)
-        log("\(stage) elapsedMs=\(elapsed) consent=\(info.consentStatus) status=\(info.consentStatus.rawValue) form=\(info.formStatus) formStatus=\(info.formStatus.rawValue) privacyStatus=\(info.privacyOptionsRequirementStatus.rawValue) canRequestAds=\(info.canRequestAds) appState=\(UIApplication.shared.applicationState.rawValue)")
+        log("\(stage) elapsedMs=\(elapsed) consent=\(info.consentStatus) status=\(info.consentStatus.rawValue) form=\(info.formStatus) formStatus=\(info.formStatus.rawValue) privacyStatus=\(info.privacyOptionsRequirementStatus.rawValue) canRequestAds=\(info.canRequestAds) att=\(trackingAuthorizationStatus) appState=\(UIApplication.shared.applicationState.rawValue)")
     }
     private func logError(_ stage: String, _ error: Error) {
         guard development else { return }
@@ -199,24 +253,35 @@ import UserMessagingPlatform
                 fail("sdk_error", error); return
             }
             guard active(token) else { return }
+            // UMP handles regional requirements; it never grants Apple's permission.
+            // Do not prompt from privacy-options editing (including for paid players).
+            if action != "privacy" {
+                guard await requestTrackingAuthorizationIfNeeded(token), active(token) else { return }
+            }
             logState("completed \(action)")
             if action != "show" { end("closed"); return }
             guard ConsentInformation.shared.canRequestAds else { fail("consent_unavailable"); return }
+            guard UIApplication.shared.applicationState == .active else { fail("inactive"); return }
+            let authorizationAtRequest = ATTrackingManager.trackingAuthorizationStatus
             stage = "sdk_initialize"
             deadline(45, token: token)
             await MobileAds.shared.start()
             guard active(token) else { return }
+            guard ATTrackingManager.trackingAuthorizationStatus == authorizationAtRequest else { fail("tracking_changed"); return }
             do {
                 stage = "ad_load"
                 let request = Request()
                 let extras = Extras(); extras.additionalParameters = ["npa": "1"]; request.register(extras)
                 let loaded = try await RewardedAd.load(with: unit, request: request)
                 guard active(token) else { return }
+                guard ATTrackingManager.trackingAuthorizationStatus == authorizationAtRequest else { fail("tracking_changed"); return }
                 timeout?.cancel(); timeout = nil
                 stage = "ad_present"
                 ad = loaded; loaded.fullScreenContentDelegate = self
                 guard UIApplication.shared.applicationState == .active else { fail("inactive"); return }
                 guard await preparePresentation(token), active(token) else { if active(token) { fail("presentation_rejected") }; return }
+                // Discard a loaded ad if permission changed while in system Settings.
+                guard ATTrackingManager.trackingAuthorizationStatus == authorizationAtRequest else { fail("tracking_changed"); return }
                 loaded.present(from: controller) { [weak self] in
                     guard let self, self.active(token) else { return }
                     self.events?("earned")

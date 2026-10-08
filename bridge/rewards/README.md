@@ -35,7 +35,7 @@ For NativeScript, include the shared Swift files through `ios.NativeSource`, Goo
 
 ## Test / production
 
-Calendar Puzzle has production iOS IDs configured; Debug always substitutes Google's official demo ad unit. Android production setup is deferred. The adapter refuses demo IDs in Release builds; it does not silently show fake rewarded ads. Production requires replacing the native app IDs and TS ad unit IDs, configuring UMP messages, and completing each store's privacy disclosures. No Firebase dependency or ATT permission request is introduced; requests explicitly set `npa=1`. Non-personalized ads still require appropriate consent and privacy disclosures.
+Calendar Puzzle has production iOS IDs configured; Debug always substitutes Google's official demo ad unit. Android production setup is deferred. The adapter refuses demo IDs in Release builds; it does not silently show fake rewarded ads. Production requires replacing the native app IDs and TS ad unit IDs, configuring UMP messages, and completing each store's privacy disclosures. No Firebase dependency is introduced; requests explicitly set `npa=1`. iOS apps can opt into the native ATT flow with `policy.iosTrackingAuthorization: "system"` and a localized `NSUserTrackingUsageDescription`. Do not enable an AdMob IDFA explainer in parallel with this flow. Non-personalized ads still require appropriate consent and privacy disclosures.
 
 Run Native `npm test` for quota, persistence, failure, callback ordering, entitlement and lifecycle tests. `CALENDAR_REWARDS_SMOKE` is a development-only isolated save/wallet integration test. Add `CALENDAR_REWARD_AD_SMOKE` to request an official demo ad; do not interact with live ads during development.
 
@@ -107,3 +107,13 @@ SDK domain/code alongside the AdMob console and connectivity. References:
 [Android load errors](https://developers.google.com/admob/android/ad-load-errors).
 Upgrade the TS adapter and both native bridges together and rebuild the app;
 installing an npm dependency alone cannot update an existing TestFlight binary.
+
+## iOS App Tracking Transparency
+
+`iosTrackingAuthorization: "system"` refreshes regional consent first, presents required UMP consent, then uses Apple's system ATT alert. There is no custom tracking explainer. Paid startup (`presentForm=false`) does not request ATT. UMP `canRequestAds` is never treated as ATT authorization. SDK initialization and ad loading wait for the system request to settle; denied/restricted status does not block game or purchase operations. Google serves without IDFA when ATT is denied; publisher first-party ID and personalization remain disabled, with no custom user identifier. Hosts must audit any additional mediation/analytics SDKs separately.
+
+In a GDPR region, the adapter conservatively requests ATT only after TCF consent for device access (purpose 1) and Google vendor 755, plus a permitted advertising-measurement basis (purpose 7 consent, or both purpose/vendor legitimate interest without objection). Missing, malformed, refused, or partial consent does not trigger ATT. Under-age/child/teen configurations do not request ATT. UMP/GMA still determine eligible ad-serving modes. No consent bits are written or logged. Outside a required regional-consent flow, ATT can appear during unpaid startup.
+
+`gateway.trackingAuthorizationStatus()` reads the current OS state (including Settings changes). Do not cache it as an entitlement, reward authorization, or GDPR consent. `tracking_authorization / tracking_unresolved` means the system request did not settle; that operation fails before initializing/loading ads. Existing `iosTrackingAuthorization: "none"` preserves legacy behavior; it is not a declaration that the host or its SDKs do not track.
+
+Release checklist: supply localized usage text matching actual advertising purposes; disable substitute IDFA prompts; disclose actual SDK data use in the store and policy; verify allow, deny, restricted, regional refusal, relaunch and Settings revocation on physical devices. Keep rewarded ads optional and never reward ATT consent itself.

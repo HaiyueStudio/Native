@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@formatjs/intl-getcanonicallocales": "3.2.12"
+  },
+  "private": true
+}

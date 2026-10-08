@@ -25,6 +25,8 @@ function monetizationBuild({ purchases = false, rewards, development = false } =
     ios.SPMPackages.push({ name: 'GoogleMobileAds', libs: ['GoogleMobileAds'], repositoryURL: 'https://github.com/googleads/swift-package-manager-google-mobile-ads.git', version: '13.10.0' });
     dependencies.push('com.google.android.gms:play-services-ads:25.5.0', 'com.google.android.ump:user-messaging-platform:4.0.0');
     iosInfoPlist.GADApplicationIdentifier = rewards.iosAppId;
+    // Defer automatic measurement until the host has completed UMP/ATT.
+    iosInfoPlist.GADDelayAppMeasurementInit = true;
     // Xcode expands this build setting. The app never decides debug status from a UI toggle.
     iosInfoPlist.HYBuildConfiguration = '$(CONFIGURATION)';
     androidManifestMetadata['com.google.android.gms.ads.APPLICATION_ID'] = rewards.androidAppId;

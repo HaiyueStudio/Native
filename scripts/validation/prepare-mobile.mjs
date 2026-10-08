@@ -26,3 +26,27 @@ console.log(host);
 
 write('App_Resources/Android/src/main/res/xml/haiyue_share_paths.xml',readFileSync(path.join(root,'bridge/share/android/haiyue_share_paths.xml'),'utf8'));
 write('App_Resources/Android/src/main/java/org/haiyue/share/HaiyueShareProvider.java',readFileSync(path.join(root,'bridge/share/android/HaiyueShareProvider.java'),'utf8'));
+
+// Opt-in content-generation acceptance, using explicitly supplied local Engine builds.
+const engineFlag = process.argv.indexOf('--share-content-engine');
+if (engineFlag >= 0) {
+  const engine = path.resolve(process.argv[engineFlag + 1] ?? '');
+  const polyfills = path.join(root, 'artifacts/share-content-polyfills/node_modules/@formatjs');
+  if (!existsSync(polyfills)) throw Error('Install the pinned share-mobile polyfills first; see scripts/validation/README.md');
+  cpSync(polyfills, path.join(host, 'node_modules/@formatjs'), {recursive: true});
+  for (const name of ['engine', 'extensions']) {
+    const source = path.join(engine, name), destination = path.join(host, 'node_modules/@haiyue', name);
+    if (!existsSync(path.join(source, 'dist/index.js'))) throw Error(`Build ${source} first`);
+    mkdirSync(destination, { recursive: true });
+    cpSync(path.join(source, 'dist'), path.join(destination, 'dist'), { recursive: true });
+    cpSync(path.join(source, 'package.json'), path.join(destination, 'package.json'));
+  }
+  const pkg = JSON.parse(readFileSync(path.join(host, 'package.json')));
+  Object.assign(pkg.dependencies, { '@formatjs/intl-getcanonicallocales': '3.2.12', '@nativescript/canvas': '2.1.18', 'core-js-pure': JSON.parse(readFileSync(path.join(modules,'core-js-pure/package.json'))).version,
+    '@haiyue/engine': '0.2.1', '@haiyue/extensions': '0.2.1' });
+  write('package.json', JSON.stringify(pkg, null, 2));
+  const types = JSON.parse(readFileSync(path.join(host, 'tsconfig.json')));
+  Object.assign(types.compilerOptions, {types: ['@nativescript/types', '@webgpu/types'], baseUrl: '.', paths: {'@haiyue/native/bridge/*':['node_modules/@haiyue/native/bridge/*']}});
+  write('tsconfig.json', JSON.stringify(types, null, 2));
+  cpSync(path.join(root, 'scripts/validation/share-mobile/app.ts'), path.join(host, 'src/app.ts'));
+}

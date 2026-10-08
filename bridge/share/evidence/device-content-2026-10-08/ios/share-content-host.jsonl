@@ -1,0 +1,17 @@
+{"time":1791448402927,"event":"host-created","detail":{"engine":"0.1.0","canvas":"2.1.18","runtime":"9.0.3","backendRoute":"Canvas/wgpu/Metal","dpr":2,"captureRequested":false}}
+{"time":1791448402942,"event":"adapter","detail":{"vendor":"","architecture":"","device":"Apple A16 GPU","description":"","features":["clip-distances","float32-blendable","subgroups","texture-compression-astc-sliced-3d","depth-clip-control","timestamp-query","indirect-first-instance","shader-f16","depth32float-stencil8","texture-compression-etc2","texture-compression-astc","rg11b10ufloat-renderable","bgra8unorm-storage","dual-source-blending","texture-format-16-bit-norm","texture-compression-astc-hdr","texture-adapter-specific-format-features","mappable-primary-buffers","texture-binding-array","storage-resource-binding-array","sampled-texture-and-storage-buffer-array-non-uniform-indexing","storage-texture-array-non-uniform-indexing","partially-bound-binding-array","address-mode-clamp-to-zero","polygon-mode-line","vertex-writable-storage","clear-texture","spirv-shader-passthrough","multiview","primitive-index","core-features-and-limits"]}}
+{"time":1791448402948,"event":"surface-configure","detail":{"format":"bgra8unorm","capabilities":{"format":["bgra8unorm-srgb","bgra8unorm","rgba16float","rgb10a2unorm"],"presentModes":["fifo"],"alphaModes":["opaque","postmultiplied"],"usages":27}}}
+{"time":1791448402951,"event":"scene-ready","detail":{"board":"GPU GUI","capture":"before present"}}
+{"time":1791448402951,"event":"input-ready","detail":null}
+{"time":1791448402951,"event":"engine-ready","detail":{"width":340,"height":340,"format":"bgra8unorm","profile":"simple","clearColor":{"r":0.025,"g":0.055,"b":0.095,"a":1}}}
+{"time":1791448402967,"event":"present","detail":{"frames":1,"width":340,"height":340,"scheduledCallbacks":0,"input":null}}
+{"time":1791448405325,"event":"suspend","detail":{"frames":105,"scheduledCallbacks":0,"input":null}}
+{"time":1791448410700,"event":"resume","detail":{"count":1,"frames":105,"scheduledCallbacks":1,"input":null}}
+{"time":1791448411983,"event":"suspend","detail":{"frames":182,"scheduledCallbacks":0,"input":null}}
+{"time":1791448417105,"event":"resume","detail":{"count":2,"frames":182,"scheduledCallbacks":1,"input":null}}
+{"time":1791448418408,"event":"suspend","detail":{"frames":260,"scheduledCallbacks":0,"input":null}}
+{"time":1791448423579,"event":"resume","detail":{"count":3,"frames":260,"scheduledCallbacks":1,"input":null}}
+{"time":1791448424900,"event":"suspend","detail":{"frames":339,"scheduledCallbacks":0,"input":null}}
+{"time":1791448430240,"event":"resume","detail":{"count":4,"frames":339,"scheduledCallbacks":1,"input":null}}
+{"time":1791448433041,"event":"suspend","detail":{"frames":498,"scheduledCallbacks":0,"input":null}}
+{"time":1791448443583,"event":"resume","detail":{"count":5,"frames":498,"scheduledCallbacks":1,"input":null}}

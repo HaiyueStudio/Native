@@ -47,7 +47,8 @@
       "types": "./bridge/share/share-content.ts",
       "default": "./bridge/share/share-content"
     },
-    "./share/web": "./bridge/share/share-content.web.ts"
+    "./share/web": "./bridge/share/share-content.web.ts",
+    "./engine": "./bridge/engine.ts"
   },
   "files": [
     "index.ts",
@@ -81,11 +82,12 @@
     "node": ">=22"
   },
   "peerDependencies": {
-    "@haiyue/engine": "0.1.0",
+    "@haiyue/engine": "0.2.1",
     "@nativescript/canvas": "2.1.18",
     "@nativescript/core": "9.1.1"
   },
   "devDependencies": {
+    "@haiyue/engine": "file:vendor/haiyue-engine-0.2.1.tgz",
     "@nativescript/types": "9.0.0",
     "@nativescript/webpack": "5.0.38",
     "@webgpu/types": "0.1.64",
@@ -103,5 +105,10 @@
     "ios",
     "android",
     "haiyue"
-  ]
+  ],
+  "peerDependenciesMeta": {
+    "@haiyue/engine": {
+      "optional": true
+    }
+  }
 }

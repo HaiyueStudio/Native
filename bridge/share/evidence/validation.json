@@ -3,7 +3,7 @@
   "scope": "Source implementation; no release freeze, npm publish or game migration",
   "tests": {
     "nativeRepository": {
-      "passed": 93,
+      "passed": 95,
       "failed": 0
     },
     "focusedShare": {
@@ -43,10 +43,10 @@
     ],
     "preview": "artifacts/share-web-preview.jpg"
   },
-  "nativeDeviceAcceptance": "not run",
+  "nativeDeviceAcceptance": "See device-content-2026-10-08.json: Android and iPhone content generation and system-share UI lifecycle passed",
   "sourceSha256": {
     "bridge/share/share-content.android.ts": "cd8e48a659ecd98bb98c23222320c66d0d2943fc81ced493757c1af54f1ad69a",
-    "bridge/share/README.md": "18c16a36742c040358f8b10de270e30e63438fe40de06723bc418c82d479cf77",
+    "bridge/share/README.md": "f3ab16af8a8bd3f5b803528a5ed4bdbdcd5cc95e3d8c21339a4093fe2d8e63f8",
     "bridge/share/share-content.ios.ts": "78c4ef94ff44076c99bbdad23a2fb6af1c4df19bb7ac7f6dfb5feed39e12b562",
     "bridge/share/types.ts": "bc5ae29ecf077aca88b29dbae0102df82b7f01033eca7fc945815233db8c680b",
     "bridge/share/share-content.web.ts": "8b97907c769e99dcea880b0031244c8e6c9b03c8907a617dba76ea45935b788c",

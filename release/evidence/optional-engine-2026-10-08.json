@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-08",
+  "scope": "Optional Engine peer and rendering subpath; source candidate only, no npm publication",
+  "enginePeer": {
+    "version": "0.2.1",
+    "optional": true,
+    "requiredFor": [
+      "@haiyue/native/engine",
+      "@haiyue/native (compatibility root)"
+    ]
+  },
+  "checks": {
+    "stagedPackageTypecheck": "passed",
+    "packageTests": {
+      "passed": 6,
+      "failed": 0,
+      "coverage": [
+        "iOS/Android root plus Engine subpath platform resolution",
+        "iOS/Android system subpaths typechecked in unpacked consumer without Engine",
+        "Engine imports rejected in system-only iOS/Android bundles",
+        "Web sharing without NativeScript or Engine",
+        "Package allowlist and provenance"
+      ]
+    },
+    "repositoryTests": {
+      "passed": 95,
+      "failed": 0
+    },
+    "cleanConsumerInstall": {
+      "status": "passed",
+      "packagesInstalled": 18,
+      "engineInstalled": false,
+      "lockContainsEngine": false,
+      "command": "npm install --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org"
+    },
+    "diffCheck": "passed"
+  },
+  "package": {
+    "bytes": 231122,
+    "files": 109,
+    "containsGamesExamplesVendor": false
+  },
+  "limitations": [
+    "NativeScript Core and Canvas remain required peers",
+    "Development checks retain the pinned local Engine 0.2.1 candidate until registry availability",
+    "No rendering runtime changed; existing device acceptance remains separate"
+  ],
+  "sourceSha256": {
+    "npm/package.json": "e565881bfd332fbfd2b95da29db2cebb6921d08045517d01f3a92262229a0d3e",
+    "npm/package-lock.json": "15d206a425673013ec1bce553628381a31cf60e1a05b9a7e869928587eedbab7",
+    "npm/index.ts": "1b0fcebb2266942228083b8e3e16c7754b5ed1ad496fda87dc03cb176bfba29e",
+    "bridge/engine.ts": "176186e3ae6ec7a2c5cb9982427d7568e30035dcd3695736f149a6a4c19e79f5",
+    "npm/test/package.test.mjs": "47614882dd7a950f410369eee96366a73e56070e6fb61f797f8039ee6ac499fb",
+    "npm/README.md": "c47b18226d7f5bd13cf9905e6369bf7e30dd028e99f8df1dc565578d938f4e46"
+  }
+}

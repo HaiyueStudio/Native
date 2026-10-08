@@ -4,7 +4,8 @@ import { resolveAdMobPolicy, type AdMobPolicy } from './policy';
 import { RewardError, rewardErrorFromEvent, type RewardFailure, type RewardFailureCode, type RewardFailureStage } from './errors';
 import type { RewardGateway, RewardPresentation } from './controller';
 
-declare const HYRewardedAds: { new(): { configurePolicy(policy: string): boolean; privacyRequired: boolean; consentRequired: boolean; continuePresentation(ready: boolean): void; performUnitEvents(action: string, unit: string, events: (event: string) => void): void; dispose(): void } };
+declare const HYRewardedAds: { new(): { configurePolicy(policy: string): boolean; privacyRequired: boolean; consentRequired: boolean; trackingAuthorizationStatus: string; continuePresentation(ready: boolean): void; performUnitEvents(action: string, unit: string, events: (event: string) => void): void; dispose(): void } };
+export type TrackingAuthorizationStatus = 'notDetermined' | 'restricted' | 'denied' | 'authorized' | 'unavailable';
 declare const org: any;
 /** Platform adapter is lazy: paid users and players who never opt in make no ad requests. */
 export class AdMobRewardGateway implements RewardGateway {
@@ -30,6 +31,11 @@ export class AdMobRewardGateway implements RewardGateway {
       const native = this.getNative();
       return isAndroid ? native.privacyRequired(Application.android.context) : native.privacyRequired;
     } catch { return false; }
+  }
+  /** Live OS state, never persisted or inferred from UMP's canRequestAds. */
+  trackingAuthorizationStatus(): TrackingAuthorizationStatus {
+    if (!isIOS || this.disposed) return 'unavailable';
+    try { return this.getNative().trackingAuthorizationStatus ?? 'unavailable'; } catch { return 'unavailable'; }
   }
   private failure(stage: RewardFailureStage, code: RewardFailureCode, phase = 'unavailable'): Error {
     return rewardErrorFromEvent(`error:${phase}:${JSON.stringify({ stage, code })}`, isIOS ? 'ios' : 'android', '', Date.now());
@@ -94,8 +100,11 @@ export class AdMobRewardGateway implements RewardGateway {
   }
   private async initializeConsent(presentForm: boolean, beforePresent: () => Promise<boolean>): Promise<void> {
     await this.call('refreshPrivacy', () => {});
-    if (!this.disposed && presentForm && this.getNative().consentRequired) {
-      await this.call('presentConsent', () => {}, { prepare: beforePresent, closed() {} });
+    if (!this.disposed && presentForm && (this.getNative().consentRequired || this.policy.iosTrackingAuthorization === 'system')) {
+      // Startup owns one pause until the entire UMP -> ATT sequence finishes.
+      // Re-entering the host callback would reject ATT because it is already busy.
+      let prepared: Promise<boolean> | undefined;
+      await this.call('presentConsent', () => {}, { prepare: () => prepared ??= beforePresent(), closed() {} });
     }
   }
   async privacy(presentation?: RewardPresentation): Promise<void> {

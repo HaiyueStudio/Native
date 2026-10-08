@@ -6,21 +6,31 @@ Haiyue 的 NativeScript 原生适配层，支持 iOS / Android：WebGPU 宿主�
 
 ## 安装
 
-本说明对应待发布 0.1.2；发布前请使用通过门禁的本地候选 tarball。
+本说明包含尚未发布的 Engine 可选依赖、`/engine` 和系统分享入口；请使用本地候选 tarball 验证。
 
 在 NativeScript 应用项目中执行：
 
 ```sh
-npm install @haiyue/native@0.1.2
+npm install ./haiyue-native-<candidate>.tgz
 ```
 
-配套版本：`@haiyue/engine@0.1.0`、`@nativescript/core@9.1.1`、`@nativescript/canvas@2.1.18`，通过 peer dependencies 使用应用自己的依赖，不复制引擎或平台二进制到本包。
+系统能力使用 `@nativescript/core@9.1.1` 和 `@nativescript/canvas@2.1.18` 作为宿主 peer dependencies。
+`@haiyue/engine@0.2.1` 是 **可选 peer dependency**：只使用分享、震动、陀螺仪、扫码等独立入口时，无需安装 Engine。
+
+渲染宿主使用 `@haiyue/native/engine`，应用须额外提供 `@haiyue/engine@0.2.1`。
+旧根入口 `@haiyue/native` 保留原有导出，仍会引用 Engine 适配层；无 Engine 的应用应使用能力子入口。
+本次未改变 NativeScript Core / Canvas 的必需 peer 声明。
+
+Engine 0.2.1 尚未发布到 npm，仓库开发检查暂用 `devDependencies` 中带完整性锁定的
+`vendor/haiyue-engine-0.2.1.tgz`。该包只用于开发验证，不进入 Native npm 包，不安装到仅使用系统能力的消费者中。
+系统能力发布不要求 Engine 同时发布；渲染消费者在 Engine 发布前需自行安装匹配的候选包。
+Engine 正式包可用后，可将开发依赖切换到注册表 `0.2.1`，更新锁文件并重新验证。
 
 这是 NativeScript 专用 TypeScript 包，交给 NativeScript Webpack 编译；保留 `.ios.ts` / `.android.ts`，由平台解析器选择实现，并处理 `@NativeClass`。已验证 `@nativescript/webpack@5.0.38` / TypeScript 5.7.3。宿主 tsconfig 使用 `experimentalDecorators: true`、`emitDecoratorMetadata: true`，并包含 `@nativescript/types` 和 `@webgpu/types`；这些类型工具由宿主开发依赖提供。根入口不能直接在浏览器或普通 Node.js 中执行。系统分享的独立 `@haiyue/native/share`（Web 默认）和 `@haiyue/native/share/web` 入口可经 Web 构建器编译使用，不加载原生依赖。
 
 ```ts
-import { NativeDeviceMotion, NativeHaptics } from '@haiyue/native';
-// 也可按能力导入：import { NativeDeviceMotion } from '@haiyue/native/motion';
+import { NativeDeviceMotion } from '@haiyue/native/motion';
+import { NativeHaptics } from '@haiyue/native/feedback';
 
 const motion = new NativeDeviceMotion({ updateIntervalMs: 1000 / 60 });
 motion.onUpdate(sample => console.log(sample.angles.pitch, sample.angles.roll));
@@ -35,11 +45,19 @@ haptics.impact('light');
 
 iOS 使用陀螺仪时配置 `NSMotionUsageDescription`；Android 震动声明 `android.permission.VIBRATE`。其他权限和生命周期要求见 [原生能力说明](https://github.com/HaiyueStudio/Native/tree/main/bridge)。
 
+渲染应用按需导入：
+
+```ts
+import { NativeRenderHost, NativeSurface, NativeTouchInput } from '@haiyue/native/engine';
+import { shareContent } from '@haiyue/native/share';
+```
+
 ## 能力入口
 
 | 入口 | 内容 |
 | --- | --- |
-| `@haiyue/native` | 常用宿主、渲染、输入、运动、反馈、音频、存储与开屏 API |
+| `@haiyue/native` | 兼容聚合入口，保留既有 API；需要 Engine |
+| `@haiyue/native/engine` | 可选渲染适配层：NativeRenderHost、NativeSurface、NativeCanvasTextures、NativeTouchInput 与帧控制；需要 Engine 0.2.1 |
 | `@haiyue/native/motion` | NativeDeviceMotion |
 | `@haiyue/native/feedback` | NativeHaptics |
 | `@haiyue/native/audio` | NativePcmAudioBank |

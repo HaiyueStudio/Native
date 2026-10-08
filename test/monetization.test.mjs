@@ -18,6 +18,7 @@ test('optional build wiring includes only selected SDKs and refuses release demo
   const full = monetizationBuild({ purchases: true, rewards: demo, development: true });
   assert.equal(full.ios.NativeSource.length, 2); assert.equal(full.ios.SPMPackages.length, 1);
   assert.equal(full.iosInfoPlist.GADApplicationIdentifier, demo.iosAppId);
+  assert.equal(full.iosInfoPlist.GADDelayAppMeasurementInit, true);
   assert.equal(full.androidManifestMetadata['com.google.android.gms.ads.APPLICATION_ID'], demo.androidAppId);
   assert.match(full.androidGradle, /user-messaging-platform:4.0.0/);
   assert.throws(() => monetizationBuild({ rewards: demo }), /Demo/);

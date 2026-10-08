@@ -90,6 +90,8 @@ iframe 还可能受 `web-share` Permissions Policy 限制。缺少文件分享�
 `node --test test/share.test.mjs` 验证三端流程与生命周期，但不能替代系统 UI 真机验收。
 `node scripts/validation/prepare-share-web.mjs` 生成 `artifacts/share-web`，可用本地 HTTP 服务打开。
 示例预先生成虚构数独战绩图，支持文字/图片系统分享以及显式下载。
+Engine 战绩卡真机验收记录见 [2026-10-08 设备结果](evidence/device-content-2026-10-08.json)：
+Android 和 iPhone 均已通过内容生成和分享 UI 生命周期。iPhone XCTest 验证图片/文字取消后立即重开、横屏、后台返回、关闭以及恢复后重新生成四种战绩卡。
 独立 Native 验收宿主包含 Share text / Share image 按钮和 Android provider 配置，见仓库
 `scripts/validation/README.md`。无需覆盖任何游戏安装或游戏存档。
 
