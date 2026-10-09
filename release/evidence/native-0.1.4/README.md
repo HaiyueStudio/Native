@@ -4,7 +4,9 @@ This release contains system sharing, optional Engine integration and iOS ATT ha
 
 ## Release status
 
-Source and independent clean-export gates passed. Commit `4569c5549a60fa72e0094e24909a7d7067722c44` and tag `native-v0.1.4` were pushed to origin. The GitHub release page is a draft. npm authentication requires renewal (HTTP 401); npm publication has **not** completed. See [publication status](publication.json).
+Source and independent clean-export gates passed. Commit `4569c5549a60fa72e0094e24909a7d7067722c44` and tag `native-v0.1.4` were pushed to origin. [GitHub release](https://github.com/HaiyueStudio/Native/releases/tag/native-v0.1.4) is public. `@haiyue/native@0.1.4` is published to the official npm registry and `latest` points to `0.1.4`. See [publication status](publication.json).
+
+An anonymous download matched the tested tarball SHA-256 and integrity, plus all 105 bridge file hashes. A new directory with a new npm cache installed the published package successfully, `npm ls --all` passed, and Engine was absent from both node_modules and the lockfile. See [registry verification](registry-verification.json). Anonymous requests to the GitHub release page and source tag both returned HTTP 200; see [external access](external-access.json).
 
 ## Source and package gates
 

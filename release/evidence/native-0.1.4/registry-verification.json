@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "registry": "https://registry.npmjs.org",
+  "version": "0.1.4",
+  "latest": "0.1.4",
+  "anonymousMetadataAndDownload": true,
+  "tarballURL": "https://registry.npmjs.org/@haiyue/native/-/native-0.1.4.tgz",
+  "sha256": "0c06ff002fbf7bd9517f0d923a2c48fcc5392c00b0e14cf6b5da13881322eb8f",
+  "integrity": "sha512-1zpvzgYwklEM/ZEhUr+X9c0Tf73gKSGY8tdKD6geUrV5cr5kN3fScdg49v9XDmluuF106cRUwAh/eGD3JkJKuQ==",
+  "sourceCommit": "4569c5549a60fa72e0094e24909a7d7067722c44",
+  "verifiedBridgeFiles": 105,
+  "files": 110,
+  "bytes": 234166,
+  "freshInstall": {
+    "status": "passed",
+    "engineInstalled": false,
+    "newCache": true,
+    "npmLs": "passed",
+    "directory": "/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/native-014-registry-h21v1rg0"
+  }
+}

@@ -1,0 +1,27 @@
+native-014-public-consumer@1.0.0 /Users/qingque/Desktop/HaiyueStudio/Native/artifacts/native-014-registry-h21v1rg0
+└─┬ @haiyue/native@0.1.4
+  ├── UNMET OPTIONAL DEPENDENCY @haiyue/engine@^0.2.0
+  ├─┬ @nativescript/canvas@2.1.18
+  │ └── @nativescript/font-manager@1.0.20
+  └─┬ @nativescript/core@9.1.1
+    ├─┬ @csstools/css-calc@2.1.4
+    │ ├── @csstools/css-parser-algorithms@3.0.5 deduped
+    │ └── @csstools/css-tokenizer@3.0.4 deduped
+    ├─┬ @csstools/css-color-parser@3.1.0
+    │ ├── @csstools/color-helpers@5.1.0
+    │ ├── @csstools/css-calc@2.1.4 deduped
+    │ ├── @csstools/css-parser-algorithms@3.0.5 deduped
+    │ └── @csstools/css-tokenizer@3.0.4 deduped
+    ├─┬ @csstools/css-parser-algorithms@3.0.5
+    │ └── @csstools/css-tokenizer@3.0.4 deduped
+    ├── @csstools/css-tokenizer@3.0.4
+    ├── @nativescript/hook@3.0.5
+    ├── acorn@8.19.0
+    ├─┬ css-tree@3.2.1
+    │ ├── mdn-data@2.27.1
+    │ └── source-map-js@1.2.2 deduped
+    ├── css-what@7.0.0
+    ├── emoji-regex@10.6.0
+    ├── source-map-js@1.2.2
+    ├── source-map@0.7.6
+    └── tslib@2.8.1
