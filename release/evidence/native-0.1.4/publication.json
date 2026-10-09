@@ -1,9 +1,38 @@
 {
   "version": "0.1.4",
   "tag": "native-v0.1.4",
-  "status": "prepared",
-  "npm": "authentication-renewal-pending",
-  "githubRelease": "pending",
+  "status": "source-tag-pushed-npm-authentication-pending",
+  "npm": {
+    "status": "authentication-required",
+    "published": false,
+    "reason": "npm whoami returned HTTP 401; official web login pending"
+  },
+  "githubRelease": {
+    "id": 407519128,
+    "tag_name": "native-v0.1.4",
+    "name": "@haiyue/native 0.1.4",
+    "html_url": "https://github.com/HaiyueStudio/Native/releases/tag/untagged-80776879b5605dbb922d",
+    "draft": true,
+    "prerelease": false,
+    "created_at": "2026-10-09T04:48:31Z",
+    "published_at": null
+  },
   "manifestSha256": "6431dfab2f3e78884ee6bf31af95a771c26393685a3a4c7bc453b0e90273c718",
-  "restrictedDeviceAcceptance": "pending"
+  "restrictedDeviceAcceptance": "pending",
+  "sourceCommit": "4569c5549a60fa72e0094e24909a7d7067722c44",
+  "formalPackage": {
+    "filename": "haiyue-native-0.1.4.tgz",
+    "bytes": 234166,
+    "files": 110,
+    "sha256": "0c06ff002fbf7bd9517f0d923a2c48fcc5392c00b0e14cf6b5da13881322eb8f",
+    "integrity": "sha512-1zpvzgYwklEM/ZEhUr+X9c0Tf73gKSGY8tdKD6geUrV5cr5kN3fScdg49v9XDmluuF106cRUwAh/eGD3JkJKuQ==",
+    "shasum": "3dc3958cdb87a5f63e394086e7a4dfcdd336fb5d",
+    "typecheck": "passed",
+    "packageTests": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "verifiedBridgeFiles": 105
+  }
 }

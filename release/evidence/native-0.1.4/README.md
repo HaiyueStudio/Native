@@ -4,7 +4,7 @@ This release contains system sharing, optional Engine integration and iOS ATT ha
 
 ## Release status
 
-Source and independent clean-export gates passed. npm authentication required renewal (HTTP 401); publication status is recorded separately in `publication.json`. This source snapshot does not itself claim that registry publication has completed.
+Source and independent clean-export gates passed. Commit `4569c5549a60fa72e0094e24909a7d7067722c44` and tag `native-v0.1.4` were pushed to origin. The GitHub release page is a draft. npm authentication requires renewal (HTTP 401); npm publication has **not** completed. See [publication status](publication.json).
 
 ## Source and package gates
 
@@ -12,7 +12,7 @@ Source and independent clean-export gates passed. npm authentication required re
 - [Working-directory source gate](source-gate.json): 27 stages passed.
 - [Independent clean-export gate](clean-source-gate.json): 35 stages passed, including lockfile installs for root, npm package and all six examples. This is a new export with no copied node_modules or build products; it reuses installed system tools and npm download cache, not a new operating system.
 - Each gate passed 193 tests: 103 repository/service, 6 real-tarball/package and 84 across the six examples. All corresponding type checks passed.
-- Private candidate contains 110 files, 234,138 compressed bytes; no games, examples, models, Engine vendor archive, signing material or test evidence is included. The formal tarball is checked separately after creating the source tag.
+- Private candidate contains 110 files, 234,138 compressed bytes; no games, examples, models, Engine vendor archive, signing material or test evidence is included. The tag-bound formal tarball is 234,166 bytes and also contains 110 files. Its type check and all 6 real-tarball tests passed; all 105 bridge file hashes match provenance. See [formal tests](formal-package-tests.log).
 - Recorded console logs are normalized to LF with trailing whitespace removed; event content and failed-attempt outcomes are preserved.
 
 ## Device evidence and remaining coverage
