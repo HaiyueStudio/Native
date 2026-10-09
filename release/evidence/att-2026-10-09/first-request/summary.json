@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-09",
+  "status": "passed",
+  "appId": "org.haiyue.nativevalidation.first20261009a",
+  "displayName": "Native ATT First",
+  "build": "passed",
+  "installed": true,
+  "hostTypecheck": "passed",
+  "initialATT": "notDetermined",
+  "firstRequestExecuted": true,
+  "adsRequested": false,
+  "blocker": null,
+  "evidence": [
+    "ios-baseline.jsonl",
+    "ios-owner-paid.jsonl",
+    "ios-owner-paid.log",
+    "ios-native-request.log",
+    "ios-native-request.jsonl",
+    "ios-native-relaunch.jsonl",
+    "ios-native-relaunch.log"
+  ],
+  "ipaSha256": "a289647385cf14455e64b32a1d389e116bf0d848ee539a0d71d216c18a039c2a",
+  "bundleSha256": "6dbe167ca64100043d9831382bf82c9bd5b973487771ca6272ad76a0e6a30b24",
+  "nativeExecutableSha256": "7ed1e13cbb2bd6ef19d40b59724568c461ab431ecd789ed946f1259897648d15",
+  "sourceSha256": {
+    "scripts/validation/att-mobile/app.ts": "ce83bd7136386929c875fa332bead383494d513fb1817e521b26993b505ed29f",
+    "scripts/validation/att-mobile/collect-ios.mjs": "ff16f8f7fcf3d489e08baa3d44be968745f7e98aefededf3ddf92c00d3093fe9",
+    "scripts/validation/prepare-mobile.mjs": "2823bf9757c473f99f1d1c899bd28c5d9ad2767a8cae8d974c5b0dc5ff9a85db",
+    "bridge/rewards/native/ios/HYRewardedAds.swift": "2e8d1194bc8c51d05163017c32b315fe1fd716e8f1697dd64ebc4b0dbbead9ea",
+    "bridge/rewards/native/ios/HYTrackingConsent.swift": "f7c9d9a7ebfe8079108e10e64210b4c74a13cf60ac658d17f8a183cde8fc6573"
+  },
+  "requiredPassEvidence": [
+    "Initial notDetermined",
+    "Native tracking request log before visible Apple ATT alert",
+    "Owner response and Native tracking settled log",
+    "Successful startup with resulting real OS state",
+    "Relaunch does not request again"
+  ],
+  "preConfigurationBuild": {
+    "ipaSha256": "15c0388ecc5164021aa0d5e7e98d4e258cc1afa2a8842de62183a03f541f921e",
+    "bundleSha256": "6dbe167ca64100043d9831382bf82c9bd5b973487771ca6272ad76a0e6a30b24",
+    "nativeExecutableSha256": "d8835bfb6952096c84ae88a283d6693d6ce0ba8a43c83d89ce314916703628be"
+  },
+  "admobAppId": "ca-app-pub-2053256758816744~9316994454",
+  "paidFirstStartup": {
+    "status": "passed",
+    "attBefore": "notDetermined",
+    "attAfter": "notDetermined",
+    "evidence": [
+      "ios-owner-paid.jsonl",
+      "ios-owner-paid.log"
+    ]
+  },
+  "nativeRequestLogged": true,
+  "nativeSettledLogged": true,
+  "nativeRequestCount": 1,
+  "nativeSettledCount": 1,
+  "finalATT": "denied",
+  "startupCompleted": true,
+  "relaunch": {
+    "status": "passed",
+    "att": "denied",
+    "nativeTrackingRequestLogged": false,
+    "presentationCallback": false
+  },
+  "ownerConfirmation": "Owner confirmed seeing the Apple system tracking alert for Native ATT First, selecting Ask App Not to Track and returning to the app.",
+  "qualification": "Physical iPhone initial Native ATT request and refusal path; real UMP response notRequired, no consent override, no SDK-managed ATT form consumed the request. First paid startup also completed while notDetermined. Initial dialog allow action is not exercised by this case; Settings enable/revoke has separate evidence."
+}

@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-09",
+  "scope": "Latest native ATT bridge acceptance; no game replacement or publication",
+  "status": "partial-device-evidence",
+  "build": {
+    "status": "passed",
+    "appId": "org.haiyue.nativevalidation",
+    "configuration": "Debug",
+    "delayMeasurement": true,
+    "usageDescriptionPresent": true,
+    "ipaSha256": "be66178ad2d2b5ff60a20611b2b6338b6e9a2d40a1ae31ad44cf0945ca92e958",
+    "bundleSha256": "9bd9d4263049f79003e52d5563a128e64087ab910a8276b498158705808a56a4",
+    "testIdsOnly": true
+  },
+  "checks": {
+    "focusedTests": {
+      "passed": 29,
+      "failed": 0
+    },
+    "hostTypecheck": "passed",
+    "xctestBuild": "passed",
+    "xctestExecution": {
+      "status": "not-started",
+      "testsExecuted": 0,
+      "attempts": 5
+    },
+    "nativeScriptBinding": "passed: live OS ATT status and delayed measurement read from installed device",
+    "developerDirectory": "/Applications/Xcode.app/Contents/Developer",
+    "paidStartupAttempt": {
+      "status": "blocked-by-ump-timeout",
+      "sdkDomain": "com.google.user_messaging_platform",
+      "sdkCode": 3,
+      "attAfter": "notDetermined",
+      "sdkInitializationOrAdLoadObserved": false
+    },
+    "legacyStartupAttempt": {
+      "status": "completed-after-owner-refusal",
+      "attBefore": "notDetermined",
+      "attAfter": "denied",
+      "nativeTrackingRequestLogged": false,
+      "qualification": "ATT changed during actual UMP presentation under legacy policy. Consistent with SDK-managed IDFA/ATT flow; does not verify regional GDPR refusal or the explicit native ATT request path."
+    },
+    "systemDeniedRelaunch": {
+      "status": "passed",
+      "attBefore": "denied",
+      "attAfter": "denied",
+      "nativeTrackingRequestLogged": false,
+      "evidence": "ios-system-denied.jsonl",
+      "qualification": "Real SDK startup with previously denied ATT; not first-run notDetermined coverage."
+    },
+    "paidDeniedStartup": {
+      "status": "passed",
+      "attBefore": "denied",
+      "attAfter": "denied",
+      "nativeTrackingRequestLogged": false,
+      "evidence": "ios-paid-denied.jsonl",
+      "qualification": "Real SDK startup with previously denied ATT; not first-run notDetermined coverage."
+    },
+    "underageDeniedStartup": {
+      "status": "passed",
+      "attBefore": "denied",
+      "attAfter": "denied",
+      "nativeTrackingRequestLogged": false,
+      "evidence": "ios-underage-denied.jsonl",
+      "qualification": "Real SDK startup with previously denied ATT; not first-run notDetermined coverage."
+    },
+    "childDeniedStartup": {
+      "status": "passed",
+      "attBefore": "denied",
+      "attAfter": "denied",
+      "nativeTrackingRequestLogged": false,
+      "evidence": "ios-child-denied.jsonl",
+      "qualification": "Real SDK startup with previously denied ATT; not first-run notDetermined coverage."
+    },
+    "deniedTestAd": {
+      "status": "passed",
+      "sdkInitializationATT": "denied",
+      "adLoadATT": "denied",
+      "earnedCallback": true,
+      "closedCallback": true,
+      "qualification": "Owner manually closed the Google test ad and returned to the app. Native SDK closed callback, bridge presentation-closed and successful show completion observed in order; no operation errors. ATT stayed denied.",
+      "completedCallback": true,
+      "earnedCallbackCount": 1,
+      "closedCallbackCount": 1,
+      "completedCallbackCount": 1,
+      "attAfter": "denied",
+      "appStateAtClose": "active",
+      "closedAt": "2026-10-09T00:20:15.008Z",
+      "completedAt": "2026-10-09T00:20:15.010Z",
+      "evidence": [
+        "ios-ad-denied.jsonl",
+        "ios-ad-denied.log"
+      ]
+    },
+    "settingsAuthorization": {
+      "status": "passed",
+      "evidence": "ios-settings-authorized.jsonl",
+      "attAtLaunch": "authorized",
+      "attAtResume": "authorized",
+      "adRequestsStarted": false,
+      "qualification": "Real OS authorized state observed at launch/resume, then denied at launch/resume after owner confirmed manual Settings revocation. A further cold-start SDK flow completed denied without presentation callback or native ATT request. Changes caused new app launches, so this does not establish a same-process transition or first ATT dialog coverage.",
+      "attAfterRevocation": "denied",
+      "revocationEvidence": "ios-settings-revoked.jsonl",
+      "coldStartup": "passed",
+      "nativeTrackingRequestLogged": false,
+      "relaunchEvidence": [
+        "ios-settings-revoked-relaunch.jsonl",
+        "ios-settings-revoked-relaunch.log"
+      ]
+    },
+    "firstRequestPreparation": {
+      "status": "completed",
+      "appId": "org.haiyue.nativevalidation.first20261009a",
+      "evidence": "first-request/summary.json"
+    },
+    "firstNativeATTRequest": {
+      "status": "passed",
+      "initialATT": "notDetermined",
+      "finalATT": "denied",
+      "nativeRequestCount": 1,
+      "nativeSettledCount": 1,
+      "ownerConfirmedSystemAlert": true,
+      "relaunchWithoutRequest": true,
+      "evidence": "first-request/summary.json"
+    },
+    "paidFirstStartup": {
+      "status": "passed",
+      "attBefore": "notDetermined",
+      "attAfter": "notDetermined",
+      "evidence": "first-request/ios-owner-paid.jsonl"
+    },
+    "firstLegacyAndUnderage": {
+      "status": "passed",
+      "evidence": "remaining/summary.json"
+    },
+    "regionalRefusal": {
+      "status": "passed",
+      "initialATT": "notDetermined",
+      "finalATT": "notDetermined",
+      "evidence": "remaining/summary.json"
+    },
+    "firstChildStartup": {
+      "status": "passed",
+      "evidence": "remaining/child.jsonl"
+    },
+    "restrictedAttempt": {
+      "status": "not-reproduced",
+      "observedTransition": "notDetermined → denied after owner refusal of system alert",
+      "startupCompleted": true,
+      "temporaryScreenTimeSettingsRestored": "owner-confirmed: Content & Privacy Restrictions main switch off",
+      "testAppStopped": true,
+      "evidence": "remaining/summary.json",
+      "qualification": "Not an OS restricted pass."
+    },
+    "restrictedAutomated": {
+      "status": "passed",
+      "physicalDeviceStatus": "pending",
+      "label": "自动化通过，真机待验收",
+      "evidence": "restricted-automated/summary.json"
+    }
+  },
+  "device": {
+    "model": "iPhone 15 Plus",
+    "installed": true,
+    "blocker": "XCTest still exits 74 before session, including after Xcode developer-directory correction and fresh runner identity. Real-device application API probes work.",
+    "authorizationGranted": true,
+    "permissionChanged": true,
+    "transport": "wired",
+    "os": "iOS 27.2 beta (24B5089g)",
+    "initialState": "notDetermined",
+    "launch": "passed",
+    "finalState": "denied",
+    "permissionChange": "Owner rejected ATT, later manually enabled the test app in Settings (authorized observed), then confirmed disabling it (denied observed). Final permission denied; no automated permission changes."
+  },
+  "pending": [
+    "OS restricted status on suitable device/account"
+  ],
+  "sourceSha256": {
+    "bridge/rewards/native/ios/HYRewardedAds.swift": "2e8d1194bc8c51d05163017c32b315fe1fd716e8f1697dd64ebc4b0dbbead9ea",
+    "bridge/rewards/native/ios/HYTrackingConsent.swift": "f7c9d9a7ebfe8079108e10e64210b4c74a13cf60ac658d17f8a183cde8fc6573",
+    "scripts/validation/att-mobile/app.ts": "a634320302c7419727eba6a9a064492ca87730668504856c9b316ab77392a60e",
+    "scripts/validation/att-mobile/Acceptance.swift": "644277bc309fd4126ea2c8dafaaeec3c48a04dfe165bf98201363546d91e5910",
+    "scripts/validation/prepare-mobile.mjs": "9edda6bd37858f3a1df9ad37bfe9225bf8d4a726b3f6b5eccb166587a1fb5ea0"
+  },
+  "probeBuild": {
+    "bundleSha256": "76dff07f499a8653bdb8f76f437191015ee317d93ec36eade138d671c8e68f2c",
+    "nativeExecutableSha256": "4458b769c4b973bcbf81416238978fb33685f381f0e3a3ab1c1bc123c46377a8",
+    "qualification": "Latest script adds explicit show probe guarded by real ATT denied; startup cases used preceding script with identical startup flow. Native source unchanged since full build. Re-signing can change the executable hash."
+  }
+}

@@ -1,0 +1,17 @@
+08:12:03  Acquired tunnel connection to device.
+08:12:03  Enabling developer disk image services.
+08:12:03  Acquired usage assertion.
+Launched application with org.haiyue.nativevalidation bundle identifier.
+Waiting for the application to terminate…
+Runtime initialization took 9ms (version 9.0.3, V8 version 10.3.22)
+2026-10-09 08:12:04.863 nativevalidation[44839:8283695] [haiyue-consent] begin refreshPrivacy bundle=org.haiyue.nativevalidation appID=ca-app-pub-3940256099942544~1458002511 ump=3.1.0 gma=13.10.0 simulator=false
+2026-10-09 08:12:04.865 nativevalidation[44839:8283695] [haiyue-consent] before update elapsedMs=0 consent=UMPConsentStatus(rawValue: 0) status=0 form=UMPFormStatus(rawValue: 0) formStatus=0 privacyStatus=0 canRequestAds=false att=denied appState=0
+2026-10-09 08:12:04.865 nativevalidation[44839:8283695] [haiyue-consent] parameters simulator=false registeredTestDeviceCount=0 geography=0 underAge=true
+2026-10-09 08:12:06.051 nativevalidation[44839:8283695] [haiyue-consent] updated elapsedMs=1178 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:12:06.051 nativevalidation[44839:8283695] [haiyue-consent] end event=closed elapsedMs=1188 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:12:06.060 nativevalidation[44839:8283695] [haiyue-consent] begin presentConsent bundle=org.haiyue.nativevalidation appID=ca-app-pub-3940256099942544~1458002511 ump=3.1.0 gma=13.10.0 simulator=false
+2026-10-09 08:12:06.060 nativevalidation[44839:8283695] [haiyue-consent] before update elapsedMs=0 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:12:06.060 nativevalidation[44839:8283695] [haiyue-consent] updated elapsedMs=0 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:12:06.060 nativevalidation[44839:8283695] [haiyue-consent] completed presentConsent elapsedMs=0 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:12:06.060 nativevalidation[44839:8283695] [haiyue-consent] end event=closed elapsedMs=0 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+App terminated due to signal 9.

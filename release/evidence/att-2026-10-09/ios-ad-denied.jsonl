@@ -1,0 +1,7 @@
+{"time":"2026-10-09T00:14:34.019Z","mode":"system","event":"ready","data":{"att":"denied","delayMeasurement":true}}
+{"time":"2026-10-09T00:14:34.060Z","mode":"system","event":"resumed","data":{"att":"denied"}}
+{"time":"2026-10-09T00:14:34.064Z","mode":"system","event":"begin","data":{"action":"show","att":"denied"}}
+{"time":"2026-10-09T00:14:46.606Z","mode":"system","event":"presentation-ready","data":{"att":"denied"}}
+{"time":"2026-10-09T00:14:54.630Z","mode":"system","event":"earned","data":{}}
+{"time":"2026-10-09T00:20:15.008Z","mode":"system","event":"presentation-closed","data":{"att":"denied"}}
+{"time":"2026-10-09T00:20:15.010Z","mode":"system","event":"completed","data":{"action":"show","att":"denied"}}

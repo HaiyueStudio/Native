@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-09",
+  "status": "automated-passed-device-pending",
+  "ownerRequest": "先用自动化测试覆盖 restricted 分支，并保留“真机待验收”的记录",
+  "command": "npm test",
+  "focusedCommand": "node --test test/tracking-authorization.test.mjs test/tracking-restricted-native.test.mjs",
+  "result": {
+    "passed": 103,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "evidence": "tests.log",
+  "environment": {
+    "platform": "Darwin x86_64",
+    "node": "v24.19.0",
+    "swift": "Apple Swift version 6.2.4 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)\nTarget: x86_64-apple-macosx26.0"
+  },
+  "coverage": {
+    "native": {
+      "productionClassCompiled": true,
+      "replacement": "Only SDK import declarations replaced; UIKit, ATT, UMP and GMA supplied by deterministic test doubles. Test executable embeds its own usage description.",
+      "scenarios": [
+        "Restricted unpaid startup completes without presentation, ATT request, SDK initialization, ad loading or earned event.",
+        "Repeated startup completes without ATT retry.",
+        "Restricted ATT does not suppress required regional consent presentation.",
+        "UMP canRequestAds false prevents SDK initialization, ad loading and reward.",
+        "Explicit show with UMP permission reaches the ad SDK double with npa=1; only its earned callback grants a reward; ATT remains restricted.",
+        "Positive control: eligible notDetermined requests ATT once and completes when the test double returns restricted."
+      ]
+    },
+    "typescript": [
+      "Unpaid startup completes without pause or ad preload; concurrent initialize calls share completion.",
+      "Paid startup refreshes only, even with a required consent form.",
+      "Explicit show receives earned callback; live authorized/restricted changes are not cached; disposed status is unavailable."
+    ]
+  },
+  "physicalDevice": {
+    "status": "pending",
+    "label": "真机待验收",
+    "priorAttempt": "../remaining/summary.json",
+    "qualification": "Screen Time attempt produced denied after owner refusal, not restricted. No physical-device restricted pass or release waiver claimed."
+  },
+  "limitations": [
+    "SDK boundaries are simulated; this does not prove actual Apple restriction conditions or real ad delivery.",
+    "Swift test requires macOS and Xcode Command Line Tools and skips on other platforms."
+  ],
+  "sourceSha256": {
+    "test/tracking-authorization.test.mjs": "4ac5926fb0bd9eb500aa1b095087d21bd8c849a6a40c6d3db7358184bcb51137",
+    "test/tracking-restricted-native.test.mjs": "46363392873eac51b4595348c465935ae9f86cdd380fa6246cf257e748e586ed",
+    "test/fixtures/tracking-restricted/SDKDoubles.swift": "69ae3c8a985e796a5cedfcd709a11d6402fd4324089aaac4fdeb3110dc45e525",
+    "test/fixtures/tracking-restricted/Acceptance.swift": "f9ec513174665355e92cad751f5e443acfc7dbdf776734a8c78b3aeb2996ba7f",
+    "bridge/rewards/native/ios/HYRewardedAds.swift": "2e8d1194bc8c51d05163017c32b315fe1fd716e8f1697dd64ebc4b0dbbead9ea",
+    "bridge/rewards/native/ios/HYTrackingConsent.swift": "f7c9d9a7ebfe8079108e10e64210b4c74a13cf60ac658d17f8a183cde8fc6573",
+    "bridge/rewards/admob.ts": "4d3ede20b03b7aa513e347ed4545a927f32620706276ddefb90e3e7f668e0a0f"
+  }
+}

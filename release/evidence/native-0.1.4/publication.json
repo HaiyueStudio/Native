@@ -1,0 +1,9 @@
+{
+  "version": "0.1.4",
+  "tag": "native-v0.1.4",
+  "status": "prepared",
+  "npm": "authentication-renewal-pending",
+  "githubRelease": "pending",
+  "manifestSha256": "6431dfab2f3e78884ee6bf31af95a771c26393685a3a4c7bc453b0e90273c718",
+  "restrictedDeviceAcceptance": "pending"
+}

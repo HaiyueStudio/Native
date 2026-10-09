@@ -77,3 +77,129 @@ test class outputs. Install both APKs, then run
 then an image through landscape/background/foreground) and a fresh four-variant verification.
 The test uses the real close button when available, otherwise the popover outside-dismiss region;
 it does not invoke completion callbacks directly. See `bridge/share/evidence/device-content-2026-10-08.json`.
+
+## ATT acceptance (iPhone)
+
+Prepare the independent host with `--att` instead of `--share-content-engine`:
+
+```sh
+node npm/stage-development.mjs
+node scripts/validation/prepare-mobile.mjs /absolute/path/to/host/node_modules --att
+```
+
+This screen uses the real `AdMobRewardGateway`, UMP and Google Mobile Ads with official test IDs.
+It supplies `NSUserTrackingUsageDescription`, `GADDelayAppMeasurementInit=true`, and C++17 for the
+Canvas dependency. Build with NativeScript's `build ios --for-device --team-id TEAM --no-hmr` and an
+explicit `DEVELOPER_DIR`. No game storage is accessed. There is no synthetic TCF or ATT authorization.
+
+Use `att-mobile/Acceptance.swift` with `mobile/project.rb` in a separate artifacts directory.
+Its default tests reset only the test app's ATT permission, then test paid startup, legacy mode,
+under-age policy and denial/relaunch. They require the global tracking-request setting already enabled;
+if the OS returns denied/restricted instead of notDetermined, record that condition rather than
+changing global privacy settings. They expect a real reachable UMP response; a network error is not
+an authorization pass. Launch environment `HY_ATT_MODE` selects `system`, `legacy`, `underage` or `child`.
+Policy is process-wide, so terminate and relaunch when changing modes.
+
+Granting ATT and revoking it in Settings require the device owner's explicit authorization. Once
+allowed, verify the actual system alert, authorized state, relaunch persistence, then revoke only
+Native Validation's setting and use Read ATT status to verify denied after returning. Leave the test
+app denied. Do not change other apps or the global tracking switch. Use Show Google test ad to check
+loading after permission settles; never click ad destinations. Debug console stages `tracking request`,
+`tracking settled`, `sdk initialize`, and `ad load` expose ordering without consent strings or IDFA.
+
+Regional refusal must use a real configured UMP form and the SDK's registered test-device geography;
+do not write TCF values to fabricate a device pass. Restricted OS status needs a suitable device/account
+and must be reported separately from the host's under-age policy. Collect `Documents/att-validation.jsonl`,
+XCTest results/screenshots and signed-build hashes. Node tests and native compilation are separate evidence.
+
+When XCTest cannot attach, launch the app via `devicectl` with `HY_ATT_AUTOSTART=startup` or `paid`.
+The probe waits for an active UIApplication, uses real SDK calls, and never answers a consent alert.
+`HY_ATT_AUTOSTART=show` loads the official test ad only when the live ATT state is already `denied`;
+otherwise it logs `probe-skipped`. Manually close the ad without clicking its destination, then collect
+the log using `node scripts/validation/att-mobile/collect-ios.mjs DEVICE OUTPUT_DIRECTORY`.
+Collect before each relaunch: the next process replaces the log. The host prevents auto-lock while open;
+terminate it after acceptance. SDK debug console output may contain a test-device identifier; remove
+that SDK line before archiving public evidence.
+
+2026-10-09: owner refusal during the official test App ID's UMP form changed real ATT from
+`notDetermined` to `denied` even under `legacy` policy, with no Native `tracking request` log.
+This is consistent with an SDK-managed IDFA/ATT flow and is **not** a regional GDPR-refusal pass.
+The legacy XCTest expectation needs a UMP configuration with no IDFA explainer; its default test App ID
+does not establish that prerequisite. System, paid, under-age and child startup then completed with
+the persisted denied state. These checks do not establish first-run suppression from `notDetermined`.
+XCTest never started tests (runner exit 74); app-level SDK probes and the owner's actions supply the
+device evidence. See `release/evidence/att-2026-10-09/summary.json` for passed and pending branches.
+The denied-state Google test ad also completed its full lifecycle: one earned callback, owner dismissal,
+one `presentation-closed`, then one successful `show` completion. Native `end event=closed` recorded
+an active UIApplication and ATT `denied`; no operation error occurred. This verifies the denied-ad path,
+not the remaining initial-authorization, regional-refusal or Settings-revocation branches.
+
+The subsequent Settings branch also passed: manual enable produced real `authorized` on launch/resume;
+the owner then confirmed disabling only Native Validation and the app read `denied` on launch/resume.
+A further cold-start SDK flow completed with `denied`, without a presentation callback or native ATT
+request. Settings changes resulted in new app launches, so this evidence does not assert an uninterrupted
+same-process transition, nor does enabling in Settings prove the initial native ATT alert. Final ATT is
+denied. See `ios-settings-*.jsonl` and the summary in the same evidence directory.
+
+For first-request acceptance without overwriting an existing test app, prepare with
+`HY_ATT_BUNDLE_ID=org.haiyue.nativevalidation.firstYYYYMMDDa` and `--att`. Bundle overrides are restricted
+to this validation namespace. An optional `HY_ATT_ADMOB_APP_ID=ca-app-pub-…~…` selects an owner-configured
+iOS UMP application; use one without an IDFA explainer when verifying Native's own ATT request branch.
+These values affect only the disposable host. The rewarded ad unit remains Google's official test unit.
+Build/sign/install as usual and pass the same bundle ID as the optional third argument to
+`att-mobile/collect-ios.mjs`. The startup log includes the actual installed bundle and AdMob app IDs.
+Collect a real `notDetermined` baseline, then verify native `tracking request` before the system alert,
+`tracking settled` after the owner's response, and successful startup with the resulting OS state.
+Do not mark this branch passed if UMP's IDFA flow consumed the permission before Native requested it.
+See Google's [IDFA flow documentation](https://developers.google.com/admob/ios/privacy/idfa) and
+[UMP message configuration](https://developers.google.com/admob/ios/privacy).
+
+2026-10-09 first-request acceptance passed on the separate `org.haiyue.nativevalidation.first20261009a`
+app using the owner's iOS AdMob App ID. Real UMP returned `notRequired` while ATT was `notDetermined`.
+Paid startup completed without consuming the first request. Unpaid startup logged exactly one Native
+`tracking request`; the owner confirmed the Apple system alert and chose not to track. Native then
+logged one `tracking settled` with `denied`, and startup completed successfully. A cold relaunch completed
+with `denied` and no new presentation or ATT request. No ad SDK initialization or ad load was initiated
+in these startup cases. This covers the initial refusal branch; Settings enable/revoke is documented
+separately. Full evidence and signed-build hashes: `release/evidence/att-2026-10-09/first-request/summary.json`.
+
+The subsequent fresh `org.haiyue.nativevalidation.policy20261009b` app completed legacy, under-age and
+child startup with ATT remaining `notDetermined`; no presentation or Native tracking request occurred.
+For regional refusal, launch with `HY_UMP_EEA=1`, the SDK-reported `HY_UMP_TEST_DEVICE_ID`, and
+`HY_UMP_RESET=1` on this disposable Debug host. The real UMP form became required; the owner rejected
+the optional consents and saved. Startup completed with ATT still `notDetermined` and no Native ATT
+request. Relaunching in the same test geography **without** reset preserved that result and presented
+neither form nor ATT alert. The initial offline launch and a background-interrupted presentation are
+retained as failed attempts, not counted as passes. See `release/evidence/att-2026-10-09/remaining/`.
+
+OS `restricted` is still separate: neither an app's age policy nor a normal `denied` result proves it.
+Obtain the owner's permission before attempting any device-wide Screen Time restriction; record the
+original settings, read the real OS status, and restore the original settings after the test. Only an
+actual `restricted` result plus successful startup qualifies. On 2026-10-09 the owner authorized and
+manually applied a temporary Screen Time restriction. Explicit reads remained `notDetermined`; cold
+startup displayed the normal Apple ATT alert and completed with `denied` after owner refusal. This
+attempt did **not** reproduce `restricted`. The owner confirmed restoring Content & Privacy Restrictions
+to its original main-switch-off state; the resumed app reported `denied`, and the test app was stopped.
+Individual suboption values were not recorded; restoration relies on owner confirmation, not ATT status.
+Real OS `restricted` acceptance remains pending on a suitable device/account. Evidence is preserved in
+`release/evidence/att-2026-10-09/remaining/restricted-startup.jsonl` and the matching native log.
+
+Automated `restricted` coverage was added on 2026-10-09 at the owner's request. Run it with:
+
+```sh
+node --test test/tracking-authorization.test.mjs test/tracking-restricted-native.test.mjs
+```
+
+The macOS Swift runner compiles the complete production `HYRewardedAds.swift` class, replacing only
+its SDK imports with test doubles. It covers startup without prompting or preloading, repeat startup,
+required regional forms, consent-blocked ads, explicitly requested ads and earned callbacks, and a
+`notDetermined` request that settles to `restricted`. This last case is a positive control proving the
+request boundary is exercised. The TypeScript tests cover unpaid startup completion, paid startup,
+explicit ad requests and live status changes. The Swift test requires macOS and Xcode Command Line
+Tools and is explicitly skipped elsewhere; the TypeScript tests remain portable. Both are included
+in `npm test`. No runtime permission override or production policy change was introduced.
+
+Full suite: **103 passed, 0 failed, 0 skipped**. This proves application behavior under simulated SDK
+inputs, not Apple's ability to produce `restricted`, real SDK ad delivery, or physical-device UI.
+Acceptance status remains **automated passed / 真机待验收**. Evidence and source hashes:
+`release/evidence/att-2026-10-09/restricted-automated/summary.json`.

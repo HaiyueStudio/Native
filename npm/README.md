@@ -15,16 +15,21 @@ npm install ./haiyue-native-<candidate>.tgz
 ```
 
 系统能力使用 `@nativescript/core@9.1.1` 和 `@nativescript/canvas@2.1.18` 作为宿主 peer dependencies。
-`@haiyue/engine@0.2.1` 是 **可选 peer dependency**：只使用分享、震动、陀螺仪、扫码等独立入口时，无需安装 Engine。
+`@haiyue/engine@^0.2.0` 是 **可选 peer dependency**：只使用分享、震动、陀螺仪、扫码等独立入口时，无需安装 Engine。
 
-渲染宿主使用 `@haiyue/native/engine`，应用须额外提供 `@haiyue/engine@0.2.1`。
+渲染宿主使用 `@haiyue/native/engine`，应用须额外提供 `@haiyue/engine@^0.2.0`（`>=0.2.0 <0.3.0`，不包含预发布版本）。
 旧根入口 `@haiyue/native` 保留原有导出，仍会引用 Engine 适配层；无 Engine 的应用应使用能力子入口。
 本次未改变 NativeScript Core / Canvas 的必需 peer 声明。
 
-Engine 0.2.1 尚未发布到 npm，仓库开发检查暂用 `devDependencies` 中带完整性锁定的
-`vendor/haiyue-engine-0.2.1.tgz`。该包只用于开发验证，不进入 Native npm 包，不安装到仅使用系统能力的消费者中。
-系统能力发布不要求 Engine 同时发布；渲染消费者在 Engine 发布前需自行安装匹配的候选包。
-Engine 正式包可用后，可将开发依赖切换到注册表 `0.2.1`，更新锁文件并重新验证。
+兼容范围的最低版本 `0.2.0` 已在 npm 发布，仓库开发依赖精确锁定到该注册表版本，
+并通过 lockfile 校验完整性。渲染适配不再要求未发布的 Engine 候选包；后续兼容补丁版本属于同一范围，
+`0.3.x` 需要单独验证后再扩展。纯系统能力的消费者不会安装此开发依赖。
+
+需要渲染时额外安装：
+
+```sh
+npm install @haiyue/engine@^0.2.0
+```
 
 这是 NativeScript 专用 TypeScript 包，交给 NativeScript Webpack 编译；保留 `.ios.ts` / `.android.ts`，由平台解析器选择实现，并处理 `@NativeClass`。已验证 `@nativescript/webpack@5.0.38` / TypeScript 5.7.3。宿主 tsconfig 使用 `experimentalDecorators: true`、`emitDecoratorMetadata: true`，并包含 `@nativescript/types` 和 `@webgpu/types`；这些类型工具由宿主开发依赖提供。根入口不能直接在浏览器或普通 Node.js 中执行。系统分享的独立 `@haiyue/native/share`（Web 默认）和 `@haiyue/native/share/web` 入口可经 Web 构建器编译使用，不加载原生依赖。
 
@@ -57,7 +62,7 @@ import { shareContent } from '@haiyue/native/share';
 | 入口 | 内容 |
 | --- | --- |
 | `@haiyue/native` | 兼容聚合入口，保留既有 API；需要 Engine |
-| `@haiyue/native/engine` | 可选渲染适配层：NativeRenderHost、NativeSurface、NativeCanvasTextures、NativeTouchInput 与帧控制；需要 Engine 0.2.1 |
+| `@haiyue/native/engine` | 可选渲染适配层：NativeRenderHost、NativeSurface、NativeCanvasTextures、NativeTouchInput 与帧控制；需要 Engine ^0.2.0 |
 | `@haiyue/native/motion` | NativeDeviceMotion |
 | `@haiyue/native/feedback` | NativeHaptics |
 | `@haiyue/native/audio` | NativePcmAudioBank |
@@ -92,3 +97,5 @@ Version 0.1.2 adds `rewardAmount` (default 1) to rewarded allowances and `Purcha
 Version 0.1.3 adds `@haiyue/native/scanner` (iOS AVFoundation / Android ZXing Embedded) and sanitized structured rewarded-ad failure diagnostics. Hosts must configure camera permissions and the Android scanner dependency; see [QR scanning](bridge/scanner/README.md). See [reward diagnostics](bridge/rewards/README.md) for `onFailure` and `snapshot().lastFailure`. Existing error messages and wallet formats remain compatible. Release readiness and device coverage are recorded in the repository release evidence.
 
 系统分享接入与 Android provider 配置见 [系统分享](bridge/share/README.md)。当前源码新增，使用私有开发包验证；不表示已包含在此前发布版本中。
+
+Version 0.1.4 adds Native/Web system sharing and the explicit `/engine` adapter entry. Engine is an optional peer (`^0.2.0`); system-only imports do not load it. Rendering consumers must install Engine, with compatibility checks pinned to the published 0.2.0 minimum. iOS system ATT is opt-in and respects age policy and regional refusal. `restricted` has automated coverage; physical-device acceptance remains pending. See the repository 0.1.4 release notes for device evidence and limitations.

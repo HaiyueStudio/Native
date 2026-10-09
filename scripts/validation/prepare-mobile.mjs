@@ -3,6 +3,12 @@ import {cpSync,existsSync,lstatSync,unlinkSync,mkdirSync,readFileSync,readdirSyn
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../../',import.meta.url));
+const att = process.argv.includes('--att');
+const attBundleId = process.env.HY_ATT_BUNDLE_ID || 'org.haiyue.nativevalidation';
+const attAppId = process.env.HY_ATT_ADMOB_APP_ID || 'ca-app-pub-3940256099942544~1458002511';
+if ((process.env.HY_ATT_BUNDLE_ID || process.env.HY_ATT_ADMOB_APP_ID) && !att) throw Error('ATT identity overrides require --att');
+if (!/^org\.haiyue\.nativevalidation(?:\.[a-z][a-z0-9]*)*$/.test(attBundleId)) throw Error('Use an isolated org.haiyue.nativevalidation test bundle ID');
+if (!/^ca-app-pub-\d{16}~\d{10}$/.test(attAppId)) throw Error('Invalid iOS AdMob App ID');
 const modules=path.resolve(process.argv[2]??'');if(!existsSync(path.join(modules,'nativescript')))throw Error('Pass a NativeScript host node_modules directory');
 const host=path.join(root,'artifacts/native-validation');mkdirSync(path.join(host,'node_modules'),{recursive:true});
 const link=(a,b)=>{if(!existsSync(b))symlinkSync(a,b,'dir');};
@@ -14,7 +20,7 @@ write('package.json',JSON.stringify({name:'native-validation',version:'0.1.3',pr
 write('nativescript.config.ts',`const {monetizationBuild}=require(process.cwd()+'/node_modules/@haiyue/native/bridge/monetization/build.cjs');const build=monetizationBuild({development:true,rewards:{iosAppId:'ca-app-pub-3940256099942544~1458002511',androidAppId:'ca-app-pub-3940256099942544~3347511713'}});export default {id:'org.haiyue.nativevalidation',appPath:'src',appResourcesPath:'App_Resources',ios:{...build.ios,discardUncaughtJsExceptions:false}};`);
 write('webpack.config.js',`const webpack=require('@nativescript/webpack');module.exports=env=>{if(env.android)env.commonjs=true;webpack.init(env);return webpack.resolveConfig();};`);
 write('tsconfig.json',JSON.stringify({compilerOptions:{target:'ES2020',module:'esnext',experimentalDecorators:true,noEmitHelpers:true,skipLibCheck:true,moduleResolution:'bundler',types:['@nativescript/types']},include:['src/**/*.ts']}));
-write('App_Resources/iOS/build.xcconfig','IPHONEOS_DEPLOYMENT_TARGET = 15.0;\nTARGETED_DEVICE_FAMILY = 1,2;\nCODE_SIGN_STYLE = Automatic;\n');
+write('App_Resources/iOS/build.xcconfig','IPHONEOS_DEPLOYMENT_TARGET = 15.0;\nTARGETED_DEVICE_FAMILY = 1,2;\nCODE_SIGN_STYLE = Automatic;\nCLANG_CXX_LANGUAGE_STANDARD = c++17;\n');
 write('App_Resources/iOS/Info.plist',`<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string><key>CFBundleName</key><string>$(PRODUCT_NAME)</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleDisplayName</key><string>Native Validation</string><key>CFBundleShortVersionString</key><string>0.1.3</string><key>CFBundleVersion</key><string>1</string><key>NSCameraUsageDescription</key><string>Validate Native QR scanning.</string><key>GADApplicationIdentifier</key><string>ca-app-pub-3940256099942544~1458002511</string><key>HYBuildConfiguration</key><string>$(CONFIGURATION)</string><key>UILaunchScreen</key><dict/><key>UISupportedInterfaceOrientations</key><array><string>UIInterfaceOrientationPortrait</string><string>UIInterfaceOrientationLandscapeLeft</string><string>UIInterfaceOrientationLandscapeRight</string></array></dict></plist>`);
 const {createRequire}=await import('node:module');const {monetizationBuild}=createRequire(import.meta.url)(path.join(root,'bridge/monetization/build.cjs'));
 const build=monetizationBuild({development:true,rewards:{iosAppId:'ca-app-pub-3940256099942544~1458002511',androidAppId:'ca-app-pub-3940256099942544~3347511713'}});
@@ -49,4 +55,24 @@ if (engineFlag >= 0) {
   Object.assign(types.compilerOptions, {types: ['@nativescript/types', '@webgpu/types'], baseUrl: '.', paths: {'@haiyue/native/bridge/*':['node_modules/@haiyue/native/bridge/*']}});
   write('tsconfig.json', JSON.stringify(types, null, 2));
   cpSync(path.join(root, 'scripts/validation/share-mobile/app.ts'), path.join(host, 'src/app.ts'));
+}
+
+// Isolated real-SDK ATT acceptance. No synthetic CMP consent or permission overrides.
+if (process.argv.includes('--att')) {
+  if (engineFlag >= 0) throw Error('Choose --att or --share-content-engine, not both');
+  cpSync(path.join(root, 'scripts/validation/att-mobile/app.ts'), path.join(host, 'src/app.ts'));
+  const info = path.join(host, 'App_Resources/iOS/Info.plist');
+  writeFileSync(info, readFileSync(info, 'utf8').replace('<key>NSCameraUsageDescription</key>',
+    '<key>GADDelayAppMeasurementInit</key><true/><key>NSUserTrackingUsageDescription</key><string>This test app validates your advertising tracking choice with Google test ads.</string><key>NSCameraUsageDescription</key>'));
+  // Host-only overrides: fresh ATT identity and an owner-configured CMP without an IDFA explainer.
+  // Rewarded ad units remain Google's official test units in att-mobile/app.ts.
+  for (const file of ['nativescript.config.ts', 'App_Resources/iOS/Info.plist', 'App_Resources/Android/src/main/AndroidManifest.xml']) {
+    const target = path.join(host, file);
+    writeFileSync(target, readFileSync(target, 'utf8')
+      .replaceAll('org.haiyue.nativevalidation', attBundleId)
+      .replaceAll('ca-app-pub-3940256099942544~1458002511', attAppId));
+  }
+  if (attBundleId !== 'org.haiyue.nativevalidation') {
+    writeFileSync(info, readFileSync(info, 'utf8').replace('<string>Native Validation</string>', '<string>Native ATT First</string>'));
+  }
 }

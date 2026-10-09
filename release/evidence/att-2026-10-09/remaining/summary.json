@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-09",
+  "status": "partial-device-evidence",
+  "appId": "org.haiyue.nativevalidation.policy20261009b",
+  "admobAppId": "ca-app-pub-2053256758816744~9316994454",
+  "build": "passed",
+  "initialATT": "notDetermined",
+  "checks": {
+    "legacy": {
+      "status": "passed",
+      "initialATT": "notDetermined",
+      "finalATT": "notDetermined",
+      "nativeTrackingRequestLogged": false,
+      "evidence": [
+        "legacy.jsonl",
+        "legacy.log"
+      ]
+    },
+    "underage": {
+      "status": "passed",
+      "initialATT": "notDetermined",
+      "finalATT": "notDetermined",
+      "nativeTrackingRequestLogged": false,
+      "evidence": [
+        "underage.jsonl",
+        "underage.log"
+      ]
+    },
+    "child": {
+      "status": "passed",
+      "initialATT": "notDetermined",
+      "finalATT": "notDetermined",
+      "nativeTrackingRequestLogged": false,
+      "evidence": [
+        "child.jsonl",
+        "child.log"
+      ]
+    },
+    "regional": {
+      "status": "passed",
+      "initialATT": "notDetermined",
+      "finalATT": "notDetermined",
+      "nativeTrackingRequestLogged": false,
+      "evidence": [
+        "regional.jsonl",
+        "regional.log"
+      ],
+      "registeredTestDeviceCount": 1,
+      "debugGeography": "EEA",
+      "sdkConsentBeforeForm": "required",
+      "sdkConsentAfterForm": "obtained",
+      "ownerConfirmation": "Owner confirmed refusing all optional consent and saving the actual regional form, then returning to the app.",
+      "priorAttempt": {
+        "status": "presentation-rejected-while-background",
+        "evidence": [
+          "regional-inactive.jsonl",
+          "regional-inactive.log"
+        ]
+      },
+      "qualification": "Real SDK-required regional form and manual refusal. canRequestAds true is not treated as permission to request ATT. ATT remained notDetermined; no raw TCF data logged.",
+      "relaunch": {
+        "status": "passed",
+        "consentReset": false,
+        "att": "notDetermined",
+        "presentationCallback": false,
+        "nativeTrackingRequestLogged": false,
+        "evidence": [
+          "regional-relaunch.jsonl",
+          "regional-relaunch.log"
+        ]
+      }
+    },
+    "restricted": {
+      "status": "not-reproduced",
+      "deviceWideRestrictionAuthorized": true,
+      "authorization": "Owner explicitly authorized a temporary Screen Time tracking restriction, followed by restoration.",
+      "initialATT": "notDetermined",
+      "baselineEvidence": "restricted-baseline.jsonl",
+      "originalSettings": {
+        "contentAndPrivacyRestrictionsEnabled": false,
+        "source": "Owner confirmed restoring the main switch to its previous off state; individual suboption values were not recorded."
+      },
+      "settingsChangedByAgent": false,
+      "restoreRequiredAfterManualChange": true,
+      "qualification": "Temporary Screen Time settings did not produce OS restricted on this device. Explicit reads remained notDetermined; normal Native startup displayed the Apple ATT prompt and completed with denied after owner refusal. No restricted pass claimed. Owner confirmed restoring Content & Privacy Restrictions main switch to its original off state.",
+      "ownerConfirmedApplied": true,
+      "observedATTAfterSetting": "notDetermined",
+      "afterSettingEvidence": "restricted-after-setting.jsonl",
+      "restorationStatus": "owner-confirmed-restored",
+      "finalATT": "denied",
+      "nativeRequestCount": 1,
+      "nativeSettledCount": 1,
+      "startupCompleted": true,
+      "ownerConfirmedSystemAlert": true,
+      "ownerSelected": "Ask App Not to Track",
+      "evidence": [
+        "restricted-baseline.jsonl",
+        "restricted-after-setting.jsonl",
+        "restricted-startup.jsonl",
+        "restricted-startup.log"
+      ],
+      "restoration": {
+        "contentAndPrivacyRestrictionsEnabled": false,
+        "verification": "Owner confirmation of Settings; app resumed and explicit ATT status read returned denied. ATT status alone does not verify Screen Time settings."
+      },
+      "testAppStopped": true,
+      "automatedCoverage": {
+        "status": "passed",
+        "evidence": "../restricted-automated/summary.json",
+        "physicalDeviceStatus": "pending",
+        "label": "真机待验收"
+      }
+    }
+  },
+  "qualification": "Real UMP SDK and live OS ATT; SDK Debug reset only affects consent of this dedicated test app. No fabricated consent or permission state.",
+  "initialAttempt": {
+    "status": "failed-offline-before-ump",
+    "evidence": "legacy-initial-offline.jsonl",
+    "retry": "passed; retained separately, not counted as an ATT pass"
+  },
+  "buildHashes": {
+    "bundleSha256": "6dbe167ca64100043d9831382bf82c9bd5b973487771ca6272ad76a0e6a30b24",
+    "nativeExecutableSha256": "3fa04adde73a6a44cea2b1785a0791de094531ca6a39d03c71543f9028458400",
+    "ipaSha256": "87e07138c0ae3fef48d226e06a3a8c42c3d8904e78729589c74346fded36f68c"
+  },
+  "sourceSha256": {
+    "bridge/rewards/native/ios/HYRewardedAds.swift": "2e8d1194bc8c51d05163017c32b315fe1fd716e8f1697dd64ebc4b0dbbead9ea",
+    "bridge/rewards/native/ios/HYTrackingConsent.swift": "f7c9d9a7ebfe8079108e10e64210b4c74a13cf60ac658d17f8a183cde8fc6573",
+    "scripts/validation/att-mobile/app.ts": "ce83bd7136386929c875fa332bead383494d513fb1817e521b26993b505ed29f",
+    "scripts/validation/prepare-mobile.mjs": "2823bf9757c473f99f1d1c899bd28c5d9ad2767a8cae8d974c5b0dc5ff9a85db"
+  },
+  "pending": [
+    "OS restricted acceptance requires a device/account that actually returns restricted; the authorized Screen Time attempt did not reproduce it."
+  ]
+}

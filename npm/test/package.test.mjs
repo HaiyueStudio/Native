@@ -68,10 +68,11 @@ for (const platform of ['ios', 'android']) for (const systemOnly of [false, true
     .replace("import * as engineAdapter from '@haiyue/native/engine';\n", '')
     .replace('native, engineAdapter, ', '');
   writeFileSync(entry, entrySource);
-  if (systemOnly) {
-    // The unpacked consumer contains no @haiyue/engine. Typecheck public capability
-    // entries through normal exports resolution, without borrowing our Engine install.
-    assert.equal(existsSync(path.join(temp, 'node_modules/@haiyue/engine')), false);
+  {
+    // Typecheck both consumer modes against real package exports. Rendering uses
+    // our registry-pinned minimum Engine; system consumers have no Engine install.
+    if (!systemOnly) symlinkSync(path.join(root, 'node_modules/@haiyue/engine'), path.join(temp, 'node_modules/@haiyue/engine'), 'dir');
+    assert.equal(existsSync(path.join(temp, 'node_modules/@haiyue/engine')), !systemOnly);
     for (const scope of ['@nativescript', '@webgpu'])
       symlinkSync(path.join(root, 'node_modules', scope), path.join(temp, 'node_modules', scope), 'dir');
     const typesEntry = path.join(temp, 'consumer.ts');
@@ -96,7 +97,9 @@ for (const platform of ['ios', 'android']) for (const systemOnly of [false, true
     externals: [({ request }, callback) => {
       if (systemOnly && /^@haiyue\/engine(?:\/|$)/.test(request ?? ''))
         return callback(new Error('System capabilities must not load Engine: ' + request));
-      if (request && !request.startsWith('.') && !path.isAbsolute(request) && !request.startsWith('@haiyue/native'))
+      // Bundle the actual Engine exports so missing/incompatible runtime imports
+      // cannot be hidden by treating the entire Engine as an external dependency.
+      if (request && !request.startsWith('.') && !path.isAbsolute(request) && !request.startsWith('@haiyue/native') && !/^@haiyue\/engine(?:\/|$)/.test(request))
         return callback(null, `commonjs ${request}`);
       callback();
     }],
@@ -123,7 +126,7 @@ for (const platform of ['ios', 'android']) for (const systemOnly of [false, true
   else {
     assert.match(modules, /bridge\/engine/);
     assert.match(modules, /lifecycle\/host/);
-    assert.match(modules, /@haiyue\/engine/);
+    assert.match(modules, /@haiyue\/engine\/dist\//);
   }
   if (platform === 'ios') assert.doesNotMatch(readFileSync(path.join(temp, 'bundle.js'), 'utf8'), /NativeClass\(\)/);
 });

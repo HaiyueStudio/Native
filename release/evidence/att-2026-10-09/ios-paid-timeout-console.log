@@ -1,0 +1,12 @@
+08:00:57  Enabling developer disk image services.
+08:00:57  Acquired usage assertion.
+Launched application with org.haiyue.nativevalidation bundle identifier.
+Waiting for the application to terminate…
+Runtime initialization took 8ms (version 9.0.3, V8 version 10.3.22)
+2026-10-09 08:00:59.094 nativevalidation[44756:8272807] [haiyue-consent] begin refreshPrivacy bundle=org.haiyue.nativevalidation appID=ca-app-pub-3940256099942544~1458002511 ump=3.1.0 gma=13.10.0 simulator=false
+2026-10-09 08:00:59.098 nativevalidation[44756:8272807] [haiyue-consent] before update elapsedMs=3 consent=UMPConsentStatus(rawValue: 0) status=0 form=UMPFormStatus(rawValue: 0) formStatus=0 privacyStatus=0 canRequestAds=false att=notDetermined appState=0
+2026-10-09 08:00:59.098 nativevalidation[44756:8272807] [haiyue-consent] parameters simulator=false registeredTestDeviceCount=0 geography=0 underAge=false
+2026-10-09 08:01:09.127 nativevalidation[44756:8272807] [haiyue-consent] update failed domain=com.google.user_messaging_platform code=3 description=The request timed out.
+2026-10-09 08:01:09.135 nativevalidation[44756:8272807] [haiyue-consent] update failed state elapsedMs=10037 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 0) formStatus=0 privacyStatus=2 canRequestAds=true att=notDetermined appState=0
+2026-10-09 08:01:09.135 nativevalidation[44756:8272807] [haiyue-consent] end event=error:unavailable:{"code":"sdk_error","stage":"consent_update","sdk":{"code":3,"domain":"com.google.user_messaging_platform"}} elapsedMs=10045 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 0) formStatus=0 privacyStatus=2 canRequestAds=true att=notDetermined appState=0
+App terminated due to signal 9.

@@ -1,0 +1,4 @@
+{"time":"2026-10-09T00:10:26.961Z","mode":"system","event":"ready","data":{"att":"denied","delayMeasurement":true}}
+{"time":"2026-10-09T00:10:26.988Z","mode":"system","event":"resumed","data":{"att":"denied"}}
+{"time":"2026-10-09T00:10:26.991Z","mode":"system","event":"begin","data":{"action":"startup","att":"denied"}}
+{"time":"2026-10-09T00:10:28.397Z","mode":"system","event":"completed","data":{"action":"startup","att":"denied"}}

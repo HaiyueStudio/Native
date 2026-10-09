@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-09T04:44:29.459Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "candidate-integrity",
+      "status": "passed",
+      "durationMs": 1092
+    },
+    {
+      "name": "node-toolchain",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "root-install",
+      "status": "passed",
+      "durationMs": 772
+    },
+    {
+      "name": "root-dependencies",
+      "status": "passed",
+      "durationMs": 568
+    },
+    {
+      "name": "release-tests",
+      "status": "passed",
+      "durationMs": 11416
+    },
+    {
+      "name": "npm-install",
+      "status": "passed",
+      "durationMs": 8854
+    },
+    {
+      "name": "npm-dependencies",
+      "status": "passed",
+      "durationMs": 867
+    },
+    {
+      "name": "npm-candidate-pack",
+      "status": "passed",
+      "durationMs": 1429
+    },
+    {
+      "name": "npm-typecheck",
+      "status": "passed",
+      "durationMs": 5709
+    },
+    {
+      "name": "npm-package-tests",
+      "status": "passed",
+      "durationMs": 31724
+    },
+    {
+      "name": "ios-pbr-orbit-install",
+      "status": "passed",
+      "durationMs": 19275
+    },
+    {
+      "name": "ios-pbr-orbit-dependencies",
+      "status": "passed",
+      "durationMs": 1965
+    },
+    {
+      "name": "ios-pbr-orbit-typecheck",
+      "status": "passed",
+      "durationMs": 5846
+    },
+    {
+      "name": "ios-pbr-orbit-tests",
+      "status": "passed",
+      "durationMs": 1316
+    },
+    {
+      "name": "spider-solitaire-install",
+      "status": "passed",
+      "durationMs": 14034
+    },
+    {
+      "name": "spider-solitaire-dependencies",
+      "status": "passed",
+      "durationMs": 1672
+    },
+    {
+      "name": "spider-solitaire-typecheck",
+      "status": "passed",
+      "durationMs": 5935
+    },
+    {
+      "name": "spider-solitaire-tests",
+      "status": "passed",
+      "durationMs": 1290
+    },
+    {
+      "name": "sky-strike-install",
+      "status": "passed",
+      "durationMs": 14212
+    },
+    {
+      "name": "sky-strike-dependencies",
+      "status": "passed",
+      "durationMs": 1827
+    },
+    {
+      "name": "sky-strike-typecheck",
+      "status": "passed",
+      "durationMs": 6649
+    },
+    {
+      "name": "sky-strike-tests",
+      "status": "passed",
+      "durationMs": 1608
+    },
+    {
+      "name": "rubiks-cube-install",
+      "status": "passed",
+      "durationMs": 14206
+    },
+    {
+      "name": "rubiks-cube-dependencies",
+      "status": "passed",
+      "durationMs": 1685
+    },
+    {
+      "name": "rubiks-cube-typecheck",
+      "status": "passed",
+      "durationMs": 6808
+    },
+    {
+      "name": "rubiks-cube-tests",
+      "status": "passed",
+      "durationMs": 1074
+    },
+    {
+      "name": "ak47-range-install",
+      "status": "passed",
+      "durationMs": 13928
+    },
+    {
+      "name": "ak47-range-dependencies",
+      "status": "passed",
+      "durationMs": 2063
+    },
+    {
+      "name": "ak47-range-typecheck",
+      "status": "passed",
+      "durationMs": 6131
+    },
+    {
+      "name": "ak47-range-tests",
+      "status": "passed",
+      "durationMs": 1138
+    },
+    {
+      "name": "neon-circuit-install",
+      "status": "passed",
+      "durationMs": 16073
+    },
+    {
+      "name": "neon-circuit-dependencies",
+      "status": "passed",
+      "durationMs": 2001
+    },
+    {
+      "name": "neon-circuit-typecheck",
+      "status": "passed",
+      "durationMs": 7548
+    },
+    {
+      "name": "neon-circuit-tests",
+      "status": "passed",
+      "durationMs": 1320
+    },
+    {
+      "name": "candidate-integrity-after-validation",
+      "status": "passed",
+      "durationMs": 1127
+    }
+  ],
+  "skipped": [
+    "Device install/interaction, signing/export and store submission are not performed by this gate.",
+    "Native bundle/build: request --profile bundle|build --platform ios|android."
+  ],
+  "candidate": "0.1.4",
+  "profile": "source",
+  "platform": null,
+  "apps": [
+    "ios-pbr-orbit",
+    "spider-solitaire",
+    "sky-strike",
+    "rubiks-cube",
+    "ak47-range",
+    "neon-circuit"
+  ],
+  "qualification": "Only the listed stages; not App Store / Play Store or device acceptance.",
+  "toolchain": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "manifestSha256": "6431dfab2f3e78884ee6bf31af95a771c26393685a3a4c7bc453b0e90273c718",
+  "finishedAt": "2026-10-09T04:48:02.878Z"
+}

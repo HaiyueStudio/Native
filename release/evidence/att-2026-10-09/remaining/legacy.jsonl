@@ -1,0 +1,4 @@
+{"time":"2026-10-09T04:05:51.762Z","mode":"legacy","event":"ready","data":{"att":"notDetermined","bundleId":"org.haiyue.nativevalidation.policy20261009b","admobAppId":"ca-app-pub-2053256758816744~9316994454","delayMeasurement":true}}
+{"time":"2026-10-09T04:05:51.791Z","mode":"legacy","event":"resumed","data":{"att":"notDetermined"}}
+{"time":"2026-10-09T04:05:51.793Z","mode":"legacy","event":"begin","data":{"action":"startup","att":"notDetermined"}}
+{"time":"2026-10-09T04:05:53.353Z","mode":"legacy","event":"completed","data":{"action":"startup","att":"notDetermined"}}

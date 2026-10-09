@@ -1,0 +1,14 @@
+08:14:32  Enabling developer disk image services.
+08:14:32  Acquired usage assertion.
+Launched application with org.haiyue.nativevalidation bundle identifier.
+Waiting for the application to terminate…
+Runtime initialization took 25ms (version 9.0.3, V8 version 10.3.22)
+2026-10-09 08:14:34.066 nativevalidation[44862:8287109] [haiyue-consent] begin show bundle=org.haiyue.nativevalidation appID=ca-app-pub-3940256099942544~1458002511 ump=3.1.0 gma=13.10.0 simulator=false
+2026-10-09 08:14:34.068 nativevalidation[44862:8287109] [haiyue-consent] before update elapsedMs=0 consent=UMPConsentStatus(rawValue: 0) status=0 form=UMPFormStatus(rawValue: 0) formStatus=0 privacyStatus=0 canRequestAds=false att=denied appState=0
+2026-10-09 08:14:34.068 nativevalidation[44862:8287109] [haiyue-consent] parameters simulator=false registeredTestDeviceCount=0 geography=0 underAge=false
+2026-10-09 08:14:35.464 nativevalidation[44862:8287109] [haiyue-consent] updated elapsedMs=1387 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:14:35.464 nativevalidation[44862:8287109] [haiyue-consent] completed show elapsedMs=1398 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:14:35.464 nativevalidation[44862:8287109] [haiyue-consent] sdk initialize elapsedMs=1398 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+sandbox_extension_issue_file failed for /var/containers/Bundle/Application/E2A1C583-48E8-4334-8C94-22F8184B010B/nativevalidation.app: 1 (Operation not permitted)
+2026-10-09 08:14:39.133 nativevalidation[44862:8287109] [haiyue-consent] ad load elapsedMs=5067 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0
+2026-10-09 08:20:15.007 nativevalidation[44862:8287109] [haiyue-consent] end event=closed elapsedMs=340934 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=denied appState=0

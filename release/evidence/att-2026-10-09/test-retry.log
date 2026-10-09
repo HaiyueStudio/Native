@@ -1,0 +1,25 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project Acceptance.xcodeproj -scheme Acceptance -destination id=00008120-000948541182601E -destination-timeout 30 -derivedDataPath build -resultBundlePath att-denial-startup-retry.xcresult
+
+Writing result bundle at path:
+	/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/att-uitest/att-denial-startup-retry.xcresult
+
+2026-10-09 07:53:53.825348+0800 Acceptance-Runner[44726:8266747] [Default] Running tests...
+2026-10-09 07:54:12.053747+0800 Acceptance-Runner[44726:8266784] [DTXConnection] Connection peer refused channel request for "dtxproxy:XCTestDriverInterface:XCTestManager_IDEInterface"; channel canceled <DTXChannel 0x158064120 : x1.c1> "dtxproxy:XCTestDriverInterface:XCTestManager_IDEInterface"
+2026-10-09 07:54:12.054038+0800 Acceptance-Runner[44726:8266784] [Default] Exiting due to IDE disconnection.
+2026-10-09 07:54:12.352 xcodebuild[49301:3247268]  IDETestOperationsObserverDebug: Failure collecting diagnostics from devices: Process exited with error 72:
+ xcrun: error: unable to find utility "devicectl", not a developer tool or in PATH
+
+2026-10-09 07:54:12.366 xcodebuild[49301:3247214] [MT] IDETestOperationsObserverDebug: 21.730 elapsed -- Testing started completed.
+2026-10-09 07:54:12.366 xcodebuild[49301:3247214] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-09 07:54:12.366 xcodebuild[49301:3247214] [MT] IDETestOperationsObserverDebug: 21.730 sec, +21.730 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/att-uitest/att-denial-startup-retry.xcresult
+
+Testing failed:
+	Acceptance-Runner (44726) encountered an error (Early unexpected exit, operation never finished bootstrapping - no restart will be attempted. (Underlying Error: The test runner exited with code 74 before establishing connection.))
+
+** TEST EXECUTE FAILED **
+
+Testing started

@@ -1,0 +1,4 @@
+{"time":"2026-10-09T04:06:18.854Z","mode":"underage","event":"ready","data":{"att":"notDetermined","bundleId":"org.haiyue.nativevalidation.policy20261009b","admobAppId":"ca-app-pub-2053256758816744~9316994454","delayMeasurement":true}}
+{"time":"2026-10-09T04:06:18.887Z","mode":"underage","event":"resumed","data":{"att":"notDetermined"}}
+{"time":"2026-10-09T04:06:18.889Z","mode":"underage","event":"begin","data":{"action":"startup","att":"notDetermined"}}
+{"time":"2026-10-09T04:06:20.439Z","mode":"underage","event":"completed","data":{"action":"startup","att":"notDetermined"}}

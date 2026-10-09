@@ -76,7 +76,9 @@ import AppTrackingTransparency
             if active(token) { fail("presentation_rejected") }; return false
         }
         // No deadline while the player is reading Apple's system alert.
+        logState("tracking request")
         await ATTrackingManager.requestTrackingAuthorization()
+        logState("tracking settled")
         guard active(token) else { return false }
         events?("presentation-closed")
         // The callback can precede the foreground transition after a system alert.
@@ -265,6 +267,7 @@ import AppTrackingTransparency
             let authorizationAtRequest = ATTrackingManager.trackingAuthorizationStatus
             stage = "sdk_initialize"
             deadline(45, token: token)
+            logState("sdk initialize")
             await MobileAds.shared.start()
             guard active(token) else { return }
             guard ATTrackingManager.trackingAuthorizationStatus == authorizationAtRequest else { fail("tracking_changed"); return }
@@ -272,6 +275,7 @@ import AppTrackingTransparency
                 stage = "ad_load"
                 let request = Request()
                 let extras = Extras(); extras.additionalParameters = ["npa": "1"]; request.register(extras)
+                logState("ad load")
                 let loaded = try await RewardedAd.load(with: unit, request: request)
                 guard active(token) else { return }
                 guard ATTrackingManager.trackingAuthorizationStatus == authorizationAtRequest else { fail("tracking_changed"); return }

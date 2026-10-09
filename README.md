@@ -4,7 +4,7 @@ HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构
 
 ## 0.1 源码版
 
-当前待发布版本为 **@haiyue/native 0.1.2**，详见 [版本说明](release/NOTES-native-0.1.2.md) 和 [发布流程](release/README.md)。已发布 0.1.0、0.1.1 与历史标签保留；根包为私有源码仓库，npm 适配库从 `npm/` 制包。五款游戏源码、自有图片与音效位于 `games/`，不依赖相邻 Games 目录。运行 `npm run release:verify -- --install` 检查源码及 npm 候选。三个第三方模型不随源码提供，见 [模型使用路径](games/ASSETS.md)。
+当前版本说明为 **@haiyue/native 0.1.4**，详见 [版本说明](release/NOTES-native-0.1.4.md) 和 [发布流程](release/README.md)。既有发布与历史标签保留；实际发布状态见 [验收记录](release/evidence/native-0.1.4/README.md)；根包为私有源码仓库，npm 适配库从 `npm/` 制包。五款游戏源码、自有图片与音效位于 `games/`，不依赖相邻 Games 目录。运行 `npm run release:verify -- --install` 检查源码及 npm 候选。三个第三方模型不随源码提供，见 [模型使用路径](games/ASSETS.md)。
 
 本仓库采用 [MIT License](LICENSE)，第三方依赖和游戏素材保留各自许可，见 [第三方声明](THIRD_PARTY_NOTICES.md)。
 

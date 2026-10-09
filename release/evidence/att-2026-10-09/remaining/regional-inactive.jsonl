@@ -1,0 +1,7 @@
+{"time":"2026-10-09T04:07:17.738Z","mode":"system","event":"ready","data":{"att":"notDetermined","bundleId":"org.haiyue.nativevalidation.policy20261009b","admobAppId":"ca-app-pub-2053256758816744~9316994454","delayMeasurement":true}}
+{"time":"2026-10-09T04:07:17.765Z","mode":"system","event":"resumed","data":{"att":"notDetermined"}}
+{"time":"2026-10-09T04:07:17.767Z","mode":"system","event":"begin","data":{"action":"startup","att":"notDetermined"}}
+{"time":"2026-10-09T04:07:22.323Z","mode":"system","event":"presentation-ready","data":{"att":"notDetermined"}}
+{"time":"2026-10-09T04:07:22.325Z","mode":"system","event":"failure","data":{"version":1,"platform":"ios","action":"presentConsent","stage":"consent_present","code":"presentation_rejected","phase":"unavailable","timestamp":"2026-10-09T04:07:22.325Z","elapsedMs":2365}}
+{"time":"2026-10-09T04:07:22.326Z","mode":"system","event":"operation-error","data":{"action":"startup","att":"notDetermined","error":"RewardError: unavailable"}}
+{"time":"2026-10-09T04:07:23.059Z","mode":"system","event":"resumed","data":{"att":"notDetermined"}}

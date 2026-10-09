@@ -1,0 +1,4 @@
+{"time":"2026-10-09T00:12:04.830Z","mode":"underage","event":"ready","data":{"att":"denied","delayMeasurement":true}}
+{"time":"2026-10-09T00:12:04.858Z","mode":"underage","event":"resumed","data":{"att":"denied"}}
+{"time":"2026-10-09T00:12:04.861Z","mode":"underage","event":"begin","data":{"action":"startup","att":"denied"}}
+{"time":"2026-10-09T00:12:06.060Z","mode":"underage","event":"completed","data":{"action":"startup","att":"denied"}}

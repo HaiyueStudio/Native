@@ -1,0 +1,4 @@
+{"time":"2026-10-09T00:11:11.418Z","mode":"system","event":"ready","data":{"att":"denied","delayMeasurement":true}}
+{"time":"2026-10-09T00:11:11.456Z","mode":"system","event":"resumed","data":{"att":"denied"}}
+{"time":"2026-10-09T00:11:11.459Z","mode":"system","event":"begin","data":{"action":"paid","att":"denied"}}
+{"time":"2026-10-09T00:11:12.798Z","mode":"system","event":"completed","data":{"action":"paid","att":"denied"}}

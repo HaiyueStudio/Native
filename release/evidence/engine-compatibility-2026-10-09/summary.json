@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-09",
+  "range": "^0.2.0",
+  "engineOptional": true,
+  "package": {
+    "bytes": 233763,
+    "files": 110,
+    "sha256": "6d584468f6422abd3621c1b780e6c3bf76f0b0baf11a172745381359672c2536"
+  },
+  "consumers": {
+    "system-only": {
+      "status": "passed",
+      "engineInstalled": false,
+      "packages": 18
+    },
+    "rendering": {
+      "status": "passed",
+      "engineInstalled": true,
+      "packages": 40,
+      "engine": {
+        "version": "0.2.0",
+        "resolved": "https://registry.npmjs.org/@haiyue/engine/-/engine-0.2.0.tgz",
+        "integrity": "sha512-yBAapUbWhxQl6DjM35BOxPGFduyEkKSCKpnJ7Lg/bslNlA5ZpYu2cJUJqha6E8EgI5DcdgpjFWq3Z7O7iTAq0g==",
+        "license": "MIT",
+        "dependencies": {
+          "@dimforge/rapier3d-compat": "^0.19.3",
+          "@loaders.gl/schema": "^4.4.3",
+          "@loaders.gl/worker-utils": "^4.4.3",
+          "box2d.ts": "^1.0.2",
+          "earcut": "^3.0.2",
+          "pako": "^1.0.11",
+          "wgpu-matrix": "^3.0.0"
+        },
+        "engines": {
+          "node": ">=22"
+        }
+      }
+    }
+  },
+  "scope": "Native optional Engine peer compatibility and clean npm consumer installation; no publication or version freeze",
+  "status": "passed",
+  "minimumVerifiedEngine": "0.2.0",
+  "excludedVersions": "0.3.0 and later; prereleases",
+  "checks": {
+    "stagedPackageTypecheck": "passed",
+    "packageTests": {
+      "passed": 6,
+      "failed": 0,
+      "coverage": [
+        "iOS rendering consumer types and actual Engine module bundling",
+        "Android rendering consumer types and actual Engine module bundling",
+        "iOS/Android system entries without Engine",
+        "Web sharing without NativeScript or Engine",
+        "Package allowlist, provenance and optional peer metadata"
+      ]
+    },
+    "cleanConsumerInstalls": "passed for system-only and rendering",
+    "dependencyTrees": "npm ls --all passed in both fresh consumers",
+    "diffCheck": "passed"
+  },
+  "developmentEngine": {
+    "version": "0.2.0",
+    "source": "https://registry.npmjs.org/@haiyue/engine/-/engine-0.2.0.tgz",
+    "integrity": "sha512-yBAapUbWhxQl6DjM35BOxPGFduyEkKSCKpnJ7Lg/bslNlA5ZpYu2cJUJqha6E8EgI5DcdgpjFWq3Z7O7iTAq0g=="
+  },
+  "removedInputs": [
+    "npm/vendor/haiyue-engine-0.2.1.tgz",
+    "npm/vendor/engine-0.2.1-provenance.json"
+  ],
+  "limitations": [
+    "Package/API/compilation compatibility; no new GPU runtime or device benchmark in this verification.",
+    "The peer accepts future compatible 0.2.x stable patch versions by semver; only published 0.2.0 was verified here.",
+    "The compatibility root and /engine imports require Engine. System-only apps use capability subpaths.",
+    "NativeScript Core and Canvas remain required peers.",
+    "New version, candidate freeze and release gates are separate; no package published."
+  ],
+  "sourceSha256": {
+    "npm/package.json": "f2d21a8cc0bccff6f70825460b498e65f93243b8369c275cc8fea0369495a4d9",
+    "npm/package-lock.json": "88acf05e49f4aad138d1fb4386509458284246bd7223528d145768494b2c82e7",
+    "npm/README.md": "8d763c224b10c88c7741128258aeda409fbdd97634b4673ed3f297950880b553",
+    "npm/test/package.test.mjs": "59d2c333443a0b377ef96563b96361ae92a5d40cbd1665fe642d687dbf85c6ec",
+    "npm/index.ts": "1b0fcebb2266942228083b8e3e16c7754b5ed1ad496fda87dc03cb176bfba29e",
+    "bridge/engine.ts": "176186e3ae6ec7a2c5cb9982427d7568e30035dcd3695736f149a6a4c19e79f5",
+    "bridge/lifecycle/host.ts": "63694646aabd874fc4844e4661abac33b96829abfb603763fa2177e03562c90f",
+    "bridge/render/surface.ts": "4f7f06d3c00aa48b21bf4572d8d100487dc964f658ff85a16509339bed531adb"
+  },
+  "commands": [
+    "npm install --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org (npm/)",
+    "node npm/stage-development.mjs",
+    "node npm/typecheck-package.mjs artifacts/native-development-package",
+    "NATIVE_PACKAGE_ROOT=../artifacts/native-development-package npm test (npm/)",
+    "npm install --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org (two new consumer directories)",
+    "npm ls --all --json (each consumer)"
+  ]
+}

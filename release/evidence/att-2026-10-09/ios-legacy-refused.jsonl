@@ -1,0 +1,6 @@
+{"time":"2026-10-09T00:04:49.711Z","mode":"legacy","event":"ready","data":{"att":"notDetermined","delayMeasurement":true}}
+{"time":"2026-10-09T00:04:49.738Z","mode":"legacy","event":"resumed","data":{"att":"notDetermined"}}
+{"time":"2026-10-09T00:04:49.740Z","mode":"legacy","event":"begin","data":{"action":"startup","att":"notDetermined"}}
+{"time":"2026-10-09T00:04:52.978Z","mode":"legacy","event":"presentation-ready","data":{"att":"notDetermined"}}
+{"time":"2026-10-09T00:05:57.879Z","mode":"legacy","event":"resumed","data":{"att":"denied"}}
+{"time":"2026-10-09T00:05:58.012Z","mode":"legacy","event":"completed","data":{"action":"startup","att":"denied"}}

@@ -1,0 +1,18 @@
+
+> @haiyue/native@0.1.4 test
+> node --test test/*.test.mjs
+
+✔ package contains only native capabilities and verified bridge inputs (719.812633ms)
+✔ NativeScript ios: compatible root and Engine adapter (7140.720047ms)
+✔ NativeScript ios: system entries without Engine (5348.258149ms)
+✔ NativeScript android: compatible root and Engine adapter (6781.517433ms)
+✔ NativeScript android: system entries without Engine (5551.153199ms)
+✔ Web share public entries compile without NativeScript, Engine or platform globals (1386.901698ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27380.52071

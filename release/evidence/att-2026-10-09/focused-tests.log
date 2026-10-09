@@ -1,0 +1,37 @@
+✔ daily free allowance is durable and repeat result is free; no useful result means no debit (4.136881ms)
+✔ daily rollover retains earned credits and backwards clock cannot refill (0.85093ms)
+✔ reward callback is immediately persisted, duplicates ignored, daily cap enforced (0.574543ms)
+✔ cancel, offline and no-fill do not grant or consume; pause always released (0.640673ms)
+✔ simultaneous watch taps and callbacks after dismissal cannot mint rewards (0.408251ms)
+✔ network loading keeps rendering active and pauses only for ready native surfaces (7.010771ms)
+✔ paid users have unlimited uses without SDK requests; revocation preserves free allowance (0.4225ms)
+✔ storage errors and invalid persisted state fail closed without silently resetting (0.454627ms)
+✔ disposing during an earned ad keeps the reward durable and releases the pause once (1.698619ms)
+✔ OS resume never resumes behind an ad; nested locks and duplicate release are safe (1.666528ms)
+✔ SDK loads before presentation preparation and disposal releases its late token (0.41846ms)
+✔ presentation failure unlocks the UI without consuming an ad allowance (0.41137ms)
+✔ slow startup consent refresh keeps input and allowances available until a form is required (0.481902ms)
+✔ network prerequisites are loading from construction and failed initialization clears them (0.327087ms)
+✔ required startup form pauses only after refresh and retains the lock across OS resume (2.049846ms)
+✔ startup completion cannot release an explicit ad pause or clear its busy state (0.841417ms)
+✔ disposal during startup form preparation releases the late pause and skips presentation (0.369282ms)
+✔ startup presentation failure releases busy state without spending allowances (0.352128ms)
+✔ paid startup refreshes privacy without showing consent and failed updates leave play available (0.26257ms)
+✔ privacy changes refresh the entry requirement without spending a reward (0.271898ms)
+✔ unused daily allowances expire; ad credits accumulate across days, restarts and free-first spending (0.347224ms)
+✔ version-one wallets migrate without resetting balances, limits or consumed result keys (0.342873ms)
+✔ configurable rewards grant three credits exactly once and survive restarts and rollover (0.690054ms)
+✔ reward credit overflow fails before showing an ad (0.320464ms)
+✔ system ATT is included in unpaid startup even where UMP does not require a form (162.444729ms)
+✔ paid and legacy startup do not request ATT; live status follows Settings changes (79.251159ms)
+✔ unresolved system authorization remains a sanitized error, not ad fill or reward success (13.096023ms)
+✔ regional consent followed by ATT acquires the startup pause only once (27.048531ms)
+✔ native TCF eligibility requires explicit relevant consent and rejects missing/malformed choices (6740.627151ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6880.900854

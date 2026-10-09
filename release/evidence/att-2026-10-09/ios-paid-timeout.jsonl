@@ -1,0 +1,5 @@
+{"time":"2026-10-09T00:00:58.734Z","mode":"system","event":"ready","data":{"att":"notDetermined","delayMeasurement":true}}
+{"time":"2026-10-09T00:00:58.763Z","mode":"system","event":"resumed","data":{"att":"notDetermined"}}
+{"time":"2026-10-09T00:00:59.079Z","mode":"system","event":"begin","data":{"action":"paid","att":"notDetermined"}}
+{"time":"2026-10-09T00:01:09.144Z","mode":"system","event":"failure","data":{"version":1,"platform":"ios","action":"refreshPrivacy","stage":"consent_update","code":"sdk_error","phase":"unavailable","sdk":{"domain":"com.google.user_messaging_platform","code":3},"timestamp":"2026-10-09T00:01:09.144Z","elapsedMs":10062}}
+{"time":"2026-10-09T00:01:09.145Z","mode":"system","event":"operation-error","data":{"action":"paid","att":"notDetermined","error":"RewardError: unavailable"}}

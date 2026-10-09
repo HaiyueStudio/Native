@@ -1,0 +1,12 @@
+12:05:50  Enabling developer disk image services.
+12:05:50  Acquired usage assertion.
+Launched application with org.haiyue.nativevalidation.policy20261009b bundle identifier.
+Waiting for the application to terminate…
+Runtime initialization took 21ms (version 9.0.3, V8 version 10.3.22)
+2026-10-09 12:05:51.796 nativevalidation[46087:8475670] [haiyue-consent] reset test consent
+2026-10-09 12:05:51.797 nativevalidation[46087:8475670] [haiyue-consent] begin refreshPrivacy bundle=org.haiyue.nativevalidation.policy20261009b appID=ca-app-pub-2053256758816744~9316994454 ump=3.1.0 gma=13.10.0 simulator=false
+2026-10-09 12:05:51.798 nativevalidation[46087:8475670] [haiyue-consent] before update elapsedMs=1 consent=UMPConsentStatus(rawValue: 0) status=0 form=UMPFormStatus(rawValue: 0) formStatus=0 privacyStatus=0 canRequestAds=false att=notDetermined appState=0
+2026-10-09 12:05:51.798 nativevalidation[46087:8475670] [haiyue-consent] parameters simulator=false registeredTestDeviceCount=0 geography=0 underAge=false
+2026-10-09 12:05:53.344 nativevalidation[46087:8475670] [haiyue-consent] updated elapsedMs=1542 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=notDetermined appState=0
+2026-10-09 12:05:53.344 nativevalidation[46087:8475670] [haiyue-consent] end event=closed elapsedMs=1549 consent=UMPConsentStatus(rawValue: 2) status=2 form=UMPFormStatus(rawValue: 2) formStatus=2 privacyStatus=2 canRequestAds=true att=notDetermined appState=0
+App terminated due to signal 9.

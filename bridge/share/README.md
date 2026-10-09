@@ -1,6 +1,6 @@
 # 系统分享（Native / Web）
 
-源码新增能力，尚未发布到 npm。先用 `node npm/stage-development.mjs` 生成私有开发包。
+该能力从 `@haiyue/native@0.1.4` 提供。源码开发可用 `node npm/stage-development.mjs` 生成私有开发包。
 `@haiyue/native/share` 由 NativeScript 选择 iOS / Android 实现，普通 Web 构建选择浏览器实现。
 Web 也可显式导入 `@haiyue/native/share/web`；这两个 Web 入口不加载 NativeScript、Engine 或平台 SDK。
 包仍为 TypeScript 源码，需要构建器编译；Web 应用不要导入 Native 根入口。

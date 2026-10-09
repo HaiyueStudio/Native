@@ -1,6 +1,6 @@
 # Native 0.1 发布
 
-当前待发布版本为 **@haiyue/native 0.1.3**，应用示例版本仍为 **0.1.0**。新版本说明见 [NOTES-native-0.1.3.md](NOTES-native-0.1.3.md)。正式标签计划使用 `native-v0.1.3`；0.1.0、0.1.1 的发布和验收记录保留。0.1.2 已发布；本页不代表 0.1.3 已发布。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
+本轮版本为 **@haiyue/native 0.1.4**，应用示例版本仍为 **0.1.0**。新版本说明见 [NOTES-native-0.1.4.md](NOTES-native-0.1.4.md)，标签为 `native-v0.1.4`；实际发布状态见 [验收记录](evidence/native-0.1.4/README.md)。既有版本和验收记录保留。源码使用 MIT；第三方内容见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。
 
 ## 候选范围
 
@@ -13,7 +13,7 @@
 | ak47-range | 包含 | — |
 | neon-circuit | 包含 | 包含 |
 
-`config.json` 定义范围和工具版本。`candidate.json` 记录 Native 基线提交、输入 SHA-256、各应用直接及传递 npm 依赖（含 resolved / integrity / license），以及平台矩阵。基线提交仅用于定位；冻结时未提交的修改也按实际内容计算哈希。Engine 使用仓库内 vendor tgz，不从 Engine 工作目录构建，同名同版本包也必须匹配内容哈希。
+`config.json` 定义范围和工具版本。`candidate.json` 记录 Native 基线提交、输入 SHA-256、各应用直接及传递 npm 依赖（含 resolved / integrity / license），以及平台矩阵。基线提交仅用于定位；冻结时未提交的修改也按实际内容计算哈希。游戏示例的 Engine 使用仓库内 vendor tgz，不从 Engine 工作目录构建，同名同版本包也必须匹配内容哈希。npm 适配库使用可选 Engine peer `^0.2.0`，开发和兼容验证锁定官方 registry 的 `0.2.0`；纯系统功能无需安装 Engine。
 
 只需要 Native Git 工作目录，目录名称任意；游戏实现和自有素材在 games/。无需相邻 Games 或 Engine 源码目录。模型需要独立提供，见 [素材准备](../games/ASSETS.md)。输入清单使用 Git tracked + 非 ignored untracked 文件，识别新增、删除与修改；不纳入历史 evidence、私有应用、签名信息、node_modules、platforms、本地模型、生成的运行纹理和构建产物。
 
