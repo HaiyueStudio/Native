@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-11",
+  "platform": "Intel macOS / AMD Radeon Pro 5300M",
+  "status": "local-automated-passed-target-device-acceptance-pending",
+  "tests": {
+    "native": 136,
+    "p0": 25,
+    "isolatedCoreConsumer": "passed",
+    "finalStandaloneFrames": 420,
+    "windowSteps": 4,
+    "deviceLossInjectionExpectedExit": 1
+  },
+  "soak": {
+    "exit": 0,
+    "frames": 53495,
+    "surfaceSkips": 2532,
+    "elapsedMs": 1800022.981864,
+    "game": {
+      "kind": "mirror",
+      "home": false,
+      "order": 3,
+      "moves": 3,
+      "recentMoves": [
+        {
+          "axis": 1,
+          "direction": 1,
+          "layer": 2
+        },
+        {
+          "axis": 1,
+          "direction": -1,
+          "layer": 2
+        },
+        {
+          "axis": 1,
+          "direction": -1,
+          "layer": 2
+        }
+      ],
+      "solved": false,
+      "busy": false,
+      "restoring": false,
+      "axis": 1,
+      "layer": 2,
+      "cubies": 26,
+      "projection": "perspective",
+      "roundedGeometryCount": 62,
+      "width": 1100,
+      "height": 740
+    },
+    "scope": "surface recovery revision; not final candidate 30-minute certification",
+    "bundleSha256": "43182bb4b66cf2471622ea46569db1d56ca88c0f34e41c5e71a83ef81fae8fed",
+    "healthSamples": 29,
+    "rssMinBytes": 150360064,
+    "rssMaxBytes": 349810688
+  },
+  "finalBundleSha256": "dfaaaee0a7b5de2bc1678ec567ffd2da6ac14154a37816c2ee8b7bcfd4a0c75f",
+  "pending": [
+    "Windows x64 actual acceptance",
+    "Apple Silicon Mac actual acceptance",
+    "final candidate full 30-minute acceptance on target devices",
+    "physical input/gamepad/DPI/audio-device acceptance",
+    "P1 Steam/Game Center/extension and release gates"
+  ]
+}

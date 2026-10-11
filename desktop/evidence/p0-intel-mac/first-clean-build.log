@@ -1,0 +1,68 @@
+
+> @haiyue/native-desktop-development@0.2.0-dev.0 verify:fresh
+> node scripts/fresh-build.mjs
+
+
+added 30 packages in 8s
+
+2 packages are looking for funding
+  run `npm fund` for details
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.25.0 (postinstall: node install.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+npm notice
+npm notice New major version of npm available! 11.17.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+Download https://github.com/denoland/deno/releases/download/v2.9.6/deno-x86_64-apple-darwin.zip
+Download https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.MACOS.zip
+Download https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf
+Download https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/LICENSE
+Download https://raw.githubusercontent.com/mackron/miniaudio/0.11.22/miniaudio.h
+Desktop tools ready: darwin-x64
+Check sample/main.ts
+Check sample/main.ts
+{"kind":"probes","data":{"storage":"passed","imageDecodeAndGpuReadback":"passed","workerTransferAndTerminate":"passed","audio":"device-playback-api-passed"}}
+{"kind":"ready","data":{"runtime":{"deno":"2.9.6","v8":"15.0.245.2-rusty","typescript":"6.0.3"},"os":{"target":"x86_64-apple-darwin","arch":"x86_64","os":"darwin","vendor":"apple","standalone":false},"renderer":"Deno/wgpu/GLFW","document":false,"adapter":{},"size":[2200,1480],"game":{"kind":"3","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":4,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":20,"game":{"kind":"3","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":4,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":40,"game":{"kind":"2","home":false,"order":2,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":1,"cubies":8,"projection":"perspective","roundedGeometryCount":8,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":60,"game":{"kind":"2","home":false,"order":2,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":1,"cubies":8,"projection":"perspective","roundedGeometryCount":8,"width":1100,"height":740}}}
+{"kind":"capture","data":{"width":1920,"height":1280,"path":"<Native>/artifacts/desktop-fresh-BiMZHq/desktop/build/validation.png"}}
+{"kind":"exercise","data":{"frame":80,"game":{"kind":"2","home":false,"order":2,"moves":0,"recentMoves":[],"solved":true,"busy":true,"restoring":false,"axis":0,"layer":1,"cubies":8,"projection":"perspective","roundedGeometryCount":8,"width":960,"height":640}}}
+{"kind":"exercise","data":{"frame":100,"game":{"kind":"2","home":false,"order":2,"moves":1,"recentMoves":[{"axis":0,"layer":1,"direction":1}],"solved":false,"busy":false,"restoring":false,"axis":0,"layer":1,"cubies":8,"projection":"perspective","roundedGeometryCount":8,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":120,"game":{"kind":"2","home":false,"order":2,"moves":1,"recentMoves":[{"axis":0,"layer":1,"direction":1}],"solved":false,"busy":true,"restoring":true,"axis":0,"layer":1,"cubies":8,"projection":"perspective","roundedGeometryCount":8,"width":960,"height":640}}}
+{"kind":"exercise","data":{"frame":140,"game":{"kind":"2","home":false,"order":2,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":1,"cubies":8,"projection":"perspective","roundedGeometryCount":8,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":160,"game":{"kind":"3","home":false,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":8,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":180,"game":{"kind":"3","home":false,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":8,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":200,"game":{"kind":"3","home":false,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":true,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":8,"width":960,"height":640}}}
+{"kind":"exercise","data":{"frame":220,"game":{"kind":"3","home":false,"order":3,"moves":7,"recentMoves":[{"axis":0,"layer":0,"direction":1},{"axis":1,"layer":1,"direction":-1},{"axis":2,"layer":0,"direction":1},{"axis":1,"layer":2,"direction":-1},{"axis":0,"layer":2,"direction":1},{"axis":1,"layer":0,"direction":1},{"axis":0,"layer":2,"direction":1}],"solved":false,"busy":true,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":8,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":240,"game":{"kind":"4","home":false,"order":4,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":3,"cubies":56,"projection":"perspective","roundedGeometryCount":12,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":260,"game":{"kind":"4","home":false,"order":4,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":3,"cubies":56,"projection":"perspective","roundedGeometryCount":12,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":280,"game":{"kind":"mirror","home":false,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":300,"game":{"kind":"mirror","home":false,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":320,"game":{"kind":"mirror","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":340,"game":{"kind":"mirror","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":360,"game":{"kind":"mirror","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":960,"height":640}}}
+{"kind":"exercise","data":{"frame":380,"game":{"kind":"mirror","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":1100,"height":740}}}
+{"kind":"exercise","data":{"frame":400,"game":{"kind":"mirror","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":960,"height":640}}}
+{"kind":"complete","data":{"frames":420,"surfaceSkips":0,"elapsedMs":16194.559393000001,"game":{"kind":"mirror","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":62,"width":1100,"height":740}}}
+Desktop automated validation passed. Physical input, target devices and long soak remain separate gates.
+Compile main.js to ../package/darwin-x64/Haiyue Rubik.app/Contents/MacOS/haiyue-rubik
+Download https://dl.deno.land/release/v2.9.6/denort-x86_64-apple-darwin.zip
+
+Embedded Files
+
+haiyue-rubik
+├── main.js (2.16MB)
+├── node_modules/* (30.92MB - 30.92MB unique)
+└── package.json (75B)
+
+Files: 33.09MB
+Metadata: 2.03KB
+Remote modules: 12B
+
+<Native>/artifacts/desktop-fresh-BiMZHq/desktop/build/package/darwin-x64/Haiyue Rubik.app: replacing existing signature
+{"target":"darwin-x64","app":"<Native>/artifacts/desktop-fresh-BiMZHq/desktop/build/package/darwin-x64/Haiyue Rubik.app","executable":"<Native>/artifacts/desktop-fresh-BiMZHq/desktop/build/package/darwin-x64/Haiyue Rubik.app/Contents/MacOS/haiyue-rubik","sha256":"ce260c3f14b08544d479c04e42679d67a79f65f8291bb0d8a9834745e19d9b23","bundleSha256":"6aa7a6f92fe54c11d442f1f351abc001b1ea94fe74e1eee046cf5a0472cd27a3","toolchainSha256":"a3ba6c579b36f8d3b6dfa9864b86dee63ee5d42f0cce66327496d81ceed53b82","developmentSignatureOnly":true,"builtAt":"2026-10-11T12:52:55.474Z"}
+{"freshSource":"<Native>/artifacts/desktop-fresh-BiMZHq","crossRepositorySources":false,"globalToolchainRequired":false,"status":"passed"}

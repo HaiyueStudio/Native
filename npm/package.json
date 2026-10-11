@@ -49,6 +49,8 @@
     },
     "./share/web": "./bridge/share/share-content.web.ts",
     "./engine": "./bridge/engine.ts",
+    "./achievements": "./bridge/achievements/index.ts",
+    "./achievements/local": "./bridge/achievements/local/index.ts",
     "./platform": "./bridge/platform/index.ts",
     "./input/desktop": {
       "types": "./bridge/input/desktop.ts",

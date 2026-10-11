@@ -1,0 +1,53 @@
+
+> @haiyue/native-desktop-development@0.2.0-dev.0 verify:fresh
+> node scripts/fresh-build.mjs
+
+
+added 30 packages in 8s
+
+2 packages are looking for funding
+  run `npm fund` for details
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.25.0 (postinstall: node install.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+npm notice
+npm notice New major version of npm available! 11.17.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+Download https://github.com/denoland/deno/releases/download/v2.9.6/deno-x86_64-apple-darwin.zip
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+DOMException [TimeoutError]: The operation was aborted due to timeout
+    at new DOMException (node:internal/per_context/domexception:76:18)
+    at Timeout._onTimeout (node:internal/abort_controller:210:9)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+
+Node.js v24.19.0
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /usr/local/bin/node scripts/setup.mjs
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at run (file://<Native>/desktop/scripts/fresh-build.mjs:16:21)
+    at file://<Native>/desktop/scripts/fresh-build.mjs:18:112
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 82136,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.19.0

@@ -1,0 +1,10 @@
+{
+  "target": "darwin-x64",
+  "app": "<Native>/desktop/build/package/darwin-x64/Haiyue Rubik.app",
+  "executable": "<Native>/desktop/build/package/darwin-x64/Haiyue Rubik.app/Contents/MacOS/haiyue-rubik",
+  "sha256": "372fda84415149a6ef89fb2efbc72ea2a2e87f2ce6736e2386d3b76d3ca1ff97",
+  "bundleSha256": "dfaaaee0a7b5de2bc1678ec567ffd2da6ac14154a37816c2ee8b7bcfd4a0c75f",
+  "toolchainSha256": "a3ba6c579b36f8d3b6dfa9864b86dee63ee5d42f0cce66327496d81ceed53b82",
+  "developmentSignatureOnly": true,
+  "builtAt": "2026-10-11T13:10:30.318Z"
+}

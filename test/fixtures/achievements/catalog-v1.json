@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "gameId": "rubik",
+  "environment": "test",
+  "version": "1",
+  "definitions": [
+    {
+      "id": "rubik.first-solve",
+      "target": 1,
+      "titleKey": "achievements.first.title",
+      "descriptionKey": "achievements.first.description",
+      "platform": {
+        "steam": {
+          "achievementId": "RUBIK_FIRST_SOLVE"
+        },
+        "gameCenter": {
+          "achievementId": "rubik.first-solve"
+        }
+      }
+    },
+    {
+      "id": "rubik.ten-solves",
+      "target": 10,
+      "titleKey": "achievements.ten.title",
+      "descriptionKey": "achievements.ten.description",
+      "platform": {
+        "steam": {
+          "achievementId": "RUBIK_TEN_SOLVES",
+          "progressStat": "rubik_solves"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+
+> @haiyue/native-desktop-development@0.2.0-dev.0 start
+> node scripts/run.mjs --lose-device-at=100 --seconds=30
+
+{"kind":"ready","data":{"runtime":{"deno":"2.9.6","v8":"15.0.245.2-rusty","typescript":"6.0.3"},"os":{"target":"x86_64-apple-darwin","arch":"x86_64","os":"darwin","vendor":"apple","standalone":false},"renderer":"Deno/wgpu/GLFW","document":false,"adapter":{},"size":[2200,1480],"game":{"kind":"3","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":4,"width":1100,"height":740}}}
+error: Uncaught (in promise) Error: Device lost: device was lost
+  engine.on('device-lost', event => { fatal = new Error(`Device lost: ${event.detail?.message}`); });
+                                              ^
+    at Object.fn (file://<Native>/desktop/sample/main.ts:38:47)
+    at HaiyueEngine._emitEngineEvent (file://<Native>/desktop/node_modules/@haiyue/engine/dist/chunks/GuiSystem-CrvHduqA.js:156:24)
+    at HaiyueEngine.emit (file://<Native>/desktop/node_modules/@haiyue/engine/dist/chunks/GuiSystem-CrvHduqA.js:84:27)
+    at HaiyueEngine._handleDeviceLost (file://<Native>/desktop/node_modules/@haiyue/engine/dist/chunks/Engine-9WGthkZ7.js:1142:14)
+    at file://<Native>/desktop/node_modules/@haiyue/engine/dist/chunks/Engine-9WGthkZ7.js:1130:64

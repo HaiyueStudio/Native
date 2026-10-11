@@ -1,0 +1,25 @@
+{
+  "name": "@haiyue/native-desktop-development",
+  "version": "0.2.0-dev.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "bundle": "node scripts/bundle.mjs",
+    "build:audio": "node scripts/build-audio.mjs",
+    "start": "node scripts/run.mjs",
+    "verify": "node scripts/verify.mjs",
+    "package": "npm run check && npm run bundle && node scripts/package.mjs",
+    "check": "node scripts/check.mjs",
+    "verify:fresh": "node scripts/fresh-build.mjs",
+    "verify:package": "node scripts/verify-package.mjs"
+  },
+  "dependencies": {
+    "@haiyue/engine": "file:vendor/haiyue-engine-0.2.1.tgz",
+    "@napi-rs/canvas": "1.0.7",
+    "wgpu-matrix": "3.4.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  }
+}

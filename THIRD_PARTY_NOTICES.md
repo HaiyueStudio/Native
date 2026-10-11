@@ -30,3 +30,7 @@ NativeScript Canvas 还包含原生渲染库；npm 的 license 字段不是其�
 0.1.1 候选纳入自有游戏图片、音效及生成记录，不附带上述模型、模型转换产物，也不附带 APK / IPA。素材准备见 games/ASSETS.md。模型路径、转换代码及内容哈希仅用于开发和校验，不授予模型使用权。需要运行相关示例的开发者应自行取得相应授权或替换模型；替换后应重新冻结自己的候选并验证，不应绕过完整性检查。
 
 本声明没有将模型改为 MIT，也不表示已确认其非商用再分发条件。后续发布含模型的素材包或应用二进制前，仍需取得相应许可并补齐其署名及第三方声明。
+
+## 0.2 桌面开发预览
+
+新增 Deno、GLFW、Skia/N-API canvas、Noto Sans CJK 和 miniaudio。固定来源、哈希和直接许可见 [desktop/toolchains.json](desktop/toolchains.json)、[桌面第三方声明](desktop/licenses/README.md)。桌面制品当前仅用于开发验收；原生传递依赖的完整通知/SBOM 与分发签名在 G07 发布前完成，不沿用移动依赖表替代桌面审查。

@@ -1,0 +1,40 @@
+
+> @haiyue/native@0.1.4 validate:p0
+> node scripts/validation/p0.mjs
+
+✔ version 1 JSON contract fixtures load without Engine and require explicit target migration (60.178248ms)
+✔ local progress persists, remains local-only, and repeats do not unlock twice (11.196784ms)
+✔ invalid catalog, IDs, platform mappings and progress are rejected (3.081921ms)
+✔ write failure does not acknowledge, mutate memory, or emit unlocked (2.559944ms)
+✔ absolute pending intents coalesce and SDK acceptance differs from subsequent reconciliation (9.564565ms)
+✔ read-before-write preserves higher platform progress and suppresses stale reports (2.030361ms)
+✔ SDK acceptance remains durable and retries after restart until query confirms it (4.532574ms)
+✔ secret achievements do not report partial progress (2.002635ms)
+✔ offline pending intents survive restart and reconnect without guest import (3.545398ms)
+✔ account switch aborts stalled request and rejects late completion (3.327033ms)
+✔ queued operation captures caller identity instead of adopting a later account (1.539692ms)
+✔ retry backoff persists; permanent errors do not retry even on larger values (4.353884ms)
+✔ hanging provider times out while pending state remains durable (22.784928ms)
+✔ dispose aborts pending provider operation and silences late callbacks (2.400701ms)
+✔ catalog changes require explicit validated migration, never silently lower target (2.780796ms)
+✔ corrupt storage fails closed; caller snapshots do not mutate internal state (2.346847ms)
+✔ environment and guest profile are distinct storage namespaces (2.711526ms)
+✔ transient native surface failure preserves frame ownership and recovers on next acquisition (6.004211ms)
+✔ persistent foreground surface loss is bounded and unrelated GPU failures are fatal (7.760637ms)
+✔ WebGPU typed offset adapter preserves overloads and restores all prototypes (49.042687ms)
+✔ focus loss cancels pressed pointers and keys; disposal releases callbacks once (286.422321ms)
+✔ FFI callback exceptions propagate on poll instead of unwinding through native code (127.853154ms)
+✔ partial surface construction releases native window and library (104.813709ms)
+✔ desktop Storage preserves Unicode keys and enumeration across reopening without unsafe filenames (374.966537ms)
+✔ failed atomic replacement retains old content, cleans temporary file, and corrupt entries fail closed (125.963781ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1735.446423
+Engine-free consumer passed
+{"directory":"<TemporaryDirectory>","installedRuntimePackages":["@haiyue/native"],"typecheck":"passed","runtime":"passed"}
+P0 automated checks passed; consult desktop/WINDOWS-HANDOFF.md for hardware acceptance.

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "1",
+  "targets": {
+    "rubik.first-solve": 1,
+    "rubik.ten-solves": 10
+  },
+  "records": [
+    {
+      "id": "rubik.first-solve",
+      "value": 0,
+      "platformValue": 0,
+      "sync": "local-only",
+      "pending": false,
+      "attempts": 0,
+      "retryAt": 0
+    },
+    {
+      "id": "rubik.ten-solves",
+      "value": 0,
+      "platformValue": 0,
+      "sync": "local-only",
+      "pending": false,
+      "attempts": 0,
+      "retryAt": 0
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "install": "<TemporaryDirectory>",
+  "executableSha256": "372fda84415149a6ef89fb2efbc72ea2a2e87f2ce6736e2386d3b76d3ca1ff97",
+  "bundleSha256": "dfaaaee0a7b5de2bc1678ec567ffd2da6ac14154a37816c2ee8b7bcfd4a0c75f",
+  "noDevelopmentRuntimeInPath": true,
+  "status": "passed"
+}

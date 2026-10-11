@@ -1,12 +1,16 @@
 # HaiYue Native
 
-HaiYue 移动端实现目录，承载原生 App、移动端宿主适配以及构建和真机调试工具。
+HaiYue 原生平台实现，承载移动端 App、桌面宿主与平台桥接，以及构建和真机调试工具。
 
 ## 0.1 源码版
 
 当前版本说明为 **@haiyue/native 0.1.4**，详见 [版本说明](release/NOTES-native-0.1.4.md) 和 [发布流程](release/README.md)。既有发布与历史标签保留；实际发布状态见 [验收记录](release/evidence/native-0.1.4/README.md)；根包为私有源码仓库，npm 适配库从 `npm/` 制包。五款游戏源码、自有图片与音效位于 `games/`，不依赖相邻 Games 目录。运行 `npm run release:verify -- --install` 检查源码及 npm 候选。三个第三方模型不随源码提供，见 [模型使用路径](games/ASSETS.md)。
 
 本仓库采用 [MIT License](LICENSE)，第三方依赖和游戏素材保留各自许可，见 [第三方声明](THIRD_PARTY_NOTICES.md)。
+
+## 0.2 桌面与成就开发预览
+
+新增 [桌面原生运行样板](desktop/README.md) 与 [独立成就核心](bridge/achievements/README.md)。桌面复用 TypeScript Engine，经 Deno/wgpu 和 GLFW 呈现；系统成就 API 不依赖 Engine。当前仍在 P0 验收，Windows / Apple Silicon 及后续 Steam、Game Center 不视为已交付；见 [Windows 接续指南](desktop/WINDOWS-HANDOFF.md)。这不是已发布的 0.1.4 功能，也不改变旧版冻结记录。
 
 ## 目录
 

@@ -1,0 +1,10 @@
+
+> @haiyue/native-desktop-development@0.2.0-dev.0 start
+> node scripts/run.mjs --window-exercise=1 --seconds=30
+
+{"kind":"ready","data":{"runtime":{"deno":"2.9.6","v8":"15.0.245.2-rusty","typescript":"6.0.3"},"os":{"target":"x86_64-apple-darwin","arch":"x86_64","os":"darwin","vendor":"apple","standalone":false},"renderer":"Deno/wgpu/GLFW","document":false,"adapter":{"vendor":"0","architecture":"","device":"0","description":"AMD Radeon Pro 5300M"},"size":[2200,1480],"game":{"kind":"3","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":4,"width":1100,"height":740}}}
+{"kind":"window-exercise","data":{"step":0,"size":[2200,1480]}}
+{"kind":"window-exercise","data":{"step":1,"size":[2200,1480]}}
+{"kind":"window-exercise","data":{"step":2,"size":[1650,1050]}}
+{"kind":"window-exercise","data":{"step":3,"size":[2200,1480]}}
+{"kind":"complete","data":{"frames":722,"surfaceSkips":1,"elapsedMs":30010.596843,"game":{"kind":"3","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":4,"width":1100,"height":740}}}

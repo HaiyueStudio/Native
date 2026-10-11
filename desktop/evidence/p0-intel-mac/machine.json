@@ -1,0 +1,11 @@
+{
+  "testedAt": "2026-10-11T13:02:36.726Z",
+  "platform": "darwin",
+  "architecture": "x64",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83",
+  "cpu": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+  "memoryBytes": 17179869184,
+  "nativeBaseCommit": "6d83d66b18b8c9fc888166e37350b1cd79445cc1",
+  "deviceEvidence": "AMD Radeon Pro 5300M from Deno adapter.info.description",
+  "testsAreAutomated": true
+}

@@ -1,0 +1,4 @@
+{
+  "desktop": { "backend": "raw" },
+  "unstable": ["webgpu"]
+}

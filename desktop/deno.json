@@ -1,0 +1,5 @@
+{
+  "unstable": ["webgpu"],
+  "nodeModulesDir": "manual",
+  "imports": { "@napi-rs/canvas": "npm:@napi-rs/canvas@1.0.7" }
+}

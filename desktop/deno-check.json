@@ -1,0 +1,28 @@
+{
+  "unstable": [
+    "webgpu"
+  ],
+  "nodeModulesDir": "manual",
+  "imports": {
+    "@napi-rs/canvas": "npm:@napi-rs/canvas@1.0.7",
+    "@haiyue/engine": "./node_modules/@haiyue/engine/dist/index.d.ts",
+    "@haiyue/engine/components": "./node_modules/@haiyue/engine/dist/components.d.ts",
+    "@haiyue/engine/geometry": "./node_modules/@haiyue/engine/dist/geometry.d.ts",
+    "@haiyue/engine/experimental": "./node_modules/@haiyue/engine/dist/experimental.d.ts",
+    "@haiyue/engine/systems": "./node_modules/@haiyue/engine/dist/systems.d.ts",
+    "@haiyue/engine/gui": "./node_modules/@haiyue/engine/dist/gui.d.ts",
+    "@haiyue/engine/save": "./node_modules/@haiyue/engine/dist/save.d.ts",
+    "wgpu-matrix": "./node_modules/wgpu-matrix/dist/3.x/wgpu-matrix.d.ts"
+  },
+  "compilerOptions": {
+    "lib": [
+      "deno.window",
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "deno.unstable"
+    ],
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
