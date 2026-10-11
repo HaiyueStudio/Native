@@ -7,6 +7,8 @@ export interface RewardsConfig {
   storageNamespace: string;
   /** Credits granted by each valid rewarded event; default 1. */
   rewardAmount?: number;
+  /** Debug-only opt-in for testing unverified desktop ad SDK support. */
+  allowUnverifiedDesktopAds?: boolean;
   dailyFree: number;
   dailyAds: number;
   iosUnit: string;

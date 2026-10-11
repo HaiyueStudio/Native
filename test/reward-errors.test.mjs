@@ -17,7 +17,7 @@ function fixture(platform = 'ios', onFailure) {
   const core = { isIOS: platform === 'ios', isAndroid: platform === 'android', Application: { android: { foregroundActivity: {}, context: {} } },
     Connectivity: { getConnectionType: () => online ? 1 : 0, connectionType: { none: 0 } } };
   const cache = new Map();
-  const mocks = { '@nativescript/core': core };
+  const mocks = { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } };
   const globals = { HYRewardedAds: Ads, org: { haiyue: { rewards: { HYRewardedAds: Ads } } }, NSBundle: { mainBundle: { objectForInfoDictionaryKey: () => 'Release' } } };
   const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', mocks, globals, cache);
   const { RewardController, RewardError } = loadTS('bridge/rewards/controller.ts', mocks, globals, cache);
@@ -99,7 +99,7 @@ test('public factory forwards the Release diagnostic hook independently of walle
     isIOS: true, isAndroid: false,
     ApplicationSettings: { getString: k => storage.get(k), setString: (k,v) => storage.set(k,v), flush: () => true },
     Connectivity: { getConnectionType: () => 1, connectionType: { none: 0 } },
-  } }, { NSBundle: { mainBundle: { objectForInfoDictionaryKey: () => 'Release' } } });
+  }, '../platform/runtime': {getNativeCapabilities:()=>({rewardedAds:'available'})} }, { NSBundle: { mainBundle: { objectForInfoDictionaryKey: () => 'Release' } } });
   const c = createRewards({ storageNamespace: 'diagnostics-test', iosUnit: 'invalid', androidUnit: '', dailyFree: 1, dailyAds: 2,
     onFailure: d => { failures.push(d); storage.set('last-failure', JSON.stringify(d)); } }, { entitled: () => false, pause: () => () => {} });
   await c.watch();

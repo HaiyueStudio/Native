@@ -69,6 +69,14 @@ export class OrbitPointerTarget {
     }
   }
 
+  /** Dispatch desktop wheel in the same window coordinates as touch events. */
+  wheel(sample: {clientX:number;clientY:number;deltaX:number;deltaY:number;deltaMode:0}): boolean {
+    if(this.disposed||this.paused||![sample.clientX,sample.clientY,sample.deltaX,sample.deltaY].every(Number.isFinite))return false;
+    const event={...sample,pointerId:0,pointerType:"touch" as const,button:0 as const,defaultPrevented:false,preventDefault(){this.defaultPrevented=true;}};
+    for(const listener of this.listeners.get("wheel")??[])listener(event);
+    return event.defaultPrevented;
+  }
+
   cancel(): void {
     const point = this.primary === null ? undefined : this.touches.get(this.primary);
     if (this.mode === 'all') { for (const touch of this.touches.values()) this.emit('pointercancel', touch); }

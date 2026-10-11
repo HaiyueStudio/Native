@@ -21,6 +21,7 @@ class CodeController extends UIViewController {
 }
 export async function scanCode(options:ScanCodeOptions={}):Promise<ScannedCode|null>{
  scanLimit(options);
+ if(!AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo))throw Error('Camera unavailable');
  if(cancel)throw Error('Scanner already open');
  // Reserve immediately, including while the permission sheet is on screen.
  let cancelled=false;cancel=()=>{cancelled=true;};

@@ -1,6 +1,6 @@
 /** Safe, serializable diagnostics. No SDK messages, identifiers or response payloads. */
 export type RewardFailureStage = 'configuration' | 'consent_update' | 'consent_load' | 'consent_present' | 'privacy_present' | 'tracking_authorization' | 'sdk_initialize' | 'ad_load' | 'ad_present' | 'lifecycle' | 'unknown';
-export type RewardFailureCode = 'sdk_error' | 'no_fill' | 'network' | 'timeout' | 'consent_unavailable' | 'tracking_unresolved' | 'tracking_changed' | 'invalid_unit' | 'policy_rejected' | 'disposed' | 'busy' | 'no_presenter' | 'inactive' | 'presentation_rejected' | 'invalid_action' | 'bridge_error' | 'unknown';
+export type RewardFailureCode = 'sdk_error' | 'no_fill' | 'network' | 'timeout' | 'consent_unavailable' | 'tracking_unresolved' | 'tracking_changed' | 'unsupported_platform' | 'invalid_unit' | 'policy_rejected' | 'disposed' | 'busy' | 'no_presenter' | 'inactive' | 'presentation_rejected' | 'invalid_action' | 'bridge_error' | 'unknown';
 export interface RewardSDKError { readonly domain: string; readonly code: number; }
 export interface RewardFailure {
   readonly version: 1;
@@ -21,7 +21,7 @@ export class RewardError extends Error {
   }
 }
 const stages: readonly string[] = ['configuration', 'consent_update', 'consent_load', 'consent_present', 'privacy_present', 'tracking_authorization', 'sdk_initialize', 'ad_load', 'ad_present', 'lifecycle', 'unknown'];
-const codes: readonly string[] = ['sdk_error', 'no_fill', 'network', 'timeout', 'consent_unavailable', 'tracking_unresolved', 'tracking_changed', 'invalid_unit', 'policy_rejected', 'disposed', 'busy', 'no_presenter', 'inactive', 'presentation_rejected', 'invalid_action', 'bridge_error', 'unknown'];
+const codes: readonly string[] = ['sdk_error', 'no_fill', 'network', 'timeout', 'consent_unavailable', 'tracking_unresolved', 'tracking_changed', 'unsupported_platform', 'invalid_unit', 'policy_rejected', 'disposed', 'busy', 'no_presenter', 'inactive', 'presentation_rejected', 'invalid_action', 'bridge_error', 'unknown'];
 function sdkError(value: any): RewardSDKError | undefined {
   if (!value || typeof value.domain !== 'string' || !/^[A-Za-z0-9_.-]{1,128}$/.test(value.domain) || !Number.isSafeInteger(value.code)) return undefined;
   return Object.freeze({ domain: value.domain, code: value.code });

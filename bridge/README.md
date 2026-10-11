@@ -55,3 +55,36 @@ App 入口只装配上述模块与场景。Bridge 通过 `@haiyue/native` 发布
 未来文件后端放 Application Support 私有目录，以逻辑 ID 隔离，使用同目录临时文件与已验证的原子替换，复用现有 serialize/parse。不得把坏文件视为不存在。核对 `structuredClone`、`Object.hasOwn`、文本编解码和原生 I/O 错误；GameSaveService.flush 只等队列，不证明保存成功或磁盘同步。文件选择/分享、缩略图和设置分开接入。详见 [存档架构](../../milestones/native/bridge-architecture.md)。
 
 G02 实测适配还包括：复制 Canvas 会修改的设备 descriptor/features/limits；安装 Core 已有的 AbortController；区分 iOS 后台 Page unloaded 与永久卸载。普通启动不截图，验收环境变量可启用第 120 帧的原生 WebGPU PNG 读回。具体版本、源码哈希、已验证范围和未覆盖扩展路径见 G02 证据。
+
+## Desktop adaptation (development preview)
+
+`@haiyue/native/platform` exports `getNativeCapabilities()` and `NativeWindowObserver`.
+The snapshot distinguishes iPhone, iPad, Android and iOS-on-Mac. `camera` is hardware
+availability, not permission; `purchases` means a store adapter exists, not that
+products are configured or payments are allowed. Rewarded ads on iOS-on-Mac are
+`unverified`: the shared gateway skips consent startup and refuses ad requests by
+default without granting credit. A Debug-only `allowUnverifiedDesktopAds` option
+permits an explicit SDK validation run. Release ignores this override.
+
+Observe the game's content view for DIP dimensions, current screen scale and
+informational safe-area insets. Do not subtract insets from an already inset view.
+Dispose the observer with its host. Rendering/layout policy remains app-owned.
+`NativeOrientationController('all')` additionally permits upside-down portrait for
+resizable iPad apps; the app plist must list all four orientations and allow multitasking.
+iOS-on-Mac does not receive mobile orientation geometry requests.
+
+`@haiyue/native/input/desktop` exports opt-in `NativeDesktopInput(view, options)`.
+Supply key bindings with exact modifiers, `enabled`, optional `keyboardEnabled`,
+`onKey` and `onWheel`. Events use UIKit points / Android DIP in window coordinates;
+wheel deltas use pixels (`deltaMode: 0`). UIKit mouse clicks continue through the
+existing touch recognizer, avoiding duplicate pointer events. Keyboard focus never
+replaces an active text field; hosts call `focus()` after game input and pair
+`suspend()/resume()/dispose()` with their render host. iOS uses a responder and a
+scroll-only pan recognizer. Android owns the view's key/generic-motion listeners;
+do not combine it with another adapter owning those listeners. No game bindings
+are embedded in Native. `OrbitPointerTarget.wheel()` forwards to the same Engine
+GUI listeners and returns whether a listener claimed the event.
+
+Validated here: package/platform resolution, type checks, mocked lifecycle/input,
+and iOS/Android consumer builds. This Intel Mac cannot validate iOS-on-Mac runtime,
+camera, mouse/trackpad delivery, rewarded SDK support, or StoreKit restoration.

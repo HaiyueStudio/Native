@@ -16,7 +16,7 @@ function fixture(policy = { iosTrackingAuthorization: 'system' }) {
     }
     dispose() {}
   }
-  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core }, { HYRewardedAds: Ads });
+  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } }, { HYRewardedAds: Ads });
   const gateway = new AdMobRewardGateway({ policy, iosUnit: 'ca-app-pub-2053256758816744/1234567890', androidUnit: '' });
   return { gateway, actions, finish: () => finish(), status: value => { status = value; } };
 }
@@ -61,7 +61,7 @@ test('regional consent followed by ATT acquires the startup pause only once', as
       callback(presentations === 1 ? 'presenting' : 'closed');
     }
   }
-  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core }, { HYRewardedAds: Ads });
+  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } }, { HYRewardedAds: Ads });
   const gateway = new AdMobRewardGateway({ policy: { iosTrackingAuthorization: 'system' }, iosUnit: '', androidUnit: '' });
   await gateway.initialize(true, async () => { pauses++; return pauses === 1; });
   assert.equal(presentations, 2); assert.equal(pauses, 1);
@@ -83,7 +83,7 @@ test('restricted native completion keeps unpaid startup usable without pausing o
     }
     dispose() {}
   }
-  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core }, { HYRewardedAds: Ads });
+  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } }, { HYRewardedAds: Ads });
   const gateway = new AdMobRewardGateway({ policy: { iosTrackingAuthorization: 'system' }, iosUnit: 'ca-app-pub-2053256758816744/1234567890', androidUnit: '' });
   const prepare = async () => { pauses++; return true; };
   const first = gateway.initialize(true, prepare);
@@ -113,7 +113,7 @@ test('paid startup with restricted ATT performs only the consent refresh', async
     trackingAuthorizationStatus = 'restricted';
     performUnitEvents(action, unit, callback) { actions.push(action); callback('closed'); }
   }
-  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core }, { HYRewardedAds: Ads });
+  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } }, { HYRewardedAds: Ads });
   const gateway = new AdMobRewardGateway({ policy: { iosTrackingAuthorization: 'system' }, iosUnit: '', androidUnit: '' });
   await gateway.initialize(false, async () => assert.fail('paid startup must not present UI'));
   assert.deepEqual(actions, ['refreshPrivacy']);

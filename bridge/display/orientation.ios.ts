@@ -32,6 +32,8 @@ export class NativeOrientationController {
   snapshot() { return { supported: this.supported, policy: this.policy, mask: orientationMask(this.policy) }; }
   readonly apply = (): void => {
     if (this.disposed) return;
+    // iOS-on-Mac window geometry belongs to the desktop window manager.
+    if (NSProcessInfo.processInfo.iOSAppOnMac) return;
     const window = Application.ios.window;
     const scene = window?.windowScene;
     const controller = window?.rootViewController;

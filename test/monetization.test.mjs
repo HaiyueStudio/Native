@@ -57,7 +57,7 @@ test('AdMob applies policy before native work and refuses failed configuration w
     privacyRequired = true; consentRequired = false; dispose() {}
   }
   const core = { isIOS: true, isAndroid: false, Connectivity: { getConnectionType: () => 1, connectionType: { none: 0 } } };
-  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core }, { HYRewardedAds: Ads });
+  const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } }, { HYRewardedAds: Ads });
   const g = new AdMobRewardGateway({ iosUnit: 'unused', androidUnit: '', development: true });
   await g.initialize(false, async () => true); assert.equal(requests, 1); g.dispose();
   accept = false;
@@ -70,7 +70,7 @@ test('native build flags control demo ads; JS development cannot bypass the rele
     const units = [];
     class Ads { configurePolicy() { return true; } performUnitEvents(action, unit, cb) { units.push(unit); cb('closed'); } dispose() {} }
     const core = { isIOS: true, isAndroid: false, Connectivity: { getConnectionType: () => 1, connectionType: { none: 0 } } };
-    const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core }, {
+    const { AdMobRewardGateway } = loadTS('bridge/rewards/admob.ts', { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } }, {
       HYRewardedAds: Ads, NSBundle: { mainBundle: { objectForInfoDictionaryKey: () => debug ? 'Debug' : 'Release' } },
     });
     const gateway = new AdMobRewardGateway({ iosUnit: 'ca-app-pub-3940256099942544/1712485313', androidUnit: '', development: true });
@@ -99,7 +99,7 @@ test('Android stores isolate installation and verified-cache namespaces between 
     ApplicationSettings: { getString: k => storage.get(k), setString: (k, v) => storage.set(k, v) },
     Http: { request: async value => { requests.push(JSON.parse(value.content)); return { statusCode: 200, content: { toJSON: () => ({ lease: 'signed' }) } }; } },
   };
-  const { NativeStore } = loadTS('bridge/purchases/store.android.ts', { '@nativescript/core': core }, {
+  const { NativeStore } = loadTS('bridge/purchases/store.android.ts', { '@nativescript/core': core, '../platform/runtime': { getNativeCapabilities: () => ({rewardedAds:'available'}) } }, {
     org: { haiyue: { purchases: { HYPlayBilling: Billing } } }, java: { util: { UUID: { randomUUID: () => `installation-${++sequence}` } } },
   });
   for (const name of ['one', 'two']) {

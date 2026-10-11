@@ -63,6 +63,7 @@ for (const platform of ['ios', 'android']) for (const systemOnly of [false, true
     assert.ok(existsSync(path.join(nativeRoot, 'android', java)));
   }
   let entrySource = `import * as native from '@haiyue/native';\nimport * as engineAdapter from '@haiyue/native/engine';\nimport { NativeDeviceMotion } from '@haiyue/native/motion';\nimport { NativeHaptics } from '@haiyue/native/feedback';\nimport * as audio from '@haiyue/native/audio';\nimport * as orientation from '@haiyue/native/orientation';\nimport * as media from '@haiyue/native/media';\nimport { scanCode, cancelScan } from '@haiyue/native/scanner';\nimport { shareContent, canShareContent } from '@haiyue/native/share';\nimport { createPurchases } from '@haiyue/native/purchases/native';\nimport { PurchaseController, PurchaseCatalog } from '@haiyue/native/purchases';\nimport { createRewards } from '@haiyue/native/rewards/native';\nglobalThis.nativeSmoke = { native, engineAdapter, NativeDeviceMotion, NativeHaptics, audio, orientation, media, scanCode, cancelScan, shareContent, canShareContent, createPurchases, PurchaseController, PurchaseCatalog, createRewards };`;
+  entrySource = `import * as platformAPI from '@haiyue/native/platform';\nimport * as desktopAPI from '@haiyue/native/input/desktop';\nglobalThis.desktopSmoke = {platformAPI, desktopAPI};\n` + entrySource;
   if (systemOnly) entrySource = entrySource
     .replace("import * as native from '@haiyue/native';\n", '')
     .replace("import * as engineAdapter from '@haiyue/native/engine';\n", '')
@@ -76,7 +77,7 @@ for (const platform of ['ios', 'android']) for (const systemOnly of [false, true
     for (const scope of ['@nativescript', '@webgpu'])
       symlinkSync(path.join(root, 'node_modules', scope), path.join(temp, 'node_modules', scope), 'dir');
     const typesEntry = path.join(temp, 'consumer.ts');
-    writeFileSync(typesEntry, entrySource.replace('globalThis.nativeSmoke =', 'export const nativeSmoke ='));
+    writeFileSync(typesEntry, entrySource.replace('globalThis.nativeSmoke =', 'export const nativeSmoke =').replace('globalThis.desktopSmoke =', 'export const desktopSmoke ='));
     const config = path.join(temp, 'tsconfig.json');
     writeFileSync(config, JSON.stringify({ compilerOptions: {
       strict: true, target: 'ES2020', module: 'esnext', moduleResolution: 'bundler',
@@ -118,7 +119,7 @@ for (const platform of ['ios', 'android']) for (const systemOnly of [false, true
   }));
   assert.equal(stats.hasErrors(), false, stats.toString({ all: false, errors: true }));
   const modules = stats.toJson({ all: false, modules: true }).modules.map(m => m.name).join('\n');
-  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'audio/pcm-bank', 'purchases/store', 'scanner/scan-code', 'share/share-content', ...(systemOnly ? [] : ['input/native-touch', 'render/view-rect'])]) {
+  for (const unit of ['motion/device-motion', 'feedback/haptics', 'display/orientation', 'audio/pcm-bank', 'purchases/store', 'scanner/scan-code', 'share/share-content', 'platform/runtime', 'platform/window-metrics', 'input/desktop', ...(systemOnly ? [] : ['input/native-touch', 'render/view-rect'])]) {
     assert.ok(modules.includes(`${unit}.${platform}.ts`), `${unit}: ${modules}`);
     assert.ok(!modules.includes(`${unit}.${platform === 'ios' ? 'android' : 'ios'}.ts`), `${unit}: wrong platform`);
   }

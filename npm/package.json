@@ -48,7 +48,12 @@
       "default": "./bridge/share/share-content"
     },
     "./share/web": "./bridge/share/share-content.web.ts",
-    "./engine": "./bridge/engine.ts"
+    "./engine": "./bridge/engine.ts",
+    "./platform": "./bridge/platform/index.ts",
+    "./input/desktop": {
+      "types": "./bridge/input/desktop.ts",
+      "default": "./bridge/input/desktop"
+    }
   },
   "files": [
     "index.ts",

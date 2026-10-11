@@ -1,3 +1,4 @@
+import {getNativeCapabilities} from '../platform/runtime';
 import { Application, Connectivity, isAndroid, isIOS } from '@nativescript/core';
 import { isNativeDebugBuild } from './development';
 import { resolveAdMobPolicy, type AdMobPolicy } from './policy';
@@ -14,10 +15,12 @@ export class AdMobRewardGateway implements RewardGateway {
   private initialization?: Promise<void>;
   private readonly policy: AdMobPolicy;
   private readonly development = isNativeDebugBuild();
-  constructor(private readonly config: { iosUnit: string; androidUnit: string; development?: boolean; policy?: Partial<AdMobPolicy>; onFailure?: (failure: RewardFailure) => void }) {
+  constructor(private readonly config: { iosUnit: string; androidUnit: string; development?: boolean; allowUnverifiedDesktopAds?: boolean; policy?: Partial<AdMobPolicy>; onFailure?: (failure: RewardFailure) => void }) {
     this.policy = resolveAdMobPolicy(config.policy);
   }
+  private desktopAllowed(){return getNativeCapabilities().rewardedAds==='available'||(this.development&&this.config.allowUnverifiedDesktopAds===true);}
   private getNative(): any {
+    if(!this.desktopAllowed())throw this.failure('configuration','unsupported_platform');
     if (!this.native) {
       const native = isAndroid ? new org.haiyue.rewards.HYRewardedAds() : new HYRewardedAds();
       if (!native.configurePolicy(JSON.stringify(this.policy))) { native.dispose(); throw this.failure('configuration', 'policy_rejected'); }
@@ -53,6 +56,7 @@ export class AdMobRewardGateway implements RewardGateway {
   }
   private async execute(action: string, earned: () => void, presentation?: RewardPresentation): Promise<void> {
     if (this.disposed) throw this.failure('lifecycle', 'disposed');
+    if (!this.desktopAllowed()) throw this.failure('configuration', 'unsupported_platform');
     if (Connectivity.getConnectionType() === Connectivity.connectionType.none) throw this.failure('configuration', 'network', 'offline');
     const unit = this.development
       ? (isIOS ? 'ca-app-pub-3940256099942544/1712485313' : 'ca-app-pub-3940256099942544/5224354917')
@@ -95,7 +99,7 @@ export class AdMobRewardGateway implements RewardGateway {
   }
   /** Update consent once per host session, without initializing or preloading ads. */
   initialize(presentForm: boolean, beforePresent: () => Promise<boolean>): Promise<void> {
-    if (!isIOS) return Promise.resolve();
+    if (!isIOS || !this.desktopAllowed()) return Promise.resolve();
     return this.initialization ??= this.initializeConsent(presentForm, beforePresent);
   }
   private async initializeConsent(presentForm: boolean, beforePresent: () => Promise<boolean>): Promise<void> {

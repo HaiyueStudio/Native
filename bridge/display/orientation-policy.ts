@@ -1,6 +1,6 @@
 /** 'any' permits portrait and both landscape directions; upside-down is excluded. */
-export type OrientationPolicy = 'portrait' | 'landscape' | 'any';
-export const orientationMasks = Object.freeze({ portrait: 2, landscape: 24, any: 26 });
+export type OrientationPolicy = 'portrait' | 'landscape' | 'any' | 'all';
+export const orientationMasks = Object.freeze({ portrait: 2, landscape: 24, any: 26, all: 30 });
 export function orientationMask(policy: OrientationPolicy): number {
   const mask = orientationMasks[policy];
   if (!mask) throw new Error(`Unknown screen orientation policy: ${policy}`);
@@ -8,6 +8,7 @@ export function orientationMask(policy: OrientationPolicy): number {
 }
 export function orientationPlistValues(policy: OrientationPolicy): string[] {
   orientationMask(policy);
+  if(policy==='all')return [...orientationPlistValues('any'),'UIInterfaceOrientationPortraitUpsideDown'];
   return policy === 'portrait' ? ['UIInterfaceOrientationPortrait'] : policy === 'landscape'
     ? ['UIInterfaceOrientationLandscapeLeft', 'UIInterfaceOrientationLandscapeRight']
     : ['UIInterfaceOrientationPortrait', 'UIInterfaceOrientationLandscapeLeft', 'UIInterfaceOrientationLandscapeRight'];
