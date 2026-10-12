@@ -1,0 +1,9 @@
+{
+ "compilerOptions": {
+   "strict":true,"target":"ES2020","module":"esnext","moduleResolution":"bundler","skipLibCheck":true,
+   "experimentalDecorators":true,"emitDecoratorMetadata":true,"lib":["ES2022","DOM"],
+   "types":["@nativescript/types","@webgpu/types"],"baseUrl":".",
+   "paths":{"@nativescript/*":["node_modules/@nativescript/*"],"@haiyue/engine":["node_modules/@haiyue/engine"],"@haiyue/engine/*":["node_modules/@haiyue/engine/dist/*"],"wgpu-matrix":["node_modules/wgpu-matrix"]}
+ },
+ "include":["src/**/*.ts","nativescript.config.ts"]
+}
