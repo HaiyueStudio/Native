@@ -17,6 +17,7 @@ HaiYue 原生平台实现，承载移动端 App、桌面宿主与平台桥接，
 | 路径 | 用途 |
 | --- | --- |
 | [examples/](./examples/README.md) | 原生 App 示例 |
+| [examples/tank-battle/](./examples/tank-battle/README.md) | 铁甲前线：1P 虚拟摇杆、双指开火与像素坦克大战，Android/iOS 源码工程 |
 | [examples/neon-circuit/](./examples/neon-circuit/README.md) | 七赛道反重力竞速，陀螺仪 / 虚拟摇杆、独立刹车与油门 |
 | [bridge/share/](./bridge/share/README.md) | iOS / Android / Web 系统分享：文字、链接与战绩图片（源码新增，未发布） |
 | [bridge/motion/](./bridge/motion/README.md) | iOS / Android 陀螺仪、设备姿态和屏幕方向倾斜角 |

@@ -1,0 +1,17 @@
+import { spawnSync } from 'node:child_process';
+import { existsSync, mkdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { syncAssets } from './assets.mjs';
+import { patchCanvas } from './patch-canvas.mjs';
+const app=fileURLToPath(new URL('../',import.meta.url));
+const [action='build',platform='android',...args]=process.argv.slice(2);
+if(!['build','run','prepare'].includes(action)||!['android','ios'].includes(platform))throw new Error('Use build|run|prepare android|ios');
+if(platform==='ios'&&process.platform!=='darwin')throw new Error('iOS compilation requires macOS and Xcode. The Android app can be built on Windows.');
+if(platform==='android'&&(!process.env.ANDROID_HOME||!process.env.JAVA_HOME))throw new Error('Set ANDROID_HOME to Android SDK and JAVA_HOME to JDK 21 before building.');
+syncAssets();console.log('Canvas compatibility:',patchCanvas());
+const profile=new URL('../.ns-profile/',import.meta.url);mkdirSync(profile,{recursive:true});
+const cli=new URL('../node_modules/nativescript/bin/tns',import.meta.url);
+if(!existsSync(cli))throw new Error('Run npm ci first.');
+const command=[fileURLToPath(cli),action,platform,...args,'--profileDir',fileURLToPath(profile),'--disableAnalytics'];
+const result=platform==='ios'?spawnSync('bundle',['exec',process.execPath,...command],{cwd:app,stdio:'inherit',env:{...process.env,BUNDLE_GEMFILE:app+'Gemfile'}}):spawnSync(process.execPath,command,{cwd:app,stdio:'inherit'});
+if(result.error)throw result.error;process.exit(result.status??1);
