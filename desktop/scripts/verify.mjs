@@ -8,7 +8,7 @@ for (const script of ['check.mjs', 'bundle.mjs']) {
   if (result.error) throw result.error;
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
-const result = spawnSync(process.execPath, [resolve(root, 'scripts/run.mjs'), '--probes=1', '--exercise=1', '--frames=420', '--seconds=120',
+const result = spawnSync(process.execPath, [resolve(root, 'scripts/run.mjs'), '--focus-window=1', '--probes=1', '--exercise=1', '--frames=420', '--seconds=120',
   `--data=${resolve(root, 'build/validation-profile')}`, `--capture=${resolve(root, 'build/validation.png')}`],
   { cwd: root, encoding: 'utf8', timeout: 150000, maxBuffer: 10 * 1024 * 1024 });
 const log = (result.stdout ?? '') + (result.stderr ?? '');

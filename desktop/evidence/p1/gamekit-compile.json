@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-13",
+  "xcode": "Xcode 26.3\nBuild version 17C529",
+  "swift": "Apple Swift version 6.2.4 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)\nTarget: x86_64-apple-macosx26.0",
+  "macos": {
+    "status": "passed",
+    "target": "x86_64-apple-macosx12.0",
+    "sha256": "ef6c3cf24abc45c253249b3f72c05d8737b7c9b80b316747f38dee0fdfc19b1c"
+  },
+  "ios": {
+    "status": "passed",
+    "target": "arm64-apple-ios15.0",
+    "sha256": "362d7b10ba73e91fd69f7cd5b0784adc0c68e5ac2b7733a66414200d05878379"
+  },
+  "scope": "SDK compilation only; no configured Game Center identity, no platform acceptance"
+}

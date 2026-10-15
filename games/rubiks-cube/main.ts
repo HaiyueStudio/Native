@@ -3,6 +3,7 @@ import { MemorySaveBackend } from '@haiyue/engine/save';
 import { CubeGame } from './CubeGame';
 import { KINDS, type Kind } from './model';
 import { verifyCube } from './verification';
+import { createRubikAchievements } from '../../examples/achievements-validation/shared/rubik';
 const errors: string[] = [];
 function publish(result: unknown, status: string): void {
   const output = document.getElementById('result')!;
@@ -31,8 +32,11 @@ async function main(): Promise<void> {
   await engine.init();
   engine.device.addEventListener('uncapturederror', (event) => fail(event.error));
   const params = new URLSearchParams(location.search);
-  const game = new CubeGame(engine, params.has('verify') ? { saveBackend: new MemorySaveBackend() } : {});
+  const temporary = new Map<string, string>();
+  const storage = params.has('verify') ? { getItem: (k: string) => temporary.get(k) ?? null, setItem: (k: string, v: string) => { temporary.set(k, v); } } : localStorage;
+  const game = new CubeGame(engine, { ...(params.has('verify') ? { saveBackend: new MemorySaveBackend() } : {}), achievements: await createRubikAchievements(storage) });
   await game.init();
+  if (params.has('achievements')) game.showAchievements();
   if (params.has('test')) Object.assign(window, { cubeGame: game });
   let frames = 0;
   engine.on('after-update', () => {

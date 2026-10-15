@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "targetVersion": "0.2.0",
+  "profile": "development",
+  "startedAt": "2026-10-13T02:59:45.234Z",
+  "status": "passed",
+  "stages": [
+    {
+      "name": "native-tests",
+      "status": "passed",
+      "durationMs": 11361
+    },
+    {
+      "name": "engine-free-consumer",
+      "status": "passed",
+      "durationMs": 2152
+    },
+    {
+      "name": "packed-extension-consumer",
+      "status": "passed",
+      "durationMs": 2063
+    },
+    {
+      "name": "npm-typecheck",
+      "status": "passed",
+      "durationMs": 5084
+    },
+    {
+      "name": "rubik-typecheck",
+      "status": "passed",
+      "durationMs": 4701
+    },
+    {
+      "name": "rubik-tests",
+      "status": "passed",
+      "durationMs": 876
+    },
+    {
+      "name": "desktop-typecheck",
+      "status": "passed",
+      "durationMs": 1742
+    },
+    {
+      "name": "desktop-bundle",
+      "status": "passed",
+      "durationMs": 255
+    },
+    {
+      "name": "web-bundle",
+      "status": "passed",
+      "durationMs": 221
+    },
+    {
+      "name": "gamekit-macos-compile",
+      "status": "passed",
+      "durationMs": 3887
+    },
+    {
+      "name": "desktop-gpu-probes",
+      "status": "passed",
+      "durationMs": 14648
+    }
+  ],
+  "skipped": [
+    "Add --platform ios|android for the corresponding mobile bundle"
+  ],
+  "qualification": "Development checks only; platform acceptance and release candidate remain pending.",
+  "dependencies": {
+    "desktop/package-lock.json": "463a5130f1a81ba8cebed9d4f349b30d06ab91164b0ce8c10d3fbfe4e42282be",
+    "examples/rubiks-cube/package-lock.json": "eccd2ac73cf7bd305e6b3bd455e5964f49df8448c7189c741f7c201527bf8a02",
+    "desktop/vendor/haiyue-engine-0.2.1.tgz": "6fe846d82791301efae42e0da21bd15a9c98da1ef2f0fd210a303e7207c0f518",
+    "desktop/vendor/haiyue-extensions-0.2.1-p1.tgz": "ea746655b9b7a46d29d8c3b37422ae4f53a1e8bb436057b002599fbdfa447c62"
+  },
+  "pendingAcceptance": [
+    "Steamworks SDK compilation/freeze and Windows/macOS real client",
+    "Game Center configured iOS/macOS signed applications and real accounts",
+    "Windows x64 / Apple Silicon hardware",
+    "Same-quality Web/native-TS/Rust three-round target-device performance",
+    "Current iPhone/Android binary interaction and old-system-feature regression",
+    "ATT restricted physical device (existing record)"
+  ],
+  "finishedAt": "2026-10-13T03:00:32.236Z"
+}

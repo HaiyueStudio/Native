@@ -3,14 +3,54 @@
   "denoVersion": "2.9.6",
   "glfwVersion": "3.4",
   "targets": {
-    "darwin-x64": { "denoTarget": "x86_64-apple-darwin", "denoSha256": "7d4524b82bcc557fe020a1a5b56956ed42b992ae5b28026e8ad5d17329533f5f", "glfwArchive": "glfw-3.4.bin.MACOS.zip", "glfwSha256": "6775085bdae60312a3002bff2e39779a83bc72a7e1c810bd806fddb00cb35fd0", "glfwLibrary": "glfw-3.4.bin.MACOS/lib-universal/libglfw.3.dylib" },
-    "darwin-arm64": { "denoTarget": "aarch64-apple-darwin", "denoSha256": "213a2f304f04d3c9cb5220669afad138f60a5aab1fe80962abdeb8f35807a472", "glfwArchive": "glfw-3.4.bin.MACOS.zip", "glfwSha256": "6775085bdae60312a3002bff2e39779a83bc72a7e1c810bd806fddb00cb35fd0", "glfwLibrary": "glfw-3.4.bin.MACOS/lib-universal/libglfw.3.dylib" },
-    "win32-x64": { "denoTarget": "x86_64-pc-windows-msvc", "denoSha256": "15e5300b0ba3c3695a7621d90160a746ec9e710228cee639afa9d580f6e3cd11", "glfwArchive": "glfw-3.4.bin.WIN64.zip", "glfwSha256": "54efa829400f2a0537f742b2b3bdd74e437bb4f2f048e4b7d3c5557d11a611e6", "glfwLibrary": "glfw-3.4.bin.WIN64/lib-vc2022/glfw3.dll" }
+    "darwin-x64": {
+      "denoTarget": "x86_64-apple-darwin",
+      "denoSha256": "7d4524b82bcc557fe020a1a5b56956ed42b992ae5b28026e8ad5d17329533f5f",
+      "glfwArchive": "glfw-3.4.bin.MACOS.zip",
+      "glfwSha256": "6775085bdae60312a3002bff2e39779a83bc72a7e1c810bd806fddb00cb35fd0",
+      "glfwLibrary": "glfw-3.4.bin.MACOS/lib-universal/libglfw.3.dylib"
+    },
+    "darwin-arm64": {
+      "denoTarget": "aarch64-apple-darwin",
+      "denoSha256": "213a2f304f04d3c9cb5220669afad138f60a5aab1fe80962abdeb8f35807a472",
+      "glfwArchive": "glfw-3.4.bin.MACOS.zip",
+      "glfwSha256": "6775085bdae60312a3002bff2e39779a83bc72a7e1c810bd806fddb00cb35fd0",
+      "glfwLibrary": "glfw-3.4.bin.MACOS/lib-universal/libglfw.3.dylib"
+    },
+    "win32-x64": {
+      "denoTarget": "x86_64-pc-windows-msvc",
+      "denoSha256": "15e5300b0ba3c3695a7621d90160a746ec9e710228cee639afa9d580f6e3cd11",
+      "glfwArchive": "glfw-3.4.bin.WIN64.zip",
+      "glfwSha256": "54efa829400f2a0537f742b2b3bdd74e437bb4f2f048e4b7d3c5557d11a611e6",
+      "glfwLibrary": "glfw-3.4.bin.WIN64/lib-vc2022/glfw3.dll"
+    }
   },
   "assets": {
-    "font": { "file": "NotoSansCJKsc-Regular.otf", "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf", "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b" },
-    "fontLicense": { "file": "Noto-OFL.txt", "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/LICENSE", "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2" },
-    "audioHeader": { "file": "miniaudio.h", "url": "https://raw.githubusercontent.com/mackron/miniaudio/0.11.22/miniaudio.h", "sha256": "9019743287e443c55e5737a7297f38e5e358561701d6db2d905afb114390c410" }
+    "font": {
+      "file": "NotoSansCJKsc-Regular.otf",
+      "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf",
+      "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
+    },
+    "fontLicense": {
+      "file": "Noto-OFL.txt",
+      "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/LICENSE",
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    },
+    "audioHeader": {
+      "file": "miniaudio.h",
+      "url": "https://raw.githubusercontent.com/mackron/miniaudio/0.11.22/miniaudio.h",
+      "sha256": "9019743287e443c55e5737a7297f38e5e358561701d6db2d905afb114390c410"
+    }
   },
-  "engine": { "version": "0.2.1", "file": "vendor/haiyue-engine-0.2.1.tgz", "sha256": "6fe846d82791301efae42e0da21bd15a9c98da1ef2f0fd210a303e7207c0f518" }
+  "engine": {
+    "version": "0.2.1",
+    "file": "vendor/haiyue-engine-0.2.1.tgz",
+    "sha256": "6fe846d82791301efae42e0da21bd15a9c98da1ef2f0fd210a303e7207c0f518"
+  },
+  "extensions": {
+    "file": "vendor/haiyue-extensions-0.2.1-p1.tgz",
+    "sha256": "ea746655b9b7a46d29d8c3b37422ae4f53a1e8bb436057b002599fbdfa447c62",
+    "manifestVersion": "0.2.1",
+    "qualification": "Unpublished M23 P1 development archive; not registry 0.2.1"
+  }
 }

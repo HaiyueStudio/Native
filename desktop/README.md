@@ -19,7 +19,7 @@ npm run package
 npm run verify:package
 ```
 
-`setup` 根据 `toolchains.json` 下载固定 Deno 2.9.6、GLFW 3.4、Noto Sans CJK 2.004、miniaudio 0.11.22，先验 SHA-256 再解压。工具仅放在本仓库 artifacts，不更改全局运行时。Engine 使用 `vendor/haiyue-engine-0.2.1.tgz`，不读取相邻 Engine/Games 源码。npm 依赖由 package-lock.json 固定；首次构建需要访问其中的镜像地址和 GitHub。
+`setup` 根据 `toolchains.json` 下载固定 Deno 2.9.6、GLFW 3.4、Noto Sans CJK 2.004、miniaudio 0.11.22，先验 SHA-256 再解压。工具仅放在本仓库 artifacts，不更改全局运行时。Engine 使用 `vendor/haiyue-engine-0.2.1.tgz`，成就 extension 使用 SHA-256 锁定的 `vendor/haiyue-extensions-0.2.1-p1.tgz`（未发布开发包），不读取相邻 Engine/Games 源码。npm 依赖由 package-lock.json 固定；首次构建需要访问其中的镜像地址和 GitHub。
 
 `npm run verify:fresh` 会创建隔离源码目录、空 npm 缓存，重新安装依赖、下载工具链、构建音频、检查类型、运行 GPU 验证并打包。它需要图形桌面与网络，会弹出测试窗口。结果路径打印在命令末尾。
 
@@ -41,7 +41,7 @@ npm run start -- --seconds=1800 --exercise=1
 npm run start -- --lose-device-at=100 --seconds=30
 ```
 
-`verify` 必须产生 420 帧、通过音频与资源探针；不会用“进程 exit 0 但无画面”当成功。截图和日志在 `desktop/build/validation.*`。所有自动化探针与模拟输入、物理设备操作严格分开，见 [Windows 接续验收](WINDOWS-HANDOFF.md) 和 [证据](evidence/README.md)。
+`verify` 会显式聚焦自己的测试窗口，避免后台窗口不可获取 drawable 使测试失去意义；请勿同时运行多个 GPU 窗口验收。它必须产生 420 帧、通过音频与资源探针；不会用“进程 exit 0 但无画面”当成功。截图和日志在 `desktop/build/validation.*`。所有自动化探针与模拟输入、物理设备操作严格分开，见 [Windows 接续验收](WINDOWS-HANDOFF.md) 和 [证据](evidence/README.md)。
 
 ## 适配边界
 
@@ -68,4 +68,4 @@ DOM、HTML 视频、浏览器广告 SDK、全量 Canvas2D/WebAudio 和自动迁�
 - [成就 API 使用说明](../bridge/achievements/README.md)
 - [第三方声明](licenses/README.md)
 
-P1 继续实现 Steam、Game Center、Engine extension、完整跨端样例及发布验证。当前代码不是完整 0.2.0 发布候选。
+P1 已实现 Steam / Game Center 接口、Engine extension 和共享魔方接线。默认使用本地成就，配置见 [成就样例](../examples/achievements-validation/README.md)。运行 `npm run release:verify -- --profile development --desktop`（Native 根目录）汇总开发检查；真实平台账号与目标硬件待验收，见 [P1 证据](evidence/p1/README.md)。当前代码不是已通过所有门禁的 0.2.0 发布候选。

@@ -1,11 +1,14 @@
 import { Application, EventData, Label, Page } from '@nativescript/core';
 import type { Canvas } from '@nativescript/canvas';
 import { NativeRenderHost } from '../../../bridge/lifecycle/host';
-import { NativeTouchInput } from '../../../bridge/input/native-touch.ios';
+import { NativeTouchInput } from '../../../bridge/input/native-touch';
 import type { NativeCanvasInput } from '../../../bridge/render/surface';
-import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures.ios';
+import { NativeCanvasTextures } from '../../../bridge/render/canvas-textures';
 import { LocalStorageSaveBackend } from '@haiyue/engine/save';
 import { NativeSettingsStorage } from '../../../bridge/storage/settings-storage';
+import { createRubikAchievements } from '../../achievements-validation/shared/rubik';
+import { nativeLaunchFlag } from '../../../bridge/lifecycle/launch-flags';
+import { achievementProvider } from './achievements-provider';
 import { CubeGame } from '../../../games/rubiks-cube/CubeGame';
 let host: NativeRenderHost | null = null;
 let game: CubeGame | null = null;
@@ -51,12 +54,13 @@ function ensureHost(canvas: Canvas): void {
       engineOptions: { msaaSamples: 4, clearColor: { r: 0.022, g: 0.037, b: 0.063, a: 1 } },
       diagnosticName: 'rubiks-cube',
       capture: {
-        requested: String(NSProcessInfo.processInfo.environment.objectForKey('CUBE_CAPTURE_FRAME')) === '1',
+        requested: nativeLaunchFlag('CUBE_CAPTURE_FRAME'),
         file: 'rubiks-cube-frame.png',
       },
       prepareScene: async (engine) => {
         textures = new NativeCanvasTextures(engine.device);
         game = new CubeGame(engine, {
+          achievements: await createRubikAchievements(new NativeSettingsStorage(), achievementProvider()),
           saveBackend: new LocalStorageSaveBackend({
             namespace: 'haiyue-games',
             storage: new NativeSettingsStorage(),
@@ -64,6 +68,7 @@ function ensureHost(canvas: Canvas): void {
           guiFont: { canvasFactory: textures.createCanvas2D, readAtlasPixels: textures.readAtlasPixels },
         });
         await game.init();
+        if (nativeLaunchFlag('CUBE_SHOW_ACHIEVEMENTS')) game.showAchievements();
         return game.snapshot();
       },
       disposeScene() {

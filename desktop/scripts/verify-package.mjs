@@ -13,7 +13,7 @@ const env = { ...process.env, DENO_DIR: join(install, 'runtime-cache') };
 // Windows env names are case-insensitive; avoid leaving an inherited mixed-case Path.
 for (const name of Object.keys(env)) if (name.toLowerCase() === 'path') delete env[name];
 env.PATH = process.platform === 'win32' ? `${process.env.SystemRoot}\\System32;${process.env.SystemRoot}` : '/usr/bin:/bin';
-const result = spawnSync(executable, ['--probes=1', '--exercise=1', '--frames=420', '--seconds=120',
+const result = spawnSync(executable, ['--focus-window=1', '--probes=1', '--exercise=1', '--frames=420', '--seconds=120',
   `--data=${join(install, 'profile')}`], { cwd: install, env, encoding: 'utf8', timeout: 180000, maxBuffer: 10 * 1024 * 1024 });
 const log = (result.stdout ?? '') + (result.stderr ?? '');
 writeFileSync(resolve(root, 'build/standalone.jsonl'), log); process.stdout.write(log);

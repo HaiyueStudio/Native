@@ -3,6 +3,13 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { root, manifestPath, readConfig, readJSON, hash, command, verifyCandidate, verifyInstalled, verifyModelInputs, verifyPodsLock, verifyManifestSnapshot } from './common.mjs';
 import { runLogged, runStages } from './runner.mjs';
+import { verifyP1 } from './p1.mjs';
+
+// The development profile stages current source separately from immutable published manifests.
+if (process.argv.includes('development') || process.argv.includes('--profile=development')) {
+  const { values } = parseArgs({ options: { profile: { type: 'string' }, desktop: { type: 'boolean', default: false }, platform: { type: 'string' } } });
+  await verifyP1(values);
+} else {
 
 const report = { schemaVersion: 1, startedAt: new Date().toISOString(), status: 'failed', stages: [], skipped: [] };
 const output = path.join(root, 'artifacts/release', report.startedAt.replace(/[:.]/g, '-'));
@@ -128,4 +135,5 @@ try {
   writeFileSync(path.join(output, 'report.json'), JSON.stringify(report, null, 2) + '\n');
   writeFileSync(path.join(root, 'artifacts/release/latest.json'), JSON.stringify(report, null, 2) + '\n');
   console.log(`Release report: ${path.join(output, 'report.json')}`);
+}
 }

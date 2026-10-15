@@ -21,6 +21,7 @@ import { mat4, vec3, type Mat4 } from 'wgpu-matrix';
 import { CubeHud, FONT_CHARS } from './hud';
 import { cubeLayout, contains } from './layout';
 import { CubeSession } from './session';
+import type { CubeAchievements } from './achievements';
 import { transform, type Axis, type Cubie, type Kind, type Vec } from './model';
 interface Visual {
   entity: Entity;
@@ -73,6 +74,7 @@ export class CubeGame {
   );
   private readonly hud: CubeHud;
   private readonly preferences: SingleSlotGameSave<{ lastKind: Kind }>;
+  private readonly achievements: CubeAchievements | undefined;
   private visuals: Visual[] = [];
   private gesture: Gesture | null = null;
   private disposed = false;
@@ -83,10 +85,11 @@ export class CubeGame {
   private viewProjection: Mat4 = mat4.identity();
   constructor(
     private readonly engine: HaiyueEngine,
-    options: { guiFont?: GuiFontOptions; saveBackend?: GameSaveBackend } = {},
+    options: { guiFont?: GuiFontOptions; saveBackend?: GameSaveBackend; achievements?: CubeAchievements } = {},
   ) {
     if (!engine.canvas) throw new Error('CubeGame requires an Engine surface');
     this.canvas = engine.canvas;
+    this.achievements = options.achievements;
     this.preferences = new SingleSlotGameSave({
       gameId: 'rubiks-cube',
       name: '魔方偏好',
@@ -139,7 +142,7 @@ export class CubeGame {
     this.world.addSystem(
       new GuiSystem(engine, {
         loadOp: 'load',
-        font: { ...options.guiFont, chars: FONT_CHARS + '°', fontSize: 32, atlasSize: 2048 },
+        font: { ...options.guiFont, chars: FONT_CHARS + '°' + (this.achievements?.chars ?? ''), fontSize: 32, atlasSize: 2048 },
       }),
     );
     const integration = new RenderIntegration(engine, { label: 'RubiksCube.render' });
@@ -155,6 +158,10 @@ export class CubeGame {
     engine.on('update', this.frame);
   }
   async init(): Promise<void> {
+    if (this.achievements) {
+      await this.achievements.initialize(); if (this.disposed) return;
+      this.achievements.attach(this.hud.root, visible => { this.cancelInteraction(); this.hud.setObscured(visible); });
+    }
     const saved = await this.preferences.load();
     if (saved && !this.disposed && this.home) {
       this.session = new CubeSession(saved.lastKind);
@@ -164,11 +171,11 @@ export class CubeGame {
     }
   }
   flushSave(): Promise<void> {
-    return this.preferences.flush();
+    return Promise.all([this.preferences.flush(), this.achievements?.flush()]).then(() => {});
   }
   start(kind: Kind): void {
     this.cancelInteraction();
-    this.session = new CubeSession(kind);
+    this.session = new CubeSession(kind, result => this.achievements?.solved(result));
     this.preferences.save({ lastKind: kind });
     this.home = false;
     this.axis = 0;
@@ -187,6 +194,7 @@ export class CubeGame {
     this.orbit.set(12, 0.62, 1.05);
     this.resize();
   }
+  showAchievements(): void { this.cancelInteraction(); this.achievements?.show(); }
   cancelInteraction(): void {
     if (this.gesture) {
       try {
@@ -357,7 +365,7 @@ export class CubeGame {
     return [event.clientX - r.left, event.clientY - r.top];
   }
   private readonly pointerDown = (e: PointerEvent): void => {
-    if (this.gesture || e.isPrimary === false || e.button > 0) return;
+    if (this.achievements?.visible || this.gesture || e.isPrimary === false || e.button > 0) return;
     const [x, y] = this.point(e);
     if (!contains(cubeLayout(this.width, this.height).stage, x, y)) return;
     this.gesture = {
@@ -478,6 +486,7 @@ export class CubeGame {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.achievements?.dispose();
     this.cancelInteraction();
     this.engine.off('update', this.frame);
     this.canvas.removeEventListener('pointerdown', this.pointerDown);

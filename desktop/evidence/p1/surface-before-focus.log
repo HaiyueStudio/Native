@@ -1,0 +1,11 @@
+{"kind":"ready","data":{"runtime":{"deno":"2.9.6","v8":"15.0.245.2-rusty","typescript":"6.0.3"},"os":{"target":"x86_64-apple-darwin","arch":"x86_64","os":"darwin","vendor":"apple","standalone":false},"renderer":"Deno/wgpu/GLFW","document":false,"adapter":{"vendor":"0","architecture":"","device":"0","description":"AMD Radeon Pro 5300M"},"size":[2200,1480],"game":{"kind":"3","home":true,"order":3,"moves":0,"recentMoves":[],"solved":true,"busy":false,"restoring":false,"axis":0,"layer":2,"cubies":26,"projection":"perspective","roundedGeometryCount":4,"width":1100,"height":740}}}
+error: Uncaught (in promise) Error: Native surface unavailable for 120 foreground attempts
+      if (focused && ++this.failures >= 120) throw new Error('Native surface unavailable for 120 foreground attempts', { cause: error });
+                                                   ^
+    at SurfaceLease.acquire (file://<workspace>/Native/desktop/host/surface.ts:22:52)
+    at GlfwWindow.acquire (file://<workspace>/Native/desktop/host/glfw.ts:143:33)
+    at file://<workspace>/Native/desktop/sample/main.ts:92:19
+Caused by: Error: Invalid Surface Status
+    at SurfaceLease.acquire (file://<workspace>/Native/desktop/host/surface.ts:16:35)
+    at GlfwWindow.acquire (file://<workspace>/Native/desktop/host/glfw.ts:143:33)
+    at file://<workspace>/Native/desktop/sample/main.ts:92:19

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-13",
+  "qualification": "Final code builds; iPhone initialization evidence predates modal visibility/provider refinements. User deferred further device operations.",
+  "ios": {
+    "status": "build-passed",
+    "artifact": "platforms/ios/build/Debug-iphoneos/rubikscube.app/rubikscube",
+    "sha256": "360c4c5b7e0e78ab1ada0fe1434efc240d6f984c26b3308e07cfe156375fffc1",
+    "logSha256": "2b10bd5d3406420e3d6b61c4287f5d552f7e64dddd94afb1e508fc48e9c8d643",
+    "javascript": {
+      "bundle.mjs": "b73801574a02edff3abb87b726e0063feaf02042c84a35de82f985b30bf79205",
+      "vendor.mjs": "13deda2e9c9d239cb8dcfc30bf56ba0ae0ea1686617ceb78950d353bc4daaec5"
+    }
+  },
+  "android": {
+    "status": "build-passed",
+    "artifact": "platforms/android/app/build/outputs/apk/debug/app-debug.apk",
+    "sha256": "3f074da3c4ea0f34a1181458f3c7a65adc9770af7e2758177baa52ee07c84611",
+    "logSha256": "69155cb28d7077327043acde37581d5b3d824639ca0a4761bf207246dafa8ca1"
+  }
+}

@@ -7,6 +7,11 @@ import { LocalStorageSaveBackend } from '@haiyue/engine/save';
 import { CubeGame } from '../../games/rubiks-cube/CubeGame';
 import { GlfwWindow } from '../host/glfw';
 import { DesktopStorage, applicationDataDirectory } from '../host/storage';
+import { createRubikAchievements, rubikAchievementCatalog } from '../../examples/achievements-validation/shared/rubik';
+import { createSteamAchievementProvider } from '../../bridge/achievements/steam/index';
+import { createGameCenterAchievementProvider } from '../../bridge/achievements/game-center/index';
+import { createDesktopSteamClient } from '../platform-libs/steam/client';
+import { createDesktopGameCenterClient } from '../platform-libs/game-center/client';
 
 const assets = join(dirname(Deno.execPath()), 'assets');
 const options = Object.fromEntries(Deno.args.map(value => { const i = value.indexOf('='); return i < 0 ? [value, '1'] : [value.slice(0, i), value.slice(i + 1)]; }));
@@ -37,11 +42,17 @@ try {
   engine.device.addEventListener('uncapturederror', event => { fatal = event.error; });
   engine.on('device-lost', event => { fatal = new Error(`Device lost: ${event.detail?.message}`); });
   game = new CubeGame(engine, {
+    achievements: await createRubikAchievements(storage, options['--provider'] === 'steam'
+      ? createSteamAchievementProvider({ appId: options['--steam-app-id'], catalog: rubikAchievementCatalog, client: createDesktopSteamClient(options['--platform-library']) })
+      : options['--provider'] === 'game-center'
+        ? createGameCenterAchievementProvider({ bundleId: options['--bundle-id'], catalog: rubikAchievementCatalog, client: createDesktopGameCenterClient(options['--platform-library']) })
+        : undefined),
     saveBackend: new LocalStorageSaveBackend({ namespace: 'haiyue-games', storage }),
     guiFont: { fontFamily: 'Haiyue CJK', canvasFactory: (width, height) => createCanvas(width, height) as any,
       readAtlasPixels: canvas => new Uint8Array(canvas.getContext('2d')!.getImageData(0, 0, canvas.width, canvas.height).data) },
   });
   await game.init();
+  if (options['--show-achievements']) game.showAchievements();
   window.on('blur', () => { game?.cancelInteraction(); void game?.flushSave().catch(error => { fatal = error; }); });
   window.on('keydown', event => {
     if (event.repeat) return;
@@ -61,6 +72,7 @@ try {
   report('ready', { runtime: Deno.version, os: Deno.build, renderer: 'Deno/wgpu/GLFW', document: 'document' in globalThis,
     adapter: { vendor: adapter.info.vendor, architecture: adapter.info.architecture, device: adapter.info.device, description: adapter.info.description }, size: [window.pixelWidth, window.pixelHeight], game: game.snapshot() });
   engine.run();
+  if (options['--focus-window']) window.focus();
   const started = performance.now(); let deadline = started;
   const frameLimit = Number(options['--frames'] ?? Infinity), duration = Number(options['--seconds'] ?? Infinity) * 1000;
   let lastExercise = -1, lastHealth = -1, windowStep = 0;

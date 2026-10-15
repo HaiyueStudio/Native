@@ -19,6 +19,7 @@ cpSync(resolve(root, 'licenses'), licenses, { recursive: true });
 copyFileSync(tools.fontLicense, resolve(licenses, 'Noto-OFL.txt'));
 copyFileSync(resolve(root, 'node_modules/@napi-rs/canvas/LICENSE'), resolve(licenses, 'napi-canvas-MIT.txt'));
 copyFileSync(resolve(root, 'node_modules/@haiyue/engine/LICENSE'), resolve(licenses, 'Engine-MIT.txt'));
+copyFileSync(resolve(root, 'node_modules/@haiyue/extensions/LICENSE'), resolve(licenses, 'Extensions-MIT.txt'));
 copyFileSync(resolve(root, 'node_modules/wgpu-matrix/LICENSE.md'), resolve(licenses, 'wgpu-matrix-MIT.txt'));
 copyFileSync(resolve(root, '../LICENSE'), resolve(licenses, 'Haiyue-MIT.txt'));
 const executable = resolve(executableDir, mac ? 'haiyue-rubik' : 'haiyue-rubik.exe');

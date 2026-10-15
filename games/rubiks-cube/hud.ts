@@ -44,6 +44,7 @@ export class CubeHud {
       },
     },
   });
+  private readonly content = this.root.add(new GuiElement({ width: '100%', height: '100%' }));
   private menu: GuiElement;
   private play: GuiElement;
   private stats: GuiLabel;
@@ -58,7 +59,7 @@ export class CubeHud {
   private cache = '';
   constructor(world: World, actions: CubeActions) {
     world.addEntity(new Entity('Cube Engine GUI').addComponent(this.root));
-    this.menu = this.root.add(new GuiElement({ width: '100%', height: '100%' }));
+    this.menu = this.content.add(new GuiElement({ width: '100%', height: '100%' }));
     const title = this.menu.add(new GuiLabel({ text: '魔方实验室', fontSize: 30, textAlign: 'center' }));
     place(title, (r) => ({ x: r.x, y: r.y + 20, width: r.width, height: 40 }));
     const sub = this.menu.add(
@@ -111,7 +112,7 @@ export class CubeHud {
       }),
     );
     place(foot, (r) => ({ x: r.x, y: r.y + 195, width: r.width, height: 20 }));
-    this.play = this.root.add(new GuiElement({ width: '100%', height: '100%', visible: false }));
+    this.play = this.content.add(new GuiElement({ width: '100%', height: '100%', visible: false }));
     const home = this.play.add(new GuiButton({ text: '返回', onClick: actions.home }));
     place(home, (r) => ({ x: r.x + 12, y: r.y + 14, width: 62, height: 34 }));
     this.shuffleButton = this.play.add(
@@ -199,6 +200,8 @@ export class CubeHud {
       height: 40,
     }));
   }
+  /** The GUI batches text separately; hide the underlying controls while a modal is shown. */
+  setObscured(obscured: boolean): void { this.content.setVisible(!obscured); }
   update(session: CubeSession, home: boolean, axis: Axis, layer: number): void {
     const m = session.model;
     const key = [

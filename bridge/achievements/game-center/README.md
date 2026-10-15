@@ -1,0 +1,13 @@
+# Game Center achievements (development)
+
+Use `createGameCenterAchievementProvider({ bundleId, catalog, client })`; iOS injects `createNativeGameCenterClient()` from `@haiyue/native/achievements/game-center/native`. The default/non-iOS factory throws unsupported; Android/Web use local. Desktop injects the FFI client from `desktop/platform-libs/game-center`.
+
+The shared Swift thin layer uses GameKit on the UI thread, presents authentication and achievements controllers, tracks `gamePlayerID`, and creates fresh GKAchievement objects bound to that player. Authentication callbacks may repeat. Cancel leaves guest gameplay available. No production reset API is exposed. Native completion banners are disabled because the Engine GUI owns local unlock toasts.
+
+The provider reads percentages before each batch, only raises them and maps target completion to 100%. Hidden partial progress stays local. SDK success is provider-accepted, with later facade readback for reconciliation. Native identity/generation checks reject old completions. A bounded JSON event queue carries callbacks to NativeScript or Deno; JS timeout/disposal ignores late responses. Desktop deliberately retains the library mapping until process exit because GameKit may still hold Swift completion closures after stop.
+
+`gameCenterBuild()` from `@haiyue/native/achievements/game-center/build` returns NativeSource and the required entitlement. Merge NativeSource into `nativescript.config.ts`, and add `com.apple.developer.game-center=true` to the application's entitlements/provisioning configuration. The helper does not change the developer's profiles or platform console.
+
+Before real use, configure the actual Bundle ID and Game Center capability, sign with a profile supporting it, and create the achievement IDs/localizations in App Store Connect. iOS and standalone macOS distributions need their own valid bundle/signing setup. For Rubik, set `examples/rubiks-cube/achievements.json` to `game-center` only after those steps; local is the checked-in default. A sign-in/account change in the public sample fences the old rule profile: reopen the game to load the new profile, without importing guest progress.
+
+This source compiled against the local Xcode macOS and arm64 iPhoneOS SDKs. The user has no configured Game Center application yet; authentication, real server progress, UI and device acceptance remain pending. [GameKit achievement lifecycle](https://developer.apple.com/documentation/gamekit/gkachievement) and [authentication](https://developer.apple.com/documentation/gamekit/authenticating-a-player) were consulted on 2026-10-13.

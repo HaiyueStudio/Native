@@ -1,4 +1,4 @@
-# 魔方实验室 — iOS
+# 魔方实验室 — iOS / Android 开发候选
 
 第三款使用仓库内 游戏源码的独立 iPhone App，Bundle ID `org.haiyue.native.rubikscube`，显示名“魔方实验室”。支持二阶、三阶、四阶和会改变外形的镜面魔方。
 
@@ -12,7 +12,7 @@
 
 ## 构建
 
-工具链、Engine tarball 和 Canvas 2.1.18 审计补丁与 Spider Solitaire 一致，独立锁定依赖。`vendor/engine-candidate.json` 记录 Engine 包来源；不改 Engine 或共享 bridge。
+Engine 固定为 0.2.1，成就 extension 使用独立的未发布 P1 tarball；版本与哈希见 `vendor/p1-dependencies.json`。Canvas 2.1.18 和移动运行时均由锁文件固定。旧 `engine-candidate.json` 仅记录早期 0.1.0 验收身份。原生启动加载固定 Intl.getCanonicalLocales polyfill；当前文案不使用数字/日期格式化或复数规则，后续使用这些能力需补对应 Intl polyfill。
 
 ```sh
 npm ci
@@ -31,3 +31,9 @@ IOS_DEVICE_UDID=<connected-device> npm run build:device
 图标为程序生成的三面魔方，运行 `python3 scripts/create-icon.py` 可重建（需 Pillow）；图片不参与游戏渲染。
 
 已安装到 iPhone，Apple A16 / Metal 真机启动、竖屏呈现及二阶旋转/历史还原已由宿主日志验证。真机横屏和四阶仍待操作验收。详见 `evidence/verification.md`。
+
+## P1 成就与 Android
+
+默认 local，可按 [成就配置说明](../achievements-validation/README.md) 启用 Game Center。成就按钮打开 GPU 列表，支持中英切换、隐藏项与提示；手动完成完整打乱后才计数。`CUBE_SHOW_ACHIEVEMENTS=1` 可配合截图启动参数展示面板，仅供验证。
+
+Android 包名为 `org.haiyue.games.rubikscube`（Java 包名不能包含 `native` 关键字），执行 `npm run bundle:android` / `npm run build:android`。Android 默认本地成就，不加载 GameKit/Steam。P1 当前真机范围见 [统一证据](../../desktop/evidence/p1/README.md)，旧截图不代表新候选验收。

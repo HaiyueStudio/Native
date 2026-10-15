@@ -33,6 +33,9 @@
       ],
       "wgpu-matrix": [
         "node_modules/wgpu-matrix"
+      ],
+      "@haiyue/extensions/*": [
+        "node_modules/@haiyue/extensions/dist/*"
       ]
     },
     "resolveJsonModule": true

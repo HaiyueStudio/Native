@@ -9,12 +9,12 @@ console.log(JSON.stringify({ freshSource: fresh, status: 'started' }));
 const desktop = resolve(root, 'desktop');
 cpSync(desktop, resolve(fresh, 'desktop'), { recursive: true, filter: source =>
   !['node_modules', 'build', 'evidence', 'experiments'].includes(relative(desktop, source).split(sep)[0]) });
-for (const source of ['games/rubiks-cube', 'games/save', 'bridge/achievements', 'LICENSE']) cpSync(resolve(root, source), resolve(fresh, source), { recursive: true });
+for (const source of ['games/rubiks-cube', 'games/save', 'bridge/achievements', 'examples/achievements-validation/shared', 'LICENSE']) cpSync(resolve(root, source), resolve(fresh, source), { recursive: true });
 writeFileSync(resolve(fresh, 'package.json'), '{"name":"desktop-clean-verification","private":true,"type":"module"}\n');
 const cwd = resolve(fresh, 'desktop');
 const npm = process.env.npm_execpath;
 if (!npm) throw new Error('Invoke with npm run verify:fresh');
 const run = args => execFileSync(process.execPath, args, { cwd, stdio: 'inherit', maxBuffer: 20 * 1024 * 1024 });
 run([npm, 'ci', '--cache', resolve(fresh, 'artifacts/npm-cache')]);
-for (const script of ['setup.mjs', 'build-audio.mjs', 'check.mjs', 'bundle.mjs', 'verify.mjs', 'package.mjs']) run([`scripts/${script}`]);
+for (const script of ['setup.mjs', 'build-audio.mjs', 'check.mjs', 'bundle.mjs', 'verify.mjs', 'package.mjs', 'verify-package.mjs']) run([`scripts/${script}`]);
 console.log(JSON.stringify({ freshSource: fresh, crossRepositorySources: false, globalToolchainRequired: false, status: 'passed' }));

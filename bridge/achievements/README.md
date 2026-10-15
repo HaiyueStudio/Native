@@ -1,6 +1,6 @@
 # Achievements core (0.2 development)
 
-Independent of Engine, NativeScript, GPU, and platform SDKs. The public development entry is `@haiyue/native/achievements`. Steam/Game Center adapters are P1 and are **not implemented** by this core.
+Independent of Engine, NativeScript, GPU, and platform SDKs. The public development entry is `@haiyue/native/achievements`. Steam/Game Center adapters live in explicit optional subpaths; the core does not import them.
 
 ```ts
 import { createAchievements, createLocalAchievementProvider, createAchievementStorage } from '@haiyue/native/achievements';
@@ -32,3 +32,6 @@ Storage is partitioned by game, environment, provider, provider application ID a
 Progress aggregation across devices is max, not sum. Cross-device cumulative counters need a separate authoritative design. Do not use local achievements as purchase entitlements or anti-cheat evidence. `showUI()` returns `unsupported` for local mode; GPU GUI/i18n belongs to the optional future Engine extension.
 
 Validation: `node --test test/achievements-core.test.mjs` from Native root; consumer verification is in `scripts/validation/achievements-core.mjs`. No real platform acceptance is inferred from these tests.
+# P1 providers
+
+Development source also provides optional [Steam](steam/README.md) and [Game Center](game-center/README.md) adapters. They are injected explicitly; importing core/local does not load a platform SDK. See the [public Rubik composition and acceptance guide](../../examples/achievements-validation/README.md). Platform configurations and real account acceptance are still pending.

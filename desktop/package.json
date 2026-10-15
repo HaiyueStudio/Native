@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@haiyue/engine": "file:vendor/haiyue-engine-0.2.1.tgz",
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.2.1-p1.tgz",
     "@napi-rs/canvas": "1.0.7",
     "wgpu-matrix": "3.4.0"
   },

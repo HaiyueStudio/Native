@@ -10,7 +10,7 @@ HaiYue 原生平台实现，承载移动端 App、桌面宿主与平台桥接，
 
 ## 0.2 桌面与成就开发预览
 
-新增 [桌面原生运行样板](desktop/README.md) 与 [独立成就核心](bridge/achievements/README.md)。桌面复用 TypeScript Engine，经 Deno/wgpu 和 GLFW 呈现；系统成就 API 不依赖 Engine。当前仍在 P0 验收，Windows / Apple Silicon 及后续 Steam、Game Center 不视为已交付；见 [Windows 接续指南](desktop/WINDOWS-HANDOFF.md)。这不是已发布的 0.1.4 功能，也不改变旧版冻结记录。
+新增 [桌面原生运行样板](desktop/README.md) 与 [独立成就核心](bridge/achievements/README.md)。桌面复用 TypeScript Engine，经 Deno/wgpu 和 GLFW 呈现；系统成就 API 不依赖 Engine。P1 已加入 Steam / Game Center provider、可选 Engine 成就规则与 GPU GUI，以及四端共用魔方接线。真实平台账号、Windows / Apple Silicon 和最终集成验收尚未完成，见 [P1 记录](desktop/evidence/p1/README.md)；见 [Windows 接续指南](desktop/WINDOWS-HANDOFF.md)。这不是已发布的 0.1.4 功能，也不改变旧版冻结记录。
 
 ## 目录
 

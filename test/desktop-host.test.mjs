@@ -62,6 +62,8 @@ function fixture(surfaceFailure = false) {
 }
 test('focus loss cancels pressed pointers and keys; disposal releases callbacks once', () => {
   const f = fixture(), window = f.create(), events = [];
+  assert.equal(window.focused, false, 'background creation must not assume foreground before the first callback');
+  window.canvas.focus(); assert.ok(f.calls.includes('glfwFocusWindow'));
   for (const type of ['pointerdown', 'pointercancel', 'keydown', 'keyup', 'blur']) window.on(type, e => events.push(e));
   f.callbacks.glfwSetMouseButtonCallback(null, 0, 1, 0);
   f.callbacks.glfwSetKeyCallback(null, 65, 0, 1, 0);

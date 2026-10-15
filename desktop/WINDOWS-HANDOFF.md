@@ -1,4 +1,4 @@
-# Windows P0 接续验收
+# Windows P0 / P1 接续验收
 
 状态：**待真机验收**。用户已有 Windows 设备，计划在那里继续当前任务。本机是 Intel Mac，已生成 Win32 HWND/HINSTANCE 和 GLFW DLL 构建路径，但没有把交叉编译/静态检查登记为 Windows 运行通过。Apple Silicon Mac 是另一项独立待验收。
 
@@ -19,7 +19,7 @@ npm run verify
 npm run package
 cd ..
 npm test
-npm run validate:p0 -- --desktop
+npm run release:verify -- --profile development --desktop
 ```
 
 `setup` 按 SHA-256 验证工具下载；无需安装全局 Deno/Rust。音频使用 `/MT` 编译；仍需检查所有打包 DLL 的实际依赖，不假定安装了 Visual Studio 的机器可代表干净玩家环境。
@@ -34,7 +34,7 @@ $exe = Join-Path $install 'haiyue-rubik.exe'
 $before = $env:PATH
 try {
   $env:PATH = "$env:SystemRoot\System32;$env:SystemRoot"
-  & $exe --probes=1 --exercise=1 --frames=420 --seconds=120 "--data=$install-profile" *> 'build/windows-standalone.jsonl'
+  & $exe --focus-window=1 --probes=1 --exercise=1 --frames=420 --seconds=120 "--data=$install-profile" *> 'build/windows-standalone.jsonl'
   if ($LASTEXITCODE -ne 0) { throw 'Independent executable failed' }
 } finally { $env:PATH = $before }
 ```
@@ -63,3 +63,9 @@ try {
 可给 Windows 上的助手这条接续指令：
 
 > 继续 Native 的 M23 P0 验收。先读 desktop/README.md、HOST-DECISION.md、WINDOWS-HANDOFF.md、evidence/README.md 和 milestones 的 m23 状态；执行 Windows x64 构建、独立目录运行、真实输入/窗口、30 分钟稳定性及成就核心检查。发现问题直接修复并补对应回归，不更改已有发布冻结记录，不把 macOS 或模拟测试当 Windows 真机通过。记录结果和剩余 Apple Silicon/P1 门禁。
+
+## P1 成就追加验收
+
+先使用 local 模式检查成就列表、中英文、隐藏项、手动完整还原后的首次/累计/限时解锁，以及重启后的存档。自动还原和撤销不能发放成就。按 [平台接线](../examples/achievements-validation/README.md) 配置 Steam；目前用户尚无 SDK / App ID，不能把 local/mock 当成 Steam 通过。取得合法 SDK 后按 [Steam 构建指南](platform-libs/steam/README.md) 编译并记录版本、运行库哈希，再补真实客户端回调和读回。Game Center 在 iOS/macOS 单独验收。
+
+按 M23 integration 的固定工作量补 Web / 本原生 TS 宿主 / Rust 同画质三轮性能对照；旧 Electron 结果不可替代。将最终日志和制品哈希写入证据，更新 G07 待验收矩阵；不要发布、打标签或覆盖 0.1.4 冻结记录。

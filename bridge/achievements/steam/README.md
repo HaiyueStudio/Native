@@ -1,0 +1,11 @@
+# Steam achievements (development)
+
+`createSteamAchievementProvider({ appId, catalog, client })` uses the Engine-independent v1 facade. Inject `createDesktopSteamClient(libraryPath)` from the source desktop host; core/local imports do not load Steam. SteamIDs remain strings. Each target > 1 requires a unique signed int32 backend stat, in addition to the published achievement API name.
+
+Read-before-write and native `max(current,value)` preserve higher progress. `SetAchievement`/`SetStat` only modify Steam's local state; a store promise resolves on `UserStatsStored_t`, not the synchronous `StoreStats()` boolean. Native retains a timed-out store slot until its callback arrives, preventing a late result from settling a later request. The facade keeps its outbox until a subsequent read reconciles it. This does not prove cloud durability while offline.
+
+The adapter has exclusive ownership of initialization, a 50 ms callback pump and shutdown. No rule or progress poll runs in the frame loop. Every native read/write verifies the expected player and active login; callback identity is generation-fenced. Missing client returns unavailable so the game can keep local progress. Restart after launching Steam. An account switch must recreate the game rule profile; the public Rubik example fences its old port and asks for a game restart rather than merging accounts.
+
+The Steam C++ thin layer and build script are in `desktop/platform-libs/steam`. **No SDK is present or frozen yet**: the user has no Steamworks configuration. Its C++ source has not been compiled against a licensed SDK or tested with a real client in this change. Do not interpret TypeScript mock tests as SDK acceptance.
+
+Official references, checked 2026-10-13: [API ownership/callbacks](https://partner.steamgames.com/doc/sdk/api), [UserStats](https://partner.steamgames.com/doc/api/ISteamUserStats). Current documentation deprecates an initial `RequestCurrentStats`; this implementation uses launch-preloaded stats and treats failed reads as unavailable/error. Verify that contract against the selected SDK before freezing it. `IndicateAchievementProgress` is not used for persistence. Overlay/native UI remains capability=false until separately validated with the chosen wgpu backend.

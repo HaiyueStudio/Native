@@ -55,7 +55,14 @@
     "./input/desktop": {
       "types": "./bridge/input/desktop.ts",
       "default": "./bridge/input/desktop"
-    }
+    },
+    "./achievements/steam": "./bridge/achievements/steam/index.ts",
+    "./achievements/game-center": "./bridge/achievements/game-center/index.ts",
+    "./achievements/game-center/native": {
+      "types": "./bridge/achievements/game-center/native.ts",
+      "default": "./bridge/achievements/game-center/native"
+    },
+    "./achievements/game-center/build": "./bridge/achievements/game-center/build.cjs"
   },
   "files": [
     "index.ts",
@@ -70,7 +77,9 @@
     "bridge/monetization/*.cjs",
     "bridge/**/*.md",
     "bridge/share/android/*.xml",
-    "bridge/share/android/*.java"
+    "bridge/share/android/*.java",
+    "bridge/achievements/game-center/native/",
+    "bridge/achievements/game-center/build.cjs"
   ],
   "repository": {
     "type": "git",

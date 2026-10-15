@@ -40,6 +40,7 @@ export class GlfwWindow {
       glfwGetVideoMode: { parameters: ['pointer'], result: 'pointer' },
       glfwSetWindowMonitor: { parameters: ['pointer', 'pointer', 'i32', 'i32', 'i32', 'i32', 'i32'], result: 'void' },
       glfwIconifyWindow: { parameters: ['pointer'], result: 'void' }, glfwRestoreWindow: { parameters: ['pointer'], result: 'void' },
+      glfwFocusWindow: { parameters: ['pointer'], result: 'void' },
       glfwGetCursorPos: { parameters: ['pointer', 'buffer', 'buffer'], result: 'void' },
       glfwPollEvents: { parameters: [], result: 'void' },
       glfwGetGamepadState: { parameters: ['i32', 'buffer'], result: 'i32' },
@@ -85,7 +86,7 @@ export class GlfwWindow {
       getBoundingClientRect: () => ({ x: 0, y: 0, left: 0, top: 0, right: self.width, bottom: self.height, width: self.width, height: self.height }),
       addEventListener: (type: string, listener: (e: any) => void) => self.on(type, listener),
       removeEventListener: (type: string, listener: (e: any) => void) => self.listeners.get(type)?.delete(listener),
-      setPointerCapture() {}, releasePointerCapture() {}, focus() {}, style: {},
+      setPointerCapture() {}, releasePointerCapture() {}, focus() { self.focus(); }, style: {},
     };
     this.callback('CursorPos', ['pointer', 'f64', 'f64'], (_w, x, y) => {
       this.position[0] = x; this.position[1] = y; this.pointer('pointermove');
@@ -115,6 +116,8 @@ export class GlfwWindow {
     for (const name of ['WindowSize', 'FramebufferSize']) this.callback(name, ['pointer', 'i32', 'i32'], () => {
       this.refreshSize(); this.emit('resize', {});
     });
+    // A background launch may never deliver a focus callback after registration.
+    this.focused = !!f.glfwGetWindowAttrib(this.handle, 0x00020001);
     } catch (error) {
       f.glfwDestroyWindow(this.handle); f.glfwTerminate();
       for (const callback of this.callbacks) callback.close(); this.lib.close(); throw error;
@@ -171,6 +174,7 @@ export class GlfwWindow {
   }
   minimize() { this.lib.symbols.glfwIconifyWindow(this.handle); }
   restore() { this.lib.symbols.glfwRestoreWindow(this.handle); }
+  focus() { this.lib.symbols.glfwFocusWindow(this.handle); }
   close() { this.lib.symbols.glfwSetWindowShouldClose(this.handle, 1); }
   dispose(): void {
     if (this.disposed) return; this.disposed = true; this.listeners.clear();

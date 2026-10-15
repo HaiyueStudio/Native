@@ -28,6 +28,7 @@ function unzip(archive, output) {
   else execFileSync('/usr/bin/unzip', ['-o', archive, '-d', output], { stdio: 'ignore' });
 }
 if (sha(readFileSync(resolve(root, lock.engine.file))) !== lock.engine.sha256) throw new Error('Engine tarball checksum mismatch');
+if (sha(readFileSync(resolve(root, lock.extensions.file))) !== lock.extensions.sha256) throw new Error('Extensions tarball checksum mismatch');
 await download(`https://github.com/denoland/deno/releases/download/v${lock.denoVersion}/deno-${config.denoTarget}.zip`, resolve(cache, 'deno.zip'), config.denoSha256);
 await download(`https://github.com/glfw/glfw/releases/download/${lock.glfwVersion}/${config.glfwArchive}`, resolve(cache, 'glfw.zip'), config.glfwSha256);
 unzip(resolve(cache, 'deno.zip'), resolve(cache, 'deno'));
