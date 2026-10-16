@@ -1,4 +1,5 @@
 import {Application} from '@nativescript/core';
+import {scanPhoto} from './photo-code';
 import {scanText,scanLimit,type ScanCodeOptions,type ScannedCode} from './types';
 export type {ScanCodeOptions,ScannedCode} from './types';
 declare const com:any;
@@ -10,6 +11,9 @@ export function cancelScan(){cancel?.();}
 export async function scanCode(options:ScanCodeOptions={}):Promise<ScannedCode|null>{
  scanLimit(options);
  if(cancel)throw Error('Scanner already open');
+ if(options.source==='photos'){
+  cancel=()=>{};try{return await scanPhoto(options,fn=>{cancel=fn;});}finally{cancel=null;}
+ }
  const activity=Application.android.foregroundActivity??Application.android.startActivity;
  if(!activity)throw Error('No foreground activity');
  // Give reopened scans a distinct request code so a late cancelled Activity result

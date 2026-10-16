@@ -1,4 +1,5 @@
 import {Application,Utils} from '@nativescript/core';
+import {scanPhoto} from './photo-code';
 import {scanText,scanLimit,type ScanCodeOptions,type ScannedCode} from './types';
 export type {ScanCodeOptions,ScannedCode} from './types';
 let cancel:(()=>void)|null=null;
@@ -21,6 +22,10 @@ class CodeController extends UIViewController {
 }
 export async function scanCode(options:ScanCodeOptions={}):Promise<ScannedCode|null>{
  scanLimit(options);
+ if(options.source==='photos'){
+  if(cancel)throw Error('Scanner already open');cancel=()=>{};
+  try{return await scanPhoto(options,fn=>{cancel=fn;});}finally{cancel=null;}
+ }
  if(!AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo))throw Error('Camera unavailable');
  if(cancel)throw Error('Scanner already open');
  // Reserve immediately, including while the permission sheet is on screen.
