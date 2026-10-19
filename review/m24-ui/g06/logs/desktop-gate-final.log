@@ -1,0 +1,5 @@
+
+> @haiyue/native@0.1.4 verify:ui
+> node scripts/validation/ui.mjs --profile desktop
+
+{"status":"unsupported","reason":"Desktop adapter belongs to G08, not the mobile backend"}

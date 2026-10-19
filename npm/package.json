@@ -62,7 +62,11 @@
       "types": "./bridge/achievements/game-center/native.ts",
       "default": "./bridge/achievements/game-center/native"
     },
-    "./achievements/game-center/build": "./bridge/achievements/game-center/build.cjs"
+    "./achievements/game-center/build": "./bridge/achievements/game-center/build.cjs",
+    "./ui": {
+      "types": "./bridge/ui/index.ts",
+      "default": "./bridge/ui/index.ts"
+    }
   },
   "files": [
     "index.ts",
@@ -100,7 +104,8 @@
   "peerDependencies": {
     "@haiyue/engine": "^0.2.0",
     "@nativescript/canvas": "2.1.18",
-    "@nativescript/core": "9.1.1"
+    "@nativescript/core": "9.1.1",
+    "@haiyue/ui": "0.2.0-m24.0"
   },
   "devDependencies": {
     "@haiyue/engine": "0.2.0",
@@ -124,6 +129,9 @@
   ],
   "peerDependenciesMeta": {
     "@haiyue/engine": {
+      "optional": true
+    },
+    "@haiyue/ui": {
       "optional": true
     }
   }

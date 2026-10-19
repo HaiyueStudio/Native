@@ -1,0 +1,31 @@
+{
+  "scope": "Own accessory bitmap only; does not prove appearance composited with the system keyboard.",
+  "images": {
+    "button": {
+      "width": 1290,
+      "height": 156,
+      "transparentPixels": 0,
+      "opaquePixels": 201240,
+      "totalPixels": 201240,
+      "cornerRGBA": [
+        28,
+        28,
+        30,
+        255
+      ]
+    },
+    "pill": {
+      "width": 2796,
+      "height": 156,
+      "transparentPixels": 433877,
+      "opaquePixels": 1426,
+      "totalPixels": 436176,
+      "cornerRGBA": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

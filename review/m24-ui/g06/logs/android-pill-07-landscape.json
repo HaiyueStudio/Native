@@ -1,0 +1,249 @@
+{
+  "schema": 1,
+  "platform": "Android",
+  "osVersion": "14",
+  "model": "X4000",
+  "time": "2026-10-17T00:38:24.892Z",
+  "state": {
+    "title": "海月实验室Test",
+    "source": "中文输入 / emoji 🌙\n选择、复制、粘贴与撤销",
+    "quality": "50",
+    "tab": "settings",
+    "enabled": false,
+    "amount": 50,
+    "dialog": false,
+    "count": 1,
+    "status": "原生控件已加载"
+  },
+  "events": [
+    {
+      "key": "/screen/toolbar/increment",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/toolbar/increment",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/toolbar/dialog",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/toolbar/dialog",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/modal/note",
+      "type": "focus",
+      "reason": "keyboard",
+      "transaction": 0,
+      "composing": false
+    },
+    {
+      "key": "/screen/modal/close",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/modal/close",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/toolbar/dialog",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/toolbar/dialog",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 2
+    },
+    {
+      "key": "/screen/modal/note",
+      "type": "focus",
+      "reason": "keyboard",
+      "transaction": 0,
+      "composing": false
+    },
+    {
+      "key": "/screen/modal/close",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/modal/close",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 2
+    },
+    {
+      "key": "/screen/toolbar/dialog",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/toolbar/dialog",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 3
+    },
+    {
+      "key": "/screen/modal/note",
+      "type": "focus",
+      "reason": "keyboard",
+      "transaction": 0,
+      "composing": false
+    },
+    {
+      "key": "/screen/modal",
+      "type": "cancel",
+      "reason": "keyboard",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/tabs/settings/grid/quality",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "type": "valueChange",
+      "key": "/screen/scroll/body/tabs/settings/grid/quality",
+      "value": "50",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "type": "commit",
+      "key": "/screen/scroll/body/tabs/settings/grid/quality",
+      "value": "50",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/tabs/settings/grid/quality",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/tabs/settings/grid/enabled",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/tabs/settings/grid/enabled",
+      "value": false,
+      "reason": "pointer",
+      "transaction": 1,
+      "type": "valueChange"
+    },
+    {
+      "key": "/screen/scroll/body/tabs/settings/grid/enabled",
+      "value": false,
+      "reason": "pointer",
+      "transaction": 1,
+      "type": "commit"
+    },
+    {
+      "key": "/screen/scroll/body/tabs",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "type": "valueChange",
+      "key": "/screen/scroll/body/tabs",
+      "value": "preview",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "type": "commit",
+      "key": "/screen/scroll/body/tabs",
+      "value": "preview",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/tabs",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "type": "valueChange",
+      "key": "/screen/scroll/body/tabs",
+      "value": "settings",
+      "reason": "pointer",
+      "transaction": 2
+    },
+    {
+      "type": "commit",
+      "key": "/screen/scroll/body/tabs",
+      "value": "settings",
+      "reason": "pointer",
+      "transaction": 2
+    },
+    {
+      "key": "/screen/scroll/body/name/title",
+      "type": "focus",
+      "reason": "keyboard",
+      "transaction": 0,
+      "composing": false
+    },
+    {
+      "key": "/screen/scroll/body/name/title",
+      "type": "valueChange",
+      "reason": "keyboard",
+      "transaction": 1,
+      "composing": false,
+      "value": "海月实验室T"
+    },
+    {
+      "key": "/screen/scroll/body/name/title",
+      "type": "valueChange",
+      "reason": "keyboard",
+      "transaction": 1,
+      "composing": false,
+      "value": "海月实验室Test"
+    },
+    {
+      "key": "/screen/scroll/body/name/title",
+      "type": "commit",
+      "value": "海月实验室Test",
+      "reason": "keyboard",
+      "transaction": 1,
+      "composing": false
+    }
+  ],
+  "diagnostics": [],
+  "platforms": 2,
+  "renderer": {
+    "commits": 14,
+    "created": 35,
+    "updated": 14,
+    "moved": 0,
+    "removed": 0,
+    "activeListeners": 137,
+    "activeNodes": 35,
+    "activeResources": 2,
+    "activeTimers": 1
+  }
+}

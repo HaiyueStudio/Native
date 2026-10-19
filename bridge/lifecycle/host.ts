@@ -81,6 +81,7 @@ export class NativeRenderHost {
   private readonly logFile: File;
   private readonly performance = new FramePerformance();
   private readonly demand: NativeDemandFrames | null;
+  private readonly releaseFrameRuntime: () => void;
 
   constructor(private readonly view: Canvas, private readonly status: (text: string) => void, private readonly options: NativeRenderHostOptions = {}) {
     this.captureRequested = options.capture?.requested ?? isFrameCaptureRequested();
@@ -91,7 +92,7 @@ export class NativeRenderHost {
     }) : null;
     this.logFile = File.fromPath(path.join(knownFolders.documents().path, `${options.diagnosticName ?? 'g02'}-host.jsonl`));
     this.surface = new NativeSurface(view, this.report, options.canvasInput);
-    installNativeFrameRuntime(error => this.fail(error));
+    this.releaseFrameRuntime = installNativeFrameRuntime(error => this.fail(error));
     Application.on(Application.suspendEvent, this.appSuspend);
     Application.on(Application.resumeEvent, this.appResume);
     view.on('layoutChanged', this.layout);
@@ -311,6 +312,7 @@ export class NativeRenderHost {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.releaseFrameRuntime();
     this.cancelSurfaceRetry();
     this.demand?.dispose();
     ++this.generation;

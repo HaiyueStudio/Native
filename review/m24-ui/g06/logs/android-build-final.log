@@ -1,0 +1,41 @@
+Preparing project...
+asset [1m[32mvendor.js[39m[22m 3.52 MiB [1m[32m[emitted][39m[22m (name: vendor) (id hint: defaultVendor) 1 related asset
+asset [1m[32mbundle.js[39m[22m 15.9 KiB [1m[33m[compared for emit][39m[22m (name: bundle) 1 related asset
+asset [1m[32mruntime.js[39m[22m 6.7 KiB [1m[33m[compared for emit][39m[22m (name: runtime) 1 related asset
+asset [1m[32mtns_modules/inspector_modules.js[39m[22m 879 bytes [1m[33m[compared for emit][39m[22m (name: tns_modules/inspector_modules) 1 related asset
+Entrypoint [1mbundle[39m[22m 3.54 MiB (3.42 MiB) = [1m[32mruntime.js[39m[22m 6.7 KiB [1m[32mvendor.js[39m[22m 3.52 MiB [1m[32mbundle.js[39m[22m 15.9 KiB 3 auxiliary assets
+Entrypoint [1mtns_modules/inspector_modules[39m[22m 3.52 MiB (3.4 MiB) = [1m[32mruntime.js[39m[22m 6.7 KiB [1m[32mvendor.js[39m[22m 3.52 MiB [1m[32mtns_modules/inspector_modules.js[39m[22m 879 bytes 3 auxiliary assets
+orphan modules 22.1 KiB [1m[33m[orphan][39m[22m 17 modules
+runtime modules 3.44 KiB 8 modules
+modules by path [1m../../../../ShaderLab/node_modules/@nativescript/[39m[22m 1.84 MiB 242 modules
+modules by path [1m../../../../ShaderLab/node_modules/css-tree/[39m[22m 358 KiB 120 modules
+modules by path [1m./[39m[22m 120 KiB 16 modules
+modules by path [1m../../../../ShaderLab/node_modules/source-map-js/[39m[22m 107 KiB
+  [1m../../../../ShaderLab/node_modules/source-map-js/source-map.js[39m[22m 405 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  + 10 modules
+modules by path [1m../../../../ShaderLab/node_modules/@csstools/[39m[22m 132 KiB
+  [1m../../../../ShaderLab/node_modules/@csstools/css-calc/dist/index.mjs[39m[22m 28.3 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  + 4 modules
+modules by path [1m../../../../ShaderLab/node_modules/css-what/dist/esm/*.js[39m[22m 20 KiB
+  [1m../../../../ShaderLab/node_modules/css-what/dist/esm/parse.js[39m[22m 18.7 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  [1m../../../../ShaderLab/node_modules/css-what/dist/esm/types.js[39m[22m 1.29 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
++ 4 modules
+webpack 5.111.1 compiled [1m[32msuccessfully[39m[22m in 5733 ms
+Webpack compilation complete.
+Updating runtime package.json with configuration values...
+Project successfully prepared (android)
+Building project...
+Gradle build...
+	 + setting applicationId
+	 + applying user-defined configuration from <workspace>/Native/artifacts/ui-validation/mobile/App_Resources/Android/app.gradle
+	 + adding nativescript runtime package dependency: nativescript-optimized-with-inspector
+	 + adding aar plugin dependency: <workspace>/ShaderLab/node_modules/@nativescript/core/platforms/android/core.aar
+	 + adding aar plugin dependency: <workspace>/ShaderLab/node_modules/@nativescript/core/platforms/android/widgets-release.aar
+	 + adding aar plugin dependency: <workspace>/ShaderLab/node_modules/@nativescript/core/platforms/android/winter_tc-release.aar
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+Project successfully built.
+Build time: 31.872 s.
+The build result is located at: <workspace>/Native/artifacts/ui-validation/mobile/platforms/android/app/build/outputs/apk/debug/app-debug.apk

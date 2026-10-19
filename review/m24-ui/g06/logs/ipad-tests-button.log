@@ -1,0 +1,198 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project artifacts/ui-validation/ios-tests/Acceptance.xcodeproj -scheme Acceptance -destination platform=iOS,id=<device-or-team> -derivedDataPath artifacts/ui-validation/ios-tests/derived -resultBundlePath artifacts/ui-validation/ipad-button.xcresult
+
+Writing result bundle at path:
+	<workspace>/Native/artifacts/ui-validation/ipad-button.xcresult
+
+2026-10-16 23:06:06.520 xcodebuild[66575:3433473] [MT] DVTDevice: Error locating DeviceSupport directory using Optional("arm64") or Optional("arm64e"): nilError
+2026-10-16 23:06:08.067832+0800 Acceptance-Runner[1234:168490] [Default] Running tests...
+2026-10-16 23:06:08.080310+0800 Acceptance-Runner[1234:168490] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 23:06:08.556.
+Test Suite 'Acceptance.xctest' started at 2026-10-16 23:06:08.557.
+Test Suite 'Acceptance' started at 2026-10-16 23:06:08.557.
+Test Case '-[Acceptance.Acceptance testControls]' started.
+    t =     0.00s Start Test at 2026-10-16 23:06:08.557
+    t =     0.01s Set Up
+    t =     0.01s Setting device orientation to Portrait
+    t =     0.02s     Wait for com.apple.DocumentManager.DockFolderViewService to idle
+    t =     0.02s     Wait for com.apple.springboard to idle
+    t =     0.03s Open org.haiyue.uivalidation
+    t =     0.03s     Launch org.haiyue.uivalidation
+    t =     0.11s         Setting up automation session
+    t =     1.08s         Wait for org.haiyue.uivalidation to idle
+    t =     2.26s Waiting 30.0s for "/screen/toolbar/increment" Button to exist
+    t =     3.26s     Checking `Expect predicate `existsNoRetry == 1` for object "/screen/toolbar/increment" Button`
+    t =     3.27s         Checking existence of `"/screen/toolbar/increment" Button`
+    t =     3.37s Tap "/screen/toolbar/increment" Button
+    t =     3.37s     Wait for org.haiyue.uivalidation to idle
+    t =     3.38s     Find the "/screen/toolbar/increment" Button
+    t =     3.41s     Check for interrupting elements affecting "/screen/toolbar/increment" Button
+    t =     3.45s     Synthesize event
+    t =     3.74s     Wait for org.haiyue.uivalidation to idle
+    t =     4.20s Added attachment named '01-portrait'
+    t =     4.20s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =     4.39s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =     4.47s Added attachment named '01-portrait-accessibility-tree'
+    t =     4.47s Find the "/screen/status" StaticText
+    t =     4.49s Tap "/screen/toolbar/dialog" Button
+    t =     4.50s     Wait for org.haiyue.uivalidation to idle
+    t =     4.50s     Find the "/screen/toolbar/dialog" Button
+    t =     4.52s     Check for interrupting elements affecting "/screen/toolbar/dialog" Button
+    t =     4.55s     Synthesize event
+    t =     4.84s     Wait for org.haiyue.uivalidation to idle
+    t =     4.90s Waiting 10.0s for "/screen/modal/close" Button to exist
+    t =     5.92s     Checking `Expect predicate `existsNoRetry == 1` for object "/screen/modal/close" Button`
+    t =     5.92s         Checking existence of `"/screen/modal/close" Button`
+    t =     6.18s Added attachment named '02-native-modal'
+    t =     6.18s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =     6.45s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =     6.55s Added attachment named '02-native-modal-accessibility-tree'
+    t =     6.55s Tap "/screen/modal/close" Button
+    t =     6.55s     Wait for org.haiyue.uivalidation to idle
+    t =     6.55s     Find the "/screen/modal/close" Button
+    t =     6.58s     Check for interrupting elements affecting "/screen/modal/close" Button
+    t =     6.62s     Synthesize event
+    t =     6.91s     Wait for org.haiyue.uivalidation to idle
+    t =     6.92s Tap "/screen/toolbar/dialog" Button
+    t =     6.92s     Wait for org.haiyue.uivalidation to idle
+    t =     6.93s     Find the "/screen/toolbar/dialog" Button
+    t =     6.98s     Check for interrupting elements affecting "/screen/toolbar/dialog" Button
+    t =     7.02s     Synthesize event
+    t =     7.34s     Wait for org.haiyue.uivalidation to idle
+    t =     7.69s Waiting 10.0s for "/screen/modal/close" Button to exist
+    t =     8.70s     Checking `Expect predicate `existsNoRetry == 1` for object "/screen/modal/close" Button`
+    t =     8.70s         Checking existence of `"/screen/modal/close" Button`
+    t =     8.79s Tap "/screen/modal/close" Button
+    t =     8.79s     Wait for org.haiyue.uivalidation to idle
+    t =     8.80s     Find the "/screen/modal/close" Button
+    t =     8.84s     Check for interrupting elements affecting "/screen/modal/close" Button
+    t =     8.88s     Synthesize event
+    t =     9.19s     Wait for org.haiyue.uivalidation to idle
+    t =     9.21s Tap "/screen/scroll/body/name/title" TextField
+    t =     9.21s     Wait for org.haiyue.uivalidation to idle
+    t =     9.21s     Find the "/screen/scroll/body/name/title" TextField
+    t =     9.27s     Check for interrupting elements affecting "/screen/scroll/body/name/title" TextField
+    t =     9.32s     Synthesize event
+    t =     9.65s     Wait for org.haiyue.uivalidation to idle
+    t =    10.00s Type ' Test' into "/screen/scroll/body/name/title" TextField
+    t =    10.00s     Wait for org.haiyue.uivalidation to idle
+    t =    10.06s     Find the "/screen/scroll/body/name/title" TextField
+    t =    10.10s     Check for interrupting elements affecting "/screen/scroll/body/name/title" TextField
+    t =    10.16s     Synthesize event
+    t =    10.48s     Wait for org.haiyue.uivalidation to idle
+    t =    10.64s Added attachment named '03-keyboard-english-only'
+    t =    10.64s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    10.97s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    11.10s Added attachment named '03-keyboard-english-only-accessibility-tree'
+    t =    11.10s Waiting 10.0s for "haiyue.keyboard.done" Button to exist
+    t =    12.10s     Checking `Expect predicate `existsNoRetry == 1` for object "haiyue.keyboard.done" Button`
+    t =    12.10s         Checking existence of `"haiyue.keyboard.done" Button`
+    t =    12.19s Tap "haiyue.keyboard.done" Button
+    t =    12.19s     Wait for org.haiyue.uivalidation to idle
+    t =    12.19s     Find the "haiyue.keyboard.done" Button
+    t =    12.24s     Check for interrupting elements affecting "haiyue.keyboard.done" Button
+    t =    12.29s     Synthesize event
+    t =    12.61s     Wait for org.haiyue.uivalidation to idle
+    t =    13.90s Checking `Expect predicate `exists == 0` for object "haiyue.keyboard.done" Button`
+    t =    13.90s     Checking existence of `"haiyue.keyboard.done" Button`
+    t =    13.91s         Checking `Expect predicate `exists == 0` for object Keyboard (First Match)`
+    t =    13.91s             Checking existence of `Keyboard (First Match)`
+    t =    13.99s Find the "/screen/scroll/body/name/title" TextField
+    t =    14.02s Tap "/screen/scroll/body/name/title" TextField
+    t =    14.03s     Wait for org.haiyue.uivalidation to idle
+    t =    14.04s     Find the "/screen/scroll/body/name/title" TextField
+    t =    14.06s     Check for interrupting elements affecting "/screen/scroll/body/name/title" TextField
+    t =    14.10s     Synthesize event
+    t =    14.42s     Wait for org.haiyue.uivalidation to idle
+    t =    14.73s Waiting 10.0s for "haiyue.keyboard.done" Button to exist
+    t =    15.73s     Checking `Expect predicate `existsNoRetry == 1` for object "haiyue.keyboard.done" Button`
+    t =    15.73s         Checking existence of `"haiyue.keyboard.done" Button`
+    t =    15.83s Tap "haiyue.keyboard.done" Button
+    t =    15.84s     Wait for org.haiyue.uivalidation to idle
+    t =    15.84s     Find the "haiyue.keyboard.done" Button
+    t =    15.89s     Check for interrupting elements affecting "haiyue.keyboard.done" Button
+    t =    15.94s     Synthesize event
+    t =    16.38s     Wait for org.haiyue.uivalidation to idle
+    t =    16.65s Tap "/screen/scroll/body/source" TextView
+    t =    16.65s     Wait for org.haiyue.uivalidation to idle
+    t =    16.66s     Find the "/screen/scroll/body/source" TextView
+    t =    16.70s     Check for interrupting elements affecting "/screen/scroll/body/source" TextView
+    t =    16.74s     Synthesize event
+    t =    17.08s     Wait for org.haiyue.uivalidation to idle
+    t =    17.39s Waiting 10.0s for "haiyue.keyboard.done" Button to exist
+    t =    18.40s     Checking `Expect predicate `existsNoRetry == 1` for object "haiyue.keyboard.done" Button`
+    t =    18.40s         Checking existence of `"haiyue.keyboard.done" Button`
+    t =    18.50s Tap "haiyue.keyboard.done" Button
+    t =    18.50s     Wait for org.haiyue.uivalidation to idle
+    t =    18.51s     Find the "haiyue.keyboard.done" Button
+    t =    18.56s     Check for interrupting elements affecting "haiyue.keyboard.done" Button
+    t =    18.61s     Synthesize event
+    t =    18.91s     Wait for org.haiyue.uivalidation to idle
+    t =    20.16s Checking `Expect predicate `exists == 0` for object "haiyue.keyboard.done" Button`
+    t =    20.16s     Checking existence of `"haiyue.keyboard.done" Button`
+    t =    20.17s         Checking `Expect predicate `exists == 0` for object Keyboard (First Match)`
+    t =    20.17s             Checking existence of `Keyboard (First Match)`
+    t =    20.42s Added attachment named '03b-keyboard-dismissed'
+    t =    20.42s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    20.60s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    20.68s Added attachment named '03b-keyboard-dismissed-accessibility-tree'
+    t =    20.68s Tap "/screen/toolbar/increment" Button
+    t =    20.68s     Wait for org.haiyue.uivalidation to idle
+    t =    20.69s     Find the "/screen/toolbar/increment" Button
+    t =    20.72s     Check for interrupting elements affecting "/screen/toolbar/increment" Button
+    t =    20.76s     Synthesize event
+    t =    21.06s     Wait for org.haiyue.uivalidation to idle
+    t =    21.34s Setting device orientation to Landscape Left
+    t =    21.34s     Device orientation changed to Landscape Left
+    t =    21.38s     Interface orientation changed to Landscape Right
+    t =    21.44s     Wait for org.haiyue.uivalidation to idle
+    t =    23.65s Added attachment named '04-landscape'
+    t =    23.65s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    23.85s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    23.92s Added attachment named '04-landscape-accessibility-tree'
+    t =    23.92s Pressing Home button
+    t =    26.39s Open org.haiyue.uivalidation
+    t =    26.40s     Activate org.haiyue.uivalidation
+    t =    26.48s         Wait for org.haiyue.uivalidation to idle
+    t =    28.66s Added attachment named '05-resume'
+    t =    28.66s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    28.86s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    28.93s Added attachment named '05-resume-accessibility-tree'
+    t =    28.94s Find the "/screen/status" StaticText
+    t =    28.97s Find the "/screen/scroll/body/name/title" TextField
+    t =    29.00s Setting device orientation to Portrait
+    t =    29.00s     Device orientation changed to Portrait
+    t =    29.05s     Interface orientation changed to Portrait
+    t =    29.10s     Wait for org.haiyue.uivalidation to idle
+    t =    30.12s Tap "/screen/toolbar/cycles" Button
+    t =    30.12s     Wait for org.haiyue.uivalidation to idle
+    t =    30.13s     Find the "/screen/toolbar/cycles" Button
+    t =    30.19s     Check for interrupting elements affecting "/screen/toolbar/cycles" Button
+    t =    30.25s     Synthesize event
+    t =    30.57s     Wait for org.haiyue.uivalidation to idle
+    t =    35.43s Checking `Expect predicate `label CONTAINS "50 次清理通过"` for object "/screen/status" StaticText`
+    t =    35.43s     Find the "/screen/status" StaticText
+    t =    35.54s Find the "/screen/scroll/body/name/title" TextField
+    t =    35.72s Added attachment named '06-fifty-cycles'
+    t =    35.72s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    35.89s Requesting snapshot of accessibility hierarchy for app with pid 1235
+    t =    35.97s Added attachment named '06-fifty-cycles-accessibility-tree'
+    t =    35.97s Tear Down
+Test Case '-[Acceptance.Acceptance testControls]' passed (36.277 seconds).
+Test Suite 'Acceptance' passed at 2026-10-16 23:06:44.836.
+	 Executed 1 test, with 0 failures (0 unexpected) in 36.277 (36.279) seconds
+Test Suite 'Acceptance.xctest' passed at 2026-10-16 23:06:44.839.
+	 Executed 1 test, with 0 failures (0 unexpected) in 36.277 (36.282) seconds
+Test Suite 'All tests' passed at 2026-10-16 23:06:44.841.
+	 Executed 1 test, with 0 failures (0 unexpected) in 36.277 (36.285) seconds
+2026-10-16 23:06:44.618 xcodebuild[66575:3433473] [MT] IDETestOperationsObserverDebug: 43.705 elapsed -- Testing started completed.
+2026-10-16 23:06:44.619 xcodebuild[66575:3433473] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 23:06:44.619 xcodebuild[66575:3433473] [MT] IDETestOperationsObserverDebug: 43.705 sec, +43.705 sec -- end
+
+Test session results, code coverage, and logs:
+	<workspace>/Native/artifacts/ui-validation/ipad-button.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

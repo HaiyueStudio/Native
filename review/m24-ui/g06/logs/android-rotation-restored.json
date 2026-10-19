@@ -1,0 +1,10 @@
+{
+  "before": {
+    "accelerometer_rotation": "0",
+    "user_rotation": "0"
+  },
+  "after": {
+    "accelerometer_rotation": "0",
+    "user_rotation": "0"
+  }
+}

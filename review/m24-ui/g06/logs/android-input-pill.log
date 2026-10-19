@@ -1,0 +1,4 @@
+tap /screen/scroll/body/name/title [48,697][1032,841]
+tap /screen/scroll/body/source [48,871][1032,1207]
+06-english-input passed
+{"phase": "input", "status": "passed"}

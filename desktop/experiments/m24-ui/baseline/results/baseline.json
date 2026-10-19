@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "scope": "Existing achievements/local isolated package consumer, not all native system APIs",
+  "installedRuntimePackages": [
+    "@haiyue/native"
+  ],
+  "typecheck": "passed",
+  "runtime": "passed",
+  "node": "v24.19.0",
+  "head": "3031753874c7f498d7d3d974b7837b9e9965201e",
+  "hashes": {
+    "npm/package.json": "4beff56e1a4cad5f9538e9fde4a27d8bcbee5861171d9e4653a355f983302095",
+    "npm/index.ts": "1b0fcebb2266942228083b8e3e16c7754b5ed1ad496fda87dc03cb176bfba29e",
+    "scripts/validation/achievements-core.mjs": "19a85cda06fa3343636f5fda7243abf945dcee0b9a845e1cd778206d6a14a77f",
+    "desktop/README.md": "fbf4c252a9466ecb08b73d56e0fa1c778f3890b7778afef5388e807d68805763",
+    "desktop/host/glfw.ts": "fac52cbdf0159585ad6f8fd43243185f333e20e53fb14314b1a7caf2c4c01378",
+    "desktop/toolchains.json": "83a5633c8cb3060f37e193af549370e61fe87c6b0b4961bf2f55ea87fc46fad4"
+  },
+  "desktop": {
+    "macOSArm64": "pending-G04",
+    "windowsX64": "pending-G04",
+    "ime": "pending-G04",
+    "accessibility": "pending-G04"
+  },
+  "rootEntry": "Legacy compatibility export still includes Engine; system independence applies to isolated subpaths."
+}

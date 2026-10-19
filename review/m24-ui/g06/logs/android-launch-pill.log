@@ -1,0 +1,7 @@
+Starting: Intent { cmp=org.haiyue.uivalidation/com.tns.NativeScriptActivity }
+Status: ok
+LaunchState: COLD
+Activity: org.haiyue.uivalidation/com.tns.NativeScriptActivity
+TotalTime: 1645
+WaitTime: 1648
+Complete

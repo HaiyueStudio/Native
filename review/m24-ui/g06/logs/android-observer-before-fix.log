@@ -1,0 +1,28 @@
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: FATAL EXCEPTION: main
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: Process: org.haiyue.uivalidation, PID: 2984
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: com.tns.NativeScriptException: Calling js method onGlobalLayout failed
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: Error: Failed to get Java object by ID. id=110, class=org/nativescript/widgets/GridLayout. com.tns.NativeScriptException: Attempt to use cleared object reference id=110
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.tns.Runtime.callJSMethodNative(Native Method)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.tns.Runtime.dispatchCallJSMethodNative(Runtime.java:1403)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.tns.Runtime.callJSMethodImpl(Runtime.java:1289)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.tns.Runtime.callJSMethod(Runtime.java:1276)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.tns.Runtime.callJSMethod(Runtime.java:1253)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.tns.Runtime.callJSMethod(Runtime.java:1249)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.tns.gen.android.view.ViewTreeObserver_OnGlobalLayoutListener.onGlobalLayout(ViewTreeObserver_OnGlobalLayoutListener.java:18)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.ViewTreeObserver.dispatchOnGlobalLayout(ViewTreeObserver.java:1142)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.ViewRootImpl.performTraversals(ViewRootImpl.java:3663)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.ViewRootImpl.doTraversal(ViewRootImpl.java:2484)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.ViewRootImpl$TraversalRunnable.run(ViewRootImpl.java:9348)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.Choreographer$CallbackRecord.run(Choreographer.java:1350)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.Choreographer$CallbackRecord.run(Choreographer.java:1359)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.Choreographer.doCallbacks(Choreographer.java:963)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.Choreographer.doFrame(Choreographer.java:892)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:1333)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:958)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:205)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:294)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8223)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+10-16 22:15:31.656  2984  2984 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:977)

@@ -1,0 +1,41 @@
+Preparing project...
+assets by status 3.84 MiB [1m[32m[emitted][39m[22m
+  asset [1m[32mvendor.mjs[39m[22m 3.82 MiB [1m[32m[emitted][39m[22m [javascript module] (name: vendor) (id hint: vendor) 1 related asset
+  asset [1m[32mbundle.mjs[39m[22m 17.9 KiB [1m[32m[emitted][39m[22m [javascript module] (name: bundle) 1 related asset
+assets by status 6.36 KiB [1m[33m[compared for emit][39m[22m
+  asset [1m[32mruntime.mjs[39m[22m 5.58 KiB [1m[33m[compared for emit][39m[22m [javascript module] (name: runtime) 1 related asset
+  asset [1m[32mtns_modules/inspector_modules.mjs[39m[22m 798 bytes [1m[33m[compared for emit][39m[22m [javascript module] (name: tns_modules/inspector_modules) 1 related asset
+Entrypoint [1mbundle[39m[22m 3.84 MiB (3.75 MiB) = [1m[32mruntime.mjs[39m[22m 5.58 KiB [1m[32mvendor.mjs[39m[22m 3.82 MiB [1m[32mbundle.mjs[39m[22m 17.9 KiB 3 auxiliary assets
+Entrypoint [1mtns_modules/inspector_modules[39m[22m 3.83 MiB (3.73 MiB) = [1m[32mruntime.mjs[39m[22m 5.58 KiB [1m[32mvendor.mjs[39m[22m 3.82 MiB [1m[32mtns_modules/inspector_modules.mjs[39m[22m 798 bytes 3 auxiliary assets
+orphan modules 22.1 KiB [1m[33m[orphan][39m[22m 17 modules
+runtime modules 2.82 KiB 6 modules
+modules by path [1m../../../../ShaderLab/node_modules/@nativescript/[39m[22m 2.14 MiB 236 modules
+modules by path [1m../../../../ShaderLab/node_modules/css-tree/[39m[22m 358 KiB 120 modules
+modules by path [1m./[39m[22m 122 KiB 16 modules
+modules by path [1m../../../../ShaderLab/node_modules/source-map-js/[39m[22m 107 KiB
+  [1m../../../../ShaderLab/node_modules/source-map-js/source-map.js[39m[22m 405 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  + 10 modules
+modules by path [1m../../../../ShaderLab/node_modules/@csstools/[39m[22m 132 KiB
+  [1m../../../../ShaderLab/node_modules/@csstools/css-calc/dist/index.mjs[39m[22m 28.3 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  + 4 modules
+modules by path [1m../../../../ShaderLab/node_modules/css-what/dist/esm/*.js[39m[22m 20 KiB
+  [1m../../../../ShaderLab/node_modules/css-what/dist/esm/parse.js[39m[22m 18.7 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  [1m../../../../ShaderLab/node_modules/css-what/dist/esm/types.js[39m[22m 1.29 KiB [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
++ 4 modules
+webpack 5.111.1 compiled [1m[32msuccessfully[39m[22m in 4618 ms
+Webpack compilation complete.
+Updating runtime package.json with configuration values...
+Project successfully prepared (ios)
+Building project...
+Searching for devices...
+Xcode build...
+Xcode build...
+2026-10-16 22:49:34.977 xcodebuild[66397:3430183] [MT] IDEDistribution: -[IDEDistributionLogging _createLoggingBundleAtPath:]: Created bundle at path "/var/folders/dk/w2v78rnj53578xh5l88280nw0000gn/T/UIValidation_2026-10-16_22-49-34.970.xcdistributionlogs".
+2026-10-16 22:49:35.558 xcodebuild[66397:3430183] [MT] IDEDistribution: Command line name "development" is deprecated. Use "debugging" instead.
+2026-10-16 22:49:36.923 xcodebuild[66397:3430351]  DVTDeveloperAccountManager: Failed to load credentials for D9F2AF10-2A26-4FB7-BC6E-8627CE3A31FB: Error Domain=DVTDeveloperAccountCredentialsError Code=0 "Invalid credentials in keychain for D9F2AF10-2A26-4FB7-BC6E-8627CE3A31FB, missing Xcode-Username" UserInfo={NSLocalizedDescription=Invalid credentials in keychain for D9F2AF10-2A26-4FB7-BC6E-8627CE3A31FB, missing Xcode-Username}
+Exported UIValidation to: <workspace>/Native/artifacts/ui-validation/mobile/platforms/ios/build/Debug-iphoneos
+** EXPORT SUCCEEDED **
+
+Project successfully built.
+Build time: 981.724 s.
+The build result is located at: <workspace>/Native/artifacts/ui-validation/mobile/platforms/ios/build/Debug-iphoneos/UIValidation.ipa

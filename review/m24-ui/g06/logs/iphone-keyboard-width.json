@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "platform": "iOS",
+  "osVersion": "27.2",
+  "model": "iPhone",
+  "time": "2026-10-16T14:29:13.792Z",
+  "state": {
+    "title": "海月实验室",
+    "source": "中文输入 / emoji 🌙\n选择、复制、粘贴与撤销",
+    "quality": "75",
+    "tab": "settings",
+    "enabled": true,
+    "amount": 50,
+    "dialog": false,
+    "count": 0,
+    "status": "原生控件已加载"
+  },
+  "events": [
+    {
+      "key": "/screen/scroll/body/name/title",
+      "type": "focus",
+      "reason": "keyboard",
+      "transaction": 0,
+      "composing": false
+    },
+    {
+      "key": "/screen/scroll/body/name/title",
+      "type": "blur",
+      "reason": "keyboard",
+      "transaction": 0,
+      "composing": false
+    },
+    {
+      "key": "/screen/scroll/body/source",
+      "type": "focus",
+      "reason": "keyboard",
+      "transaction": 0,
+      "composing": false
+    }
+  ],
+  "diagnostics": [],
+  "platforms": 2,
+  "renderer": {
+    "commits": 2,
+    "created": 35,
+    "updated": 1,
+    "moved": 0,
+    "removed": 0,
+    "activeListeners": 136,
+    "activeNodes": 35,
+    "activeResources": 2,
+    "activeTimers": 0
+  },
+  "keyboard": [
+    {
+      "key": "/screen/scroll/body/name/title",
+      "focused": false,
+      "accessory": true,
+      "inWindow": false,
+      "hidden": false,
+      "width": 430,
+      "height": 44
+    },
+    {
+      "key": "/screen/scroll/body/source",
+      "focused": true,
+      "accessory": true,
+      "inWindow": true,
+      "hidden": false,
+      "width": 430,
+      "height": 44,
+      "x": 0,
+      "y": 540
+    }
+  ]
+}

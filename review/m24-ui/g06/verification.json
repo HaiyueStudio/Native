@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "goal": "M24 G06",
+  "status": "validating",
+  "updatedAt": "2026-10-17T00:39:32.409Z",
+  "source": {
+    "baseCommit": "3031753874c7f498d7d3d974b7837b9e9965201e",
+    "snapshot": "source-snapshot.json",
+    "sha256": "aa7b259e34af51d1efba22878c71b3e4c8820a31ce38c8c17cd414e67c0edf44",
+    "includesUncommittedWork": true
+  },
+  "packages": "packages.json",
+  "devices": "devices.json",
+  "toolchain": {
+    "host": "Intel macOS",
+    "node": "v24.19.0",
+    "npm": "11.17.0",
+    "xcode": "26.3 (17C529)",
+    "nativeScriptCLI": "9.1.1",
+    "nativeScriptCore": "9.1.1",
+    "iosRuntime": "9.0.3",
+    "androidRuntime": "9.0.3",
+    "typescript": "5.7.3",
+    "androidSDK": 36,
+    "jdk": 21
+  },
+  "checks": [
+    {
+      "command": "npm run verify:ui -- --profile core",
+      "status": "passed",
+      "exitCode": 0,
+      "tests": 16,
+      "scope": "shared semantics plus both native platform type checks",
+      "log": "logs/core-pill.log"
+    },
+    {
+      "command": "npm test",
+      "status": "passed",
+      "exitCode": 0,
+      "tests": 153,
+      "scope": "Existing Native regressions passed before final optional UI-only platform fixes; no existing entry changed afterward.",
+      "log": "logs/native-regression.log"
+    },
+    {
+      "command": "npm run verify:ui -- --profile fresh",
+      "status": "passed",
+      "exitCode": 0,
+      "scope": "Independent npm installs, system-only runtime and mobile type/bundle checks; existing native SDK caches reused",
+      "log": "logs/fresh-pill.log",
+      "details": "logs/consumer-results.json"
+    },
+    {
+      "command": "NativeScript build ios --for-device --team-id YOUR_TEAM",
+      "status": "passed",
+      "exitCode": 0,
+      "log": "logs/ios-build-pill.log"
+    },
+    {
+      "command": "NativeScript build android",
+      "status": "passed",
+      "exitCode": 0,
+      "log": "logs/android-build-pill.log"
+    },
+    {
+      "command": "XCTest Acceptance.testControls (iPad)",
+      "status": "passed",
+      "exitCode": 0,
+      "log": "logs/ipad-tests-button.log",
+      "scope": "Passed on package e12bfbc1 before transparent accessory styling; iPad unavailable for latest bd060ac0 package sync."
+    },
+    {
+      "command": "android-acceptance.py --phase controls|input|lifecycle|cycles (sequential)",
+      "status": "passed",
+      "exitCode": 0,
+      "details": "devices.json",
+      "scope": "Latest bd060ac0 package: controls, input, lifecycle and 50-cycle phases passed sequentially after stable-bounds test adjustment; first failed tap retained in devices.json."
+    },
+    {
+      "command": "npm run check (milestones)",
+      "status": "passed",
+      "exitCode": 0,
+      "log": "logs/milestones-check.log"
+    },
+    {
+      "command": "npm run verify:ui -- --profile mobile",
+      "status": "pending-device",
+      "exitCode": 2,
+      "log": "logs/mobile-gate-pill.log"
+    },
+    {
+      "command": "npm run verify:ui -- --profile desktop",
+      "status": "unsupported",
+      "exitCode": 2,
+      "log": "logs/desktop-gate-final.log"
+    }
+  ],
+  "limitations": [
+    "physical IME and accessibility checks remain pending",
+    "iPad split/floating keyboard remains pending",
+    "heap snapshots and zero owned counters do not establish native heap retention budget",
+    "interaction p95 budget not yet measured",
+    "iPhone current style and keyboard dismissal confirmed manually; explicit single-line/multiline reopen and retention remain pending on this build.",
+    "iPad unavailable for latest style package; previous automated pass retains its original hash."
+  ],
+  "publication": {
+    "published": false,
+    "pushed": false,
+    "tagged": false,
+    "releaseBaselinesChanged": false
+  }
+}

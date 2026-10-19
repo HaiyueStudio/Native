@@ -1,0 +1,1 @@
+<resources><style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar"/><style name="AppTheme" parent="AppThemeBase"/><style name="NativeScriptToolbarStyleBase" parent="Widget.AppCompat.Toolbar"/><style name="NativeScriptToolbarStyle" parent="NativeScriptToolbarStyleBase"/></resources>
