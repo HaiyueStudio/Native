@@ -10,6 +10,8 @@ export interface HYNativeEnvironment {
 export interface HYNativeScriptOptions {
   /** Localized title for the iOS keyboard dismiss button. Defaults to "Done". */
   readonly keyboardDismissLabel?: string;
+  /** Localized action that dismisses a Select without changing its value. Defaults to Cancel. */
+  readonly selectionCancelLabel?: string;
   readonly environment?: HYNativeEnvironment;
   readonly resolveResource?: (resource: HYResource, context: Readonly<{key: string; kind: 'Image'|'Icon'}>) => string | ImageSource;
   readonly platformViews?: Readonly<Record<string, HYNativePlatformViewFactory>>;

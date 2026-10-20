@@ -8,3 +8,6 @@ export function setClipping(_view: View, _clip: boolean): void {}
 export function focusNative(view: View): void { view.focus(); }
 export function systemIcon(_name: string): ImageSource | undefined { return undefined; }
 export function isAccessibilityInteraction(): boolean { return false; }
+
+/** Keep the presenting page visible beneath the portable dialog backdrop. */
+export function modalPresentationOptions(): Partial<import('@nativescript/core').ShowModalOptions> { return {}; }

@@ -6,7 +6,7 @@ import {readFileSync} from 'node:fs';
 import ts from 'typescript';
 import {inflateSync,crc32} from 'node:zlib';
 import * as ns from './fake-native.mjs';
-const ui=path.resolve('artifacts/ui-validation/mobile/node_modules/@haiyue/ui/dist');
+const ui=path.resolve(process.env.HAIYUE_UI_TEST_DIST ?? 'artifacts/ui-validation/mobile/node_modules/@haiyue/ui/dist');
 const core=await import(pathToFileURL(path.join(ui,'core/index.js'))),portable=await import(pathToFileURL(path.join(ui,'portable/index.js')));
 const natives={...ns};
 const mocks={'@nativescript/core':natives,'@haiyue/ui/core':core,'@haiyue/ui/portable':portable,'./platform':ns.platform};
@@ -42,9 +42,9 @@ test('embedded image fixture has valid PNG checksums and decodable pixel data',(
   for(let i=8;i<bytes.length;){const n=bytes.readUInt32BE(i),end=i+8+n;assert.equal(crc32(bytes.subarray(i+4,end)),bytes.readUInt32BE(end));if(bytes.toString('ascii',i+4,i+8)==='IDAT')data.push(bytes.subarray(i+8,end));i=end+4;}
   assert.equal(inflateSync(Buffer.concat(data)).length,5); // One filter byte and one RGBA pixel.
 });
-function fixture(tree,accept){
+function fixture(tree,accept,options={}){
   const events=[],host=new ns.GridLayout();host.load();
-  const renderer=new HYNativeScriptRenderer(host,{resolveResource:()=>'/fixture.png',platformViews:{preview:()=>resource(),editor:()=>resource()}});
+  const renderer=new HYNativeScriptRenderer(host,{resolveResource:()=>'/fixture.png',platformViews:{preview:()=>resource(),editor:()=>resource()},...options});
   const page=new portable.HYPage(renderer,{onEvent:e=>{events.push(e);accept?.(e,page);}});page.mount(tree);
   return {host,renderer,page,events,view:key=>ns.find(host,key),dispose(){page.dispose();assert.equal(renderer.diagnostics.activeListeners,0);assert.equal(renderer.diagnostics.activeNodes,0);assert.equal(renderer.diagnostics.activeResources,0);assert.equal(renderer.diagnostics.activeTimers,0);assert.equal(ns.bindings.size,0);}};
 }
@@ -111,7 +111,10 @@ test('rapid dialog reopen waits for the native asynchronous dismissal callback',
   const tree=open=>n('Dialog','dialog',{open,title:'Modal'}, {children:[n('Button','close',{text:'Close'})]});
   const f=fixture(tree(true));await ns.drain();
   const owner=f.host.children[0],dialog=owner.modal;assert.ok(dialog instanceof ns.Page);
-  assert.equal(dialog.content.style.paddingLeft,20);
+  const card=dialog.content.children[0];assert.equal(card.content.style.paddingLeft,20);
+  assert.equal(card.width,'100%');assert.equal(card.maxWidth,460);assert.equal(card.verticalAlignment,'middle');
+  dialog.content.notify('layoutChanged');assert.equal(card.maxHeight,44);
+  assert.equal(dialog.modalOptions.ios.presentationStyle,5);
   let complete;const close=dialog.closeModal.bind(dialog);
   dialog.closeModal=()=>{complete=close;};
   let presentations=0;const show=owner.showModal.bind(owner);
@@ -136,7 +139,7 @@ test('native Select cancel/reopen, stale resolution and option choice preserve c
   const options=[{value:'a',label:'A'},{value:'b',label:'B'}],tree=value=>n('Select','choice',{value,options});
   const f=fixture(tree('a'),(e,page)=>{if(e.type==='commit')page.render(tree(e.value));});await ns.drain();const select=f.view('/choice');
   select.notify('tap');assert.ok(select.modal);select.modal.closeModal();await ns.drain();assert.equal(f.events.filter(e=>e.type==='commit').length,0);
-  select.notify('tap');select.modal.content.children[1].notify('tap');await ns.drain();assert.equal(select.modal,undefined);assert.equal(select.text,'B');assert.equal(f.events.filter(e=>e.type==='commit').length,1);
+  select.notify('tap');select.modal.content.children[0].content.children[1].notify('tap');await ns.drain();assert.equal(select.modal,undefined);assert.equal(select.text,'B');assert.equal(f.events.filter(e=>e.type==='commit').length,1);
   select.notify('tap');f.page.render(tree('a'));await ns.drain();assert.equal(select.modal,undefined);assert.equal(select.text,'A');f.dispose();
 });
 test('optional mobile entry does not pollute root or system exports',()=>{
@@ -216,4 +219,45 @@ test('accessibility value updates skip unchanged UIKit fields and preserve Andro
   try{f.page.render(tree('b'));assert.deepEqual(writes,ios?['accessibilityValue']:['accessibilityLabel','accessibilityValue']);assert.equal(view.accessibilityLabel,'Resolution');assert.equal(view.accessibilityValue,'b');}
   finally{f.dispose();natives.isIOS=true;}
  }
+});
+
+
+test('iOS single-line controls avoid paragraph titles while multiline and Android keep theme spacing',async()=>{
+ const tree=n('Column','root',{}, {children:[n('Button','action',{text:'Action'}),n('Select','choice',{value:'a',options:[{value:'a',label:'A'}]}),n('Text','body',{text:'Two\nlines',wrap:true}),n('TextArea','editor',{value:'Two\nlines'})]});
+ for(const ios of [true,false]){
+  natives.isIOS=ios;const f=fixture(tree);await ns.drain();
+  try{
+   const button=f.view('/root/action'),choice=f.view('/root/choice');
+   assert.equal(button.lineHeight,ios?0:8);assert.equal(choice.lineHeight,ios?0:8);
+   assert.equal(button.minHeight,44);assert.equal(f.view('/root/body').lineHeight,8);assert.equal(f.view('/root/editor').lineHeight,8);
+   button.whiteSpace='normal';f.renderer.setEnvironment({fontScale:2});
+   assert.equal(button.lineHeight,16);assert.equal(button.fontSize,32);assert.equal(choice.lineHeight,ios?0:16);
+   assert.equal(f.view('/root/editor').lineHeight,16);
+  }finally{f.dispose();natives.isIOS=true;}
+ }
+});
+
+test('theme owns button geometry and picker colours after an environment change',async()=>{
+  const f=fixture(n('Column','screen',{}, {children:[n('Button','run',{text:'Run'}),n('Select','scale',{value:'1',options:[{value:'1',label:'100%'},{value:'0.5',label:'50%'}]})]}),undefined,{selectionCancelLabel:'取消'});
+  try {
+    const theme={color:{text:'#eef0ff',muted:'#a9add4',surface:'#10132f',input:'#0c1029',accent:'#8177f2',danger:'#dd6f91',border:'#343765',focus:'#9c8fff'},fontSize:14,lineHeight:20,gap:8,radius:8};
+    f.renderer.setEnvironment({theme});await ns.drain();
+    const button=f.view('/screen/run');assert.equal(button.margin,0);assert.equal(button.borderRadius,8);assert.equal(button.borderWidth,1);assert.equal(button.backgroundColor.value,theme.color.surface);
+    const picker=f.view('/screen/scale');picker.notify('tap');await ns.drain();
+    assert.ok(picker.modal,'select opens a themed native modal');
+    const panel=picker.modal.content.children[0].content;assert.equal(panel.backgroundColor.value,theme.color.surface);assert.equal(panel.children.at(-1).text,'取消');
+    assert.equal(panel.children[0].backgroundColor.value,theme.color.accent);
+    assert.equal(panel.children[1].backgroundColor.value,theme.color.input);
+    assert.equal(panel.children[1].color.value,theme.color.text);
+  }finally{f.dispose();}
+});
+
+test('dialog backdrop ignores taps inside the card and respects dismissible=false',async()=>{
+  for(const dismissible of [true,false]){
+    const f=fixture(n('Dialog','dialog',{open:true,title:'Settings',dismissible}));await ns.drain();
+    try{const overlay=f.host.children[0].modal.content;
+      overlay.notify('tap',{getX:()=>10,getY:()=>10});assert.equal(f.events.length,0);
+      overlay.notify('tap',{getX:()=>310,getY:()=>10});assert.equal(f.events.filter(e=>e.type==='cancel').length,dismissible?1:0);
+    }finally{f.dispose();}
+  }
 });

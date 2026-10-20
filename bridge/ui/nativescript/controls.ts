@@ -1,9 +1,10 @@
+import {createModalSurface} from './modal';
 import { same } from './data';
-import { Button, FlexboxLayout, GridLayout, Label, ScrollView, Slider, StackLayout, Switch, TextField, TextView, View } from '@nativescript/core';
+import { Button, Color, FlexboxLayout, GridLayout, Label, ScrollView, Slider, StackLayout, Switch, TextField, TextView, View } from '@nativescript/core';
 import { HYButtonController, HYSelectionController, HYSliderController, HYTextController, HYToggleController } from '@haiyue/ui/core';
-import type { HYNode, HYReason, HYUIEvent } from '@haiyue/ui/core';
+import type { HYNode, HYReason, HYUIEvent, HYTheme } from '@haiyue/ui/core';
 import type { HYNativeTextHandle } from './types';
-import { isAccessibilityInteraction, observeText } from './platform';
+import { isAccessibilityInteraction, observeText, modalPresentationOptions } from './platform';
 
 export interface Control {
   readonly view: View;
@@ -12,6 +13,8 @@ export interface Control {
 }
 export interface ControlContext {
   readonly keyboardDismissLabel?: string;
+  readonly selectionCancelLabel?: string;
+  theme(): HYTheme;
   emit(event: HYUIEvent): void;
   enabled(): boolean;
   listen(view: View, name: string, callback: (event: any) => void): () => void;
@@ -129,27 +132,32 @@ export function createControl(initial: HYNode, context: ControlContext, revision
       focus();
       const choices = props.options;
       void controller.pick(() => new Promise<string | null>(resolve => {
-        const panel = new StackLayout(); picker = panel; panel.padding = 20; panel.backgroundColor = 'white'; panel.accessibilityLabel = initial.props.a11y?.label ?? 'Select';
-        const scroller = new ScrollView(); scroller.content = panel;
+        const panel = new StackLayout(); picker = panel; panel.padding = 20; const theme = context.theme(); panel.backgroundColor = new Color(theme.color.surface); panel.accessibilityLabel = initial.props.a11y?.label ?? 'Select';
+        const surfaceCleanup:(()=>void)[]=[];
+        const modal=createModalSurface(panel,(target,name,callback)=>{const off=context.listen(target,name,callback);surfaceCleanup.push(off);return off;},()=>finish(null));
+        modal.card.backgroundColor=new Color(theme.color.surface);modal.card.borderColor=new Color(theme.color.border);modal.card.borderWidth=1;modal.card.borderRadius=theme.radius;
         let settled = false, closing = false, selected: string | null = null;
         const cleanup: (() => void)[] = [];
         const settle = () => {
           if (settled) return; settled = true;
-          cleanup.forEach(off => off()); picker = undefined; cancelPicker = undefined;
+          cleanup.forEach(off => off());surfaceCleanup.forEach(off=>off()); picker = undefined; cancelPicker = undefined;
           resolve(selected);
         };
         const finish = (value: string | null) => {
           if (closing || settled) return;
           closing = true; selected = value; cleanup.forEach(off => off());
           // Do not release the busy state until native dismissal completes. UIKit still owns the sheet.
-          scroller.closeModal();
+          modal.page.closeModal();
         };
         cancelPicker = () => finish(null);
-        for (const option of [...choices, {value: null, label: 'Cancel', disabled: false}]) {
+        for (const option of [...choices, {value: null, label: context.selectionCancelLabel ?? 'Cancel', disabled: false}]) {
           const button = new Button(); button.text = option.label; button.isEnabled = !option.disabled;
+          button.minHeight = 44; button.margin = 4; button.padding = 12; button.fontSize = theme.fontSize;
+          button.backgroundColor = new Color(option.value === props.value ? theme.color.accent : theme.color.input);
+          button.color = new Color(theme.color.text); button.borderColor = new Color(theme.color.border); button.borderWidth = 1; button.borderRadius = theme.radius;
           const tap = () => finish(option.value); cleanup.push(context.listen(button, 'tap', tap)); panel.addChild(button);
         }
-        try { view.showModal(scroller, {fullscreen: false, animated: false, closeCallback: settle}); }
+        try { view.showModal(modal.page, {...modalPresentationOptions(),fullscreen: true, animated: false, closeCallback: settle}); }
         catch (error) { settle(); throw error; }
       }), reason()).then(() => { if (!disposed) render(); }).catch(error => context.error(error));
     });

@@ -1,17 +1,18 @@
+import {createModalSurface} from './modal';
 import { same } from './data';
 import { Application, Button, Color, FlexboxLayout, GridLayout, Image, Label, LayoutBase, Page, Screen, ScrollView, StackLayout, TextField, TextView, View, isIOS } from '@nativescript/core';
 import { HY_COMPONENTS, HYPlatformViewController, HYUIError, hyValidateProps } from '@haiyue/ui/core';
 import type { HYCapabilities, HYMutation, HYNode, HYRenderer, HYTheme, HYUIEvent } from '@haiyue/ui/core';
 import { hyNativeTheme } from '@haiyue/ui/portable';
 import { createControl, type Control } from './controls';
-import { assertMainThread, focusNative, observeKeyboard, setClipping, systemIcon } from './platform';
+import { assertMainThread, focusNative, observeKeyboard, setClipping, systemIcon, modalPresentationOptions } from './platform';
 import type { HYNativeDiagnostics, HYNativeEnvironment, HYNativeScriptOptions } from './types';
 
 interface Entry {
   node: HYNode; view: View; content?: LayoutBase; parent: string | null | undefined; slot?: string;
   control?: Control; off: Set<() => void>; platform?: HYPlatformViewController; platformMounted: boolean;
   accessibility?: {label:string;hint:string;role:any;state:any;value:string|undefined;text:string|undefined};
-  label?: Label; error?: Label; dialogShown: boolean; closing: boolean; bindings: boolean; styled?: boolean; clip?: boolean;
+  label?: Label; error?: Label; dialogCard?:ScrollView; dialogShown: boolean; closing: boolean; bindings: boolean; styled?: boolean; clip?: boolean;
 }
 const defaultTheme: HYTheme = {
   color: {text:'#18233D',muted:'#68748C',surface:'#F7F9FC',input:'#FFFFFF',accent:'#345AE8',danger:'#C93248',border:'#CAD3E3',focus:'#345AE8'},
@@ -130,7 +131,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
   #create(node:HYNode,revision:number):Entry {
     const e:Entry={node,view:undefined!,parent:undefined,off:new Set(),platformMounted:false,dialogShown:false,closing:false,bindings:false};
     this.#nodes.set(node.key,e); // Own failed construction too.
-    e.control=createControl(node,{keyboardDismissLabel:this.options.keyboardDismissLabel,emit:event=>this.#event(e,event),enabled:()=>this.#interactive(e),
+    e.control=createControl(node,{keyboardDismissLabel:this.options.keyboardDismissLabel,selectionCancelLabel:this.options.selectionCancelLabel,theme:()=>this.#theme,emit:event=>this.#event(e,event),enabled:()=>this.#interactive(e),
       listen:(view,name,callback)=>this.#listen(e.off,view,name,callback),error:error=>this.#asyncError(error)},revision);
     if(e.control)e.view=e.control.view;
     if(node.kind==='Tabs') {
@@ -143,7 +144,12 @@ export class HYNativeScriptRenderer implements HYRenderer {
       else if(node.kind==='FormGroup'||node.kind==='Dialog') {
         const stack=new StackLayout();e.content=stack;e.view=stack;e.label=new Label();e.label.textWrap=true;stack.addChild(e.label);
         if(node.kind==='FormGroup'){e.error=new Label();e.error.textWrap=true;stack.addChild(e.error);}
-        else {const page=new Page();page.actionBarHidden=true;page.content=stack;e.view=page;}
+        else {
+          const modal=createModalSurface(stack,(view,name,callback)=>this.#listen(e.off,view,name,callback),()=>{
+            if(e.node.kind==='Dialog'&&e.node.props.dismissible!==false)this.#event(e,{key:e.node.key,type:'cancel',reason:'pointer',transaction:0});
+          },()=>e.node.props.layout?.maxHeight??Infinity);
+          e.view=modal.page;e.dialogCard=modal.card;
+        }
       } else {e.content=new GridLayout();e.view=e.content;}
     }
     e.view.id=node.key;e.view.accessibilityIdentifier=node.key;e.view.iosOverflowSafeArea=false;
@@ -189,8 +195,9 @@ export class HYNativeScriptRenderer implements HYRenderer {
   #style(e:Entry):void {
     const {view,node}=e,p=node.props,l=p.layout??{},theme=this.#theme;
     // NativeScript property setters cache until initNativeView; never write private nativeView fields.
-    view.width=l.width??'auto';view.height=l.height??'auto';view.minWidth=l.minWidth??0;view.minHeight=l.minHeight??(['Button','Select','Toggle','TextInput','Slider'].includes(node.kind)?44:0);
-    view.maxWidth=l.maxWidth??'auto';view.maxHeight=l.maxHeight??'auto';
+    const sizing=e.dialogCard??view;
+    sizing.width=l.width??(e.dialogCard?'100%':'auto');sizing.height=l.height??'auto';sizing.minWidth=l.minWidth??0;sizing.minHeight=l.minHeight??(['Button','Select','Toggle','TextInput','Slider'].includes(node.kind)?44:0);
+    sizing.maxWidth=l.maxWidth??(e.dialogCard?460:'auto');if(!e.dialogCard)sizing.maxHeight=l.maxHeight??'auto';
     // Page owns the native modal controller; its content owns padding (Page does not lay it out).
     const padding=l.padding??(node.kind==='Dialog'?[20,20,20,20]:[0,0,0,0]);
     const paddingStyle=node.kind==='Dialog'?e.content!.style:view.style;
@@ -210,12 +217,22 @@ export class HYNativeScriptRenderer implements HYRenderer {
     if(textView instanceof Label||textView instanceof Button||textView instanceof TextField||textView instanceof TextView) {
       textView.fontSize=theme.fontSize;textView.color=new Color(theme.color.text);
       textView.iosAccessibilityAdjustsFontSize=this.#environment.fontScale===undefined;
-      textView.lineHeight=theme.lineHeight-theme.fontSize;
+      // iOS lineHeight is paragraph line *spacing*. A single-line UIButton
+      // has no inter-line gap; a nonzero value needlessly rebuilds attributed
+      // titles on every value change. Keep spacing for wrapping/multiline text.
+      const singleLineButton=isIOS && textView instanceof Button
+        && (textView.whiteSpace==='initial' || textView.whiteSpace==='nowrap' || textView.whiteSpace===undefined);
+      textView.lineHeight=singleLineButton?0:theme.lineHeight-theme.fontSize;
+    }
+    if(textView instanceof Button){
+      textView.margin=0;textView.backgroundColor=new Color(node.kind==='Select'?theme.color.input:theme.color.surface);textView.borderColor=new Color(theme.color.border);
+      textView.borderWidth=1;textView.borderRadius=theme.radius;textView.textTransform='none';
+      if(!l.padding){textView.paddingLeft=12;textView.paddingRight=12;}
     }
     if(textView instanceof TextField||textView instanceof TextView){textView.backgroundColor=new Color(theme.color.input);textView.borderColor=new Color(p.a11y?.error?theme.color.danger:theme.color.border);textView.borderWidth=1;textView.borderRadius=theme.radius;}
     if(e.label){e.label.fontSize=theme.fontSize;e.label.color=new Color(theme.color.text);e.label.iosAccessibilityAdjustsFontSize=this.#environment.fontScale===undefined;}
     if(e.error){e.error.fontSize=theme.fontSize;e.error.color=new Color(theme.color.danger);e.error.accessibilityLiveRegion='polite';}
-    if(node.kind==='Dialog')view.backgroundColor=new Color(theme.color.surface);
+    if(node.kind==='Dialog'){view.backgroundColor=new Color('rgba(0,0,0,0.72)');e.dialogCard!.backgroundColor=new Color(theme.color.surface);e.dialogCard!.borderColor=new Color(theme.color.border);e.dialogCard!.borderWidth=1;e.dialogCard!.borderRadius=theme.radius;e.label!.fontSize=theme.fontSize+6;e.label!.marginBottom=16;}
     e.styled=true;
   }
   #accessibility(e:Entry):void {
@@ -287,7 +304,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
       if(!wanted&&e.dialogShown&&!e.closing){e.closing=true;e.view.closeModal();}
       else if(wanted&&!e.dialogShown&&!e.closing&&!this.#suspended){
         e.dialogShown=true;const key=e.node.key;
-        owner.showModal(e.view,{fullscreen:true,animated:false,cancelable:e.node.props.dismissible!==false,
+        owner.showModal(e.view,{...modalPresentationOptions(),fullscreen:true,animated:false,cancelable:e.node.props.dismissible!==false,
           closeCallback:()=>{
             const user=e.dialogShown&&!e.closing&&!this.#disposed;e.dialogShown=false;e.closing=false;
             if(user)this.#event(e,{key,type:'cancel',reason:'keyboard',transaction:0});

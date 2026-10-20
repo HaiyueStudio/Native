@@ -77,3 +77,6 @@ export function observeKeyboard(view: View, changed: (height: number) => void): 
     if (current.isAlive()) current.removeOnGlobalLayoutListener(listener);
   };
 }
+
+/** Keep the presenting page visible beneath the portable dialog backdrop. */
+export function modalPresentationOptions(): Partial<import('@nativescript/core').ShowModalOptions> { return {}; }

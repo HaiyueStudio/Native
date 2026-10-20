@@ -1,0 +1,16 @@
+{
+  "status": "passed-local-regression",
+  "scope": "iOS single-line button paragraph spacing; not a complete device acceptance",
+  "capturedAt": "2026-10-19T03:02:33.576928+00:00",
+  "sourceHashes": {
+    "bridge/ui/nativescript/renderer.ts": "d4331aeb54b5d9d4833506ac0a5b7555feff8d409c4dca85fbd0cf5e45a69065",
+    "test/ui/nativescript/adapter.test.mjs": "993eba24e683e661c1be050743fc6cbaebf2f95dcc66656367b90f2169630d05"
+  },
+  "tests": 26,
+  "uiPackage": "0.2.0-m24.4",
+  "consumerEvidence": "../../../../ShaderLab/review/m24-ui/g07/optimization/apple-jitter/README.md",
+  "limitations": [
+    "iPhone performance remains inconclusive; all samples retained in consumer evidence.",
+    "Android branch unchanged; new UI core needs its own current-candidate device acceptance."
+  ]
+}

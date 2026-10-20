@@ -114,3 +114,6 @@ export function observeKeyboard(view: View, changed: (height: number) => void): 
     center.removeObserver(token);
   };
 }
+
+/** Keep the presenting page visible beneath the portable dialog backdrop. */
+export function modalPresentationOptions(): Partial<import('@nativescript/core').ShowModalOptions> { return {ios:{presentationStyle:UIModalPresentationStyle.OverFullScreen}}; }

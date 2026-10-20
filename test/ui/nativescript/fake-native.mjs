@@ -7,7 +7,7 @@ export class View {
   notify(type,values={}){for(const fn of [...(this.handlers.get(type)??[])])fn({object:this,eventName:type,...values});}
   load(){this.isLoaded=true;this.notify('loaded');this.children?.forEach(v=>v.load());if(this.content)this.content.load();}
   unload(){this.isLoaded=false;this.notify('unloaded');this.children?.forEach(v=>v.unload());if(this.content)this.content.unload();}
-  getActualSize(){return {width:300,height:50};} getLocationInWindow(){return {x:0,y:0};}
+  getActualSize(){return {width:300,height:50};} getLocationInWindow(){return {x:0,y:0};} getLocationRelativeTo(){return {x:0,y:0};}
   focus(){this.focused=true;return true;} showModal(view,opts){this.modal=view;view.modalOptions=opts;view.modalOwner=this;view.load();}
   closeModal(){if(!this.modalOwner)return;this.unload();this.modalOwner.modal=undefined;this.modalOwner=undefined;this.modalOptions.closeCallback();}
 }
@@ -36,6 +36,7 @@ export const Screen={mainScreen:{scale:2}};
 export const isIOS=true;
 export const bindings=new Set();
 export const platform={
+  modalPresentationOptions(){return {ios:{presentationStyle:5}};},
   assertMainThread(){},isAccessibilityInteraction(){return false;},focusNative(v){v.focus();},systemIcon(){},setClipping(v,clip){v.clip=clip;},
   observeKeyboard(){const key={};bindings.add(key);return ()=>bindings.delete(key);},
   observeText(view,changed){const key={};bindings.add(key);view.composing=false;
