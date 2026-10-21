@@ -8,6 +8,9 @@ export interface PurchaseState {
   readonly busy: boolean;
 }
 export interface Purchases {
+  /** Stores sharing this identity restore the same account inventory. A catalog
+   * synchronizes it once, then silently refreshes each remaining product. */
+  readonly restoreScope?: object;
   snapshot(): PurchaseState;
   subscribe(listener: () => void): () => void;
   purchase(): Promise<void>;

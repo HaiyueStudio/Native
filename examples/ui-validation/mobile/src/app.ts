@@ -13,8 +13,14 @@ const keyboardDiagnostics=()=>!isIOS?undefined:['/screen/scroll/body/name/title'
   const position=accessory?.window?accessory.convertRectToView(accessory.bounds,null!):undefined;
   return {key,focused:input?.isFirstResponder,accessory:!!accessory,inWindow:!!accessory?.window,hidden:accessory?.hidden,width:bounds?.size.width,height:bounds?.size.height,x:position?.origin.x,y:position?.origin.y};
 });
+const controlStates=()=>{
+  const result:unknown[]=[];
+  const visit=(parent:View)=>parent.eachChildView(view=>{if(view.accessibilityIdentifier?.includes('/option-'))result.push({key:view.accessibilityIdentifier,enabled:view.isEnabled,accessible:view.accessible,state:view.accessibilityState,role:view.accessibilityRole,nativeEnabled:isIOS?view.ios?.enabled:undefined,traits:isIOS?String(view.ios?.accessibilityTraits):undefined});visit(view);return true;});
+  if(frame.currentPage)visit(frame.currentPage);
+  return result;
+};
 const report=()=>{
-  const data={schema:1,platform:Device.os,osVersion:Device.osVersion,model:Device.model,time:new Date().toISOString(),state,events:events.slice(-200),diagnostics:diagnostics.slice(-60),platforms,renderer:renderer?.diagnostics,keyboard:keyboardDiagnostics()};
+  const data={schema:1,controls:controlStates(),platform:Device.os,osVersion:Device.osVersion,model:Device.model,time:new Date().toISOString(),state,events:events.slice(-200),diagnostics:diagnostics.slice(-60),platforms,renderer:renderer?.diagnostics,keyboard:keyboardDiagnostics()};
   File.fromPath(path.join(knownFolders.documents().path,'ui-validation.json')).writeTextSync(JSON.stringify(data,null,2));
   console.log('[HYUI]',JSON.stringify({state,platforms,diagnostics:renderer?.diagnostics}));
 };
@@ -37,6 +43,12 @@ frame.navigate({create:()=>{
   const onEvent=(event:HYUIEvent)=>{
     if(!event.key.endsWith('/password'))events.push(event);
     if(event.type==='activate') {
+      if(event.key.endsWith('/catalog-toggle'))state.gallery=!state.gallery;
+      if(event.key.endsWith('/expand'))state.expanded=!state.expanded;
+      if(event.key.endsWith('/clear-rating'))state.rating=0;
+      if(event.key.endsWith('/previous'))state.step=Math.max(0,state.step-1);
+      if(event.key.endsWith('/next'))state.step=Math.min(2,state.step+1);
+      const step=event.key.match(/\/step-([0-2])$/);if(step)state.step=Number(step[1]);
       if(event.key.endsWith('/increment'))state.count++;
       if(event.key.endsWith('/dialog'))state.dialog=true;
       if(event.key.endsWith('/close'))state.dialog=false;
@@ -45,6 +57,10 @@ frame.navigate({create:()=>{
     }
     if(event.type==='cancel'&&event.key.endsWith('/modal'))state.dialog=false;
     if(event.type==='commit'){
+      if(event.key.endsWith('/sections'))state.section=String(event.value);
+      if(event.key.endsWith('/consent'))state.checked=!!event.value;
+      if(event.key.endsWith('/mode'))state.choice=String(event.value);
+      if(event.key.endsWith('/rating'))state.rating=Number(event.value);
       if(event.key.endsWith('/title'))state.title=String(event.value);
       if(event.key.endsWith('/source'))state.source=String(event.value);
       if(event.key.endsWith('/quality'))state.quality=String(event.value);

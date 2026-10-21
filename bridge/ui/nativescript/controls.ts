@@ -33,6 +33,49 @@ export function createControl(initial: HYNode, context: ControlContext, revision
     view, update: (node, rev) => write(() => update(node, rev)), loaded() {}, unloaded() {}, suspend() {},
     dispose() { if (!disposed) { disposed = true; dispose(); } }, ...extra,
   });
+  if(initial.kind==='Badge'||initial.kind==='Divider') {
+    const view=new Label();view.textWrap=true;
+    return base(view,node=>{if(node.kind==='Badge')view.text=node.props.text;if(node.kind==='Divider')view.text=node.props.text??'';},()=>{});
+  }
+  if(initial.kind==='Checkbox') {
+    const view=new Button();let props=initial.props;
+    const toggleProps=()=>({checked:props.checked,...(props.disabled===undefined?{}:{disabled:props.disabled})});
+    const controller=new HYToggleController(initial.key,toggleProps(),context.emit);
+    listen(view,'tap',()=>{focus();controller.choose(!props.checked,reason());});
+    return base(view,node=>{if(node.kind!=='Checkbox')return;props=node.props;controller.update(toggleProps());view.text=`${props.checked?'☑':'☐'}  ${props.text}`;view.isEnabled=!props.disabled;view.opacity=props.disabled ? .45 : 1;view.accessibilityState=props.checked?'checked':'unchecked';},()=>controller.dispose());
+  }
+  if(initial.kind==='RadioGroup'||initial.kind==='Rate') {
+    const view=new FlexboxLayout();view.flexDirection='row';view.flexWrap='wrap';view.gap=8;
+    let node=initial,transaction=0,choosing=false;
+    const buttons=new Map<string,{view:Button;off:()=>void}>();
+    const selection=initial.kind==='RadioGroup'?new HYSelectionController(initial.key,initial.props,context.emit):undefined;
+    const choose=(value:string)=>{
+      if(node.props.disabled||choosing)return;
+      focus();
+      if(selection)selection.choose(value,reason());
+      else if(node.kind==='Rate'&&!node.props.readOnly&&node.props.value!==Number(value)){
+        choosing=true;const tx=++transaction;try{context.emit({key:node.key,type:'valueChange',value:Number(value),reason:reason(),transaction:tx});if(!disposed)context.emit({key:node.key,type:'commit',value:Number(value),reason:reason(),transaction:tx});}finally{choosing=false;}
+      }
+    };
+    const update=()=>{
+      const theme=context.theme(),options=node.kind==='RadioGroup'?node.props.options:Array.from({length:node.props.count},(_,i)=>({value:String(i+1),label:`${i+1} / ${node.kind==='Rate'?node.props.count:5}`}));
+      for(const [key,entry] of buttons)if(!options.some(o=>o.value===key)){entry.off();view.removeChild(entry.view);buttons.delete(key);}
+      options.forEach((option,index)=>{
+        let entry=buttons.get(option.value);
+        if(!entry){const button=new Button();entry={view:button,off:listen(button,'tap',()=>choose(option.value))};buttons.set(option.value,entry);view.addChild(button);}
+        const button=entry.view,selected=node.kind==='RadioGroup'?node.props.value===option.value:Number(option.value)<=node.props.value;
+        if(view.getChildIndex(button)!==index){view.removeChild(button);view.insertChild(button,index);}
+        button.text=node.kind==='RadioGroup'?`${selected?'◉':'○'}  ${option.label}`:selected?'★':'☆';
+        button.accessibilityIdentifier=`${initial.key}/option-${encodeURIComponent(option.value)}`;button.accessible=true;button.accessibilityLabel=option.label;button.accessibilityRole='button';
+        button.isEnabled=!node.props.disabled&&!('disabled'in option&&option.disabled)&&!(node.kind==='Rate'&&node.props.readOnly);
+        // NativeScript rebuilds UIKit traits from accessibilityState; isEnabled alone is insufficient.
+        button.accessibilityState=!button.isEnabled?'disabled':selected?'selected':undefined;
+        button.minWidth=44;button.minHeight=44;button.paddingLeft=8;button.paddingRight=8;button.margin=0;button.marginRight=8;button.textTransform='none';
+        button.fontSize=theme.fontSize;button.color=new Color(selected?theme.color.accent:theme.color.text);button.backgroundColor=new Color('transparent');button.borderColor=new Color(theme.color.border);button.borderWidth=0;button.borderRadius=theme.radius;button.opacity=button.isEnabled?1:.45;
+      });
+    };
+    return base(view,next=>{if(next.kind!=='RadioGroup'&&next.kind!=='Rate')return;node=next;if(next.kind==='RadioGroup')selection!.update(next.props);update();},()=>{selection?.dispose();for(const entry of buttons.values())entry.off();buttons.clear();});
+  }
   if (initial.kind === 'Button') {
     const view = new Button(), controller = new HYButtonController(initial.key, initial.props, context.emit);
     listen(view, 'tap', () => { focus(); controller.activate(reason()); });

@@ -1,17 +1,19 @@
+import {gallery,galleryDefaults,type GalleryState} from './gallery';
 import {hyNode, type HYNode, type HYComponentKind, type HYComponentProps} from '@haiyue/ui/core';
 function n<K extends HYComponentKind>(kind:K,key:string,props:HYComponentProps[K],children?:readonly HYNode[],options?:{slots?:Readonly<Record<string,readonly HYNode[]>>}):HYNode { return hyNode(kind,key,props,{children,...options}); }
-export interface DemoState {title:string;source:string;quality:string;tab:string;enabled:boolean;amount:number;dialog:boolean;count:number;status:string;}
-export const initialState=():DemoState=>({title:'海月实验室',source:'中文输入 / emoji 🌙\n选择、复制、粘贴与撤销',quality:'75',tab:'settings',enabled:true,amount:50,dialog:false,count:0,status:'准备就绪'});
+export interface DemoState extends GalleryState {title:string;source:string;quality:string;tab:string;enabled:boolean;amount:number;dialog:boolean;count:number;status:string;}
+export const initialState=():DemoState=>({...galleryDefaults(),title:'海月实验室',source:'中文输入 / emoji 🌙\n选择、复制、粘贴与撤销',quality:'75',tab:'settings',enabled:true,amount:50,dialog:false,count:0,status:'准备就绪'});
 const quality=[{value:'50',label:'50%'},{value:'75',label:'75%'},{value:'100',label:'100%'},{value:'200',label:'200%（禁用）',disabled:true}];
 export function scenario(s:DemoState, features:{systemIcons?:boolean}={}):HYNode {
   return n('Column','screen',{layout:{padding:[12,16,12,16],gap:8}},[
-    n('Text','heading',{text:'Haiyue · 原生组件',layout:{height:32}}),
+    n('Text','heading',{text:'Haiyue · 组件实验室',layout:{height:32}}),
     n('Text','status',{text:`${s.status} · 点击 ${s.count} 次`,wrap:true,layout:{height:48}}),
     n('Row','toolbar',{layout:{gap:6}},[
       n('Button','increment',{text:'计数',layout:{grow:1}}),n('Button','dialog',{text:'弹窗',layout:{grow:1}}),n('Button','cycles',{text:'50 次清理',layout:{grow:1}}),
     ]),
+    n('Button','catalog-toggle',{text:s.gallery?'返回基础验收':'更多组件 · 复选 / 单选 / 评分 / 展示'}),
     n('Scroll','scroll',{axis:'vertical',layout:{grow:1}},[
-      n('Column','body',{layout:{gap:10}},[
+      n('Column','body',{layout:{gap:10}},s.gallery?[gallery(s)]:[
         n('FormGroup','name',{label:'工程名称（中文输入与选区）',layout:{gap:4}},[
           n('TextInput','title',{value:s.title,placeholder:'输入中文',a11y:{label:'工程名称'},layout:{height:48,padding:[8,8,8,8]}}),
         ]),

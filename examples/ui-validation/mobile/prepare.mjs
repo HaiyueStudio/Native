@@ -18,12 +18,12 @@ const uiPackage=JSON.parse(readFileSync(path.join(ui,'package.json')));
 const sourceVersion=uiPackage.version;
 if(!uiPackage.exports['./core']||!uiPackage.exports['./portable'])throw Error('UI artifact lacks G03 subpaths');
 // Published UI 0.2.0 does NOT contain this API. Give the private copy an unambiguous prerelease identity.
-uiPackage.version='0.2.0-m24.0';uiPackage.private=true;delete uiPackage.scripts;
+uiPackage.version='0.2.0-m24.7';uiPackage.private=true;delete uiPackage.scripts;
 writeFileSync(path.join(ui,'package.json'),JSON.stringify(uiPackage,null,2)+'\n');
 const run=(cmd,args,cwd=root)=>execFileSync(cmd,args,{cwd,stdio:'pipe',env:{...process.env,npm_config_cache:path.join(root,'artifacts/ui-npm-cache')}}).toString();
 run(process.execPath,[path.join(root,'npm/stage-development.mjs')]);
 const native=path.join(root,'artifacts/native-development-package');
-const nativePkg=JSON.parse(readFileSync(path.join(native,'package.json')));nativePkg.version='0.1.4-m24.0';writeFileSync(path.join(native,'package.json'),JSON.stringify(nativePkg,null,2)+'\n');
+const nativePkg=JSON.parse(readFileSync(path.join(native,'package.json')));nativePkg.version='0.1.4-m24.22';writeFileSync(path.join(native,'package.json'),JSON.stringify(nativePkg,null,2)+'\n');
 const uiPack=JSON.parse(run('npm',['pack','--ignore-scripts','--json','--pack-destination',output],ui))[0];
 const nativePack=JSON.parse(run('npm',['pack','--ignore-scripts','--json','--pack-destination',output],native))[0];
 mkdirSync(path.join(host,'node_modules/@haiyue'),{recursive:true});

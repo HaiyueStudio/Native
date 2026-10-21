@@ -261,3 +261,18 @@ test('dialog backdrop ignores taps inside the card and respects dismissible=fals
     }finally{f.dispose();}
   }
 });
+
+test('catalog checkbox/radio/rating use controlled transactions and release option handlers',async()=>{
+  const tree=(checked=false,choice='a',rating=2,options=[{value:'a',label:'A'},{value:'b',label:'B'},{value:'c',label:'C',disabled:true}])=>n('Column','root',{}, {children:[
+    n('Checkbox','check',{text:'Accept',checked}),n('RadioGroup','radio',{value:choice,options}),n('Rate','rate',{value:rating,count:5}),n('Badge','badge',{text:'NEW'}),n('Divider','divider',{text:'Details'})]});
+  const f=fixture(tree());await ns.drain();
+  f.view('/root/check').notify('tap');assert.deepEqual(f.events.filter(e=>e.type==='commit').map(e=>e.value),[true]);assert.match(f.view('/root/check').text,/☐/);
+  const radio=f.view('/root/radio');assert.equal(radio.children[2].accessible,true);assert.equal(radio.children[2].accessibilityState,'disabled');radio.children[1].notify('tap');radio.children[2].notify('tap');
+  const rate=f.view('/root/rate');rate.children[3].notify('tap');
+  assert.deepEqual(f.events.filter(e=>e.type==='commit').map(e=>e.value),[true,'b',4]);assert.equal(rate.children[3].text,'☆');
+  const removed=radio.children[1];f.page.render(tree(true,'a',4,[{value:'a',label:'A'}]));removed.notify('tap');assert.equal(f.events.filter(e=>e.type==='commit').length,3);
+  assert.match(f.view('/root/check').text,/☑/);assert.equal(rate.children[3].text,'★');f.page.setProps('/root/divider','Divider',{});assert.equal(f.view('/root/divider').height,1);f.page.setProps('/root/divider','Divider',{text:'More'});assert.ok(f.view('/root/divider').height>1);f.dispose();removed.notify('tap');
+});
+test('catalog pages cycle through every section and release fifty times',async()=>{
+  for(let i=0;i<50;i++){const state={...initialState(),gallery:true,section:['forms','feedback','patterns'][i%3],expanded:i%2===0};const f=fixture(scenario(state));await ns.drain();f.dispose();}
+});

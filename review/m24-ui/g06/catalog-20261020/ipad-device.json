@@ -1,0 +1,979 @@
+{
+  "schema": 1,
+  "controls": [
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/mode/option-fast",
+      "enabled": true,
+      "accessible": true,
+      "state": "selected",
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/mode/option-balanced",
+      "enabled": true,
+      "accessible": true,
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/mode/option-quality",
+      "enabled": true,
+      "accessible": true,
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/mode/option-locked",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating/option-1",
+      "enabled": true,
+      "accessible": true,
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating/option-2",
+      "enabled": true,
+      "accessible": true,
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating/option-3",
+      "enabled": true,
+      "accessible": true,
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating/option-4",
+      "enabled": true,
+      "accessible": true,
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating/option-5",
+      "enabled": true,
+      "accessible": true,
+      "role": "button",
+      "nativeEnabled": true,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/readonly-rating/option-1",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/readonly-rating/option-2",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/readonly-rating/option-3",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/readonly-rating/option-4",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/readonly-rating/option-5",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/disabled-rating/option-1",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/disabled-rating/option-2",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/disabled-rating/option-3",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/disabled-rating/option-4",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/disabled-rating/option-5",
+      "enabled": false,
+      "accessible": true,
+      "state": "disabled",
+      "role": "button",
+      "nativeEnabled": false,
+      "traits": "0"
+    }
+  ],
+  "platform": "iOS",
+  "osVersion": "26.7.1",
+  "model": "iPad",
+  "time": "2026-10-20T02:06:08.543Z",
+  "state": {
+    "gallery": true,
+    "section": "patterns",
+    "checked": false,
+    "choice": "fast",
+    "rating": 0,
+    "expanded": true,
+    "step": 1,
+    "title": "海月实验室",
+    "source": "中文输入 / emoji 🌙\n选择、复制、粘贴与撤销",
+    "quality": "75",
+    "tab": "settings",
+    "enabled": true,
+    "amount": 50,
+    "dialog": false,
+    "count": 0,
+    "status": "50 次清理通过"
+  },
+  "events": [
+    {
+      "key": "/screen/catalog-toggle",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/catalog-toggle",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/consent",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/consent",
+      "value": false,
+      "reason": "pointer",
+      "transaction": 1,
+      "type": "valueChange"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/consent",
+      "value": false,
+      "reason": "pointer",
+      "transaction": 1,
+      "type": "commit"
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/mode",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "type": "valueChange",
+      "key": "/screen/scroll/body/catalog/sections/forms/mode",
+      "value": "fast",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "type": "commit",
+      "key": "/screen/scroll/body/catalog/sections/forms/mode",
+      "value": "fast",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating",
+      "type": "valueChange",
+      "value": 4,
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/rating",
+      "type": "commit",
+      "value": 4,
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/clear-rating",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/forms/clear-rating",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "type": "valueChange",
+      "key": "/screen/scroll/body/catalog/sections",
+      "value": "feedback",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "type": "commit",
+      "key": "/screen/scroll/body/catalog/sections",
+      "value": "feedback",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "type": "valueChange",
+      "key": "/screen/scroll/body/catalog/sections",
+      "value": "patterns",
+      "reason": "pointer",
+      "transaction": 2
+    },
+    {
+      "type": "commit",
+      "key": "/screen/scroll/body/catalog/sections",
+      "value": "patterns",
+      "reason": "pointer",
+      "transaction": 2
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/patterns/expand",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/patterns/expand",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/patterns/steps/step-1",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/scroll/body/catalog/sections/patterns/steps/step-1",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    },
+    {
+      "key": "/screen/toolbar/cycles",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/toolbar/cycles",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    }
+  ],
+  "diagnostics": [
+    {
+      "cycle": 0,
+      "commits": 11,
+      "created": 79,
+      "updated": 17,
+      "moved": 0,
+      "removed": 79,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 1,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 2,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 3,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 4,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 5,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 6,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 7,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 8,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 9,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 10,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 11,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 12,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 13,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 14,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 15,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 16,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 17,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 18,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 19,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 20,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 21,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 22,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 23,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 24,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 25,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 26,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 27,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 28,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 29,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 30,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 31,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 32,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 33,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 34,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 35,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 36,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 37,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 38,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 39,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 40,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 41,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 42,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 43,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 44,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 45,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 46,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 47,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 48,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    },
+    {
+      "cycle": 49,
+      "commits": 1,
+      "created": 57,
+      "updated": 0,
+      "moved": 0,
+      "removed": 57,
+      "activeListeners": 0,
+      "activeNodes": 0,
+      "activeResources": 0,
+      "activeTimers": 0
+    }
+  ],
+  "platforms": 0,
+  "renderer": {
+    "commits": 2,
+    "created": 57,
+    "updated": 1,
+    "moved": 0,
+    "removed": 0,
+    "activeListeners": 223,
+    "activeNodes": 57,
+    "activeResources": 0,
+    "activeTimers": 0
+  },
+  "keyboard": [
+    {
+      "key": "/screen/scroll/body/name/title",
+      "accessory": false,
+      "inWindow": false
+    },
+    {
+      "key": "/screen/scroll/body/source",
+      "accessory": false,
+      "inWindow": false
+    }
+  ]
+}

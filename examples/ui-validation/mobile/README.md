@@ -45,3 +45,14 @@ Record each device, OS, package hash, steps and outcome. Do not infer passes fro
 `packages.json` binds both tarballs and the application build inputs to SHA-256 identities. Verification rejects newly added, removed or changed adapter/app inputs until the consumer is prepared again. Device results must match both package hashes and the application identity.
 
 `npm run verify:ui -- --profile mobile` intentionally exits 2 while any device's current package is pending. A screenshot, a successful build, a mock IME event or a renderer resource counter alone cannot make that profile pass. On 2026-10-16 Android testing was paused for ShaderLab, then explicitly resumed by the user. Current device results are recorded in the G06 review.
+
+## 扩展组件实验室（2026-10-20）
+
+沿用独立的「Haiyue UI」应用（`org.haiyue.uivalidation`），无需 Engine。首页点击“更多组件”进入目录；“返回基础验收”保留原来的输入、弹窗、主题与资源生命周期场景。
+
+- 表单：Checkbox、RadioGroup、Rate，覆盖受控值、禁用选项、只读评分与重置。
+- 展示：Badge、Divider、忙碌按钮、错误表单。
+- 组合：折叠内容、步骤导航、操作按钮组；状态在分类切换后保留。
+- 50 次清理按钮同样支持目录页面。新增 XCTest `testCatalog` 覆盖目录交互、横竖屏、后台恢复与清理。
+
+本次私有开发包标识为 UI `0.2.0-m24.7` / Native `0.1.4-m24.22`，以 `artifacts/ui-validation/packages.json` 中 SHA-256 为准；未发布 npm。Web 全量库的高级能力并非都已原生化：日期/时间、级联选择、树、表格、虚拟列表、抽屉、通知、引导、拖拽和悬停等仍需各自适配，不能用普通文本示例视作完成。

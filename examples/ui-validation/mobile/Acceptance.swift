@@ -8,6 +8,45 @@ final class Acceptance: XCTestCase {
         let tree = XCTAttachment(string: app.debugDescription)
         tree.name = name + "-accessibility-tree"; tree.lifetime = .keepAlways; add(tree)
     }
+    func testCatalog() {
+        continueAfterFailure = false
+        XCUIDevice.shared.orientation = .portrait
+        app.launch()
+        let toggle = app.buttons["/screen/catalog-toggle"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 30)); toggle.tap()
+        let prefix = "/screen/scroll/body/catalog/sections/"
+        let check = app.descendants(matching: .any)[prefix + "forms/consent"].firstMatch
+        XCTAssertTrue(check.waitForExistence(timeout: 10)); check.tap()
+        app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "快速")).firstMatch.tap()
+        XCTAssertTrue(app.staticTexts[prefix + "forms/choice"].label.contains("fast"))
+        app.buttons[prefix + "forms/rating/option-4"].tap()
+        XCTAssertTrue(app.staticTexts[prefix + "forms/rating-value"].label.contains("4 / 5"))
+        capture("catalog-disabled-state")
+        XCTAssertFalse(app.buttons[prefix + "forms/mode/option-locked"].isEnabled)
+        XCTAssertFalse(app.buttons[prefix + "forms/readonly-rating/option-4"].isEnabled)
+        app.buttons[prefix + "forms/clear-rating"].tap()
+        XCTAssertTrue(app.staticTexts[prefix + "forms/rating-value"].label.contains("0 / 5"))
+        capture("catalog-01-forms")
+        app.buttons.matching(NSPredicate(format: "label == %@", "展示")).firstMatch.tap()
+        XCTAssertTrue(app.staticTexts[prefix + "feedback/badges/new"].waitForExistence(timeout: 5))
+        capture("catalog-02-feedback")
+        app.buttons.matching(NSPredicate(format: "label == %@", "组合")).firstMatch.tap()
+        app.buttons[prefix + "patterns/expand"].tap()
+        XCTAssertTrue(app.staticTexts[prefix + "patterns/details"].exists)
+        app.buttons[prefix + "patterns/steps/step-1"].tap()
+        XCTAssertTrue(app.staticTexts[prefix + "patterns/current-step"].label.contains("第 2 步"))
+        capture("catalog-03-patterns")
+        XCUIDevice.shared.orientation = .landscapeLeft; sleep(2)
+        capture("catalog-04-landscape")
+        XCUIDevice.shared.press(.home); sleep(1); app.activate(); sleep(1)
+        XCTAssertTrue(app.buttons[prefix + "patterns/expand"].exists)
+        XCUIDevice.shared.orientation = .portrait
+        app.buttons["/screen/toolbar/cycles"].tap()
+        let finished = NSPredicate(format: "label CONTAINS %@", "50 次清理通过")
+        expectation(for: finished, evaluatedWith: app.staticTexts["/screen/status"])
+        waitForExpectations(timeout: 40)
+        capture("catalog-05-fifty-cycles")
+    }
     func testControls() {
         continueAfterFailure = false
         XCUIDevice.shared.orientation = .portrait

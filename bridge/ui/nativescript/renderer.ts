@@ -188,7 +188,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
     }
     // Android derives contentDescription synchronously from label + current text.
     // Apply accessibility after text so it cannot retain the previous render's value.
-    if(layoutChanged||previous.props.a11y?.error!==node.props.a11y?.error)this.#style(e);
+    if(layoutChanged||previous.props.a11y?.error!==node.props.a11y?.error||(node.kind==='Divider'&&previous.kind==='Divider'&&previous.props.text!==node.props.text))this.#style(e);
     this.#accessibility(e);
     if(e.view.isLoaded)this.#applyNative(e);
   }
@@ -196,7 +196,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
     const {view,node}=e,p=node.props,l=p.layout??{},theme=this.#theme;
     // NativeScript property setters cache until initNativeView; never write private nativeView fields.
     const sizing=e.dialogCard??view;
-    sizing.width=l.width??(e.dialogCard?'100%':'auto');sizing.height=l.height??'auto';sizing.minWidth=l.minWidth??0;sizing.minHeight=l.minHeight??(['Button','Select','Toggle','TextInput','Slider'].includes(node.kind)?44:0);
+    sizing.width=l.width??(e.dialogCard?'100%':'auto');sizing.height=l.height??'auto';sizing.minWidth=l.minWidth??0;sizing.minHeight=l.minHeight??(['Button','Select','Toggle','Checkbox','TextInput','Slider'].includes(node.kind)?44:0);
     sizing.maxWidth=l.maxWidth??(e.dialogCard?460:'auto');if(!e.dialogCard)sizing.maxHeight=l.maxHeight??'auto';
     // Page owns the native modal controller; its content owns padding (Page does not lay it out).
     const padding=l.padding??(node.kind==='Dialog'?[20,20,20,20]:[0,0,0,0]);
@@ -233,14 +233,18 @@ export class HYNativeScriptRenderer implements HYRenderer {
     if(e.label){e.label.fontSize=theme.fontSize;e.label.color=new Color(theme.color.text);e.label.iosAccessibilityAdjustsFontSize=this.#environment.fontScale===undefined;}
     if(e.error){e.error.fontSize=theme.fontSize;e.error.color=new Color(theme.color.danger);e.error.accessibilityLiveRegion='polite';}
     if(node.kind==='Dialog'){view.backgroundColor=new Color('rgba(0,0,0,0.72)');e.dialogCard!.backgroundColor=new Color(theme.color.surface);e.dialogCard!.borderColor=new Color(theme.color.border);e.dialogCard!.borderWidth=1;e.dialogCard!.borderRadius=theme.radius;e.label!.fontSize=theme.fontSize+6;e.label!.marginBottom=16;}
+    if(node.kind==='Badge'){view.backgroundColor=new Color(theme.color.accent);view.borderRadius=theme.radius;view.style.paddingLeft=8;view.style.paddingRight=8;view.style.color=new Color(theme.color.surface);}
+    if(node.kind==='Divider'){view.borderBottomWidth=1;view.borderColor=new Color(theme.color.border);view.style.color=new Color(theme.color.muted);if(l.height===undefined)view.height=node.props.text?theme.lineHeight+8:1;}
+    if(node.kind==='RadioGroup'||node.kind==='Rate')e.control!.update(node,0);
+    if(node.kind==='Checkbox'){view.accessibilityRole='checkbox' as any;view.borderWidth=0;view.backgroundColor=new Color('transparent');(view as Button).textAlignment='left';view.opacity=node.props.disabled ? .45 : 1;}
     e.styled=true;
   }
   #accessibility(e:Entry):void {
     const {view,node}=e,p=node.props,a=p.a11y;
     const parent=e.parent?this.#nodes.get(e.parent):undefined;
-    const label=a?.label??(parent?.node.kind==='FormGroup'?parent.node.props.label:'text'in p?p.text:'resource'in p?p.resource.alt:'');
+    const label=a?.label??(parent?.node.kind==='FormGroup'?parent.node.props.label:'text'in p?(p.text??''):'resource'in p?p.resource.alt:'');
     const hint=[a?.description,a?.error,...(parent?.node.kind==='FormGroup'?[parent.node.props.error]:[])].filter(Boolean).join('. ');
-    const role=a?.role?accessibilityRoles[a.role]:undefined;
+    const role=a?.role?accessibilityRoles[a.role]:node.kind==='Checkbox'?'checkbox':undefined;
     const state='disabled'in p&&p.disabled?'disabled':'checked'in p?(p.checked?'checked':'unchecked'):undefined;
     // Leave editable/secure text to the OS; an empty override hides UIKit's actual value.
     const hasValue='value'in p&&node.kind!=='TextInput'&&node.kind!=='TextArea';
