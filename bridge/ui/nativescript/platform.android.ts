@@ -1,4 +1,6 @@
-import { Application, Utils, type View, type ImageSource } from '@nativescript/core';
+import { HY_ICONS } from '@haiyue/ui/portable';
+import type { HYIconName } from '@haiyue/ui/core';
+import { Application, Color, Utils, type View, type ImageSource } from '@nativescript/core';
 import type { HYNativeTextHandle, HYTextObservation } from './types';
 
 export function assertMainThread(): void {
@@ -80,3 +82,32 @@ export function observeKeyboard(view: View, changed: (height: number) => void): 
 
 /** Keep the presenting page visible beneath the portable dialog backdrop. */
 export function modalPresentationOptions(): Partial<import('@nativescript/core').ShowModalOptions> { return {}; }
+
+/** Native drawables share the Web vector paths and keep the OS Button hit target. */
+export function buttonAdornment(view: View, icon: HYIconName | undefined, busy: boolean, color: string): () => void {
+  const button = view.android as android.widget.Button;
+  if (!button) return () => {};
+  const size = Math.round(Utils.layout.toDevicePixels(20));
+  let drawable: android.graphics.drawable.Drawable | undefined;
+  let spinner: android.graphics.drawable.Animatable | undefined;
+  if (busy) {
+    drawable = new android.widget.ProgressBar(button.getContext()).getIndeterminateDrawable().mutate();
+    drawable.setTint(new Color(color).android);spinner = drawable as unknown as android.graphics.drawable.Animatable;
+  } else if (icon) {
+    const bitmap = android.graphics.Bitmap.createBitmap(size,size,android.graphics.Bitmap.Config.ARGB_8888);
+    const canvas = new android.graphics.Canvas(bitmap), paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+    paint.setColor(new Color(color).android);paint.setStyle(android.graphics.Paint.Style.STROKE);paint.setStrokeWidth(size*1.8/24);paint.setStrokeCap(android.graphics.Paint.Cap.ROUND);paint.setStrokeJoin(android.graphics.Paint.Join.ROUND);
+    for (const points of HY_ICONS[icon]) {
+      const path = new android.graphics.Path();
+      points.forEach(([x,y],index) => index ? path.lineTo(x*size/24,y*size/24) : path.moveTo(x*size/24,y*size/24));canvas.drawPath(path,paint);
+    }
+    drawable = new android.graphics.drawable.BitmapDrawable(button.getResources(),bitmap);
+  }
+  drawable?.setBounds(0,0,size,size);
+  // Foreground is centered for icon-only controls; labeled controls use a start drawable.
+  if (!(view as View & {text:string}).text) { button.setForeground(drawable ?? null!);button.setForegroundGravity(android.view.Gravity.CENTER); }
+  else if(icon==='chevronDown')button.setCompoundDrawables(null!,null!,drawable ?? null!,null!);
+  else button.setCompoundDrawables(drawable ?? null!,null!,null!,null!);
+  drawable?.setCallback(button);spinner?.start();
+  return () => { spinner?.stop();button.setForeground(null!);button.setCompoundDrawables(null!,null!,null!,null!);drawable?.setCallback(null!); };
+}

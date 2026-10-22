@@ -139,7 +139,7 @@ test('native Select cancel/reopen, stale resolution and option choice preserve c
   const options=[{value:'a',label:'A'},{value:'b',label:'B'}],tree=value=>n('Select','choice',{value,options});
   const f=fixture(tree('a'),(e,page)=>{if(e.type==='commit')page.render(tree(e.value));});await ns.drain();const select=f.view('/choice');
   select.notify('tap');assert.ok(select.modal);select.modal.closeModal();await ns.drain();assert.equal(f.events.filter(e=>e.type==='commit').length,0);
-  select.notify('tap');select.modal.content.children[0].content.children[1].notify('tap');await ns.drain();assert.equal(select.modal,undefined);assert.equal(select.text,'B');assert.equal(f.events.filter(e=>e.type==='commit').length,1);
+  select.notify('tap');select.modal.content.children[0].content.children[2].notify('tap');await ns.drain();assert.equal(select.modal,undefined);assert.equal(select.text,'B');assert.equal(f.events.filter(e=>e.type==='commit').length,1);
   select.notify('tap');f.page.render(tree('a'));await ns.drain();assert.equal(select.modal,undefined);assert.equal(select.text,'A');f.dispose();
 });
 test('optional mobile entry does not pollute root or system exports',()=>{
@@ -246,9 +246,9 @@ test('theme owns button geometry and picker colours after an environment change'
     const picker=f.view('/screen/scale');picker.notify('tap');await ns.drain();
     assert.ok(picker.modal,'select opens a themed native modal');
     const panel=picker.modal.content.children[0].content;assert.equal(panel.backgroundColor.value,theme.color.surface);assert.equal(panel.children.at(-1).text,'取消');
-    assert.equal(panel.children[0].backgroundColor.value,theme.color.accent);
-    assert.equal(panel.children[1].backgroundColor.value,theme.color.input);
-    assert.equal(panel.children[1].color.value,theme.color.text);
+    assert.equal(panel.children[1].backgroundColor.value,theme.color.accent);
+    assert.equal(panel.children[2].backgroundColor.value,'transparent');
+    assert.equal(panel.children[2].color.value,theme.color.text);
   }finally{f.dispose();}
 });
 
@@ -275,4 +275,75 @@ test('catalog checkbox/radio/rating use controlled transactions and release opti
 });
 test('catalog pages cycle through every section and release fifty times',async()=>{
   for(let i=0;i<50;i++){const state={...initialState(),gallery:true,section:['forms','feedback','patterns'][i%3],expanded:i%2===0};const f=fixture(scenario(state));await ns.drain();f.dispose();}
+});
+
+test('vector button variants preserve the native Button while busy and after resume',async()=>{
+ const theme={color:{text:'#eeeeee',muted:'#999999',surface:'#151515',input:'#222222',accent:'#7777ff',danger:'#ff5555',border:'#444444',focus:'#9999ff',selected:'#5555bb',pressed:'#333355',elevated:'#292929',onAccent:'#ffffff'},fontSize:14,lineHeight:20,gap:8,radius:8,typography:{title:{fontSize:24,lineHeight:32,weight:'bold'},caption:{fontSize:12,lineHeight:18}}};
+ const tree=(busy=false,variant='primary')=>n('Column','root',{}, {children:[n('Button','save',{text:'',icon:'save',variant,busy,a11y:{label:'Save'}}),n('Text','title',{text:'Title',textStyle:'title'}),n('Text','caption',{text:'Hint',textStyle:'caption',tone:'muted'})]});
+ const f=fixture(tree(),undefined,{environment:{theme}});await ns.drain();
+ try {
+  const button=f.view('/root/save');assert.ok(button instanceof ns.Button);assert.equal(button.minHeight,44);assert.equal(button.adornment.icon,'save');assert.equal(button.backgroundColor.value,theme.color.accent);
+  assert.equal(f.view('/root/title').fontSize,24);assert.equal(f.view('/root/caption').color.value,theme.color.muted);
+  f.page.render(tree(true));assert.equal(f.view('/root/save'),button);assert.equal(button.adornment.busy,true);button.notify('tap');assert.equal(f.events.filter(e=>e.type==='activate').length,0);
+  f.page.suspend();assert.equal(button.adornment,undefined);f.page.resume();assert.equal(button.adornment.busy,true);
+  f.page.render(tree(false,'quiet'));assert.equal(button.backgroundColor.value,'transparent');assert.equal(button.borderWidth,0);button.notify('tap');assert.equal(f.events.filter(e=>e.type==='activate').length,1);
+  f.renderer.setEnvironment({theme,fontScale:1.5});assert.equal(f.view('/root/title').fontSize,36);assert.equal(button.fontSize,21);
+ }finally{f.dispose();}
+});
+test('Tabs have distinct segmented and underline selection and keep disabled options inert',async()=>{
+ const options=[{value:'a',label:'A'},{value:'b',label:'B',disabled:true}],tree=variant=>n('Tabs','tabs',{value:'a',options,variant});
+ const f=fixture(tree('segmented'));await ns.drain();
+ try {const row=f.view('/tabs').children[0],selected=row.children[0];assert.equal(selected.accessibilityState,'selected');assert.equal(selected.borderBottomWidth,0);assert.notEqual(selected.backgroundColor.value,'transparent');row.children[1].notify('tap');assert.equal(f.events.filter(e=>e.type==='commit').length,0);
+  f.page.render(tree('underline'));assert.equal(row.children[0],selected);assert.equal(selected.borderBottomWidth,2);assert.equal(selected.backgroundColor.value,'transparent');
+ }finally{f.dispose();}
+});
+test('Select uses anchored popovers on wide surfaces and bottom sheets on narrow ones',async()=>{
+ const f=fixture(n('Select','choice',{value:'a',options:[{value:'a',label:'A'}],a11y:{label:'Language'}}));await ns.drain();
+ try{const choice=f.view('/choice');choice.notify('tap');const overlay=choice.modal.content,card=overlay.children[0];overlay.getActualSize=()=>({width:1000,height:800});overlay.notify('layoutChanged');await ns.drain();assert.equal(card.verticalAlignment,'top');assert.equal(card.width,300);
+  overlay.getActualSize=()=>({width:390,height:700});overlay.notify('layoutChanged');await ns.drain();assert.equal(card.verticalAlignment,'bottom');assert.equal(card.width,'100%');
+ }finally{f.dispose();}
+});
+
+test('Select waits until after the native layout pass and cancels pending positioning on disposal',async()=>{
+ const tree=n('Select','choice',{value:'a',options:[{value:'a',label:'A'}]});
+ const f=fixture(tree);await ns.drain();const choice=f.view('/choice');choice.notify('tap');const overlay=choice.modal.content,card=overlay.children[0];let bounds={width:0,height:0};overlay.getActualSize=()=>bounds;
+ overlay.notify('layoutChanged');assert.equal(card.verticalAlignment,'middle');bounds={width:1000,height:800};await ns.drain();assert.equal(card.verticalAlignment,'top');assert.equal(card.width,300);
+ bounds={width:390,height:700};overlay.notify('layoutChanged');f.dispose();await ns.drain();assert.equal(card.verticalAlignment,'top','disposed modal must not run its queued layout');
+});
+
+const {hyShowNativeOverlay}=loadTS('bridge/ui/nativescript/overlay.ts');
+const {HYNativeFormField}=loadTS('bridge/ui/nativescript/form.ts');
+const {HYNativeCardGrid,HYNativeWorkspace}=loadTS('bridge/ui/nativescript/responsive.ts');
+const p1Theme={color:{text:'#eeeeee',muted:'#999999',surface:'#151515',input:'#222222',accent:'#7777ff',danger:'#ff5555',border:'#444444',focus:'#9999ff'},fontSize:14,lineHeight:20,gap:8,radius:8};
+test('common dialog/drawer shell pins actions, dismisses outside, waits for native close and releases keyboard observers',async()=>{
+ for(const kind of ['dialog','drawer','sheet']){
+  const owner=new ns.Page(),anchor=new ns.Button(),content=new ns.StackLayout(),footer=new ns.Button();owner.load();anchor.load();let releases=0;
+  const handle=hyShowNativeOverlay(owner,{title:'Settings',content,footer,kind,theme:p1Theme,returnFocus:anchor,onClosed:()=>releases++});
+  const overlay=handle.page.content,card=overlay.children[0];overlay.getActualSize=()=>({width:1180,height:760});overlay.notify('layoutChanged');await ns.drain();
+  assert.equal(card.width,kind==='drawer'?590:560);assert.equal(card.horizontalAlignment,kind==='drawer'?'right':'center');assert.equal(card.height,kind==='drawer'?760:620);assert.equal(overlay.iosOverflowSafeArea,false);assert.equal(card.content.iosOverflowSafeArea,false);assert.equal(card.content.height,card.height);assert.equal(card.content.children[1].content,content);assert.equal(card.content.children[2].children[0],footer);
+  handle.setTitle('Updated');assert.equal(handle.page.accessibilityLabel,'Updated');overlay.notify('tap',{getX:()=>1000,getY:()=>700});await handle.closed;assert.equal(releases,1);handle.close();assert.equal(releases,1);assert.equal(anchor.focused,true);assert.equal(ns.bindings.size,0);
+ }
+});
+test('non-dismissible shell blocks backdrop and owner navigation cancels; custom bodies retain their native view',async()=>{
+ const owner=new ns.Page(),body=new ns.GridLayout();owner.load();const handle=hyShowNativeOverlay(owner,{title:'Source',content:body,scrollable:false,dismissible:false,theme:p1Theme});
+ const overlay=handle.page.content,card=overlay.children[0];overlay.notify('tap',{getX:()=>1000,getY:()=>700});assert.equal(owner.modal,handle.page);assert.equal(card.content.children[1],body);owner.notify('navigatingFrom');await handle.closed;assert.equal(owner.modal,undefined);assert.equal(ns.bindings.size,0);
+});
+test('form metadata updates preserve composing text and expose help and errors to accessibility',()=>{
+ const input=new ns.TextField();input.text='ni';input.composing=true;const field=new HYNativeFormField(input,{label:'Name',description:'Visible help'},p1Theme);
+ assert.equal(input.text,'ni');field.update({label:'作品名称',description:'帮助',error:'不能为空'});assert.equal(input.text,'ni');assert.equal(input.composing,true);assert.equal(input.accessibilityHint,'帮助. 不能为空');assert.equal(input.borderColor.value,p1Theme.color.danger);
+ field.update({label:'Name'});assert.equal(input.accessibilityHint,'');assert.equal(input.borderColor.value,p1Theme.color.border);
+ const toggle=new ns.Switch();toggle.checked=true;const inline=new HYNativeFormField(toggle,{label:'MSAA',inline:true},p1Theme);assert.equal(toggle.checked,true);assert.equal(toggle.minHeight,0);assert.equal(inline.rows,'44,auto,auto');assert.equal(toggle.backgroundColor,undefined);assert.equal(toggle.column,1);assert.equal(inline.children[2].columnSpan,2);
+});
+test('responsive card grid keeps card identity and workspace keeps editor composition through resizing and unloading',async()=>{
+ const grid=new HYNativeCardGrid({minCardWidth:260,maxColumns:3,gap:12}),cards=[new ns.Button(),new ns.Button(),new ns.Button(),new ns.Button()];let width=1180;grid.getActualSize=()=>({width,height:760});grid.setItems(cards);grid.load();await ns.drain();assert.equal(grid.columns,'*,12,*,12,*');assert.equal(cards[3].row,2);
+ width=390;grid.notify('layoutChanged');await ns.drain();assert.equal(grid.columns,'*');assert.equal(grid.children[0],cards[0]);assert.equal(cards[3].row,6);grid.unload();
+ const workspace=new HYNativeWorkspace(),reference=new ns.ScrollView(),editor=new ns.TextView();editor.text='marked';editor.composing=true;workspace.getActualSize=()=>({width,height:760});workspace.setPanes(reference,editor);workspace.load();await ns.drain();assert.equal(editor.row,1);workspace.toggleReference();assert.equal(reference.visibility,'collapse');width=1180;workspace.notify('layoutChanged');await ns.drain();assert.equal(editor.column,0);workspace.toggleReference();assert.equal(editor.column,2);assert.equal(editor.row,0);assert.equal(workspace.children[1],editor);assert.equal(editor.text,'marked');assert.equal(editor.composing,true);workspace.unload();assert.equal(ns.bindings.size,0);
+});
+test('portable FormGroup description follows the control without replacing marked text',async()=>{
+ const tree=description=>n('FormGroup','group',{label:'Name',description},{children:[n('TextInput','input',{value:'initial'})]});const f=fixture(tree('Help'));await ns.drain();const input=f.view('/group/input');input.composing=true;input.text='ni';input.notify('nativeInput');f.page.render(tree('Updated help'));assert.equal(input.text,'ni');assert.match(input.accessibilityHint,/Updated help/);f.dispose();
+});
+
+test('keyboard resizing keeps dialog actions reachable and compact workspace clears the inset before returning',async()=>{
+ const owner=new ns.Page();owner.load();const handle=hyShowNativeOverlay(owner,{title:'Form',content:new ns.StackLayout(),theme:p1Theme});const overlay=handle.page.content,card=overlay.children[0];overlay.getActualSize=()=>({width:820,height:760});overlay.notify('layoutChanged');await ns.drain();ns.keyboardCallbacks.get(overlay)(300);await ns.drain();assert.equal(card.maxHeight,428);assert.equal(card.verticalAlignment,'top');handle.close();await handle.closed;
+ const workspace=new HYNativeWorkspace();workspace.getActualSize=()=>({width:390,height:760});workspace.setPanes(new ns.ScrollView(),new ns.TextView());workspace.load();ns.keyboardCallbacks.get(workspace)(300);await ns.drain();assert.equal(workspace.paddingBottom,300);workspace.unload();assert.equal(workspace.paddingBottom,0);workspace.load();await ns.drain();assert.equal(workspace.paddingBottom,0);workspace.unload();assert.equal(ns.bindings.size,0);
 });

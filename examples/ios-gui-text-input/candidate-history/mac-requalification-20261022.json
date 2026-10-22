@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-22",
+  "previousCandidateId": "8c4587ae58b3b036ddd9a299ccb682817227a02b1dc7c693dbaf836500b7a291",
+  "sourceRevisions": {
+    "Native": "4800795b31d8109542352f03924c40c1c0cbb374",
+    "Engine": "2886aa7d7aed29870ccc5a7bade07026aeb73930"
+  },
+  "changes": [
+    "Text marked utf8-lf canonicalizes CRLF only; binary members remain byte exact.",
+    "Retain post-freeze Native host/runtime error-owner release fixes from merge 4800795.",
+    "Rebuild stale browser and Engine package outputs from current source; no Engine source changes."
+  ],
+  "browserOriginalHashesRestored": true,
+  "engineTarballUnchanged": true,
+  "enginePackageMembersVerified": 529,
+  "nativeTests": {
+    "passed": 170,
+    "failed": 0,
+    "skipped": 0
+  },
+  "staticCheck": {
+    "status": "passed",
+    "diagnostics": 0,
+    "typeInputs": 707
+  },
+  "evidence": {
+    "ios-static-current-engine.json": {
+      "path": "examples/ios-gui-text-input/artifacts/consistency-repair/ios-static-current-engine.json",
+      "sha256": "44cf9b2888cbfd5613da05c24c16331817e63a5dcf207b8f26767cef6de0a4f1"
+    },
+    "native-tests-after-build.log": {
+      "path": "examples/ios-gui-text-input/artifacts/consistency-repair/native-tests-after-build.log",
+      "sha256": "ba86baaf9df5315dd39ecb7d240bc0bf1f2453f23157e361ff89dd5a652c519b"
+    },
+    "native-tests-after-build-result.json": {
+      "path": "examples/ios-gui-text-input/artifacts/consistency-repair/native-tests-after-build-result.json",
+      "sha256": "020be7c5e925363fbd787519c3b443ab759f4e80602f17c7ed508db8db0e8015"
+    }
+  },
+  "deviceAcceptance": "pending",
+  "qualification": "Source/package consistency and automated checks only; no Xcode build or physical iPhone acceptance."
+}

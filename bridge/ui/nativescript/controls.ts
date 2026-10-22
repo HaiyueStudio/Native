@@ -1,8 +1,10 @@
+import { HYNativeButton } from './button';
+import { hyPickNativeOption } from './selection';
 import {createModalSurface} from './modal';
 import { same } from './data';
 import { Button, Color, FlexboxLayout, GridLayout, Label, ScrollView, Slider, StackLayout, Switch, TextField, TextView, View } from '@nativescript/core';
 import { HYButtonController, HYSelectionController, HYSliderController, HYTextController, HYToggleController } from '@haiyue/ui/core';
-import type { HYNode, HYReason, HYUIEvent, HYTheme } from '@haiyue/ui/core';
+import type { HYNode, HYReason, HYUIEvent, HYTheme, HYSelectionProps } from '@haiyue/ui/core';
 import type { HYNativeTextHandle } from './types';
 import { isAccessibilityInteraction, observeText, modalPresentationOptions } from './platform';
 
@@ -20,6 +22,7 @@ export interface ControlContext {
   listen(view: View, name: string, callback: (event: any) => void): () => void;
   error(error: Error): void;
 }
+const selectionProps=({value,options,disabled}:HYSelectionProps):HYSelectionProps=>({value,options,...(disabled===undefined?{}:{disabled})});
 const reason = (): HYReason => isAccessibilityInteraction() ? 'accessibility' : 'pointer';
 
 
@@ -77,9 +80,9 @@ export function createControl(initial: HYNode, context: ControlContext, revision
     return base(view,next=>{if(next.kind!=='RadioGroup'&&next.kind!=='Rate')return;node=next;if(next.kind==='RadioGroup')selection!.update(next.props);update();},()=>{selection?.dispose();for(const entry of buttons.values())entry.off();buttons.clear();});
   }
   if (initial.kind === 'Button') {
-    const view = new Button(), controller = new HYButtonController(initial.key, initial.props, context.emit);
+    const view = new HYNativeButton(initial.props,context.theme(),false), controller = new HYButtonController(initial.key, initial.props, context.emit);
     listen(view, 'tap', () => { focus(); controller.activate(reason()); });
-    return base(view, node => { if (node.kind !== 'Button') return; controller.update(node.props); view.text = node.props.busy ? `${node.props.text}…` : node.props.text; view.isEnabled = !node.props.disabled && !node.props.busy; }, () => controller.dispose());
+    return base(view, node => { if (node.kind !== 'Button') return; controller.update(node.props); view.setPresentation(node.props,context.theme()); }, () => {view.setPresentationActive(false);controller.dispose();}, {suspend(){view.setPresentationActive(false);},loaded(){view.setPresentationActive(true);}});
   }
   if (initial.kind === 'Toggle') {
     const view = new Switch(), controller = new HYToggleController(initial.key, initial.props, context.emit);
@@ -147,13 +150,13 @@ export function createControl(initial: HYNode, context: ControlContext, revision
     }, () => controller.dispose(), {suspend() { tracking = false; controller.cancel(); show(); }});
   }
   if (initial.kind === 'Select' || initial.kind === 'Tabs') {
-    const view = initial.kind === 'Tabs' ? new FlexboxLayout() : new Button();
-    const controller = new HYSelectionController(initial.key, initial.props, context.emit);
-    let props = initial.props, picker: StackLayout | undefined, cancelPicker: (() => void) | undefined;
+    const view = initial.kind === 'Tabs' ? new FlexboxLayout() : new HYNativeButton({text:'',icon:'chevronDown'},context.theme(),false);
+    const controller = new HYSelectionController(initial.key, selectionProps(initial.props), context.emit);
+    let props = initial.props, picker: boolean = false, cancelPicker: (() => void) | undefined;
     const tabs = new Map<string, {view: Button; off: () => void}>();
     if (view instanceof FlexboxLayout) { view.flexDirection = 'row'; view.flexWrap = 'wrap'; view.gap = 4; }
     const render = () => write(() => {
-      if (view instanceof Button) { view.text = props.options.find(o => o.value === props.value)?.label ?? ''; view.isEnabled = !props.disabled; return; }
+      if (view instanceof Button) { (view as HYNativeButton).setPresentation({text:props.options.find(o => o.value === props.value)?.label??'',icon:'chevronDown',disabled:!!props.disabled},context.theme()); return; }
       const wanted = new Set(props.options.map(o => o.value));
       for (const [key, tab] of tabs) if (!wanted.has(key)) { view.removeChild(tab.view); tab.off(); tabs.delete(key); }
       props.options.forEach((option, index) => {
@@ -166,7 +169,12 @@ export function createControl(initial: HYNode, context: ControlContext, revision
         if (view.getChildIndex(tab.view) !== index) { if (tab.view.parent) view.removeChild(tab.view); view.insertChild(tab.view, index); }
         tab.view.text = option.label; tab.view.isEnabled = !props.disabled && !option.disabled;
         tab.view.accessibilityLabel = option.label; tab.view.accessibilityState = option.value === props.value ? 'selected' : undefined;
-        tab.view.opacity = option.value === props.value ? 1 : 0.65;
+        const selected=option.value===props.value,theme=context.theme(),segmented='variant' in props&&props.variant==='segmented';
+        tab.view.margin=0;tab.view.paddingLeft=14;tab.view.paddingRight=14;tab.view.fontSize=theme.fontSize;tab.view.textTransform='none';
+        tab.view.color=new Color(selected?theme.color.text:theme.color.muted);tab.view.backgroundColor=new Color(selected&&segmented?(theme.color.selected??theme.color.accent):'transparent');
+        tab.view.borderWidth=0;tab.view.borderBottomWidth=selected&&!segmented?2:0;tab.view.borderColor=new Color(theme.color.accent);tab.view.borderRadius=segmented?theme.radius:0;
+        tab.view.opacity=tab.view.isEnabled?1:.45;tab.view.accessibilityRole='button';tab.view.accessibilityIdentifier=`${initial.key}/option-${encodeURIComponent(option.value)}`;
+        if(view instanceof FlexboxLayout){view.backgroundColor=new Color(segmented?theme.color.input:'transparent');view.borderRadius=theme.radius;view.padding=segmented?4:0;}
       });
     });
     const close = () => { controller.cancel(); cancelPicker?.(); };
@@ -174,39 +182,16 @@ export function createControl(initial: HYNode, context: ControlContext, revision
       if (picker || !view.isLoaded) return;
       focus();
       const choices = props.options;
-      void controller.pick(() => new Promise<string | null>(resolve => {
-        const panel = new StackLayout(); picker = panel; panel.padding = 20; const theme = context.theme(); panel.backgroundColor = new Color(theme.color.surface); panel.accessibilityLabel = initial.props.a11y?.label ?? 'Select';
-        const surfaceCleanup:(()=>void)[]=[];
-        const modal=createModalSurface(panel,(target,name,callback)=>{const off=context.listen(target,name,callback);surfaceCleanup.push(off);return off;},()=>finish(null));
-        modal.card.backgroundColor=new Color(theme.color.surface);modal.card.borderColor=new Color(theme.color.border);modal.card.borderWidth=1;modal.card.borderRadius=theme.radius;
-        let settled = false, closing = false, selected: string | null = null;
-        const cleanup: (() => void)[] = [];
-        const settle = () => {
-          if (settled) return; settled = true;
-          cleanup.forEach(off => off());surfaceCleanup.forEach(off=>off()); picker = undefined; cancelPicker = undefined;
-          resolve(selected);
-        };
-        const finish = (value: string | null) => {
-          if (closing || settled) return;
-          closing = true; selected = value; cleanup.forEach(off => off());
-          // Do not release the busy state until native dismissal completes. UIKit still owns the sheet.
-          modal.page.closeModal();
-        };
-        cancelPicker = () => finish(null);
-        for (const option of [...choices, {value: null, label: context.selectionCancelLabel ?? 'Cancel', disabled: false}]) {
-          const button = new Button(); button.text = option.label; button.isEnabled = !option.disabled;
-          button.minHeight = 44; button.margin = 4; button.padding = 12; button.fontSize = theme.fontSize;
-          button.backgroundColor = new Color(option.value === props.value ? theme.color.accent : theme.color.input);
-          button.color = new Color(theme.color.text); button.borderColor = new Color(theme.color.border); button.borderWidth = 1; button.borderRadius = theme.radius;
-          const tap = () => finish(option.value); cleanup.push(context.listen(button, 'tap', tap)); panel.addChild(button);
-        }
-        try { view.showModal(modal.page, {...modalPresentationOptions(),fullscreen: true, animated: false, closeCallback: settle}); }
-        catch (error) { settle(); throw error; }
-      }), reason()).then(() => { if (!disposed) render(); }).catch(error => context.error(error));
+      void controller.pick(() => {
+        picker=true;
+        const selected=hyPickNativeOption(view,{value:props.value,options:choices,theme:context.theme(),title:initial.props.a11y?.label??'Select',cancelLabel:context.selectionCancelLabel,...('presentation' in props?{presentation:props.presentation}:{})});
+        cancelPicker=selected.cancel;
+        return selected.result.finally(()=>{picker=false;cancelPicker=undefined;});
+      }, reason()).then(() => { if (!disposed) render(); }).catch(error => context.error(error));
     });
     return base(view, node => {
       if (node.kind !== 'Select' && node.kind !== 'Tabs') return;
-      if (!same(props, node.props)) close(); props = node.props; controller.update(props); render();
+      if (!same(props, node.props)) close(); props = node.props; controller.update(selectionProps(props)); render();
     }, () => { close(); tabs.forEach(tab => tab.off()); tabs.clear(); controller.dispose(); }, {suspend: close});
   }
   return undefined;

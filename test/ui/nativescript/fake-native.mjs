@@ -18,7 +18,7 @@ export class LayoutBase extends View {
   removeChild(v){const i=this.children.indexOf(v);if(i>=0){this.children.splice(i,1);if(v.isLoaded)v.unload();v.parent=undefined;}}
   getChildIndex(v){return this.children.indexOf(v);}
 }
-export class GridLayout extends LayoutBase {static setRow(v,n){v.row=n;}static setColumn(v,n){v.column=n;}}
+export class GridLayout extends LayoutBase {static setRow(v,n){v.row=n;}static setColumn(v,n){v.column=n;}static setColumnSpan(v,n){v.columnSpan=n;}}
 export class FlexboxLayout extends LayoutBase {static setFlexGrow(v,n){v.flexGrow=n;}static setFlexShrink(v,n){v.flexShrink=n;}static setAlignSelf(v,n){v.alignSelf=n;}}
 export class StackLayout extends LayoutBase {}
 export class ScrollView extends View {}
@@ -35,10 +35,12 @@ export const Application=new View();Application.android=new View();Object.assign
 export const Screen={mainScreen:{scale:2}};
 export const isIOS=true;
 export const bindings=new Set();
+export const keyboardCallbacks=new Map();
 export const platform={
+  buttonAdornment(view,icon,busy,color){view.adornment={icon,busy,color};return ()=>{view.adornment=undefined;};},
   modalPresentationOptions(){return {ios:{presentationStyle:5}};},
   assertMainThread(){},isAccessibilityInteraction(){return false;},focusNative(v){v.focus();},systemIcon(){},setClipping(v,clip){v.clip=clip;},
-  observeKeyboard(){const key={};bindings.add(key);return ()=>bindings.delete(key);},
+  observeKeyboard(view,changed){const key={};bindings.add(key);keyboardCallbacks.set(view,changed);return ()=>{bindings.delete(key);keyboardCallbacks.delete(view);};},
   observeText(view,changed){const key={};bindings.add(key);view.composing=false;
     const read=()=>({value:view.text,composing:view.composing});
     const listener=()=>changed(read());view.on('nativeInput',listener);

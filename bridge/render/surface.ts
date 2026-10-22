@@ -5,6 +5,7 @@ import { nativeViewRect, nativeViewSize } from './view-rect';
 import { copyDeviceDescriptor } from './device-descriptor';
 import { installNativeWebGpuConstants } from './webgpu-constants';
 import { installQueueFence } from './queue-fence';
+import { installNativeTextureUploads } from './texture-upload';
 
 type EngineOptions = ConstructorParameters<typeof HaiyueEngine>[0];
 export type NativeCanvasInput = Pick<HTMLCanvasElement, 'addEventListener' | 'removeEventListener' | 'setPointerCapture' | 'releasePointerCapture'>;
@@ -51,6 +52,7 @@ export class NativeSurface {
         requestDevice: async (descriptor?: GPUDeviceDescriptor) => {
           const device = await adapter.requestDevice(copyDeviceDescriptor(descriptor) as unknown as Parameters<GPUAdapter['requestDevice']>[0]);
           installQueueFence(device as unknown as GPUDevice);
+          installNativeTextureUploads(device as unknown as GPUDevice);
           return device;
         },
       };

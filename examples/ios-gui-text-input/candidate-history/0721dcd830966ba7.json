@@ -1,0 +1,361 @@
+{
+  "schemaVersion": 2,
+  "goal": "g06-text-input",
+  "candidateId": "0721dcd830966ba7371ad24d41da7a96159155403851de793080824bb51ebb28",
+  "generatedAt": "2026-10-22T01:42:39.881226+00:00",
+  "status": "pending-mac-build-and-physical-iphone-acceptance",
+  "enginePackage": {
+    "baseVersion": "0.2.1",
+    "targetMilestone": "0.2.2",
+    "path": "Native/examples/ios-gui-text-input/vendor/haiyue-engine-g06-312dfccaef83.tgz",
+    "sha256": "312dfccaef83b23444764a188c4b518764be77c2bfbe8a45db0d2a90b5d46579",
+    "integrity": "sha512-hdvZ1jKdrWv9N6gNN9gVj/X190ev4tZSFmhTZIJLUvS53ri1j2vp3kq8pf1IQZOnX1Ro0NSBX/Q07OBZWnaudg==",
+    "verifiedMembers": 529
+  },
+  "files": [
+    {
+      "path": "Engine/examples/gui-runtime/bundle.js",
+      "bytes": 119852,
+      "sha256": "04be3f1f1c0f9ceedc9073b975971fcf5fe4f760ab5e5634e248d44ab0fff796",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Engine/examples/gui-runtime/index.html",
+      "bytes": 885,
+      "sha256": "72b999daa1343399acae3cb6f1d854b00394eb406f81eecd6222deb764422f76",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Engine/examples/shared/engine.js",
+      "bytes": 7823156,
+      "sha256": "76014370e0d8e2e9b4ffe2fa53724d1f4c109b8909f83a9ecb46d76e36401f9e",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/input/native-touch.ios.ts",
+      "bytes": 4767,
+      "sha256": "2612be11647e22f6e2f89a2b53afb0e0672059c24be7fe519b5f20eb02a2a0df",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/input/pointer-target.ts",
+      "bytes": 5140,
+      "sha256": "f5da5c639f45067a4031d7b4dc6a6c1b049ed47fc95b45cd256d1b8c7b137edc",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/input/text-input-session.ts",
+      "bytes": 5297,
+      "sha256": "a80e08777686dd98cd2081e837146b02c801c2ac42265e8271ddd77fba02c1f9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/input/text-input-types.ts",
+      "bytes": 862,
+      "sha256": "f56864c052d55fe9d133a5ae124b31accb7ca9299666af2ba513afdfa558d0cf",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/input/text-input.ios.ts",
+      "bytes": 11947,
+      "sha256": "9e40f0c06f82a42c8dc1650f88a0eaddb9a4bd3221a20b9fdf26c33b4446cc9c",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/input/touch-identity.ts",
+      "bytes": 825,
+      "sha256": "98174d6df6e9e9b2d4c15004f3e741394acfe89546ac2bb5602abd7f7f8e56f5",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/lifecycle/abort-runtime.ts",
+      "bytes": 1279,
+      "sha256": "bb04833887d2c7a204dded4312fd00d03d5a1deac4f0d52cbb8f1001f07cb598",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/lifecycle/demand-frames.ts",
+      "bytes": 1854,
+      "sha256": "dc0dabdeb91357c9596e2bd3998e5c4f1890056238bac9ca729ab22318115eeb",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/lifecycle/frame-performance.ts",
+      "bytes": 1041,
+      "sha256": "6051bd3ad1ea25accfcfc7ac740f0b56dab60557191e95c7f7e7d03fc7d4bcf1",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/lifecycle/frame-scheduler.ts",
+      "bytes": 1059,
+      "sha256": "24eba67e040495c7d11e37f6abf69339db089871391d175e1cacb09a6f646ff8",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/lifecycle/host.ts",
+      "bytes": 15873,
+      "sha256": "e63f662930cd8ee796eeebd6a9bb2f3c3eb95c63976920cd754d23e95d055919",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/lifecycle/presentation-pause.ts",
+      "bytes": 745,
+      "sha256": "abf5c76a06f228eb3f811a53d5c5fcce716a83f1966f972b48d62dd5589d14ff",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/lifecycle/runtime.ts",
+      "bytes": 2228,
+      "sha256": "81d83f3766952e1fbed53b303a1d5337a674537779c8431810b9e5503fdfac97",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/canvas-textures.ios.ts",
+      "bytes": 2801,
+      "sha256": "3bf00a5d2df470c5e658b7067b80c572160a915ef35e5421555c1cdfd066f695",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/device-descriptor.ts",
+      "bytes": 426,
+      "sha256": "4c5afc4e61a778224f3e0db06573c6e0dfe86adc6fce7bf0f2a23f4a2991226f",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/frame-capture.ios.ts",
+      "bytes": 1264,
+      "sha256": "933bf4dca2a1797d2b95c5318d56a5e48c1fe68932998869ac833bcc75096825",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/frame-capture.ts",
+      "bytes": 119,
+      "sha256": "c8656c56c5cbc982e5927067ea84344832ab0f2f1ca48c21628cda5bf02d8c57",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/queue-fence.ts",
+      "bytes": 63,
+      "sha256": "2b29e9159e4a3f4b2610224e4f90c66c5c47d32ee2d283f1cd63baae50aed460",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/surface.ts",
+      "bytes": 8098,
+      "sha256": "47ef8b136b42010b75a4083f821e3e455cd2b2fbdb90f1a20f2dd0491622ec21",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/view-rect.ios.ts",
+      "bytes": 665,
+      "sha256": "ae1186afde51d4053e3e609feb64aba1da585984696dfa57e90a9aa821a6d7ed",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/view-rect.ts",
+      "bytes": 115,
+      "sha256": "b92b7bb11c7cdd8395f51fe1a1b243e9147ab401788c16a7068f10e405332150",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/bridge/render/webgpu-constants.ts",
+      "bytes": 353,
+      "sha256": "279bafa27ac5c7ddb320c2e14440e6db25f9cb6ca79ea3cf21fd2a49f5266426",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/.gitignore",
+      "bytes": 114,
+      "sha256": "03f1dab4aa4b43bf68c19348e61e34463f51760c7b0a92df1a56efb31283d414"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/.ruby-version",
+      "bytes": 6,
+      "sha256": "c8b6d7eee0f9b7cb68c21aaed40c90476b72c8f4b843d0686591cdbb13724034"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/App_Resources/iOS/Info.plist",
+      "bytes": 1220,
+      "sha256": "21c4d5820548307f1b08000ecf5d7e7b66a653ac435e5fbb196e5a074709ea37",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/App_Resources/iOS/build.xcconfig",
+      "bytes": 127,
+      "sha256": "8dc0410b7d1ab89032da864e5ebd63671d6230d5c9aaf426badf8fcf58ea00d9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/Gemfile",
+      "bytes": 167,
+      "sha256": "5c69cef46797b49536d0ae74fdd67745361d29e4a3e2078fb0a7540a98a7014b"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/Gemfile.lock",
+      "bytes": 6858,
+      "sha256": "c03b1ff5a9b499f513f2a5c8277a63fe6d9b6404a0b61a47685f4dfe7875cbca",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/README.md",
+      "bytes": 5200,
+      "sha256": "53a4012d85d4b48d38e58d49941f31e2ad2df2b30e30cb2c22c1c89844d8d6a8",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/UNICODE-LICENSE.txt",
+      "bytes": 1995,
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/candidate-history/1afbf3fba564908b.json",
+      "bytes": 12272,
+      "sha256": "9de5b6879900f500dcc05178de225e72faef909f4ba801a2ba4aa1bc0c757036",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/candidate-history/2729ea8d5307588d.json",
+      "bytes": 12987,
+      "sha256": "6c3a93a20c24c715662290f39e56277c40ec2b33d392dacbe018ca56b36ee58c",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/candidate-history/8c4587ae58b3b036.json",
+      "bytes": 9773,
+      "sha256": "d01135ed91a9b3f79382fcf2d6fb559571f17e74da711e403c3faad67399a621",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/candidate-history/mac-requalification-20261022.json",
+      "bytes": 1756,
+      "sha256": "7444c9798f79455d1ff115fe50214484d97b00ccfd8d75322bf54079f34297a3",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/hooks/before-checkForChanges/nativescript-core.mjs",
+      "bytes": 99,
+      "sha256": "cf054b652d7db7d039db7c44846a3d78e038e7c7ca095eb560cb64f20c4fd2c9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/locks/Package.resolved",
+      "bytes": 399,
+      "sha256": "20cc788c8296cd474233be51a382b42c5b779774d0f78b9fb09273a5bd1d2799",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/nativescript.config.ts",
+      "bytes": 226,
+      "sha256": "5986923337b5424554e11857f32c73767768dfe0ed5b6d1c60901694cb408e84",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/package-lock.json",
+      "bytes": 355982,
+      "sha256": "24f3c244d6796e31dc163e101ad9efd65dd60f593043c250ec802f0e9f46a16a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/package.json",
+      "bytes": 1029,
+      "sha256": "753e01b420d431837da33f1dc172d55dc6ffb0293992293af9f1227e55abbb08",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/build-device.mjs",
+      "bytes": 1962,
+      "sha256": "3d90144863e69d7e259324e525272648c095cf22166371635f13790a05a72bed",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/candidate-bytes.mjs",
+      "bytes": 698,
+      "sha256": "b378b5bff51dbc0fa44dafa9d138c45a6393dc5b472366033e08a15f3599ee62",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/collect-device.mjs",
+      "bytes": 1123,
+      "sha256": "1054e761df1cbcd071339a24e650d026d86f022cda6f06565e8e5f4e2199e973",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/ios.mjs",
+      "bytes": 1812,
+      "sha256": "fcb387158a7c2624c6310bc0479e36ee612f95a265a2f37219ebece06d58df76",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/mac-preflight.mjs",
+      "bytes": 1516,
+      "sha256": "3dda93c04bbc7a8560450e057408078024beaae7f77cb72882e8b6c70b524584",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/patch-canvas.mjs",
+      "bytes": 1724,
+      "sha256": "c9c6388fc9a54612befe68081f28694b5d55da221272b7685ea698c34c9f5b54",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/serve-browser-ime.mjs",
+      "bytes": 4420,
+      "sha256": "fd41a4506873fdb83c00921cab2386b68371569bd52488d5b6691ac4e4fd6852",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/scripts/verify-candidate.mjs",
+      "bytes": 1194,
+      "sha256": "f50bb25df4f7d73340390baf4f6586d7111645a65534c3b77ada4d227d7558a8",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/src/app.ts",
+      "bytes": 91,
+      "sha256": "200f6101af874f0e00ee50ffed39c00cab8563344dcd12fb02728e5e1f4ce2aa",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/src/candidate.ts",
+      "bytes": 563,
+      "sha256": "659958453f92d9e55f6095847fa2589a83810ddafffc42ce2625368518eac8b8",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/src/main-page.ts",
+      "bytes": 7529,
+      "sha256": "da8c3b83606f415de1a92886cc8bdd6230b2d871492452fa44e11158eca82bd1",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/src/main-page.xml",
+      "bytes": 457,
+      "sha256": "1314ca9c20c1af4c04031b949ff782cf4af048b00d6dea159135fdd055f321d7",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/tsconfig.json",
+      "bytes": 840,
+      "sha256": "83f04a63ba40b681121d2adfcf62bfd6f8b9f1b4aeca3407cf927af7c318e41a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/vendor/haiyue-engine-g06-312dfccaef83.tgz",
+      "bytes": 1983987,
+      "sha256": "312dfccaef83b23444764a188c4b518764be77c2bfbe8a45db0d2a90b5d46579"
+    },
+    {
+      "path": "Native/examples/ios-gui-text-input/webpack.config.js",
+      "bytes": 428,
+      "sha256": "d850f580109531a17d71d84b5a96e0218d3bb80343fa420fdd937a0d82faf3f1",
+      "normalization": "utf8-lf"
+    }
+  ],
+  "published": false,
+  "goalComplete": false,
+  "previousCandidate": {
+    "candidateId": "2729ea8d5307588d7e74b90b2ca9d803120ba23133b5183601fbf6e060bb94e3",
+    "manifestSha256": "6c3a93a20c24c715662290f39e56277c40ec2b33d392dacbe018ca56b36ee58c"
+  }
+}

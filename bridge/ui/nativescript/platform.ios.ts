@@ -1,3 +1,6 @@
+import { HY_ICONS } from '@haiyue/ui/portable';
+import type { HYIconName } from '@haiyue/ui/core';
+import { Color } from '@nativescript/core';
 import { ImageSource, type View } from '@nativescript/core';
 import type { HYNativeTextHandle, HYTextObservation } from './types';
 import { createNativeCallback } from './native-callback';
@@ -117,3 +120,32 @@ export function observeKeyboard(view: View, changed: (height: number) => void): 
 
 /** Keep the presenting page visible beneath the portable dialog backdrop. */
 export function modalPresentationOptions(): Partial<import('@nativescript/core').ShowModalOptions> { return {ios:{presentationStyle:UIModalPresentationStyle.OverFullScreen}}; }
+
+/** UIKit owns animation timing; no JS interval and no font glyph substitution. */
+export function buttonAdornment(view: View, icon: HYIconName | undefined, busy: boolean, color: string): () => void {
+  const button = view.ios as UIButton;
+  if (!button) return () => {};
+  button.semanticContentAttribute=icon==='chevronDown'?UISemanticContentAttribute.ForceRightToLeft:UISemanticContentAttribute.Unspecified;
+  let spinner: UIActivityIndicatorView | undefined;
+  if (busy) {
+    spinner = UIActivityIndicatorView.alloc().initWithActivityIndicatorStyle(UIActivityIndicatorViewStyle.Medium);
+    spinner.color = new Color(color).ios;
+    const size = button.bounds.size;
+    spinner.frame = CGRectMake((view as View & {text:string}).text ? 8 : (size.width - 20) / 2, (size.height - 20) / 2, 20, 20);
+    spinner.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin;
+    spinner.userInteractionEnabled = false;button.addSubview(spinner);spinner.startAnimating();
+    button.setImageForState(null!, UIControlState.Normal);
+  } else if (icon) {
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(20, 20), false, 0);
+    try {
+      new Color(color).ios.setStroke();
+      for (const points of HY_ICONS[icon]) {
+        const path = UIBezierPath.bezierPath();path.lineWidth = 1.5;path.lineCapStyle = CGLineCap.kCGLineCapRound;path.lineJoinStyle = CGLineJoin.kCGLineJoinRound;
+        points.forEach(([x,y],index) => index ? path.addLineToPoint(CGPointMake(x*20/24,y*20/24)) : path.moveToPoint(CGPointMake(x*20/24,y*20/24)));
+        path.stroke();
+      }
+      button.setImageForState(UIGraphicsGetImageFromCurrentImageContext()?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal) ?? null!, UIControlState.Normal);
+    } finally { UIGraphicsEndImageContext(); }
+  } else button.setImageForState(null!, UIControlState.Normal);
+  return () => { spinner?.stopAnimating();spinner?.removeFromSuperview();button.setImageForState(null!, UIControlState.Normal); };
+}

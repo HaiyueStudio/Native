@@ -15,7 +15,10 @@ import zipfile
 parser=argparse.ArgumentParser()
 parser.add_argument('--static-report',type=Path,required=True)
 parser.add_argument('--output',type=Path,required=True)
+parser.add_argument('--previous-manifest',type=Path,help='Retained manifest identifying the previous candidate.')
 args=parser.parse_args()
+output=args.output.resolve()
+assert not output.exists(),'Refusing to overwrite an existing candidate archive.'
 native=Path(__file__).resolve().parents[1]
 workspace=native.parent
 app=native/'examples/ios-gui-text-input'
@@ -60,16 +63,28 @@ for directory,subdirs,names in os.walk(app):
 selected.add(pack)
 for name in ['examples/gui-runtime/index.html','examples/gui-runtime/bundle.js','examples/shared/engine.js']:
     selected.add((workspace/'Engine'/name).resolve())
-files=[{'path':file.relative_to(workspace).as_posix(),'bytes':file.stat().st_size,'sha256':sha(file.read_bytes())} for file in sorted(selected)]
+text_extensions={'.ts','.js','.mjs','.json','.html','.md','.txt','.xml','.xcconfig','.plist','.resolved','.lock','.rb','.py'}
+payloads={}
+files=[]
+for file in sorted(selected):
+    data=file.read_bytes()
+    normalization={}
+    if file.suffix in text_extensions:
+        data=data.decode('utf8').replace('\r\n','\n').encode('utf8')
+        normalization={'normalization':'utf8-lf'}
+    name=file.relative_to(workspace).as_posix()
+    payloads[name]=data
+    files.append({'path':name,'bytes':len(data),'sha256':sha(data),**normalization})
 candidate_id=sha(json.dumps(files,sort_keys=True,separators=(',',':')).encode())
-manifest={'schemaVersion':1,'goal':'g06-text-input','candidateId':candidate_id,'generatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'pending-mac-build-and-physical-iphone-acceptance','enginePackage':{'baseVersion':'0.2.1','targetMilestone':'0.2.2','path':pack.relative_to(workspace).as_posix(),'sha256':sha(raw),'integrity':sri,'verifiedMembers':members},'files':files,'published':False,'goalComplete':False}
+manifest={'schemaVersion':2,'goal':'g06-text-input','candidateId':candidate_id,'generatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'pending-mac-build-and-physical-iphone-acceptance','enginePackage':{'baseVersion':'0.2.1','targetMilestone':'0.2.2','path':pack.relative_to(workspace).as_posix(),'sha256':sha(raw),'integrity':sri,'verifiedMembers':members},'files':files,'published':False,'goalComplete':False}
+if args.previous_manifest:
+    previous=args.previous_manifest.read_bytes()
+    manifest['previousCandidate']={'candidateId':json.loads(previous)['candidateId'],'manifestSha256':sha(previous)}
 manifest_file=app/'qualified-candidate.json'
 manifest_file.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
-output=args.output.resolve()
-assert not output.exists(),'Refusing to overwrite an existing candidate archive.'
 output.parent.mkdir(parents=True,exist_ok=True)
 with zipfile.ZipFile(output,'x',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
-    for row in files:archive.write(workspace/row['path'],row['path'])
+    for row in files:archive.writestr(row['path'],payloads[row['path']])
     archive.write(manifest_file,manifest_file.relative_to(workspace).as_posix())
 with zipfile.ZipFile(output) as archive:
     assert len(archive.infolist())==len(files)+1

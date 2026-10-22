@@ -4,6 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import {candidateBytes} from './candidate-bytes.mjs';
 execFileSync(process.execPath,[fileURLToPath(new URL('./verify-candidate.mjs',import.meta.url))],{stdio:'inherit'});
 const app=resolve(dirname(fileURLToPath(import.meta.url)),'..'),workspace=fileURLToPath(new URL('../../../../',import.meta.url));
 const manifest=JSON.parse(readFileSync(resolve(app,'qualified-candidate.json'),'utf8'));
@@ -31,9 +32,9 @@ const server=createServer(async(request,response)=>{
  if(request.method!=='GET'||!relative){response.statusCode=404;response.end('Not found');return;}
  try{
   const original=readFileSync(resolve(workspace,relative)),html=relative.endsWith('.html');
-  const expected=manifest.files.find(file=>file.path===relative);if(!expected||sha(original)!==expected.sha256||original.length!==expected.bytes)throw Error('Browser bytes changed after candidate verification.');
+  const expected=manifest.files.find(file=>file.path===relative),canonical=expected&&candidateBytes(expected,original);if(!expected||sha(canonical)!==expected.sha256||canonical.length!==expected.bytes)throw Error('Browser bytes changed after candidate verification.');
   const bytes=html?Buffer.from(original.toString('utf8')+collector):original;
-  served.set(relative,{path:relative,sourceSha256:sha(original),servedSha256:sha(bytes),sourceBytes:original.length,servedBytes:bytes.length,collectorInjected:html});
+  served.set(relative,{path:relative,sourceSha256:sha(original),canonicalSha256:sha(canonical),normalization:expected.normalization??null,servedSha256:sha(bytes),sourceBytes:original.length,servedBytes:bytes.length,collectorInjected:html});
   response.setHeader('Content-Type',html?'text/html; charset=utf-8':'text/javascript; charset=utf-8');response.end(bytes);
  }catch(error){response.statusCode=500;response.end(String(error));}
 });

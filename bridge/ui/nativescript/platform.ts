@@ -11,3 +11,5 @@ export function isAccessibilityInteraction(): boolean { return false; }
 
 /** Keep the presenting page visible beneath the portable dialog backdrop. */
 export function modalPresentationOptions(): Partial<import('@nativescript/core').ShowModalOptions> { return {}; }
+
+export function buttonAdornment(_view: View, _icon: import('@haiyue/ui/core').HYIconName | undefined, _busy: boolean, _color: string): () => void { return () => {}; }

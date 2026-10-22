@@ -12,7 +12,7 @@
     "build:device": "node scripts/build-device.mjs"
   },
   "dependencies": {
-    "@haiyue/engine": "file:vendor/haiyue-engine-g06-312dfccaef83.tgz",
+    "@haiyue/engine": "file:vendor/haiyue-engine-g06-b9bec36d0201.tgz",
     "@nativescript/canvas": "2.1.18",
     "@nativescript/core": "9.1.1",
     "@nativescript/font-manager": "1.0.14"
@@ -23,7 +23,8 @@
     "@nativescript/webpack": "5.0.38",
     "@webgpu/types": "0.1.64",
     "nativescript": "9.1.1",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "webpack": "5.110.3"
   },
   "engines": {
     "node": ">=22"

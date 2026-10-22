@@ -63,3 +63,42 @@ Use stable keys. Transactions coalesce application changes through HYPage; only 
 Native Button supports its text prop, not arbitrary nested button content; put icons beside it in a Row or inject a product PlatformView. Unknown resources, missing factories, invalid slots and unsupported features fail with node/operation/revision diagnostics instead of rendering an empty fallback. VirtualList/Tree are G09.
 
 The backend advertises implemented text composition/selection/secure input, accessibility and reduced-motion behavior (it does not animate controls). Capability availability is not a claim that physical IME or VoiceOver/TalkBack acceptance passed. Current evidence and remaining checks live in [G06 review](../../review/m24-ui/g06/README.md).
+
+### Native presentation controls
+
+`@haiyue/native/ui` explicitly exports `HYNativeButton`, `HYNativeButtonProps`,
+`hyPickNativeOption`, and `HYNativeSelectionOptions` for host-owned native toolbars.
+They use the same optional `Button.icon`, `variant`, `size`, theme state colors and
+typographic ramp as the portable renderer; the real OS Button retains its keyboard
+and accessibility behavior. Icon buttons require an accessible label. `busy` uses
+a native indicator, stopped on unload or renderer suspension.
+
+`hyPickNativeOption(anchor, options)` returns `{result, cancel}`. Owners must call
+`cancel()` when disposed. Selection settles after native dismissal, and supports
+`auto` (anchored at widths >= 600 DIP, bottom sheet on narrow windows), `popover`,
+and `sheet`. Tapping outside cancels. Existing dialogs keep their centered layout.
+`Tabs.variant` supports `underline` and `segmented`, including disabled options.
+These are additive APIs; existing protocol nodes and themes remain valid.
+
+### Host-owned overlays, fields and responsive layouts
+
+`@haiyue/native/ui` explicitly exports `hyShowNativeOverlay`,
+`HYNativeOverlayOptions` and `HYNativeOverlayHandle`. Dialog, sheet and drawer
+presentations share the modal surface used by portable Dialog and Select.
+The title and optional footer remain pinned; the body scrolls independently.
+Use `scrollable:false` for a body that owns its own scrolling (for example an
+editor or material browser). Handles expose `close()`, `closed` and `setTitle()`;
+`closed` settles after native dismissal. Backdrop cancellation respects
+`dismissible`; owner navigation closes the overlay. Keyboard observers and pending
+layout work are released on dismissal. An optional returnFocus restores the opener.
+
+`HYNativeFormField` / `HYNativeFormFieldOptions` associate a host-owned control with
+its label, description and error. Inline layout supports toggles. Metadata changes
+never assign control text or checked values. Portable `FormGroup.description`
+provides the same visible help and accessible hints in Web and Native renderers.
+
+`HYNativeCardGrid` and `HYNativeWorkspace` reuse the public, DOM-free
+`hyResponsiveGrid` / `hyResponsiveWorkspace` layout decisions from
+`@haiyue/ui/portable`. They reflow existing view instances on window changes;
+workspace panes and text composition survive rotation and compact mode. Layout
+requests coalesce, and keyboard observers and timers stop when views unload.

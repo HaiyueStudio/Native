@@ -1,3 +1,4 @@
+import { HYNativeButton } from './button';
 import {createModalSurface} from './modal';
 import { same } from './data';
 import { Application, Button, Color, FlexboxLayout, GridLayout, Image, Label, LayoutBase, Page, Screen, ScrollView, StackLayout, TextField, TextView, View, isIOS } from '@nativescript/core';
@@ -12,7 +13,7 @@ interface Entry {
   node: HYNode; view: View; content?: LayoutBase; parent: string | null | undefined; slot?: string;
   control?: Control; off: Set<() => void>; platform?: HYPlatformViewController; platformMounted: boolean;
   accessibility?: {label:string;hint:string;role:any;state:any;value:string|undefined;text:string|undefined};
-  label?: Label; error?: Label; dialogCard?:ScrollView; dialogShown: boolean; closing: boolean; bindings: boolean; styled?: boolean; clip?: boolean;
+  label?: Label; help?:Label; error?: Label; modalDispose?:()=>void; dialogCard?:ScrollView; dialogShown: boolean; closing: boolean; bindings: boolean; styled?: boolean; clip?: boolean;
 }
 const defaultTheme: HYTheme = {
   color: {text:'#18233D',muted:'#68748C',surface:'#F7F9FC',input:'#FFFFFF',accent:'#345AE8',danger:'#C93248',border:'#CAD3E3',focus:'#345AE8'},
@@ -124,7 +125,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
     if(e.node.kind!=='Dialog') {
       if(e.view.parent instanceof LayoutBase)e.view.parent.removeChild(e.view);
       const preceding=order.slice(0,index).filter(k=>this.#get(k).node.kind!=='Dialog').length;
-      content.insertChild(e.view,preceding+(parent?.node.kind==='FormGroup'||parent?.node.kind==='Dialog'?1:0));
+      content.insertChild(e.view,preceding+(parent?.node.kind==='FormGroup'?2:parent?.node.kind==='Dialog'?1:0));
     }
     if(m.type==='move'){this.#counts.moved++;if(this.#focus===e.node.key)this.#pendingFocus=e.node.key;}
   }
@@ -143,12 +144,12 @@ export class HYNativeScriptRenderer implements HYRenderer {
       else if(node.kind==='Scroll'){const scroll=new ScrollView();e.content=new FlexboxLayout();(e.content as FlexboxLayout).flexDirection=node.props.axis==='vertical'?'column':'row';scroll.content=e.content;e.view=scroll;}
       else if(node.kind==='FormGroup'||node.kind==='Dialog') {
         const stack=new StackLayout();e.content=stack;e.view=stack;e.label=new Label();e.label.textWrap=true;stack.addChild(e.label);
-        if(node.kind==='FormGroup'){e.error=new Label();e.error.textWrap=true;stack.addChild(e.error);}
+        if(node.kind==='FormGroup'){e.help=new Label();e.help.textWrap=true;stack.addChild(e.help);e.error=new Label();e.error.textWrap=true;stack.addChild(e.error);}
         else {
           const modal=createModalSurface(stack,(view,name,callback)=>this.#listen(e.off,view,name,callback),()=>{
             if(e.node.kind==='Dialog'&&e.node.props.dismissible!==false)this.#event(e,{key:e.node.key,type:'cancel',reason:'pointer',transaction:0});
           },()=>e.node.props.layout?.maxHeight??Infinity);
-          e.view=modal.page;e.dialogCard=modal.card;
+          e.view=modal.page;e.dialogCard=modal.card;e.modalDispose=modal.dispose;
         }
       } else {e.content=new GridLayout();e.view=e.content;}
     }
@@ -176,7 +177,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
     e.node=node;e.control?.update(node,revision);
     if(node.kind==='Text'){(e.view as Label).text=node.props.text;(e.view as Label).textWrap=node.props.wrap!==false;}
     if(node.kind==='Scroll'){(e.view as ScrollView).orientation=node.props.axis;(e.content as FlexboxLayout).flexDirection=node.props.axis==='vertical'?'column':'row';}
-    if(node.kind==='FormGroup'){e.label!.text=node.props.label;e.error!.text=node.props.error??'';e.error!.visibility=node.props.error?'visible':'collapse';}
+    if(node.kind==='FormGroup'){e.label!.text=node.props.label;e.help!.text=node.props.description??'';e.help!.visibility=node.props.description?'visible':'collapse';e.error!.text=node.props.error??'';e.error!.visibility=node.props.error?'visible':'collapse';}
     if(node.kind==='Dialog')e.label!.text=node.props.title;
     if(node.kind==='PlatformView')e.platform!.update(node.props.resourceId);
     if(node.kind==='Image'||node.kind==='Icon') {
@@ -188,7 +189,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
     }
     // Android derives contentDescription synchronously from label + current text.
     // Apply accessibility after text so it cannot retain the previous render's value.
-    if(layoutChanged||previous.props.a11y?.error!==node.props.a11y?.error||(node.kind==='Divider'&&previous.kind==='Divider'&&previous.props.text!==node.props.text))this.#style(e);
+    if(layoutChanged||previous.props.a11y?.error!==node.props.a11y?.error||(node.kind==='Text'&&previous.kind==='Text'&&(previous.props.textStyle!==node.props.textStyle||previous.props.tone!==node.props.tone))||(node.kind==='Divider'&&previous.kind==='Divider'&&previous.props.text!==node.props.text))this.#style(e);
     this.#accessibility(e);
     if(e.view.isLoaded)this.#applyNative(e);
   }
@@ -231,21 +232,29 @@ export class HYNativeScriptRenderer implements HYRenderer {
     }
     if(textView instanceof TextField||textView instanceof TextView){textView.backgroundColor=new Color(theme.color.input);textView.borderColor=new Color(p.a11y?.error?theme.color.danger:theme.color.border);textView.borderWidth=1;textView.borderRadius=theme.radius;}
     if(e.label){e.label.fontSize=theme.fontSize;e.label.color=new Color(theme.color.text);e.label.iosAccessibilityAdjustsFontSize=this.#environment.fontScale===undefined;}
+    if(e.help){e.help.fontSize=theme.typography?.caption?.fontSize??theme.fontSize-2;e.help.color=new Color(theme.color.muted);}
     if(e.error){e.error.fontSize=theme.fontSize;e.error.color=new Color(theme.color.danger);e.error.accessibilityLiveRegion='polite';}
     if(node.kind==='Dialog'){view.backgroundColor=new Color('rgba(0,0,0,0.72)');e.dialogCard!.backgroundColor=new Color(theme.color.surface);e.dialogCard!.borderColor=new Color(theme.color.border);e.dialogCard!.borderWidth=1;e.dialogCard!.borderRadius=theme.radius;e.label!.fontSize=theme.fontSize+6;e.label!.marginBottom=16;}
     if(node.kind==='Badge'){view.backgroundColor=new Color(theme.color.accent);view.borderRadius=theme.radius;view.style.paddingLeft=8;view.style.paddingRight=8;view.style.color=new Color(theme.color.surface);}
     if(node.kind==='Divider'){view.borderBottomWidth=1;view.borderColor=new Color(theme.color.border);view.style.color=new Color(theme.color.muted);if(l.height===undefined)view.height=node.props.text?theme.lineHeight+8:1;}
     if(node.kind==='RadioGroup'||node.kind==='Rate')e.control!.update(node,0);
     if(node.kind==='Checkbox'){view.accessibilityRole='checkbox' as any;view.borderWidth=0;view.backgroundColor=new Color('transparent');(view as Button).textAlignment='left';view.opacity=node.props.disabled ? .45 : 1;}
+    if(node.kind==='Text') {
+      const style=theme.typography?.[node.props.textStyle??'body'],label=view as Label;
+      label.fontSize=style?.fontSize??theme.fontSize;label.lineHeight=(style?.lineHeight??theme.lineHeight)-label.fontSize;label.fontWeight=style?.weight==='medium'?'500':style?.weight??'normal';
+      label.color=new Color(node.props.tone==='muted'?theme.color.muted:node.props.tone==='danger'?theme.color.danger:theme.color.text);
+    }
+    if(textView instanceof HYNativeButton)textView.refreshPresentation(theme);
+    if(node.kind==='Tabs')e.control!.update(node,0);
     e.styled=true;
   }
   #accessibility(e:Entry):void {
     const {view,node}=e,p=node.props,a=p.a11y;
     const parent=e.parent?this.#nodes.get(e.parent):undefined;
     const label=a?.label??(parent?.node.kind==='FormGroup'?parent.node.props.label:'text'in p?(p.text??''):'resource'in p?p.resource.alt:'');
-    const hint=[a?.description,a?.error,...(parent?.node.kind==='FormGroup'?[parent.node.props.error]:[])].filter(Boolean).join('. ');
+    const hint=[a?.description,a?.error,...(parent?.node.kind==='FormGroup'?[parent.node.props.description,parent.node.props.error]:[])].filter(Boolean).join('. ');
     const role=a?.role?accessibilityRoles[a.role]:node.kind==='Checkbox'?'checkbox':undefined;
-    const state='disabled'in p&&p.disabled?'disabled':'checked'in p?(p.checked?'checked':'unchecked'):undefined;
+    const state=('disabled'in p&&p.disabled)||('busy'in p&&p.busy)?'disabled':'checked'in p?(p.checked?'checked':'unchecked'):undefined;
     // Leave editable/secure text to the OS; an empty override hides UIKit's actual value.
     const hasValue='value'in p&&node.kind!=='TextInput'&&node.kind!=='TextArea';
     const value=hasValue?String(p.value):undefined;
@@ -294,7 +303,7 @@ export class HYNativeScriptRenderer implements HYRenderer {
         e.view.marginTop=gap;
         if(parent.node.kind==='FormGroup') {
           if(!e.node.props.a11y?.label)e.view.accessibilityLabel=parent.node.props.label;
-          e.view.accessibilityHint=[e.node.props.a11y?.description,e.node.props.a11y?.error,parent.node.props.error].filter(Boolean).join('. ');
+          e.view.accessibilityHint=[e.node.props.a11y?.description,e.node.props.a11y?.error,parent.node.props.description,parent.node.props.error].filter(Boolean).join('. ');
         }
       }
       e.platform?.visible(shown);if(this.#suspended)e.platform?.suspend();else if(e.view.isLoaded)e.platform?.resume();
@@ -343,11 +352,11 @@ export class HYNativeScriptRenderer implements HYRenderer {
     this.#root.backgroundColor=new Color(theme.color.surface);for(const e of this.#nodes.values())this.#style(e);this.#scheduleLayout();
   }
   suspend():void {assertMainThread();if(this.#disposed||this.#suspended)return;this.#suspended=true;for(const e of this.#nodes.values()){e.control?.suspend();e.platform?.suspend();}}
-  resume():void {assertMainThread();if(this.#disposed||!this.#suspended)return;this.#suspended=false;this.#relations();this.#scheduleLayout();}
+  resume():void {assertMainThread();if(this.#disposed||!this.#suspended)return;this.#suspended=false;for(const e of this.#nodes.values())if(e.view instanceof HYNativeButton)e.view.setPresentationActive(true);this.#relations();this.#scheduleLayout();}
   #remove(e:Entry):void {
     const errors:unknown[]=[];const release=(run:()=>void)=>{try{run();}catch(error){errors.push(error);}};
     for(const key of [...(this.#order.get(e.node.key)??[])])release(()=>this.#remove(this.#get(key)));this.#order.delete(e.node.key);
-    release(()=>e.control?.dispose());release(()=>e.platform?.dispose());e.platformMounted=false;
+    release(()=>e.modalDispose?.());release(()=>e.control?.dispose());release(()=>e.platform?.dispose());e.platformMounted=false;
     for(const off of [...e.off])release(off);
     if(e.dialogShown){e.closing=true;e.dialogShown=false;release(()=>e.view.closeModal());}
     if(e.view?.parent instanceof LayoutBase){const parent=e.view.parent;release(()=>parent.removeChild(e.view));}
