@@ -1,0 +1,57 @@
+{
+  "sourceUI": {
+    "file": "/private/tmp/haiyue-ui-0.2.0.tgz",
+    "sha256": "29bda34a09bc52118e570ce58f3148374499df1ebf140b5a4bfe2c9ee7886c4f",
+    "version": "0.2.0"
+  },
+  "packages": {
+    "ui": {
+      "filename": "haiyue-ui-0.2.0-m24.7.tgz",
+      "sha256": "bf3a109746c3093a17777f5403e308ca4e9234ad6e96ac8dc4eb723bdc66655b",
+      "size": 170731,
+      "unpackedSize": 769179
+    },
+    "native": {
+      "filename": "haiyue-native-0.1.4-m24.22.tgz",
+      "sha256": "c1f46faceeb3074a6bbd88d438cad60be90c8fe23516da48f6b091fc72fa6dbc",
+      "size": 282304,
+      "unpackedSize": 600212
+    }
+  },
+  "application": {
+    "sha256": "2665fe85bd0050ba26b7afe13ce48e348473e1a3eb733a133f08d35cc94e06fc",
+    "files": {
+      "App_Resources/Android/app.gradle": "c927fda5ddfeaba14f4f9c674a92c3393ba6a8fef938185d90a51548edfd1317",
+      "App_Resources/Android/gradle.properties": "2696106edda691d6885cc78a901e5d9b46553b137f1e9f9c1c211f35e9808e29",
+      "App_Resources/Android/src/main/AndroidManifest.xml": "46366762558cbb3556bc13fa89c45c45a1281bc3918adf97540bba03fe503a9d",
+      "App_Resources/Android/src/main/res/values/styles.xml": "c151d61ac6e663dc1450675c479ea13f5bb4d1d6c80f5f9ed272f0e4d831f89d",
+      "App_Resources/iOS/Info.plist": "846309b22125ce26ff6a0d07b40708d6c9145f52e3c47138dd73a7f031ec744f",
+      "App_Resources/iOS/build.xcconfig": "8ef5f1a714eeccc8aba5e1f44ef459e39b216a0dd282ec3da09812dd1685678a",
+      "Gemfile": "74226c852280c17b7636ad1e9dff784e0758fa22ce330f640fd2e47b5dcbf00f",
+      "hooks/before-checkForChanges/nativescript-core.js": "c077293083f20fd0ac2aaf5407a85a2a885a04558f6086fccab698f501940346",
+      "nativescript.config.ts": "ed792ad197651c13543aa82a2f1ae4cb1a5596e0db7bc6cff1b31e966ae52263",
+      "src/app.ts": "f19e5c6638ef962ef8c3b86fc9e8650b93c44d4ba631d6ed713032bbe1503edc",
+      "src/gallery.ts": "aba8bd2b07344bfce52129b368bee0f0aab6105ddcbc599e51328df96a8d31a3",
+      "src/scenario.ts": "762e904dabf9d0ba5b0c937cba51512fb487c54002477bb14d604d46216d1a6c",
+      "tsconfig.json": "d4f69a7a7b347c6088b6b92f1b925650e437a82fe106710d53afcbb1de85bff2",
+      "webpack.config.js": "2c79bc1931e39ae7c0bdf83dec2707a846ea5d16cf3f9a3f19bad3ecf8460f16"
+    }
+  },
+  "nativeUI": {
+    "sha256": "34bff71c02f4e19ce52b959fabb8d389e26630e839b1f2dd711d1430a2295a54",
+    "files": {
+      "bridge/ui/README.md": "bb380ac55d9b2f7b4b6f95c9fefe03492d9c5b4d550c60af7235f4ca28e221dd",
+      "bridge/ui/index.ts": "8872a36b3156836836091ddb374732c4ce9689823fddfb961264f60c30d5c334",
+      "bridge/ui/nativescript/controls.ts": "b58023afe76715311af479fc9b8d49155d6745dbff8356752aeb99c6ea2077ee",
+      "bridge/ui/nativescript/data.ts": "1590bde24af8ccec1949d50f51a047c0c274dbb15a38c7c9ab6901ab65955b8e",
+      "bridge/ui/nativescript/modal.ts": "bdda9bdd6f122ecd326d82a5a9b226641175b17ea4c9dd8a675bda9b6d275c37",
+      "bridge/ui/nativescript/native-callback.ts": "6685f69022d26bca9ee675d07b13a73d660211d1f9045f1a238bb429900fd8f0",
+      "bridge/ui/nativescript/platform.android.ts": "5c02673f34db9483d41ef250eba9baaa1778b41e3f905513ed8cdaa49ccbc1a5",
+      "bridge/ui/nativescript/platform.ios.ts": "bae8e177b84191d897434320f71a97852f4634895e21568f1372cd5ea820b49c",
+      "bridge/ui/nativescript/platform.ts": "f47ba4bf29a2cb0fa663e33fcf9a65ad49456c6228c810cf8ae6b85c6895153e",
+      "bridge/ui/nativescript/renderer.ts": "10dcaca1909b1e399bf044a627fcdd7b9a49ab0d0d5e2ad4d8525d8fcd852fef",
+      "bridge/ui/nativescript/types.ts": "c635e7023c3c9378dd44046e1e762d1d3ac5af301f63f9a18028c7b632ab9e68",
+      "npm/package.json": "2eecf678d7cc2299b7a959419695be1bd59993f2503ff8a17f3bffdf44a6fe90"
+    }
+  }
+}

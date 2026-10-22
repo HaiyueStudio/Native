@@ -1,0 +1,293 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -allowProvisioningUpdates -project artifacts/ui-validation/ios-tests/Acceptance.xcodeproj -scheme Acceptance -destination platform=iOS,id=<device-or-team> -derivedDataPath artifacts/ui-validation/ios-tests/derived -resultBundlePath artifacts/ui-validation/ipad-final-acceptance.xcresult
+
+Writing result bundle at path:
+	<workspace>/Native/artifacts/ui-validation/ipad-final-acceptance.xcresult
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'Acceptance' in project 'Acceptance' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk <workspace>/Native/artifacts/ui-validation/ios-tests/derived/SDKStatCaches.noindex/iphoneos26.2-23C57-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests/Acceptance.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -o <workspace>/Native/artifacts/ui-validation/ios-tests/derived/SDKStatCaches.noindex/iphoneos26.2-23C57-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache
+
+SwiftDriver Acceptance normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Acceptance -Onone -enforce-exclusivity\=checked @<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -target arm64-apple-ios15.0 -g -module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib -F <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/SDKStatCaches.noindex/iphoneos26.2-23C57-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache -output-file-map <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -sdk-module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.swiftmodule -validate-clang-modules-once -clang-build-session-file <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance_const_extract_protocols.json -Xcc -iquote -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-generated-files.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-own-target-headers.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-all-target-headers.hmap -Xcc -iquote -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-project-headers.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/include -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources-normal/arm64 -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources/arm64 -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance-Swift.h -working-directory <workspace>/Native/artifacts/ui-validation/ios-tests -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Acceptance (in target 'Acceptance' from project 'Acceptance')
+
+SwiftCompile normal arm64 <workspace>/Native/artifacts/ui-validation/ios-tests/Acceptance.swift (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    
+
+SwiftCompile normal arm64 Compiling\ Acceptance.swift <workspace>/Native/artifacts/ui-validation/ios-tests/Acceptance.swift (in target 'Acceptance' from project 'Acceptance')
+SwiftCompile normal arm64 <workspace>/Native/artifacts/ui-validation/ios-tests/Acceptance.swift (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling Acceptance.swift (in target 'Acceptance' from project 'Acceptance')
+
+SwiftDriver\ Compilation Acceptance normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Acceptance -Onone -enforce-exclusivity\=checked @<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -target arm64-apple-ios15.0 -g -module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib -F <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/SDKStatCaches.noindex/iphoneos26.2-23C57-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache -output-file-map <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -sdk-module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.swiftmodule -validate-clang-modules-once -clang-build-session-file <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance_const_extract_protocols.json -Xcc -iquote -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-generated-files.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-own-target-headers.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-all-target-headers.hmap -Xcc -iquote -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-project-headers.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/include -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources-normal/arm64 -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources/arm64 -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance-Swift.h -working-directory <workspace>/Native/artifacts/ui-validation/ios-tests -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for Acceptance (in target 'Acceptance' from project 'Acceptance')
+
+SwiftDriver\ Compilation\ Requirements Acceptance normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Acceptance -Onone -enforce-exclusivity\=checked @<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -target arm64-apple-ios15.0 -g -module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib -F <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Developer/Library/Frameworks -parse-as-library -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/SDKStatCaches.noindex/iphoneos26.2-23C57-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache -output-file-map <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -sdk-module-cache-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.swiftmodule -validate-clang-modules-once -clang-build-session-file <workspace>/Native/artifacts/ui-validation/ios-tests/derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance_const_extract_protocols.json -Xcc -iquote -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-generated-files.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-own-target-headers.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-all-target-headers.hmap -Xcc -iquote -Xcc <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance-project-headers.hmap -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/include -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources-normal/arm64 -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources/arm64 -Xcc -I<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance-Swift.h -working-directory <workspace>/Native/artifacts/ui-validation/ios-tests -experimental-emit-module-separately -disable-cmo
+
+Copy <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance.swiftmodule/arm64-apple-ios.abi.json <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.abi.json (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.abi.json <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance.swiftmodule/arm64-apple-ios.abi.json
+
+Copy <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.swiftsourceinfo (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.swiftsourceinfo <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo
+
+Ld <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Acceptance normal (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios15.0 -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -O0 -L<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -L<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib -F<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -F<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Developer/Library/Frameworks -filelist <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.swiftmodule @<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance-linker-args.resp -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -framework Foundation -Xlinker -no_adhoc_codesign -o <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Acceptance
+
+ExtractAppIntentsMetadata (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name Acceptance --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 15.0 --bundle-identifier org.haiyue.uivalidation.acceptance --output <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest --target-triple arm64-apple-ios15.0 --binary-file <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Acceptance --dependency-file <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance_dependency_info.dat --stringsdata-file <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.SwiftFileList --metadata-file-list <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance.DependencyMetadataFileList --static-metadata-file-list <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance.DependencyStaticMetadataFileList --swift-const-vals-list <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Objects-normal/arm64/Acceptance.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-16 22:20:46.420 appintentsmetadataprocessor[64474:3408098] Starting appintentsmetadataprocessor export
+2026-10-16 22:20:46.424 appintentsmetadataprocessor[64474:3408098] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    builtin-swiftStdLibTool --copy --verbose --sign B18C301725894971F9A6F8888DA37AABAF3F1DBD --scan-executable <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Acceptance --scan-folder <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Frameworks --scan-folder <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/PlugIns --scan-folder <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/SystemExtensions --scan-folder <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Extensions --scan-folder /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework --platform iphoneos --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+GenerateDSYMFile <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest.dSYM <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Acceptance (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest/Acceptance -o <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest.dSYM
+
+CodeSign <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    
+    Signing Identity:     "Apple Development: Xueqing Sun (9S236DMB2Z)"
+    Provisioning Profile: "iOS Team Provisioning Profile: *"
+                          (f1f552b0-f1c0-4447-86ef-4937a19b1ae5)
+    
+    /usr/bin/codesign --force --sign B18C301725894971F9A6F8888DA37AABAF3F1DBD --entitlements <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance.xctest.xcent --timestamp\=none --generate-entitlement-der <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app/PlugIns/Acceptance.xctest
+
+CodeSign <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app (in target 'Acceptance' from project 'Acceptance')
+    cd <workspace>/Native/artifacts/ui-validation/ios-tests
+    
+    Signing Identity:     "Apple Development: Xueqing Sun (9S236DMB2Z)"
+    Provisioning Profile: "iOS Team Provisioning Profile: *"
+                          (f1f552b0-f1c0-4447-86ef-4937a19b1ae5)
+    
+    /usr/bin/codesign --force --sign B18C301725894971F9A6F8888DA37AABAF3F1DBD --entitlements <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Intermediates.noindex/Acceptance.build/Debug-iphoneos/Acceptance.build/Acceptance.xctest.xcent --timestamp\=none --generate-entitlement-der <workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app
+<workspace>/Native/artifacts/ui-validation/ios-tests/derived/Build/Products/Debug-iphoneos/Acceptance-Runner.app: replacing existing signature
+
+2026-10-16 22:20:52.257 xcodebuild[64422:3407722] [MT] DVTDevice: Error locating DeviceSupport directory using Optional("arm64") or Optional("arm64e"): nilError
+2026-10-16 22:20:53.599166+0800 Acceptance-Runner[1218:154356] [Default] Running tests...
+2026-10-16 22:20:53.611381+0800 Acceptance-Runner[1218:154356] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-16 22:20:54.081.
+Test Suite 'Acceptance.xctest' started at 2026-10-16 22:20:54.082.
+Test Suite 'Acceptance' started at 2026-10-16 22:20:54.082.
+Test Case '-[Acceptance.Acceptance testControls]' started.
+    t =     0.00s Start Test at 2026-10-16 22:20:54.082
+    t =     0.01s Set Up
+    t =     0.01s Setting device orientation to Portrait
+    t =     0.03s     Wait for com.apple.DocumentManager.DockFolderViewService to idle
+    t =     0.04s     Wait for com.apple.springboard to idle
+    t =     0.04s Open org.haiyue.uivalidation
+    t =     0.04s     Launch org.haiyue.uivalidation
+    t =     0.11s         Setting up automation session
+    t =     0.97s         Wait for org.haiyue.uivalidation to idle
+    t =     2.15s Waiting 30.0s for "/screen/toolbar/increment" Button to exist
+    t =     3.17s     Checking `Expect predicate `existsNoRetry == 1` for object "/screen/toolbar/increment" Button`
+    t =     3.18s         Checking existence of `"/screen/toolbar/increment" Button`
+    t =     3.28s Tap "/screen/toolbar/increment" Button
+    t =     3.28s     Wait for org.haiyue.uivalidation to idle
+    t =     3.28s     Find the "/screen/toolbar/increment" Button
+    t =     3.32s     Check for interrupting elements affecting "/screen/toolbar/increment" Button
+    t =     3.35s     Synthesize event
+    t =     3.65s     Wait for org.haiyue.uivalidation to idle
+    t =     4.11s Added attachment named '01-portrait'
+    t =     4.11s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =     4.29s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =     4.38s Added attachment named '01-portrait-accessibility-tree'
+    t =     4.38s Find the "/screen/status" StaticText
+    t =     4.41s Tap "/screen/toolbar/dialog" Button
+    t =     4.41s     Wait for org.haiyue.uivalidation to idle
+    t =     4.42s     Find the "/screen/toolbar/dialog" Button
+    t =     4.44s     Check for interrupting elements affecting "/screen/toolbar/dialog" Button
+    t =     4.47s     Synthesize event
+    t =     4.75s     Wait for org.haiyue.uivalidation to idle
+    t =     4.80s Waiting 10.0s for "/screen/modal/close" Button to exist
+    t =     5.83s     Checking `Expect predicate `existsNoRetry == 1` for object "/screen/modal/close" Button`
+    t =     5.83s         Checking existence of `"/screen/modal/close" Button`
+    t =     6.09s Added attachment named '02-native-modal'
+    t =     6.09s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =     6.38s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =     6.47s Added attachment named '02-native-modal-accessibility-tree'
+    t =     6.47s Tap "/screen/modal/close" Button
+    t =     6.47s     Wait for org.haiyue.uivalidation to idle
+    t =     6.48s     Find the "/screen/modal/close" Button
+    t =     6.52s     Check for interrupting elements affecting "/screen/modal/close" Button
+    t =     6.55s     Synthesize event
+    t =     6.86s     Wait for org.haiyue.uivalidation to idle
+    t =     6.87s Tap "/screen/toolbar/dialog" Button
+    t =     6.87s     Wait for org.haiyue.uivalidation to idle
+    t =     6.88s     Find the "/screen/toolbar/dialog" Button
+    t =     6.92s     Check for interrupting elements affecting "/screen/toolbar/dialog" Button
+    t =     6.96s     Synthesize event
+    t =     7.28s     Wait for org.haiyue.uivalidation to idle
+    t =     7.62s Waiting 10.0s for "/screen/modal/close" Button to exist
+    t =     8.62s     Checking `Expect predicate `existsNoRetry == 1` for object "/screen/modal/close" Button`
+    t =     8.63s         Checking existence of `"/screen/modal/close" Button`
+    t =     8.70s Tap "/screen/modal/close" Button
+    t =     8.70s     Wait for org.haiyue.uivalidation to idle
+    t =     8.71s     Find the "/screen/modal/close" Button
+    t =     8.75s     Check for interrupting elements affecting "/screen/modal/close" Button
+    t =     8.79s     Synthesize event
+    t =     9.10s     Wait for org.haiyue.uivalidation to idle
+    t =     9.11s Tap "/screen/scroll/body/name/title" TextField
+    t =     9.11s     Wait for org.haiyue.uivalidation to idle
+    t =     9.12s     Find the "/screen/scroll/body/name/title" TextField
+    t =     9.18s     Check for interrupting elements affecting "/screen/scroll/body/name/title" TextField
+    t =     9.23s     Synthesize event
+    t =     9.55s     Wait for org.haiyue.uivalidation to idle
+    t =     9.92s Type ' Test
+' into "/screen/scroll/body/name/title" TextField
+    t =     9.92s     Wait for org.haiyue.uivalidation to idle
+    t =     9.95s     Find the "/screen/scroll/body/name/title" TextField
+    t =    10.00s     Check for interrupting elements affecting "/screen/scroll/body/name/title" TextField
+    t =    10.05s     Synthesize event
+    t =    10.38s     Wait for org.haiyue.uivalidation to idle
+    t =    10.55s Added attachment named '03-keyboard-english-only'
+    t =    10.55s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    10.90s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    11.04s Added attachment named '03-keyboard-english-only-accessibility-tree'
+    t =    11.04s Waiting 10.0s for "haiyue.keyboard.done" Button to exist
+    t =    12.04s     Checking `Expect predicate `existsNoRetry == 1` for object "haiyue.keyboard.done" Button`
+    t =    12.04s         Checking existence of `"haiyue.keyboard.done" Button`
+    t =    12.13s Tap "haiyue.keyboard.done" Button
+    t =    12.13s     Wait for org.haiyue.uivalidation to idle
+    t =    12.14s     Find the "haiyue.keyboard.done" Button
+    t =    12.19s     Check for interrupting elements affecting "haiyue.keyboard.done" Button
+    t =    12.23s     Synthesize event
+    t =    12.53s     Wait for org.haiyue.uivalidation to idle
+    t =    14.43s Checking `Expect predicate `exists == 0` for object "haiyue.keyboard.done" Button`
+    t =    14.44s     Checking existence of `"haiyue.keyboard.done" Button`
+    t =    14.44s         Checking `Expect predicate `exists == 0` for object Keyboard (First Match)`
+    t =    14.44s             Checking existence of `Keyboard (First Match)`
+    t =    14.53s Find the "/screen/scroll/body/name/title" TextField
+    t =    14.56s Tap "/screen/scroll/body/name/title" TextField
+    t =    14.56s     Wait for org.haiyue.uivalidation to idle
+    t =    14.57s     Find the "/screen/scroll/body/name/title" TextField
+    t =    14.60s     Check for interrupting elements affecting "/screen/scroll/body/name/title" TextField
+    t =    14.63s     Synthesize event
+    t =    14.95s     Wait for org.haiyue.uivalidation to idle
+    t =    15.29s Waiting 10.0s for "haiyue.keyboard.done" Button to exist
+    t =    16.32s     Checking `Expect predicate `existsNoRetry == 1` for object "haiyue.keyboard.done" Button`
+    t =    16.33s         Checking existence of `"haiyue.keyboard.done" Button`
+    t =    16.42s Tap "haiyue.keyboard.done" Button
+    t =    16.42s     Wait for org.haiyue.uivalidation to idle
+    t =    16.43s     Find the "haiyue.keyboard.done" Button
+    t =    16.48s     Check for interrupting elements affecting "haiyue.keyboard.done" Button
+    t =    16.53s     Synthesize event
+    t =    16.85s     Wait for org.haiyue.uivalidation to idle
+    t =    17.69s Tap "/screen/scroll/body/source" TextView
+    t =    17.69s     Wait for org.haiyue.uivalidation to idle
+    t =    17.71s     Find the "/screen/scroll/body/source" TextView
+    t =    17.78s     Check for interrupting elements affecting "/screen/scroll/body/source" TextView
+    t =    17.83s     Synthesize event
+    t =    18.18s     Wait for org.haiyue.uivalidation to idle
+    t =    18.53s Waiting 10.0s for "haiyue.keyboard.done" Button to exist
+    t =    19.56s     Checking `Expect predicate `existsNoRetry == 1` for object "haiyue.keyboard.done" Button`
+    t =    19.56s         Checking existence of `"haiyue.keyboard.done" Button`
+    t =    19.65s Tap "haiyue.keyboard.done" Button
+    t =    19.66s     Wait for org.haiyue.uivalidation to idle
+    t =    19.66s     Find the "haiyue.keyboard.done" Button
+    t =    19.82s     Check for interrupting elements affecting "haiyue.keyboard.done" Button
+    t =    19.90s     Synthesize event
+    t =    20.23s     Wait for org.haiyue.uivalidation to idle
+    t =    22.11s Checking `Expect predicate `exists == 0` for object "haiyue.keyboard.done" Button`
+    t =    22.11s     Checking existence of `"haiyue.keyboard.done" Button`
+    t =    22.11s         Checking `Expect predicate `exists == 0` for object Keyboard (First Match)`
+    t =    22.11s             Checking existence of `Keyboard (First Match)`
+    t =    22.36s Added attachment named '03b-keyboard-dismissed'
+    t =    22.36s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    22.55s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    22.64s Added attachment named '03b-keyboard-dismissed-accessibility-tree'
+    t =    22.64s Tap "/screen/toolbar/increment" Button
+    t =    22.64s     Wait for org.haiyue.uivalidation to idle
+    t =    22.65s     Find the "/screen/toolbar/increment" Button
+    t =    22.67s     Check for interrupting elements affecting "/screen/toolbar/increment" Button
+    t =    22.71s     Synthesize event
+    t =    23.01s     Wait for org.haiyue.uivalidation to idle
+    t =    23.30s Setting device orientation to Landscape Left
+    t =    23.31s     Device orientation changed to Landscape Left
+    t =    23.35s     Interface orientation changed to Landscape Right
+    t =    23.42s     Wait for org.haiyue.uivalidation to idle
+    t =    25.63s Added attachment named '04-landscape'
+    t =    25.63s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    25.82s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    25.90s Added attachment named '04-landscape-accessibility-tree'
+    t =    25.91s Pressing Home button
+    t =    28.38s Open org.haiyue.uivalidation
+    t =    28.38s     Activate org.haiyue.uivalidation
+    t =    28.46s         Wait for org.haiyue.uivalidation to idle
+    t =    30.64s Added attachment named '05-resume'
+    t =    30.64s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    30.84s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    30.93s Added attachment named '05-resume-accessibility-tree'
+    t =    30.93s Find the "/screen/status" StaticText
+    t =    30.97s Find the "/screen/scroll/body/name/title" TextField
+    t =    30.99s Setting device orientation to Portrait
+    t =    31.00s     Device orientation changed to Portrait
+    t =    31.10s     Interface orientation changed to Portrait
+    t =    31.11s     Wait for org.haiyue.uivalidation to idle
+    t =    32.12s Tap "/screen/toolbar/cycles" Button
+    t =    32.12s     Wait for org.haiyue.uivalidation to idle
+    t =    32.13s     Find the "/screen/toolbar/cycles" Button
+    t =    32.20s     Check for interrupting elements affecting "/screen/toolbar/cycles" Button
+    t =    32.26s     Synthesize event
+    t =    32.58s     Wait for org.haiyue.uivalidation to idle
+    t =    37.39s Checking `Expect predicate `label CONTAINS "50 次清理通过"` for object "/screen/status" StaticText`
+    t =    37.39s     Find the "/screen/status" StaticText
+    t =    37.64s Added attachment named '06-fifty-cycles'
+    t =    37.64s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    37.83s Requesting snapshot of accessibility hierarchy for app with pid 1219
+    t =    37.92s Added attachment named '06-fifty-cycles-accessibility-tree'
+    t =    37.92s Tear Down
+Test Case '-[Acceptance.Acceptance testControls]' passed (38.219 seconds).
+Test Suite 'Acceptance' passed at 2026-10-16 22:21:32.303.
+	 Executed 1 test, with 0 failures (0 unexpected) in 38.219 (38.221) seconds
+Test Suite 'Acceptance.xctest' passed at 2026-10-16 22:21:32.305.
+	 Executed 1 test, with 0 failures (0 unexpected) in 38.219 (38.224) seconds
+Test Suite 'All tests' passed at 2026-10-16 22:21:32.308.
+	 Executed 1 test, with 0 failures (0 unexpected) in 38.219 (38.227) seconds
+2026-10-16 22:21:31.865 xcodebuild[64422:3407722] [MT] IDETestOperationsObserverDebug: 44.337 elapsed -- Testing started completed.
+2026-10-16 22:21:31.865 xcodebuild[64422:3407722] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-16 22:21:31.866 xcodebuild[64422:3407722] [MT] IDETestOperationsObserverDebug: 44.337 sec, +44.337 sec -- end
+
+Test session results, code coverage, and logs:
+	<workspace>/Native/artifacts/ui-validation/ipad-final-acceptance.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

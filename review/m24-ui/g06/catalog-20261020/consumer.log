@@ -1,0 +1,5 @@
+
+> @haiyue/native@0.1.4 verify:ui
+> node scripts/validation/ui.mjs --profile consumer
+
+{"status":"passed","directory":"/Users/qingque/Desktop/HaiyueStudio/Native/artifacts/ui-validation/fresh-H9xXg5"}

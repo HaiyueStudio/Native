@@ -1,0 +1,5 @@
+
+> @haiyue/native@0.1.4 verify:ui
+> node scripts/validation/ui.mjs --profile mobile
+
+{"status":"pending-device","required":["iphone","ipad","android"]}

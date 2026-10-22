@@ -72,7 +72,17 @@ export class PurchaseCatalog {
   private async reconcile(restore:boolean):Promise<void>{
     if(this.disposed||this.snapshot().busy)return;
     this.busy=true;this.emit();
-    try{for(const o of this.offers){if(this.disposed)break;try{await (restore?o.store.restore():o.store.refresh());}catch{/* Other products can still restore. */}}}
+    const synchronized=new Set<object>();
+    try{for(const o of this.offers){
+      if(this.disposed)break;
+      const scope=o.store.restoreScope,needsRestore=restore&&(!scope||!synchronized.has(scope));
+      // Record even failed attempts. A network error must not trigger another
+      // authentication prompt through the next product in the same inventory.
+      if(needsRestore&&scope)synchronized.add(scope);
+      try{await (needsRestore?o.store.restore():o.store.refresh());}
+      catch{/* Other products can still refresh their verified entitlements. */}
+      if(needsRestore&&o.store.snapshot().phase==='cancelled')break;
+    }}
     finally{this.busy=false;this.emit();}
   }
   /** Controllers remain owned by the host, which disposes them separately. */

@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "updatedAt": "2026-10-17T00:39:32.408Z",
+  "policy": "status passed requires all G06 physical checks and budgets; smoke results alone do not pass the mobile profile",
+  "iphone": {
+    "packageSha256": "bd060ac09e0efba83c4bdfcd61b9663eb06108e371adfc761b68a4c857486fcd",
+    "uiPackageSha256": "6272686e1a42453e8e0726cd3425e766168def5b9172906420873355e5e8b981",
+    "applicationSha256": "6507cdb262a02887b1a40a5c24b1f998860ec4f29ab2d582c10ee419651c4e35",
+    "status": "pending-device",
+    "model": "iPhone 15 Plus",
+    "os": "iOS 27.2 (24B5089g)",
+    "binary": {
+      "path": "artifacts/ui-validation/mobile/platforms/ios/build/Debug-iphoneos/UIValidation.ipa",
+      "sha256": "3d4f1d232550899223e62832319717881ea486fafebb055809928f9284ef4a53"
+    },
+    "installation": "passed",
+    "smoke": {
+      "status": "partial",
+      "passed": [
+        "User confirms transparent accessory styling is normal",
+        "User confirms 完成 dismisses the keyboard"
+      ],
+      "source": "user manual reply 2026-10-17",
+      "evidence": [
+        "screenshots/iphone-keyboard-pill.png",
+        "logs/iphone-keyboard-pill.json",
+        "logs/iphone-after-pill-confirmation.json",
+        "logs/iphone-accessory-alpha.json"
+      ],
+      "pending": [
+        "Explicit single-line and multiline reopen/retention confirmation on this iPhone build"
+      ],
+      "limits": "Accessory-only bitmap confirms transparent background and text; user separately confirms actual system-keyboard composition and dismissal.",
+      "automation": "XCTest bootstrap still fails before application assertions; latest attempt recorded in artifacts/ui-validation/iphone-keyboard-investigation.xcresult."
+    },
+    "historicalObservations": [
+      {
+        "packageSha256": "661e7a5610ae8c5a8b7a027d73c01c446a9fcf6e0f5175c08df2e6d1cb8e9c96",
+        "source": "user manual reply 2026-10-16 + logs/iphone-manual-before-keyboard.json",
+        "reportedPassed": [
+          "counter",
+          "modal close/reopen",
+          "rotation",
+          "background recovery"
+        ],
+        "issue": "No keyboard dismiss button; repaired in the current build, awaiting confirmation."
+      },
+      {
+        "packageSha256": "b1283814570068b0b6515f5eac41d454bfedd2e77eda2b16ef2abc541bb34c75",
+        "status": "failed",
+        "source": "user manual reply",
+        "issue": "System Done bar item still invisible on iPhone with Apple keyboard despite iPad automated pass."
+      },
+      {
+        "packageSha256": "ab46213714ba71217dafcb3b8e840f9aa9d5566d1d843e5ee96c400223d429cb",
+        "status": "failed",
+        "source": "user manual reply + logs/iphone-keyboard-width.json",
+        "issue": "Explicit 430x44 width and window attachment did not make the bar item visible."
+      },
+      {
+        "packageSha256": "e12bfbc1dab14b2b260a53e2d592a12cf8ce4767b88fd6cb843142fb4be5677d",
+        "source": "user manual reply 2026-10-17",
+        "observed": "Explicit 完成 button visible, but full-width opaque black accessory looked inconsistent with rounded keyboard.",
+        "evidence": [
+          "screenshots/iphone-keyboard-button.png"
+        ]
+      }
+    ],
+    "pending": [
+      "physical Chinese IME candidate confirmation and draft retention",
+      "emoji, selection, copy/paste, undo/redo, secure/read-only input",
+      "screen reader, modal focus restoration and system font scaling",
+      "native heap retention and same-device interaction p95 budget"
+    ]
+  },
+  "ipad": {
+    "packageSha256": "e12bfbc1dab14b2b260a53e2d592a12cf8ce4767b88fd6cb843142fb4be5677d",
+    "uiPackageSha256": "6272686e1a42453e8e0726cd3425e766168def5b9172906420873355e5e8b981",
+    "applicationSha256": "6507cdb262a02887b1a40a5c24b1f998860ec4f29ab2d582c10ee419651c4e35",
+    "status": "pending-device",
+    "model": "iPad Air (4th generation)",
+    "os": "iPadOS 26.7.1 (23H30)",
+    "binary": {
+      "sha256": "84174bf68e1c1e80744abf8e82e07dc25040fec4836705d5674df4f32f4a2885",
+      "note": "Historical tested IPA. Build output path has been reused; latest package requires device sync."
+    },
+    "installation": "passed",
+    "smoke": {
+      "status": "passed",
+      "evidence": [
+        "logs/ipad-tests-button.log",
+        "logs/ipad-button.json"
+      ],
+      "resultBundle": "artifacts/ui-validation/ipad-button.xcresult",
+      "passed": [
+        "counter",
+        "modal close/reopen",
+        "synthetic English text",
+        "Done accessory closes keyboard, reopens single-line and multiline inputs, retains text",
+        "portrait/landscape",
+        "background/resume preserves state",
+        "50 mount/dispose cycles with all retired owned counters zero",
+        "Direct Done without Return commits; text survives all 50 view recreations"
+      ]
+    },
+    "pending": [
+      "physical Chinese IME candidate confirmation and draft retention",
+      "emoji, selection, copy/paste, undo/redo, secure/read-only input",
+      "screen reader, modal focus restoration and system font scaling",
+      "native heap retention and same-device interaction p95 budget",
+      "iPad split view and floating keyboard"
+    ],
+    "latestPackage": {
+      "packageSha256": "bd060ac09e0efba83c4bdfcd61b9663eb06108e371adfc761b68a4c857486fcd",
+      "uiPackageSha256": "6272686e1a42453e8e0726cd3425e766168def5b9172906420873355e5e8b981",
+      "applicationSha256": "6507cdb262a02887b1a40a5c24b1f998860ec4f29ab2d582c10ee419651c4e35",
+      "status": "pending-device",
+      "reason": "iPad unavailable during 2026-10-17 style follow-up; prior explicit UIButton smoke retained with original identity."
+    }
+  },
+  "android": {
+    "packageSha256": "bd060ac09e0efba83c4bdfcd61b9663eb06108e371adfc761b68a4c857486fcd",
+    "uiPackageSha256": "6272686e1a42453e8e0726cd3425e766168def5b9172906420873355e5e8b981",
+    "applicationSha256": "6507cdb262a02887b1a40a5c24b1f998860ec4f29ab2d582c10ee419651c4e35",
+    "status": "pending-device",
+    "model": "X4000",
+    "os": "Android 14",
+    "binary": {
+      "path": "artifacts/ui-validation/mobile/platforms/android/app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "83dd54b4691fa587ca2d46e0940834d4c1e6a22048f5e3d3f0c42492a8cb0115"
+    },
+    "installation": "passed",
+    "smoke": {
+      "status": "passed",
+      "evidence": [
+        "logs/android-controls-pill.log",
+        "logs/android-input-pill.log",
+        "logs/android-lifecycle-pill.log",
+        "logs/android-cycles-pill.log",
+        "logs/android-pill-09-fifty-cycles.json",
+        "logs/android-pill-rotation-restored.json",
+        "logs/android-pill-crash-current-process.log",
+        "logs/android-pill-process.json"
+      ],
+      "passed": [
+        "counter and updated accessibility text",
+        "modal close/reopen and system Back",
+        "selection 50%, cancel preserves value",
+        "toggle and tabs",
+        "synthetic English IME candidate confirmation then blur commit",
+        "portrait/landscape",
+        "background/resume preserves state",
+        "50 mount/dispose cycles after controls, editing and lifecycle checks; all retired owned counters zero"
+      ],
+      "limits": "ADB English injection is not physical Chinese IME or TalkBack acceptance. Heap snapshots are observations, not a passed leak budget.",
+      "initialAttempt": {
+        "status": "failed",
+        "evidence": [
+          "logs/android-controls-pill-first.log",
+          "logs/android-tabs-failure.xml",
+          "logs/android-tabs-failure.json",
+          "screenshots/android-tabs-failure.png"
+        ],
+        "observed": "Preview tap produced no selection event. A later tap at freshly read bounds succeeded. Test now requires stable bounds before tapping; full rerun passed. No Android runtime code changed in this follow-up."
+      }
+    },
+    "pending": [
+      "physical Chinese IME candidate confirmation and draft retention",
+      "emoji, selection, copy/paste, undo/redo, secure/read-only input",
+      "screen reader, modal focus restoration and system font scaling",
+      "native heap retention and same-device interaction p95 budget"
+    ],
+    "historicalObservations": [
+      {
+        "packageSha256": "b1283814570068b0b6515f5eac41d454bfedd2e77eda2b16ef2abc541bb34c75",
+        "uiPackageSha256": "6272686e1a42453e8e0726cd3425e766168def5b9172906420873355e5e8b981",
+        "applicationSha256": "e1c2cf303fa89fa4fcf5a8476feb1aa6524e0f968c0a0ab500f03352b928a572",
+        "binary": {
+          "sha256": "adc24c31b689fe3174009b395dc160dfd0971bdf43b7a7f079698b38b2b70e26",
+          "note": "Historical tested APK hash. The build output path has since been reused; current APK is identified under latestPackage."
+        },
+        "smoke": {
+          "status": "passed",
+          "evidence": [
+            "logs/android-controls-final.log",
+            "logs/android-input-final.log",
+            "logs/android-lifecycle-final.log",
+            "logs/android-cycles-final.log",
+            "logs/android-09-fifty-cycles.json",
+            "logs/android-rotation-restored.json",
+            "logs/android-crash-current-process.log",
+            "logs/android-memory-idle.txt"
+          ],
+          "passed": [
+            "counter and updated accessibility text",
+            "modal close/reopen and system Back",
+            "selection 50%, cancel preserves value",
+            "toggle and tabs",
+            "synthetic English IME candidate confirmation then blur commit",
+            "portrait/landscape",
+            "background/resume preserves state",
+            "50 cycles before controls and another 50 after editing/rotation/resume; retired counters zero"
+          ],
+          "limits": "ADB English injection is not physical Chinese IME or TalkBack acceptance. Heap snapshots are observations, not a passed leak budget."
+        }
+      }
+    ]
+  }
+}

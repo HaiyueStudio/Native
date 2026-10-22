@@ -1,0 +1,5 @@
+
+> @haiyue/native@0.1.4 verify:ui
+> node scripts/validation/ui.mjs --profile fresh
+
+{"status":"passed","directory":"<workspace>/Native/artifacts/ui-validation/fresh-3fB7ga"}

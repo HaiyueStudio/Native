@@ -62,7 +62,7 @@ public final class HYNonConsumableStore: NSObject {
                         do { try await AppStore.sync() }
                         catch {
                             recordFailure(error, action: "restore-sync")
-                            if let sk = error as? StoreKitError, case .userCancelled = sk { throw error }
+                            if failurePhase(error) == "cancelled" { throw error }
                             // A transaction can already have arrived even when sync fails.
                             // Only a freshly verified current entitlement can recover this path.
                             syncFailure = error

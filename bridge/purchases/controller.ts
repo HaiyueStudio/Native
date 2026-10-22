@@ -2,6 +2,7 @@ import type { Purchases, PurchaseState, PurchasePhase } from './types';
 
 export interface VerifiedAccess { owned: boolean; offline?: boolean; revoked?: boolean; pending?: boolean; validUntil?: number }
 export interface StoreGateway {
+  readonly restoreScope?: object;
   product(): Promise<{ price: string; purchasable: boolean }>;
   access(restore: boolean): Promise<VerifiedAccess>;
   purchase(): Promise<'changed' | 'cancelled' | 'pending'>;
@@ -15,6 +16,7 @@ export class StoreFailure extends Error {
 
 /** Serializes operations and coalesces duplicate store callbacks. No permanent local boolean. */
 export class PurchaseController implements Purchases {
+  readonly restoreScope?: object;
   private state: PurchaseState = { entitled: false, phase: 'loading', price: null, canPurchase: false, busy: false };
   private readonly listeners = new Set<() => void>();
   private readonly gateway: StoreGateway;
@@ -25,6 +27,7 @@ export class PurchaseController implements Purchases {
   private validUntil = Infinity;
   constructor(gateway: StoreGateway) {
     this.gateway = gateway;
+    if (gateway.restoreScope) this.restoreScope = gateway.restoreScope;
     this.removeStore = gateway.onChange(() => {
       if (this.job) this.dirty = true;
       else void this.refresh();

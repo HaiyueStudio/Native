@@ -1,0 +1,42 @@
+
+> @haiyue/native@0.1.4 verify:ui
+> node scripts/validation/ui.mjs --profile core
+
+✔ Android keyboard observer detaches after attach merges its tree and ignores queued callbacks (15.018978ms)
+✔ embedded image fixture has valid PNG checksums and decodable pixel data (1.363849ms)
+✔ all 18 kinds mount from the independent shared package; unrelated updates preserve instances (37.184033ms)
+✔ Android uses an explicit image fallback without requesting iOS system symbols (14.800388ms)
+✔ programmatic toggle/text/slider writes and delayed setter echoes emit no application actions (12.592804ms)
+✔ Chinese composition is kept across unrelated renders; candidate confirmation does not commit (12.926324ms)
+✔ new authoritative text wins only after marked text is complete; disposed callbacks are inert (11.457673ms)
+✔ rejected toggle returns to accepted value and accepted slider commits once (11.795308ms)
+✔ stable keys move instances; hidden tabs cannot send actions (8.653405ms)
+✔ dialog programmatic close does not cancel; user close cancels and restores focus (38.202655ms)
+✔ 50 mount/unmount cycles release root observers, native input bindings and resources (667.029706ms)
+✔ rapid dialog reopen waits for the native asynchronous dismissal callback (33.893585ms)
+✔ capability failures identify a node and a failed renderer is disposable (1.136052ms)
+✔ throwing product disposers still release every observer and sibling (11.84131ms)
+✔ native Select cancel/reopen, stale resolution and option choice preserve controlled value (45.589442ms)
+✔ optional mobile entry does not pollute root or system exports (1.677355ms)
+✔ leaf value changes preserve native layout and typography while accessibility stays current (23.119328ms)
+✔ layout, clipping, environment and visibility changes still reach native controls (94.896001ms)
+✔ form labels and errors survive leaf changes and update with the parent (12.217828ms)
+✔ clipped PlatformView refreshes its native rectangle after hidden layout becomes visible (31.880395ms)
+✔ native leaf updates compare immutable props without serializing the control tree (11.555863ms)
+✔ value-only commits avoid redundant layout timers but real native layout still refreshes PlatformView bounds (22.731892ms)
+✔ accessibility value updates skip unchanged UIKit fields and preserve Android derived labels (22.361923ms)
+✔ iOS single-line controls avoid paragraph titles while multiline and Android keep theme spacing (23.105817ms)
+✔ theme owns button geometry and picker colours after an environment change (21.680381ms)
+✔ dialog backdrop ignores taps inside the card and respects dismissible=false (23.155706ms)
+✔ catalog checkbox/radio/rating use controlled transactions and release option handlers (14.939107ms)
+✔ catalog pages cycle through every section and release fifty times (717.389918ms)
+✔ retained ObjC callbacks release page captures on disposal, including jitless V8 (232.09226ms)
+✔ frame runtime releases disposed owners without clearing a newer host (262.784299ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2806.232555

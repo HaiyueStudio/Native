@@ -15,7 +15,8 @@
     "release:verify": "node scripts/release/verify.mjs",
     "release:export": "node scripts/release/export-clean.mjs",
     "models:check": "node scripts/assets/check-models.mjs",
-    "validate:p0": "node scripts/validation/p0.mjs"
+    "validate:p0": "node scripts/validation/p0.mjs",
+    "verify:ui": "node scripts/validation/ui.mjs"
   },
   "devDependencies": {
     "typescript": "5.7.3"

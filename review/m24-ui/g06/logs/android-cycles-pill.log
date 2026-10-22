@@ -1,0 +1,3 @@
+tap /screen/toolbar/cycles [716,453][1032,597]
+09-fifty-cycles passed
+{"phase": "cycles", "status": "passed"}

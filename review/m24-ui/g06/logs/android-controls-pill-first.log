@@ -1,0 +1,10 @@
+01-counter passed
+02-modal passed
+03-modal-back passed
+04-select-cancel passed
+Traceback (most recent call last):
+  File "<workspace>/Native/examples/ui-validation/mobile/android-acceptance.py", line 54, in <module>
+    tap('预览','text');wait(lambda d:d['state']['tab']=='preview');capture('05-tabs')
+  File "<workspace>/Native/examples/ui-validation/mobile/android-acceptance.py", line 31, in wait
+    raise AssertionError('State predicate failed: '+json.dumps(d['state'],ensure_ascii=False))
+AssertionError: State predicate failed: {"title": "海月实验室", "source": "中文输入 / emoji 🌙\n选择、复制、粘贴与撤销", "quality": "50", "tab": "settings", "enabled": false, "amount": 50, "dialog": false, "count": 1, "status": "原生控件已加载"}

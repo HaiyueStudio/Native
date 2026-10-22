@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "platform": "Android",
+  "osVersion": "14",
+  "model": "X4000",
+  "time": "2026-10-17T00:36:49.337Z",
+  "state": {
+    "title": "海月实验室",
+    "source": "中文输入 / emoji 🌙\n选择、复制、粘贴与撤销",
+    "quality": "75",
+    "tab": "settings",
+    "enabled": true,
+    "amount": 50,
+    "dialog": false,
+    "count": 1,
+    "status": "原生控件已加载"
+  },
+  "events": [
+    {
+      "key": "/screen/toolbar/increment",
+      "type": "focus",
+      "reason": "pointer",
+      "transaction": 0
+    },
+    {
+      "key": "/screen/toolbar/increment",
+      "type": "activate",
+      "reason": "pointer",
+      "transaction": 1
+    }
+  ],
+  "diagnostics": [],
+  "platforms": 2,
+  "renderer": {
+    "commits": 3,
+    "created": 35,
+    "updated": 2,
+    "moved": 0,
+    "removed": 0,
+    "activeListeners": 137,
+    "activeNodes": 35,
+    "activeResources": 2,
+    "activeTimers": 1
+  }
+}

@@ -3,7 +3,11 @@ import { StoreFailure, type StoreGateway, type VerifiedAccess } from './controll
 import { StoreRequests } from './requests';
 import { validateStoreConfig, type StoreConfig } from './config';
 
+// AppStore.sync restores the application's entire account inventory, not one
+// product. All iOS controllers in a catalog therefore share one restore scope.
+const appStoreRestoreScope = {};
 export class NativeStore implements StoreGateway {
+  readonly restoreScope = appStoreRestoreScope;
   private readonly requests = new StoreRequests();
   private readonly native: HYNonConsumableStore;
   private readonly listeners = new Set<() => void>();

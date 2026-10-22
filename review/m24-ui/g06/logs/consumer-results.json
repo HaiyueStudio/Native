@@ -1,0 +1,53 @@
+{
+  "packages": {
+    "ui": {
+      "filename": "haiyue-ui-0.2.0-m24.0.tgz",
+      "sha256": "6272686e1a42453e8e0726cd3425e766168def5b9172906420873355e5e8b981",
+      "size": 145733,
+      "unpackedSize": 660727
+    },
+    "native": {
+      "filename": "haiyue-native-0.1.4-m24.0.tgz",
+      "sha256": "bd060ac09e0efba83c4bdfcd61b9663eb06108e371adfc761b68a4c857486fcd",
+      "size": 277514,
+      "unpackedSize": 584866
+    }
+  },
+  "toolchain": {
+    "esbuild": "0.25.0"
+  },
+  "consumers": {
+    "system": {
+      "status": "passed",
+      "inputs": [
+        "node_modules/@haiyue/native/bridge/achievements/local/index.ts",
+        "entry.ts"
+      ],
+      "uiInstalled": false,
+      "engineInstalled": false
+    },
+    "mobile": {
+      "status": "passed",
+      "inputs": [
+        "node_modules/@haiyue/ui/dist/core/data.js",
+        "node_modules/@haiyue/ui/dist/core/validation.js",
+        "node_modules/@haiyue/ui/dist/core/selection.js",
+        "node_modules/@haiyue/ui/dist/core/actions.js",
+        "node_modules/@haiyue/ui/dist/core/text.js",
+        "node_modules/@haiyue/ui/dist/core/platform-view.js",
+        "node_modules/@haiyue/ui/dist/core/index.js",
+        "node_modules/@haiyue/ui/dist/portable/tree.js",
+        "node_modules/@haiyue/ui/dist/portable/page.js",
+        "node_modules/@haiyue/ui/dist/portable/theme.js",
+        "node_modules/@haiyue/ui/dist/portable/index.js",
+        "node_modules/@haiyue/native/bridge/ui/nativescript/platform.ts",
+        "node_modules/@haiyue/native/bridge/ui/nativescript/controls.ts",
+        "node_modules/@haiyue/native/bridge/ui/nativescript/renderer.ts",
+        "node_modules/@haiyue/native/bridge/ui/index.ts",
+        "entry.ts"
+      ],
+      "engineInstalled": false,
+      "webAdapterBundled": false
+    }
+  }
+}

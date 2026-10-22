@@ -1,0 +1,28 @@
+
+> @haiyue/native@0.1.4 verify:ui
+> node scripts/validation/ui.mjs --profile core
+
+✔ Android keyboard observer detaches after attach merges its tree and ignores queued callbacks (17.675593ms)
+✔ embedded image fixture has valid PNG checksums and decodable pixel data (1.81798ms)
+✔ all 18 kinds mount from the independent shared package; unrelated updates preserve instances (31.642702ms)
+✔ Android uses an explicit image fallback without requesting iOS system symbols (16.708099ms)
+✔ programmatic toggle/text/slider writes and delayed setter echoes emit no application actions (12.580349ms)
+✔ Chinese composition is kept across unrelated renders; candidate confirmation does not commit (13.918088ms)
+✔ new authoritative text wins only after marked text is complete; disposed callbacks are inert (13.356235ms)
+✔ rejected toggle returns to accepted value and accepted slider commits once (14.210472ms)
+✔ stable keys move instances; hidden tabs cannot send actions (5.63568ms)
+✔ dialog programmatic close does not cancel; user close cancels and restores focus (34.59346ms)
+✔ 50 mount/unmount cycles release root observers, native input bindings and resources (788.904771ms)
+✔ rapid dialog reopen waits for the native asynchronous dismissal callback (34.391193ms)
+✔ capability failures identify a node and a failed renderer is disposable (1.821946ms)
+✔ throwing product disposers still release every observer and sibling (12.151279ms)
+✔ native Select cancel/reopen, stale resolution and option choice preserve controlled value (47.324301ms)
+✔ optional mobile entry does not pollute root or system exports (2.903567ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1808.933921

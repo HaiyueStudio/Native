@@ -1,0 +1,19 @@
+tap /screen/toolbar/increment [48,453][364,597]
+01-counter passed
+tap /screen/toolbar/dialog [382,453][698,597]
+02-modal passed
+tap /screen/modal/close [60,657][1020,789]
+tap /screen/toolbar/dialog [382,453][698,597]
+tap /screen/modal/close [60,657][1020,789]
+tap /screen/toolbar/dialog [382,453][698,597]
+03-modal-back passed
+tap /screen/scroll/body/tabs/settings/grid/quality [732,1699][1032,1831]
+tap 50% [363,868][716,1012]
+tap /screen/scroll/body/tabs/settings/grid/quality [732,1699][1032,1831]
+tap Cancel [363,1444][716,1588]
+04-select-cancel passed
+tap /screen/scroll/body/tabs/settings/grid/enabled [732,1543][1032,1675]
+tap 预览 [324,1399][588,1543]
+05-tabs passed
+tap 设置 [48,1399][312,1543]
+{"phase": "controls", "status": "passed"}

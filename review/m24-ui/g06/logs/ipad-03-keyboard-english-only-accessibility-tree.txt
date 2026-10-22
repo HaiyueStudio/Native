@@ -1,0 +1,170 @@
+Attributes: Application, 0x1154dc640, pid: 1235, label: 'Haiyue UI'
+Element subtree:
+ →Application, 0x1154dc640, pid: 1235, label: 'Haiyue UI'
+    Window (Main), 0x1154dc780, {{0.0, 0.0}, {820.0, 1180.0}}
+      Other, 0x1154dc8c0, {{0.0, 0.0}, {820.0, 1180.0}}
+        Other, 0x1154dca00, {{0.0, 0.0}, {820.0, 1180.0}}
+          Other, 0x1154dcb40, {{0.0, 0.0}, {820.0, 1180.0}}
+            Other, 0x1154dcc80, {{0.0, 0.0}, {820.0, 1180.0}}
+              Other, 0x1154dcdc0, {{0.0, 0.0}, {820.0, 1180.0}}
+                Other, 0x1154dcf00, {{0.0, 0.0}, {820.0, 1180.0}}
+                  Other, 0x1154dd040, {{0.0, 0.0}, {820.0, 1180.0}}
+                    Other, 0x1154dd180, {{0.0, 0.0}, {820.0, 1180.0}}
+                      Other, 0x1154dd2c0, {{0.0, 32.0}, {820.0, 1123.0}}
+                        Other, 0x1154dd400, {{0.0, 32.0}, {820.0, 759.0}}, identifier: '/screen'
+                          StaticText, 0x1154dd540, {{16.0, 44.0}, {788.0, 32.0}}, identifier: '/screen/heading', label: 'Haiyue · 原生组件'
+                          StaticText, 0x1154dd680, {{16.0, 84.0}, {788.0, 48.0}}, identifier: '/screen/status', label: '原生控件已加载 · 点击 1 次'
+                          Other, 0x1154dd7c0, {{16.0, 140.0}, {788.0, 44.0}}, identifier: '/screen/toolbar'
+                            Button, 0x1154dd900, {{16.0, 140.0}, {245.5, 44.0}}, identifier: '/screen/toolbar/increment', label: '计数'
+                              StaticText, 0x1154dda40, {{123.0, 152.0}, {32.0, 20.0}}, label: '计数'
+                            Button, 0x1154ddb80, {{267.5, 140.0}, {245.0, 44.0}}, identifier: '/screen/toolbar/dialog', label: '弹窗'
+                              StaticText, 0x1154ddcc0, {{374.0, 152.0}, {32.0, 20.0}}, label: '弹窗'
+                            Button, 0x1154dde00, {{518.5, 140.0}, {285.5, 44.0}}, identifier: '/screen/toolbar/cycles', label: '50 次清理'
+                              StaticText, 0x1154ddf40, {{625.5, 152.0}, {72.0, 20.0}}, label: '50 次清理'
+                          ScrollView, 0x1154de080, {{16.0, 192.0}, {788.0, 651.0}}, identifier: '/screen/scroll'
+                            Other, 0x1154de1c0, {{16.0, 192.0}, {788.0, 651.0}}
+                              Other, 0x1154de300, {{16.0, 192.0}, {788.0, 651.0}}, identifier: '/screen/scroll/body'
+                                Other, 0x1154de440, {{16.0, 192.0}, {788.0, 71.5}}, identifier: '/screen/scroll/body/name'
+                                  StaticText, 0x1154de580, {{16.0, 192.0}, {788.0, 19.5}}, label: '工程名称（中文输入与选区）'
+                                  TextField, 0x1154de6c0, {{16.0, 215.5}, {788.0, 48.0}}, identifier: '/screen/scroll/body/name/title', label: '工程名称', placeholderValue: '输入中文', value: 海月实验室 Test, Keyboard Focused
+                                TextView, 0x1154de800, {{16.0, 273.5}, {788.0, 112.0}}, identifier: '/screen/scroll/body/source', label: '代码草稿', value: 中文输入 / emoji 🌙
+选择...
+                                  Other, 0x1154de940, {{771.0, 273.5}, {30.0, 112.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                    Other, 0x1154dea80, {{798.0, 234.5}, {3.0, 36.0}}
+                                  Other, 0x1154debc0, {{16.0, 352.5}, {788.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                    Other, 0x1154ded00, {{-26.0, 379.5}, {36.0, 3.0}}
+                                SecureTextField, 0x1154dee40, {{16.0, 395.5}, {788.0, 44.0}}, identifier: '/screen/scroll/body/password', label: '密码', placeholderValue: '密码不会写入日志'
+                                Other, 0x1154def80, {{16.0, 449.5}, {788.0, 223.5}}, identifier: '/screen/scroll/body/tabs', value: settings
+                                  Other, 0x1154df0c0, {{16.0, 449.5}, {788.0, 44.0}}
+                                    Button, 0x1154df200, {{16.0, 449.5}, {56.0, 44.0}}, label: '设置'
+                                      StaticText, 0x1154df340, {{28.0, 461.5}, {32.0, 20.0}}, label: '设置'
+                                    Button, 0x1154df480, {{76.0, 449.5}, {56.0, 44.0}}, label: '预览'
+                                      StaticText, 0x1154df5c0, {{88.0, 461.5}, {32.0, 20.0}}, label: '预览'
+                                  Other, 0x1154df700, {{16.0, 493.5}, {788.0, 179.5}}
+                                    Other, 0x1154df840, {{16.0, 493.5}, {788.0, 179.5}}, identifier: '/screen/scroll/body/tabs/settings'
+                                      Other, 0x1154df980, {{16.0, 493.5}, {788.0, 96.0}}, identifier: '/screen/scroll/body/tabs/settings/grid'
+                                        StaticText, 0x1154dfac0, {{16.0, 493.5}, {680.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/switch-label', label: '实时预览'
+                                        Switch, 0x1154dfc00, {{685.5, 485.5}, {100.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/enabled', label: '实时预览', value: 1
+                                        StaticText, 0x1154dfd40, {{16.0, 545.5}, {680.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/quality-label', label: '渲染分辨率'
+                                        Button, 0x1154dfe80, {{704.0, 545.5}, {100.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/quality', label: '渲染分辨率', value: 75
+                                          StaticText, 0x10a23b700, {{737.5, 557.5}, {33.0, 20.0}}, label: '75%'
+                                      Slider, 0x10a23a1c0, {{16.0, 597.5}, {788.0, 48.0}}, identifier: '/screen/scroll/body/tabs/settings/amount', label: '亮度', value: 50
+                                      StaticText, 0x10a23a300, {{16.0, 653.5}, {788.0, 19.5}}, identifier: '/screen/scroll/body/tabs/settings/amount-label', label: '亮度：50'
+                                Other, 0x10a23a440, {{16.0, 683.0}, {788.0, 64.0}}, identifier: '/screen/scroll/body/editor'
+                                  StaticText, 0x10a23a580, {{16.0, 683.0}, {788.0, 64.0}}, label: '代码编辑器端口 · 27 字符'
+                                Other, 0x10a23a6c0, {{16.0, 757.0}, {788.0, 32.0}}, identifier: '/screen/scroll/body/images'
+                                  Image, 0x10a23a800, {{16.0, 757.0}, {28.0, 32.0}}, identifier: '/screen/scroll/body/images/icon', label: '月亮'
+                                  Image, 0x10a23a940, {{52.0, 757.0}, {28.0, 32.0}}, identifier: '/screen/scroll/body/images/image', label: '图片资源'
+                                  Button, 0x10a23abc0, {{88.0, 757.0}, {64.0, 32.0}}, identifier: '/screen/scroll/body/images/disabled', label: '禁用按钮'
+                                    StaticText, 0x10a23ad00, {{88.0, 763.0}, {64.0, 20.0}}, label: '禁用按钮'
+                                Button, 0x10a23ae40, {{16.0, 799.0}, {788.0, 44.0}}, identifier: '/screen/scroll/body/theme', label: '切换主题与字号'
+                                  StaticText, 0x10a23af80, {{354.0, 811.0}, {112.0, 20.0}}, label: '切换主题与字号'
+                            Other, 0x10a23b0c0, {{771.0, 192.0}, {30.0, 651.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                              Other, 0x10a23b200, {{798.0, 153.0}, {3.0, 36.0}}
+                            Other, 0x10a23b340, {{16.0, 810.0}, {788.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                              Other, 0x10a23b480, {{-23.0, 837.0}, {36.0, 3.0}}
+                            Other, 0x10a23b5c0, {{771.0, 192.0}, {30.0, 651.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                              Other, 0x1154e0000, {{798.0, 153.0}, {3.0, 36.0}}
+                            Other, 0x1154e0140, {{16.0, 810.0}, {788.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                              Other, 0x1154e0280, {{-23.0, 837.0}, {36.0, 3.0}}
+              Other, 0x1154e03c0, {{0.0, 0.0}, {820.0, 1180.0}}
+                Other, 0x1154e0500, {{0.0, 0.0}, {820.0, 1180.0}}
+    Window, 0x1154e0640, {{0.0, 0.0}, {820.0, 1180.0}}
+      Other, 0x1154e0780, {{0.0, 0.0}, {820.0, 1180.0}}
+        Other, 0x1154e08c0, {{0.0, 0.0}, {820.0, 1180.0}}
+        Other, 0x1154e0a00, {{0.0, 791.0}, {820.0, 389.0}}
+          Other, 0x1154e0b40, {{0.0, 791.0}, {820.0, 52.0}}
+            Button, 0x1154e0c80, {{712.0, 795.0}, {96.0, 44.0}}, identifier: 'haiyue.keyboard.done', label: '完成'
+              StaticText, 0x1154e0dc0, {{743.0, 806.5}, {34.0, 21.0}}, label: '完成'
+          Other, 0x1154e0f00, {{0.0, 843.0}, {820.0, 337.0}}, identifier: 'inputView'
+    Window, 0x1154e1040, {{0.0, 0.0}, {820.0, 1180.0}}
+      Other, 0x1154e1180, {{0.0, 0.0}, {820.0, 1180.0}}
+        Other, 0x1154e12c0, {{0.0, 791.0}, {820.0, 389.0}}
+          Other, 0x1154e1400, {{0.0, 791.0}, {820.0, 52.0}}
+          Other, 0x1154e1540, {{0.0, 843.0}, {820.0, 55.0}}, identifier: 'SystemInputAssistantView'
+            Other, 0x1154e1680, {{0.0, 843.0}, {820.0, 55.0}}
+              Other, 0x1154e17c0, {{0.0, 843.0}, {152.0, 49.0}}, identifier: 'LeftButtonBar'
+                Other, 0x1154e1900, {{28.0, 843.0}, {124.0, 49.0}}
+                  Other, 0x1154e1a40, {{28.0, 844.0}, {114.0, 49.0}}
+                    Other, 0x1154e1b80, {{28.0, 844.0}, {22.0, 49.0}}
+                      Button, 0x1154e1cc0, {{28.0, 844.0}, {22.0, 49.0}}, identifier: 'assistantUndo', label: 'undo'
+                    Other, 0x1154e1e00, {{74.0, 844.0}, {22.0, 49.0}}
+                      Button, 0x1154e1f40, {{74.0, 844.0}, {22.0, 49.0}}, identifier: 'assistantRedo', label: 'Redo', Disabled
+                    Other, 0x1154e2080, {{120.0, 844.0}, {22.0, 49.0}}
+                      Button, 0x1154e21c0, {{120.0, 844.0}, {22.0, 49.0}}, identifier: 'assistantPaste:forEvent:', label: 'Paste'
+              Other, 0x1154e2300, {{152.0, 849.0}, {516.0, 49.0}}, identifier: 'CenterPageView'
+                Other, 0x1154e2440, {{152.0, 249.0}, {516.0, 1249.0}}
+                  ScrollView, 0x1154e2580, {{152.0, 849.0}, {516.0, 49.0}}
+                Other, 0x1154e26c0, {{152.0, 849.0}, {516.0, 49.0}}
+                  Other, 0x1154e2800, {{152.0, 849.0}, {516.0, 49.0}}
+                    Other, 0x1154e2940, {{152.0, 849.0}, {516.0, 49.0}}
+                      Other, 0x1154e2a80, {{152.0, 849.0}, {516.0, 49.0}}
+                        Other, 0x1154e2bc0, {{152.0, 849.0}, {516.0, 49.0}}
+                          CollectionView, 0x1154e2d00, {{152.0, 849.0}, {516.0, 49.0}}
+                            Cell, 0x1154e2e40, {{152.0, 849.0}, {69.0, 55.0}}, identifier: '🧪', label: '🧪'
+                              Other, 0x1154e2f80, {{152.0, 849.0}, {69.0, 55.0}}
+                                StaticText, 0x1154e30c0, {{175.0, 849.0}, {33.0, 55.0}}, label: '🧪'
+                            Cell, 0x1154e3200, {{221.0, 849.0}, {69.0, 55.0}}, identifier: '🔬', label: '🔬'
+                              Other, 0x1154e3340, {{221.0, 849.0}, {69.0, 55.0}}
+                                StaticText, 0x1154e3480, {{244.0, 849.0}, {33.0, 55.0}}, label: '🔬'
+                      Other, 0x1154e35c0, {{152.0, 849.0}, {0.5, 49.0}}
+                        Image, 0x1154e3700, {{152.0, 849.0}, {1.0, 49.0}}
+                      Other, 0x1154e3840, {{667.5, 849.0}, {0.5, 49.0}}
+                        Image, 0x1154e3980, {{667.0, 849.0}, {1.0, 49.0}}
+              Other, 0x1154e3ac0, {{668.0, 843.0}, {152.0, 49.0}}, identifier: 'RightButtonBar'
+                Other, 0x1154e3c00, {{668.0, 843.0}, {124.0, 49.0}}
+          Other, 0x1154e3d40, {{0.0, 843.0}, {820.0, 337.0}}
+            Other, 0x1154e3e80, {{0.0, 843.0}, {820.0, 337.0}}
+              Other, 0x1154e8000, {{0.0, 843.0}, {820.0, 337.0}}
+          Other, 0x1154e8140, {{0.0, 898.0}, {820.0, 279.0}}
+            Keyboard, 0x1154e8280, {{0.0, 898.0}, {820.0, 279.0}}
+              Other, 0x1154e83c0, {{0.0, 898.0}, {820.0, 279.0}}
+                Other, 0x1154e8500, {{0.0, 898.0}, {820.0, 279.0}}, identifier: 'UIKeyboardLayoutStar Preview'
+                  Button, 0x1154e8640, {{6.0, 905.0}, {65.0, 64.0}}, identifier: 'tab', label: 'Tab'
+                  Key, 0x1154e8780, {{71.0, 905.0}, {65.0, 64.0}}, label: 'q'
+                  Key, 0x1154e88c0, {{136.0, 905.0}, {65.0, 64.0}}, label: 'w'
+                  Key, 0x1154e8a00, {{201.0, 905.0}, {65.0, 64.0}}, label: 'e'
+                  Key, 0x1154e8b40, {{266.0, 905.0}, {65.0, 64.0}}, label: 'r'
+                  Key, 0x1154e8c80, {{331.0, 905.0}, {65.0, 64.0}}, label: 't'
+                  Key, 0x1154e8dc0, {{396.0, 905.0}, {64.5, 64.0}}, label: 'y'
+                  Key, 0x1154e8f00, {{460.5, 905.0}, {65.0, 64.0}}, label: 'u'
+                  Key, 0x1154e9040, {{525.5, 905.0}, {65.0, 64.0}}, label: 'i'
+                  Key, 0x1154e9180, {{590.5, 905.0}, {65.0, 64.0}}, label: 'o'
+                  Key, 0x1154e92c0, {{655.5, 905.0}, {65.0, 64.0}}, label: 'p'
+                  Key, 0x1154e9400, {{720.5, 905.0}, {97.5, 64.0}}, identifier: 'delete', label: '删除'
+                  Key, 0x1154e9540, {{6.0, 969.0}, {97.5, 63.5}}, label: 'Switch from Roman keys'
+                  Key, 0x1154e9680, {{103.5, 969.0}, {65.0, 63.5}}, label: 'a'
+                  Key, 0x1154e97c0, {{168.5, 969.0}, {65.0, 63.5}}, label: 's'
+                  Key, 0x1154e9900, {{233.5, 969.0}, {65.0, 63.5}}, label: 'd'
+                  Key, 0x1154e9a40, {{298.5, 969.0}, {65.0, 63.5}}, label: 'f'
+                  Key, 0x1154e9b80, {{363.5, 969.0}, {64.5, 63.5}}, label: 'g'
+                  Key, 0x1154e9cc0, {{428.0, 969.0}, {65.0, 63.5}}, label: 'h'
+                  Key, 0x1154e9e00, {{493.0, 969.0}, {65.0, 63.5}}, label: 'j'
+                  Key, 0x1154e9f40, {{558.0, 969.0}, {65.0, 63.5}}, label: 'k'
+                  Key, 0x1154ea080, {{623.0, 969.0}, {65.0, 63.5}}, label: 'l'
+                  Button, 0x1154ea1c0, {{688.0, 969.0}, {130.0, 63.5}}, identifier: 'Return', label: '换行'
+                  Button, 0x1154ea300, {{6.0, 1032.5}, {117.0, 64.0}}, identifier: 'shift', label: 'shift'
+                  Key, 0x1154ea440, {{123.0, 1032.5}, {65.0, 64.0}}, label: 'z'
+                  Key, 0x1154ea580, {{188.0, 1032.5}, {65.0, 64.0}}, label: 'x'
+                  Key, 0x1154ea6c0, {{253.0, 1032.5}, {65.0, 64.0}}, label: 'c'
+                  Key, 0x1154ea800, {{318.0, 1032.5}, {65.0, 64.0}}, label: 'v'
+                  Key, 0x1154ea940, {{383.0, 1032.5}, {64.5, 64.0}}, label: 'b'
+                  Key, 0x1154eaa80, {{447.5, 1032.5}, {65.0, 64.0}}, label: 'n'
+                  Key, 0x1154eabc0, {{512.5, 1032.5}, {65.0, 64.0}}, label: 'm'
+                  Key, 0x1154ead00, {{577.5, 1032.5}, {65.0, 64.0}}, label: '，'
+                  Key, 0x1154eae40, {{642.5, 1032.5}, {65.0, 64.0}}, label: '。'
+                  Key, 0x1154eaf80, {{707.5, 1032.5}, {110.5, 64.0}}, label: 'shift'
+                  Button, 0x1154eb0c0, {{6.0, 1096.5}, {69.0, 63.5}}, identifier: 'emoji', label: '表情符号'
+                  Key, 0x1154eb200, {{75.0, 1096.5}, {68.5, 63.5}}, identifier: 'more', label: '数字'
+                  Button, 0x1154eb340, {{143.5, 1096.5}, {69.0, 63.5}}, identifier: 'dictation', label: '听写'
+                  Key, 0x1154eb480, {{212.5, 1096.5}, {410.0, 63.5}}, label: ' '
+                  Key, 0x1154eb5c0, {{622.5, 1096.5}, {97.5, 63.5}}, identifier: 'more', label: '数字'
+                  Button, 0x1154eb700, {{720.0, 1096.5}, {98.0, 63.5}}, label: 'Hide keyboard'
+        Other, 0x1154eb840, {{820.0, 1180.0}, {1.0, 1.0}}
+Path to element:
+ →Application, 0x1154dc640, pid: 1235, label: 'Haiyue UI'
+Query chain:
+ →Find: Application 'org.haiyue.uivalidation'
+  Output: {
+    Application, 0x1154eb980, pid: 1235, label: 'Haiyue UI'
+  }

@@ -1,0 +1,88 @@
+Attributes: Application, 0x1154dc8c0, pid: 1235, label: 'Haiyue UI'
+Element subtree:
+ →Application, 0x1154dc8c0, pid: 1235, label: 'Haiyue UI'
+    Window (Main), 0x1154dc780, {{0.0, 0.0}, {1180.0, 820.0}}
+      Other, 0x10a23bc00, {{0.0, 0.0}, {1180.0, 820.0}}
+        Other, 0x10a23bd40, {{0.0, 0.0}, {1180.0, 820.0}}
+          Other, 0x10a23be80, {{0.0, 0.0}, {1180.0, 820.0}}
+            Other, 0x10a23b840, {{0.0, 0.0}, {1180.0, 820.0}}
+              Other, 0x10a23b980, {{0.0, 0.0}, {1180.0, 820.0}}
+                Other, 0x10a23bac0, {{0.0, 0.0}, {1180.0, 820.0}}
+                  Other, 0x10a23b5c0, {{0.0, 0.0}, {1180.0, 820.0}}
+                    Other, 0x10a23b340, {{0.0, 0.0}, {1180.0, 820.0}}
+                      Other, 0x10a23b480, {{0.0, 32.0}, {1180.0, 763.0}}
+                        Other, 0x10a23b0c0, {{0.0, 32.0}, {1180.0, 763.0}}, identifier: '/screen'
+                          StaticText, 0x10a23b200, {{16.0, 44.0}, {1148.0, 32.0}}, identifier: '/screen/heading', label: 'Haiyue · 原生组件'
+                          StaticText, 0x10a23ae40, {{16.0, 84.0}, {1148.0, 48.0}}, identifier: '/screen/status', label: '原生控件已加载 · 点击 2 次'
+                          Other, 0x10a23af80, {{16.0, 140.0}, {1148.0, 44.0}}, identifier: '/screen/toolbar'
+                            Button, 0x10a23a6c0, {{16.0, 140.0}, {365.5, 44.0}}, identifier: '/screen/toolbar/increment', label: '计数'
+                              StaticText, 0x10a23abc0, {{183.0, 152.0}, {32.0, 20.0}}, label: '计数'
+                            Button, 0x10a23ad00, {{387.5, 140.0}, {365.0, 44.0}}, identifier: '/screen/toolbar/dialog', label: '弹窗'
+                              StaticText, 0x10a23a940, {{554.0, 152.0}, {32.0, 20.0}}, label: '弹窗'
+                            Button, 0x10a23a800, {{758.5, 140.0}, {405.5, 44.0}}, identifier: '/screen/toolbar/cycles', label: '50 次清理'
+                              StaticText, 0x10a23a440, {{925.5, 152.0}, {72.0, 20.0}}, label: '50 次清理'
+                          ScrollView, 0x10a23a580, {{16.0, 192.0}, {1148.0, 651.0}}, identifier: '/screen/scroll'
+                            Other, 0x10a23a300, {{16.0, 192.0}, {1148.0, 651.0}}
+                              Other, 0x10a23a1c0, {{16.0, 192.0}, {1148.0, 651.0}}, identifier: '/screen/scroll/body'
+                                Other, 0x10a23b700, {{16.0, 192.0}, {1148.0, 71.5}}, identifier: '/screen/scroll/body/name'
+                                  StaticText, 0x10a238140, {{16.0, 192.0}, {1148.0, 19.5}}, label: '工程名称（中文输入与选区）'
+                                  TextField, 0x10a238000, {{16.0, 215.5}, {1148.0, 48.0}}, identifier: '/screen/scroll/body/name/title', label: '工程名称', placeholderValue: '输入中文', value: 海月实验室 Test
+                                TextView, 0x10a2383c0, {{16.0, 273.5}, {1148.0, 112.0}}, identifier: '/screen/scroll/body/source', label: '代码草稿', value: 中文输入 / emoji 🌙
+选择...
+                                  Other, 0x10a238280, {{16.0, 273.5}, {0.0, 0.0}}, identifier: '_UITextSelectionRangeAdjustmentContainerView'
+                                    Other, 0x10a238a00, {{16.0, 273.5}, {0.0, 0.0}}, identifier: 'com.apple.text.grabber.leading'
+                                      Other, 0x10a238640, {{8.8, 260.0}, {16.5, 16.5}}
+                                      Other, 0x10a238500, {{16.0, 273.5}, {2.0, 0.0}}
+                                    Other, 0x10a238780, {{16.0, 273.5}, {0.0, 0.0}}, identifier: 'com.apple.text.grabber.leading'
+                                      Other, 0x10a2388c0, {{8.8, 260.0}, {16.5, 16.5}}
+                                      Other, 0x10a238c80, {{16.0, 273.5}, {2.0, 0.0}}
+                                  Other, 0x10a238b40, {{1131.0, 273.5}, {30.0, 112.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                    Other, 0x10a239900, {{1158.0, 323.5}, {3.0, 59.0}}
+                                  Other, 0x10a2397c0, {{16.0, 352.5}, {1148.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                    Other, 0x10a238dc0, {{19.0, 379.5}, {547.0, 3.0}}
+                                SecureTextField, 0x10a238f00, {{16.0, 395.5}, {1148.0, 44.0}}, identifier: '/screen/scroll/body/password', label: '密码', placeholderValue: '密码不会写入日志'
+                                Other, 0x10a239680, {{16.0, 449.5}, {1148.0, 223.5}}, identifier: '/screen/scroll/body/tabs', value: settings
+                                  Other, 0x10a239180, {{16.0, 449.5}, {1148.0, 44.0}}
+                                    Button, 0x10a239040, {{16.0, 449.5}, {56.0, 44.0}}, label: '设置'
+                                      StaticText, 0x10a2392c0, {{28.0, 461.5}, {32.0, 20.0}}, label: '设置'
+                                    Button, 0x10a239400, {{76.0, 449.5}, {56.0, 44.0}}, label: '预览'
+                                      StaticText, 0x10a239540, {{88.0, 461.5}, {32.0, 20.0}}, label: '预览'
+                                  Other, 0x10a239a40, {{16.0, 493.5}, {1148.0, 179.5}}
+                                    Other, 0x115171040, {{16.0, 493.5}, {1148.0, 179.5}}, identifier: '/screen/scroll/body/tabs/settings'
+                                      Other, 0x115171400, {{16.0, 493.5}, {1148.0, 96.0}}, identifier: '/screen/scroll/body/tabs/settings/grid'
+                                        StaticText, 0x115171540, {{16.0, 493.5}, {1040.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/switch-label', label: '实时预览'
+                                        Switch, 0x115171180, {{1045.5, 485.5}, {100.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/enabled', label: '实时预览', value: 1
+                                        StaticText, 0x1151712c0, {{16.0, 545.5}, {1040.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/quality-label', label: '渲染分辨率'
+                                        Button, 0x115170f00, {{1064.0, 545.5}, {100.0, 44.0}}, identifier: '/screen/scroll/body/tabs/settings/grid/quality', label: '渲染分辨率', value: 75
+                                          StaticText, 0x115171680, {{1097.5, 557.5}, {33.0, 20.0}}, label: '75%'
+                                      Slider, 0x1151730c0, {{16.0, 597.5}, {1148.0, 48.0}}, identifier: '/screen/scroll/body/tabs/settings/amount', label: '亮度', value: 50
+                                      StaticText, 0x115173200, {{16.0, 653.5}, {1148.0, 19.5}}, identifier: '/screen/scroll/body/tabs/settings/amount-label', label: '亮度：50'
+                                Other, 0x115173340, {{16.0, 683.0}, {1148.0, 64.0}}, identifier: '/screen/scroll/body/editor'
+                                  StaticText, 0x1151735c0, {{16.0, 683.0}, {1148.0, 64.0}}, label: '代码编辑器端口 · 27 字符'
+                                Other, 0x115173700, {{16.0, 757.0}, {1148.0, 32.0}}, identifier: '/screen/scroll/body/images'
+                                  Image, 0x115173840, {{16.0, 757.0}, {28.0, 32.0}}, identifier: '/screen/scroll/body/images/icon', label: '月亮'
+                                  Image, 0x115172f80, {{52.0, 757.0}, {28.0, 32.0}}, identifier: '/screen/scroll/body/images/image', label: '图片资源'
+                                  Button, 0x115172bc0, {{88.0, 757.0}, {64.0, 32.0}}, identifier: '/screen/scroll/body/images/disabled', label: '禁用按钮'
+                                    StaticText, 0x115172d00, {{88.0, 763.0}, {64.0, 20.0}}, label: '禁用按钮'
+                                Button, 0x1151721c0, {{16.0, 799.0}, {1148.0, 44.0}}, identifier: '/screen/scroll/body/theme', label: '切换主题与字号'
+                                  StaticText, 0x115172080, {{534.0, 811.0}, {112.0, 20.0}}, label: '切换主题与字号'
+                            Other, 0x115171b80, {{1131.0, 192.0}, {30.0, 649.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                              Other, 0x115171900, {{1158.0, 195.0}, {3.0, 643.0}}
+                            Other, 0x115171a40, {{18.0, 810.0}, {1144.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                              Other, 0x115172300, {{21.0, 837.0}, {543.0, 3.0}}
+                            Other, 0x115171cc0, {{1131.0, 192.0}, {30.0, 649.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                              Other, 0x115172440, {{1158.0, 195.0}, {3.0, 643.0}}
+                            Other, 0x115172580, {{18.0, 810.0}, {1144.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                              Other, 0x115171e00, {{21.0, 837.0}, {543.0, 3.0}}
+              Other, 0x115171f40, {{0.0, 0.0}, {1180.0, 820.0}}
+                Other, 0x115172e40, {{0.0, 0.0}, {1180.0, 820.0}}
+    Window, 0x1151717c0, {{0.0, 0.0}, {1180.0, 820.0}}
+      Other, 0x115172940, {{0.0, 0.0}, {1180.0, 820.0}}
+        Other, 0x115173e80, {{0.0, 0.0}, {1180.0, 820.0}}
+Path to element:
+ →Application, 0x1154dc8c0, pid: 1235, label: 'Haiyue UI'
+Query chain:
+ →Find: Application 'org.haiyue.uivalidation'
+  Output: {
+    Application, 0x115172800, pid: 1235, label: 'Haiyue UI'
+  }
