@@ -91,7 +91,9 @@ test('command failures and signals propagate while stdout/stderr remain reviewab
   const f = fixture(t), log = path.join(f.dir, 'command.log');
   assert.throws(() => runLogged(process.execPath, ['-e', 'console.error("diagnostic");process.exit(7)'], { log }), /exited 7/);
   assert.match(readFileSync(log, 'utf8'), /diagnostic/);
-  assert.throws(() => runLogged(process.execPath, ['-e', 'process.kill(process.pid,"SIGTERM")'], { log }), /SIGTERM/);
+  // Windows reports self-termination as exit 1; POSIX reports a terminating signal.
+  // Both must remain a failure, with the exact platform result retained.
+  assert.throws(() => runLogged(process.execPath, ['-e', 'process.kill(process.pid,"SIGTERM")'], { log }), process.platform==='win32'?/exited 1;/u:/exited SIGTERM;/u);
 });
 
 

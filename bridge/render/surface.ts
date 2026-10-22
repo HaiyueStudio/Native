@@ -83,7 +83,9 @@ export class NativeSurface {
       },
     };
     const canvas = {
-      focus: () => isAndroid ? (self.view.nativeViewProtected as android.view.View | undefined)?.requestFocus() : (self.view.nativeViewProtected as UIView | undefined)?.becomeFirstResponder(),
+      // Keep the shared surface checkable with the iOS SDK alone. This branch
+      // consumes only Android's requestFocus operation, not its entire SDK type graph.
+      focus: () => isAndroid ? (self.view.nativeViewProtected as {requestFocus():boolean} | undefined)?.requestFocus() : (self.view.nativeViewProtected as UIView | undefined)?.becomeFirstResponder(),
       addEventListener: (...args: Parameters<NativeCanvasInput['addEventListener']>) => self.input?.addEventListener(...args),
       removeEventListener: (...args: Parameters<NativeCanvasInput['removeEventListener']>) => self.input?.removeEventListener(...args),
       setPointerCapture: (id: number) => self.input?.setPointerCapture(id),

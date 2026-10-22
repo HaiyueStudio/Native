@@ -3,6 +3,7 @@ export interface TouchPoint { id: number; x: number; y: number }
 export type TouchAction = 'down' | 'move' | 'up' | 'cancel';
 export interface OrbitPointer {
   pointerId: number; pointerType: 'touch'; button: 0;
+  type:string;buttons:number;isPrimary:boolean;timeStamp:number;
   clientX: number; clientY: number; defaultPrevented: boolean;
   preventDefault(): void;
 }
@@ -72,7 +73,7 @@ export class OrbitPointerTarget {
   /** Dispatch desktop wheel in the same window coordinates as touch events. */
   wheel(sample: {clientX:number;clientY:number;deltaX:number;deltaY:number;deltaMode:0}): boolean {
     if(this.disposed||this.paused||![sample.clientX,sample.clientY,sample.deltaX,sample.deltaY].every(Number.isFinite))return false;
-    const event={...sample,pointerId:0,pointerType:"touch" as const,button:0 as const,defaultPrevented:false,preventDefault(){this.defaultPrevented=true;}};
+    const event={...sample,type:'wheel',buttons:0,isPrimary:true,timeStamp:Date.now(),pointerId:0,pointerType:"touch" as const,button:0 as const,defaultPrevented:false,preventDefault(){this.defaultPrevented=true;}};
     for(const listener of this.listeners.get("wheel")??[])listener(event);
     return event.defaultPrevented;
   }
@@ -104,6 +105,7 @@ export class OrbitPointerTarget {
   private emit(type: string, point: TouchPoint): void {
     const rect = this.rect();
     const event: OrbitPointer = {
+      type,buttons:type==='pointerup'||type==='pointercancel'?0:1,isPrimary:point.id===this.primary,timeStamp:Date.now(),
       pointerId: point.id, pointerType: 'touch', button: 0,
       clientX: rect.x + point.x, clientY: rect.y + point.y,
       defaultPrevented: false,

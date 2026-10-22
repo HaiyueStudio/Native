@@ -28,6 +28,7 @@ export interface NativeRenderHostOptions {
   prepareScene?: (engine: HaiyueEngine) => unknown | Promise<unknown>;
   disposeScene?: () => void;
   diagnosticName?: string;
+  enginePackageVersion?:string;
   capture?: { requested: boolean; file: string };
 }
 
@@ -97,7 +98,7 @@ export class NativeRenderHost {
     view.on('layoutChanged', this.layout);
     view.on('surfaceDestroyed', this.surfaceDestroyed);
     view.on('surfaceCreated', this.surfaceCreated);
-    this.report('host-created', { engine: '0.1.0', canvas: '2.1.18', runtime: '9.0.3', backendRoute: isAndroid ? 'Canvas/wgpu/Vulkan' : 'Canvas/wgpu/Metal', dpr: this.surface.pixelRatio, captureRequested: this.captureRequested });
+    this.report('host-created', { engine: options.enginePackageVersion??'0.1.0', canvas: '2.1.18', runtime: '9.0.3', backendRoute: isAndroid ? 'Canvas/wgpu/Vulkan' : 'Canvas/wgpu/Metal', dpr: this.surface.pixelRatio, captureRequested: this.captureRequested });
     this.layout();
   }
 
