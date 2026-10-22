@@ -145,6 +145,7 @@ export function buttonAdornment(view: View, icon: HYIconName | undefined, busy: 
         path.stroke();
       }
       button.setImageForState(UIGraphicsGetImageFromCurrentImageContext()?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal) ?? null!, UIControlState.Normal);
+      if (button.imageView) button.imageView.contentMode = UIViewContentMode.ScaleAspectFit;
     } finally { UIGraphicsEndImageContext(); }
   } else button.setImageForState(null!, UIControlState.Normal);
   return () => { spinner?.stopAnimating();spinner?.removeFromSuperview();button.setImageForState(null!, UIControlState.Normal); };
