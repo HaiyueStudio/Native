@@ -3,8 +3,8 @@
   "goal": "g11-hya-production-runtime",
   "status": "review-candidate-not-device-qualified",
   "source": {
-    "report": "compact-formal-public-consumer-1792846421912/result.json",
-    "sha256": "004dc7cb60160e8f064fa246e1d5917ff65f10ed677c3bd111784d643e68c40c"
+    "report": "compact-formal-public-consumer-1792849239254/result.json",
+    "sha256": "c69237ba63e952f0a77a359baffda5ddb2f01f316efc74a183f468795d7712a6"
   },
   "packages": [
     {
@@ -23,10 +23,10 @@
     },
     {
       "name": "@haiyue/extensions",
-      "path": "vendor/haiyue-extensions-g11-9a11987eae13.tgz",
-      "bytes": 508411,
-      "sha256": "9a11987eae133b63698c7b9d0d1d73999d54589d1e85bacb3cd2709234111720",
-      "integrity": "sha512-d3TRkB/Z5WE5AxkH1FJro4KmgrmkC6/mIKSGFHjBICLJavc+28rns5m5vGExhTM6tkdcjDlg+wDGZTUHovTCtw=="
+      "path": "vendor/haiyue-extensions-g11-d80554655911.tgz",
+      "bytes": 508543,
+      "sha256": "d8055465591111f54d41eb28a5415515b7516e94b0635f0982c791fa2e43d604",
+      "integrity": "sha512-Ez5vxzVYe28AEnWZQVq44ApZYnusFolM6MXDXpfcRUGCx411wk7kkihWTJCHV89LoYUIzdYGzBuYJuvizyKtDQ=="
     }
   ],
   "formalSharedAdmission": false,
@@ -34,13 +34,13 @@
   "physicalNativeQualified": false,
   "fullG11Complete": false,
   "runtimeEvidence": {
-    "report": "font-bitmap-lifetime-record-1792846733780/result.json",
-    "sha256": "8ef7ec3eb46e3522aed065a24bcb9389443f5018e96ce9f7536e0011def3cf52"
+    "report": "stable-native-glyph-identity-record-1792849642484/result.json",
+    "sha256": "f02f64a5ad21d57d99ce6b6867de57c2b8c023b270f3c0ed2a9e502496a88e05"
   },
   "packageBytePolicy": {
-    "extensionsPackedBytes": 508411,
+    "extensionsPackedBytes": 508543,
     "maxExtensionsPackedBytes": 550000,
-    "extensionsUnpackedBytes": 1986547,
+    "extensionsUnpackedBytes": 1987264,
     "maxExtensionsUnpackedBytes": 3000000,
     "extensionsPassed": true,
     "allPackageBudgetsQualified": false,
