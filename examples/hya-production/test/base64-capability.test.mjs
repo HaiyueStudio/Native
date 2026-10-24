@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import ts from 'typescript';
-import {readFileSync,mkdtempSync,writeFileSync} from 'node:fs';
+import {readFileSync,mkdtempSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 // Emit the same extensionless TS modules used by NativeScript; no browser globals are installed in this process.
+mkdirSync(new URL('../artifacts/',import.meta.url),{recursive:true});
 const temp=mkdtempSync(new URL('../artifacts/base64-capability-',import.meta.url));
 for(const name of ['bytes-base64','base64-capability']){const source=readFileSync(new URL('../src/'+name+'.ts',import.meta.url),'utf8'),js=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText.replace("'./bytes-base64'","'./bytes-base64.js'");writeFileSync(resolve(temp,name+'.js'),js);}
 writeFileSync(resolve(temp,'package.json'),'{"type":"module","private":true}\n');

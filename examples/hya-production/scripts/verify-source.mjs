@@ -16,14 +16,14 @@ const checks=[],run=(id,args)=>{
 };
 let passed=run('preflight',['scripts/preflight.mjs']);
 if(passed)passed=run('native-sdk-types',['node_modules/typescript/bin/tsc','--noEmit','--pretty','false','--listFiles']);
-if(passed)passed=run('public-scene-and-byte-tests',['--test','test/scene-source.test.mjs','test/sha256-capability.test.mjs','test/base64-capability.test.mjs','test/scene-resources.test.mjs']);
+if(passed)passed=run('public-scene-and-byte-tests',['--test','test/scene-source.test.mjs','test/sha256-capability.test.mjs','test/base64-capability.test.mjs','test/scene-resources.test.mjs','test/ios-semantics-host.test.mjs']);
 if(passed)passed=run('ios-javascript-bundle',['node_modules/webpack/bin/webpack.js','--config','webpack.config.js','--env','platform=ios','--env','hmr=false','--env','nativescriptLibPath','--output-path',resolve(out,'app'),'--stats','errors-warnings']);
 const bridge=[];
 if(checks.some(check=>check.id==='native-sdk-types'))for(const file of readFileSync(resolve(out,'native-sdk-types.log'),'utf8').split(/\r?\n/))if(file.startsWith(resolve(app,'../../bridge').replaceAll('\\','/'))||file.startsWith(resolve(app,'../../bridge'))){const snapshot=resolve(out,'native-bridge',relative(resolve(app,'../../bridge'),file));mkdirSync(dirname(snapshot),{recursive:true});copyFileSync(file,snapshot);bridge.push({path:relative(resolve(app,'../..'),file).replaceAll('\\','/'),sha256:sha(file)});}
 for(const input of inputs)assert.equal(sha(resolve(app,input.path)),input.sha256,'Source changed while checks were running: '+input.path);
 if(passed){
  const bundle=readFileSync(resolve(out,'app/bundle.js'),'utf8');
- for(const text of ['G11 real HYA Native scene','loadSceneResources','prepareIosByteCapabilities','createIosHyaAudioHost'])assert.ok(bundle.includes(text),'Native entry missing from actual bundle: '+text);
+ for(const text of ['G11 real HYA Native scene','loadSceneResources','prepareIosByteCapabilities','createIosHyaAudioHost','HyaSceneAccessibilityElement'])assert.ok(bundle.includes(text),'Native entry missing from actual bundle: '+text);
  const copied=JSON.parse(readFileSync(resolve(out,'app/assets/manifest.json'),'utf8'));
  for(const descriptor of Object.values(copied.assets))assert.equal(sha(resolve(out,'app/assets',descriptor.file)),descriptor.sha256);
  assert.equal(sha(resolve(out,'app/qualified-candidate.json')),sha(resolve(app,'qualified-candidate.json')));

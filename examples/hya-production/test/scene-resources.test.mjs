@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import ts from 'typescript';
-import {readFileSync,mkdtempSync,writeFileSync} from 'node:fs';
+import {readFileSync,mkdtempSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createHyaPlayer} from '@haiyue/extensions/hya-player';
 
+mkdirSync(new URL('../artifacts/',import.meta.url),{recursive:true});
 const app=fileURLToPath(new URL('..',import.meta.url)),temp=mkdtempSync(new URL('../artifacts/resource-boundary-',import.meta.url));
 // Only Foundation/filesystem are mocked; the exact example resource owner and public player run below.
 const source=readFileSync(new URL('../src/scene-resources.ts',import.meta.url),'utf8');

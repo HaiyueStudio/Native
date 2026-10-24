@@ -39,11 +39,11 @@
   },
   "scene": {
     "file": "scene.json",
-    "sha256": "9001f0f26db1c5509f160dcbb224038389d5692406c6442bcf0edc5beb8d7fd4"
+    "sha256": "b5a224d19e5270281321edeeacc6a70f48977eeef15cad48878b90d1f11d0b49"
   },
   "generator": {
     "file": "build-scene-assets.mjs",
-    "sha256": "c1fdc839e73b28fbd9e594de2b819bf9ff5b5da53be0868a790df4d12fb5f10a"
+    "sha256": "a735094475cfb33f5bdf3a18398469542d1360b3e7e07438db48f6dee0a71b49"
   },
   "physicalNativeQualified": false,
   "fullG11Complete": false

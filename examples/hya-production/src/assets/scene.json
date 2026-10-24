@@ -1857,6 +1857,25 @@
             "width": 280,
             "height": 60,
             "wrap": "none",
+            "overflow": "clip",
+            "input": {
+              "valuePort": "value",
+              "selectionPort": "selection",
+              "cursorPort": "cursor"
+            }
+          },
+          {
+            "id": "action-label",
+            "runs": [
+              {
+                "id": "caption",
+                "style": "body",
+                "text": "Activate"
+              }
+            ],
+            "width": 116,
+            "height": 36,
+            "wrap": "none",
             "overflow": "clip"
           }
         ],
@@ -1965,6 +1984,93 @@
                     }
                   ]
                 }
+              },
+              {
+                "id": "action",
+                "parent": "root",
+                "kind": "n-slice",
+                "style": {
+                  "position": "absolute",
+                  "width": {
+                    "unit": "point",
+                    "value": 140
+                  },
+                  "height": {
+                    "unit": "point",
+                    "value": 40
+                  },
+                  "inset": [
+                    {
+                      "unit": "point",
+                      "value": 20
+                    },
+                    {
+                      "unit": "point",
+                      "value": 260
+                    },
+                    {
+                      "unit": "point",
+                      "value": 0
+                    },
+                    {
+                      "unit": "point",
+                      "value": 0
+                    }
+                  ]
+                },
+                "nSlice": {
+                  "source": {
+                    "kind": "asset",
+                    "asset": "image"
+                  },
+                  "sourceSize": [
+                    3,
+                    3
+                  ],
+                  "xCuts": [
+                    1,
+                    2
+                  ],
+                  "yCuts": [
+                    1,
+                    2
+                  ]
+                }
+              },
+              {
+                "id": "action-text",
+                "parent": "root",
+                "kind": "text",
+                "text": "action-label",
+                "style": {
+                  "position": "absolute",
+                  "width": {
+                    "unit": "point",
+                    "value": 116
+                  },
+                  "height": {
+                    "unit": "point",
+                    "value": 36
+                  },
+                  "inset": [
+                    {
+                      "unit": "point",
+                      "value": 32
+                    },
+                    {
+                      "unit": "point",
+                      "value": 262
+                    },
+                    {
+                      "unit": "point",
+                      "value": 0
+                    },
+                    {
+                      "unit": "point",
+                      "value": 0
+                    }
+                  ]
+                }
               }
             ]
           }
@@ -1975,8 +2081,8 @@
             "artboard": "main",
             "fit": "contain",
             "alignment": [
-              0,
-              0
+              -1,
+              -1
             ]
           }
         ]
@@ -2032,6 +2138,35 @@
             "target": "button",
             "event": "semantic-action",
             "semanticAction": "tap",
+            "phases": [
+              "target"
+            ],
+            "actions": [
+              {
+                "kind": "data-set",
+                "binding": "write-label",
+                "value": "你好世界"
+              },
+              {
+                "kind": "data-set",
+                "binding": "write-go",
+                "value": true
+              },
+              {
+                "kind": "report-event",
+                "name": "activated"
+              },
+              {
+                "kind": "audio",
+                "operation": "play",
+                "target": "sound.alias"
+              }
+            ]
+          },
+          {
+            "id": "pointer-activate",
+            "target": "button",
+            "event": "click",
             "phases": [
               "target"
             ],

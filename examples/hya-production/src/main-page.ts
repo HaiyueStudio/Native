@@ -1,6 +1,8 @@
 import {Application,Device,File,knownFolders,path,Page,Label,Screen,type EventData} from '@nativescript/core';
 import type {Canvas} from '@nativescript/canvas';
 import {Entity,type HaiyueEngine} from '@haiyue/engine';
+import {getSceneRenderPipeline} from '@haiyue/engine/experimental';
+import {beginRenderCommandPass,type RenderCommandContext} from '@haiyue/engine/extension-authoring';
 import {GuiRoot,GuiButton,GuiLabel,type GuiSystem} from '@haiyue/engine/gui';
 import {createHyaPlayer,type HyaPlayer,type HyaFrameRequest} from '@haiyue/extensions/hya-player';
 import type {HyaSemanticHost,HyaSemanticSnapshot} from '@haiyue/extensions/hya-data';
@@ -14,6 +16,8 @@ import {createIosHyaAudioHost,type IosHyaAudioController} from './ios-audio-host
 import {prepareIosByteCapabilities} from './ios-byte-capabilities';
 import {loadSceneResources} from './scene-resources';
 import {probeIosNativePcm} from './ios-pcm-probe';
+import {createIosHyaSemanticsHost} from './ios-semantics-host';
+import {prepareFirstHyaFrame} from './prepare-first-frame';
 
 let host:NativeRenderHost|null=null,activeCanvas:Canvas|null=null;
 const ready=new WeakSet<Canvas>();
@@ -25,20 +29,22 @@ function start(canvas:Canvas):void {
   if(host&&activeCanvas!==canvas)dispose();if(host)return;activeCanvas=canvas;
   let player:HyaPlayer|null=null,audio:IosHyaAudioController|null=null,gui:GuiSystem|null=null,root:GuiRoot|null=null,engine:HaiyueEngine|null=null;
   let textures:NativeCanvasTextures|null=null,assets:Awaited<ReturnType<typeof loadSceneResources>>|null=null,releaseBytes:(()=>void)|null=null;
+  let semanticProjection:ReturnType<typeof createIosHyaSemanticsHost>|null=null;
   let offInvalidation:(()=>void)|null=null,disposed=false,preparing=false,pendingJobs=0,sequence=0,pending:HyaFrameRequest|null=null,first=true,resumePlayback=false;
   let semanticSnapshot:HyaSemanticSnapshot|null=null,semanticAction:Parameters<HyaSemanticHost['subscribeActions']>[0]|null=null;
   const abort=new AbortController(),journal:string[]=[],log=File.fromPath(path.join(knownFolders.documents().path,'g11-hya-scene.jsonl'));
   const status=(text:string)=>{const label=(canvas.page as Page).getViewById<Label>('status');if(label)label.text=text;};
   const record=(event:string,detail:unknown)=>{
     const row=JSON.stringify({time:new Date().toISOString(),event,detail});console.log('[G11] '+row);journal.push(row);
-    if(journal.length>2000)journal.splice(1,1);log.writeTextSync(journal.join('\n')+'\n');
+    if(journal.length>2000)journal.splice(1,1);
+    try{log.writeTextSync(journal.join('\n')+'\n');}catch(error){console.error('G11 diagnostic journal could not be persisted',error);}
   };
   const bridge=new NativeGuiTextInputHost(canvas.nativeViewProtected as UIView,record);
   const touch=new NativeTouchInput(canvas,()=>host?.requestFrame());
   const input:NativeCanvasInput={addEventListener:touch.target.addEventListener.bind(touch.target),removeEventListener:touch.target.removeEventListener.bind(touch.target),setPointerCapture:touch.target.setPointerCapture.bind(touch.target),releasePointerCapture:touch.target.releasePointerCapture.bind(touch.target)} as unknown as NativeCanvasInput;
   const alive=()=>{if(disposed||abort.signal.aborted)throw new Error('Native scene preparation cancelled.');};
-  const snapshot=()=>({status:player?.status??null,frame:player?.lastFrame?.sequence??null,time:player?.lastFrame?.time??null,data:player?.data?.read('root',['label'])??null,semantics:semanticSnapshot,resources:assets?.snapshot()??null,text:bridge.snapshot(),touch:touch.snapshot(),rendering:host?.renderingSnapshot()??null,audioFault:audio?.fault?String(audio.fault):null});
-  const semantics:HyaSemanticHost={update(value){semanticSnapshot=value;},subscribeActions(listener){if(semanticAction)throw new Error('Scene already owns a semantic subscription.');semanticAction=listener;return{unsubscribe(){if(semanticAction===listener)semanticAction=null;}};}};
+  const snapshot=()=>({status:player?.status??null,frame:player?.lastFrame?.sequence??null,time:player?.lastFrame?.time??null,data:player?.data?.read('root',['label'])??null,semantics:semanticSnapshot,nativeSemantics:semanticProjection?.snapshot()??null,resources:assets?.snapshot()??null,text:bridge.snapshot(),touch:touch.snapshot(),rendering:host?.renderingSnapshot()??null,audioFault:audio?.fault?String(audio.fault):null});
+  const semantics:HyaSemanticHost={update(value){if(!semanticProjection)throw new Error('Native semantic projection is not prepared.');semanticProjection.host.update(value);semanticSnapshot=value;},subscribeActions(listener){if(semanticAction||!semanticProjection)throw new Error('Scene semantic subscription is unavailable.');const lease=semanticProjection.host.subscribeActions(listener);semanticAction=listener;return{unsubscribe(){lease.unsubscribe();if(semanticAction===listener)semanticAction=null;}};}};
   const action=(name:string,run:()=>void|Promise<void>)=>{
     try {alive();const result=run();if(result)void result.then(()=>{if(!disposed){record(name,snapshot());host?.requestFrame();}},error=>{if(!disposed){record('action-error',{name,error:String(error)});status(String(error));}});else{record(name,snapshot());host?.requestFrame();}}
     catch(error){record('action-error',{name,error:String(error)});status(String(error));}
@@ -59,7 +65,8 @@ function start(canvas:Canvas):void {
     release(()=>audio?.dispose());audio=null;release(()=>textures?.dispose());textures=null;
     const resources=assets?.snapshot();assets?.dispose();assets=null;release(()=>releaseBytes?.());releaseBytes=null;
     record('scene-cleanup',{resources,text:bridge.snapshot(),touch:touch.snapshot(),semanticSubscription:semanticAction!==null,errors});
-    if(errors.length)throw new AggregateError(errors,'Native scene cleanup failed.');
+    // Preserve cleanup failures in evidence while allowing NativeRenderHost to retire its engine/surface too.
+    if(errors.length)console.error('Native scene cleanup failed',errors);
   };
   host=new NativeRenderHost(canvas,status,{
     diagnosticName:'g11',enginePackageVersion:'0.2.2 private G11 review candidate; see qualified-candidate.json',canvasInput:input,diagnosticIntervalFrames:0,
@@ -72,16 +79,26 @@ function start(canvas:Canvas):void {
         assets=await loadSceneResources(record);alive();
         const candidate=JSON.parse(File.fromPath(path.join(knownFolders.currentApp().path,'qualified-candidate.json')).readTextSync());
         record('candidate',candidate);audio=createIosHyaAudioHost({resolve:assets.resolve});textures=new NativeCanvasTextures(engine.device);
-        const scene=engine.createScene({name:'G11 real HYA Native scene',render3D:false,render2D:false,gui:{loadOp:'clear',textInputHost:bridge,font:{canvasFactory:textures.createCanvas2D,readAtlasPixels:textures.readAtlasPixels,fontFamily:'sans-serif',chars:'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 你好世界中文/():;,.?!-_|'}}});
+        semanticProjection=createIosHyaSemanticsHost(canvas.nativeViewProtected as UIView,{record,requestFrame:()=>host?.requestFrame(),beforeAction(_id,nativeAction,invoke){
+          if(nativeAction!=='tap'){invoke();return;}
+          const current=player;if(!current||disposed)return;
+          // Enter the native audio unlock synchronously in the real UIKit/VoiceOver action.
+          void current.unlockAudio().then(()=>{if(!disposed&&player===current)invoke();},error=>{try{record('native-semantic-unlock-error',{error:String(error)});}catch(failure){console.error(failure);}});
+        }});
+        const scene=engine.createScene({name:'G11 real HYA Native scene',render3D:false,render2D:false,view:{clearColor:{r:240/255,g:240/255,b:240/255,a:1}},gui:{loadOp:'load',textInputHost:bridge,font:{canvasFactory:textures.createCanvas2D,readAtlasPixels:textures.readAtlasPixels,fontFamily:'sans-serif',chars:'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 你好世界中文/():;,.?!-_|'}}});
+        getSceneRenderPipeline(scene).add({record(_world:unknown,context:RenderCommandContext){const {passEncoder,ownsPass}=beginRenderCommandPass(context);if(ownsPass)passEncoder.end();}},{order:-1,pass:'isolated',loadOp:'clear',depth:false});
         gui=scene.guiSystem!;root=new GuiRoot({theme:{fontSize:14}});scene.add(new Entity('g11-native-gui').addComponent(root));
         const dpr=Math.min(Screen.mainScreen.scale,2),source=assets.source as {parts:readonly {extension:string}[]};
         const prepared=await createHyaPlayer(source,{mode:'render',scene,gui,root,viewport:[engine.width/dpr,engine.height/dpr],dpr,signal:abort.signal,host:{resources:assets.resources,images:createIosHyaImageHost(),audio:audio.host,semantics,capabilities:new Set(source.parts.map(part=>part.extension)),invalidate:()=>host?.requestFrame(),diagnostic:detail=>record('diagnostic',detail),events:events=>record('events',events)}});
         if(disposed||abort.signal.aborted){prepared.dispose();alive();}
-        player=prepared;engine.switchScene(scene);
+        player=prepared;
+        const initial=await prepareFirstHyaFrame(player,{sequence:++sequence,deltaSeconds:0,viewport:[engine.width/dpr,engine.height/dpr],dpr},abort.signal);alive();
+        record('initial-draw-frame-prepared',{sequence:initial.sequence,time:initial.time,ready:initial.ready});
+        engine.switchScene(scene);
         root.add(new GuiLabel({x:'2%',y:4,width:'96%',height:25,text:'G11: real CJK / PNG / N-slice / G06 / PCM',fontSize:13}));
         const button=(text:string,column:number,row:number,run:()=>void|Promise<void>)=>root!.add(new GuiButton({x:`${column*25+1}%`,y:`${76+row*8}%`,width:'23%',height:38,text,focus:{mode:'none'},onClick:()=>action(text,run)}));
         button('Unlock',0,0,()=>player!.unlockAudio());
-        button('Activate',1,0,()=>{if(!semanticAction)throw new Error('Semantic action route is not ready.');semanticAction('activate','tap');});
+        button('Activate',1,0,()=>{const target=semanticSnapshot?.nodes.find(node=>node.target==='button.alias'&&node.role==='button');if(!semanticAction||!target)throw new Error('Semantic action route is not ready.');semanticAction(target.id,'tap');});
         button('Pause / Run',2,0,()=>{if(player!.status==='paused')player!.resume();else player!.pause();});
         button('Seek 0',3,0,()=>{player!.seek(0);});
         let fast=false;button('Rate .5 / 2',0,1,()=>{player!.setRate(fast ? .5 : 2);fast=!fast;});
@@ -96,19 +113,22 @@ function start(canvas:Canvas):void {
           finally{probing=false;--pendingJobs;if(disposed)finishCleanup();else if(resume){player?.resume();host?.requestFrame();}}
         })}));
         offInvalidation=root.onInvalidation(()=>host?.requestFrame());engine.on('update',update);
-        record('environment',{model:Device.model,os:Device.os,osVersion:Device.osVersion,canvas:'2.1.18',runtime:'9.0.3',qualification:'Candidate only. Native build, PCM probe, pixels, accessibility and human acceptance remain required.'});
+        record('environment',{model:Device.model,os:Device.os,osVersion:Device.osVersion,canvas:'2.1.18',runtime:'9.0.3',qualification:'Candidate only. Native build, PCM probe, pixels, VoiceOver editing/announcements and human acceptance remain required.'});
         return {log:log.path,parts:source.parts.length,publicPackages:candidate.packages};
       }finally{preparing=false;if(disposed)finishCleanup();}
     },
     bindInput:()=>({
-      suspend(){bridge.suspend();touch.suspend();if(player?.status==='running'){resumePlayback=true;player.pause();}audio?.suspend();gui?.stopAnimations();record('input-suspended',snapshot());},
-      resume(){bridge.resume();touch.resume();if(resumePlayback){resumePlayback=false;player?.resume();}first=true;record('input-resumed',{...snapshot(),audio:'A new real Unlock gesture is required.'});},
+      suspend(){semanticProjection?.suspend();bridge.suspend();touch.suspend();if(player?.status==='running'){resumePlayback=true;player.pause();}audio?.suspend();gui?.stopAnimations();record('input-suspended',snapshot());},
+      resume(){bridge.resume();touch.resume();semanticProjection?.resume();if(resumePlayback){resumePlayback=false;player?.resume();}first=true;record('input-resumed',{...snapshot(),audio:'A new real Unlock gesture is required.'});},
       snapshot,
-      dispose(){bridge.dispose();touch.dispose();},
+      dispose(){for(const release of [()=>bridge.dispose(),()=>touch.dispose()])try{release();}catch(error){record('input-cleanup-error',{error:String(error)});}},
     }),
     disposeScene(){
       if(disposed)return;disposed=true;abort.abort();offInvalidation?.();offInvalidation=null;engine?.off('update',update);
-      try{player?.dispose();}finally{player=null;bridge.dispose();touch.dispose();gui=null;root=null;finishCleanup();}
+      const errors:string[]=[];
+      for(const release of [()=>player?.dispose(),()=>semanticProjection?.dispose(),()=>bridge.dispose(),()=>touch.dispose()])try{release();}catch(error){errors.push(String(error));}
+      record('native-semantics-cleanup',{state:semanticProjection?.snapshot()??null,errors});
+      player=null;semanticProjection=null;semanticAction=null;gui=null;root=null;finishCleanup();
     },
   });
   Application.on(Application.exitEvent,dispose);

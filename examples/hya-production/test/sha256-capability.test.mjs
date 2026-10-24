@@ -1,7 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {acquireSha256Digest} from '../src/sha256-capability.ts';
+import {readFileSync,writeFileSync,mkdirSync,mkdtempSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import ts from 'typescript';
+mkdirSync(new URL('../artifacts/',import.meta.url),{recursive:true});
+const temp=mkdtempSync(new URL('../artifacts/sha256-capability-',import.meta.url));
+const code=ts.transpileModule(readFileSync(new URL('../src/sha256-capability.ts',import.meta.url),'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+writeFileSync(resolve(temp,'host.js'),code);writeFileSync(resolve(temp,'package.json'),'{"type":"module","private":true}\n');
+const {acquireSha256Digest}=await import(pathToFileURL(resolve(temp,'host.js')));
 const native=bytes=>new Uint8Array(createHash('sha256').update(bytes).digest());
 test('SHA capability preserves selected bytes, copies input and returns an owned digest',async()=>{
  const scope={},bytes=new Uint8Array([0,97,98,99,0]);let received;

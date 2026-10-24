@@ -20,7 +20,7 @@ function host(corruptFont=false){
   semantics:{update(value){semantics.push(value);},subscribeActions(){return{unsubscribe(){semanticReleases++;}};}},
  };return{ports,handles,decoded,semantics,get imageCalls(){return imageCalls;},get semanticReleases(){return semanticReleases;}};
 }
-const advance=async(player,sequence,delta=0,dpr=1)=>{const request={sequence,deltaSeconds:delta,viewport:[320,480],dpr};for(let i=0;i<128;i++){const value=player.advance(request);if(value.ready)return value;await new Promise(r=>setTimeout(r,0));}throw Error('Seven-part source did not settle');};
+const advance=async(player,sequence,delta=0,dpr=1,viewport=[320,480])=>{const request={sequence,deltaSeconds:delta,viewport,dpr};for(let i=0;i<128;i++){const value=player.advance(request);if(value.ready)return value;await new Promise(r=>setTimeout(r,0));}throw Error('Seven-part source did not settle');};
 test('fixed assets are exact and the font contains original licensed CJK/Latin contours',()=>{
  assert.equal(source.parts.length,7);assert.equal(parseHyaComposition(source).diagnostics.length,0);assert.equal(sha(readFileSync(resolve(assets,'scene.json'))),manifest.scene.sha256);
  for(const descriptor of Object.values(manifest.assets)){const bytes=readFileSync(resolve(assets,descriptor.file));assert.equal(bytes.length,descriptor.bytes);assert.equal(sha(bytes),descriptor.sha256);}
@@ -50,4 +50,15 @@ for(const dpr of [1,2])test('actual public seven-part evaluation, real font/WAV 
 });
 test('corrupt font bytes fail integrity and release prepared resource leases',async()=>{
  const h=host(true);await assert.rejects(createHyaPlayer(source,{mode:'evaluate',viewport:[320,480],host:h.ports}));assert.ok(h.handles.every(handle=>handle.released===1));assert.ok(h.decoded.every(handle=>handle.released===1));
+});
+for(const viewport of [[320,480],[390,844],[844,390]])test('Native scene text/semantic geometry agrees in logical coordinates at '+viewport.join('x'),async()=>{
+ const h=host(),player=await createHyaPlayer(source,{mode:'evaluate',viewport,dpr:2,host:h.ports});
+ try{const frame=await advance(player,1,0,2,viewport),text=frame.layout.nodes.find(node=>node.text),field=frame.semantics.nodes.find(node=>node.role==='textbox');assert.deepEqual(text.rect,[20,180,280,60]);assert.deepEqual(field.bounds,text.rect);assert.equal(text.transform,undefined);assert.deepEqual(JSON.parse(field.id),['semantics','field']);assert.equal(frame.layout.nodes.find(node=>node.node==='action-text').text.runs.flatMap(run=>run.glyphs).map(glyph=>glyph.sequence).join(''),'Activate');}finally{player.dispose();}
+ assert.ok(h.handles.every(handle=>handle.released===1));
+});
+test('previous centered artboard reproduces the portrait text/interaction mismatch',async()=>{
+ const before=structuredClone(source),layout=before.parts.find(part=>part.id==='layout');layout.document.instances[0].alignment=[0,0];
+ const h=host(),viewport=[390,844],player=await createHyaPlayer(before,{mode:'evaluate',viewport,dpr:2,host:h.ports});
+ try{const frame=await advance(player,1,0,2,viewport),text=frame.layout.nodes.find(node=>node.text),field=frame.semantics.nodes.find(node=>node.role==='textbox');assert.deepEqual(text.rect,[20,309.5,280,60]);assert.deepEqual(field.bounds,[20,180,280,60]);assert.notDeepEqual(text.rect,field.bounds);}finally{player.dispose();}
+ assert.ok(h.handles.every(handle=>handle.released===1));
 });

@@ -8,7 +8,11 @@ src/image-host.ts 负责位图租约与取消，ios-image-host.ts 使用 Canvas 
 
 字节预检检查 UTF-8、取消和已知 SHA 向量。仅在运行时缺少能力时，由应用显式安装 SHA-256 digest／binary-string base64，并在最后一个异步任务退出后恢复原属性；不覆盖已有提供方，不声称实现其他 WebCrypto 能力。带音频的负速率仍在变更前以 E_AUDIO_RUNTIME_PROFILE 拒绝。
 
-结论：33 项实际 Windows C++ 检查通过，包含 10,000 次内核循环、20,000 个真实双线程声音和控制线程 PCM 释放；3,584 个样本与独立公式及浏览器参考一致。另有公开端口／模拟 ObjC 边界检查。当前应用已通过真实 NativeScript SDK 声明的严格类型检查、14 项实际公开包／CPU／模拟文件边界检查和 iOS 目标 JavaScript 打包。自定义 ObjC 声明仍是头文件边界描述，**尚未经过 Apple SDK 编译、NativeScript 元数据生成、签名安装或设备 PCM／画质验收**；共享 API 准入与包体失败也保持。
+首帧先用同一零时差请求等待必需资源与绘制帧就绪，再启用场景；统一清屏后让 GUI 加载已有颜色，避免擦掉 HYA 图层。场景明确声明原 G06 输入端口，左上对齐使横竖屏的文字／输入／语义矩形一致；Activate 从公开快照取得限定 ID，并提供同区域可见按钮与普通指针动作。字体二进制保持，调整场景可运行构建器的 --keep-font 模式。
+
+ios-semantics-host.ts 通过借用画布的独立子容器投影系统语义，保留原 G06 UIKit responder 和其他子视图。矩形直接使用公开快照及 [UIKit 容器坐标接口](https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilityframeincontainerspace)，稳定节点保留原生身份。焦点／激活／增减回到原 HYA 队列；VoiceOver 激活先在真实系统动作中进入音频解锁，迟到结果重新检查存活身份。隐藏、禁用、后台与销毁阻止动作；相同快照不反复替换原生集合，播报按修订去重。这里尚无物理 VoiceOver 资格。
+
+结论：33 项实际 Windows C++ 检查通过，包含 10,000 次内核循环、20,000 个真实双线程声音和控制线程 PCM 释放；3,584 个样本与独立公式及浏览器参考一致。另有公开端口／模拟 ObjC 边界检查。当前应用通过真实 NativeScript SDK 声明的严格类型检查、28 项公开包／CPU／模拟文件及 UIKit 边界检查和 iOS JavaScript 打包。同一场景资产另在实际浏览器 GPU 验证 320×480、390×844、844×390：真实中英文字、PNG／按钮标题、原 G06 几何、可信指针、一次性数据／事件／WAV 及最终资源清理通过。浏览器和模拟 UIKit 均不代替物理 Native；自定义 ObjC 声明仍是头文件边界描述，**尚未经过 Apple SDK 编译、NativeScript 元数据生成、签名安装或设备 PCM／画质验收**。共享准入、GUI/font 包体和全局门禁仍待完成。
 
 在 Mac 的此目录准备和检查：
 
@@ -26,4 +30,6 @@ Ruby／CocoaPods／Xcodeproj 与字体依赖沿用 G06 固定配置；签名也�
 
 设备上先点 **Unlock**，再点 **Activate**：应听到 WAV，数据更新为“你好世界”并触发原状态通道。点击文字使用真实中文软键盘，检查预编辑、提交、旋转和后台恢复；测试 Pause／Run、Seek 0、Rate .5／2 和 Replace PNG。后台恢复后须再次手势 Unlock。**Native PCM probe** 单独检查七种定时输出，原始实际／参考 Float32 和逐项结果写入日志；探针运行时等待结束。它不代表实时漂移、中断或完整设备资格。Save 仅记录人工检查点，End 记录清理；两者不会自动宣称验收通过。
 
-导出应用 Documents 中的 g11-hya-scene.jsonl、g11-host.jsonl，并保留设备截图、Xcode 构建输出和 artifacts/native-source-check-*/result.json。后续仍需 Apple 编译／元数据、物理 iPhone 的真实 PCM、实时解锁／时钟／中断、像素与输入、OS 无障碍接入及完整验收。原音频 SDK 的负例复现器保留在 diagnostics/，不进入应用依赖。
+开启 VoiceOver 后检查两项 HYA 节点的阅读顺序、框选边界和按钮激活；双击文本应交给原 G06 原生键盘，检查编辑、后台恢复和退出后没有残留节点。系统激活按钮也必须只提交一次事务和声音。
+
+导出应用 Documents 中的 g11-hya-scene.jsonl、g11-host.jsonl，并保留设备截图、Xcode 构建输出和 artifacts/native-source-check-*/result.json。后续仍需 Apple 编译／元数据、物理 iPhone 的真实 PCM、实时解锁／时钟／中断、像素与输入、VoiceOver 编辑转交／播报及完整验收。原音频 SDK 的负例复现器保留在 diagnostics/，不进入应用依赖。
