@@ -1,2 +1,6 @@
 /artifacts/
 /App_Resources/iOS/src/generated/
+/node_modules/
+/platforms/
+/.ns-profile/
+/App_Resources/iOS/signing.local.xcconfig

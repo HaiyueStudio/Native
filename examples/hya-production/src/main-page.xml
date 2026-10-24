@@ -1,0 +1,6 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gpu="@nativescript/canvas" actionBarHidden="true" loaded="onLoaded" unloaded="onUnloaded" backgroundColor="#f0f0f0">
+  <GridLayout>
+    <gpu:Canvas id="surface" ready="onCanvasReady" ignoreTouchEvents="true" />
+    <Label id="status" text="Preparing HYA review candidate…" color="#172638" fontSize="11" margin="4" verticalAlignment="bottom" isUserInteractionEnabled="false" />
+  </GridLayout>
+</Page>

@@ -13,6 +13,16 @@
 #endif
 using haiyue::audio::PcmBridge;
 using haiyue::audio::PcmMixer;
+@implementation HYAByteIntegrity
++ (nullable NSString *)sha256Base64:(NSString *)encoded {
+  if (encoded.length > ((64ULL * 1024 * 1024 + 2) / 3) * 4) return nil;
+  NSData *bytes = [[NSData alloc] initWithBase64EncodedString:encoded options:0];
+  if (!bytes || bytes.length > 64ULL * 1024 * 1024) return nil;
+  unsigned char digest[CC_SHA256_DIGEST_LENGTH];
+  CC_SHA256(bytes.bytes, (CC_LONG)bytes.length, digest);
+  return [[NSData dataWithBytes:digest length:sizeof(digest)] base64EncodedStringWithOptions:0];
+}
+@end
 namespace {
 constexpr size_t MaxEncoded = 64 * 1024 * 1024, MaxPcm = 256 * 1024 * 1024;
 struct PCM {std::vector<float> samples; uint32_t rate = 0, channels = 0; uint64_t frames = 0;};

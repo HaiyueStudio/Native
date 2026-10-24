@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "goal": "g11-hya-production-runtime",
+  "status": "review-candidate-not-device-qualified",
+  "source": {
+    "report": "public-api-image-port-consumer-v1-1792835029061/result.json",
+    "sha256": "27c488338c83444a04a1ff856c47fe28af27e7a864c057a84dac5a2f89955b10"
+  },
+  "packages": [
+    {
+      "name": "@haiyue/engine",
+      "path": "vendor/haiyue-engine-g11-a36719ea4d47.tgz",
+      "bytes": 2011797,
+      "sha256": "a36719ea4d47c72a1223e11bee84bc02cc8019c9a88af2493f894de6fb520533",
+      "integrity": "sha512-rV+mxy7VL3Aw3bhrSxrxW8qo25fcBoWyt/ugWAYlxlOmh4NnnLtTIuDh4kVfbSDKGXeZk4hedCnuh0lftjw+tQ=="
+    },
+    {
+      "name": "@haiyue/animation-spec",
+      "path": "vendor/haiyue-animation-spec-g11-a7a4d3bf2b82.tgz",
+      "bytes": 322582,
+      "sha256": "a7a4d3bf2b826db05993577fe40e7670459d27c217c76631e26ee73569d26727",
+      "integrity": "sha512-MNsT0JQ3uYN3UAorFsaC5I4cT+JeeUvDJ60oxqMMyybQds32rc76taFq8gFBepliwFysfdSXFHcG2TazTgmTiA=="
+    },
+    {
+      "name": "@haiyue/extensions",
+      "path": "vendor/haiyue-extensions-g11-9723e80297e5.tgz",
+      "bytes": 776007,
+      "sha256": "9723e80297e54d911aa94a43ea0c7e50d4f62d311138e2332f11ccd76aef95dc",
+      "integrity": "sha512-Kpe+5LWHn5vdG61DfPRyT8qRSy8yRFVlbEm0Bpn8JDsFAprWJ6BzzYAmK1HsdhqasRzdnLwLB5aJ/1YbQZR5uw=="
+    }
+  ],
+  "formalSharedAdmission": false,
+  "packageBudgetsPassed": false,
+  "physicalNativeQualified": false,
+  "fullG11Complete": false
+}

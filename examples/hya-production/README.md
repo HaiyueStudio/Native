@@ -1,20 +1,29 @@
-# HYA Native 组合播放准备
+# HYA Native 组合场景候选
 
-问题：G11 公开 Player 的图片、字体位图与音频需要显式平台宿主。现有音效池及 `@nativescript/audio-context@1.3.3` 不能直接满足完整采样帧调度合同，不能用立即播放或 JavaScript 定时器冒充。
+问题：G11 七部分场景需要真实字体、图像、G06 编辑器与采样帧音频宿主；浏览器通过不能替代 iPhone 资格。现有音效池及 @nativescript/audio-context@1.3.3 丢失定时参数／循环区间，不能用立即播放或 JS 定时器冒充。
 
-方法：`src/image-host.ts` 管理平台返回位图的租约、取消与字节视图隔离，`src/ios-image-host.ts` 接 Canvas 2.1.18。`src/audio-timing-probe.ts` 提供七项离线 PCM 验收，`diagnostics/ios-audio-sdk-timing-probe.ts` 用于检查实际 SDK；已知 1.3.3 的调度／循环缺口应产生失败。通用模块与 iOS 入口使用不同名称，避免平台解析产生自身循环导入。
+方法：本私有 NativeScript 应用只消费 vendor/ 内三个公开评审包，SHA-256／SRI 固定在 qualified-candidate.json，安装版本由锁文件固定。src/assets/ 包含来源无关的七部分 HYA、真实中英文字体轮廓、PNG 和 WAV；字体是保留原 OFL／版权的改名字集，有限字集与简单 Latin／CJK 不代表完整字体资格。应用复用 NativeRenderHost 的 Engine update、原触摸输入和 G06 编辑器，不增加时间线、布局器或设备采样器。资源异步就绪期间保持同一帧请求，后台暂停不补墙钟时间，退出取消准备与离线探针并清理各 owner。
 
-`native/HyaPcmMixer.hpp` 是已实现的固定容量、单渲染线程混音内核，执行已经提交的音频帧指令，不采样 HYA 时间线。PCM 由调用方持有，直到取走完成记录才能释放；已完成但未取走的 slot 保留容量。当前支持单声道／立体声，其他映射明确拒绝。`native/HyaPcmBridge.hpp` 已实现有界 SPSC 指令／完成交接和渲染入口门禁：强引用只由控制线程保存，取消不占队列槽位，完成记录被领取后才释放 PCM。关闭先 `sealRender()`，等待 `renderQuiescent()`，再完成内核清理；平台仍须停止回调后才能销毁桥对象。硬件暂停使用可恢复门禁，静止后 `serviceSuspended()` 可处理取消／完成而不推进采样；`resumeRender()` 保留其他声音原相位。不能从主线程同时调用裸混音内核。
+src/image-host.ts 负责位图租约与取消，ios-image-host.ts 使用 Canvas 2.1.18 的编码字节解码。native/HyaPcmMixer.hpp 执行固定容量的采样帧指令；HyaPcmBridge.hpp 用有界 SPSC 交接，PCM 强引用与释放只在控制线程。关闭先封闭渲染门禁、确认回调静止再清理；硬件暂停冻结时钟而保留其他声音相位。src/audio-host.ts 使用公开 HyaAudioHost；Objective-C++ 提供 AVAudioSourceNode、文件解码／SHA、真实离线输出及中断入口。完成通知只在有待完成声音时轮询，不采样 HYA 时间线。
 
-结论：图像通用适配器通过严格公开类型、十项 CPU 生命周期及双 DPR 的实际浏览器 GPU 检查。混音内核通过 Windows 原生 C++ 的 18 项检查，包含分块不变性、定时参数与 10,000 次完整循环；3,584 个 PCM 样本与独立公式及浏览器参考一致。当前总计 33 项实际 C++ 检查通过（原内核 18 项、线程桥及硬件暂停 15 项）；真实双线程完成 20,000 个声音实例，PCM owner 全部在控制线程销毁，C++ 渲染段 `operator new/delete` 观察均为 0。`src/audio-host.ts` 已用公开 HyaAudioHost 类型接入；`src/ios-audio-host.ts` 转发原生解码、输出、暂停和关闭，27 项类型／模拟边界检查通过，完成通知轮询只在待完成声音存在时运行。`App_Resources/iOS/src/HYANativeAudio.mm` 已准备 AVAudioSourceNode 输出、SHA／Float32 文件解码、离线引擎采样及中断处理；尚未经过 Apple SDK 编译、元数据生成或设备验证，独立 NativeScript 应用也尚未装配。
+字节预检检查 UTF-8、取消和已知 SHA 向量。仅在运行时缺少能力时，由应用显式安装 SHA-256 digest／binary-string base64，并在最后一个异步任务退出后恢复原属性；不覆盖已有提供方，不声称实现其他 WebCrypto 能力。带音频的负速率仍在变更前以 E_AUDIO_RUNTIME_PROFILE 拒绝。
 
-在带 Xcode 编译工具的 Mac 上，可先运行同一可移植内核检查：
+结论：33 项实际 Windows C++ 检查通过，包含 10,000 次内核循环、20,000 个真实双线程声音和控制线程 PCM 释放；3,584 个样本与独立公式及浏览器参考一致。另有公开端口／模拟 ObjC 边界检查。当前应用已通过真实 NativeScript SDK 声明的严格类型检查、14 项实际公开包／CPU／模拟文件边界检查和 iOS 目标 JavaScript 打包。自定义 ObjC 声明仍是头文件边界描述，**尚未经过 Apple SDK 编译、NativeScript 元数据生成、签名安装或设备 PCM／画质验收**；共享 API 准入与包体失败也保持。
+
+在 Mac 的此目录准备和检查：
 
 ```sh
-node test/run-pcm-bridge.mjs
-node scripts/prepare-ios-native.mjs
+npm ci
+npm run verify:source
+npm run test:pcm
+bundle install
+export IOS_TEAM_ID=你的开发团队ID
+npm run build:device
+npm run run:ios
 ```
 
-默认使用 `clang++`；也可通过 `HYA_CXX` 指定编译器，`HYA_CXX_KIND=zig` 使用 `zig c++`。结果写入忽略的 `artifacts/`，不进入发布包。测试拦截 C++ `operator new/new[]`，不等于对完整平台分配器或 iOS 回调做过测量。
+Ruby／CocoaPods／Xcodeproj 与字体依赖沿用 G06 固定配置；签名也可写入忽略的 App_Resources/iOS/signing.local.xcconfig。构建入口先核对候选／资产、生成精确 C++ 头文件，再应用经版本及原字节哈希限制的 Canvas 动态偏移补丁。C++ 默认使用 clang++，可用 HYA_CXX 指定编译器；Zig 另设 HYA_CXX_KIND=zig。结果写入忽略的 artifacts/。
 
-剩余：装配七部分场景及匹配的公开评审包，Apple SDK 构建／链接与原生模块元数据，真实 iOS 的 PCM／解码／SHA／时钟／中断测试、字节能力预检，以及物理 iPhone 完整场景验收。原音频 SDK 的负例复现器留在 diagnostics/，不作为应用源码依赖。Engine 共享准入和包体门禁仍独立保留。
+设备上先点 **Unlock**，再点 **Activate**：应听到 WAV，数据更新为“你好世界”并触发原状态通道。点击文字使用真实中文软键盘，检查预编辑、提交、旋转和后台恢复；测试 Pause／Run、Seek 0、Rate .5／2 和 Replace PNG。后台恢复后须再次手势 Unlock。**Native PCM probe** 单独检查七种定时输出，原始实际／参考 Float32 和逐项结果写入日志；探针运行时等待结束。它不代表实时漂移、中断或完整设备资格。Save 仅记录人工检查点，End 记录清理；两者不会自动宣称验收通过。
+
+导出应用 Documents 中的 g11-hya-scene.jsonl、g11-host.jsonl，并保留设备截图、Xcode 构建输出和 artifacts/native-source-check-*/result.json。后续仍需 Apple 编译／元数据、物理 iPhone 的真实 PCM、实时解锁／时钟／中断、像素与输入、OS 无障碍接入及完整验收。原音频 SDK 的负例复现器保留在 diagnostics/，不进入应用依赖。

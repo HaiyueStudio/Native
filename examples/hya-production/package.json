@@ -1,0 +1,38 @@
+{
+  "name": "@haiyue/native-hya-production",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/app.ts",
+  "scripts": {
+    "preflight": "node scripts/preflight.mjs",
+    "verify:source": "node scripts/verify-source.mjs",
+    "typecheck": "tsc --noEmit",
+    "test:source": "node --test test/scene-source.test.mjs test/sha256-capability.test.mjs test/base64-capability.test.mjs test/scene-resources.test.mjs",
+    "test:pcm": "node test/run-pcm-bridge.mjs",
+    "doctor": "node scripts/ios.mjs doctor ios",
+    "bundle:ios": "node scripts/ios.mjs prepare ios",
+    "build:ios": "node scripts/ios.mjs build ios --for-device",
+    "run:ios": "node scripts/ios.mjs run ios",
+    "build:device": "node scripts/build-device.mjs"
+  },
+  "dependencies": {
+    "@haiyue/engine": "file:vendor/haiyue-engine-g11-a36719ea4d47.tgz",
+    "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-g11-a7a4d3bf2b82.tgz",
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-g11-9723e80297e5.tgz",
+    "@nativescript/canvas": "2.1.18",
+    "@nativescript/core": "9.1.1",
+    "@nativescript/font-manager": "1.0.14"
+  },
+  "devDependencies": {
+    "@nativescript/ios": "9.0.3",
+    "@nativescript/types": "9.0.0",
+    "@nativescript/webpack": "5.0.38",
+    "@webgpu/types": "0.1.64",
+    "nativescript": "9.1.1",
+    "opentype.js": "1.3.4",
+    "typescript": "5.7.3",
+    "webpack": "5.110.3"
+  },
+  "engines": {"node": ">=22"},
+  "allowScripts": {"@nativescript/core@9.1.1": true, "nativescript@9.1.1": true}
+}

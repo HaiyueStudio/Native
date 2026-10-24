@@ -1,6 +1,10 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+/** Example-owned byte-integrity capability; no general WebCrypto implementation. */
+@interface HYAByteIntegrity : NSObject
++ (nullable NSString *)sha256Base64:(NSString *)encoded;
+@end
 @interface HYANativeAudioBuffer : NSObject
 @property(nonatomic, readonly) double sampleRate;
 @property(nonatomic, readonly) double channels;
