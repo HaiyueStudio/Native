@@ -18,7 +18,7 @@
   "dependencies": {
     "@haiyue/engine": "file:vendor/haiyue-engine-g11-a36719ea4d47.tgz",
     "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-g11-a7a4d3bf2b82.tgz",
-    "@haiyue/extensions": "file:vendor/haiyue-extensions-g11-9723e80297e5.tgz",
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-g11-9a11987eae13.tgz",
     "@nativescript/canvas": "2.1.18",
     "@nativescript/core": "9.1.1",
     "@nativescript/font-manager": "1.0.14"
@@ -33,6 +33,11 @@
     "typescript": "5.7.3",
     "webpack": "5.110.3"
   },
-  "engines": {"node": ">=22"},
-  "allowScripts": {"@nativescript/core@9.1.1": true, "nativescript@9.1.1": true}
+  "engines": {
+    "node": ">=22"
+  },
+  "allowScripts": {
+    "@nativescript/core@9.1.1": true,
+    "nativescript@9.1.1": true
+  }
 }
