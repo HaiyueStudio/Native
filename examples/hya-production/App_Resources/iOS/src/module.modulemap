@@ -1,0 +1,5 @@
+module HYANativeAudioModule {
+  header "HYANativeAudio.h"
+  link framework "AVFoundation"
+  export *
+}
