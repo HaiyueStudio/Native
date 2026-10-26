@@ -3,17 +3,17 @@
   "goal": "g13-integration-release",
   "status": "public-candidate-device-pending",
   "source": {
-    "report": "vendor/g13-public-packages-6716e9a.json",
-    "sha256": "273f5be918fed7223c43fcfd0279428279468b3026eaa50315f227ddc45b76b8",
-    "revision": "6716e9a0df8480535c7e4bca7711de5a65d5062e"
+    "report": "vendor/g13-public-packages-70187df.json",
+    "sha256": "4dda28853d2808ea0c5ea8d1edfc79dd35ead99b4f61e2f305f23c9b34f58527",
+    "revision": "70187df17f91d21e64998ea78ac0a05ee77c825d"
   },
   "packages": [
     {
       "name": "@haiyue/engine",
       "path": "vendor/haiyue-engine-0.2.2.tgz",
-      "bytes": 2021690,
-      "sha256": "004d378c8f2d54404b33b9ec5654c39f40eed233b6c63fe087ac145c1b5257ff",
-      "integrity": "sha512-izqbuVHAtX2xPJxfXEZmUUdM05jSwXMyD2nYsPvjH3bDEVULGdDmgBfVrR8UKvK7dwtGtJ4yLdk47DQnGAqBQg=="
+      "bytes": 2021676,
+      "sha256": "53b700437da1fd31fe98b98b7a55ffea54e33beb183cef956179935cd5d4bcaa",
+      "integrity": "sha512-J0W82viYSl/VdJxZgMvVzhhuTo+uONK+LMO79ui6zKZ6tIpgNnZhZclEVdJKzEmdg4FphKTfS4h+0XcTEA710A=="
     },
     {
       "name": "@haiyue/animation-spec",
@@ -42,8 +42,8 @@
   "packageBytePolicy": [
     {
       "name": "@haiyue/engine",
-      "packedBytes": 2021690,
-      "unpackedBytes": 8417758
+      "packedBytes": 2021676,
+      "unpackedBytes": 8417763
     },
     {
       "name": "@haiyue/animation-spec",
