@@ -69,7 +69,7 @@ function start(canvas:Canvas):void {
     if(errors.length)console.error('Native scene cleanup failed',errors);
   };
   host=new NativeRenderHost(canvas,status,{
-    diagnosticName:'g11',enginePackageVersion:'0.2.2 private G11 review candidate; see qualified-candidate.json',canvasInput:input,diagnosticIntervalFrames:0,
+    diagnosticName:'g11',enginePackageVersion:'0.2.2 G13 public-package candidate; see qualified-candidate.json',canvasInput:input,diagnosticIntervalFrames:0,
     engineOptions:{clearColor:{r:240/255,g:240/255,b:240/255,a:1}},
     needsAnimationFrame:()=>!disposed&&(pending!==null||player?.status==='running'||gui?.animating===true),
     async prepareScene(value){

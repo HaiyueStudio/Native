@@ -16,9 +16,9 @@
     "build:device": "node scripts/build-device.mjs"
   },
   "dependencies": {
-    "@haiyue/engine": "file:vendor/haiyue-engine-g11-a36719ea4d47.tgz",
-    "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-g11-a7a4d3bf2b82.tgz",
-    "@haiyue/extensions": "file:vendor/haiyue-extensions-g11-d80554655911.tgz",
+    "@haiyue/animation-spec": "file:vendor/haiyue-animation-spec-0.2.2.tgz",
+    "@haiyue/engine": "file:vendor/haiyue-engine-0.2.2.tgz",
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.2.2.tgz",
     "@nativescript/canvas": "2.1.18",
     "@nativescript/core": "9.1.1",
     "@nativescript/font-manager": "1.0.14"

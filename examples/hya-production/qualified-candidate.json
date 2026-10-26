@@ -1,49 +1,64 @@
 {
   "schemaVersion": 1,
-  "goal": "g11-hya-production-runtime",
-  "status": "review-candidate-not-device-qualified",
+  "goal": "g13-integration-release",
+  "status": "public-candidate-device-pending",
   "source": {
-    "report": "compact-formal-public-consumer-1792849239254/result.json",
-    "sha256": "c69237ba63e952f0a77a359baffda5ddb2f01f316efc74a183f468795d7712a6"
+    "report": "vendor/g13-public-packages-6716e9a.json",
+    "sha256": "273f5be918fed7223c43fcfd0279428279468b3026eaa50315f227ddc45b76b8",
+    "revision": "6716e9a0df8480535c7e4bca7711de5a65d5062e"
   },
   "packages": [
     {
       "name": "@haiyue/engine",
-      "path": "vendor/haiyue-engine-g11-a36719ea4d47.tgz",
-      "bytes": 2011797,
-      "sha256": "a36719ea4d47c72a1223e11bee84bc02cc8019c9a88af2493f894de6fb520533",
-      "integrity": "sha512-rV+mxy7VL3Aw3bhrSxrxW8qo25fcBoWyt/ugWAYlxlOmh4NnnLtTIuDh4kVfbSDKGXeZk4hedCnuh0lftjw+tQ=="
+      "path": "vendor/haiyue-engine-0.2.2.tgz",
+      "bytes": 2021690,
+      "sha256": "004d378c8f2d54404b33b9ec5654c39f40eed233b6c63fe087ac145c1b5257ff",
+      "integrity": "sha512-izqbuVHAtX2xPJxfXEZmUUdM05jSwXMyD2nYsPvjH3bDEVULGdDmgBfVrR8UKvK7dwtGtJ4yLdk47DQnGAqBQg=="
     },
     {
       "name": "@haiyue/animation-spec",
-      "path": "vendor/haiyue-animation-spec-g11-a7a4d3bf2b82.tgz",
-      "bytes": 322582,
-      "sha256": "a7a4d3bf2b826db05993577fe40e7670459d27c217c76631e26ee73569d26727",
-      "integrity": "sha512-MNsT0JQ3uYN3UAorFsaC5I4cT+JeeUvDJ60oxqMMyybQds32rc76taFq8gFBepliwFysfdSXFHcG2TazTgmTiA=="
+      "path": "vendor/haiyue-animation-spec-0.2.2.tgz",
+      "bytes": 170719,
+      "sha256": "71eb24b81b1a07f081138610869c11b759def56aa5853a3030e7a714ad385876",
+      "integrity": "sha512-hYUAlmKtfGd+GaO9d5qBa0ykU7AR1sR3+pyzyUqnPzTVOUtdlS+Zph2yIPRNcnj33LIdShdVY5NN1lDeydIsLA=="
     },
     {
       "name": "@haiyue/extensions",
-      "path": "vendor/haiyue-extensions-g11-d80554655911.tgz",
-      "bytes": 508543,
-      "sha256": "d8055465591111f54d41eb28a5415515b7516e94b0635f0982c791fa2e43d604",
-      "integrity": "sha512-Ez5vxzVYe28AEnWZQVq44ApZYnusFolM6MXDXpfcRUGCx411wk7kkihWTJCHV89LoYUIzdYGzBuYJuvizyKtDQ=="
+      "path": "vendor/haiyue-extensions-0.2.2.tgz",
+      "bytes": 528424,
+      "sha256": "cc29b1238a57911db251eaa01888cc5eecaeaeb6c7be62c430b58597a21c99ad",
+      "integrity": "sha512-yfsbJX0Ga0joRp1hwkHYDYLe6Rd7f6ux9735H4Stjslwk5hGCk3kB3QwR3J2FpyRvT6GJazMuzLkLwYvZBbugQ=="
     }
   ],
-  "formalSharedAdmission": false,
-  "packageBudgetsPassed": false,
+  "formalSharedAdmission": true,
+  "packageBudgetsPassed": true,
   "physicalNativeQualified": false,
   "fullG11Complete": false,
-  "runtimeEvidence": {
+  "fullG13Complete": false,
+  "historicalRuntimeEvidence": {
     "report": "stable-native-glyph-identity-record-1792849642484/result.json",
     "sha256": "f02f64a5ad21d57d99ce6b6867de57c2b8c023b270f3c0ed2a9e502496a88e05"
   },
-  "packageBytePolicy": {
-    "extensionsPackedBytes": 508543,
-    "maxExtensionsPackedBytes": 550000,
-    "extensionsUnpackedBytes": 1987264,
-    "maxExtensionsUnpackedBytes": 3000000,
-    "extensionsPassed": true,
-    "allPackageBudgetsQualified": false,
-    "guiFontBudgetStillFailed": true
-  }
+  "packageBytePolicy": [
+    {
+      "name": "@haiyue/engine",
+      "packedBytes": 2021690,
+      "unpackedBytes": 8417758
+    },
+    {
+      "name": "@haiyue/animation-spec",
+      "packedBytes": 170719,
+      "unpackedBytes": 666297
+    },
+    {
+      "name": "@haiyue/extensions",
+      "packedBytes": 528424,
+      "unpackedBytes": 2054101
+    },
+    {
+      "name": "@haiyue/shader-language",
+      "packedBytes": 148545,
+      "unpackedBytes": 720460
+    }
+  ]
 }
