@@ -75,8 +75,9 @@ a native indicator, stopped on unload or renderer suspension.
 
 `hyPickNativeOption(anchor, options)` returns `{result, cancel}`. Owners must call
 `cancel()` when disposed. Selection settles after native dismissal, and supports
-`auto` (anchored at widths >= 600 DIP, bottom sheet on narrow windows), `popover`,
-and `sheet`. Tapping outside cancels. Existing dialogs keep their centered layout.
+`auto` and `popover` (anchored below the control on phone and tablet), and explicit
+`sheet`. Anchored menus scroll when space below is limited and use space above
+only when fewer than two rows fit below. Tapping outside cancels. Existing dialogs keep their centered layout.
 `Tabs.variant` supports `underline` and `segmented`, including disabled options.
 These are additive APIs; existing protocol nodes and themes remain valid.
 

@@ -1,6 +1,6 @@
 // Property setters intentionally echo to exercise native feedback-loop suppression.
 export class View {
-  handlers=new Map(); style={}; isLoaded=false; isEnabled=true; visibility='visible'; parent=undefined;
+  handlers=new Map(); style={}; isLoaded=false; isEnabled=true; isLayoutValid=true; visibility='visible'; parent=undefined;
   on(type,fn){let set=this.handlers.get(type);if(!set)this.handlers.set(type,set=new Set());set.add(fn);}
   off(type,fn){this.handlers.get(type)?.delete(fn);}
   once(type,fn){const call=e=>{this.off(type,call);fn(e);};this.on(type,call);}

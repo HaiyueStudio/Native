@@ -297,10 +297,10 @@ test('Tabs have distinct segmented and underline selection and keep disabled opt
   f.page.render(tree('underline'));assert.equal(row.children[0],selected);assert.equal(selected.borderBottomWidth,2);assert.equal(selected.backgroundColor.value,'transparent');
  }finally{f.dispose();}
 });
-test('Select uses anchored popovers on wide surfaces and bottom sheets on narrow ones',async()=>{
+test('Select stays anchored below its control on both wide and narrow surfaces',async()=>{
  const f=fixture(n('Select','choice',{value:'a',options:[{value:'a',label:'A'}],a11y:{label:'Language'}}));await ns.drain();
  try{const choice=f.view('/choice');choice.notify('tap');const overlay=choice.modal.content,card=overlay.children[0];overlay.getActualSize=()=>({width:1000,height:800});overlay.notify('layoutChanged');await ns.drain();assert.equal(card.verticalAlignment,'top');assert.equal(card.width,300);
-  overlay.getActualSize=()=>({width:390,height:700});overlay.notify('layoutChanged');await ns.drain();assert.equal(card.verticalAlignment,'bottom');assert.equal(card.width,'100%');
+  choice.getLocationInWindow=()=>({x:20,y:200});overlay.getActualSize=()=>({width:390,height:700});overlay.notify('layoutChanged');await ns.drain();assert.equal(card.verticalAlignment,'top');assert.equal(card.width,300);assert.equal(card.marginTop,240);
  }finally{f.dispose();}
 });
 
@@ -315,6 +315,36 @@ const {hyShowNativeOverlay}=loadTS('bridge/ui/nativescript/overlay.ts');
 const {HYNativeFormField}=loadTS('bridge/ui/nativescript/form.ts');
 const {HYNativeCardGrid,HYNativeWorkspace}=loadTS('bridge/ui/nativescript/responsive.ts');
 const p1Theme={color:{text:'#eeeeee',muted:'#999999',surface:'#151515',input:'#222222',accent:'#7777ff',danger:'#ff5555',border:'#444444',focus:'#9999ff'},fontSize:14,lineHeight:20,gap:8,radius:8};
+const {hyPickNativeOption}=loadTS('bridge/ui/nativescript/selection.ts');
+test('anchored menus use available space below and explicit sheets remain opt-in',async()=>{
+ const anchor=new ns.Button();anchor.load();let y=360;anchor.getLocationInWindow=()=>({x:200,y});anchor.getActualSize=()=>({width:200,height:44});
+ const picker=hyPickNativeOption(anchor,{title:'Menu',value:'a',options:[{value:'a',label:'A'}],theme:p1Theme});const overlay=anchor.modal.content,card=overlay.children[0];overlay.getActualSize=()=>({width:390,height:600});card.content.getActualSize=()=>({width:200,height:320});overlay.notify('layoutChanged');await ns.drain();
+ assert.equal(card.marginTop+16,y+44+6);assert.equal(card.maxHeight,174,'long menus scroll beneath the field');assert.ok(card.marginLeft+16+card.width<=374);
+ y=560;overlay.notify('layoutChanged');await ns.drain();assert.ok(card.marginTop+16+card.maxHeight<=y-6,'near the bottom, keep the menu next to the field and on screen');
+ ns.keyboardCallbacks.get(overlay)(200);await ns.drain();assert.ok(card.marginTop+16+card.maxHeight<=384,'keyboard avoidance keeps every menu row reachable by scrolling');picker.cancel();await picker.result;
+ const sheet=hyPickNativeOption(anchor,{title:'Explicit sheet',value:'a',options:[{value:'a',label:'A'}],theme:p1Theme,presentation:'sheet'});sheet.cancel();await sheet.result;assert.equal(ns.bindings.size,0);
+});
+test('Select does not expose its default frame before the final native layout is valid',async()=>{
+ for(const width of [390,1180]){
+  const anchor=new ns.Button();anchor.load();
+  const picker=hyPickNativeOption(anchor,{title:'Language',value:'a',options:[{value:'a',label:'A'},{value:'b',label:'B'}],theme:p1Theme});
+  const modal=anchor.modal,overlay=modal.content,card=overlay.children[0],content=card.content;
+  assert.equal(card.opacity,0,'default centered card must not be painted');assert.equal(card.accessibilityHidden,true);assert.equal(card.isUserInteractionEnabled,false);
+  assert.equal(modal.backgroundColor.value,'rgba(0,0,0,0.32)','backdrop must not change after the first frame');
+  let bounds={width:0,height:0};overlay.getActualSize=()=>bounds;overlay.notify('layoutChanged');await ns.drain();assert.equal(card.opacity,0);
+  bounds={width,height:800};card.isLayoutValid=content.isLayoutValid=false;overlay.notify('layoutChanged');await ns.drain();
+  assert.equal(card.verticalAlignment,'top');assert.equal(card.opacity,0,'positioning still needs a native layout pass');
+  card.isLayoutValid=true;card.notify('layoutChanged');await ns.drain();assert.equal(card.opacity,0,'wrapped option content is not ready yet');
+  content.isLayoutValid=true;await new Promise(resolve=>setTimeout(resolve,40));assert.equal(card.opacity,1,'an unchanged final rectangle need not emit layoutChanged');assert.equal(card.accessibilityHidden,false);assert.equal(card.isUserInteractionEnabled,true);
+  picker.cancel();assert.equal(await picker.result,null);assert.equal(ns.bindings.size,0);
+ }
+});
+test('host overlay first layout is hidden, and dismissal cancels its pending reveal',async()=>{
+ const owner=new ns.Page();owner.load();const handle=hyShowNativeOverlay(owner,{title:'Settings',content:new ns.StackLayout(),theme:p1Theme});
+ const overlay=handle.page.content,card=overlay.children[0];overlay.getActualSize=()=>({width:390,height:800});card.isLayoutValid=false;
+ assert.equal(card.opacity,0);overlay.notify('layoutChanged');await ns.drain();assert.equal(card.opacity,0);
+ card.isLayoutValid=true;card.notify('layoutChanged');handle.close();await handle.closed;await ns.drain();assert.equal(card.opacity,0);assert.equal(ns.bindings.size,0);
+});
 test('common dialog/drawer shell pins actions, dismisses outside, waits for native close and releases keyboard observers',async()=>{
  for(const kind of ['dialog','drawer','sheet']){
   const owner=new ns.Page(),anchor=new ns.Button(),content=new ns.StackLayout(),footer=new ns.Button();owner.load();anchor.load();let releases=0;
