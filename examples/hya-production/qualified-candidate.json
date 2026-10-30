@@ -3,17 +3,17 @@
   "goal": "g13-integration-release",
   "status": "public-candidate-device-pending",
   "source": {
-    "report": "vendor/g13-public-packages-70187df.json",
-    "sha256": "4dda28853d2808ea0c5ea8d1edfc79dd35ead99b4f61e2f305f23c9b34f58527",
-    "revision": "70187df17f91d21e64998ea78ac0a05ee77c825d"
+    "report": "vendor/g13-public-packages-d58835a.json",
+    "sha256": "62abbce569c707d0a5059366756d4fa204e8b7f42fd19c01d70079dda21283a0",
+    "revision": "d58835a9d14c711f26374c5eed00851f4e4649c2"
   },
   "packages": [
     {
       "name": "@haiyue/engine",
       "path": "vendor/haiyue-engine-0.2.2.tgz",
-      "bytes": 2021676,
-      "sha256": "53b700437da1fd31fe98b98b7a55ffea54e33beb183cef956179935cd5d4bcaa",
-      "integrity": "sha512-J0W82viYSl/VdJxZgMvVzhhuTo+uONK+LMO79ui6zKZ6tIpgNnZhZclEVdJKzEmdg4FphKTfS4h+0XcTEA710A=="
+      "bytes": 2021979,
+      "sha256": "580bc3b5c0510d1c662116fa577e4a0e34ab4758691ae7a47498611bd8e061bd",
+      "integrity": "sha512-zZrWCmdKKjzsbFOd0o8LS0KMZVm9hKUpLfwFn2o+KwqJWqTKzUHWjKTVATsiryVu94NaWBEaaY1au78klLAOFA=="
     },
     {
       "name": "@haiyue/animation-spec",
@@ -42,8 +42,8 @@
   "packageBytePolicy": [
     {
       "name": "@haiyue/engine",
-      "packedBytes": 2021676,
-      "unpackedBytes": 8417763
+      "packedBytes": 2021979,
+      "unpackedBytes": 8418559
     },
     {
       "name": "@haiyue/animation-spec",
@@ -60,5 +60,10 @@
       "packedBytes": 148545,
       "unpackedBytes": 720460
     }
-  ]
+  ],
+  "windowsGlobal": {
+    "status": "passed",
+    "captureRevision": "95ffbb4b1cacdfdde21e8be6be50961619bcc3df",
+    "packagesUnchanged": true
+  }
 }

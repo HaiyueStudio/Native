@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "goal": "g13-integration-release",
+  "status": "public-candidate-device-pending",
+  "source": {
+    "report": "vendor/g13-public-packages-70187df.json",
+    "sha256": "4dda28853d2808ea0c5ea8d1edfc79dd35ead99b4f61e2f305f23c9b34f58527",
+    "revision": "70187df17f91d21e64998ea78ac0a05ee77c825d"
+  },
+  "packages": [
+    {
+      "name": "@haiyue/engine",
+      "path": "vendor/haiyue-engine-0.2.2.tgz",
+      "bytes": 2021676,
+      "sha256": "53b700437da1fd31fe98b98b7a55ffea54e33beb183cef956179935cd5d4bcaa",
+      "integrity": "sha512-J0W82viYSl/VdJxZgMvVzhhuTo+uONK+LMO79ui6zKZ6tIpgNnZhZclEVdJKzEmdg4FphKTfS4h+0XcTEA710A=="
+    },
+    {
+      "name": "@haiyue/animation-spec",
+      "path": "vendor/haiyue-animation-spec-0.2.2.tgz",
+      "bytes": 170719,
+      "sha256": "71eb24b81b1a07f081138610869c11b759def56aa5853a3030e7a714ad385876",
+      "integrity": "sha512-hYUAlmKtfGd+GaO9d5qBa0ykU7AR1sR3+pyzyUqnPzTVOUtdlS+Zph2yIPRNcnj33LIdShdVY5NN1lDeydIsLA=="
+    },
+    {
+      "name": "@haiyue/extensions",
+      "path": "vendor/haiyue-extensions-0.2.2.tgz",
+      "bytes": 528424,
+      "sha256": "cc29b1238a57911db251eaa01888cc5eecaeaeb6c7be62c430b58597a21c99ad",
+      "integrity": "sha512-yfsbJX0Ga0joRp1hwkHYDYLe6Rd7f6ux9735H4Stjslwk5hGCk3kB3QwR3J2FpyRvT6GJazMuzLkLwYvZBbugQ=="
+    }
+  ],
+  "formalSharedAdmission": true,
+  "packageBudgetsPassed": true,
+  "physicalNativeQualified": false,
+  "fullG11Complete": false,
+  "fullG13Complete": false,
+  "historicalRuntimeEvidence": {
+    "report": "stable-native-glyph-identity-record-1792849642484/result.json",
+    "sha256": "f02f64a5ad21d57d99ce6b6867de57c2b8c023b270f3c0ed2a9e502496a88e05"
+  },
+  "packageBytePolicy": [
+    {
+      "name": "@haiyue/engine",
+      "packedBytes": 2021676,
+      "unpackedBytes": 8417763
+    },
+    {
+      "name": "@haiyue/animation-spec",
+      "packedBytes": 170719,
+      "unpackedBytes": 666297
+    },
+    {
+      "name": "@haiyue/extensions",
+      "packedBytes": 528424,
+      "unpackedBytes": 2054101
+    },
+    {
+      "name": "@haiyue/shader-language",
+      "packedBytes": 148545,
+      "unpackedBytes": 720460
+    }
+  ]
+}
