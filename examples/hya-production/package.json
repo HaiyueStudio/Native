@@ -7,7 +7,7 @@
     "preflight": "node scripts/preflight.mjs",
     "verify:source": "node scripts/verify-source.mjs",
     "typecheck": "tsc --noEmit",
-    "test:source": "node --test test/scene-source.test.mjs test/sha256-capability.test.mjs test/base64-capability.test.mjs test/scene-resources.test.mjs test/ios-semantics-host.test.mjs",
+    "test:source": "node --test test/scene-source.test.mjs test/sha256-capability.test.mjs test/base64-capability.test.mjs test/scene-resources.test.mjs test/ios-semantics-host.test.mjs test/ios-bundle.test.mjs test/ios-image-host.test.mjs test/playback-unlock.test.mjs test/pcm-feedback.test.mjs test/text-editing-controls.test.mjs",
     "test:pcm": "node test/run-pcm-bridge.mjs",
     "doctor": "node scripts/ios.mjs doctor ios",
     "bundle:ios": "node scripts/ios.mjs prepare ios",
@@ -21,9 +21,12 @@
     "@haiyue/extensions": "file:vendor/haiyue-extensions-0.2.2.tgz",
     "@nativescript/canvas": "2.1.18",
     "@nativescript/core": "9.1.1",
-    "@nativescript/font-manager": "1.0.14"
+    "@nativescript/font-manager": "1.0.14",
+    "text-encoding-utf-8": "1.0.2",
+    "core-js-pure": "3.51.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-unicode-property-regex": "7.29.7",
     "@nativescript/ios": "9.0.3",
     "@nativescript/types": "9.0.0",
     "@nativescript/webpack": "5.0.38",

@@ -1,6 +1,8 @@
 CLANG_ENABLE_OBJC_ARC = YES
 CLANG_CXX_LANGUAGE_STANDARD = c++17
 CLANG_CXX_LIBRARY = libc++
+// NativeScript disables Clang autolinking; the PCM bridge needs an explicit link.
+OTHER_LDFLAGS[sdk=iphone*] = $(inherited) -framework AVFoundation
 IPHONEOS_DEPLOYMENT_TARGET = 15.0
 TARGETED_DEVICE_FAMILY = 1
 CODE_SIGN_STYLE = Automatic
