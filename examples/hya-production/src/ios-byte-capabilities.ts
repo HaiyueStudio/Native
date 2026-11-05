@@ -17,7 +17,7 @@ export async function prepareIosByteCapabilities(): Promise<() => void> {
   let releaseBase64:(()=>void)|undefined;
   try {
     releaseBase64=acquireBase64Capability(globalThis);
-    if (typeof TextEncoder !== 'function' || typeof TextDecoder !== 'function' || typeof AbortController !== 'function' || typeof AggregateError !== 'function') throw new Error('Native runtime is missing required text/cancellation primitives.');
+    if (typeof TextEncoder !== 'function' || typeof TextDecoder !== 'function' || typeof AbortController !== 'function' || typeof AggregateError !== 'function' || typeof structuredClone !== 'function') throw new Error('Native runtime is missing required text/cancellation/clone primitives.');
     if (hex(new Uint8Array(await crypto.subtle.digest('SHA-256', new Uint8Array([97, 98, 99])))) !== abc) throw new Error('Application SHA-256 known-vector check failed.');
     if (new TextDecoder().decode(new TextEncoder().encode('你好 A')) !== '你好 A') throw new Error('Native UTF-8 roundtrip failed.');
     if(btoa('\u0000\u00ffA')!=='AP9B'||atob('AP9B')!=='\u0000\u00ffA')throw new Error('Native base64 binary-string check failed.');

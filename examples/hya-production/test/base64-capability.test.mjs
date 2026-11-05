@@ -19,5 +19,24 @@ test('forgiving base64 supports whitespace/unpadded values and rejects invalid i
  assert.throws(()=>scope.btoa('你好'),{name:'InvalidCharacterError'});release();
 });
 test('runtime base64 implementations and later ownership are preserved',()=>{
- const existing=()=>'',scope={btoa:existing},release=acquireBase64Capability(scope);assert.equal(scope.btoa,existing);const later=()=>'';Object.defineProperty(scope,'atob',{value:later,configurable:true});release();release();assert.equal(scope.btoa,existing);assert.equal(scope.atob,later);
+ const scope={btoa,atob},release=acquireBase64Capability(scope);assert.equal(scope.btoa,btoa);assert.equal(scope.atob,atob);release();assert.equal(scope.btoa,btoa);assert.equal(scope.atob,atob);
+ const missing={},releaseMissing=acquireBase64Capability(missing),later=()=>'';Object.defineProperty(missing,'atob',{value:later,configurable:true});releaseMissing();releaseMissing();assert.equal(missing.atob,later);assert.equal('btoa' in missing,false);
+});
+test('UTF-8 NSString-style providers are replaced for binary bytes and restored exactly',()=>{
+ const scope={};
+ const nativeEncode=text=>Buffer.from(text,'utf8').toString('base64');
+ const nativeDecode=text=>Buffer.from(text,'base64').toString('utf8');
+ Object.defineProperty(scope,'btoa',{value:nativeEncode,configurable:true,writable:false,enumerable:false});
+ Object.defineProperty(scope,'atob',{get:()=>nativeDecode,configurable:true,enumerable:true});
+ const before=Object.getOwnPropertyDescriptors(scope),release=acquireBase64Capability(scope);
+ const binary=Array.from({length:256},(_,i)=>String.fromCharCode(i)).join('');
+ assert.equal(scope.btoa(binary),btoa(binary));assert.equal(scope.atob(btoa(binary)),binary);
+ assert.throws(()=>scope.btoa('你好'),{name:'InvalidCharacterError'});
+ assert.throws(()=>scope.atob('YQ==='),{name:'InvalidCharacterError'});
+ release();release();assert.deepEqual(Object.getOwnPropertyDescriptors(scope),before);
+});
+test('replacement rolls back when an incompatible provider is not configurable',()=>{
+ const scope={btoa:()=>''};Object.defineProperty(scope,'atob',{value:()=>'',configurable:false});
+ const before=Object.getOwnPropertyDescriptors(scope);assert.throws(()=>acquireBase64Capability(scope));
+ assert.deepEqual(Object.getOwnPropertyDescriptors(scope),before);
 });

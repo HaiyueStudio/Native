@@ -1,6 +1,11 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:gpu="@nativescript/canvas" actionBarHidden="true" loaded="onLoaded" unloaded="onUnloaded" backgroundColor="#f0f0f0">
   <GridLayout>
     <gpu:Canvas id="surface" ready="onCanvasReady" ignoreTouchEvents="true" />
+    <GridLayout id="textToolbar" visibility="collapse" columns="*,auto,auto" verticalAlignment="top" backgroundColor="#f0f0f0" padding="4">
+      <Label col="0" text="Text input" color="#172638" verticalAlignment="center" />
+      <Button id="cancelInput" col="1" text="Cancel" tap="onCancelInput" minWidth="88" height="44" fontSize="16" color="#17304f" backgroundColor="#dce8fa" borderColor="#8ea9cc" borderWidth="1" borderRadius="6" marginLeft="8" accessibilityLabel="Cancel uncommitted input and close keyboard" />
+      <Button id="doneInput" col="2" text="Done" tap="onDoneInput" minWidth="88" height="44" fontSize="16" color="#ffffff" backgroundColor="#1759b8" borderRadius="6" marginLeft="8" accessibilityLabel="Finish input and close keyboard" />
+    </GridLayout>
     <Label id="status" text="Preparing HYA review candidate…" color="#172638" fontSize="11" margin="4" verticalAlignment="bottom" isUserInteractionEnabled="false" />
   </GridLayout>
 </Page>

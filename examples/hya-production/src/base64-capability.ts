@@ -1,11 +1,27 @@
 import {encodeBase64,decodeBase64} from './bytes-base64';
 
 const invalid=()=>{const error=new TypeError('Invalid base64 or non-Latin1 binary string.');error.name='InvalidCharacterError';return error;};
-/** Application-only binary-string boundary used by public integrity records; preserves any runtime implementation. */
+/** Application-only binary-string boundary; retain conforming providers and restore replaced properties on release. */
 export function acquireBase64Capability(scope:object):()=>void {
   const runtime=scope as {btoa?:unknown;atob?:unknown},cleanups:(()=>void)[]=[];
+  const conforms=(key:'btoa'|'atob')=>{
+    const value=runtime[key];if(typeof value!=='function')return false;
+    const call=(text:string)=>Reflect.apply(value,scope,[text]);
+    try {
+      if(key==='btoa'){
+        if(call('\u0000\u00ffA')!=='AP9B'||call('')!=='')return false;
+        try{call('\u0100');return false;}catch(error){return (error as {name?:string})?.name==='InvalidCharacterError';}
+      }
+      if(call('AP9B')!=='\u0000\u00ffA'||call(' YQ\t\r\n')!=='a'||call('')!=='')return false;
+      for(const text of ['A','A=','YQ===','**']){
+        try{call(text);return false;}catch(error){if((error as {name?:string})?.name!=='InvalidCharacterError')return false;}
+      }
+      return true;
+    }catch{return false;}
+  };
   const install=(key:'btoa'|'atob',value:(text:string)=>string)=>{
-    if(typeof runtime[key]==='function')return;
+    // Some iOS providers encode NSString as UTF-8 instead of one byte per code unit.
+    if(conforms(key))return;
     const previous=Object.getOwnPropertyDescriptor(scope,key);Object.defineProperty(scope,key,{value,configurable:true,writable:false});
     cleanups.push(()=>{if(Object.getOwnPropertyDescriptor(scope,key)?.value!==value)return;if(previous)Object.defineProperty(scope,key,previous);else Reflect.deleteProperty(scope,key);});
   };
