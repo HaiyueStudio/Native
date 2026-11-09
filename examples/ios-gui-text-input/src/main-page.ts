@@ -25,6 +25,8 @@ function start(canvas:Canvas):void {
   if(host&&activeCanvas!==canvas)dispose();if(host)return;activeCanvas=canvas;
   let gui:GuiSystem|null=null,root:GuiRoot|null=null,textures:NativeCanvasTextures|null=null,offInvalidation:(()=>void)|null=null;
   const cleanup:(()=>void)[]=[];let gameAudio:GameAudio|null=null,mixer:OwnerSafeAudioMixer|null=null,audioHost:IosGameAudioHost|null=null,audioPosition:readonly[number,number]=[0,0],audioEvent=0,fadeRemaining=0,audioWanted=false;
+  let toneBuffer:AudioBuffer|null=null,playbackProbe:ReturnType<typeof setTimeout>|undefined;
+  const cancelPlaybackProbe=()=>{if(playbackProbe!==undefined)clearTimeout(playbackProbe);playbackProbe=undefined;};
   const fields:GuiInput[]=[],journal:string[]=[];
   const session=String(Date.now()),sessionFolder=Folder.fromPath(path.join(knownFolders.documents().path,'g11-sessions',session));
   const log=File.fromPath(path.join(sessionFolder.path,'gameplay-input.jsonl'));
@@ -100,14 +102,45 @@ function start(canvas:Canvas):void {
           catch(error){audio.dispose();throw error;}
           gameAudio=audio;
         }
-        if(!activeMixer.stats.buffers){const rate=output.sampleRate,buffer=output.createBuffer(1,rate,rate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=.15*Math.sin(2*Math.PI*440*i/rate);activeMixer.installBuffer('g11-tone',buffer);}
+        if(!toneBuffer){
+          const rate=output.sampleRate,buffer=output.createBuffer(1,rate,rate),data=buffer.getChannelData(0);
+          for(let i=0;i<data.length;i++)data[i]=.15*Math.sin(2*Math.PI*440*i/rate);
+          activeMixer.installBuffer('g11-tone',buffer);
+          toneBuffer=buffer;
+        }
         audioWanted=true;
         return true;
       };
       const audioButton=(text:string,action:()=>Promise<void>|void)=>new GuiButton({width:'100%',height:40,text,onClick:()=>runAudio(action)});
       const sounds=createGuiContainer('column',{style:{width:{percent:100},height:'auto',contentMinimum:true,rowGap:6}});
       sounds.add(audioButton('Probe / unlock actual audio',async()=>{await unlockAudio();}));
-      for(const [text,x,y]of[['Hear left',-10,0],['Hear center',0,10],['Hear right',10,0],['Distance 100: silent',100,0]]as const)sounds.add(audioButton(text,async()=>{if(!await unlockAudio())return;audioPosition=[x,y];gameAudio!.play({eventId:'native-'+(++audioEvent),owner:'native-probe',channel:'tone',bufferId:'g11-tone',bus:'ui',loop:true,startTick:audioEvent});gameAudio!.update(0);record('g11-audio-position',{x,y,stats:mixer!.stats});}));
+      sounds.add(audioButton('Measure native audio signal',async()=>{
+        if(!await unlockAudio())return;
+        const output=audioHost!,measurement=await output.measureCenterSignal(toneBuffer!);
+        if(audioHost!==output)return;
+        record('g11-audio-offline-signal',measurement);
+        status('Signal measured. Now check Hear center.');
+      }));
+      for(const [text,x,y]of[['Hear left',-10,0],['Hear center',0,10],['Hear right',10,0],['Distance 100: silent',100,0]]as const)sounds.add(audioButton(text,async()=>{
+        if(!await unlockAudio())return;
+        audioPosition=[x,y];
+        const voice=gameAudio!.play({eventId:'native-'+(++audioEvent),owner:'native-probe',channel:'tone',bufferId:'g11-tone',bus:'ui',loop:true,startTick:audioEvent});
+        gameAudio!.update(0);
+        record('g11-audio-position',{x,y,voice,stats:mixer!.stats});
+        cancelPlaybackProbe();
+        const output=audioHost!;
+        playbackProbe=setTimeout(()=>{
+          playbackProbe=undefined;
+          if(audioHost===output)record('g11-audio-live-clock',{x,y,voice,...output.playbackSnapshot()});
+        },250);
+      }));
+      sounds.add(audioButton('Play iOS reference tone',async()=>{
+        if(!await unlockAudio())return;
+        cancelPlaybackProbe();
+        mixer!.stop('native-probe','tone');
+        audioHost!.playReferenceTone(toneBuffer!);
+        record('g11-audio-reference',{backend:'av-audio-player',...audioHost!.playbackSnapshot()});
+      }));
       sounds.add(audioButton('Fade UI over 2 seconds',()=>{if(gameAudio){gameAudio.fadeBus('ui',0,2000);fadeRemaining=2000;host?.requestFrame();}}));
       sounds.add(audioButton('Mute / unmute',()=>{if(gameAudio){gameAudio.setMuted(!gameAudio.exportProfile().muted);record('g11-audio-profile',gameAudio.exportProfile());}}));
       sounds.add(audioButton('Reset audio volumes',()=>{if(gameAudio){gameAudio.setVolumes({master:1,music:1,sfx:1,ui:1});gameAudio.setMuted(false);record('g11-audio-profile',gameAudio.exportProfile());}}));
@@ -140,8 +173,8 @@ function start(canvas:Canvas):void {
       record('environment',{model:Device.model,os:Device.os,osVersion:Device.osVersion,canvas:'2.1.18',nativeRuntime:'9.0.3',qualification:'Human device evidence pending; checkpoints alone do not assert success.'});
       return {scene:'G11 0.2.3',log:log.path};
     },
-    bindInput:()=>({suspend(){bridge.suspend();touch.suspend();gui?.stopAnimations();if(mixer)void mixer.suspend().then(()=>record('g11-audio-background',mixer?.stats)).catch(error=>record('g11-audio-failed',{reason:String(error)}));record('input-suspended',bridge.snapshot());},resume(){bridge.resume();touch.resume();if(audioWanted&&gameAudio)void gameAudio.resume().then(()=>record('g11-audio-restored',mixer?.stats)).catch(error=>record('g11-audio-failed',{reason:String(error)}));record('input-resumed',bridge.snapshot());},snapshot:()=>({text:bridge.snapshot(),touch:touch.snapshot(),audio:mixer?.stats??null}),dispose(){bridge.dispose();touch.dispose();record('input-disposed',bridge.snapshot());}}),
-    disposeScene(){offInvalidation?.();offInvalidation=null;for(const close of cleanup.reverse())close();cleanup.length=0;gameAudio?.dispose();mixer?.dispose();record('g11-audio-disposed',{...(mixer?.stats??{state:'not-created'}),native:audioHost?.snapshot()??null});gameAudio=null;mixer=null;audioHost=null;audioWanted=false;textures?.dispose();textures=null;gui=null;root=null;fields.length=0;},
+    bindInput:()=>({suspend(){cancelPlaybackProbe();bridge.suspend();touch.suspend();gui?.stopAnimations();if(mixer)void mixer.suspend().then(()=>record('g11-audio-background',mixer?.stats)).catch(error=>record('g11-audio-failed',{reason:String(error)}));record('input-suspended',bridge.snapshot());},resume(){bridge.resume();touch.resume();if(audioWanted&&gameAudio)void gameAudio.resume().then(()=>record('g11-audio-restored',mixer?.stats)).catch(error=>record('g11-audio-failed',{reason:String(error)}));record('input-resumed',bridge.snapshot());},snapshot:()=>({text:bridge.snapshot(),touch:touch.snapshot(),audio:mixer?.stats??null}),dispose(){bridge.dispose();touch.dispose();record('input-disposed',bridge.snapshot());}}),
+    disposeScene(){cancelPlaybackProbe();offInvalidation?.();offInvalidation=null;for(const close of cleanup.reverse())close();cleanup.length=0;gameAudio?.dispose();mixer?.dispose();record('g11-audio-disposed',{...(mixer?.stats??{state:'not-created'}),native:audioHost?.snapshot()??null});gameAudio=null;mixer=null;audioHost=null;toneBuffer=null;audioWanted=false;textures?.dispose();textures=null;gui=null;root=null;fields.length=0;},
   });
   Application.on(Application.exitEvent,dispose);
 }
