@@ -29,17 +29,17 @@ test('ordinary native snapshots delegate all Unicode normalization and length po
  assert.deepEqual(Array.from(event.selection),[3,3]);assert.equal(f.lease.shouldReplace(2,3,''),false);assert.equal(f.events.at(-1).kind,'edit');
  assert.equal(f.events.at(-1).startUtf16,2);assert.equal(f.lease.shouldReplace(3,3,'\n'),false);assert.equal(f.events.at(-1).command,'submit');f.lease.close();
 });
-test('finish returns an explicit confirmation even when native unmark synchronously dispatches completion',()=>{
- const f=fixture();f.lease.beginComposition();f.set({value:'A中B',selection:[2,2],marked:[1,2]});f.lease.nativeChanged(f.driver.snapshot());
- const result=f.lease.finish();assert.equal(result.phase,'commit');assert.equal(result.text,'中');assert.equal(result.generation,11);
- assert.equal(f.events.filter(e=>e.phase==='commit').length,1);f.lease.close();
+test('focus teardown has no synthetic UIKit commit and ignores resign callbacks',()=>{
+ const f=fixture();f.lease.beginComposition();f.set({value:'AzhB',selection:[3,3],marked:[1,3]});f.lease.nativeChanged(f.driver.snapshot());f.clear();
+ // Engine detaches, optionally asks the host to finish, cancels its edit, then closes.
+ assert.equal(f.lease.finish?.(),undefined);
+ f.driver.close=()=>{f.driver.unmarkText();f.lease.focusLost();};
+ f.lease.close();
+ assert.deepEqual(f.events,[]);
+ assert.equal(f.lease.composing,false);
+ assert.equal(f.lease.disposed,true);
 });
 test('cancel restores original native content without producing a replacement edit',()=>{
  const f=fixture();f.lease.beginComposition();f.lease.nativeChanged({value:'A中B',selection:[2,2],marked:[1,2]});
  f.lease.nativeChanged({value:'A😀B',selection:[1,3],marked:null});assert.equal(f.events.at(-1).phase,'cancel');assert.equal(f.events.some(e=>e.kind==='value'),false);f.lease.close();
-});
-
-test('unmark without a synchronous cleared mark is not a confirmed blur commit',()=>{
- const f=fixture();f.driver.unmarkText=()=>{};f.lease.beginComposition();f.set({value:'A中B',selection:[2,2],marked:[1,2]});f.lease.nativeChanged(f.driver.snapshot());
- assert.equal(f.lease.finish(),null);assert.equal(f.events.some(e=>e.phase==='commit'),false);f.lease.suspend();assert.equal(f.events.some(e=>e.phase==='cancel'),true);
 });

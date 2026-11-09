@@ -72,7 +72,6 @@ class IosTextDriver implements NativeTextDriver {
     const markedStart=marked?view.offsetFromPositionToPosition(view.beginningOfDocument,marked.start):0;
     return {value:view.text??'',selection,marked:marked?[markedStart,markedStart+view.offsetFromPositionToPosition(marked.start,marked.end)]:null};
   }
-  unmarkText():void {if(!this.closed)this.view.unmarkText();}
   beginComposition():void {if(this.live()){const snapshot=this.snapshot();this.lease.beginComposition(...snapshot.selection);}}
   changed():void {if(this.live())this.lease.nativeChanged(this.snapshot());}
   selectionChanged():void {if(this.live())this.lease.nativeSelectionChanged(this.snapshot());}

@@ -15,6 +15,5 @@ export interface NativeTextDriver {
   setSelection(anchor:number,focus:number):void;
   setCaretRect(rect:NativeTextRect):void;
   snapshot():NativeTextSnapshot;
-  unmarkText():void;
   close():void;
 }

@@ -1,0 +1,935 @@
+{
+  "schemaVersion": 3,
+  "targetVersion": "0.2.3",
+  "releaseQualified": false,
+  "enginePackage": {
+    "name": "@haiyue/engine",
+    "version": "0.2.3",
+    "bytes": 2049377,
+    "sha256": "08ac80f39ba51662bdf85bf1b6f9858856c0baea9e2d0a11c4db1b7ccbb1b3bb",
+    "path": "examples/ios-gui-text-input/vendor/haiyue-engine-0.2.3.tgz"
+  },
+  "extensionsPackage": {
+    "name": "@haiyue/extensions",
+    "version": "0.2.3",
+    "bytes": 566230,
+    "sha256": "aa1344be0aaca42dcf65599ff3896fa099214a945256a61b0f007f1574253f9b",
+    "path": "examples/ios-gui-text-input/vendor/haiyue-extensions-0.2.3.tgz"
+  },
+  "files": [
+    {
+      "path": "bridge/achievements/core/catalog.ts",
+      "bytes": 4145,
+      "sha256": "b23e2800d6504b18484d9852c1dd41f30da5f3b7ab5f9de9d73467b37919428a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/core/controller.ts",
+      "bytes": 14451,
+      "sha256": "67dfd2b00e1983a97101e7077509d5261e53fcc0e8276ae2cb6d28c6f91d7f04",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/core/storage.ts",
+      "bytes": 557,
+      "sha256": "52311e0be7e82fb1a7a057e6bad024d5d1258f31eb0be981866288ac0da53c48",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/core/types.ts",
+      "bytes": 3678,
+      "sha256": "0cd988d6c4ffee7a5a0907591a80e48234347a516597266ea5f307b565626e96",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/game-center/index.ts",
+      "bytes": 4434,
+      "sha256": "154145521ebd26fb23b3689133af7b222be6e698cb35e2581533ff189159a582",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/game-center/native.ios.ts",
+      "bytes": 430,
+      "sha256": "4f9d16a33ac040dfdf1edbf2495688b3dc3db76be56eb500e5af6cfc86002a67",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/game-center/native.ts",
+      "bytes": 324,
+      "sha256": "24df6b058a69a2e439d14894ef8f84443e5535ed6d168be6ec7a7951566999c0",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/game-center/queue-client.ts",
+      "bytes": 4096,
+      "sha256": "b582c4fa6a8053ce2072c3c620e45719a63bfca75b8e7b76ec08dc9c9f5f6e07",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/index.ts",
+      "bytes": 286,
+      "sha256": "69124f6684f0d5f88c648154a3bbf12a1142623a4ab21418c9260ff07b5dea06",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/local/index.ts",
+      "bytes": 583,
+      "sha256": "00fbe47cbcfa0ea6c6d23972af5953f03d3e4c822d0c258af7be6ad83dc770b9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/achievements/steam/index.ts",
+      "bytes": 4538,
+      "sha256": "bb457cac57bfc8a8edf00d8eed55a412e69019eee0def64e7693b77f33a98c8d",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/audio/pcm-bank.android.ts",
+      "bytes": 6749,
+      "sha256": "7be6c930c68d3965bf8d5effffbb9aa7186e72e6141b6b1e69fcd4d35fe141dd",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/audio/pcm-bank.ios.ts",
+      "bytes": 6176,
+      "sha256": "c2fb941f0e3d65ca77f85e32b6cd07884fef77ac73b8d328eb5651aa9f40e829",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/audio/pcm-bank.ts",
+      "bytes": 114,
+      "sha256": "9e3d10e8179e2c23cfec5e03f9dffd675aaea8dd34a986b56072fcac1913407d",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/branding/engine-splash.ts",
+      "bytes": 5099,
+      "sha256": "8ddffedf5ad150886d926054b861e63f7d6dcd3ecaa6907cc20a1af61d628d54",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/branding/launch-page.ts",
+      "bytes": 1293,
+      "sha256": "fa530dd1b96dadbb7ab1aadd0667e407901aacd5f4dab44e159b49d3264af16e",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/display/orientation-policy.ts",
+      "bytes": 1345,
+      "sha256": "aa9e1ace554ae0f9269d56599f3aefccc990d4127f7acd15de12924178f7c772",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/display/orientation.android.ts",
+      "bytes": 2536,
+      "sha256": "f883b739001e0f13c11f84fac8f4ad4d74d200b63e57e85798ae6613d693882b",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/display/orientation.ios.ts",
+      "bytes": 3031,
+      "sha256": "14dbb84782177f3ce3e0ba7c8e4bd0cd6cc8b1019003f25f473450d32301d400",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/display/orientation.ts",
+      "bytes": 117,
+      "sha256": "101805765d6019fdf8e92427b46f9d7c2c7358d58e85b1699d8d30f498e64f6b",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/engine.ts",
+      "bytes": 578,
+      "sha256": "176186e3ae6ec7a2c5cb9982427d7568e30035dcd3695736f149a6a4c19e79f5",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/feedback/haptics.android.ts",
+      "bytes": 1726,
+      "sha256": "662c2b687c8da0732b18a48c1ae70984fdd974255c497a83758f51c8946875cf",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/feedback/haptics.ios.ts",
+      "bytes": 1820,
+      "sha256": "90da0bb50ecae2f5827acf558fab182cec9a23026aabe707bbda29990ad6402a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/feedback/haptics.ts",
+      "bytes": 121,
+      "sha256": "66fe8338e9db018a9c7988624fac9521a6b6fdc57f9775fe6016fd01b2a053d6",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/files/read-bytes.ts",
+      "bytes": 952,
+      "sha256": "44b1af3eb85eff39038ea3d44e86a05875b8c4b35269f0af6ab9334014696c03",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/desktop-types.ts",
+      "bytes": 823,
+      "sha256": "3b43b5fc6d15d22429f7d0f1344c23721cc36bea6398ed46187a83a649962254",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/desktop.android.ts",
+      "bytes": 3105,
+      "sha256": "f2746bef55ed13ac9da6fd79863f616dd943970b17ee09efb9d31e312c4845f2",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/desktop.ios.ts",
+      "bytes": 4535,
+      "sha256": "23d22b45a76e41b6ac77b2e8f38860cf5c5e5769ba49534f7ddfe8d167d97fa0",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/desktop.ts",
+      "bytes": 31,
+      "sha256": "9231a1dc38bf368f9e3f05a9b3dfd31125ac040167172371f899396442f86537",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/native-touch.android.ts",
+      "bytes": 4362,
+      "sha256": "fae04b99c95904be4894deebbdb4b8f8abff080c2869fb3e5f621eb904c55c60",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/native-touch.ios.ts",
+      "bytes": 4767,
+      "sha256": "2612be11647e22f6e2f89a2b53afb0e0672059c24be7fe519b5f20eb02a2a0df",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/native-touch.ts",
+      "bytes": 118,
+      "sha256": "1ff46fd8e391e3ab08d665201e866f5810d3c6cc9228559a59465252684832f5",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/pointer-target.ts",
+      "bytes": 5140,
+      "sha256": "f5da5c639f45067a4031d7b4dc6a6c1b049ed47fc95b45cd256d1b8c7b137edc",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/text-input-session.ts",
+      "bytes": 4954,
+      "sha256": "bcdd5b30c016a4bccb2b43954b2f9bb905de0852ace2d4f0d7a00a799985e4cd",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/text-input-types.ts",
+      "bytes": 841,
+      "sha256": "bf01a493cf846715986cc4d03626c70c3020988702a9e2bb3059b499b59bef2c",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/text-input.ios.ts",
+      "bytes": 11885,
+      "sha256": "db2ac00c2f5148f0a589907fdb411742b6435a9195473269d3848cf6740e7d67",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/input/touch-identity.ts",
+      "bytes": 825,
+      "sha256": "98174d6df6e9e9b2d4c15004f3e741394acfe89546ac2bb5602abd7f7f8e56f5",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/abort-runtime.ts",
+      "bytes": 1279,
+      "sha256": "bb04833887d2c7a204dded4312fd00d03d5a1deac4f0d52cbb8f1001f07cb598",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/demand-frames.ts",
+      "bytes": 1854,
+      "sha256": "dc0dabdeb91357c9596e2bd3998e5c4f1890056238bac9ca729ab22318115eeb",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/frame-performance.ts",
+      "bytes": 1041,
+      "sha256": "6051bd3ad1ea25accfcfc7ac740f0b56dab60557191e95c7f7e7d03fc7d4bcf1",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/frame-scheduler.ts",
+      "bytes": 1059,
+      "sha256": "24eba67e040495c7d11e37f6abf69339db089871391d175e1cacb09a6f646ff8",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/host.ts",
+      "bytes": 15873,
+      "sha256": "e63f662930cd8ee796eeebd6a9bb2f3c3eb95c63976920cd754d23e95d055919",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/launch-flags.ts",
+      "bytes": 443,
+      "sha256": "c271d26843b7f8fc2790358a9effe7f291839f6332dcb9d08355aa51e46ebe9a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/presentation-pause.ts",
+      "bytes": 745,
+      "sha256": "abf5c76a06f228eb3f811a53d5c5fcce716a83f1966f972b48d62dd5589d14ff",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/lifecycle/runtime.ts",
+      "bytes": 2228,
+      "sha256": "81d83f3766952e1fbed53b303a1d5337a674537779c8431810b9e5503fdfac97",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/media/save-photo.android.ts",
+      "bytes": 2542,
+      "sha256": "774710166005503b3cdbbd82ccd2d8441f72eca8fff46cd030aa6b94b9949507",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/media/save-photo.ios.ts",
+      "bytes": 1184,
+      "sha256": "197bd8178509bc553ef359e9fa9ef333c20102af2cba6abd459631aa942ae334",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/media/save-photo.ts",
+      "bytes": 135,
+      "sha256": "ed7ea4e23ac3028f5be8e6d866ac809a5ecc32d9f799329623d6457094faf479",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/motion/android-reading.ts",
+      "bytes": 1215,
+      "sha256": "b63543f70f9ab2b9e0fd33a9c5da0de8eeffffe19f6e046f04450e79a95b474d",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/motion/device-motion.android.ts",
+      "bytes": 6244,
+      "sha256": "81e2eee84f1a55c0166a2628ea1375a1e62c79593083cdf80474ddf05569ef09",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/motion/device-motion.ios.ts",
+      "bytes": 6138,
+      "sha256": "ff16f0e6d23a05e36d0a909d990d7507c0c0c6fadcf17df23d35d6ef44332d00",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/motion/device-motion.ts",
+      "bytes": 127,
+      "sha256": "f2806d66f328e5b2a090ad8a49c50348f90c334efb873e4627c2845d9b9f9d37",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/motion/motion-sample.ts",
+      "bytes": 3703,
+      "sha256": "0308435ec6e2f3a0ebaa6ab7b63110fe7a9eed25e75b18b8873a719ed996339e",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/capabilities.ts",
+      "bytes": 678,
+      "sha256": "2c28804bba80c64711b885cd6b32ae5df181fc5f0e4c664a25d401779cd7be8d",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/index.ts",
+      "bytes": 177,
+      "sha256": "a0bdc2f447b61d15acfbfc38625489c6baf99300e6614acd45585fcfdfc42b21",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/runtime.android.ts",
+      "bytes": 287,
+      "sha256": "e5c702047a0cbcc9b497dc26d4553d911bdccc5378b55604bfb478516ad36d28",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/runtime.ios.ts",
+      "bytes": 306,
+      "sha256": "b2dc7cfda6b59e338673dde218c70cee0c43e05fb8ae5b96dd1c3dc16dfa4f9a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/runtime.ts",
+      "bytes": 31,
+      "sha256": "5c1eaf7823eeec344b77c89b09355da2c11a4eb5c2baf4eb955bf589f232fd43",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/window-metrics.android.ts",
+      "bytes": 575,
+      "sha256": "e2e342ab4208c8868082541cb33f01d38b5c8d523d2b6436b07f58a08f0ca7d1",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/window-metrics.ios.ts",
+      "bytes": 470,
+      "sha256": "1bced1824e892e44f5c4fcb4148c67fa2e400f79b3fce9d525e1d6b126408451",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/window-metrics.ts",
+      "bytes": 38,
+      "sha256": "fdf5756f639c62a46316c82f05e43489f66fb1003047051e4c136ed743062db3",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/platform/window.ts",
+      "bytes": 1032,
+      "sha256": "b93f60cf5dd25b534c0fed5cc36a573fde45ed5e39634c55a3470cc75ff01744",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/catalog.ts",
+      "bytes": 5316,
+      "sha256": "9294a1cd641d46bc603e7285a90b1cd45582b0ed92e02d47dc4d68ec42a845f6",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/config.ts",
+      "bytes": 900,
+      "sha256": "219385662c11b169431af8dd095cb9e0607c5dbeb5d441653005d445e56a112e",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/controller.ts",
+      "bytes": 4878,
+      "sha256": "984d9f5ed58d82488c4efeb487b804791ad20af05c6ab224bb361a72e2217db2",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/google-access.ts",
+      "bytes": 3032,
+      "sha256": "a378b8b27f071701034afa3dd0ca6f20d2abd3beb88134f0aa09adeb7deb4f6d",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/index.ts",
+      "bytes": 216,
+      "sha256": "d14f7f4dff989fea1915c18e526393df1db70514da34e7c0b78bb9d3f6042da1",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/native.d.ts",
+      "bytes": 953,
+      "sha256": "1906121d8d3b09863bdb7657575028324d5b4ea875f39e75664f6ce4accad86e",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/native.ts",
+      "bytes": 309,
+      "sha256": "8990520444d51ab6d3b158e2cfde6fb961e1e16950a80582b881b1e08d741207",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/requests.ts",
+      "bytes": 1664,
+      "sha256": "d8b58a57526e39f818c8e4f0133b63a08342c8d702fcd7bf9c091067ca85037c",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/store.android.ts",
+      "bytes": 3954,
+      "sha256": "f46bc4074cb57d343301e5b64472450c013b87c98fc6150e75e392bf2b2a7d24",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/store.ios.ts",
+      "bytes": 1947,
+      "sha256": "e88a54023f9813ae703e283d305b1c9f5deb4ab2ff893a89a7985adc461df915",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/store.ts",
+      "bytes": 110,
+      "sha256": "e1593877edfce410a0224bb81dc53d476560a40f52244fa72b297f567d106c1e",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/purchases/types.ts",
+      "bytes": 836,
+      "sha256": "b94a6eacef0be92a7b35656d349c7bbc6f733e23382271346d5d0cac70d96276",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/canvas-textures.ios.ts",
+      "bytes": 2801,
+      "sha256": "3bf00a5d2df470c5e658b7067b80c572160a915ef35e5421555c1cdfd066f695",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/canvas-textures.ts",
+      "bytes": 99,
+      "sha256": "bf5723aef9abd87ef6335d8eb81bb9605d25f325edbc4512dfdf04bd65859e3b",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/device-descriptor.ts",
+      "bytes": 426,
+      "sha256": "4c5afc4e61a778224f3e0db06573c6e0dfe86adc6fce7bf0f2a23f4a2991226f",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/frame-capture.android.ts",
+      "bytes": 891,
+      "sha256": "1373a9494b6392d81f52f3da59e8e5246cc1f6049328e1beac8a7f175bfb2edd",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/frame-capture.ios.ts",
+      "bytes": 1264,
+      "sha256": "933bf4dca2a1797d2b95c5318d56a5e48c1fe68932998869ac833bcc75096825",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/frame-capture.ts",
+      "bytes": 119,
+      "sha256": "c8656c56c5cbc982e5927067ea84344832ab0f2f1ca48c21628cda5bf02d8c57",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/queue-fence.android.ts",
+      "bytes": 1498,
+      "sha256": "a1100c6382c5875a6d2e7019838c0dc6dd2dd2a769d4920195d507e66a5735f5",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/queue-fence.ts",
+      "bytes": 63,
+      "sha256": "2b29e9159e4a3f4b2610224e4f90c66c5c47d32ee2d283f1cd63baae50aed460",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/surface.ts",
+      "bytes": 8233,
+      "sha256": "8f84321b7e3d3c8890c34fceabc0aba4aec41b667f6b8dabeef170352cda933a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/texture-upload.ts",
+      "bytes": 985,
+      "sha256": "b132c946fa60e03b85f8b947069de36601531341c414bf49eeee3397f7d2cea4",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/view-capture.android.ts",
+      "bytes": 707,
+      "sha256": "44c0ac5a339d27b9e6b2f6f50c52f255fa442a16a0677c615c84b0e4a3b073de",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/view-capture.ios.ts",
+      "bytes": 1003,
+      "sha256": "1467288df2683ebbb09a3354f0b69862e7d7aa32ed09aeb4426144c2831fc8a8",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/view-capture.ts",
+      "bytes": 36,
+      "sha256": "e757b53a2d9aa9813df4a10df5fecd084cba0b130dbd5571285451f055b83ef7",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/view-rect.android.ts",
+      "bytes": 762,
+      "sha256": "314fa775526945e71ef9441ae073d9a5e24844bd686b50e23ab682dd582e35d9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/view-rect.ios.ts",
+      "bytes": 665,
+      "sha256": "ae1186afde51d4053e3e609feb64aba1da585984696dfa57e90a9aa821a6d7ed",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/view-rect.ts",
+      "bytes": 115,
+      "sha256": "b92b7bb11c7cdd8395f51fe1a1b243e9147ab401788c16a7068f10e405332150",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/render/webgpu-constants.ts",
+      "bytes": 353,
+      "sha256": "279bafa27ac5c7ddb320c2e14440e6db25f9cb6ca79ea3cf21fd2a49f5266426",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/rewards/admob.ts",
+      "bytes": 7470,
+      "sha256": "447b544bf857a8812797575e70ce2fa38cd4b60e29879044c7e2f0943036d6e9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/rewards/controller.ts",
+      "bytes": 10122,
+      "sha256": "4e75654e68ecacb4ba517f7ce7fc352585f21ebbf7e482cf9e7d9da905e5f83a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/rewards/development.ts",
+      "bytes": 483,
+      "sha256": "d2500bbd190134fb3a223b1b0474f0cdc42f7f7752f1ee94c864ce06b2e0a213",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/rewards/errors.ts",
+      "bytes": 3203,
+      "sha256": "9d42222b5b545260ba2f520f52535424ed1e4868a59f13c0ede8c4e7990b14e7",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/rewards/native.ts",
+      "bytes": 1694,
+      "sha256": "a5ae96dd9f2c1fd49630b1e7ed8e28d60784a66569afb4d09279c14cf347b991",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/rewards/policy.ts",
+      "bytes": 1120,
+      "sha256": "cfe93ff13f201879bfca02ec2a37c7cbb34f71b9005c6846a57279900977d096",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/scanner/photo-code.android.ts",
+      "bytes": 3007,
+      "sha256": "6f8ac5140c2c7ab399c773a2cabf73593dc7ce17732fa3adf70405e0a76417bb",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/scanner/photo-code.ios.ts",
+      "bytes": 3693,
+      "sha256": "aeb85be5fa72828f7683250f4a9658e9ffd89e9f26aa8c6e3d43ec4c5f8b4852",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/scanner/photo-code.ts",
+      "bytes": 236,
+      "sha256": "b0a229507dbf7f87c652c7b2ab689119a5b6086fbcbef34abf3e0c2d7e30135b",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/scanner/scan-code.android.ts",
+      "bytes": 2462,
+      "sha256": "c99c6f8857c072cdd38e6c623a422dc013e853e17df09dab34d8ee07e3e5fa3a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/scanner/scan-code.ios.ts",
+      "bytes": 4663,
+      "sha256": "425f6adbe74033541c1429aa0308ccfb8e88252c96ea935bd6c55e383fb38000",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/scanner/scan-code.ts",
+      "bytes": 300,
+      "sha256": "cde1c1ad53077e6d6bbd0546f7c176b80872ddb7b6fa2658eb43e8b63fff9237",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/scanner/types.ts",
+      "bytes": 1241,
+      "sha256": "8ed06ed66573e497b64dedbf775f0690666521a29a2b9e19d716d971898377c9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/share/share-content.android.ts",
+      "bytes": 4620,
+      "sha256": "cd8e48a659ecd98bb98c23222320c66d0d2943fc81ced493757c1af54f1ad69a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/share/share-content.ios.ts",
+      "bytes": 3404,
+      "sha256": "78c4ef94ff44076c99bbdad23a2fb6af1c4df19bb7ac7f6dfb5feed39e12b562",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/share/share-content.ts",
+      "bytes": 277,
+      "sha256": "a59087862fad4956a851c0c3e4b498c065a7568beee4be3c92acb6c3c59026ad",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/share/share-content.web.ts",
+      "bytes": 1932,
+      "sha256": "8b97907c769e99dcea880b0031244c8e6c9b03c8907a617dba76ea45935b788c",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/share/types.ts",
+      "bytes": 2881,
+      "sha256": "bc5ae29ecf077aca88b29dbae0102df82b7f01033eca7fc945815233db8c680b",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/storage/clone-runtime.ts",
+      "bytes": 357,
+      "sha256": "9bbd3693444c26473dac2b8060d107bd2bd54a455a91c163c391bfdc4dd66abb",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/storage/settings-storage.ts",
+      "bytes": 973,
+      "sha256": "cdf89d04154304911553c3e0b21591a95d551b2f92a9926cb0ffba057e9b975a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/index.ts",
+      "bytes": 903,
+      "sha256": "3a8b093ac7c617708ec990f045471c244e10f1ab96865483ed21e873203a0307",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/button.ts",
+      "bytes": 3097,
+      "sha256": "7c04b72f553fd1dc6f411458988ccb74dbdec9f379d2643956a7b63a255e48fb",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/controls.ts",
+      "bytes": 14942,
+      "sha256": "e0a0687a247d147c99258ffed45904a62243a569216b51159a3240fc259f9111",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/data.ts",
+      "bytes": 687,
+      "sha256": "1590bde24af8ccec1949d50f51a047c0c274dbb15a38c7c9ab6901ab65955b8e",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/form.ts",
+      "bytes": 3657,
+      "sha256": "1a7c87051b5e2b7745ed908f51bb7e614fda8337a369321d32aa7f8134553e27",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/modal.ts",
+      "bytes": 5117,
+      "sha256": "c6982204ab7c4268762851494e6a1b177c80bedc4973facbffb378cc48569a88",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/native-callback.ts",
+      "bytes": 554,
+      "sha256": "6685f69022d26bca9ee675d07b13a73d660211d1f9045f1a238bb429900fd8f0",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/overlay.ts",
+      "bytes": 4127,
+      "sha256": "ba4366c0ebbf3f097227acfafde96a44ef9648ef76949bcf7f7e1d90b3121872",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/platform.android.ts",
+      "bytes": 7274,
+      "sha256": "9c1db965ae684b85e06ecb025c091aee91fa954d85ca8f95fb289f458af2c5d3",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/platform.ios.ts",
+      "bytes": 9218,
+      "sha256": "7ee2317b3bd031eb7dcb9ce2509055e3de285d7d15ca2c009089eec3bb884af5",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/platform.ts",
+      "bytes": 1315,
+      "sha256": "9373d0c7a824068658a361974951737856abbf9e7dcf70891de93de788b71d50",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/renderer.ts",
+      "bytes": 30840,
+      "sha256": "72f1ac787c196ab945fb1e2830d666b6fa961132be1a97ff4f394b40521065f5",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/responsive.ts",
+      "bytes": 3678,
+      "sha256": "94359a1634cdb6e9404749a85f5ea3faa2b993dfcceebaedfa0ba4b84bf73279",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/selection.ts",
+      "bytes": 3027,
+      "sha256": "7adf3ae0543cb36829f822a4dc89c025529da2cc6223cc820ae70fea01b03f58",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/ui/nativescript/types.ts",
+      "bytes": 2245,
+      "sha256": "c635e7023c3c9378dd44046e1e762d1d3ac5af301f63f9a18028c7b632ab9e68",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/.ruby-version",
+      "bytes": 6,
+      "sha256": "c8b6d7eee0f9b7cb68c21aaed40c90476b72c8f4b843d0686591cdbb13724034"
+    },
+    {
+      "path": "examples/ios-gui-text-input/App_Resources/iOS/Info.plist",
+      "bytes": 1220,
+      "sha256": "21c4d5820548307f1b08000ecf5d7e7b66a653ac435e5fbb196e5a074709ea37",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/App_Resources/iOS/build.xcconfig",
+      "bytes": 127,
+      "sha256": "8dc0410b7d1ab89032da864e5ebd63671d6230d5c9aaf426badf8fcf58ea00d9",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/Gemfile",
+      "bytes": 167,
+      "sha256": "5c69cef46797b49536d0ae74fdd67745361d29e4a3e2078fb0a7540a98a7014b"
+    },
+    {
+      "path": "examples/ios-gui-text-input/Gemfile.lock",
+      "bytes": 6858,
+      "sha256": "c03b1ff5a9b499f513f2a5c8277a63fe6d9b6404a0b61a47685f4dfe7875cbca",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/locks/Package.resolved",
+      "bytes": 399,
+      "sha256": "20cc788c8296cd474233be51a382b42c5b779774d0f78b9fb09273a5bd1d2799",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/nativescript.config.ts",
+      "bytes": 226,
+      "sha256": "5986923337b5424554e11857f32c73767768dfe0ed5b6d1c60901694cb408e84",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/package-lock.json",
+      "bytes": 359958,
+      "sha256": "753b48f9d8e5aa9bde7afe4e2d62a24e27a56b9ecd944db85318482991627729",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/package.json",
+      "bytes": 1136,
+      "sha256": "ba8ac0520158e6cea33e9407cc28cc0964cacc499bd10ccbc938fc9094bf672c",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/build-device.mjs",
+      "bytes": 1962,
+      "sha256": "3d90144863e69d7e259324e525272648c095cf22166371635f13790a05a72bed",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/candidate-bytes.mjs",
+      "bytes": 698,
+      "sha256": "b378b5bff51dbc0fa44dafa9d138c45a6393dc5b472366033e08a15f3599ee62",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/collect-device.mjs",
+      "bytes": 1314,
+      "sha256": "ba7fa2036349ce4a243ed63b08e4192d13206ce7f79491e8fb9bfcf1051b8ab1",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/ios.mjs",
+      "bytes": 1812,
+      "sha256": "fcb387158a7c2624c6310bc0479e36ee612f95a265a2f37219ebece06d58df76",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/mac-preflight.mjs",
+      "bytes": 1516,
+      "sha256": "3dda93c04bbc7a8560450e057408078024beaae7f77cb72882e8b6c70b524584",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/patch-canvas.mjs",
+      "bytes": 1724,
+      "sha256": "c9c6388fc9a54612befe68081f28694b5d55da221272b7685ea698c34c9f5b54",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/serve-browser-ime.mjs",
+      "bytes": 4420,
+      "sha256": "fd41a4506873fdb83c00921cab2386b68371569bd52488d5b6691ac4e4fd6852",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/scripts/verify-candidate.mjs",
+      "bytes": 1706,
+      "sha256": "182164ac5fe62b7d1476972667699ad506ae73753d8a32be35ec55db96fdadc2",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/src/app.ts",
+      "bytes": 91,
+      "sha256": "200f6101af874f0e00ee50ffed39c00cab8563344dcd12fb02728e5e1f4ce2aa",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/src/candidate.ts",
+      "bytes": 1268,
+      "sha256": "57e08a5f88db3814cb2d1b5c489879b9ff538ce2701d2d3d65858a0e16f54899",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/src/main-page.ts",
+      "bytes": 18882,
+      "sha256": "51ba5edcd93c563b8614df4eab568c1a13b2948dcb1e281f27f7b5df226483a0",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/src/main-page.xml",
+      "bytes": 457,
+      "sha256": "1314ca9c20c1af4c04031b949ff782cf4af048b00d6dea159135fdd055f321d7",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/tsconfig.json",
+      "bytes": 840,
+      "sha256": "83f04a63ba40b681121d2adfcf62bfd6f8b9f1b4aeca3407cf927af7c318e41a",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "examples/ios-gui-text-input/vendor/haiyue-engine-0.2.3.tgz",
+      "bytes": 2049377,
+      "sha256": "08ac80f39ba51662bdf85bf1b6f9858856c0baea9e2d0a11c4db1b7ccbb1b3bb"
+    },
+    {
+      "path": "examples/ios-gui-text-input/vendor/haiyue-extensions-0.2.3.tgz",
+      "bytes": 566230,
+      "sha256": "aa1344be0aaca42dcf65599ff3896fa099214a945256a61b0f007f1574253f9b"
+    },
+    {
+      "path": "examples/ios-gui-text-input/webpack.config.js",
+      "bytes": 435,
+      "sha256": "95fa614f96931c8bcf7653ea296fb409e7f83991f0bb937f7d332cf2bba1a4dd",
+      "normalization": "utf8-lf"
+    },
+    {
+      "path": "bridge/audio/game-audio.ios.ts",
+      "normalization": "utf8-lf",
+      "bytes": 16750,
+      "sha256": "7ffecad93aa9de533a365ad27ad501856b6f70c433e51aac50698d6933511cba"
+    }
+  ],
+  "candidateId": "g11-023-iphone-retest-09047760fb45ef39a9ae",
+  "engineRevision": "4beb46f6a88fccd8630033bed3cf61ae99087855",
+  "nativeBaseRevision": "1caaee0d1d24daac92b97a2f5e78fefcd8d17154",
+  "previousNativeCandidateId": "g11-023-iphone-retest-974ac55164759c4455ba",
+  "sourceState": "clean committed Engine checkout",
+  "deviceAcceptance": "pending physical iPhone retest"
+}

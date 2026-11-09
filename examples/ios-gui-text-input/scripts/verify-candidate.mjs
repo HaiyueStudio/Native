@@ -3,8 +3,11 @@ import {createHash} from 'node:crypto';
 import {resolve,relative,isAbsolute} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {candidateBytes} from './candidate-bytes.mjs';
-const root=fileURLToPath(new URL('../../../../',import.meta.url));
-const manifest=JSON.parse(readFileSync(new URL('../qualified-candidate.json',import.meta.url),'utf8'));
+const workspaceRoot=fileURLToPath(new URL('../../../../',import.meta.url));
+const args=process.argv.slice(2);if(args.length>1||args.length===1&&!args[0].startsWith('--manifest='))throw Error('Use --manifest=<file> only for a named historical manifest.');
+const manifest=JSON.parse(readFileSync(args.length?resolve(workspaceRoot,args[0].slice(11)):new URL('../vendor/qualified-candidate.json',import.meta.url),'utf8'));
+if(!args.length&&(manifest.schemaVersion!==3||manifest.targetVersion!=='0.2.3'))throw Error('The active Native consumer requires the 0.2.3 vendor manifest.');
+const root=manifest.schemaVersion===3?fileURLToPath(new URL('../../../',import.meta.url)):workspaceRoot;
 const bad=[];
 for(const item of manifest.files){
  try{

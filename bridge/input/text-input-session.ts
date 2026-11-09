@@ -71,13 +71,7 @@ export class NativeTextInputSession implements NativeGuiTextSession {
     // A host can be used without a live Engine owner; never leave its responder alive.
     this.close();
   }
-  finish():ReturnType<NonNullable<NativeGuiTextSession['finish']>> {
-    const p=this.preedit,driver=this.driver;if(this.closed||!p||!driver)return null;
-    driver.unmarkText();
-    const snapshot=driver.snapshot();if(snapshot.marked)return null;
-    const text=this.compositionText(snapshot,p);
-    return {phase:'commit',text,selectionUtf16:[text.length,text.length],generation:this.request.generation,eventId:++this.serial};
-  }
+  // Only UIKit candidate selection can commit marked text. Closing the lease cancels it.
   close():void {
     if(this.closed)return;this.closed=true;this.preedit=null;
     const driver=this.driver;this.driver=null;

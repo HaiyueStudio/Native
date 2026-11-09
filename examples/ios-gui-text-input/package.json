@@ -12,10 +12,11 @@
     "build:device": "node scripts/build-device.mjs"
   },
   "dependencies": {
-    "@haiyue/engine": "file:vendor/haiyue-engine-g06-b9bec36d0201.tgz",
+    "@haiyue/engine": "file:vendor/haiyue-engine-0.2.3.tgz",
     "@nativescript/canvas": "2.1.18",
     "@nativescript/core": "9.1.1",
-    "@nativescript/font-manager": "1.0.14"
+    "@nativescript/font-manager": "1.0.14",
+    "@haiyue/extensions": "file:vendor/haiyue-extensions-0.2.3.tgz"
   },
   "devDependencies": {
     "@nativescript/ios": "9.0.3",
@@ -32,5 +33,8 @@
   "allowScripts": {
     "@nativescript/core@9.1.1": true,
     "nativescript@9.1.1": true
+  },
+  "overrides": {
+    "draco3dgltf": "1.5.7"
   }
 }

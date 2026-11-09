@@ -2,7 +2,7 @@ const webpack = require('@nativescript/webpack');
 const path = require('node:path');
 module.exports = env => {
   webpack.init(env);
-  webpack.Utils.addCopyRule({from:path.resolve(__dirname,'qualified-candidate.json'),to:'qualified-candidate.json',noErrorOnMissing:false});
+  webpack.Utils.addCopyRule({from:path.resolve(__dirname,'vendor/qualified-candidate.json'),to:'qualified-candidate.json',noErrorOnMissing:false});
   webpack.chainWebpack(config => {
     config.resolve.modules.prepend(path.resolve(__dirname, 'node_modules'));
   });
