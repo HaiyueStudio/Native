@@ -6,7 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {loadTS} from './support/load-ts.mjs';
 
-function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=false}={}){
+function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=false,checkedStart=false,silentHot=false}={}){
   const observers=new Map(),timers=new Map(),connections=[],players=[],engines=[],tempFiles=new Map(),references=[];
   const nodes=new Set(),errors=[];let serial=0;
   const mixer=()=>({outputVolume:1,pan:0});
@@ -17,15 +17,23 @@ function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=f
       this.active=active;return true;
     },
     setActiveWithOptionsError(active){this.active=active;return true;}};
-  const makeEngine=()=>({mainMixerNode:mixer(),running:false,attachNode:node=>nodes.add(node),
-    connectToFormat(...args){connections.push(args);},disconnectNodeOutput:node=>connections.push(['disconnect',node]),detachNode:node=>nodes.delete(node),
+  const makeEngine=()=>({
+    mainMixerNode:mixer(),running:false,owned:new Set(),edges:new Map(),
+    attachNode(node){nodes.add(node);this.owned.add(node);node.attachedHot=this.running;},
+    connectToFormat(from,to,format){connections.push([from,to,format]);this.edges.set(from,to);from.outputFormatForBus=()=>format;},
+    disconnectNodeOutput(node){connections.push(['disconnect',node]);this.edges.delete(node);},
+    detachNode(node){nodes.delete(node);this.owned.delete(node);this.edges.delete(node);},
+    outputConnectionPointsForNodeOutputBus(node){
+      const to=this.edges.get(node);return {count:to?1:0,objectAtIndex:()=>({node:to,bus:0})};
+    },
     enableManualRenderingModeFormatMaximumFrameCountError(_mode,format){this.manualRenderingFormat=format;return true;},
     renderOfflineToBufferError(frames,pcm){
       pcm.frameLength=frames;
-      const input=players.at(-1).scheduled.buffer;
+      const player=players.find(node=>this.owned.has(node)&&node.playing&&!(silentHot&&node.attachedHot));
       for(const output of pcm.floatChannelData){
-        const source=new Float32Array(input.floatChannelData[0].buffer);
         const target=new Float32Array(output.buffer);
+        if(!player){target.fill(0);continue;}
+        const source=new Float32Array(player.scheduled.buffer.floatChannelData[0].buffer);
         for(let i=0;i<frames;i++)target[i]=source[i%source.length]/Math.sqrt(2);
       }
       return 0;
@@ -49,10 +57,14 @@ function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=f
       };
     }})},
     AVAudioPlayerNode:{new:()=>{
-      const player={lastRenderTime:{},now:0,playing:false,
+      const player={lastRenderTime:{},now:0,playing:false,respondsToSelector:name=>name==='playAndReturnError:',
         playerTimeForNodeTime(){return {sampleTimeValid:true,sampleRate:48000,sampleTime:this.now};},
         scheduleBufferAtTimeOptionsCompletionHandler(buffer,when,options,callback){this.scheduleCount=(this.scheduleCount??0)+1;this.scheduled={buffer,when,options,callback};},
         play(){this.playing=true;},stop(){this.playing=false;this.stops=(this.stops??0)+1;}};
+      if(checkedStart)player.playAndReturnError=error=>{
+        if(checkedStart==='reject'){error.value={localizedDescription:'native start rejected',domain:'AVFAudio',code:-1};return false;}
+        player.playing=true;return true;
+      };
       players.push(player);return player;
     }},
     AVAudioPlayer:{alloc:()=>({initWithDataError(data){
@@ -168,9 +180,57 @@ test('direct PCM preserves nonzero stereo samples and the offline probe measures
   assert.deepEqual(Array.from(measurement.inputPeak),[.75,1]);
   assert.ok(measurement.outputPeak.every(peak=>peak>.5));
   assert.equal(measurement.renderedFrames,4096);
+  assert.equal(measurement.cases.length,4);
+  assert.ok(measurement.cases.every(result=>result.graph?.reachesMainMixer));
+  assert.equal(measurement.cases.find(result=>result.id==='direct-cold').graph.edges.length,1);
   assert.equal(f.session.activations,0);
   assert.equal(f.nodes.size,12);
   host.close();assert.equal(f.nodes.size,0);
+});
+
+test('the offline probe distinguishes silent hot attachment from a cold graph and reports checked start errors',async()=>{
+  for(const checkedStart of [true,'reject']){
+    const {host,nodes}=fixture({checkedStart,silentHot:true});
+    const buffer=host.createBuffer(1,2,48000);
+    buffer.getChannelData(0).set([.25,-.5]);
+    host.prepareBuffer(buffer);
+    const {cases:[legacy,hot,cold,direct]}=await host.measureCenterSignal(buffer);
+    assert.equal(legacy.startApi,'play');
+    assert.ok(legacy.outputPeak.every(peak=>peak===0));
+    assert.equal(hot.startApi,'playAndReturnError');
+    if(checkedStart==='reject'){
+      for(const result of [hot,cold,direct]){
+        assert.equal(result.stage,'start-player');
+        assert.match(result.error,/native start rejected \(AVFAudio -1\)/);
+      }
+    }else{
+      assert.ok(hot.outputPeak.every(peak=>peak===0));
+      assert.ok(cold.outputPeak.every(peak=>peak>0));
+      assert.ok(direct.outputPeak.every(peak=>peak>0));
+    }
+    assert.equal(nodes.size,12);
+    host.close();assert.equal(nodes.size,0);
+  }
+});
+
+test('a rejected native loop restart leaves the host suspended and permits a later retry',async()=>{
+  const {host,session,players}=fixture({checkedStart:true});
+  await host.resume();
+  const voice=host.openVoice(host.createBuffer(1,2,48000),{bus:'ui',loop:true,frequency:1,gain:1,pan:0});
+  voice.start(()=>assert.fail('A loop must not finish by polling.'));
+  await host.suspend();
+  const [player]=players;
+  player.playing=false;
+  const play=player.playAndReturnError;
+  player.playAndReturnError=()=>false;
+  await assert.rejects(host.resume(),/rejected playback/);
+  assert.equal(host.state,'suspended');
+  assert.equal(session.active,false);
+  player.playAndReturnError=play;
+  await host.resume();
+  assert.equal(host.state,'running');
+  assert.equal(player.playing,true);
+  host.close();
 });
 
 test('the optional hardware reference is released before graph playback or app suspension',async()=>{
@@ -289,5 +349,118 @@ for channels in [1, 2] {
     const output=execFileSync('xcrun',['swift',script,...inputs],{encoding:'utf8',timeout:120_000});
     assert.match(output,/AVAudioPCMBuffer 48000 48000 1 48000\.0/);
     assert.match(output,/AVAudioPCMBuffer 48000 48000 2 48000\.0/);
+  }finally{rmSync(folder,{recursive:true,force:true});}
+});
+
+test('macOS AVAudioEngine renders a direct control and records the full graph with cold and hot voice attachment', {skip:process.platform!=='darwin'},()=>{
+  const folder=mkdtempSync(join(tmpdir(),'g11-native-signal-'));
+  try{
+    const script=join(folder,'signal.swift');
+    writeFileSync(script,String.raw`
+import AVFoundation
+import Foundation
+
+struct Signal: Codable {
+    let id: String
+    let outputPeak: [Float]
+    let renderedFrames: Int
+    let playing: Bool
+    let sampleTime: Int64?
+}
+
+func measure(id: String, direct: Bool, hot: Bool) throws -> Signal {
+    let engine = AVAudioEngine()
+    let player = AVAudioPlayerNode()
+    let mono = AVAudioFormat(standardFormatWithSampleRate: 48000, channels: 1)!
+    let stereo = AVAudioFormat(standardFormatWithSampleRate: 48000, channels: 2)!
+    let tone = AVAudioPCMBuffer(pcmFormat: mono, frameCapacity: 48000)!
+    tone.frameLength = 48000
+    let samples = tone.floatChannelData![0]
+    for frame in 0..<Int(tone.frameLength) {
+        samples[frame] = Float(0.15 * sin(2 * Double.pi * 440 * Double(frame) / 48000))
+    }
+
+    func eq() -> AVAudioUnitEQ {
+        let node = AVAudioUnitEQ(numberOfBands: 1)
+        node.bands[0].bypass = true
+        engine.attach(node)
+        return node
+    }
+    func mixer() -> AVAudioMixerNode {
+        let node = AVAudioMixerNode()
+        engine.attach(node)
+        return node
+    }
+    func level() -> (input: AVAudioMixerNode, output: AVAudioMixerNode) {
+        let filter = eq(), output = mixer(), input = mixer()
+        engine.connect(input, to: filter, format: stereo)
+        engine.connect(filter, to: output, format: stereo)
+        return (input, output)
+    }
+
+    let main = engine.mainMixerNode
+    var ui: AVAudioMixerNode?
+    if !direct {
+        let master = level()
+        engine.connect(master.output, to: main, format: stereo)
+        for bus in 0..<3 {
+            let busLevel = level()
+            engine.connect(busLevel.output, to: master.input, format: stereo)
+            if bus == 2 { ui = busLevel.input }
+        }
+    }
+    if !direct {
+        try engine.enableManualRenderingMode(.offline, format: stereo, maximumFrameCount: 1024)
+    }
+    if hot { try engine.start() }
+    engine.attach(player)
+    if let ui {
+        let output = mixer()
+        engine.connect(output, to: ui, format: stereo)
+        let filter = eq()
+        engine.connect(player, to: filter, format: mono)
+        engine.connect(filter, to: output, format: mono)
+        output.outputVolume = 1
+        output.pan = 0
+    } else {
+        engine.connect(player, to: main, format: mono)
+        try engine.enableManualRenderingMode(.offline, format: stereo, maximumFrameCount: 1024)
+    }
+    if !hot { try engine.start() }
+    defer { player.stop(); engine.stop() }
+    player.scheduleBuffer(tone, at: nil, options: .loops, completionHandler: nil)
+    player.play()
+    let buffer = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat, frameCapacity: 1024)!
+    var peaks: [Float] = [0, 0]
+    var rendered = 0
+    for _ in 0..<8 {
+        guard rendered < 4096 else { break }
+        if try engine.renderOffline(1024, to: buffer) != .success { continue }
+        rendered += Int(buffer.frameLength)
+        for channel in 0..<2 {
+            for frame in 0..<Int(buffer.frameLength) {
+                peaks[channel] = max(peaks[channel], abs(buffer.floatChannelData![channel][frame]))
+            }
+        }
+    }
+    let clock = player.lastRenderTime.flatMap { player.playerTime(forNodeTime: $0) }
+    return Signal(id: id, outputPeak: peaks, renderedFrames: rendered, playing: player.isPlaying,
+                  sampleTime: clock?.isSampleTimeValid == true ? clock?.sampleTime : nil)
+}
+
+let results = try [
+    measure(id: "direct-cold", direct: true, hot: false),
+    measure(id: "full-cold", direct: false, hot: false),
+    measure(id: "full-hot", direct: false, hot: true)
+]
+let data = try JSONEncoder().encode(results)
+print(String(decoding: data, as: UTF8.self))
+`);
+    const output=execFileSync('xcrun',['swift',script],{encoding:'utf8',timeout:120_000});
+    const cases=JSON.parse(output.trim());
+    console.log('macOS AVAudioEngine signal comparison',JSON.stringify(cases));
+    assert.deepEqual(cases.map(result=>result.id),['direct-cold','full-cold','full-hot']);
+    assert.equal(cases[0].renderedFrames,4096);
+    assert.ok(cases[0].outputPeak.every(peak=>peak>.001),output);
   }finally{rmSync(folder,{recursive:true,force:true});}
 });

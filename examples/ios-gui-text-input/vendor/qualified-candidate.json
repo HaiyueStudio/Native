@@ -887,8 +887,8 @@
     },
     {
       "path": "examples/ios-gui-text-input/src/main-page.ts",
-      "bytes": 20726,
-      "sha256": "2bf362d658c726ae2085eafc19fe79da574d16e8c1a83d3413bc3bedc43fb8ae",
+      "bytes": 21238,
+      "sha256": "947d42a2a6ec05091aacdf3f16b615088b785497bfa5f06240da40955676eae6",
       "normalization": "utf8-lf"
     },
     {
@@ -922,14 +922,14 @@
     {
       "path": "bridge/audio/game-audio.ios.ts",
       "normalization": "utf8-lf",
-      "bytes": 24717,
-      "sha256": "1b365b13ac9a23494442a3d9153b6dbfaf483828934bc0e6c29bb7970a119c12"
+      "bytes": 29260,
+      "sha256": "1f95127c4d2dcfc3b52e6120e760df00a1f6319f962f8be719c11e7e58cacd45"
     }
   ],
-  "candidateId": "g11-023-iphone-retest-b7d9c40f328e553d6ea6",
+  "candidateId": "g11-023-iphone-retest-1d869efc009f35ad5f03",
   "engineRevision": "4beb46f6a88fccd8630033bed3cf61ae99087855",
-  "nativeBaseRevision": "2ef12c6a5a5eddb152606f78760eb956f955bba0",
-  "previousNativeCandidateId": "g11-023-iphone-retest-07990ebaf139b212b1f4",
-  "sourceState": "committed Engine packages and verified direct Native PCM",
-  "deviceAcceptance": "pending macOS PCM preflight and physical iPhone audio retest"
+  "nativeBaseRevision": "8e31441a3972682500a2be17b93b1060fbc98180",
+  "previousNativeCandidateId": "g11-023-iphone-retest-b7d9c40f328e553d6ea6",
+  "sourceState": "committed Engine packages and Native audio graph diagnostic",
+  "deviceAcceptance": "pending macOS and physical iPhone audio graph diagnosis"
 }

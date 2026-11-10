@@ -128,7 +128,13 @@ function start(canvas:Canvas):void {
         const output=audioHost!,measurement=await output.measureCenterSignal(toneBuffer!);
         if(audioHost!==output)return;
         record('g11-audio-offline-signal',measurement);
-        status('Signal measured. Now check Hear center.');
+        const measured=measurement.cases.find(result=>result.id==='full-hot');
+        if(measured&&!('error'in measured)&&measured.renderedFrames===4096&&measured.outputPeak.every(peak=>peak>.001)){
+          status('Mixer signal present on both channels. Now check Hear center.');
+        }else{
+          const summary=measurement.cases.map(result=>result.id+' '+('error'in result?result.stage:result.outputPeak.map(peak=>peak.toFixed(3)).join('/'))).join(' | ');
+          status('Mixer signal missing. '+summary+'. Tap Save, then export the device log.');
+        }
       }));
       for(const [text,x,y]of[['Hear left',-10,0],['Hear center',0,10],['Hear right',10,0],['Distance 100: silent',100,0]]as const)sounds.add(audioButton(text,async()=>{
         if(!await prepareGameAudio())return;
