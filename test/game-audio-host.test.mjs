@@ -399,6 +399,9 @@ struct Signal: Codable {
     let renderedFrames: Int
     let playing: Bool
     let sampleTime: Int64?
+    let anchorBeforeEdit: Int64?
+    let anchorAfterEdit: Int64?
+    let anchorStillPlaying: Bool?
 }
 
 func emit<T: Encodable>(_ value: T) throws {
@@ -414,12 +417,18 @@ struct Route: Codable {
     let reachesOutput: Bool
     let playerOutputChannels: UInt32
     let playerOutputRate: Double
+    let path: [String]
 }
 
 func measure(id: String) throws -> Signal {
     let direct = id == "direct-cold"
     let paused = id == "full-paused"
-    let hot = id == "full-hot" || paused
+    let stopped = id == "full-stopped-reconnect"
+    let prewiredSink = ["prewired-sink-hot", "prewired-effects-hot", "prewired-player"].contains(id)
+    let prewiredEffects = ["prewired-effects-hot", "prewired-player"].contains(id)
+    let prewiredPlayer = id == "prewired-player"
+    let transitionProbe = stopped || prewiredSink
+    let hot = id == "full-hot" || paused || transitionProbe
     let configureFirst = id == "full-before-manual"
     let engine = AVAudioEngine()
     let player = AVAudioPlayerNode()
@@ -432,71 +441,119 @@ func measure(id: String) throws -> Signal {
         samples[frame] = Float(0.15 * sin(2 * Double.pi * 440 * Double(frame) / 48000))
     }
 
-    func eq() -> AVAudioUnitEQ {
+    var labels: [ObjectIdentifier: String] = [ObjectIdentifier(player): "player"]
+    func eq(_ label: String) -> AVAudioUnitEQ {
         let node = AVAudioUnitEQ(numberOfBands: 1)
         node.bands[0].bypass = true
         engine.attach(node)
+        labels[ObjectIdentifier(node)] = label
         return node
     }
-    func mixer() -> AVAudioMixerNode {
+    func mixer(_ label: String) -> AVAudioMixerNode {
         let node = AVAudioMixerNode()
         engine.attach(node)
+        labels[ObjectIdentifier(node)] = label
         return node
     }
-    func level() -> (input: AVAudioMixerNode, output: AVAudioMixerNode) {
-        let filter = eq(), output = mixer(), input = mixer()
+    func level(_ name: String) -> (input: AVAudioMixerNode, output: AVAudioMixerNode) {
+        let filter = eq(name + "-eq"), output = mixer(name + "-out"), input = mixer(name + "-in")
         engine.connect(input, to: filter, format: stereo)
         engine.connect(filter, to: output, format: stereo)
         return (input, output)
     }
 
     let main = engine.mainMixerNode
+    labels[ObjectIdentifier(main)] = "main"
     var ui: AVAudioMixerNode?
     if !direct {
-        let master = level()
+        let master = level("master")
         engine.connect(master.output, to: main, format: stereo)
-        for bus in 0..<3 {
-            let busLevel = level()
+        for bus in ["music", "sfx", "ui"] {
+            let busLevel = level(bus)
             engine.connect(busLevel.output, to: master.input, format: stereo)
-            if bus == 2 { ui = busLevel.input }
+            if bus == "ui" { ui = busLevel.input }
         }
     }
+    var voiceSink: AVAudioMixerNode?
+    if prewiredSink, let ui {
+        let output = mixer("voice-out")
+        engine.connect(output, to: ui, format: stereo)
+        output.outputVolume = 1
+        output.pan = 0
+        voiceSink = output
+    }
+    var voiceFilter: AVAudioUnitEQ?
+    if prewiredEffects, let voiceSink {
+        let filter = eq("voice-eq")
+        engine.connect(filter, to: voiceSink, format: mono)
+        voiceFilter = filter
+    }
+    if prewiredPlayer, let voiceFilter {
+        engine.attach(player)
+        engine.connect(player, to: voiceFilter, format: mono)
+    }
+    var anchor: AVAudioPlayerNode?
+    if transitionProbe, let ui {
+        let existing = AVAudioPlayerNode()
+        engine.attach(existing)
+        engine.connect(existing, to: ui, format: mono)
+        existing.volume = 0.04
+        anchor = existing
+    }
+    func sampleTime(_ node: AVAudioPlayerNode) -> Int64? {
+        let clock = node.lastRenderTime.flatMap { node.playerTime(forNodeTime: $0) }
+        return clock?.isSampleTimeValid == true ? clock?.sampleTime : nil
+    }
+    var anchorBefore: Int64?
     if !direct && !configureFirst {
         try engine.enableManualRenderingMode(.offline, format: stereo, maximumFrameCount: 1024)
     }
     if hot {
         try engine.start()
-        if paused { engine.pause() }
-    }
-    engine.attach(player)
-    if let ui {
-        let output = mixer()
-        engine.connect(output, to: ui, format: stereo)
-        let filter = eq()
-        if paused {
-            engine.connect(filter, to: output, format: mono)
-            engine.connect(player, to: filter, format: mono)
-        } else {
-            engine.connect(player, to: filter, format: mono)
-            engine.connect(filter, to: output, format: mono)
+        if let anchor {
+            anchor.scheduleBuffer(tone, at: nil, options: .loops, completionHandler: nil)
+            anchor.play()
+            let warm = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat, frameCapacity: 1024)!
+            for _ in 0..<2 { _ = try engine.renderOffline(1024, to: warm) }
+            anchorBefore = sampleTime(anchor)
         }
-        output.outputVolume = 1
-        output.pan = 0
-    } else {
-        engine.connect(player, to: main, format: mono)
+        if paused { engine.pause() }
+        if stopped { engine.stop() }
+    }
+    if !prewiredPlayer {
+        engine.attach(player)
+        if let ui {
+            let output = voiceSink ?? mixer("voice-out")
+            if voiceSink == nil { engine.connect(output, to: ui, format: stereo) }
+            let filter = voiceFilter ?? eq("voice-eq")
+            if paused || transitionProbe {
+                if voiceFilter == nil { engine.connect(filter, to: output, format: mono) }
+                engine.connect(player, to: filter, format: mono)
+            } else {
+                engine.connect(player, to: filter, format: mono)
+                engine.connect(filter, to: output, format: mono)
+            }
+            output.outputVolume = 1
+            output.pan = 0
+        } else {
+            engine.connect(player, to: main, format: mono)
+        }
     }
     if direct || configureFirst {
         try engine.enableManualRenderingMode(.offline, format: stereo, maximumFrameCount: 1024)
     }
-    if !hot || paused {
-        if paused { engine.prepare() }
+    if !hot || paused || stopped {
+        if paused || stopped { engine.prepare() }
         try engine.start()
     }
-    defer { player.stop(); engine.stop() }
+    defer { player.stop(); anchor?.stop(); engine.stop() }
     var node: AVAudioNode = player
     var reachesMain = false
+    var path: [String] = []
     let outputNode = engine.outputNode
+    labels[ObjectIdentifier(outputNode)] = "output"
     for _ in 0..<16 {
+        path.append(labels[ObjectIdentifier(node)] ?? String(describing: type(of: node)))
         if node === main { reachesMain = true }
         if node === outputNode { break }
         let next = engine.outputConnectionPoints(for: node, outputBus: 0)
@@ -505,7 +562,12 @@ func measure(id: String) throws -> Signal {
     }
     let format = player.outputFormat(forBus: 0)
     try emit(Route(id: id, stage: "before-play", reachesMain: reachesMain, reachesOutput: node === outputNode,
-                   playerOutputChannels: format.channelCount, playerOutputRate: format.sampleRate))
+                   playerOutputChannels: format.channelCount, playerOutputRate: format.sampleRate, path: path))
+    if transitionProbe && !reachesMain {
+        return Signal(id: id, outputPeak: [0, 0], renderedFrames: 0, playing: false, sampleTime: nil,
+                      anchorBeforeEdit: anchorBefore, anchorAfterEdit: anchor.flatMap { sampleTime($0) },
+                      anchorStillPlaying: anchor?.isPlaying)
+    }
     player.scheduleBuffer(tone, at: nil, options: .loops, completionHandler: nil)
     player.play()
     let buffer = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat, frameCapacity: 1024)!
@@ -521,24 +583,36 @@ func measure(id: String) throws -> Signal {
             }
         }
     }
-    let clock = player.lastRenderTime.flatMap { player.playerTime(forNodeTime: $0) }
     return Signal(id: id, outputPeak: peaks, renderedFrames: rendered, playing: player.isPlaying,
-                  sampleTime: clock?.isSampleTimeValid == true ? clock?.sampleTime : nil)
+                  sampleTime: sampleTime(player), anchorBeforeEdit: anchorBefore,
+                  anchorAfterEdit: anchor.flatMap { sampleTime($0) }, anchorStillPlaying: anchor?.isPlaying)
 }
 
 try emit(measure(id: CommandLine.arguments[1]))
 `);
     const executable=join(folder,'native-audio-signal');
     execFileSync('xcrun',['swiftc',script,'-o',executable],{encoding:'utf8',timeout:120_000});
-    const cases=['direct-cold','full-cold','full-hot','full-before-manual','full-paused'].map(id=>{
+    const transitionProbe=process.env.G11_AUDIO_GRAPH_PROBE==='1';
+    const cases=(transitionProbe
+      ? ['direct-cold','prewired-sink-hot','prewired-effects-hot','prewired-player','full-stopped-reconnect']
+      : ['direct-cold','full-cold','full-hot','full-before-manual','full-paused']).map(id=>{
       const run=spawnSync(executable,[id],{encoding:'utf8',timeout:30_000});
-      const [route,result]=(run.stdout??'').trim().split('\n').filter(Boolean).map(line=>JSON.parse(line));
-      if(run.status===0)return {id,route,...result};
+      const rows=(run.stdout??'').split('\n').filter(line=>line.startsWith('{')).map(line=>JSON.parse(line));
+      const route=rows.find(row=>row.id===id&&row.stage==='before-play');
+      const result=rows.find(row=>row.id===id&&Array.isArray(row.outputPeak));
+      if(run.status===0&&result){
+        if(!transitionProbe||id==='direct-cold')return {id,route,...result};
+        const signalPresent=result.renderedFrames===4096&&result.playing&&result.outputPeak.every(peak=>peak>.02);
+        const existingVoiceContinued=result.renderedFrames===4096&&result.anchorStillPlaying&&Number.isFinite(result.anchorBeforeEdit)&&
+          Number.isFinite(result.anchorAfterEdit)&&result.anchorAfterEdit>=result.anchorBeforeEdit+result.renderedFrames;
+        return {id,route,...result,signalPresent,existingVoiceContinued:Boolean(existingVoiceContinued)};
+      }
       const reason=run.stderr?.split('\n').find(line=>line.includes('reason:'))??run.stderr?.trim().split('\n')[0];
       return {id,route,status:run.status,signal:run.signal,error:run.error?.message??reason};
     });
-    console.log('macOS AVAudioEngine signal comparison',JSON.stringify(cases));
-    for(const result of [cases[0],cases.at(-1)]){
+    const label=transitionProbe?'macOS AVAudioEngine transition comparison':'macOS AVAudioEngine signal comparison';
+    console.log(label,JSON.stringify(cases));
+    for(const result of transitionProbe?[cases[0]]:[cases[0],cases.at(-1)]){
       assert.equal(result.route?.reachesMain,true,JSON.stringify(result));
       assert.equal(result.renderedFrames,4096,JSON.stringify(result));
       assert.ok(result.playing&&result.outputPeak.every(peak=>peak>.001),JSON.stringify(result));
