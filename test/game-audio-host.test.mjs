@@ -385,7 +385,7 @@ for channels in [1, 2] {
   }finally{rmSync(folder,{recursive:true,force:true});}
 });
 
-test('macOS AVAudioEngine renders the direct and paused routes while preserving legacy graph outcomes', {skip:process.platform!=='darwin'},()=>{
+function runMacAudioGraphCases(transitionProbe){
   const folder=mkdtempSync(join(tmpdir(),'g11-native-signal-'));
   try{
     const script=join(folder,'signal.swift');
@@ -427,7 +427,8 @@ func measure(id: String) throws -> Signal {
     let prewiredSink = ["prewired-sink-hot", "prewired-effects-hot", "prewired-player"].contains(id)
     let prewiredEffects = ["prewired-effects-hot", "prewired-player"].contains(id)
     let prewiredPlayer = id == "prewired-player"
-    let transitionProbe = stopped || prewiredSink
+    let connectBusLast = id == "late-bus-connect-hot"
+    let transitionProbe = stopped || prewiredSink || connectBusLast
     let hot = id == "full-hot" || paused || transitionProbe
     let configureFirst = id == "full-before-manual"
     let engine = AVAudioEngine()
@@ -524,7 +525,7 @@ func measure(id: String) throws -> Signal {
         engine.attach(player)
         if let ui {
             let output = voiceSink ?? mixer("voice-out")
-            if voiceSink == nil { engine.connect(output, to: ui, format: stereo) }
+            if voiceSink == nil && !connectBusLast { engine.connect(output, to: ui, format: stereo) }
             let filter = voiceFilter ?? eq("voice-eq")
             if paused || transitionProbe {
                 if voiceFilter == nil { engine.connect(filter, to: output, format: mono) }
@@ -533,6 +534,7 @@ func measure(id: String) throws -> Signal {
                 engine.connect(player, to: filter, format: mono)
                 engine.connect(filter, to: output, format: mono)
             }
+            if connectBusLast { engine.connect(output, to: ui, format: stereo) }
             output.outputVolume = 1
             output.pan = 0
         } else {
@@ -592,9 +594,8 @@ try emit(measure(id: CommandLine.arguments[1]))
 `);
     const executable=join(folder,'native-audio-signal');
     execFileSync('xcrun',['swiftc',script,'-o',executable],{encoding:'utf8',timeout:120_000});
-    const transitionProbe=process.env.G11_AUDIO_GRAPH_PROBE==='1';
     const cases=(transitionProbe
-      ? ['direct-cold','prewired-sink-hot','prewired-effects-hot','prewired-player','full-stopped-reconnect']
+      ? ['direct-cold','late-bus-connect-hot','prewired-sink-hot','prewired-effects-hot','prewired-player','full-stopped-reconnect']
       : ['direct-cold','full-cold','full-hot','full-before-manual','full-paused']).map(id=>{
       const run=spawnSync(executable,[id],{encoding:'utf8',timeout:30_000});
       const rows=(run.stdout??'').split('\n').filter(line=>line.startsWith('{')).map(line=>JSON.parse(line));
@@ -618,4 +619,14 @@ try emit(measure(id: CommandLine.arguments[1]))
       assert.ok(result.playing&&result.outputPeak.every(peak=>peak>.001),JSON.stringify(result));
     }
   }finally{rmSync(folder,{recursive:true,force:true});}
+}
+
+test('macOS AVAudioEngine graph transition probe', {skip:process.platform!=='darwin'},()=>{
+  runMacAudioGraphCases(true);
+});
+
+test('macOS AVAudioEngine renders the direct and paused routes while preserving legacy graph outcomes', {
+  skip:process.platform!=='darwin'||process.env.G11_AUDIO_GRAPH_PROBE==='1',
+},()=>{
+  runMacAudioGraphCases(false);
 });
