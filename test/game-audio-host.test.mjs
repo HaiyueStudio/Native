@@ -6,7 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {loadTS} from './support/load-ts.mjs';
 
-function fixture({onCaf,shortRead=false,bridgeFrameLength=false}={}){
+function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=false}={}){
   const observers=new Map(),timers=new Map(),connections=[],players=[],engines=[],tempFiles=new Map(),references=[];
   const nodes=new Set(),errors=[];let serial=0;
   const mixer=()=>({outputVolume:1,pan:0});
@@ -40,9 +40,14 @@ function fixture({onCaf,shortRead=false,bridgeFrameLength=false}={}){
     AVAudioFormat:{alloc:()=>({initStandardFormatWithSampleRateChannels:(sampleRate,channelCount)=>({sampleRate,channelCount})})},
     AVAudioUnitEQ:{alloc:()=>({initWithNumberOfBands:()=>({globalGain:0,bands:{objectAtIndex:()=>({bypass:false})}})})},
     AVAudioUnitVarispeed:{new:()=>({rate:1})},
-    AVAudioPCMBuffer:{alloc:()=>({initWithPCMFormatFrameCapacity:(format,frames)=>({
-      format,frameLength:frames,floatChannelData:Array.from({length:format.channelCount},()=>pointer(new ArrayBuffer(frames*4))),
-    })})},
+    AVAudioPCMBuffer:{alloc:()=>({initWithPCMFormatFrameCapacity:(format,frames)=>{
+      let length=frames;
+      return {format,frameCapacity:frames,stride:1,
+        get frameLength(){return bridgeFrameLength?BigInt(length):length;},
+        set frameLength(value){length=Number(value)+frameLengthDelta;},
+        floatChannelData:Array.from({length:format.channelCount},()=>pointer(new ArrayBuffer(frames*4))),
+      };
+    }})},
     AVAudioPlayerNode:{new:()=>{
       const player={lastRenderTime:{},now:0,playing:false,
         playerTimeForNodeTime(){return {sampleTimeValid:true,sampleRate:48000,sampleTime:this.now};},
@@ -58,31 +63,11 @@ function fixture({onCaf,shortRead=false,bridgeFrameLength=false}={}){
       const player={playing:false,play(){this.playing=true;return true;},stop(){this.playing=false;}};
       references.push(player);return player;
     }})},
-    AVAudioFile:{alloc:()=>({initForReadingCommonFormatInterleavedError:url=>{
-      if(!url.endsWith('.caf'))return {processingFormat:format,length:2,readIntoBufferError(pcm){new Float32Array(pcm.floatChannelData[0].buffer).set([.25,-.5]);return true;}};
-      const data=tempFiles.get(url),view=new DataView(data);
-      onCaf?.(data);
-      assert.equal(view.getUint32(0),0x63616666);
-      assert.equal(view.getBigUint64(12),32n);
-      assert.equal(view.getUint32(28),0x6c70636d);
-      assert.equal(view.getUint32(32),3);
-      assert.equal(view.getUint32(40),1);
-      assert.equal(view.getUint32(48),32);
-      assert.equal(view.getUint32(52),0x64617461);
-      const channelCount=view.getUint32(44),length=(Number(view.getBigUint64(56))-4)/(4*channelCount);
-      assert.equal(data.byteLength,68+length*channelCount*4);
-      return {processingFormat:{sampleRate:view.getFloat64(20),channelCount},length,framePosition:0,readIntoBufferFrameCountError(pcm,requested){
-        assert.equal(requested,length);
-        const count=shortRead?length-1:length;
-        for(let channel=0;channel<channelCount;channel++){
-          const target=new Float32Array(pcm.floatChannelData[channel].buffer);
-          for(let i=0;i<count;i++)target[i]=view.getFloat32(68+(i*channelCount+channel)*4,true);
-        }
-        this.framePosition=count;
-        pcm.frameLength=bridgeFrameLength?BigInt(count):count;
-        return true;
-      }};
-    }})},
+    AVAudioFile:{alloc:()=>({initForReadingCommonFormatInterleavedError:()=>({
+      processingFormat:format,length:2,readIntoBufferError(pcm){
+        new Float32Array(pcm.floatChannelData[0].buffer).set([.25,-.5]);return true;
+      },
+    })})},
     AVAudioCommonFormat:{PCMFormatFloat32:1},AVAudioPlayerNodeBufferOptions:{Loops:1},
     AVAudioSessionSetActiveOptions:{NotifyOthersOnDeactivation:1},AVAudioSessionCategoryAmbient:'ambient',
     AVAudioSessionInterruptionNotification:'interruption',AVAudioSessionInterruptionTypeKey:'type',AVAudioSessionInterruptionOptionKey:'option',
@@ -94,6 +79,11 @@ function fixture({onCaf,shortRead=false,bridgeFrameLength=false}={}){
     NSNotificationCenter:{defaultCenter:{addObserverForNameObjectQueueUsingBlock(name,_object,_queue,callback){observers.set(name,callback);return name;},removeObserver:name=>observers.delete(name)}},
     NSURL:{fileURLWithPath:p=>p},NSData:{dataWithBytesLength:(source,length)=>({source,
       writeToURLOptionsError(url){tempFiles.set(url,source.buffer.slice(source.offset,source.offset+length));return true;},
+      getBytesLength(destination,count){
+        const bytes=source.buffer.slice(source.offset,source.offset+count);
+        onPcm?.(bytes);
+        if(!corruptCopy)new Uint8Array(destination.buffer,destination.offset,count).set(new Uint8Array(bytes));
+      },
     }),dataWithBytesNoCopyLengthFreeWhenDone:(source,length)=>({source,length})},
     NSFileManager:{defaultManager:{fileExistsAtPath:path=>tempFiles.has(path),removeItemAtPathError:path=>tempFiles.delete(path)}},
     interop:{Reference:class{},handleof:pointer,bufferFromData:({source,length})=>source.buffer.slice(source.offset,source.offset+length)},
@@ -167,7 +157,7 @@ test('foreground retry clears a begun interruption with no ended event and ignor
   host.close();
 });
 
-test('CAF preserves nonzero stereo samples and the offline probe measures the prepared native buffer',async()=>{
+test('direct PCM preserves nonzero stereo samples and the offline probe measures the prepared native buffer',async()=>{
   const f=fixture(),{host}=f;
   const buffer=host.createBuffer(2,2,44100.25);
   buffer.getChannelData(0).set([.5,-.75]);buffer.getChannelData(1).set([-.25,1]);
@@ -198,23 +188,39 @@ test('the optional hardware reference is released before graph playback or app s
   host.close();
 });
 
-test('a native short read reports exact metadata and leaves the independent reference playable',async()=>{
-  const f=fixture({shortRead:true}),{host}=f;
+test('a native frame mismatch reports exact metadata and leaves the independent reference playable',async()=>{
+  const f=fixture({frameLengthDelta:-1}),{host}=f;
   const buffer=host.createBuffer(1,48,48000);
   assert.throws(()=>host.prepareBuffer(buffer),/Native PCM differs from the installed format/);
   const [event,result]=f.errors.at(-1);
   assert.equal(event,'ios-audio-pcm-format');
   assert.equal(result.status,'mismatch');
   assert.equal(result.expected.frames,48);
-  assert.equal(result.source.frames,48);
+  assert.equal(result.source,'planar-float32');
   assert.equal(result.actual.frames,47);
-  assert.equal(result.filePosition,47);
   assert.equal(host.snapshot().buffers,0);
   assert.equal(f.tempFiles.size,0);
   await host.resume();
   host.playReferenceTone(buffer);
   assert.equal(host.playbackSnapshot().referencePlaying,true);
   host.close();
+});
+
+test('direct PCM copies typed-array slices and rejects silent native copies before installation',async()=>{
+  const base=new Float32Array([.875,.25,-.5,.625]);
+  const samples=base.subarray(1,3);
+  const buffer={length:2,numberOfChannels:1,sampleRate:48000,duration:2/48000,getChannelData:()=>samples};
+  const f=fixture(),{host}=f;
+  host.prepareBuffer(buffer);
+  await host.resume();
+  const voice=host.openVoice(buffer,{bus:'ui',loop:true,frequency:1,gain:1,pan:0});
+  voice.start(()=>assert.fail('Unexpected loop completion.'));
+  assert.deepEqual(Array.from(new Float32Array(f.players[0].scheduled.buffer.floatChannelData[0].buffer)),[.25,-.5]);
+  host.close();
+  const bad=fixture({corruptCopy:true}).host;
+  assert.throws(()=>bad.prepareBuffer(buffer),/Native PCM copy did not preserve channel 0/);
+  assert.equal(bad.snapshot().buffers,0);
+  bad.close();
 });
 
 test('numeric SDK representations are normalized before comparing exact PCM frame counts',async()=>{
@@ -231,12 +237,12 @@ test('numeric SDK representations are normalized before comparing exact PCM fram
   host.close();
 });
 
-test('macOS AVAudioFile reads the exact generated 48 kHz CAF frames and channels', {skip:process.platform!=='darwin'},()=>{
+test('macOS AVAudioPCMBuffer preserves all generated 48 kHz mono and stereo PCM samples', {skip:process.platform!=='darwin'},()=>{
   const folder=mkdtempSync(join(tmpdir(),'g11-native-pcm-'));
   try{
     const inputs=[];
-    const {host}=fixture({onCaf:bytes=>{
-      const path=join(folder,'pcm-'+inputs.length+'.caf');
+    const {host}=fixture({onPcm:bytes=>{
+      const path=join(folder,'pcm-'+inputs.length+'.f32');
       writeFileSync(path,Buffer.from(bytes));inputs.push(path);
     }});
     for(const channels of [1,2]){
@@ -253,26 +259,35 @@ test('macOS AVAudioFile reads the exact generated 48 kHz CAF frames and channels
 import AVFoundation
 import Darwin
 import Foundation
-for (index, path) in CommandLine.arguments.dropFirst().enumerated() {
-    let file = try AVAudioFile(forReading: URL(fileURLWithPath: path), commonFormat: .pcmFormatFloat32, interleaved: false)
-    let expectedChannels = index + 1
-    guard let pcm = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: 48000) else {
-        fatalError("Could not allocate PCM")
-    }
-    try file.read(into: pcm, frameCount: 48000)
-    let record = "AVAudioFile \(file.length) \(file.framePosition) \(pcm.frameLength) \(pcm.format.channelCount) \(pcm.format.sampleRate)"
+let paths = Array(CommandLine.arguments.dropFirst())
+guard paths.count == 3 else { exit(1) }
+var index = 0
+for channels in [1, 2] {
+    guard let format = AVAudioFormat(standardFormatWithSampleRate: 48000, channels: AVAudioChannelCount(channels)),
+          let pcm = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: 48000),
+          let samples = pcm.floatChannelData else { exit(2) }
+    pcm.frameLength = 48000
+    let record = "AVAudioPCMBuffer \(pcm.frameCapacity) \(pcm.frameLength) \(pcm.format.channelCount) \(pcm.format.sampleRate)"
     FileHandle.standardOutput.write(Data((record + "\n").utf8))
-    guard file.length == 48000, file.framePosition == 48000, pcm.frameLength == 48000,
-          Int(pcm.format.channelCount) == expectedChannels, pcm.format.sampleRate == 48000 else { exit(2) }
-    guard let samples = pcm.floatChannelData else { fatalError("Missing Float32 channels") }
-    for channel in 0..<expectedChannels {
-        let peak = (0..<48000).map { abs(samples[channel][$0]) }.max() ?? 0
-        guard abs(peak - Float(0.15 * Double(channel + 1))) < 0.0001 else { exit(3) }
+    guard pcm.frameCapacity >= 48000, pcm.frameLength == 48000, Int(pcm.format.channelCount) == channels,
+          pcm.format.sampleRate == 48000, pcm.stride == 1 else { exit(3) }
+    for channel in 0..<channels {
+        let data = try Data(contentsOf: URL(fileURLWithPath: paths[index])) as NSData
+        index += 1
+        let byteCount = 48000 * MemoryLayout<Float>.size
+        guard data.length == byteCount else { exit(4) }
+        data.getBytes(UnsafeMutableRawPointer(samples[channel]), length: byteCount)
+        let nativeBytes = Data(bytes: UnsafeRawPointer(samples[channel]), count: byteCount)
+        guard nativeBytes == (data as Data) else { exit(5) }
+        for frame in 0..<48000 {
+            let expected = Float(0.15 * Double(channel + 1) * sin(2 * Double.pi * 440 * Double(frame) / 48000))
+            guard abs(samples[channel][frame] - expected) < 0.000001 else { exit(6) }
+        }
     }
 }
 `);
     const output=execFileSync('xcrun',['swift',script,...inputs],{encoding:'utf8',timeout:120_000});
-    assert.match(output,/AVAudioFile 48000 48000 48000 1 48000\.0/);
-    assert.match(output,/AVAudioFile 48000 48000 48000 2 48000\.0/);
+    assert.match(output,/AVAudioPCMBuffer 48000 48000 1 48000\.0/);
+    assert.match(output,/AVAudioPCMBuffer 48000 48000 2 48000\.0/);
   }finally{rmSync(folder,{recursive:true,force:true});}
 });

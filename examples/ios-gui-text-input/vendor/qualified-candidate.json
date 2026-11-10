@@ -922,14 +922,14 @@
     {
       "path": "bridge/audio/game-audio.ios.ts",
       "normalization": "utf8-lf",
-      "bytes": 24987,
-      "sha256": "1464a858b155ec71529fb5bf9f3b9cbf4c0845011f421ededd3c81cb1014ccd8"
+      "bytes": 24717,
+      "sha256": "1b365b13ac9a23494442a3d9153b6dbfaf483828934bc0e6c29bb7970a119c12"
     }
   ],
-  "candidateId": "g11-023-iphone-retest-07990ebaf139b212b1f4",
+  "candidateId": "g11-023-iphone-retest-b7d9c40f328e553d6ea6",
   "engineRevision": "4beb46f6a88fccd8630033bed3cf61ae99087855",
-  "nativeBaseRevision": "6ea965e92d8666401b6fceab8d771140fcd5b130",
-  "previousNativeCandidateId": "g11-023-iphone-retest-13f77a20f2966ae65e0f",
-  "sourceState": "committed Engine packages and Native PCM preparation follow-up",
-  "deviceAcceptance": "pending macOS AVAudioFile preflight and physical iPhone audio retest"
+  "nativeBaseRevision": "2ef12c6a5a5eddb152606f78760eb956f955bba0",
+  "previousNativeCandidateId": "g11-023-iphone-retest-07990ebaf139b212b1f4",
+  "sourceState": "committed Engine packages and verified direct Native PCM",
+  "deviceAcceptance": "pending macOS PCM preflight and physical iPhone audio retest"
 }
