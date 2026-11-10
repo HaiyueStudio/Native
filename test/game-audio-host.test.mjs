@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {execFileSync,spawnSync} from 'node:child_process';
 import {mkdtempSync,rmSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -38,7 +38,12 @@ function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=f
       }
       return 0;
     },
-    startAndReturnError(){this.running=true;return true;},pause(){this.running=false;},stop(){this.running=false;}});
+    startAndReturnError(error){
+      if(this.failStart){error.value={localizedDescription:'restart rejected'};return false;}
+      this.running=true;return true;
+    },
+    prepare(){this.prepareCount=(this.prepareCount??0)+1;},
+    pause(){this.running=false;},stop(){this.running=false;}});
   const format={sampleRate:48000,channelCount:1};
   const pointer=(buffer,offset=0)=>({buffer,offset,add:value=>pointer(buffer,offset+value)});
   const globals={
@@ -180,7 +185,7 @@ test('direct PCM preserves nonzero stereo samples and the offline probe measures
   assert.deepEqual(Array.from(measurement.inputPeak),[.75,1]);
   assert.ok(measurement.outputPeak.every(peak=>peak>.5));
   assert.equal(measurement.renderedFrames,4096);
-  assert.equal(measurement.cases.length,4);
+  assert.equal(measurement.cases.length,2);
   assert.ok(measurement.cases.every(result=>result.graph?.reachesMainMixer));
   assert.equal(measurement.cases.find(result=>result.id==='direct-cold').graph.edges.length,1);
   assert.equal(f.session.activations,0);
@@ -188,29 +193,57 @@ test('direct PCM preserves nonzero stereo samples and the offline probe measures
   host.close();assert.equal(f.nodes.size,0);
 });
 
-test('the offline probe distinguishes silent hot attachment from a cold graph and reports checked start errors',async()=>{
+test('the offline probe uses the paused connection path and reports checked start errors',async()=>{
   for(const checkedStart of [true,'reject']){
     const {host,nodes}=fixture({checkedStart,silentHot:true});
     const buffer=host.createBuffer(1,2,48000);
     buffer.getChannelData(0).set([.25,-.5]);
     host.prepareBuffer(buffer);
-    const {cases:[legacy,hot,cold,direct]}=await host.measureCenterSignal(buffer);
-    assert.equal(legacy.startApi,'play');
-    assert.ok(legacy.outputPeak.every(peak=>peak===0));
-    assert.equal(hot.startApi,'playAndReturnError');
+    const {cases:[direct,paused]}=await host.measureCenterSignal(buffer);
+    assert.deepEqual([direct.id,paused.id],['direct-cold','full-paused']);
+    assert.equal(paused.startApi,'playAndReturnError');
     if(checkedStart==='reject'){
-      for(const result of [hot,cold,direct]){
+      for(const result of [direct,paused]){
         assert.equal(result.stage,'start-player');
         assert.match(result.error,/native start rejected \(AVFAudio -1\)/);
       }
     }else{
-      assert.ok(hot.outputPeak.every(peak=>peak===0));
-      assert.ok(cold.outputPeak.every(peak=>peak>0));
+      assert.ok(paused.outputPeak.every(peak=>peak>0));
       assert.ok(direct.outputPeak.every(peak=>peak>0));
     }
     assert.equal(nodes.size,12);
     host.close();assert.equal(nodes.size,0);
   }
+});
+
+test('voice graph edits preserve an existing schedule and reject a disconnected start or failed restart',async()=>{
+  const {host,engine,session,nodes,players,timers}=fixture();
+  const buffer=host.createBuffer(1,48000,48000);
+  const options={bus:'ui',loop:false,frequency:1,gain:1,pan:0};
+  await host.resume();
+  const first=host.openVoice(buffer,options);
+  first.start(()=>assert.fail('The live voice must not finish during graph edits.'));
+  const second=host.openVoice(buffer,options);
+  assert.equal(players[0].scheduleCount,1);
+  assert.equal(players[0].playing,true);
+  assert.ok(players.every(player=>!player.attachedHot));
+  assert.equal(engine.prepareCount,2);
+  engine.edges.delete(players[1]);
+  assert.throws(()=>second.start(()=>{}),/without a running route/);
+  assert.equal(players[1].scheduleCount,undefined);
+  second.dispose();
+  assert.equal(timers.size,1);
+  engine.failStart=true;
+  assert.throws(()=>host.openVoice(buffer,options),/restart rejected/);
+  assert.equal(host.state,'suspended');
+  assert.equal(session.active,false);
+  assert.equal(host.snapshot().voices,1);
+  engine.failStart=false;
+  await host.resume();
+  assert.equal(host.state,'running');
+  assert.equal(players[0].scheduleCount,1);
+  host.close();
+  assert.equal(nodes.size,0);
 });
 
 test('a rejected native loop restart leaves the host suspended and permits a later retry',async()=>{
@@ -352,7 +385,7 @@ for channels in [1, 2] {
   }finally{rmSync(folder,{recursive:true,force:true});}
 });
 
-test('macOS AVAudioEngine renders a direct control and records the full graph with cold and hot voice attachment', {skip:process.platform!=='darwin'},()=>{
+test('macOS AVAudioEngine renders the direct and paused routes while preserving legacy graph outcomes', {skip:process.platform!=='darwin'},()=>{
   const folder=mkdtempSync(join(tmpdir(),'g11-native-signal-'));
   try{
     const script=join(folder,'signal.swift');
@@ -368,7 +401,26 @@ struct Signal: Codable {
     let sampleTime: Int64?
 }
 
-func measure(id: String, direct: Bool, hot: Bool) throws -> Signal {
+func emit<T: Encodable>(_ value: T) throws {
+    let json = try JSONEncoder().encode(value)
+    FileHandle.standardOutput.write(json)
+    FileHandle.standardOutput.write(Data([10]))
+}
+
+struct Route: Codable {
+    let id: String
+    let stage: String
+    let reachesMain: Bool
+    let reachesOutput: Bool
+    let playerOutputChannels: UInt32
+    let playerOutputRate: Double
+}
+
+func measure(id: String) throws -> Signal {
+    let direct = id == "direct-cold"
+    let paused = id == "full-paused"
+    let hot = id == "full-hot" || paused
+    let configureFirst = id == "full-before-manual"
     let engine = AVAudioEngine()
     let player = AVAudioPlayerNode()
     let mono = AVAudioFormat(standardFormatWithSampleRate: 48000, channels: 1)!
@@ -409,25 +461,51 @@ func measure(id: String, direct: Bool, hot: Bool) throws -> Signal {
             if bus == 2 { ui = busLevel.input }
         }
     }
-    if !direct {
+    if !direct && !configureFirst {
         try engine.enableManualRenderingMode(.offline, format: stereo, maximumFrameCount: 1024)
     }
-    if hot { try engine.start() }
+    if hot {
+        try engine.start()
+        if paused { engine.pause() }
+    }
     engine.attach(player)
     if let ui {
         let output = mixer()
         engine.connect(output, to: ui, format: stereo)
         let filter = eq()
-        engine.connect(player, to: filter, format: mono)
-        engine.connect(filter, to: output, format: mono)
+        if paused {
+            engine.connect(filter, to: output, format: mono)
+            engine.connect(player, to: filter, format: mono)
+        } else {
+            engine.connect(player, to: filter, format: mono)
+            engine.connect(filter, to: output, format: mono)
+        }
         output.outputVolume = 1
         output.pan = 0
     } else {
         engine.connect(player, to: main, format: mono)
+    }
+    if direct || configureFirst {
         try engine.enableManualRenderingMode(.offline, format: stereo, maximumFrameCount: 1024)
     }
-    if !hot { try engine.start() }
+    if !hot || paused {
+        if paused { engine.prepare() }
+        try engine.start()
+    }
     defer { player.stop(); engine.stop() }
+    var node: AVAudioNode = player
+    var reachesMain = false
+    let outputNode = engine.outputNode
+    for _ in 0..<16 {
+        if node === main { reachesMain = true }
+        if node === outputNode { break }
+        let next = engine.outputConnectionPoints(for: node, outputBus: 0)
+        guard next.count == 1, let target = next[0].node else { break }
+        node = target
+    }
+    let format = player.outputFormat(forBus: 0)
+    try emit(Route(id: id, stage: "before-play", reachesMain: reachesMain, reachesOutput: node === outputNode,
+                   playerOutputChannels: format.channelCount, playerOutputRate: format.sampleRate))
     player.scheduleBuffer(tone, at: nil, options: .loops, completionHandler: nil)
     player.play()
     let buffer = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat, frameCapacity: 1024)!
@@ -448,19 +526,22 @@ func measure(id: String, direct: Bool, hot: Bool) throws -> Signal {
                   sampleTime: clock?.isSampleTimeValid == true ? clock?.sampleTime : nil)
 }
 
-let results = try [
-    measure(id: "direct-cold", direct: true, hot: false),
-    measure(id: "full-cold", direct: false, hot: false),
-    measure(id: "full-hot", direct: false, hot: true)
-]
-let data = try JSONEncoder().encode(results)
-print(String(decoding: data, as: UTF8.self))
+try emit(measure(id: CommandLine.arguments[1]))
 `);
-    const output=execFileSync('xcrun',['swift',script],{encoding:'utf8',timeout:120_000});
-    const cases=JSON.parse(output.trim());
+    const executable=join(folder,'native-audio-signal');
+    execFileSync('xcrun',['swiftc',script,'-o',executable],{encoding:'utf8',timeout:120_000});
+    const cases=['direct-cold','full-cold','full-hot','full-before-manual','full-paused'].map(id=>{
+      const run=spawnSync(executable,[id],{encoding:'utf8',timeout:30_000});
+      const [route,result]=(run.stdout??'').trim().split('\n').filter(Boolean).map(line=>JSON.parse(line));
+      if(run.status===0)return {id,route,...result};
+      const reason=run.stderr?.split('\n').find(line=>line.includes('reason:'))??run.stderr?.trim().split('\n')[0];
+      return {id,route,status:run.status,signal:run.signal,error:run.error?.message??reason};
+    });
     console.log('macOS AVAudioEngine signal comparison',JSON.stringify(cases));
-    assert.deepEqual(cases.map(result=>result.id),['direct-cold','full-cold','full-hot']);
-    assert.equal(cases[0].renderedFrames,4096);
-    assert.ok(cases[0].outputPeak.every(peak=>peak>.001),output);
+    for(const result of [cases[0],cases.at(-1)]){
+      assert.equal(result.route?.reachesMain,true,JSON.stringify(result));
+      assert.equal(result.renderedFrames,4096,JSON.stringify(result));
+      assert.ok(result.playing&&result.outputPeak.every(peak=>peak>.001),JSON.stringify(result));
+    }
   }finally{rmSync(folder,{recursive:true,force:true});}
 });

@@ -128,7 +128,7 @@ function start(canvas:Canvas):void {
         const output=audioHost!,measurement=await output.measureCenterSignal(toneBuffer!);
         if(audioHost!==output)return;
         record('g11-audio-offline-signal',measurement);
-        const measured=measurement.cases.find(result=>result.id==='full-hot');
+        const measured=measurement.cases.find(result=>result.id==='full-paused');
         if(measured&&!('error'in measured)&&measured.renderedFrames===4096&&measured.outputPeak.every(peak=>peak>.001)){
           status('Mixer signal present on both channels. Now check Hear center.');
         }else{

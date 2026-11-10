@@ -14,8 +14,7 @@ function validatePcm(channels:number,frames:number,rate:number):void{
 }
 
 interface PcmShape {frames:number;channels:number;sampleRate:number;}
-type PlayerStartMode='legacy'|'checked';
-type SignalCase='full-hot-legacy'|'full-hot'|'full-cold'|'direct-cold';
+type SignalCase='full-paused'|'direct-cold';
 
 function describePcm(frames:number,format:AVAudioFormat){
   const {channelCount,sampleRate}=format;
@@ -34,10 +33,13 @@ function canCheckPlayerStart(player:AVAudioPlayerNode):player is AVAudioPlayerNo
     player.respondsToSelector('playAndReturnError:');
 }
 
-function startPlayer(player:AVAudioPlayerNode,pcm:AVAudioPCMBuffer,loop:boolean,mode:PlayerStartMode):void{
+function startPlayer(engine:AVAudioEngine,player:AVAudioPlayerNode,pcm:AVAudioPCMBuffer,loop:boolean):void{
+  if(!engine.running||!inspectPlayerPath(engine,player).reachesMainMixer){
+    throw new Error('Cannot start an iOS audio player without a running route to the main mixer.');
+  }
   player.scheduleBufferAtTimeOptionsCompletionHandler(pcm,null as unknown as AVAudioTime,
     loop?AVAudioPlayerNodeBufferOptions.Loops:0 as AVAudioPlayerNodeBufferOptions,null as unknown as ()=>void);
-  if(mode==='checked'&&canCheckPlayerStart(player)){
+  if(canCheckPlayerStart(player)){
     const error=new interop.Reference<NSError>();
     if(!player.playAndReturnError(error)){
       const reason=error.value;
@@ -59,8 +61,10 @@ function playerClock(player:AVAudioPlayerNode){
 function inspectPlayerPath(engine:AVAudioEngine,player:AVAudioPlayerNode){
   const edges:{inputBus:number;channels:number;sampleRate:number}[]=[];
   const visited=new Set<AVAudioNode>();
+  const main=engine.mainMixerNode;
+  const isMain=(node:AVAudioNode)=>node===main||node.isEqual?.(main)===true;
   let node:AVAudioNode=player;
-  while(!visited.has(node)&&node!==engine.mainMixerNode&&edges.length<16){
+  while(!visited.has(node)&&!isMain(node)&&edges.length<16){
     visited.add(node);
     const points=engine.outputConnectionPointsForNodeOutputBus(node,0);
     if(Number(points.count)!==1)break;
@@ -70,7 +74,7 @@ function inspectPlayerPath(engine:AVAudioEngine,player:AVAudioPlayerNode){
     edges.push({inputBus:Number(connection.bus),channels:Number(format.channelCount),sampleRate:Number(format.sampleRate)});
     node=connection.node;
   }
-  return {reachesMainMixer:node===engine.mainMixerNode,edges};
+  return {reachesMainMixer:isMain(node),edges};
 }
 
 class PcmBuffer implements AudioBuffer {
@@ -153,6 +157,7 @@ export class IosGameAudioHost implements AudioMixerHost {
   private interruption=false;
   private reactivate=false;
   private active=false;
+  private editingGraph=false;
 
   constructor(private readonly report:(event:string,detail:unknown)=>void=()=>{},private readonly maxVoices=128,
     private readonly offlineRate?:number){
@@ -202,7 +207,7 @@ export class IosGameAudioHost implements AudioMixerHost {
         if(reason===AVAudioSessionRouteChangeReason.OldDeviceUnavailable&&this.mode==='running')this.pause('suspended');
       });
       this.observe(AVAudioEngineConfigurationChangeNotification,this.engine,()=>{
-        if(this.mode==='running'&&!this.engine.running)this.pause('suspended');
+        if(!this.editingGraph&&this.mode==='running'&&!this.engine.running)this.pause('suspended');
       });
     }catch(error){this.close();throw error;}
   }
@@ -262,17 +267,16 @@ export class IosGameAudioHost implements AudioMixerHost {
     if(!pcm)throw new Error('Install the test PCM before measuring its signal.');
     const {channels,sampleRate}=describePcm(pcm.frameLength,pcm.format);
     const inputPeak=Array.from({length:channels},(_,channel)=>signalPeak(readSamples(pcm,channel)));
-    const cases:SignalCase[]=['full-hot-legacy','full-hot','full-cold','direct-cold'];
-    const results=[];
-    for(const id of cases)results.push(await this.measureSignalCase(id,buffer,pcm,sampleRate));
-    const {outputPeak,renderedFrames,statuses}=results[1]!;
-    return {sampleRate,inputPeak,outputPeak,renderedFrames,statuses,cases:results};
+    const direct=await this.measureSignalCase('direct-cold',buffer,pcm,sampleRate);
+    this.report('ios-audio-signal-case',direct);
+    const full=await this.measureSignalCase('full-paused',buffer,pcm,sampleRate);
+    this.report('ios-audio-signal-case',full);
+    const {outputPeak,renderedFrames,statuses}=full;
+    return {sampleRate,inputPeak,outputPeak,renderedFrames,statuses,cases:[direct,full]};
   }
 
   private async measureSignalCase(id:SignalCase,buffer:AudioBuffer,pcm:AVAudioPCMBuffer,sampleRate:number){
-    const mode=id==='full-hot-legacy'?'legacy':'checked';
     const direct=id==='direct-cold';
-    const hot=id==='full-hot'||id==='full-hot-legacy';
     let offline:IosGameAudioHost|undefined,engine:AVAudioEngine|undefined,player:AVAudioPlayerNode|undefined;
     let stage='create-engine',startApi:string|null=null;
     const outputPeak=[0,0],statuses:number[]=[];
@@ -291,18 +295,18 @@ export class IosGameAudioHost implements AudioMixerHost {
           !engine.startAndReturnError(error))throw new Error(error.value?.localizedDescription??'Unable to start the direct offline graph.');
         stage='start-player';
         startApi=canCheckPlayerStart(player)?'playAndReturnError':'play';
-        startPlayer(player,pcm,true,mode);
+        startPlayer(engine,player,pcm,true);
       }else{
         offline=new IosGameAudioHost(this.report,1,sampleRate);
         engine=offline.engine;
         offline.preparedBuffers.set(buffer,{pcm,refs:1});
-        if(hot){stage='start-engine';await offline.resume();}
+        stage='start-engine';
+        await offline.resume();
         stage='connect-player';
-        const prepared=offline.createVoice(buffer,{bus:'ui',loop:true,frequency:1,gain:1,pan:0},mode);
+        const prepared=offline.connectVoice(buffer,{bus:'ui',loop:true,frequency:1,gain:1,pan:0});
         player=prepared.player;
-        if(!hot){stage='start-engine';await offline.resume();}
         stage='start-player';
-        startApi=mode==='checked'&&canCheckPlayerStart(player)?'playAndReturnError':'play';
+        startApi=canCheckPlayerStart(player)?'playAndReturnError':'play';
         prepared.voice.start(()=>{});
       }
       stage='render';
@@ -377,37 +381,47 @@ export class IosGameAudioHost implements AudioMixerHost {
     this.assertOpen();
     if(this.state!=='running')throw new Error('The iOS audio engine is suspended.');
     this.stopReference();
-    return this.createVoice(buffer,options).voice;
+    return this.connectVoice(buffer,options).voice;
   }
 
-  private createVoice(buffer:AudioBuffer,options:Parameters<AudioMixerHost['openVoice']>[1],mode:PlayerStartMode='checked'){
-    const pcm=this.preparedBuffers.get(buffer)?.pcm??this.toNativePcm(buffer),format=pcm.format;
+  private connectVoice(buffer:AudioBuffer,options:Parameters<AudioMixerHost['openVoice']>[1]){
+    const pcm=this.preparedBuffers.get(buffer)?.pcm??this.toNativePcm(buffer);
+    let prepared:ReturnType<IosGameAudioHost['createVoice']>|undefined;
+    try{return this.editGraph(()=>prepared=this.createVoice(pcm,buffer.duration,options));}
+    catch(error){prepared?.voice.dispose();throw error;}
+  }
+
+  private createVoice(pcm:AVAudioPCMBuffer,duration:number,options:Parameters<AudioMixerHost['openVoice']>[1]){
+    const format=pcm.format;
     const player=AVAudioPlayerNode.new(),nodes:AVAudioNode[]=[];
     const output=this.takeVoiceOutput(options.bus);
     let disposed=false,started=false;
-    const play=()=>startPlayer(player,pcm,options.loop,mode);
+    const play=()=>startPlayer(this.engine,player,pcm,options.loop);
     const dispose=()=>{
       if(disposed)return;
       disposed=true;
       this.finiteVoices.delete(player);this.updateTimer();
       this.loops.delete(player);
       this.voiceDisposers.delete(dispose);
-      try{if(started)player.stop();}finally{try{this.detach(nodes);}finally{output.inUse=false;}}
+      try{
+        this.editGraph(()=>{try{if(started)player.stop();}finally{this.detach(nodes);}});
+      }finally{output.inUse=false;}
     };
     try{
       this.attach(nodes,player);
-      let source:AVAudioNode=player;
       if(options.frequency!==1){
         const split=options.frequency<.25||options.frequency>4;
         const rate=split?Math.sqrt(options.frequency):options.frequency;
         for(let i=0;i<(split?2:1);i++){
           const speed=AVAudioUnitVarispeed.new();speed.rate=rate;
-          this.attach(nodes,speed);this.engine.connectToFormat(source,speed,format);source=speed;
+          this.attach(nodes,speed);
         }
       }
       const eq=this.addPreamp(nodes);
-      this.engine.connectToFormat(source,eq,format);
       this.engine.connectToFormat(eq,output.node,format);
+      for(let index=nodes.length-2;index>=0;index--){
+        this.engine.connectToFormat(nodes[index]!,nodes[index+1]!,format);
+      }
       const setGain=(gain:number)=>this.applyGain(eq,output.node,gain);
       setGain(options.gain);output.node.pan=options.pan;
       this.voiceDisposers.add(dispose);
@@ -420,7 +434,7 @@ export class IosGameAudioHost implements AudioMixerHost {
           // Poll the native source timeline on the JS thread. Never call into JS from the audio thread.
           play();
           if(options.loop)this.loops.set(player,play);
-          else{this.finiteVoices.set(player,{duration:buffer.duration,end:onEnded});this.updateTimer();}
+          else{this.finiteVoices.set(player,{duration,end:onEnded});this.updateTimer();}
         },
         stop:()=>{if(started){this.loops.delete(player);player.stop();started=false;}},
         setGain:gain=>{if(!disposed)setGain(gain);},
@@ -502,6 +516,25 @@ export class IosGameAudioHost implements AudioMixerHost {
     this.session.setActiveWithOptionsError(false,AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
   }
   private assertOpen():void{if(this.mode==='closed')throw new Error('The iOS audio engine is closed.');}
+  private editGraph<T>(update:()=>T):T{
+    if(!this.engine.running)return update();
+    this.editingGraph=true;
+    try{
+      // Commit the complete route before the render engine starts pulling it.
+      this.engine.pause();
+      try{return update();}
+      finally{
+        const error=new interop.Reference<NSError>();
+        this.engine.prepare();
+        if(!this.engine.startAndReturnError(error)){
+          throw new Error('Unable to restart the iOS audio graph: '+(error.value?.localizedDescription??'unknown error'));
+        }
+      }
+    }catch(error){
+      if(!this.engine.running){this.mode='suspended';this.deactivate();}
+      throw error;
+    }finally{this.editingGraph=false;this.updateTimer();}
+  }
   private observe(name:string,object:NSObject|null,callback:(notification:NSNotification)=>void):void{
     this.observers.push(NSNotificationCenter.defaultCenter.addObserverForNameObjectQueueUsingBlock(name,object,NSOperationQueue.mainQueue,callback));
   }
