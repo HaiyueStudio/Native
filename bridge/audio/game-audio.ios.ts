@@ -13,6 +13,18 @@ function validatePcm(channels:number,frames:number,rate:number):void{
     !Number.isFinite(rate)||rate<8000||rate>192000)throw new RangeError('Invalid iOS PCM format.');
 }
 
+interface PcmShape {frames:number;channels:number;sampleRate:number;}
+
+function describePcm(frames:number,format:AVAudioFormat){
+  const {channelCount,sampleRate}=format;
+  return {frames:Number(frames),channels:Number(channelCount),sampleRate:Number(sampleRate),
+    nativeTypes:{frames:typeof frames,channels:typeof channelCount,sampleRate:typeof sampleRate}};
+}
+
+function samePcm(left:PcmShape,right:PcmShape):boolean{
+  return left.frames===right.frames&&left.channels===right.channels&&left.sampleRate===right.sampleRate;
+}
+
 class PcmBuffer implements AudioBuffer {
   private readonly channels:Float32Array<ArrayBuffer>[];
   constructor(readonly numberOfChannels:number,readonly length:number,readonly sampleRate:number){
@@ -43,8 +55,23 @@ function pcmChannel(buffer:AVAudioPCMBuffer,channel:number):interop.Pointer|inte
 }
 
 function readSamples(buffer:AVAudioPCMBuffer,channel:number):Float32Array{
-  const data=NSData.dataWithBytesNoCopyLengthFreeWhenDone(pcmChannel(buffer,channel),buffer.frameLength*4,false);
+  const data=NSData.dataWithBytesNoCopyLengthFreeWhenDone(pcmChannel(buffer,channel),Number(buffer.frameLength)*4,false);
   return new Float32Array(interop.bufferFromData(data));
+}
+
+function encodeReferenceWav(buffer:AudioBuffer):ArrayBuffer{
+  const {length,sampleRate}=buffer;
+  if(buffer.numberOfChannels!==1||!Number.isSafeInteger(sampleRate))throw new Error('The iOS reference tone requires mono PCM and an integer sample rate.');
+  validatePcm(1,length,sampleRate);
+  const size=length*2,wav=new ArrayBuffer(44+size),view=new DataView(wav);
+  view.setUint32(0,0x52494646);view.setUint32(4,36+size,true);view.setUint32(8,0x57415645); // RIFF/WAVE
+  view.setUint32(12,0x666d7420);view.setUint32(16,16,true);view.setUint16(20,1,true); // fmt / PCM
+  view.setUint16(22,1,true);view.setUint32(24,sampleRate,true);view.setUint32(28,sampleRate*2,true);
+  view.setUint16(32,2,true);view.setUint16(34,16,true);
+  view.setUint32(36,0x64617461);view.setUint32(40,size,true); // data
+  const samples=buffer.getChannelData(0);
+  for(let i=0;i<length;i++)view.setInt16(44+i*2,Math.round(Math.max(-1,Math.min(1,samples[i]!))*32767),true);
+  return wav;
 }
 
 function encodePcmCaf(buffer:AudioBuffer):ArrayBuffer{
@@ -165,23 +192,39 @@ export class IosGameAudioHost implements AudioMixerHost {
     this.assertOpen();
     if(bytes.byteLength>64*1024*1024)throw new RangeError('iOS encoded audio exceeds 64 MiB.');
     const pcm=this.readNativeFile(bytes);
-    const result=new PcmBuffer(pcm.format.channelCount,pcm.frameLength,pcm.format.sampleRate);
+    const {channels,frames,sampleRate}=describePcm(pcm.frameLength,pcm.format);
+    const result=new PcmBuffer(channels,frames,sampleRate);
     for(let channel=0;channel<result.numberOfChannels;channel++)result.getChannelData(channel).set(readSamples(pcm,channel));
     return result;
   }
 
-  private readNativeFile(bytes:ArrayBuffer,suffix=''):AVAudioPCMBuffer{
+  private readNativeFile(bytes:ArrayBuffer,expected?:PcmShape):AVAudioPCMBuffer{
+    const suffix=expected?'.caf':'';
     const name=`haiyue-game-audio-${Date.now()}-${++decodeSequence}${suffix}`;
     const filePath=path.join(knownFolders.temp().path,name),url=NSURL.fileURLWithPath(filePath);
     const data=NSData.dataWithBytesLength(interop.handleof(bytes),bytes.byteLength);
     try{
       if(!data.writeToURLOptionsError(url,0 as NSDataWritingOptions))throw new Error('Unable to stage iOS audio bytes.');
-      const file=AVAudioFile.alloc().initForReadingCommonFormatInterleavedError(url,AVAudioCommonFormat.PCMFormatFloat32,false);
-      if(!file)throw new Error('AVAudioFile could not open the encoded audio.');
-      const {processingFormat}=file,frames=Number(file.length);
-      validatePcm(processingFormat.channelCount,frames,processingFormat.sampleRate);
+      const error=new interop.Reference<NSError>();
+      const file=AVAudioFile.alloc().initForReadingCommonFormatInterleavedError(url,AVAudioCommonFormat.PCMFormatFloat32,false,error);
+      if(!file)throw new Error(`AVAudioFile could not open the encoded audio${error.value?': '+error.value.localizedDescription:'.'}`);
+      const {processingFormat}=file,source=describePcm(file.length,processingFormat);
+      const {frames,channels,sampleRate}=source;
+      const reportFormat=(actual:ReturnType<typeof describePcm>|null)=>{
+        const status=expected&&samePcm(source,expected)&&actual&&samePcm(actual,expected)?'matched':'mismatch';
+        const result={status,expected,source,actual,filePosition:Number(file.framePosition)};
+        this.report('ios-audio-pcm-format',result);
+        if(status==='mismatch')throw new Error('Native PCM differs from the installed format: '+JSON.stringify(result));
+      };
+      if(expected&&!samePcm(source,expected))reportFormat(null);
+      validatePcm(channels,frames,sampleRate);
       const pcm=AVAudioPCMBuffer.alloc().initWithPCMFormatFrameCapacity(processingFormat,frames);
-      if(!pcm||!file.readIntoBufferError(pcm)||pcm.frameLength<1)throw new Error('Unable to decode iOS audio.');
+      if(!pcm)throw new Error('Unable to allocate an iOS PCM buffer.');
+      const decoded=expected?file.readIntoBufferFrameCountError(pcm,expected.frames,error):file.readIntoBufferError(pcm,error);
+      if(!decoded)throw new Error(`Unable to decode iOS audio${error.value?': '+error.value.localizedDescription:'.'}`);
+      const actual=describePcm(pcm.frameLength,pcm.format);
+      if(expected)reportFormat(actual);
+      validatePcm(actual.channels,actual.frames,actual.sampleRate);
       return pcm;
     }finally{
       const fs=NSFileManager.defaultManager;
@@ -199,8 +242,9 @@ export class IosGameAudioHost implements AudioMixerHost {
     this.assertOpen();
     const pcm=this.preparedBuffers.get(buffer)?.pcm;
     if(!pcm)throw new Error('Install the test PCM before measuring its signal.');
-    const inputPeak=Array.from({length:pcm.format.channelCount},(_,channel)=>signalPeak(readSamples(pcm,channel)));
-    const offline=new IosGameAudioHost(this.report,1,pcm.format.sampleRate);
+    const {channels,sampleRate}=describePcm(pcm.frameLength,pcm.format);
+    const inputPeak=Array.from({length:channels},(_,channel)=>signalPeak(readSamples(pcm,channel)));
+    const offline=new IosGameAudioHost(this.report,1,sampleRate);
     try{
       offline.preparedBuffers.set(buffer,{pcm,refs:1});
       await offline.resume();
@@ -214,10 +258,10 @@ export class IosGameAudioHost implements AudioMixerHost {
         statuses.push(status);
         if(status===AVAudioEngineManualRenderingStatus.Error)break;
         if(status!==AVAudioEngineManualRenderingStatus.Success)continue;
-        frames+=rendered.frameLength;
+        frames+=Number(rendered.frameLength);
         for(let channel=0;channel<2;channel++)outputPeak[channel]=Math.max(outputPeak[channel]!,signalPeak(readSamples(rendered,channel)));
       }
-      return {sampleRate:pcm.format.sampleRate,inputPeak,outputPeak,renderedFrames:frames,statuses};
+      return {sampleRate,inputPeak,outputPeak,renderedFrames:frames,statuses};
     }finally{offline.close();}
   }
 
@@ -225,7 +269,7 @@ export class IosGameAudioHost implements AudioMixerHost {
     this.assertOpen();
     if(this.state!=='running')throw new Error('The iOS audio session must be active for the reference tone.');
     this.stopReference();
-    const bytes=encodePcmCaf(buffer),data=NSData.dataWithBytesLength(interop.handleof(bytes),bytes.byteLength);
+    const bytes=encodeReferenceWav(buffer),data=NSData.dataWithBytesLength(interop.handleof(bytes),bytes.byteLength);
     const error=new interop.Reference<NSError>();
     const player=AVAudioPlayer.alloc().initWithDataError(data,error);
     if(!player||!player.play())throw new Error(`Unable to start the iOS reference tone${error.value?': '+error.value.localizedDescription:'.'}`);
@@ -240,10 +284,7 @@ export class IosGameAudioHost implements AudioMixerHost {
   private toNativePcm(buffer:AudioBuffer):AVAudioPCMBuffer{
     // Let AVAudioFile populate its PCM buffer. No JavaScript write through
     // the nested NativeScript float** representation is needed.
-    const pcm=this.readNativeFile(encodePcmCaf(buffer),'.caf');
-    if(pcm.frameLength!==buffer.length||pcm.format.channelCount!==buffer.numberOfChannels||
-      pcm.format.sampleRate!==buffer.sampleRate)throw new Error('Native PCM differs from the installed format.');
-    return pcm;
+    return this.readNativeFile(encodePcmCaf(buffer),{frames:buffer.length,channels:buffer.numberOfChannels,sampleRate:buffer.sampleRate});
   }
 
   openVoice(buffer:AudioBuffer,options:Parameters<AudioMixerHost['openVoice']>[1]):AudioMixerHostVoice{

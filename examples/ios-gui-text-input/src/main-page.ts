@@ -91,22 +91,31 @@ function start(canvas:Canvas):void {
         if(!mixer){audioHost=new IosGameAudioHost(record);mixer=new OwnerSafeAudioMixer({host:audioHost});}
         const activeMixer=mixer,output=audioHost!;
         await activeMixer.resume();
-        if(mixer!==activeMixer)return false;
+        if(mixer!==activeMixer)return null;
         const stereo=activeMixer.getCapabilities().stereoPan;
         const browserGlobals=globalThis as {AudioContext?:unknown;webkitAudioContext?:unknown};
         record('g11-audio-capability',{backend:'av-audio-engine',webAudioAvailable:typeof browserGlobals.AudioContext==='function'||typeof browserGlobals.webkitAudioContext==='function',status:stereo?'supported':'unsupported',stereo,stats:activeMixer.stats,native:output.snapshot(),qualification:stereo?'pending-human-hearing':'blocked'});
+        return {activeMixer,output,stereo};
+      };
+      const getToneBuffer=(output:IosGameAudioHost)=>{
+        if(!toneBuffer){
+          const rate=48000,buffer=output.createBuffer(1,rate,rate),data=buffer.getChannelData(0);
+          for(let i=0;i<data.length;i++)data[i]=.15*Math.sin(2*Math.PI*440*i/rate);
+          toneBuffer=buffer;
+        }
+        return toneBuffer;
+      };
+      const prepareGameAudio=async()=>{
+        const session=await unlockAudio();
+        if(!session||mixer!==session.activeMixer)return false;
+        const {activeMixer,output,stereo}=session;
         if(!stereo){status('Stereo capability unavailable: qualification blocked.');return false;}
+        if(!activeMixer.stats.buffers)activeMixer.installBuffer('g11-tone',getToneBuffer(output));
         if(!gameAudio){
           const audio=createGameAudio({mixer:activeMixer,listener:()=>[0,0]});
           try{cleanup.push(audio.bindEmitter2D({owner:'native-probe',channel:'tone',position:()=>audioPosition,maxDistance:100,panStrength:10}));}
           catch(error){audio.dispose();throw error;}
           gameAudio=audio;
-        }
-        if(!toneBuffer){
-          const rate=output.sampleRate,buffer=output.createBuffer(1,rate,rate),data=buffer.getChannelData(0);
-          for(let i=0;i<data.length;i++)data[i]=.15*Math.sin(2*Math.PI*440*i/rate);
-          activeMixer.installBuffer('g11-tone',buffer);
-          toneBuffer=buffer;
         }
         audioWanted=true;
         return true;
@@ -115,14 +124,14 @@ function start(canvas:Canvas):void {
       const sounds=createGuiContainer('column',{style:{width:{percent:100},height:'auto',contentMinimum:true,rowGap:6}});
       sounds.add(audioButton('Probe / unlock actual audio',async()=>{await unlockAudio();}));
       sounds.add(audioButton('Measure native audio signal',async()=>{
-        if(!await unlockAudio())return;
+        if(!await prepareGameAudio())return;
         const output=audioHost!,measurement=await output.measureCenterSignal(toneBuffer!);
         if(audioHost!==output)return;
         record('g11-audio-offline-signal',measurement);
         status('Signal measured. Now check Hear center.');
       }));
       for(const [text,x,y]of[['Hear left',-10,0],['Hear center',0,10],['Hear right',10,0],['Distance 100: silent',100,0]]as const)sounds.add(audioButton(text,async()=>{
-        if(!await unlockAudio())return;
+        if(!await prepareGameAudio())return;
         audioPosition=[x,y];
         const voice=gameAudio!.play({eventId:'native-'+(++audioEvent),owner:'native-probe',channel:'tone',bufferId:'g11-tone',bus:'ui',loop:true,startTick:audioEvent});
         gameAudio!.update(0);
@@ -135,11 +144,12 @@ function start(canvas:Canvas):void {
         },250);
       }));
       sounds.add(audioButton('Play iOS reference tone',async()=>{
-        if(!await unlockAudio())return;
+        const session=await unlockAudio();
+        if(!session||mixer!==session.activeMixer)return;
         cancelPlaybackProbe();
-        mixer!.stop('native-probe','tone');
-        audioHost!.playReferenceTone(toneBuffer!);
-        record('g11-audio-reference',{backend:'av-audio-player',...audioHost!.playbackSnapshot()});
+        session.activeMixer.stop('native-probe','tone');
+        session.output.playReferenceTone(getToneBuffer(session.output));
+        record('g11-audio-reference',{backend:'av-audio-player',...session.output.playbackSnapshot()});
       }));
       sounds.add(audioButton('Fade UI over 2 seconds',()=>{if(gameAudio){gameAudio.fadeBus('ui',0,2000);fadeRemaining=2000;host?.requestFrame();}}));
       sounds.add(audioButton('Mute / unmute',()=>{if(gameAudio){gameAudio.setMuted(!gameAudio.exportProfile().muted);record('g11-audio-profile',gameAudio.exportProfile());}}));
