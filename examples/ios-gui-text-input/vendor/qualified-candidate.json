@@ -863,8 +863,8 @@
     },
     {
       "path": "examples/ios-gui-text-input/scripts/serve-browser-ime.mjs",
-      "bytes": 4420,
-      "sha256": "fd41a4506873fdb83c00921cab2386b68371569bd52488d5b6691ac4e4fd6852",
+      "bytes": 4502,
+      "sha256": "96a81e2eecd4f62695c83109682abfbe42a7ffcd44589ac61e5348bfdf1c8fa3",
       "normalization": "utf8-lf"
     },
     {
@@ -926,10 +926,10 @@
       "sha256": "42a5f3abc4a432085b5b7684567c9534d21c53d7fc81d18c855f77111344a0e8"
     }
   ],
-  "candidateId": "g11-023-iphone-retest-aa5959aa600a145ca2a4",
+  "candidateId": "g11-023-iphone-retest-6356dabeb02794a0d849",
   "engineRevision": "4beb46f6a88fccd8630033bed3cf61ae99087855",
-  "nativeBaseRevision": "dbff5464e0a1ab13a3aa3a1b561ee6648c557530",
-  "previousNativeCandidateId": "g11-023-iphone-retest-4a3478009860cb28f2df",
-  "sourceState": "committed Engine packages and Native audio routes attached to the bus after upstream wiring",
-  "deviceAcceptance": "pending macOS native voice reuse and physical iPhone hearing retest"
+  "nativeBaseRevision": "0e9db72643c709e229550d9f9f9056d67f076c85",
+  "previousNativeCandidateId": "g11-023-iphone-retest-aa5959aa600a145ca2a4",
+  "sourceState": "committed Engine packages and validated Native GUI launcher compatibility",
+  "deviceAcceptance": "pending final Mac browser and physical iPhone GUI/IME evidence"
 }

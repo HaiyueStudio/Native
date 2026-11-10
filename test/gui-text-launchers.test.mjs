@@ -17,11 +17,17 @@ function fixture(t){
  const files=[['Engine/examples/gui-runtime/index.html','<!doctype html><html><body>Transport fixture only</body></html>'],['Engine/examples/gui-runtime/bundle.js','/* GUI bundle placeholder: transport test only */'],['Engine/examples/shared/engine.js','/* Engine placeholder: transport test only */']].map(([name,source])=>{const file=write(name,source),bytes=readFileSync(file);return {path:name,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};});
  const manifest={schemaVersion:1,candidateId:'automated-transport-fixture-not-a-qualified-candidate',files},manifestFile=path.join(app,'qualified-candidate.json');writeFileSync(manifestFile,JSON.stringify(manifest));
  t.after(()=>{assert.equal(path.dirname(realpathSync(directory)),realpathSync(tmpdir()));assert.match(path.basename(directory),/^g06-text-launcher-/u);rmSync(directory,{recursive:true,force:true});});
- return {directory,root,app,files,manifest,manifestFile,verify:()=>spawnSync(process.execPath,[path.join(app,'scripts/verify-candidate.mjs')],{encoding:'utf8'})};
+ const runVerifier=(...args)=>spawnSync(process.execPath,[path.join(app,'scripts/verify-candidate.mjs'),...args],{encoding:'utf8'});
+ return {directory,root,app,files,manifest,manifestFile,runVerifier,verify:()=>runVerifier(`--manifest=${manifestFile}`)};
 }
 
 test('candidate verifier accepts exact bytes and rejects both modified members and a real outside-file path',t=>{
  const f=fixture(t);assert.equal(f.verify().status,0);
+ mkdirSync(path.join(f.app,'vendor'),{recursive:true});
+ writeFileSync(path.join(f.app,'vendor','qualified-candidate.json'),JSON.stringify(f.manifest));
+ const active=f.runVerifier();
+ assert.equal(active.status,1);
+ assert.match(active.stderr,/requires the 0\.2\.3 vendor manifest/u);
  writeFileSync(path.join(f.root,f.files[1].path),'changed');assert.equal(f.verify().status,1);
  const outside=path.join(f.directory,'outside.txt');writeFileSync(outside,'outside');
  writeFileSync(f.manifestFile,JSON.stringify({...f.manifest,files:[{path:'../outside.txt',bytes:7,sha256:createHash('sha256').update('outside').digest('hex')}]}));

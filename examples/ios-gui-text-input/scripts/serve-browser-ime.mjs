@@ -5,9 +5,11 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {candidateBytes} from './candidate-bytes.mjs';
-execFileSync(process.execPath,[fileURLToPath(new URL('./verify-candidate.mjs',import.meta.url))],{stdio:'inherit'});
 const app=resolve(dirname(fileURLToPath(import.meta.url)),'..'),workspace=fileURLToPath(new URL('../../../../',import.meta.url));
-const manifest=JSON.parse(readFileSync(resolve(app,'qualified-candidate.json'),'utf8'));
+const historicalManifest=resolve(app,'qualified-candidate.json');
+execFileSync(process.execPath,[fileURLToPath(new URL('./verify-candidate.mjs',import.meta.url)),
+ `--manifest=${historicalManifest}`],{stdio:'inherit'});
+const manifest=JSON.parse(readFileSync(historicalManifest,'utf8'));
 const out=resolve(app,'artifacts',`browser-ime-${Date.now()}`);mkdirSync(out,{recursive:true});
 const routes=new Map([
  ['/examples/gui-runtime/','Engine/examples/gui-runtime/index.html'],['/examples/gui-runtime/index.html','Engine/examples/gui-runtime/index.html'],

@@ -1,7 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {loadTS} from './support/load-ts.mjs';
-import {GuiSystem,GuiRoot,GuiInput} from '../../Engine/engine/dist/gui.js';
+
+const installedEngine=new URL('../examples/ios-gui-text-input/node_modules/@haiyue/engine/',import.meta.url);
+const {exports:engineExports}=JSON.parse(readFileSync(new URL('package.json',installedEngine),'utf8'));
+const {GuiSystem,GuiRoot,GuiInput}=await import(new URL(engineExports['./gui'].import,installedEngine));
 const {OrbitPointerTarget}=loadTS('bridge/input/pointer-target.ts');
 
 test('native pointer transport drives the actual public GUI input/focus owner and releases its only text lease',()=>{
