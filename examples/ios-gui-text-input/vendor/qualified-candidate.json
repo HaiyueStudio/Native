@@ -5,15 +5,15 @@
   "enginePackage": {
     "name": "@haiyue/engine",
     "version": "0.2.3",
-    "bytes": 2049377,
-    "sha256": "08ac80f39ba51662bdf85bf1b6f9858856c0baea9e2d0a11c4db1b7ccbb1b3bb",
+    "bytes": 2049392,
+    "sha256": "205be4307a2241a78937b2117468c7871dadc09f83861fcbf7b69c20d9d916d2",
     "path": "examples/ios-gui-text-input/vendor/haiyue-engine-0.2.3.tgz"
   },
   "extensionsPackage": {
     "name": "@haiyue/extensions",
     "version": "0.2.3",
-    "bytes": 566230,
-    "sha256": "aa1344be0aaca42dcf65599ff3896fa099214a945256a61b0f007f1574253f9b",
+    "bytes": 566259,
+    "sha256": "0ae1c524d5e40eaccc613fbf13547be626e4c0ed0a221321364939cc9b4add66",
     "path": "examples/ios-gui-text-input/vendor/haiyue-extensions-0.2.3.tgz"
   },
   "files": [
@@ -816,7 +816,7 @@
     {
       "path": "examples/ios-gui-text-input/package-lock.json",
       "bytes": 359958,
-      "sha256": "753b48f9d8e5aa9bde7afe4e2d62a24e27a56b9ecd944db85318482991627729",
+      "sha256": "9ee8dab50da08e393cb7e90243772a2514d579979455e402155d03e23bd63920",
       "normalization": "utf8-lf"
     },
     {
@@ -905,13 +905,13 @@
     },
     {
       "path": "examples/ios-gui-text-input/vendor/haiyue-engine-0.2.3.tgz",
-      "bytes": 2049377,
-      "sha256": "08ac80f39ba51662bdf85bf1b6f9858856c0baea9e2d0a11c4db1b7ccbb1b3bb"
+      "bytes": 2049392,
+      "sha256": "205be4307a2241a78937b2117468c7871dadc09f83861fcbf7b69c20d9d916d2"
     },
     {
       "path": "examples/ios-gui-text-input/vendor/haiyue-extensions-0.2.3.tgz",
-      "bytes": 566230,
-      "sha256": "aa1344be0aaca42dcf65599ff3896fa099214a945256a61b0f007f1574253f9b"
+      "bytes": 566259,
+      "sha256": "0ae1c524d5e40eaccc613fbf13547be626e4c0ed0a221321364939cc9b4add66"
     },
     {
       "path": "examples/ios-gui-text-input/webpack.config.js",
@@ -926,10 +926,11 @@
       "sha256": "42a5f3abc4a432085b5b7684567c9534d21c53d7fc81d18c855f77111344a0e8"
     }
   ],
-  "candidateId": "g11-023-iphone-retest-6356dabeb02794a0d849",
+  "candidateId": "g11-023-iphone-retest-218a8cb8eb824189bd48",
   "engineRevision": "4beb46f6a88fccd8630033bed3cf61ae99087855",
-  "nativeBaseRevision": "0e9db72643c709e229550d9f9f9056d67f076c85",
-  "previousNativeCandidateId": "g11-023-iphone-retest-aa5959aa600a145ca2a4",
-  "sourceState": "committed Engine packages and validated Native GUI launcher compatibility",
-  "deviceAcceptance": "pending final Mac browser and physical iPhone GUI/IME evidence"
+  "nativeBaseRevision": "1d0b6a7d91b7af723a7a2aa5273fa21aaff57823",
+  "previousNativeCandidateId": "g11-023-iphone-retest-6356dabeb02794a0d849",
+  "priorAudioCandidateId": "g11-023-iphone-retest-aa5959aa600a145ca2a4",
+  "sourceState": "deterministic public package gate and unchanged Native application source",
+  "deviceAcceptance": "pending final Mac browser and physical iPhone evidence"
 }
