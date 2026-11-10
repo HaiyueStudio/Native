@@ -14,7 +14,7 @@ function validatePcm(channels:number,frames:number,rate:number):void{
 }
 
 interface PcmShape {frames:number;channels:number;sampleRate:number;}
-type SignalCase='full-paused'|'direct-cold';
+type SignalCase='late-bus-connect-hot'|'direct-cold';
 
 function describePcm(frames:number,format:AVAudioFormat){
   const {channelCount,sampleRate}=format;
@@ -133,7 +133,6 @@ interface Level {
 }
 interface VoiceOutput {
   readonly node:AVAudioMixerNode;
-  bus:AudioMixerBus|null;
   inUse:boolean;
 }
 
@@ -157,7 +156,6 @@ export class IosGameAudioHost implements AudioMixerHost {
   private interruption=false;
   private reactivate=false;
   private active=false;
-  private editingGraph=false;
 
   constructor(private readonly report:(event:string,detail:unknown)=>void=()=>{},private readonly maxVoices=128,
     private readonly offlineRate?:number){
@@ -207,7 +205,7 @@ export class IosGameAudioHost implements AudioMixerHost {
         if(reason===AVAudioSessionRouteChangeReason.OldDeviceUnavailable&&this.mode==='running')this.pause('suspended');
       });
       this.observe(AVAudioEngineConfigurationChangeNotification,this.engine,()=>{
-        if(!this.editingGraph&&this.mode==='running'&&!this.engine.running)this.pause('suspended');
+        if(this.mode==='running'&&!this.engine.running)this.pause('suspended');
       });
     }catch(error){this.close();throw error;}
   }
@@ -269,7 +267,7 @@ export class IosGameAudioHost implements AudioMixerHost {
     const inputPeak=Array.from({length:channels},(_,channel)=>signalPeak(readSamples(pcm,channel)));
     const direct=await this.measureSignalCase('direct-cold',buffer,pcm,sampleRate);
     this.report('ios-audio-signal-case',direct);
-    const full=await this.measureSignalCase('full-paused',buffer,pcm,sampleRate);
+    const full=await this.measureSignalCase('late-bus-connect-hot',buffer,pcm,sampleRate);
     this.report('ios-audio-signal-case',full);
     const {outputPeak,renderedFrames,statuses}=full;
     return {sampleRate,inputPeak,outputPeak,renderedFrames,statuses,cases:[direct,full]};
@@ -386,16 +384,14 @@ export class IosGameAudioHost implements AudioMixerHost {
 
   private connectVoice(buffer:AudioBuffer,options:Parameters<AudioMixerHost['openVoice']>[1]){
     const pcm=this.preparedBuffers.get(buffer)?.pcm??this.toNativePcm(buffer);
-    let prepared:ReturnType<IosGameAudioHost['createVoice']>|undefined;
-    try{return this.editGraph(()=>prepared=this.createVoice(pcm,buffer.duration,options));}
-    catch(error){prepared?.voice.dispose();throw error;}
+    return this.createVoice(pcm,buffer.duration,options);
   }
 
   private createVoice(pcm:AVAudioPCMBuffer,duration:number,options:Parameters<AudioMixerHost['openVoice']>[1]){
     const format=pcm.format;
     const player=AVAudioPlayerNode.new(),nodes:AVAudioNode[]=[];
-    const output=this.takeVoiceOutput(options.bus);
-    let disposed=false,started=false;
+    const output=this.takeVoiceOutput();
+    let disposed=false,started=false,busConnectionAttempted=false;
     const play=()=>startPlayer(this.engine,player,pcm,options.loop);
     const dispose=()=>{
       if(disposed)return;
@@ -403,9 +399,12 @@ export class IosGameAudioHost implements AudioMixerHost {
       this.finiteVoices.delete(player);this.updateTimer();
       this.loops.delete(player);
       this.voiceDisposers.delete(dispose);
-      try{
-        this.editGraph(()=>{try{if(started)player.stop();}finally{this.detach(nodes);}});
-      }finally{output.inUse=false;}
+      try{if(started)player.stop();}
+      finally{
+        try{if(busConnectionAttempted)this.engine.disconnectNodeOutput(output.node);}
+        finally{this.detach(nodes);}
+        output.inUse=false;
+      }
     };
     try{
       this.attach(nodes,player);
@@ -422,6 +421,9 @@ export class IosGameAudioHost implements AudioMixerHost {
       for(let index=nodes.length-2;index>=0;index--){
         this.engine.connectToFormat(nodes[index]!,nodes[index+1]!,format);
       }
+      // Join the running bus only after the entire upstream voice is connected.
+      busConnectionAttempted=true;
+      this.engine.connectToFormat(output.node,this.busLevels.get(options.bus)!.input,this.stereoFormat);
       const setGain=(gain:number)=>this.applyGain(eq,output.node,gain);
       setGain(options.gain);output.node.pan=options.pan;
       this.voiceDisposers.add(dispose);
@@ -516,25 +518,6 @@ export class IosGameAudioHost implements AudioMixerHost {
     this.session.setActiveWithOptionsError(false,AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
   }
   private assertOpen():void{if(this.mode==='closed')throw new Error('The iOS audio engine is closed.');}
-  private editGraph<T>(update:()=>T):T{
-    if(!this.engine.running)return update();
-    this.editingGraph=true;
-    try{
-      // Commit the complete route before the render engine starts pulling it.
-      this.engine.pause();
-      try{return update();}
-      finally{
-        const error=new interop.Reference<NSError>();
-        this.engine.prepare();
-        if(!this.engine.startAndReturnError(error)){
-          throw new Error('Unable to restart the iOS audio graph: '+(error.value?.localizedDescription??'unknown error'));
-        }
-      }
-    }catch(error){
-      if(!this.engine.running){this.mode='suspended';this.deactivate();}
-      throw error;
-    }finally{this.editingGraph=false;this.updateTimer();}
-  }
   private observe(name:string,object:NSObject|null,callback:(notification:NSNotification)=>void):void{
     this.observers.push(NSNotificationCenter.defaultCenter.addObserverForNameObjectQueueUsingBlock(name,object,NSOperationQueue.mainQueue,callback));
   }
@@ -559,20 +542,13 @@ export class IosGameAudioHost implements AudioMixerHost {
     // Mixer volume is 0..1. Positive gain uses the native EQ's global preamp.
     eq.globalGain=value>1?20*Math.log10(value):0;node.outputVolume=Math.min(1,value);
   }
-  private takeVoiceOutput(bus:AudioMixerBus):VoiceOutput{
-    // Keep mixers attached while AVAudioEngine is running. Only detach the
-    // upstream player/effects when a voice retires.
-    let slot=this.voiceOutputs.find(slot=>!slot.inUse&&slot.bus===bus)??this.voiceOutputs.find(slot=>!slot.inUse);
+  private takeVoiceOutput():VoiceOutput{
+    // Retired mixers stay attached but disconnected until a new voice is ready.
+    let slot=this.voiceOutputs.find(slot=>!slot.inUse);
     if(!slot){
       if(this.voiceOutputs.length===this.maxVoices)throw new Error('iOS audio voice capacity is exhausted.');
-      slot={node:AVAudioMixerNode.new(),bus:null,inUse:false};
+      slot={node:AVAudioMixerNode.new(),inUse:false};
       this.attach(this.outputNodes,slot.node);this.voiceOutputs.push(slot);
-    }
-    if(slot.bus!==bus){
-      if(slot.bus!==null)this.engine.disconnectNodeOutput(slot.node);
-      slot.bus=null;
-      this.engine.connectToFormat(slot.node,this.busLevels.get(bus)!.input,this.stereoFormat);
-      slot.bus=bus;
     }
     slot.inUse=true;return slot;
   }

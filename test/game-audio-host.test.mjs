@@ -6,10 +6,18 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {loadTS} from './support/load-ts.mjs';
 
-function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=false,checkedStart=false,silentHot=false}={}){
+function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=false,checkedStart=false,maxVoices}={}){
   const observers=new Map(),timers=new Map(),connections=[],players=[],engines=[],tempFiles=new Map(),references=[];
   const nodes=new Set(),errors=[];let serial=0;
-  const mixer=()=>({outputVolume:1,pan:0});
+  const mixer=()=>({isMixer:true,outputVolume:1,pan:0});
+  function hasPath(edges,from,target){
+    const seen=new Set();
+    for(let node=from;node&&!seen.has(node);node=edges.get(node)){
+      if(node===target)return true;
+      seen.add(node);
+    }
+    return false;
+  }
   const session={sampleRate:48000,outputNumberOfChannels:2,outputVolume:.7,active:false,activations:0,activationAllowed:true,
     setCategoryError:()=>true,setActiveError(active,error){
       this.activations++;
@@ -19,17 +27,29 @@ function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=f
     setActiveWithOptionsError(active){this.active=active;return true;}};
   const makeEngine=()=>({
     mainMixerNode:mixer(),running:false,owned:new Set(),edges:new Map(),
-    attachNode(node){nodes.add(node);this.owned.add(node);node.attachedHot=this.running;},
-    connectToFormat(from,to,format){connections.push([from,to,format]);this.edges.set(from,to);from.outputFormatForBus=()=>format;},
+    attachNode(node){nodes.add(node);this.owned.add(node);},
+    connectToFormat(from,to,format){
+      connections.push([from,to,format]);
+      // Model the observed native failure when an empty voice mixer joins a running bus.
+      if(this.running&&from.isMixer&&to.isMixer){
+        const reject=this.dropNextVoiceBus||!players.some(player=>hasPath(this.edges,player,from));
+        this.dropNextVoiceBus=false;
+        if(reject)return;
+      }
+      this.edges.set(from,to);from.outputFormatForBus=()=>format;
+    },
     disconnectNodeOutput(node){connections.push(['disconnect',node]);this.edges.delete(node);},
-    detachNode(node){nodes.delete(node);this.owned.delete(node);this.edges.delete(node);},
+    detachNode(node){
+      nodes.delete(node);this.owned.delete(node);this.edges.delete(node);
+      for(const [from,to] of this.edges)if(to===node)this.edges.delete(from);
+    },
     outputConnectionPointsForNodeOutputBus(node){
       const to=this.edges.get(node);return {count:to?1:0,objectAtIndex:()=>({node:to,bus:0})};
     },
     enableManualRenderingModeFormatMaximumFrameCountError(_mode,format){this.manualRenderingFormat=format;return true;},
     renderOfflineToBufferError(frames,pcm){
       pcm.frameLength=frames;
-      const player=players.find(node=>this.owned.has(node)&&node.playing&&!(silentHot&&node.attachedHot));
+      const player=players.find(node=>this.owned.has(node)&&node.playing&&hasPath(this.edges,node,this.mainMixerNode));
       for(const output of pcm.floatChannelData){
         const target=new Float32Array(output.buffer);
         if(!player){target.fill(0);continue;}
@@ -38,12 +58,8 @@ function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=f
       }
       return 0;
     },
-    startAndReturnError(error){
-      if(this.failStart){error.value={localizedDescription:'restart rejected'};return false;}
-      this.running=true;return true;
-    },
-    prepare(){this.prepareCount=(this.prepareCount??0)+1;},
-    pause(){this.running=false;},stop(){this.running=false;}});
+    startAndReturnError(){this.startCount=(this.startCount??0)+1;this.running=true;return true;},
+    pause(){this.pauseCount=(this.pauseCount??0)+1;this.running=false;},stop(){this.running=false;}});
   const format={sampleRate:48000,channelCount:1};
   const pointer=(buffer,offset=0)=>({buffer,offset,add:value=>pointer(buffer,offset+value)});
   const globals={
@@ -107,7 +123,7 @@ function fixture({onPcm,frameLengthDelta=0,bridgeFrameLength=false,corruptCopy=f
     setInterval:callback=>{const id=++serial;timers.set(id,callback);return id;},clearInterval:id=>timers.delete(id),
   };
   const {IosGameAudioHost}=loadTS('bridge/audio/game-audio.ios.ts',{'@nativescript/core':{knownFolders:{temp:()=>({path:'tmp'})},path:{join:(...p)=>p.join('/')}}},globals);
-  const host=new IosGameAudioHost((...args)=>errors.push(args));
+  const host=new IosGameAudioHost((...args)=>errors.push(args),maxVoices);
   return {host,engine:engines[0],session,nodes,connections,players,observers,timers,errors,tempFiles,references,
     tick:()=>{for(const callback of timers.values())callback();},
     emit(name,data){observers.get(name)?.({userInfo:{objectForKey:key=>data[key]}});}};
@@ -193,22 +209,22 @@ test('direct PCM preserves nonzero stereo samples and the offline probe measures
   host.close();assert.equal(f.nodes.size,0);
 });
 
-test('the offline probe uses the paused connection path and reports checked start errors',async()=>{
+test('the offline probe uses the bus-last connection path and reports checked start errors',async()=>{
   for(const checkedStart of [true,'reject']){
-    const {host,nodes}=fixture({checkedStart,silentHot:true});
+    const {host,nodes}=fixture({checkedStart});
     const buffer=host.createBuffer(1,2,48000);
     buffer.getChannelData(0).set([.25,-.5]);
     host.prepareBuffer(buffer);
-    const {cases:[direct,paused]}=await host.measureCenterSignal(buffer);
-    assert.deepEqual([direct.id,paused.id],['direct-cold','full-paused']);
-    assert.equal(paused.startApi,'playAndReturnError');
+    const {cases:[direct,busLast]}=await host.measureCenterSignal(buffer);
+    assert.deepEqual([direct.id,busLast.id],['direct-cold','late-bus-connect-hot']);
+    assert.equal(busLast.startApi,'playAndReturnError');
     if(checkedStart==='reject'){
-      for(const result of [direct,paused]){
+      for(const result of [direct,busLast]){
         assert.equal(result.stage,'start-player');
         assert.match(result.error,/native start rejected \(AVFAudio -1\)/);
       }
     }else{
-      assert.ok(paused.outputPeak.every(peak=>peak>0));
+      assert.ok(busLast.outputPeak.every(peak=>peak>0));
       assert.ok(direct.outputPeak.every(peak=>peak>0));
     }
     assert.equal(nodes.size,12);
@@ -216,32 +232,41 @@ test('the offline probe uses the paused connection path and reports checked star
   }
 });
 
-test('voice graph edits preserve an existing schedule and reject a disconnected start or failed restart',async()=>{
-  const {host,engine,session,nodes,players,timers}=fixture();
+test('voice graph connects the bus last and reuses a disconnected mixer without interrupting an existing voice',async()=>{
+  const {host,engine,nodes,players,timers,connections}=fixture({maxVoices:2});
   const buffer=host.createBuffer(1,48000,48000);
   const options={bus:'ui',loop:false,frequency:1,gain:1,pan:0};
   await host.resume();
   const first=host.openVoice(buffer,options);
   first.start(()=>assert.fail('The live voice must not finish during graph edits.'));
   const second=host.openVoice(buffer,options);
+  const [pooledMixer,ui]=connections.at(-1);
+  second.start(()=>assert.fail('The second voice must not finish during graph edits.'));
+  assert.throws(()=>host.openVoice(buffer,options),/capacity is exhausted/);
+  second.dispose();
+  assert.equal(engine.edges.has(pooledMixer),false);
+  assert.equal(timers.size,1);
+  engine.dropNextVoiceBus=true;
+  const disconnected=host.openVoice(buffer,options);
+  assert.throws(()=>disconnected.start(()=>{}),/without a running route/);
+  assert.equal(players.at(-1).scheduleCount,undefined);
+  disconnected.dispose();
+  const sameBus=host.openVoice(buffer,options);
+  assert.deepEqual(connections.at(-1).slice(0,2),[pooledMixer,ui]);
+  sameBus.start(()=>{});
+  sameBus.dispose();
+  const crossBus=host.openVoice(buffer,{...options,bus:'sfx'});
+  assert.equal(connections.at(-1)[0],pooledMixer);
+  assert.notEqual(connections.at(-1)[1],ui);
+  crossBus.start(()=>{});
+  crossBus.dispose();
+  assert.equal(host.nodeCount,14);
+  assert.equal(host.snapshot().voices,1);
+  assert.equal(host.state,'running');
+  assert.equal(engine.startCount,1);
+  assert.equal(engine.pauseCount,undefined);
   assert.equal(players[0].scheduleCount,1);
   assert.equal(players[0].playing,true);
-  assert.ok(players.every(player=>!player.attachedHot));
-  assert.equal(engine.prepareCount,2);
-  engine.edges.delete(players[1]);
-  assert.throws(()=>second.start(()=>{}),/without a running route/);
-  assert.equal(players[1].scheduleCount,undefined);
-  second.dispose();
-  assert.equal(timers.size,1);
-  engine.failStart=true;
-  assert.throws(()=>host.openVoice(buffer,options),/restart rejected/);
-  assert.equal(host.state,'suspended');
-  assert.equal(session.active,false);
-  assert.equal(host.snapshot().voices,1);
-  engine.failStart=false;
-  await host.resume();
-  assert.equal(host.state,'running');
-  assert.equal(players[0].scheduleCount,1);
   host.close();
   assert.equal(nodes.size,0);
 });
@@ -402,6 +427,8 @@ struct Signal: Codable {
     let anchorBeforeEdit: Int64?
     let anchorAfterEdit: Int64?
     let anchorStillPlaying: Bool?
+    var reuses: [Reuse] = []
+    var controls: [String: [Float]] = [:]
 }
 
 func emit<T: Encodable>(_ value: T) throws {
@@ -420,6 +447,17 @@ struct Route: Codable {
     let path: [String]
 }
 
+struct Reuse: Codable {
+    let bus: String
+    let route: Route
+    let outputPeak: [Float]
+    let renderedFrames: Int
+    let sampleTime: Int64?
+    let anchorBefore: Int64?
+    let anchorAfter: Int64?
+    let anchorStillPlaying: Bool?
+}
+
 func measure(id: String) throws -> Signal {
     let direct = id == "direct-cold"
     let paused = id == "full-paused"
@@ -427,7 +465,9 @@ func measure(id: String) throws -> Signal {
     let prewiredSink = ["prewired-sink-hot", "prewired-effects-hot", "prewired-player"].contains(id)
     let prewiredEffects = ["prewired-effects-hot", "prewired-player"].contains(id)
     let prewiredPlayer = id == "prewired-player"
-    let connectBusLast = id == "late-bus-connect-hot"
+    let reuseSlot = id == "reuse-voice-output"
+    let emptyHot = id == "late-bus-connect-empty-hot"
+    let connectBusLast = id == "late-bus-connect-hot" || emptyHot || reuseSlot
     let transitionProbe = stopped || prewiredSink || connectBusLast
     let hot = id == "full-hot" || paused || transitionProbe
     let configureFirst = id == "full-before-manual"
@@ -435,12 +475,19 @@ func measure(id: String) throws -> Signal {
     let player = AVAudioPlayerNode()
     let mono = AVAudioFormat(standardFormatWithSampleRate: 48000, channels: 1)!
     let stereo = AVAudioFormat(standardFormatWithSampleRate: 48000, channels: 2)!
-    let tone = AVAudioPCMBuffer(pcmFormat: mono, frameCapacity: 48000)!
-    tone.frameLength = 48000
-    let samples = tone.floatChannelData![0]
-    for frame in 0..<Int(tone.frameLength) {
-        samples[frame] = Float(0.15 * sin(2 * Double.pi * 440 * Double(frame) / 48000))
+    func makeTone(_ format: AVAudioFormat) -> AVAudioPCMBuffer {
+        let frames = AVAudioFrameCount(format.sampleRate)
+        let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frames)!
+        buffer.frameLength = frames
+        for channel in 0..<Int(format.channelCount) {
+            let samples = buffer.floatChannelData![channel]
+            for frame in 0..<Int(frames) {
+                samples[frame] = Float(0.15 * sin(2 * Double.pi * 440 * Double(frame) / format.sampleRate))
+            }
+        }
+        return buffer
     }
+    let tone = makeTone(mono)
 
     var labels: [ObjectIdentifier: String] = [ObjectIdentifier(player): "player"]
     func eq(_ label: String) -> AVAudioUnitEQ {
@@ -465,7 +512,7 @@ func measure(id: String) throws -> Signal {
 
     let main = engine.mainMixerNode
     labels[ObjectIdentifier(main)] = "main"
-    var ui: AVAudioMixerNode?
+    var ui: AVAudioMixerNode?, sfx: AVAudioMixerNode?
     if !direct {
         let master = level("master")
         engine.connect(master.output, to: main, format: stereo)
@@ -473,6 +520,7 @@ func measure(id: String) throws -> Signal {
             let busLevel = level(bus)
             engine.connect(busLevel.output, to: master.input, format: stereo)
             if bus == "ui" { ui = busLevel.input }
+            if bus == "sfx" { sfx = busLevel.input }
         }
     }
     var voiceSink: AVAudioMixerNode?
@@ -494,7 +542,7 @@ func measure(id: String) throws -> Signal {
         engine.connect(player, to: voiceFilter, format: mono)
     }
     var anchor: AVAudioPlayerNode?
-    if transitionProbe, let ui {
+    if transitionProbe && !emptyHot, let ui {
         let existing = AVAudioPlayerNode()
         engine.attach(existing)
         engine.connect(existing, to: ui, format: mono)
@@ -537,6 +585,8 @@ func measure(id: String) throws -> Signal {
             if connectBusLast { engine.connect(output, to: ui, format: stereo) }
             output.outputVolume = 1
             output.pan = 0
+            voiceSink = output
+            voiceFilter = filter
         } else {
             engine.connect(player, to: main, format: mono)
         }
@@ -548,46 +598,101 @@ func measure(id: String) throws -> Signal {
         if paused || stopped { engine.prepare() }
         try engine.start()
     }
-    defer { player.stop(); anchor?.stop(); engine.stop() }
-    var node: AVAudioNode = player
-    var reachesMain = false
-    var path: [String] = []
-    let outputNode = engine.outputNode
-    labels[ObjectIdentifier(outputNode)] = "output"
-    for _ in 0..<16 {
-        path.append(labels[ObjectIdentifier(node)] ?? String(describing: type(of: node)))
-        if node === main { reachesMain = true }
-        if node === outputNode { break }
-        let next = engine.outputConnectionPoints(for: node, outputBus: 0)
-        guard next.count == 1, let target = next[0].node else { break }
-        node = target
+    defer { engine.stop() }
+    func inspectRoute(_ source: AVAudioPlayerNode, stage: String) -> Route {
+        var node: AVAudioNode = source
+        var reachesMain = false
+        var path: [String] = []
+        let outputNode = engine.outputNode
+        labels[ObjectIdentifier(outputNode)] = "output"
+        for _ in 0..<16 {
+            path.append(labels[ObjectIdentifier(node)] ?? String(describing: type(of: node)))
+            if node === main { reachesMain = true }
+            if node === outputNode { break }
+            let next = engine.outputConnectionPoints(for: node, outputBus: 0)
+            guard next.count == 1, let target = next[0].node else { break }
+            node = target
+        }
+        let format = source.outputFormat(forBus: 0)
+        return Route(id: id, stage: stage, reachesMain: reachesMain, reachesOutput: node === outputNode,
+                     playerOutputChannels: format.channelCount, playerOutputRate: format.sampleRate, path: path)
     }
-    let format = player.outputFormat(forBus: 0)
-    try emit(Route(id: id, stage: "before-play", reachesMain: reachesMain, reachesOutput: node === outputNode,
-                   playerOutputChannels: format.channelCount, playerOutputRate: format.sampleRate, path: path))
-    if transitionProbe && !reachesMain {
+    let route = inspectRoute(player, stage: "before-play")
+    try emit(route)
+    if transitionProbe && !route.reachesMain {
         return Signal(id: id, outputPeak: [0, 0], renderedFrames: 0, playing: false, sampleTime: nil,
                       anchorBeforeEdit: anchorBefore, anchorAfterEdit: anchor.flatMap { sampleTime($0) },
                       anchorStillPlaying: anchor?.isPlaying)
     }
     player.scheduleBuffer(tone, at: nil, options: .loops, completionHandler: nil)
     player.play()
-    let buffer = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat, frameCapacity: 1024)!
-    var peaks: [Float] = [0, 0]
-    var rendered = 0
-    for _ in 0..<8 {
-        guard rendered < 4096 else { break }
-        if try engine.renderOffline(1024, to: buffer) != .success { continue }
-        rendered += Int(buffer.frameLength)
-        for channel in 0..<2 {
-            for frame in 0..<Int(buffer.frameLength) {
-                peaks[channel] = max(peaks[channel], abs(buffer.floatChannelData![channel][frame]))
+    func renderSignal() throws -> (peaks: [Float], frames: Int) {
+        let buffer = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat, frameCapacity: 1024)!
+        var peaks: [Float] = [0, 0]
+        var rendered = 0
+        for _ in 0..<8 {
+            guard rendered < 4096 else { break }
+            if try engine.renderOffline(1024, to: buffer) != .success { continue }
+            rendered += Int(buffer.frameLength)
+            for channel in 0..<2 {
+                for frame in 0..<Int(buffer.frameLength) {
+                    peaks[channel] = max(peaks[channel], abs(buffer.floatChannelData![channel][frame]))
+                }
             }
         }
+        return (peaks, rendered)
     }
-    return Signal(id: id, outputPeak: peaks, renderedFrames: rendered, playing: player.isPlaying,
-                  sampleTime: sampleTime(player), anchorBeforeEdit: anchorBefore,
-                  anchorAfterEdit: anchor.flatMap { sampleTime($0) }, anchorStillPlaying: anchor?.isPlaying)
+    let rendered = try renderSignal()
+    var signal = Signal(id: id, outputPeak: rendered.peaks, renderedFrames: rendered.frames, playing: player.isPlaying,
+                        sampleTime: sampleTime(player), anchorBeforeEdit: anchorBefore,
+                        anchorAfterEdit: anchor.flatMap { sampleTime($0) }, anchorStillPlaying: anchor?.isPlaying)
+    if reuseSlot, let voiceSink, let voiceFilter, let ui, let sfx {
+        let otherFormat = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 2)!
+        var previousPlayer = player
+        var previousFilter = voiceFilter
+        for (bus, target, format) in [("ui", ui, mono), ("sfx", sfx, otherFormat)] {
+            let before = anchor.flatMap { sampleTime($0) }
+            previousPlayer.stop()
+            engine.disconnectNodeOutput(voiceSink)
+            engine.detach(previousFilter)
+            engine.detach(previousPlayer)
+
+            let next = AVAudioPlayerNode()
+            engine.attach(next)
+            labels[ObjectIdentifier(next)] = "player"
+            let filter = eq("voice-eq")
+            engine.connect(filter, to: voiceSink, format: format)
+            engine.connect(next, to: filter, format: format)
+            engine.connect(voiceSink, to: target, format: stereo)
+            voiceSink.outputVolume = 1
+            voiceSink.pan = 0
+            let route = inspectRoute(next, stage: "reuse-" + bus)
+            try emit(route)
+            if !route.reachesOutput { break }
+
+            let nextTone = makeTone(format)
+            next.scheduleBuffer(nextTone, at: nil, options: .loops, completionHandler: nil)
+            next.play()
+            let rendered = try renderSignal()
+            signal.reuses.append(Reuse(bus: bus, route: route, outputPeak: rendered.peaks, renderedFrames: rendered.frames,
+                                      sampleTime: sampleTime(next), anchorBefore: before,
+                                      anchorAfter: anchor.flatMap { sampleTime($0) }, anchorStillPlaying: anchor?.isPlaying))
+            previousPlayer = next
+            previousFilter = filter
+        }
+        if signal.reuses.count == 2 {
+            voiceSink.pan = -1
+            _ = try renderSignal()
+            signal.controls["left"] = try renderSignal().peaks
+            voiceSink.pan = 1
+            _ = try renderSignal()
+            signal.controls["right"] = try renderSignal().peaks
+            voiceSink.outputVolume = 0
+            _ = try renderSignal()
+            signal.controls["muted"] = try renderSignal().peaks
+        }
+    }
+    return signal
 }
 
 try emit(measure(id: CommandLine.arguments[1]))
@@ -596,13 +701,13 @@ try emit(measure(id: CommandLine.arguments[1]))
     execFileSync('xcrun',['swiftc',script,'-o',executable],{encoding:'utf8',timeout:120_000});
     const cases=(transitionProbe
       ? ['direct-cold','late-bus-connect-hot','prewired-sink-hot','prewired-effects-hot','prewired-player','full-stopped-reconnect']
-      : ['direct-cold','full-cold','full-hot','full-before-manual','full-paused']).map(id=>{
+      : ['direct-cold','full-cold','full-hot','full-before-manual','full-paused','late-bus-connect-empty-hot','reuse-voice-output']).map(id=>{
       const run=spawnSync(executable,[id],{encoding:'utf8',timeout:30_000});
       const rows=(run.stdout??'').split('\n').filter(line=>line.startsWith('{')).map(line=>JSON.parse(line));
       const route=rows.find(row=>row.id===id&&row.stage==='before-play');
       const result=rows.find(row=>row.id===id&&Array.isArray(row.outputPeak));
       if(run.status===0&&result){
-        if(!transitionProbe||id==='direct-cold')return {id,route,...result};
+        if(!transitionProbe||id==='direct-cold')return {id,route,...result,reuseRoutes:rows.filter(row=>row.stage?.startsWith('reuse-'))};
         const signalPresent=result.renderedFrames===4096&&result.playing&&result.outputPeak.every(peak=>peak>.02);
         const existingVoiceContinued=result.renderedFrames===4096&&result.anchorStillPlaying&&Number.isFinite(result.anchorBeforeEdit)&&
           Number.isFinite(result.anchorAfterEdit)&&result.anchorAfterEdit>=result.anchorBeforeEdit+result.renderedFrames;
@@ -613,10 +718,25 @@ try emit(measure(id: CommandLine.arguments[1]))
     });
     const label=transitionProbe?'macOS AVAudioEngine transition comparison':'macOS AVAudioEngine signal comparison';
     console.log(label,JSON.stringify(cases));
-    for(const result of transitionProbe?[cases[0]]:[cases[0],cases.at(-1)]){
+    for(const result of transitionProbe?[cases[0]]:[cases[0],...cases.slice(-2)]){
       assert.equal(result.route?.reachesMain,true,JSON.stringify(result));
       assert.equal(result.renderedFrames,4096,JSON.stringify(result));
       assert.ok(result.playing&&result.outputPeak.every(peak=>peak>.001),JSON.stringify(result));
+    }
+    if(!transitionProbe){
+      const reused=cases.at(-1);
+      assert.ok(reused.route?.reachesOutput&&reused.sampleTime>0&&reused.outputPeak.every(peak=>peak>.02),JSON.stringify(reused));
+      assert.ok(reused.anchorStillPlaying&&reused.anchorAfterEdit-reused.anchorBeforeEdit>=4096,JSON.stringify(reused));
+      assert.deepEqual(reused.reuses.map(result=>result.bus),['ui','sfx'],JSON.stringify(reused));
+      for(const result of reused.reuses){
+        assert.equal(result.route.reachesOutput,true,JSON.stringify(result));
+        assert.equal(result.renderedFrames,4096,JSON.stringify(result));
+        assert.ok(result.sampleTime>0&&result.outputPeak.every(peak=>peak>.02),JSON.stringify(result));
+        assert.ok(result.anchorStillPlaying&&result.anchorAfter-result.anchorBefore>=4096,JSON.stringify(result));
+      }
+      const {left,right,muted}=reused.controls;
+      assert.ok(left?.[0]>.02&&left[1]<.02&&right?.[0]<.02&&right[1]>.02,JSON.stringify(reused.controls));
+      assert.ok(muted?.every(peak=>peak<.02),JSON.stringify(reused.controls));
     }
   }finally{rmSync(folder,{recursive:true,force:true});}
 }
@@ -625,7 +745,7 @@ test('macOS AVAudioEngine graph transition probe', {skip:process.platform!=='dar
   runMacAudioGraphCases(true);
 });
 
-test('macOS AVAudioEngine renders the direct and paused routes while preserving legacy graph outcomes', {
+test('macOS AVAudioEngine preserves active playback through bus-last voice reuse', {
   skip:process.platform!=='darwin'||process.env.G11_AUDIO_GRAPH_PROBE==='1',
 },()=>{
   runMacAudioGraphCases(false);
